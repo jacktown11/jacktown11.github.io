@@ -1,7 +1,7 @@
 ul{
 	border-left: 2px solid #666;
 	padding: 0;
-	background: #eeeeee url(/images/bird.jpg) bottom left no-repeat;
+	background: #eeeeee url(/images/bird.jpg) bottom right no-repeat;
 }
 
 ul li{
