@@ -5,7 +5,7 @@ ul{
 
 ul li{
 	list-style-type: none;
-	width: 50%;
+	width: 35%;
 	margin-top: 10px;
 	border-top: 1px solid #666;
 }
@@ -19,14 +19,14 @@ ul li div{
 	height: 30px;
 	margin-left: 0.5em;
 	
-	width: 70%;
+	width: 80%;
 	border-radius: 1em;
 	border: 1px solid #666;
 	border-top: 0;
 	text-align: center;
 }
 ul li:first-child{
-	border-radius: 0;
+	border: 0;
 	font-size: 150%;
 	width: 100%;
 	margin-bottom: 1em;
