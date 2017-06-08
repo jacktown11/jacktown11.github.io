@@ -3,6 +3,9 @@ header{
 	border-left: 2px solid blue;
 }
 header div{
+	color: white;
+	border-radius: 5px;
+	background-color: #666;
 	text-align: center;
 }
 div.tag_box{
@@ -12,11 +15,13 @@ div.tag_box{
 }
 
 div.tag_box div:first-child{
+	display: inline-block;
 	width: 30%;
 	height: 30px;
 	border-top: 1px solid black;
 }
 div.tag_box div:last-child{	height: 30px;
-	display: inline;
+	display: inline-block;
+	width: 70%;
 	border: 1px solid black;
 }
