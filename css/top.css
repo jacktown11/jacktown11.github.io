@@ -1,8 +1,31 @@
-header{
+
+ul li{
+	width: 50%;
+	margin-top: 10px;
+	border-left: 2px solid #666;
+	border-top: 1px solid #666;
+}
+
+ul li div{	
+	position: relative;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 30%;
+	height: 30px;
+	margin-left: -1em;
+	
+	width: 70%;
+	border-radius: 1em;
+	border: 1px solid #666;
+	text-align: center;
+}
+ul li:first-child{
 	font-size: 150%;
 	border-left: 2px solid #666;
 }
-header div{
+
+ul li:first-child div{
 	padding: 1em 0;
 	height: 2em;
 	color: white;
@@ -11,26 +34,7 @@ header div{
 	text-align: center;
 	vertical-align: middle;
 }
-header a{
-	color: yellow;
-}
-div.tag_box{
-	width: 50%;
-	margin-top: 10px;
-	border-left: 2px solid #666;
-	border-top: 1px solid #666;
-}
 
-div.tag_box div{	
-	position: relative;
-	top: 0;
-	right: -10px;
-	bottom: 0;
-	left: 30%;
-	height: 30px;
-	
-	width: 70%;
-	border-radius: 1em;
-	border: 1px solid #666;
-	text-align: center;
+ul li:first-child a{
+	color: yellow;
 }
