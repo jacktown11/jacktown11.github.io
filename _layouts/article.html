@@ -9,8 +9,10 @@
 <body>
 	<a id="home" href="{{site.baseurl}}/">Home</a>
 	<a id="list" href="{{site.baseurl}}/post_list/{{page.backurl}}">List</a>
-	<div id="container">
-		{{content}}	
+	<h1>{{ page.title }}</h1>
+	<p class="meta">{{ page.date | date_to_string }}</p>
+	<div class="post">
+  		{{ content }}
 	</div>
 </body>
 </html>
