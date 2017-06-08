@@ -9,7 +9,6 @@
 <body>
 	<a id="home" href="../">Home</a>
 	<h3>Articles about {{page.tag_intro}}:</h3>
-	<p>{{page.tag_name}}</p>
 	<ul>
 		{%for post in site.posts%}
 		{% if {{page.tag_name}} == post.tag_name %}
