@@ -1,9 +1,9 @@
 header{
 	font-size: 150%;
-	border-left: 2px solid blue;
+	border-left: 2px solid #666;
 }
 header div{
-	height: 400%;
+	height: 4em;
 	color: white;
 	border-radius: 5px;
 	background-color: #666;
@@ -19,14 +19,14 @@ div.tag_box{
 }
 
 div.tag_box div:first-child{
-	display: inline;
-	width: 30%;
+	display: inline-block;
+	width: 25%;
 	height: 30px;
 	border-top: 1px solid black;
 }
 div.tag_box div:last-child{	height: 30px;
 	border-radius: 25%;
-	display: inline;
+	display: inline-block;
 	width: 70%;
 	border: 1px solid #666;
 }
