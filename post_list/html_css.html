@@ -1,0 +1,8 @@
+---
+layout: post_list
+title: html_css_lists
+---
+<p>This is the list for html and css.</p>
+{%for post in site.posts%}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+{% endfor %}
