@@ -10,7 +10,7 @@
 	<a id="home" href="../">Home</a>
 	<h3>Articles about {{page.list_name}}:</h3>
 	<ul>
-		{%for post in site.tags.html_css%}
+		{%for post in site.tags.{{page.tage_name}}%}
 	    <li><span>{{ post.date | date_to_string }}</span>&nbsp;<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 		{% endfor %}
 	</ul>
