@@ -5,6 +5,9 @@
 	<title>{{page.title}}</title>
 </head>
 <body>
-	{{content}}
+	
+	{%for post in site.tags.html_css%}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+	{% endfor %}
 </body>
 </html>
