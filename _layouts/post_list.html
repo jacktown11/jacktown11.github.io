@@ -11,8 +11,10 @@
 	<h3>Articles about {{page.list_name}}:</h3>
 	<p>{{page.tag_name}}</p>
 	<ul>
-		{%for post in site.tags.{{page.tag_name}}%}
+		{%for post in site.posts%}
+		{% if {{page.tag_name}} == post.tag_name %}
 	    <li><span>{{ post.date | date_to_string }}</span>&nbsp;<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+	    {% endif %}
 		{% endfor %}
 	</ul>
 </body>
