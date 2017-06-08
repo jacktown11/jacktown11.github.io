@@ -12,6 +12,10 @@ ul li{
 	color: black;
 }
 
+ul li a{
+	color: #2c0588;
+}
+
 ul li div{	
 	position: relative;
 	top: 0;
@@ -19,7 +23,7 @@ ul li div{
 	bottom: 0;
 	left: 15%;
 	height: 30px;
-	margin-right: 1em;
+	margin-right: 1.2em;
 	
 	border-radius: 1em;
 	border: 1px solid #666;
