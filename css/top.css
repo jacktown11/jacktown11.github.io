@@ -17,11 +17,10 @@ ul li div{
 	top: 0;
 	right: 0;
 	bottom: 0;
-	left: 30%;
+	left: 15%;
 	height: 30px;
-	margin-right: 0.3em;
+	margin-right: 1em;
 	
-	width: 85%;
 	border-radius: 1em;
 	border: 1px solid #666;
 	border-top: 0;
