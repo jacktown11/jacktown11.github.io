@@ -1,0 +1,4 @@
+div#container{
+	background-image: url({{site.baseurl}}/images/sheep.jpg);
+	
+}
