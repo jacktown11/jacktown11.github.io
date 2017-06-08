@@ -1,5 +1,6 @@
 ul{
 	border-left: 2px solid #666;
+	padding: 0;
 }
 
 ul li{
@@ -25,12 +26,13 @@ ul li div{
 }
 ul li:first-child{
 	font-size: 150%;
-	border-left: 2px solid #666;
+	width: 100%;
 }
 
 ul li:first-child div{
 	position: static;
 	padding: 1em 0;
+	margin: 0;
 	height: 2em;
 	width: 100%;
 	color: white;
