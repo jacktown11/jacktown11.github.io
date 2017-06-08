@@ -11,12 +11,22 @@ ul li{
 	border-radius: 0 0.5em 0.5em 0 ;
 	background-color: #333;
 	list-style-type: none;
+
+	font-size: 0.7em;
 }
 
 ul li span{
-	width: 30%;
+	display: inline-block;
+	width: 20%;
 	border-right: 1px solid black;
 	border-radius: 0 0.5em 0.5em 0 ;
 	background-color: #ccc;
+}
+ul li a{
+	color: rgb(216,243,11);
+}
+
+ul li a:visited{
+	color: rgb(240,241,235);
 }
 
