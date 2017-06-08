@@ -1,8 +1,11 @@
+ul{
+	border-left: 2px solid #666;
+}
 
 ul li{
+	list-style-type: none;
 	width: 50%;
 	margin-top: 10px;
-	border-left: 2px solid #666;
 	border-top: 1px solid #666;
 }
 
@@ -13,7 +16,7 @@ ul li div{
 	bottom: 0;
 	left: 30%;
 	height: 30px;
-	margin-left: -1em;
+	margin-left: 1em;
 	
 	width: 70%;
 	border-radius: 1em;
@@ -26,8 +29,10 @@ ul li:first-child{
 }
 
 ul li:first-child div{
+	position: static;
 	padding: 1em 0;
 	height: 2em;
+	width: 100%;
 	color: white;
 	border-radius: 1em;
 	background-color: #666;
