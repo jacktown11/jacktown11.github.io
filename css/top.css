@@ -54,3 +54,8 @@ ul li:first-child div{
 ul li:first-child a{
 	color: yellow;
 }
+
+ul li:first-child span{
+	font-size: 0.6em;
+	text-align: right;
+}
