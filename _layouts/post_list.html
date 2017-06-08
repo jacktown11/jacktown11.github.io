@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="{{site.baseurl}}/css/post_list.css">
 </head>
 <body>
-	<a id="home" href="site.baseurl">Home</a>
+	<a id="home" href="../">Home</a>
 	<ul>
 		{%for post in site.tags.html_css%}
 	    <li><span>{{ post.date | date_to_string }}</span>&nbsp;<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>

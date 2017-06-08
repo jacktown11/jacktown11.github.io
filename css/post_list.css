@@ -8,6 +8,8 @@ a#home{
 	border: 1px solid black;
 	border-radius:1.5em; 
 	color:green;
+	text-align: center;
+	line-height: 3em;
 }
 
 ul{
