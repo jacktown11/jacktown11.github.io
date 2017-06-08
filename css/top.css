@@ -6,8 +6,10 @@ ul{
 ul li{
 	list-style-type: none;
 	width: 30%;
-	margin-top: 15px;
+	margin-top: 20px;
 	border-top: 1px solid #666;
+	font-weight: bold;
+	color: black;
 }
 
 ul li div{	
@@ -29,7 +31,7 @@ ul li:first-child{
 	border: 0;
 	font-size: 150%;
 	width: 100%;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 
 ul li:first-child div{
@@ -38,6 +40,7 @@ ul li:first-child div{
 	margin: 0;
 	height: 2em;
 	width: 100%;
+
 	color: white;
 	border-radius: 1em;
 	background-color: #666;
