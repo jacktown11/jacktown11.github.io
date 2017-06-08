@@ -1,4 +1,20 @@
+a#home, a#list{
+	display: block;
+	position: fixed;
+	left: 5%;
+	top: 15%;
+	width: 3em;
+	height: 3em;
+	border: 1px solid black;
+	border-radius:1.5em; 
+	color:green;
+	text-align: center;
+	line-height: 3em;
+}
+a#list{
+	top: 25%;
+}
 div#container{
-	background-image: url({{site.baseurl}}/images/sheep.jpg);
-	
+	background-color: #d2e3c7;
+	padding: 0.5em 1.5em;
 }
