@@ -1,3 +1,15 @@
+a#home{
+	display: block;
+	position: fixed;
+	left: 5%;
+	top: 10%;
+	width: 3em;
+	height: 3em;
+	border: 1px solid black;
+	border-radius:1.5em; 
+	color:green;
+}
+
 ul{
 	padding: 0;
 	border-left: 2px solid black;
@@ -23,7 +35,7 @@ ul li span{
 	background-color: #ccc;
 }
 ul li a{
-	color: rgb(216,243,11);
+	color: rgb(255,255,0);
 }
 
 ul li a:visited{
