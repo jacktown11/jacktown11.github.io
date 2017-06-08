@@ -40,7 +40,7 @@ ul li:first-child{
 ul li:first-child div{
 	position: static;
 	padding: 1em 0;
-	margin: 0;
+	margin: 0.8em 0 2em 1.2em;
 	height: 2em;
 	width: 100%;
 
@@ -56,6 +56,7 @@ ul li:first-child a{
 }
 
 ul li:first-child span{
-	font-size: 0.6em;
+	display: block;
+	font-size: 0.5em;
 	text-align: right;
 }
