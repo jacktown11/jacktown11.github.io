@@ -9,7 +9,7 @@ div.tag_box{
 	border-left: 2px solid blue;
 }
 
-div.tag_box:first-child(2){
+div.tag_box:first-child{
 	margin-top: 10px;
 	height: 20px;
 	border-top: 1px solid black;
