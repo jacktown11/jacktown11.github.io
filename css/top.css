@@ -1,9 +1,6 @@
 body>div.container{
-	background: #fff url(/images/bird.png) bottom right no-repeat;
-}
-ul{
+	background: #eee url(/images/bird.png) bottom right no-repeat;
 	border-left: 2px solid #666;
-	padding: 0;
 }
 
 ul li{
