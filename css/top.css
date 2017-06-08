@@ -4,10 +4,10 @@ ul{
 }
 
 ul li{
-	list-style-type: none;
 	width: 30%;
 	margin-top: 20px;
 	border-top: 1px solid #666;
+	list-style-type: none;
 	font-weight: bold;
 	color: black;
 }
@@ -24,7 +24,6 @@ ul li div{
 	left: 15%;
 	height: 1.5em;
 	margin-right: 1.2em;
-	
 	border-radius: 1em;
 	border: 1px solid #666;
 	border-top: 0;
@@ -32,22 +31,22 @@ ul li div{
 }
 ul li:first-child{
 	border: 0;
-	font-size: 150%;
 	width: 100%;
 	margin-bottom: 1em;
+	font-size: 150%;
 }
 
 ul li:first-child div{
 	position: static;
-	padding: 1em 0;
-	margin: 0.8em 0 2em 1.2em;
+	padding: 1em 0 2em;
+	margin: 0;
 	height: 2em;
 	width: 100%;
-
-	color: white;
 	border-radius: 1em;
+	
 	background-color: #666;
-	text-align: center;
+	color: white;
+	text-align: left;
 	vertical-align: middle;
 }
 
