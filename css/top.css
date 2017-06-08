@@ -2,7 +2,9 @@ body>div.container{
 	background: #eee url(/images/bird.png) bottom right no-repeat;
 	border-left: 2px solid #666;
 }
-
+ul{
+	padding: 0;
+}
 ul li{
 	width: 30%;
 	margin-top: 20px;
