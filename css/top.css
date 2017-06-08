@@ -16,15 +16,15 @@ header a{
 }
 div.tag_box{
 	width: 50%;
-	padding-top: 10px;
+	margin-top: 10px;
 	border-left: 2px solid #666;
-	border-top: 1px solid #666；
+	border-top: 1px solid #666;
 }
 
 div.tag_box div{	
 	position: relative;
 	top: 0;
-	right: -1em;
+	right: -10px;
 	bottom: 0;
 	left: 30%;
 	height: 30px;
