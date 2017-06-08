@@ -10,13 +10,13 @@ div.tag_box{
 }
 
 div.tag_box:first-child{
-	margin-top: 10px;
-	height: 20px;
+	padding-top: 10px;
+	height: 30px;
 	border-top: 1px solid black;
 }
 div.tag_box:last-child{
-	margin-top: 10px;
-	height: 20px;
+	padding-top: 10px;
+	height: 30px;
 	border: 1px solid black;
 	float: left;
 
