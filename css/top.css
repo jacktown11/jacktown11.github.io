@@ -6,17 +6,17 @@ header div{
 	text-align: center;
 }
 div.tag_box{
+	width: 50%;
+	padding-top: 10px;
 	border-left: 2px solid blue;
 }
 
-div.tag_box:first-child{
-	padding-top: 10px;
+div.tag_box div:first-child{
+	width: 30%;
 	height: 30px;
 	border-top: 1px solid black;
 }
-div.tag_box:last-child{
-	padding-top: 10px;
-	height: 30px;
+div.tag_box div:last-child{	height: 30px;
 	border: 1px solid black;
 	float: left;
 
