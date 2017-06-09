@@ -9,7 +9,6 @@ a { text-decoration: none; color: #55ff55; }
 a:hover { text-decoration: underline; }
 a:visited { color: black;}
 
-p, ul { font-size: 1.5em; line-height: 1.4em; color: #333; }
 
 h1, h2, h3, h4 { font-family: '微软雅黑','Helvetica', 'Arial', 'Sans-Serif'; }
 h1 { font-size: 3em;  }
