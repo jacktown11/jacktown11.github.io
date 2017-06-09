@@ -6,10 +6,10 @@ backurl: agrithom.html
 ---
 <style>
 	table th:nth-child(1){
-		width: 30%;
+		
 	}
 	table th:nth-child(2){
-		width: 100px;
+		
 	}
 </style>
 
