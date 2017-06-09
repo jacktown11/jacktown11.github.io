@@ -29,4 +29,4 @@ backurl: agrithom.html
     - IncreaseKey: 
     - Delete:
     - BuildHeap: 空堆N个Insert操作来完成，总运行时间O（N）
-### 3.xxx 
+### 3. xxx 
