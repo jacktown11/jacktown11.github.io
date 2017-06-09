@@ -31,7 +31,7 @@ backurl: agrithom.html
   - BuildHeap: 空堆N个Insert操作来完成，总运行时间O（N）
 
 ### 3. 左式堆
-- 淡淡的
+- **淡淡的**
   - 单独辅导的
   - dfdd
-- 地方大
+- **地方大**
