@@ -143,10 +143,11 @@ table {
     width: 85%
     border-collapse: separate;
     border-spacing: 0;
-    border: 2px solid #36657f;
+    border: 2px solid #80929c;
 }
 th, td{
-    border: 1px solid #0e695f;
+    border: 1px dotted #a8bfbf;
+    padding: 0.5em 0.5em;
 }
 th{
     background-color: #cadcd0;
