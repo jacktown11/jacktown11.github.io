@@ -17,12 +17,13 @@ ul li{
 	width: 30%;
 	margin-top: 20px;
 	list-style-type: none;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	color: black;
 }
 
 ul li a{
-	color: #2c0588;
+	font-family: ;
+	color: #0040b1;
 	padding-left: 0.5em;
 }
 
