@@ -15,7 +15,7 @@ ul{
 }
 ul li{
 	width: 30%;
-	margin-top: 20px;
+	margin-bottom: 0.6em;
 	list-style-type: none;
 	/*font-weight: bold;*/
 	color: black;

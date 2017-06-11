@@ -1,24 +1,52 @@
 /*这部分主要用于页面固定定位的几个小图标*/
-a#home, a#list{
+div#fixed1,
+div#fixed2{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 15%;
+}
+div#fixed1{
+    left: 0;
+}
+div#fixed2{
+    right: 0;
+}
+
+a#home,a#list,
+a#totop,a#tobot{
 	display: block;
-	position: fixed;
-	left: 5%;
-	top: 15%;
+    position: fixed;
 	width: 3em;
 	height: 3em;
 	border: 1px solid black;
-	border-radius:1.5em; 
-	color:green;
+	border-radius: 1.5em; 
+	color: green;
 	text-align: center;
 	line-height: 3em;
 }
-a#list{
-	top: 35%;
+
+a#home, a#list{
+    left:5%;
 }
+a#totop, a#tobot{
+    right: 5%;
+}
+
+a#home, a#totop{
+    top: 30%;
+}
+a#list, a#tobot{
+    top: 50%;
+}
+
+
 body>div.post{
 	background-color: #d2e3c7;
 	padding: 0.5em 1.5em;
 }
+
+
 
 /*下面的部分来自网上查找的模版*/
 html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
