@@ -20,11 +20,10 @@ ul{
 
 ul li{
 	width: 70%;
-	margin-bottom: 0.5em;
-	border: 1px solid black;
+	height: 1.5em;
+	margin-bottom: 0.8em;
 	border-left: none;
 	border-radius: 0 0.5em 0.5em 0 ;
-	background-color: #333;
 	list-style-type: none;
 
 	font-size: 0.7em;
@@ -36,12 +35,16 @@ ul li span{
 	border-right: 1px solid black;
 	border-radius: 0 0.5em 0.5em 0 ;
 	background-color: #ccc;
+	line-height: 150%;
 }
 ul li a{
-	color: rgb(255,255,0);
+	color: #0040b1;
+	/*font-weight: bold;*/
 }
 
 ul li a:visited{
-	color: rgb(240,241,235);
+	color: #222;
+	/*font-weight: bold;*/
+
 }
 

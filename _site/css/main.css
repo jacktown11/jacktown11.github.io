@@ -1,4 +1,5 @@
 body { 
+	font-family: 'Microsoft Yahei','Helvetica', 'Arial', 'Sans-Serif'; 
 	margin: 30px auto; 
 	width: 70%; 
 	background-color: #eee;
@@ -10,7 +11,7 @@ a:hover { text-decoration: underline; }
 a:visited { color: black;}
 
 
-h1, h2, h3, h4 { font-family: '微软雅黑','Helvetica', 'Arial', 'Sans-Serif'; }
+h1, h2, h3, h4 { font-family: 'SimHei','Helvetica', 'Arial', 'Sans-Serif'; }
 h1 { font-size: 3em;  }
 h2 { font-size: 2.7em; }
 h3 { font-size: 2.3em; }

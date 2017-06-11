@@ -1,6 +1,7 @@
 ---
 layout: article
 title: 数据结构与算法分析C语言描述 总结笔记 第六章
+categories: agrithom all
 tag_name: agrithom
 backurl: agrithom.html
 ---
