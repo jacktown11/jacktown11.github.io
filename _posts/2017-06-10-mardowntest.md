@@ -5,14 +5,7 @@ categories: agrithom all
 tag_name: agrithom
 backurl: agrithom.html
 ---
-<style>
-	table th:nth-child(1){
-		
-	}
-	table th:nth-child(2){
-		
-	}
-</style>
+
 
 <h1>第六章 优先队列(堆)</h1>
 
