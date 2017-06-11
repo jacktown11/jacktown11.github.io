@@ -1,8 +1,8 @@
 body { 
-	font-family: 'Microsoft Yahei','Helvetica', 'Arial', 'Sans-Serif'; 
-	margin: 30px auto; 
+	font-family: 'Microsoft Yahei','Helvetica', 'Arial', 'Sans-Serif';  
+	margin: auto;
 	width: 70%; 
-	background-color: #eee;
+	background-color: #f6f6f6;
 	font-size: 18px;
 }
 

@@ -3,10 +3,10 @@ body{
 	margin-bottom: 0;
 }
 body>div.container{
-	background: #eee url(/images/bird.png) bottom right no-repeat;
+	background: #ccc url(/images/bird.png) bottom right no-repeat;
 	border-left: 2px solid #666;
 	border-right: 2px solid #666;
-	background-color: #ccc;
+	background-color: #e8e8e8;
 }
 ul{
 	padding: 0;
@@ -17,7 +17,6 @@ ul li{
 	width: 30%;
 	margin-bottom: 0.6em;
 	list-style-type: none;
-	/*font-weight: bold;*/
 	color: black;
 }
 
@@ -37,7 +36,7 @@ ul li div{
 	margin-right: 1em;
 	border-radius: 1em;
 	border: 1px solid #666;
-	background-color: #aaa;
+	background-color: #e0e0e0;
 	text-align: left;
 }
 ul li:first-child{
@@ -58,7 +57,7 @@ ul li:first-child div{
 	height: 4em;
 	border-radius: 0 0 1em 1em;
 	
-	background-color: #666;
+	background-color: #777;
 	color: white;
 	text-align: left;
 	vertical-align: middle;
