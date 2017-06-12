@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<script src="/js/article.js"></script>
+</head>
+<body>
+	<p id="pagetop"></p>
+
+	<div id="fixed1"></div>
+	<a id="home" href="/">Home</a>
+	<a id="list" href="/post_list/agrithom.html">List</a>		
+
+	<h1>数据结构与算法分析C语言描述 总结笔记 第六章</h1>
+	<p class="meta">10 Jun 2017</p>
+	<div class="post">
+  		<h1 data-anchor-id="d9tr" id="第六章-优先队列堆">第六章 优先队列(堆)</h1><div class="md-section-divider"></div><h3 data-anchor-id="dev4" id="1-基本概念">1. 基本概念</h3><p data-anchor-id="9i8q">一种特殊的队列，至少支持两种操作：Insert和DeleteMin；前者插入元素，相当于队列的enqueue,后者查找、删除、返回最小的元素，相当于队列的dequeue。</p><div class="md-section-divider"></div><h3 data-anchor-id="eoau" id="2-二叉堆">2. 二叉堆</h3><ul data-anchor-id="t8hg">
+<li><strong>概念：</strong> <br>
+具有结构性质和堆序性质的二叉树（或者说具有堆序性质的完全二叉树）</li>
+<li><strong>性质：</strong> <br>
+<ul><li>结构性质：完全二叉树</li>
+<li>堆序性质：父节点小于任意子节点</li></ul></li>
+<li><strong>实现方法：</strong> <br>
+数组即可， 鉴于其完全二叉树的性质，乘以2可以到达左子节点，除以2可以到达父节点。</li>
+<li><strong>操作及其时间复杂度：</strong>（后面四种操作需要节点位置信息为基础） <br>
+<ul><li>Insert:  采用上滤，最坏为O(logN)，平均只要比较2.607次，上移1.607层，O（1）</li>
+<li>DeleteMin: 采用下滤，最坏为O(logN)，平均为O(logN)</li>
+<li>DecreaseKey: </li>
+<li>IncreaseKey: </li>
+<li>Delete:</li>
+<li>BuildHeap: 空堆N个Insert操作来完成，总运行时间O（N）</li></ul></li>
+</ul><div class="md-section-divider"></div><h3 data-anchor-id="lco2" id="3-d堆">3. d堆</h3><ul data-anchor-id="ngmc">
+<li>类似二叉堆，只是节点的儿子数都是d个（除了最底层的一些节点）。</li>
+<li>有证据显示，4堆在实践中可以胜过二叉堆。</li>
+</ul><div class="md-section-divider"></div><h3 data-anchor-id="5e1p" id="4左式堆">4.左式堆</h3><ul data-anchor-id="r7wr">
+<li><strong>概念</strong> <br>
+具有堆序性质和和零路径长相关的结构性质的二叉树。 </li>
+<li><strong>性质</strong> <br>
+<ul><li>堆序性质：父节点小于任意子节点；</li>
+<li>结构性质：左儿子节点的零路径长不小于右儿子节点的零路径长。（=&gt;N个节点的左式堆右路径上节点不超过[log(N+1)]）</li></ul></li>
+<li><strong>实现方法</strong> <br>
+采用二叉树的实现方法，每个节点增加零路径长域。</li>
+<li><strong>操作及其实践复杂度</strong> <br>
+<ul><li>Merge：从由路径节点入手，O（logN)</li>
+<li>Insert：合并一个节点左式堆，O（logN)</li>
+<li>DeleteMin：O（logN)</li></ul></li>
+</ul><div class="md-section-divider"></div><h3 data-anchor-id="peiv" id="5-斜堆">5. 斜堆</h3><ul data-anchor-id="e4bq">
+<li><strong>概念</strong> <br>
+具有堆序的二叉树，但不具有结构性质；其基本操作Merge和左氏堆一致，但是右路径上的节点左右儿子的交换是无条件的（除了右路径上最大节点不交换其左右儿子）</li>
+<li><strong>操作</strong> <br>
+<ul><li>Merge：任意单次操作最坏时间O（N），摊还时间O（logN）</li>
+<li>...</li></ul></li>
+</ul><div class="md-section-divider"></div><h3 data-anchor-id="typg" id="6-二项队列binomial-queue">6. 二项队列（binomial queue）</h3><ul data-anchor-id="929j">
+<li><strong>概念</strong> <br>
+具有堆序的二项树的集合（森林）。</li>
+<li><strong>操作</strong> <br>
+<ul><li>Merge： O（logN）</li>
+<li>Insert：O（logN)；从空堆连续N次插入总最坏时间O（N）</li>
+<li>Delete：O（logN）</li></ul></li>
+</ul>
+
+	</div>
+	
+	<div id="fixed2"></div>
+	<a id="totop" href="#pagetop">顶</a>
+	<a id="tobot" href="#pagebottom">底</a>	
+
+
+	<p id="pagebottom"></p>
+</body>
+</html>

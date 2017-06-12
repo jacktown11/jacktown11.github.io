@@ -14,7 +14,7 @@ ul{
 	font-size: 1.5em;
 }
 ul li{
-	width: 30%;
+	width: 22%;
 	margin-bottom: 0.6em;
 	list-style-type: none;
 	color: black;
@@ -34,8 +34,9 @@ ul li div{
 	left: 0;
 	height: 1.5em;
 	margin-right: 1em;
-	border-radius: 1em;
+	border-radius: 0 1em 1em 0;
 	border: 1px solid #666;
+	border-left: 0;
 	background-color: #e0e0e0;
 	text-align: left;
 }
