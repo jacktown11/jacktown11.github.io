@@ -22,8 +22,12 @@ ul li{
 
 ul li a{
 	font-family: ;
-	color: #0040b1;
+	/*color: #0040b1;*/
+	color: #007e7e;
 	padding-left: 0.5em;
+}
+ul li a:visited{
+	color: #003333;
 }
 
 ul li div{	
