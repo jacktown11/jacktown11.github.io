@@ -14,28 +14,23 @@ ul{
 	font-size: 1.5em;
 }
 ul li{
-	width: 22%;
+	width: 8em;
 	margin-bottom: 0.6em;
 	list-style-type: none;
 	color: black;
 }
 
 ul li a{
-	font-family: ;
-	/*color: #0040b1;*/
 	color: #007e7e;
 	padding-left: 0.5em;
+	line-height: 1.5em;
 }
 ul li a:visited{
 	color: #003333;
 }
 
 ul li div{	
-	position: relative;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	overflow: hidden;
 	height: 1.5em;
 	margin-right: 1em;
 	border-radius: 0 1em 1em 0;
@@ -44,38 +39,30 @@ ul li div{
 	background-color: #e0e0e0;
 	text-align: left;
 }
-ul li:first-child{
-	border: 0;
-	width: 100%;
+
+
+header{
+	border: none;
 	margin-top: 0;
 	margin-bottom: 1em;
-	font-size: 150%;
-}
-
-ul li:first-child div{
-	left: 0;
-	right: 0;
-	bottom: 0;
-	top: 0;
 	padding: 1em 0 0 10%;
-	margin: 0;
-	height: 4em;
 	border-radius: 0 0 1em 1em;
-	
 	background-color: #777;
+
+	font-size: 200%;
 	color: white;
 	text-align: left;
 	vertical-align: middle;
 }
 
-ul li:first-child a{
+header a{
 	color: yellow;
 }
 
-ul li:first-child span{
+header span{
 	font-family: 'KaiTi','Helvetica', 'Arial', 'Sans-Serif';
 	display: block;
 	font-size: 0.5em;
 	text-align: right;
-	padding-right: 1em;
+	padding-right: 1.5em;
 }

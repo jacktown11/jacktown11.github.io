@@ -13,10 +13,25 @@ div#fixed2{
     right: 0;
 }
 
+nav#back,
+nav#topbot{
+    display: block;
+    position: absolute;
+    top: 30%;
+}
+
+nav#back{
+    right: 40%;
+}
+
+nav#topbot{
+    left: 40%;
+}
+
 a#home,a#list,
 a#totop,a#tobot{
-	display: block;
-    position: fixed;
+    display: block;
+    margin: 0 auto 1em auto;
 	width: 3em;
 	height: 3em;
 	border: 1px solid black;
@@ -24,20 +39,6 @@ a#totop,a#tobot{
 	color: green;
 	text-align: center;
 	line-height: 3em;
-}
-
-a#home, a#list{
-    left:5%;
-}
-a#totop, a#tobot{
-    right: 5%;
-}
-
-a#home, a#totop{
-    top: 30%;
-}
-a#list, a#tobot{
-    top: 50%;
 }
 
 
@@ -55,12 +56,13 @@ body{
     color:#444;
     font-family:'微软雅黑',Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
     font-size:13px;
-    line-height:1.5em;
     padding:0 1em;
     margin:auto;
     max-width:60em;
     background:#fefefe;
+    line-height: 1.5;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
@@ -161,8 +163,9 @@ blockquote{
     border-left: 0.5em #EEE solid;
 }
 
-ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+ul, ol { margin: 0.2em 0; padding: 0 0 0 2em; }
 li p:last-child { margin:0 }
+ul ul li,ul ol li,ol ol li,ol ul li{margin: 0}
 dd { margin: 0 0 0 2em; }
 
 img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; max-width:100%;}
