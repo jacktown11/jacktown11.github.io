@@ -44,8 +44,8 @@ ul li span{
 	border-right: 1px solid black;
 	border-radius: 0 0.5em 0.5em 0 ;
 	background-color: #ccc;
-	line-height: 150%;
-}
+/*	line-height: 150%;
+*/}
 ul li a{
 	color: #0040b1;
 }
