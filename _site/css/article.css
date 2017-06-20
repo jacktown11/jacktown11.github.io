@@ -37,6 +37,12 @@ a#totop,a#tobot{
 	border: 1px solid black;
 	border-radius: 1.5em; 
 	color: green;
+    background: -webkit-radial-gradient(#ffffff,#aaaaaa);
+    background: -o-radial-gradient(#ffffff,#aaaaaa);
+    background: -moz-radial-gradient(#ffffff,#aaaaaa);
+    background: -ms-radial-gradient(#ffffff,#aaaaaa);
+    background: radial-gradient(#ffffff,#aaaaaa);
+    font-weight: bold;
 	text-align: center;
 	line-height: 3em;
 }
