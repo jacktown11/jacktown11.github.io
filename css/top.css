@@ -13,8 +13,8 @@ body div.wrap{
 
 body div.container{
 	/*background: url(/images/bird.png) bottom right no-repeat;*/
-	background: url(/images/fishing-boat.png) no-repeat bottom right;
-	background-size: 70% 50%;
+	background: url(/images/fishing-boat_s.png) no-repeat bottom right;
+	background-size: 60% 40%;
 	border-left: 2px solid #666;
 	border-right: 2px solid #666;
 }
