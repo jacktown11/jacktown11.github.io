@@ -1,37 +1,44 @@
 /*这部分主要用于页面固定定位的几个小图标*/
-div#fixed1,
-div#fixed2{
+div.pc#fixed1,
+div.pc#fixed2{
     position: fixed;
     top: 0;
     bottom: 0;
     width: 15%;
 }
-div#fixed1{
+div.pc#fixed1{
     left: 0;
 }
-div#fixed2{
+div.pc#fixed2{
     right: 0;
 }
 
-nav#back,
-nav#topbot{
+.pc nav#back,
+.pc nav#topbot{
     display: block;
     position: absolute;
     top: 30%;
 }
 
-nav#back{
+.pc nav#back{
     right: 40%;
 }
 
-nav#topbot{
+.pc nav#topbot{
     left: 40%;
+}
+
+.pc a#home,.pc a#list,
+.pc a#totop,.pc a#tobot{
+    display: block;
+    margin: 0 auto 6em auto;
 }
 
 a#home,a#list,
 a#totop,a#tobot{
-    display: block;
-    margin: 0 auto 6em auto;
+    display: inline-block;
+    margin: 0 2em 0 2em;
+    
 	width: 3em;
 	height: 3em;
 	border: 1px solid black;

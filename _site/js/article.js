@@ -11,6 +11,11 @@ function toggleShow () {
 		||navigator.userAgent.match(/BlackBerry/i)
 		||navigator.userAgent.match(/Windows Phone/i)
 		){
+		var classPcs = document.getElementsByClassName("pc");
+		var classPc = null;
+		while(classPcs[0]){
+			classPcs[0].className = classPcs[0].className.replace("pc","");		
+		}
 		return;
 	}
 	var fixed1 = document.getElementById('fixed1');
