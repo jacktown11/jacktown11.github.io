@@ -47,10 +47,17 @@ a#totop,a#tobot{
 	line-height: 3em;
 }
 
-body>div.post{
+body div.wrap{
+    padding-top: 1px;
+    border-left: 2px solid black;
+}
+
+body div.post{
 	background-color: #d2e3c7;
 	padding: 0.5em 1.5em;
     border-radius: 0.6em;
+    box-shadow: 0 0 2px 1px #000000 inset;
+
 }
 
 

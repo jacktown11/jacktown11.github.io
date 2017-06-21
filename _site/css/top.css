@@ -2,21 +2,21 @@ body{
 	margin-top: 0;
 	margin-bottom: 0;
 }
-body div.wrap{
-	background: -webkit-linear-gradient(#ffffff 25%,#d8d8b2 70%);
-	background: -o-linear-gradient(#ffffff 25%,#d8d8b2 70%);
-	background: -moz-linear-gradient(#ffffff 25%,#d8d8b2 70%);
-	background: -ms-linear-gradient(#ffffff 25%,#d8d8b2 70%);
-	background: linear-gradient(#ffffff 25%,#d8d8b2 70%);
 
-}
+/* body div.wrap{
+	background: -webkit-linear-gradient(#ffffff 25%,#518450 70%);
+	background: -o-linear-gradient(#ffffff 25%,#518450 70%);
+	background: -moz-linear-gradient(#ffffff 25%,#518450 70%);
+	background: -ms-linear-gradient(#ffffff 25%,#518450 70%);
+	background: linear-gradient(#ffffff 25%,#518450 70%);	
+} */
 
 body div.container{
-	/*background: url(/images/bird.png) bottom right no-repeat;*/
-	background: url(/images/fishing-boat_s.png) no-repeat bottom right;
-	background-size: 60% 40%;
-	border-left: 2px solid #666;
-	border-right: 2px solid #666;
+	background: #ccc url(/images/grid.jpg) repeat bottom right;
+	border: 1px solid #666;
+	border-top:none;
+	border-bottom-right-radius: 2em;
+	border-bottom-left-radius: 2em;
 }
 ul{
 	padding: 0;
@@ -53,6 +53,7 @@ ul li div{
 	background: -moz-linear-gradient(#ffffff,#e0e0e0);
 	background: -ms-linear-gradient(#ffffff,#e0e0e0);
 	background: linear-gradient(#ffffff,#e0e0e0);
+
 	text-align: left;
 }
 
@@ -69,6 +70,7 @@ header{
 	background: -moz-linear-gradient(#cccccc,#000000);
 	background: -ms-linear-gradient(#cccccc,#000000);
 	background: linear-gradient(#cccccc,#000000);
+	/*background: #ccc url(/images/grid2.jpg) repeat bottom right;*/
 
 	font-size: 200%;
 	color: white;
