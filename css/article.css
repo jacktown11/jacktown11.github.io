@@ -54,6 +54,8 @@ a#totop,a#tobot{
 	line-height: 3em;
 }
 
+
+/* the style of the whole article */
 body div.wrap{
     padding-top: 1px;
     border-left: 2px solid black;
@@ -67,9 +69,27 @@ body div.post{
 
 }
 
+/* catalog style*/
+nav.catalog{
+    border-bottom: 1px dashed black;
+}
+nav.catalog div.first{margin-left: 0; font-size: 120%; font-weight: bold}
+nav.catalog div.second{margin-left: 1em;font-size: 110%;}
+nav.catalog div.third{margin-left: 2em;}
+nav.catalog div.forth{margin-left: 3em;}
+nav.catalog div.fifth{margin-left: 4em;}
+nav.catalog div.sixth{margin-left: 5em;}
+nav.catalog div{
+    margin-bottom: 0.2em;
+}
+nav.catalog a{
+    background: linear-gradient(to right,#f5f5f5 15%,#d2e3c7);
+    border-radius: 1em;
+    padding-left: 0.4em;
+    color: #2d1c38;
+}
 
-
-/*下面的部分来自网上查找的模版*/
+/*下面的部分来自网上查找的模版修改而来*/
 html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
 body{

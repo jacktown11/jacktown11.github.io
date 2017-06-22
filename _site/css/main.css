@@ -12,7 +12,10 @@ a:hover { text-decoration: underline; }
 a:visited { color: black;}
 
 
-h1, h2, h3, h4 { font-family: 'SimHei','Helvetica', 'Arial', 'Sans-Serif'; }
+h1, h2, h3, h4 { 
+	font-family: 'SimHei','Helvetica', 'Arial', 'Sans-Serif'; 
+	margin: 0.5em 0;
+}
 h1 { font-size: 3em;  }
 h2 { font-size: 2.7em; }
 h3 { font-size: 2.3em; }

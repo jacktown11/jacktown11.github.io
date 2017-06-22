@@ -5,11 +5,18 @@
 	<title>{{page.title}}</title>
 	<link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
 	<link rel="stylesheet" href="{{site.baseurl}}/css/post_list.css">
+	<script src="{{site.baseurl}}/js/post_list.js"></script>
 </head>
 <body>
 <div class="wrap">
 	<div id="home">
 		<a href="../">Home</a>		
+	</div>
+	<div id="sort">
+		<button id="date" type="button" >日期排序</button>
+		<button id="name" type="button" >文件名排序</button>
+		<input type="text">
+		<button id="search" type="button" >搜索</button>
 	</div>
 	{{content}}
 	<ul>

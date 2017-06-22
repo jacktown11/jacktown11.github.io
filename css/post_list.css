@@ -37,6 +37,48 @@ body>div.wrap{
 	border-bottom-left-radius: 1em;
 }
 
+div#sort{
+	padding: 0.6em 0;
+	background: -webkit-linear-gradient(#aaa, #eee 10%, #eee 90%,#aaa);
+	background: -o-linear-gradient(#aaa, #eee 10%, #eee 90%,#aaa);
+	background: -moz-linear-gradient(#aaa, #eee 10%, #eee 90%,#aaa);
+	background: -ms-linear-gradient(#aaa, #eee 10%, #eee 90%,#aaa);
+	background: linear-gradient(#aaa, #eee 10%, #eee 90%,#aaa);
+}
+
+div#sort button,
+div#sort input{
+	font-size: 1em;
+	height: 2em;
+	border-width: 1px;
+}
+
+div#sort button{
+	padding: 0 0.5em;
+	background: -webkit-linear-gradient(#fff 40%, #eee 70%,#aaa);
+	background: -o-linear-gradient(#fff 40%, #eee 70%,#aaa);
+	background: -moz-linear-gradient(#fff 40%, #eee 70%,#aaa);
+	background: -ms-linear-gradient(#fff 40%, #eee 70%,#aaa);
+	background: linear-gradient(#fff 40%, #eee 70%,#aaa);
+
+	border-radius: 0.5em;
+	border: 1px solid #eee;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div#sort button:hover{
+	border: 1px solid #888888;
+}
+
+div#sort input{
+	height: 1.5em;
+	margin-left: 2em;
+	border-radius: 0.5em;
+	border: 1px solid #888;
+/*	border-bottom-left-radius: 0.5em;
+*/}
+
 ul{
 	font-size: 1.5em;
 	padding: 0;
@@ -50,13 +92,12 @@ ul li{
 
 	font-size: 0.7em;
 	overflow: hidden;
-
 }
 
 ul li span{
 	float: left;
 	display: inline-block;
-	width: 6em;
+	width: 7em;
 	border-right: 1px solid black;
 	border-radius: 0 0.5em 0.5em 0 ;
 	background-color: #ccc;
