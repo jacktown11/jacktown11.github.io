@@ -1,5 +1,5 @@
 window.onload = function(){
-	toggleShow();
+	//toggleShow();
 	generateCatalog();
 }
 
@@ -133,6 +133,9 @@ function generateCatalog(){
 	}
 	if(catComplete.firstChild){
 		post.insertBefore(catComplete,post.firstChild);	
+		var p = document.createElement("p");
+		p.appendChild(document.createTextNode("目录"));
+		catComplete.insertBefore(p,catComplete.firstChild);
 	}
 
 }

@@ -8,15 +8,12 @@
 	<script src="/js/article.js"></script>
 </head>
 <body>
-<div class="wrap">
-	<p id="pagetop"></p>
+<div id="pagetop" class="wrap">
 
-	<div id="fixed1" class="pc">
-	<nav id="back">
+	<nav class="pc">
 		<a id="home" href="/">Home</a>
 		<a id="list" href="/post_list/{{page.backurl}}">List</a>				
 	</nav>
-	</div>
 	
 
 	<h1>{{ page.title }}</h1>
@@ -25,15 +22,10 @@
   		{{ content }}
 	</div>
 	
-	<div id="fixed2" class="pc">
-	<nav id="topbot">
-		<a id="totop" href="#pagetop">顶</a>
-		<a id="tobot" href="#pagebottom">底</a>	
+<!-- 	<nav id="toolbar" class="pc">
+		<a id="totop" href="#pagetop">TOP</a>
 	</nav>
-	</div>
-	
-
-	<p id="pagebottom"></p>
+ -->	
 </div>
 </body>
 </html>

@@ -1,16 +1,7 @@
-div#home{
-	position: fixed;
-	width: 15%;
-	height: 100%;
-	left: 0;
-	top: 0;
-}
-
 div#home a{
-	display: block;
-	position: absolute;
-	right: 40%;
-	top: 80px;
+	float: right;
+	margin-top: 0.1em;
+	margin-right: 2em;
 	width: 3em;
 	height: 3em;
 	border: 1px solid black;
@@ -24,13 +15,12 @@ div#home a{
 	font-weight: bold;
 	text-align: center;
 	line-height: 3em;
-
 }
 
 body>div.wrap{
 	border: 1px solid #666;
 	border-top:none;
-	padding-top: 1px;
+	padding-top: 0.1em;
 
 	background: #e8e8e8 url(/images/grid1.jpg) repeat;
 	border-bottom-right-radius: 1em;
@@ -44,6 +34,8 @@ div#sort{
 	background: -moz-linear-gradient(#aaa, #eee 10%, #eee 90%,#aaa);
 	background: -ms-linear-gradient(#aaa, #eee 10%, #eee 90%,#aaa);
 	background: linear-gradient(#aaa, #eee 10%, #eee 90%,#aaa);
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
 }
 
 div#sort button,
