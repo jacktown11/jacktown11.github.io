@@ -21,7 +21,7 @@ a#totop{
 	line-height: 3em;
 }
 
-a#totop{
+nav.pc a#totop{
     float: none;
     position: absolute;
     bottom: 20%;
@@ -36,14 +36,14 @@ a#totop{
     -ms-transition: all 0.8s linear;    
     transition: all 0.8s linear;    
 }
-nav#toolbar{
+nav#toolbar.pc{
     position: fixed;
     bottom: 0;
     width: 15%;
     height: 100%;
     left: 85%;
 }
-nav#toolbar:hover a#totop{   
+nav#toolbar.pc:hover a#totop{   
     color: rgba(0,128,0,1);
     background: -webkit-radial-gradient(#ffffff,#aaaaaa);
     background: -o-radial-gradient(#ffffff,#aaaaaa);
