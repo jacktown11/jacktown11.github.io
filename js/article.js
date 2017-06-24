@@ -1,7 +1,9 @@
 window.onload = function(){
-	//toggleShow();
+	deletePcClass();
 	generateCatalog();
 }
+
+
 
 function toggleShow () {
 	if(navigator.userAgent.match(/Android/i)

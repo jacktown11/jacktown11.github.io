@@ -1,0 +1,131 @@
+---
+layout: article
+title: 一个关于原型链的探索
+categories: js all
+tag_name: js
+backurl: js.html
+---
+## 原型链基础
+看了《javascript高级程序设计》关于对象继承方面的内容，对原型链有了一定理解：
+- 构造函数也是函数，函数都是对象，构造函数作为一个函数类型的对象，有一个`prototype`属性，它引用一个对象，我们称其为**构造函数的原型对象**；
+- 构造函数的原型对象中有一个 `constructor`属性，它反过来引用构造函数；
+- 如果用构造函数创建一个实例对象，那么这个实例对象会和构造函数的原型对象产生联系（而不是构造函数）；具体来说，这个实例内部有一个`[[Prototype]]`属性，它指向构造函数的原型对象。（为避免歧义，我们之后把这个原型对象称作构造函数的原型对象、实例的**原型**）
+- `[[Prototype]]`属性不能在实例中直接访问，但可以借助一个`es5`方法`Object.getPrototypeof()`；
+- 如果一个实例的原型本身又是另一种类型的实例，那么这样循环迭代，一个实例的原型就可以一层层上推，形成原型链，最终那个原型是一个`Object`对象。
+
+## 问题
+1. 如果我有个对象，能不能把这个对象的原型链分析展现出来呢，特别地，函数作为对象自身的原型链是怎样的呢？（我们知道函数定义也可以通过调用构造函数`Function`实现，这个构造函数又是怎么和 最终的`Object`对象联系的呢？）
+
+2. 上面提到的方法`Object.getPrototypeof()`在什么地方，类似的还如`Array.isArray()`显然它不在普通对象的原型链中，否则通过继承`Object`，对象实例、数组实例本身就应该能用相应的方法。
+
+## 问题一编程探索
+### 程序编写
+为理解第一个问题，首先全局环境下定义一个简单函数`baseFunc`，然后建立另一函数`testProto`，它以传入的参数`baseObj`对象为起点，搜索该对象相关的的原型、函数的原型对象、构造函数，把这些对象搜集放在一个数组中，并在调试窗口输出对象间的关系。
+
+以下是`testProto`函数的思路：
+1. 首先将参数对象初始化为数组的第一个元素，然后将其传入内部递归闭包，闭包中先判断对象`__proto__`(原型，受chrome,safari,firefox支持)、`prototype`(构造函数的原型对象)、`constructor`三个属性是否存在，把存在的属性的值（是一个对象）依次放入数组，然后以此将存在的属性值作为参数递归地传入闭包中。
+
+2. 需要注意的是将存在的属性放入数组时，要检查它是否因为之前同时被另一个对象的三个属性之一引用而已经被放入过数组了；递归调用前也要检查它们之前是否已经被调用过（如果已经被调用过却再次调用，那么可能陷入无限递归的死循环）。
+
+下面是代码
+```javascript
+
+window.onload = function(){
+	testProto(baseFunc);
+}
+
+function baseFunc(){}
+
+function testProto(baseObj){
+//以baseObj对象为起点，搜索原型、函数的原型对象、构造函数
+	var objs = new Array(),	//存储相关对象
+		max = 0;	//objs中存储的对象最大索引
+	
+	objs[0] = baseObj;	
+
+	(function(obj){
+		if(max < 100){
+			//避免无穷递归(如果真的沿着原型链可以无限走下去的话)
+			
+			if(obj.__proto__ && objs.indexOf(obj.__proto__) < 0){
+				//具有__proto__属性(obj的原型)，
+				//并且该原型之前没有添加到数组里
+				//(考虑到它可能同时作为其他对象的属性被引用着)
+				objs[++max] = obj.__proto__;
+			}
+			if(obj.prototype && objs.indexOf(obj.prototype) < 0){
+				objs[++max] = obj.prototype;
+			}
+			if(obj.constructor && objs.indexOf(obj.constructor) < 0){
+				objs[++max] = obj.constructor;
+			}
+
+			if(obj.__proto__ 
+			&& objs.indexOf(obj.__proto__) > objs.indexOf(obj)){
+				//该属性存在，
+				//其引用的对象已经被添加到数组里，
+				//而且添加时间晚于父元素obj
+				//(早于父元素是可能的，此时必定已经被处理过了)。
+				arguments.callee.call(this,obj.__proto__);	
+				//递归地处理属性对象
+			}
+			if(obj.prototype 
+			&& objs.indexOf(obj.prototype) > objs.indexOf(obj)){
+				arguments.callee.call(this,obj.prototype);
+			}
+			if(obj.constructor 
+			&& objs.indexOf(obj.constructor) > objs.indexOf(obj)){
+				arguments.callee.call(this,obj.constructor);
+			}
+
+		}
+	})(objs[0]);
+
+	//给出各对象类型，如果是函数，给出函数名
+	for(i = 0; i <= max; i++){
+		console.log(i + " is " + (typeof objs[i]) 
+			+ " " + ((typeof objs[i] === "function")?objs[i].name:""));
+	}
+
+	//次序给出各个对象的原型、原型对象(如果这个对象是个函数)、constructor属性
+	for(i = 0; i <= max; i++){
+		console.log(i + "==========");
+		if(objs[i].__proto__){
+			console.log("__proto__:" + objs.indexOf(objs[i].__proto__));
+		}
+		if(objs[i].prototype){
+			console.log("prototype:" + objs.indexOf(objs[i].prototype));
+		}
+		if(objs[i].constructor){
+			console.log("constructor:" + objs.indexOf(objs[i].constructor));
+		}
+	}
+
+	//部分核查程序的正确性：数组中没有出现对象被重复统计处理的情况
+	for(i = 0; i <= max; i++){
+		if(objs.lastIndexOf(objs[i]) === objs.indexOf(objs[i])){
+			console.log(true);
+		}else{
+			console.log(false);
+		}
+	}
+}
+
+```
+### 输出
+程序在控制台的输出如下：
+![](/images/testProto.jpg)
+前面几行首先以此输出数组中保存的相关对象，如果对象是函数，给给出相应的函数名称；然后依次给出各对象三个属性存在的属性的值在数组中的索引。
+### 结果整理分析
+把以上程序在chrome浏览器中运行，利用控制台的输出，整理得到下面这张图：
+![](/images/testProto_analysis.png)
+1. 图中0、1、3、5都是函数，2、4是对象。0就是我们定义的`baseFunc`函数，它的原型对象是2，它作为一个对象有原型1，对象1是一个函数，但是我们未能获得它的函数名，我们把它记为函数X，对象1的原型是对象4。
+2. 对象3就是构造函数`Function`，对象5就是构造函数`Object`。
+3. 图中所有对象的原型链走到顶端都是对象4，它就是被`ECMAScript`中所有对象继承的Object对象。
+4. 图中的函数都继承自函数X（对象1），因此我们基本可以推论说函数就是一个X类型；
+5. 由于constructor属性可能是继承的，所以图中的这个关系不一定很准确，实际上我在调试窗口中查找，对象0，1，5上都没有显式的`constructor`属性。
+
+## 问题二的解答
+在解决问题一的过程中，我发现可以在浏览器调试窗口下通过window对象和添加watch对象，然后一路追踪对象的原型、原型对象、`consctructor`等属性看到对象的原型链，然而这毕竟还是有点问题，层次太深以后就容易乱，特别是基本的那几个对象之间有着循环引用；另一个问题是两个对象都写作`Object`，我们没有把握判断它们是否真的就是一个对象，为此上面的编程还是有不少帮助的。
+
+借助如上的调试手段和原型探索程序，我们可以很容易地在`window>baseFunc>__proto__(函数X)>__proto__(基本对象Object)>constrctor(构造函数Object)`中找到了`getPrototypeOf()`方法，它是构造函数`Object`的一个属性，所以写作`Object.getPrototypeOf()`(其实早该想到，只是这就被明确地证实了，这就好比构造函数`Object`作为函数具有`arguments`属性一样)，由于它不是基本对象`Object`的属性，所以没有被普通对象继承。

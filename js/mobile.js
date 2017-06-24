@@ -1,6 +1,3 @@
-window.onload = function(){
-	deletePcClass();
-}
 
 function deletePcClass(){
 	if(navigator.userAgent.match(/Android/i)
@@ -17,3 +14,4 @@ function deletePcClass(){
 		}
 	}
 }
+

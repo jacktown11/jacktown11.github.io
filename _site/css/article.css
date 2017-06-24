@@ -58,7 +58,9 @@ nav#toolbar.pc:hover a#totop{
 /* the style of the whole article */
 body div.wrap{
     padding-top: 0.1em;
+    padding-bottom: 5em;
     border-left: 2px solid black;
+    font-size: 110%;
 }
 
 body div.post{
@@ -119,7 +121,7 @@ body{
     margin:auto;
     max-width:60em;
     background:#ffffff;
-    line-height: 1.5;
+    line-height: 1.8;
 }
 
 
