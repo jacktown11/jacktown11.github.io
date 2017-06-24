@@ -1,7 +1,7 @@
 window.onload = function(){
 	deletePcClass();
 	secClick();
-};
+}
 
 function setClick(){
 	var sort = document.getElementById("sort");
