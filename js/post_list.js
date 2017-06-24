@@ -1,6 +1,6 @@
 window.onload = function(){
 	deletePcClass();
-	secClick();
+	setClick();
 }
 
 function setClick(){
