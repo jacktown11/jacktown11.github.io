@@ -1,7 +1,8 @@
 window.onload = function(){
 	deletePcClass();
 	setClick();
-}
+};
+
 
 function setClick(){
 	var sort = document.getElementById("sort");
@@ -9,84 +10,73 @@ function setClick(){
 		nameBtn = document.getElementById("name"),
 		input = sort.getElementsByTagName("input")[0],
 		searchBtn = document.getElementById("search"),
+
 		ul = document.getElementsByTagName("ul")[0],
 		lis = ul.getElementsByTagName("li");
+		liArr = Array.prototype.slice.call(lis,0);
 
-	var ulStr = new Array(),
-		dateOrder = new Array();
-	var i = 0;
-	for(;i<lis.length;i++){
-		dateOrder[i] = i+1;
-		var span = lis[i].getElementsByTagName("span")[0]; 
-		var anchor = lis[i].getElementsByTagName("a")[0]; 
-		ulStr[3*dateOrder[i] - 3] = span.firstChild.nodeValue;
-		ulStr[3*dateOrder[i] - 2] = anchor.firstChild.nodeValue;
-		ulStr[3*dateOrder[i] - 1] = anchor.href;
-	}
-	
 	dateBtn.onclick = function(){
-		reorderList(ul,ulStr,dateOrder);
+		reorderList(ul,liArr,"date");
 	};
 	nameBtn.onclick = function(){
-		reorderList(ul,ulStr,getOrderByName(ulStr));
+		reorderList(ul,liArr,"name");
 	};
 
 	searchBtn.onclick = function(){
-		var searchStr = input.value;
+		var searchStr = input.value.trim();
 		if(searchStr){
-			selectList(ul,ulStr,getRelatedOrder(ulStr,searchStr));		
+			search(ul,liArr,searchStr);		
 		}
 	};
 }
 
-function reorderList(ul,ulStr,order){
-	var i = 0;
-	var str = "";
-	var lis = ul.getElementsByTagName("li");
-	for(;i<lis.length;i++){
-		lis[i].style.display = "block";
-		if(i < order.length){
-			var span = lis[i].getElementsByTagName("span")[0]; 
-			var anchor = lis[i].getElementsByTagName("a")[0]; 
-			span.firstChild.nodeValue = ulStr[3*order[i] - 3];
-			anchor.firstChild.nodeValue = ulStr[3*order[i] - 2];
-			anchor.href = ulStr[3*order[i] - 1];
-		}
+function reorderList(ul,liArr,type){
+	var ulPa = ul.parentNode;
+	ul = ulPa.removeChild(ul);
+	while(ul.firstChild !== null){
+		ul.removeChild(ul.firstChild);
 	}
+	switch(type){
+		case "date":
+			liArr.sort(dateSort);
+			break;
+		case "name":
+			liArr.sort(nameSort);
+			break;
+	}
+	for(var i = 0; i < liArr.length; i++){
+		ul.appendChild(liArr[i]);
+	}
+	ulPa.appendChild(ul);
 }
 
-function selectList(ul,ulStr,order){
-	reorderList(ul,ulStr,order);
-	var len = order.length;
-	var lastLi = ul.getElementsByTagName("li")[len-1];
-	var after = lastLi.nextSibling;
-	while(after !== null){
-		if(after.nodeName.toLowerCase() === "li"){
-			after.style.display = "none";
-		}
-
-		after = after.nextSibling;
+function search(ul,liArr,searchStr){
+	//remove ul from the document, and clean its content
+	var ulPa = ul.parentNode;
+	ul = ulPa.removeChild(ul);
+	while(ul.firstChild !== null){
+		ul.removeChild(ul.firstChild);
 	}
-}
-
-function getOrderByName(ulStr){
-	var order = new Array();
-	for(var i = 0; i < ulStr.length/3;i++){
-		order[i] = i+1;
-	}
-	order.sort(function(key1,key2){
-		return ulStr[3*key1-2].localeCompare(ulStr[3*key2-2]);
-	});
-	return order;
-}
-
-function getRelatedOrder(ulStr,searchStr){
-	var order = new Array();
-	var i = 0,j = 0;
-	for(;i<ulStr.length/3;i++){
-		if(ulStr[3*i+1].indexOf(searchStr) >= 0){
-			order[j++] = i+1;
+	//add the li containing searchStr to the ul
+	for(var i = 0; i < liArr.length; i++){
+		var text = liArr[i].getElementsByTagName("a")[0].firstChild;
+		if(text.nodeValue.indexOf(searchStr) >= 0){
+			ul.appendChild(liArr[i]);
 		}
 	}
-	return order;
+	ulPa.appendChild(ul);
+}
+
+function dateSort(li1,li2){
+	var result = (li1.nodeType === 1 && li2.nodeType === 1) 
+		? (Date.parse(li2.getAttribute("data-date")) 
+			- Date.parse(li1.getAttribute("data-date"))) 
+		: 0;
+	return result; 
+}
+
+function nameSort(li1,li2){
+	var text1 = li1.getElementsByTagName("a")[0].title,
+		text2 = li2.getElementsByTagName("a")[0].title;
+	return text1.localeCompare(text2);
 }

@@ -3,8 +3,6 @@ window.onload = function(){
 	generateCatalog();
 }
 
-
-
 function toggleShow () {
 	if(navigator.userAgent.match(/Android/i)
 		||navigator.userAgent.match(/webOS/i)

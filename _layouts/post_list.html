@@ -24,7 +24,7 @@
 	<ul>
 		{%for post in site.posts%}
 		{% if {{page.tag_name}} == post.tag_name %}
-	    <li><span>{{ post.date | date_to_string }}</span>&nbsp;<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+	    <li data-date="{{post.date}}"><span>{{ post.date | date_to_string }}</span>&nbsp;<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 	    {% endif %}
 		{% endfor %}
 	</ul>
