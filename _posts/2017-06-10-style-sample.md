@@ -1,9 +1,9 @@
 ---
 layout: article
 title: 样式测试文章
-categories: html_css all
-tag_name: html_css
-backurl: html_css.html
+categories: sundries all
+tag_name: sundries
+backurl: sundries.html
 ---
 # 标题1
 ## 标题2
