@@ -20,16 +20,24 @@
 	<h1>《javascript高级程序设计》对象创建与继承 总结笔记</h1>
 	<p class="meta">02 Jul 2017</p>
 	<div class="post">
-  		<h1 id="1-创建对象">1. 创建对象</h1>
+  		<blockquote>
+  <p>begin: 20170702<br />
+version: 20170724</p>
+</blockquote>
+
+<h1 id="1-创建对象">1. 创建对象</h1>
 <h1 id="2-继承">2. 继承</h1>
 <h2 id="1原型链">1)原型链</h2>
 <p><strong>将超类型实例直接作为子类型的原型对象</strong></p>
 <ul>
   <li><strong>优点</strong>
 子类型实例可以在原型链中找到所有超类型的属性和方法。</li>
-  <li><strong>缺陷</strong></li>
-  <li>超类型包含引用类型值属性时，会出现问题</li>
-  <li>子类型实例无法独立向超类型构造函数传递参数</li>
+  <li><strong>缺陷</strong>
+    <ul>
+      <li>超类型包含引用类型值属性时，会出现问题</li>
+      <li>子类型实例无法独立向超类型构造函数传递参数</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="2借用构造函数">2)借用构造函数</h2>

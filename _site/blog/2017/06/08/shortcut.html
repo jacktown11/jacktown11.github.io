@@ -17,27 +17,13 @@
 	</nav>
 	
 
-	<h1>快捷键助你成为键盘侠</h1>
+	<h1>快捷键汇总</h1>
 	<p class="meta">08 Jun 2017</p>
 	<div class="post">
-  		<style>
-	table th:nth-of-type(1),
-	table td:nth-of-type(1){
-		width: 10%;
-		text-align: center;
-	}
-	table th:nth-of-type(2){
-		width: 10%;
-	}
-	table th:nth-of-type(3){
-		width: 30%;
-	}
-	table th:nth-of-type(4){
-		width: 10%;
-	}
-</style>
-
-
+  		<blockquote>
+  <p>begin: 20170608<br />
+version: 20170724</p>
+</blockquote>
 
 <h1 id="windows8-系统快捷键">windows8 系统快捷键</h1>
 
@@ -316,6 +302,94 @@
     </tr>
   </tbody>
 </table>
+
+<h1 id="cmd">cmd</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ipconfig</th>
+      <th>查看本机ip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ipconfig /all</td>
+      <td>查看本机详细ip信息</td>
+    </tr>
+    <tr>
+      <td>x:</td>
+      <td>进入x盘</td>
+    </tr>
+    <tr>
+      <td>cd /path</td>
+      <td>进入当前盘的path目录</td>
+    </tr>
+    <tr>
+      <td>cd ..</td>
+      <td>返回父目录</td>
+    </tr>
+    <tr>
+      <td>dir</td>
+      <td>当前目录下文件和子目录</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="github">github</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>git init</td>
+      <td>在当前文件夹位置初始话仓库</td>
+    </tr>
+    <tr>
+      <td>git add <code class="highlighter-rouge">para</code></td>
+      <td>把我们要提交的文件的信息添加到索引库中</td>
+    </tr>
+    <tr>
+      <td>git commit <code class="highlighter-rouge">infoString</code></td>
+      <td>依据索引库内容进行本地文件提交</td>
+    </tr>
+    <tr>
+      <td>git push origin master</td>
+      <td>把本地master分支内容提交到远程origin主机master分支</td>
+    </tr>
+    <tr>
+      <td>git remote -v</td>
+      <td>查看远程仓库信息</td>
+    </tr>
+    <tr>
+      <td>git fetch origin master:temp</td>
+      <td>在本地创建temp分支，并将远程origin仓库的master分支代码下载到该分支</td>
+    </tr>
+    <tr>
+      <td>git diff temp</td>
+      <td>比较本地代码与下载来的代码的区别</td>
+    </tr>
+    <tr>
+      <td>git merge temp</td>
+      <td>合并temp分支</td>
+    </tr>
+    <tr>
+      <td>git branch -d temp</td>
+      <td>删除temp分支</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>ref</strong>:</p>
+<ol>
+  <li> <a href="http://blog.csdn.net/chailyuan/article/details/53292031">Git更新远程仓库代码到本地</a></li>
+  <li><a href="http://www.yiibai.com/git/">git教程</a></li>
+</ol>
 
 <h1 id="jekyll">jekyll</h1>
 <ul>

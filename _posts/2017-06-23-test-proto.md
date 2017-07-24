@@ -5,6 +5,9 @@ categories: js all
 tag_name: js
 backurl: js.html
 ---
+>begin: 20170702  
+>version: 20170724
+
 ## 原型链基础
 看了《javascript高级程序设计》关于对象继承方面的内容，对原型链有了一定理解：
 - 构造函数也是函数，函数都是对象，构造函数作为一个函数类型的对象，有一个`prototype`属性，它引用一个对象，我们称其为**构造函数的原型对象**；
@@ -114,11 +117,11 @@ function testProto(baseObj){
 ```
 ### 输出
 程序在控制台的输出如下：
-![](/images/testProto.jpg)
+![](http://upload-images.jianshu.io/upload_images/6321648-a19718bc57db6784.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 前面几行首先以此输出数组中保存的相关对象，如果对象是函数，给给出相应的函数名称；然后依次给出各对象三个属性存在的属性的值在数组中的索引。
 ### 结果整理分析
 把以上程序在chrome浏览器中运行，利用控制台的输出，整理得到下面这张图：
-![](/images/testProto_analysis.png)
+![](http://upload-images.jianshu.io/upload_images/6321648-d4b95030bbed0986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 1. 图中0、1、3、5都是函数，2、4是对象。0就是我们定义的`baseFunc`函数，它的原型对象是2，它作为一个对象有原型1，对象1是一个函数，但是我们未能获得它的函数名，我们把它记为函数X，对象1的原型是对象4。
 2. 对象3就是构造函数`Function`，对象5就是构造函数`Object`。
 3. 图中所有对象的原型链走到顶端都是对象4，它就是被`ECMAScript`中所有对象继承的Object对象。

@@ -13,14 +13,19 @@
 
 	<nav class="pc">
 		<a id="home" href="/">Home</a>
-		<a id="list" href="/post_list/test.html">List</a>				
+		<a id="list" href="/post_list/frontEndOther.html">List</a>				
 	</nav>
 	
 
 	<h1>jQuery clone()方法一个注意点</h1>
 	<p class="meta">02 Jul 2017</p>
 	<div class="post">
-  		<p>用jQuery clone()方法可以赋值一个节点，但是如果这个节点带有id属性，那么可能导致该id在同一个页面中被重复使用。比如我们在head&gt;script:nth-of-type(3)中代码的最后一行复制了#target5元素。</p>
+  		<blockquote>
+  <p>begin: 20170702<br />
+version: 20170724</p>
+</blockquote>
+
+<p>用jQuery clone()方法可以赋值一个节点，但是如果这个节点带有id属性，那么可能导致该id在同一个页面中被重复使用。比如我们在head&gt;script:nth-of-type(3)中代码的最后一行复制了#target5元素。</p>
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">"en"</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>

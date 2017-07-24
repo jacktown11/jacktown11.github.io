@@ -13,14 +13,19 @@
 
 	<nav class="pc">
 		<a id="home" href="/">Home</a>
-		<a id="list" href="/post_list/debug.html">List</a>				
+		<a id="list" href="/post_list/abc.html">List</a>				
 	</nav>
 	
 
 	<h1>debug log</h1>
 	<p class="meta">02 Jul 2017</p>
 	<div class="post">
-  		<h3 id="1我在本电脑上安装了apache-web服务利用127001可以成功访问本机但是手机无法访问">1.我在本电脑上安装了apache web服务，利用127.0.0.1可以成功访问本机，但是手机无法访问。</h3>
+  		<blockquote>
+  <p>begin: 20170702<br />
+version: 20170724</p>
+</blockquote>
+
+<h3 id="1我在本电脑上安装了apache-web服务利用127001可以成功访问本机但是手机无法访问">1.我在本电脑上安装了apache web服务，利用127.0.0.1可以成功访问本机，但是手机无法访问。</h3>
 <p>解决：</p>
 <ul>
   <li>首先127.0.0.1是指代本机，其他设备访问时应该使用ip地址进行访问；所有我首先要得到本机的ip地址。</li>
@@ -38,6 +43,20 @@
 <h3 id="3引用github仓库中的图片的不成功">3.引用github仓库中的图片的不成功</h3>
 <p><strong>说明：</strong>我在github中创立了一个<code class="highlighter-rouge">images</code>仓库，专门用于存储图片，以供自己在线撰写的文章引用；但是我打开仓库，点击相应图片文件，此时浏览器中会非全屏地显示图片的内容，显示方式和它在显示其他文件（如html文件）时一样，此时我将浏览器的地址栏中的地址复制下来。在我的在线文章中这样引用它<code class="highlighter-rouge">![](复制来的地址)</code>，但是结果不成功。
 <strong>解决方法：</strong>上述方法得到的地址不对，在点击图片文件显示出图片后，再在图片上<code class="highlighter-rouge">右键</code>&gt;<code class="highlighter-rouge">在新标签页中打开</code>，然后获取新打开的标签页的地址，这个地址才是图片的地址。</p>
+<h3 id="4安装配置apachephp">4.安装配置apache+php</h3>
+<p><a href="http://www.cnblogs.com/freefalcon/p/3888459.html">Windows下Apache与PHP的安装与配置</a>
+<a href="http://blog.csdn.net/wk1063645973/article/details/49557895">Cannot load php5apache2_4.dll into server解决办法;</a>
+<a href="http://www.cnblogs.com/tigertall/archive/2010/01/28/1658869.html">Windows下PHP安装配置</a>
+<strong>补遗：</strong></p>
+<ul>
+  <li>为php的安装目录和ext文件添加到环境变量中</li>
+</ul>
+
+<p><strong>注意事项：</strong></p>
+<ul>
+  <li>apache和php版本对应</li>
+  <li>下载和系统位数适应的软件（32/64）</li>
+</ul>
 
 	</div>
 	

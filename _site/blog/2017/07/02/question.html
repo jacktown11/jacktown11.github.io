@@ -13,16 +13,33 @@
 
 	<nav class="pc">
 		<a id="home" href="/">Home</a>
-		<a id="list" href="/post_list/debug.html">List</a>				
+		<a id="list" href="/post_list/abc.html">List</a>				
 	</nav>
 	
 
 	<h1>question</h1>
 	<p class="meta">02 Jul 2017</p>
 	<div class="post">
-  		<h3 id="1-20170621arrayisarrayobjectgetprototypeof这里的arrayobject是一个内建的对象吗这些方法是放在哪里的思考new-arraynew-object这里的两个对象好像就是这里的构造函数">1. (20170621)Array.isArray()，Object.getPrototypeOf()，这里的Array,Object是一个内建的对象吗，这些方法是放在哪里的？（思考：new Array();new Object();这里的两个对象好像就是这里的构造函数？）</h3>
+  		<blockquote>
+  <p>begin: 20170702<br />
+version: 20170724</p>
+</blockquote>
+
+<h3 id="1-20170621arrayisarrayobjectgetprototypeof这里的arrayobject是一个内建的对象吗这些方法是放在哪里的">1. (20170621)Array.isArray()，Object.getPrototypeOf()，这里的Array,Object是一个内建的对象吗，这些方法是放在哪里的？</h3>
+<p><strong>思考：</strong>new Array();new Object();这里的两个对象好像就是这里的构造函数？</p>
 <h3 id="220170623jekyll中的相对路径到底应该怎样写">2.(20170623)jekyll中的相对路径到底应该怎样写？</h3>
 <h3 id="320170623转义字符的理解">3.(20170623)转义字符的理解？</h3>
+<h3 id="420170704如何查看date构造函数的代码">4.(20170704)如何查看Date构造函数的代码？</h3>
+<p><strong>说明：</strong></p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">date</span><span class="p">);</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">keys</span><span class="p">);</span>	<span class="c1">//Array(0)</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">);</span>	<span class="c1">//Fri Aug 04 2017 00:00:00 GMT+0800 (中国标准时间)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>起因是我运行了上面的代码，发现实例date中没有实例属性，我想看看我给的参数它是如何保存的（那个毫秒数，虽然我推测很可能是一个私有变量，但具体不知道是怎样的）</p>
 
 	</div>
 	
