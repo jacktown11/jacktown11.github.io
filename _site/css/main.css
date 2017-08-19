@@ -12,7 +12,9 @@ body.pc{
 }
 
 a { text-decoration: none; color: #0040b1; }
-a:hover { text-decoration: underline; }
+a:hover {
+	font-weight: bold;
+}
 a:visited { color: black;}
 
 
@@ -32,4 +34,7 @@ ul li{
 em{
 	font-style: normal;
 	font-weight: bold;
+}
+button,input{
+	outline: none;
 }

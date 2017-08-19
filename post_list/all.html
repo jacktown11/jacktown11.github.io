@@ -4,7 +4,7 @@ title: all_list
 tag_intro: all the topics
 tag_name: all
 ---
-<h2>Articles about {{page.tag_intro}}:</h2>
+<!-- <h2>Articles about {{page.tag_intro}}:</h2> -->
 <ul>
 	{%for post in site.categories.all%}
 	    <li data-date="{{post.date}}"><span>{{ post.date | date_to_string }}</span>&nbsp;<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>

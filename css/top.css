@@ -1,103 +1,98 @@
+/*主页css*/
+
 body{
 	margin-top: 0;
 	margin-bottom: 0;
+	background-color: #cee;
+	-moz-user-select: none; /*火狐*/
+	-webkit-user-select: none; /*webkit浏览器*/
+	-ms-user-select: none; /*IE10*/
+	-khtml-user-select: none; /*早期浏览器*/
+	user-select: none;
 }
 
-/* body div.wrap{
-	background: -webkit-linear-gradient(#ffffff 25%,#518450 70%);
-	background: -o-linear-gradient(#ffffff 25%,#518450 70%);
-	background: -moz-linear-gradient(#ffffff 25%,#518450 70%);
-	background: -ms-linear-gradient(#ffffff 25%,#518450 70%);
-	background: linear-gradient(#ffffff 25%,#518450 70%);	
-} */
+div.wrap{
+	margin: 10px auto;
+	padding: 20px;
+	width: 720px;
 
-body div.container{
-	background: #ccc url(/images/grid.jpg) repeat bottom right;
+	background-color: white;
 	border: 1px solid #666;
-	border-top:none;
-	border-bottom-right-radius: 2em;
-	border-bottom-left-radius: 2em;
+	border-radius: 0.5em;
+	box-shadow: 0 0 4px 0 #333,0 -1px 4px 0 #333 inset;
 }
-ul{
-	padding: 7.867em 0 0;
-	margin: 0;
-	font-size: 1.5em;
+.header h1{
+	/*color: #ff8800;*/
 }
-ul li{
-	width: 12em;
-	margin-bottom: 0.6em;
-	list-style-type: none;
-	color: black;
-}
-
-ul li a{
-	display: block;
-	color: #007e7e;
-	padding-left: 0.5em;
-	line-height: 1.5em;
-}
-ul li a:visited{
-	color: #003333;
-}
-
-ul li div{	
-	overflow: hidden;
-	height: 1.5em;
-	margin-right: 1em;
-	border-radius: 0 1em 1em 0;
-	border: 1px solid #666;
-	border-left: 0;
-	background-color: #e0e0e0;
-	background: -webkit-linear-gradient(#ffffff,#e0e0e0);
-	background: -o-linear-gradient(#ffffff,#e0e0e0);
-	background: -moz-linear-gradient(#ffffff,#e0e0e0);
-	background: -ms-linear-gradient(#ffffff,#e0e0e0);
-	background: linear-gradient(#ffffff,#e0e0e0);
-
-	text-align: left;
-}
-
-
-header{
-	position: fixed;
-	top:0;
-	left: 0%;
-	width: 90%;
-	border: none;
-	margin-top: 0;
-	margin-bottom: 1em;
-	padding: 1em 5% 0 5%;
-	border-radius: 0 0 1em 1em;
-	background-color: #777777;
-	background: -webkit-linear-gradient(#cccccc,#000000);
-	background: -o-linear-gradient(#cccccc,#000000);
-	background: -moz-linear-gradient(#cccccc,#000000);
-	background: -ms-linear-gradient(#cccccc,#000000);
-	background: linear-gradient(#cccccc,#000000);
-	/*background: #ccc url(/images/grid2.jpg) repeat bottom right;*/
-
-	font-size: 200%;
-	color: white;
-	text-align: left;
-	vertical-align: middle;
-}
-header.pc{
-	left: 15%;
-	width: 60%;
-
-}
-header a:link,
-header a:visited,
-header a:hover,
-header a:active{
-	color: yellow;
-}
-
-header span{
-	font-family: 'KaiTi','Helvetica', 'Arial', 'Sans-Serif';
-	display: block;
-	padding-bottom: 0.3em;
-	font-size: 0.5em;
+.header p{
 	text-align: right;
-	padding-right: 1.5em;
+	font-style: italic;
 }
+.main{
+	width: 720px;
+	height: 400px;
+	background-color: #CCEEEE;
+	box-shadow: 1px 1px 2px 0 #333 inset;
+	position: relative;
+}
+@keyframes rot-pro{
+	from{transform: rotate(0deg) translate(-100px);}
+	to{transform: rotate(360deg) translate(-100px);}
+}
+@keyframes re-rot-pro{
+	from{transform: rotate(0deg);}
+	to{transform: rotate(-360deg);}
+}
+@keyframes rot-art{
+	from{transform: rotate(120deg) translate(-100px);}
+	to{transform: rotate(480deg) translate(-100px);}
+}
+@keyframes re-rot-art{
+	from{transform: rotate(240deg);}
+	to{transform: rotate(-120deg);}
+}
+@keyframes rot-me{
+	from{transform: rotate(240deg) translate(-100px);}
+	to{transform: rotate(600deg) translate(-100px);}
+}
+@keyframes re-rot-me{
+	from{transform: rotate(120deg);}
+	to{transform: rotate(-240deg);}
+}
+.main .part{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -50px 0 0 -50px;
+	border: 1px solid #ffcccc;
+	font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+	font-size: 150%;
+	text-align: center;
+	line-height: 100px;
+	/*box-shadow: 0 0 10px 0 black inset;*/
+	background: -webkit-radial-gradient(#ffffff 25%,#ffcccc 70%);
+	background: -o-radial-gradient(#ffffff 25%,#ffcccc 70%);
+	background: -moz-radial-gradient(#ffffff 25%,#ffcccc 70%);
+	background: -ms-radial-gradient(#ffffff 25%,#ffcccc 70%);
+	background: radial-gradient(#ffffff 25%,#ffcccc 70%);	
+}
+.main .part a{
+	color: #c33;
+	display: inline-block;
+}
+
+.main .pro{transform: translate(-100px);animation: rot-pro 20s linear infinite;}
+.main .pro a{animation: re-rot-pro 20s linear infinite;}
+.main .art{transform: translate(50px,-87px);animation: rot-art 20s linear infinite;}
+.main .art a{animation: re-rot-art 20s linear infinite;}
+.main .me{transform: translate(50px,87px);animation: rot-me 20s linear infinite;}
+.main .me a{animation: re-rot-me 20s linear infinite;}
+.main.paused .pro,
+.main.paused .art,
+.main.paused .me,
+.main.paused .pro a,
+.main.paused .art a,
+.main.paused .me a{animation-play-state: paused;}

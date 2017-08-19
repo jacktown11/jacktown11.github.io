@@ -10,6 +10,8 @@ function setClick(){
 		nameBtn = document.getElementById("name"),
 		input = sort.getElementsByTagName("input")[0],
 		searchBtn = document.getElementById("search"),
+		triangle = document.getElementById("category").getElementsByTagName("button")[0],
+		catList = document.getElementById("category").getElementsByTagName("ul")[0],
 
 		ul = document.getElementsByTagName("ul")[0],
 		lis = ul.getElementsByTagName("li");
@@ -28,6 +30,20 @@ function setClick(){
 			search(ul,liArr,searchStr);		
 		}
 	};
+	triangle.onclick = function(){
+		var triCls= triangle.className,
+			ulCls = catList.className;
+		if(triCls.indexOf("active") >= 0){
+			//当前分类列表处于开启状态
+			triangle.className = triCls.replace(/active/g,"");
+			catList.className = ulCls.replace(/active/g,"");
+		}else{
+			//当前分类列表处于关闭状态
+			triangle.className += " active";
+			catList.className += " active";
+		}
+	};
+
 }
 
 function reorderList(ul,liArr,type){
