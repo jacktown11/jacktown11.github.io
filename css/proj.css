@@ -6,7 +6,8 @@ img.responsive{
 body{
 	width: 740px;
 	margin: auto;
-	background-color: #9c9;
+	background-color: #99cc99;
+	background-color: rgba(153,204,153,0.5);
 }
 h1{
 	text-align: center;
@@ -86,7 +87,7 @@ ul.cat{
 	text-align: center;
 }
 .content table{
-	width: 500px;
+	width: 95%;
 	margin: auto;
 	border-spacing: 5px;
 }
@@ -103,12 +104,11 @@ ul.cat{
 }
 .content table td:first-child{
 	text-align: right;
-	width: 75px;
 	font-weight: bold;
 	vertical-align: top;
 }
 .content table td:last-child{
-	width: 400px;
+	width: 85%;
 	word-break: break-all;
 }
 .content p{
@@ -118,4 +118,12 @@ ul.cat{
 .content div.intro p{
 	padding: 0 1em;
 	text-align: justify;
+}
+.content ul{
+	margin-top: 0;
+	padding: 0;
+}
+.content li{
+	list-style-position: inside;
+	margin-bottom: 5px;
 }
