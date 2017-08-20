@@ -3,7 +3,7 @@
 body{
 	margin-top: 0;
 	margin-bottom: 0;
-	background-color: #cee;
+	background-color: #9c9;
 	-moz-user-select: none; /*火狐*/
 	-webkit-user-select: none; /*webkit浏览器*/
 	-ms-user-select: none; /*IE10*/
@@ -31,7 +31,7 @@ div.wrap{
 .main{
 	width: 720px;
 	height: 400px;
-	background-color: #CCEEEE;
+	background-color: #9c9;
 	box-shadow: 1px 1px 2px 0 #333 inset;
 	position: relative;
 }
