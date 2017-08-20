@@ -1,0 +1,121 @@
+img.responsive{
+	max-width: 95%;
+	display: inline-block;
+}
+
+body{
+	width: 740px;
+	margin: auto;
+	background-color: #9c9;
+}
+h1{
+	text-align: center;
+}
+.header a{
+	display: inline-block;
+	width: 3em;
+	height: 3em;
+	border: 1px solid black;
+	border-radius:1.5em; 
+	text-align: center;
+	line-height: 3em;
+	float: right;
+}
+div.projs{
+	max-height: 500px;
+}
+div.projs{
+	padding: 10px 0 10px 5px;
+	background-color: #077;
+	box-shadow: 0 0 4px 0 black;
+}
+div.projs:after{
+	content: '';
+	height: 0;
+	display: block;
+	clear: both;
+}
+ul.cat{
+	width: 140px;
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	background-color: white;
+}
+.cat li{
+	margin: 0;
+	padding: 5px 5px 5px 0px;
+	background-color: #077;
+	border-bottom: 1px dotted #888;
+	cursor: pointer;	
+	text-align: right;
+	color: #ffcc00;
+	-moz-user-select: none; /*火狐*/
+	-webkit-user-select: none; /*webkit浏览器*/
+	-ms-user-select: none; /*IE10*/
+	-khtml-user-select: none; /*早期浏览器*/
+	user-select: none;
+}
+
+.cat li.active{
+	background-color: white;
+	color: black;
+	border-color: transparent;
+}
+.cat li.up{
+	border-bottom-right-radius: 8px;
+	border-color: transparent;
+}
+.cat li.down{
+	border-top-right-radius: 8px;	
+}
+.cat li:hover{
+	color: #ff8800;
+}
+.content{
+	height: 500px;
+	width: 585px;
+	float: left;
+	padding-left: 5px;
+	overflow: auto;
+	background-color: white;
+}
+.content h2,
+.content div{
+	text-align: center;
+}
+.content table{
+	width: 500px;
+	margin: auto;
+	border-spacing: 5px;
+}
+.content a{
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+}
+.content a:hover{
+	font-weight: normal;
+	color: #ff8800;
+}
+.content tr{
+	border-bottom: 1px dashed #9cc;	
+}
+.content table td:first-child{
+	text-align: right;
+	width: 75px;
+	font-weight: bold;
+	vertical-align: top;
+}
+.content table td:last-child{
+	width: 400px;
+	word-break: break-all;
+}
+.content p{
+	margin-top: 0;
+	word-wrap: break-word;
+}
+.content div.intro p{
+	padding: 0 1em;
+	text-align: justify;
+}
