@@ -112,7 +112,7 @@ ul.cat{
 	word-break: break-all;
 }
 .content p{
-	margin-top: 0;
+	margin: 0 0 8px;
 	word-wrap: break-word;
 }
 .content div.intro p{

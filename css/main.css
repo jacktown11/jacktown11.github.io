@@ -38,3 +38,9 @@ em{
 button,input{
 	outline: none;
 }
+button{
+	cursor: pointer;
+}
+input{
+	padding: 0 0.3em;
+}

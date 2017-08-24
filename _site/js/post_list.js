@@ -13,7 +13,7 @@ function setClick(){
 		triangle = document.getElementById("category").getElementsByTagName("button")[0],
 		catList = document.getElementById("category").getElementsByTagName("ul")[0],
 
-		ul = document.getElementsByTagName("ul")[0],
+		ul = document.getElementsByTagName("ul")[1],
 		lis = ul.getElementsByTagName("li");
 		liArr = Array.prototype.slice.call(lis,0);
 
