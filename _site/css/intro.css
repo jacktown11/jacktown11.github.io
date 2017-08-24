@@ -1,0 +1,41 @@
+/*简历页面的css*/
+body{
+	max-width: 960px;
+	margin: 0 auto 2em;
+}
+a:link{
+	text-decoration: none;
+	color: green;
+	border-bottom: 1px dashed black;
+	border-color: inherit;
+}
+a:visited{
+	color: #99CC99;
+}
+#home{
+	float: right;
+	display: block;
+	width: 3em;
+	height: 3em;
+	line-height: 3em;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 50%;
+}
+h1{
+	text-align: center;
+}
+li{
+	margin-top: 0.9em;
+}
+
+@media print{
+	#home{
+		display: none;
+	}
+	a:link,a:visited{
+		color: black;
+		border: none;
+	}
+}
+
