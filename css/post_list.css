@@ -10,6 +10,14 @@ body{
 	background-color: #CBE5CB;
 	background-color: rgba(153,204,153,0.5);
 }
+
+div.wrap{
+	width: 60%;
+	min-width: 480px; 
+	max-width: 1080px;
+	margin:  0 auto;
+}
+
 h1{
 	text-align: center;
 }
@@ -135,13 +143,6 @@ li span.bar{
 }
 li:hover span.bar{
 	display: block;
-}
-
-div.wrap{
-	width: 60%;
-	min-width: 480px; 
-	max-width: 1080px;
-	margin:  0 auto;
 }
 
 
