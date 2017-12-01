@@ -1,8 +1,8 @@
 ---
 layout: article
 title: word/excel
-categories: [others,all]
-tags: [others]
+categories: [杂记]
+tags: [office]
 ---
 1. 为什么我的WORD中复制,粘贴的快捷键用不了CTRL+C,CTRL+V不管用了。  
 

@@ -1,8 +1,8 @@
 ---
 layout: article
 title: html相关
-categories: [html_css,all]
-tags: [html_css]
+categories: [htmlcss]
+tags: [html]
 s---
 ## 1. IE条件注释
 #### 1.1 基本语法

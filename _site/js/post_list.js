@@ -31,10 +31,10 @@ function initPosts(){
 			title: post.getAttribute('data-title'),
 			date: post.getAttribute('data-date').split(' ')[0],
 			url: post.getAttribute('data-url'),
-			tags: post.getAttribute('data-tags').split('and').map(function(item,index,array){
+			tags: post.getAttribute('data-tags').split(',').map(function(item,index,array){
 				return item.trim();
 			}),
-			categories: post.getAttribute('data-categories').split('and').map(function(item,index,array){
+			categories: post.getAttribute('data-categories').split(',').map(function(item,index,array){
 				return item.trim();
 			})
 		};
