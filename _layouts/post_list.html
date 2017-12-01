@@ -36,8 +36,8 @@
 		    <li data-date="{{post.date}}" 
 		    	data-title="{{post.title}}" 
 		    	data-url="{{post.url}}" 
-		    	data-tags="{{post.tags | array_to_sentence_string}}" 
-		    	data-categories="{{post.categories | array_to_sentence_string}}">
+		    	data-tags="{{post.tags | join: ','}}" 
+		    	data-categories="{{post.categories | join: ','}}">
 		    	<a href="{{ post.url }}"><span>{{ post.date | date_to_string }}</span><span>{{ post.title }}</span></a>
 		    </li>
 		{% endfor %}

@@ -1,13 +1,13 @@
 #home{top: 10px;}
 #totop{top: 100px;}
 
-
 div.wrap{
 	width: 60%;
 	min-width: 480px; 
 	max-width: 1080px;
 	margin:  0 auto;
 	padding-bottom: 10px;
+	margin-bottom: 16px;
 }
 
 h1{
@@ -40,8 +40,8 @@ li span{
 	vertical-align: middle;
 }
 li span{
-	width: 70%;
-	padding-left: 0.5em;
+	width: 50%;
+	padding-left: 1em;
 }
 li a{
 	box-shadow: 0 0 4px 0 #888,0 -1px 4px 0 #888 inset;

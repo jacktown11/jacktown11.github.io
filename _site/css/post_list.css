@@ -48,10 +48,13 @@ td:first-child{
 	width: 40px;
 	padding: 10px 0 5px 20px;
 }
+td:last-child{
+	line-height: 2em;
+}
 
 table span{
 	cursor: pointer;
-	padding: 5px 12px 5px 5px;
+	padding: 3px 12px 5px 5px;
 	display: inline-block;
 	margin: 0 8px;
 	background-color: #ffffff;
@@ -61,6 +64,7 @@ table span{
 	-moz-user-select:none;
 	-o-user-select:none;
 	user-select:none;
+	line-height: 1.2em;
 }
 #search{
 	text-align: center;

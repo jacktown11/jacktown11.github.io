@@ -1,8 +1,8 @@
 ---
 layout: article
 title: 知识片段
-categories: [abc,all]
-tags: [abc]
+categories: [杂记]
+tags: [debug]
 ---
 ### 1. 输入时字母间距突然变大
 **解决方法：**1)Shift+Space;2)调整输入法半全角

@@ -1,8 +1,8 @@
 ---
 layout: article
 title: 一个关于原型链的探索
-categories: [js,all]
-tags: [js]
+categories: [javascript]
+tags: [javascript]
 ---
 ## 原型链基础
 看了《javascript高级程序设计》关于对象继承方面的内容，对原型链有了一定理解：

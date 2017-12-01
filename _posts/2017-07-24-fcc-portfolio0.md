@@ -1,8 +1,8 @@
 ---
 layout: article
 title: fcc项目总结系列1：个人作品展示页面制作项目
-categories: [frontEndOther,all]
-tags: [frontEndOther]
+categories: [项目总结与日常记录]
+tags: [项目总结]
 ---
 ## 导言
 近两天勉强完成了free code camp的[portfolio](https://codepen.io/jacktown/full/eRrYyJ/)项目（[题目地址](https://freecodecamp.cn/challenges/build-a-personal-portfolio-webpage)），自己原生写的，感觉不用框架确实挺麻烦（虽然我目前只接触过一点点bootstrap，但是感觉用起来应该会节省非常多代码），而且做出来的东西我估计在移动端就不能看了。不过做这个项目过程中还是感觉颇有收获。
