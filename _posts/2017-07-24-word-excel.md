@@ -1,13 +1,9 @@
 ---
 layout: article
 title: word/excel
-categories: others all
-tag_name: others
-backurl: others.html
+categories: [others,all]
+tags: [others]
 ---
->begin: 20170702  
->version: 20170724
-
 1. 为什么我的WORD中复制,粘贴的快捷键用不了CTRL+C,CTRL+V不管用了。  
 
 不知道你是在什么情况下出现的问题？我出现问题时因为在跟mathtype 关联的时候出现的！这个主要是关联的时候，解决方法:

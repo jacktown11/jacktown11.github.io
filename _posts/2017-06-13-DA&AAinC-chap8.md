@@ -1,13 +1,9 @@
 ---
 layout: article
 title: 数据结构与算法分析C语言描述 总结笔记 第八章
-categories: others all
-tag_name: others
-backurl: others.html
+categories: [others,all]
+tags: [others]
 ---
->begin: 20170613  
->version: 20170724
-
 # 第八章 不相交集ADT
 ### 1.等价关系
 - 自反性

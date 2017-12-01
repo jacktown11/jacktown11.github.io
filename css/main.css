@@ -13,7 +13,7 @@ body.pc{
 
 a { text-decoration: none; color: #0040b1; }
 a:hover {
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 a:visited { color: black;}
 
@@ -42,4 +42,42 @@ button{
 }
 input{
 	padding: 0 0.3em;
+}
+
+/*============
+common style class
+==============*/
+
+.panel{
+	background-color: white;
+	border: none;
+	border-radius: 0.5em;
+	box-shadow: 0 0 4px 0 #333,0 -1px 4px 0 #333 inset;
+}
+
+.inset{
+	background-color: #9c9;
+	background-color: rgba(153,204,153,0.5);
+	box-shadow: 1px 1px 2px 0 #333 inset;
+}
+
+.outset{
+	box-shadow: 0 0 4px 0 #888,0 -1px 4px 0 #888 inset;
+}
+
+.jump-link{
+	display: block;
+	position: fixed;
+	top: 10px;
+	right: 10%;
+	text-align: center;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	line-height: 60px;
+	
+	border: none;
+	background-color: white;
+	border-radius: 0.5em;
+	box-shadow: 0 0 4px 0 #888,0 -1px 4px 0 #888 inset;
 }

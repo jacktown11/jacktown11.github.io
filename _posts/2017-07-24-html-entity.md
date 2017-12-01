@@ -1,13 +1,9 @@
 ---
 layout: article
 title: html字符实体
-categories: html_css all
-tag_name: html_css
-backurl: html_css.html
+categories: [html_css,all]
+tags: [html_css]
 ---
->begin: 20170724  
->version: 20170724
-
 ### 为什么在html文档中使用html实体字符？
 假设我们在一个html文档中的一个段落元素`<p></p>`内部放一段文本，如果这段文本的内容是`<em></em>`（从而这段html代码是`<p><em></em></p>`），由于这个文本的内容本身就是一个标签，那么浏览器是不会把p元素中的内容当作文本处理的，它只会将其看作一个没有包含任何内容的`em`标签，那么如何才能达到本意呢？我们可以这样写：`<p><em></em></p>`，其中`<`和`&gt`分别表示了字符`<`和`>`，这样就能把带有特殊字符（如`<`、`>`、`&`等）的文本显示出来了。
 ### 其他表示实体html字符的方法

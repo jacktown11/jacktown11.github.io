@@ -16,11 +16,11 @@ div.wrap{
 	margin: 10px auto;
 	padding: 20px;
 	width: 720px;
-
+/*
 	background-color: white;
 	border: 1px solid #666;
 	border-radius: 0.5em;
-	box-shadow: 0 0 4px 0 #333,0 -1px 4px 0 #333 inset;
+	box-shadow: 0 0 4px 0 #333,0 -1px 4px 0 #333 inset;*/
 }
 .header h1{
 	/*color: #ff8800;*/
@@ -32,10 +32,10 @@ div.wrap{
 .main{
 	width: 720px;
 	height: 400px;
-	background-color: #9c9;
+/*	background-color: #9c9;
 	background-color: rgba(153,204,153,0.5);
 	box-shadow: 1px 1px 2px 0 #333 inset;
-	position: relative;
+*/	position: relative;
 }
 @keyframes rot-pro{
 	from{transform: rotate(0deg) translate(-100px);}
@@ -69,20 +69,22 @@ div.wrap{
 	left: 50%;
 	top: 50%;
 	margin: -50px 0 0 -50px;
-	border: 1px solid #ffcccc;
+	/*border: 1px solid #ffcccc;*/
 	font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
 	font-size: 150%;
 	text-align: center;
 	line-height: 100px;
 	/*box-shadow: 0 0 10px 0 black inset;*/
-	background: -webkit-radial-gradient(#ffffff 25%,#ffcccc 70%);
+	/*background: -webkit-radial-gradient(#ffffff 25%,#ffcccc 70%);
 	background: -o-radial-gradient(#ffffff 25%,#ffcccc 70%);
 	background: -moz-radial-gradient(#ffffff 25%,#ffcccc 70%);
 	background: -ms-radial-gradient(#ffffff 25%,#ffcccc 70%);
-	background: radial-gradient(#ffffff 25%,#ffcccc 70%);	
+	background: radial-gradient(#ffffff 25%,#ffcccc 70%);	*/
+	box-shadow: 0 0 4px 0 #333,0 0px 4px 0 #333 inset;
+
 }
 .main .part a{
-	color: #c33;
+	color: #f40;
 	display: inline-block;
 }
 

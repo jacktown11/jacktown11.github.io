@@ -1,13 +1,9 @@
 ---
 layout: article
 title: 知识片段
-categories: abc all
-tag_name: abc
-backurl: abc.html
+categories: [abc,all]
+tags: [abc]
 ---
->begin: 20170702  
->version: 20170724
-
 ### 1. 输入时字母间距突然变大
 **解决方法：**1)Shift+Space;2)调整输入法半全角
 ### 2. 浏览器页面刷新

@@ -1,13 +1,9 @@
 ---
 layout: article
 title: html相关
-categories: html_css all
-tag_name: html_css
-backurl: html_css.html
----
->begin: 20170702  
->version: 20170724
-
+categories: [html_css,all]
+tags: [html_css]
+s---
 ## 1. IE条件注释
 #### 1.1 基本语法
 ```

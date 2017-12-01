@@ -1,13 +1,9 @@
 ---
 layout: article
 title: fcc项目总结系列1：个人作品展示页面制作项目源码阅读
-categories: frontEndOther all
-tag_name: frontEndOther
-backurl: frontEndOther.html
+categories: [frontEndOther,all]
+tags: [frontEndOther]
 ---
->begin: 20170724  
->version: 20170724
-
 该文起源于一个fcc项目（[个人作品展示页面制作](https://freecodecamp.cn/challenges/build-a-personal-portfolio-webpage)），之前写过一篇（[fcc portfolio项目总结](http://www.jianshu.com/p/f7fa57cd1189)），是自己独立搭建这个页面的总结；而本文是阅读其示例项目的源代码的总结。
 
 # 1.外部文件

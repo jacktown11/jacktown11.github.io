@@ -1,13 +1,9 @@
 ---
 layout: article
 title: 《javascript高级程序设计》对象创建与继承 总结笔记
-categories: js all
-tag_name: js
-backurl: js.html
+categories: [js,all]
+tags: [js]
 ---
->begin: 20170702  
->version: 20170724
-
 # 1. 创建对象
 # 2. 继承
 ## 1)原型链
