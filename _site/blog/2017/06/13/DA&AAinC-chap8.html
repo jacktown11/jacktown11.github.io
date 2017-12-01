@@ -6,21 +6,18 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/article.css">
 	<script src="/js/article.js"></script>
-	<script src="/js/mobile.js"></script>
 </head>
-<body class="pc">
-<div id="pagetop" class="wrap">
+<body id="body">
+	<div class="wrap">
 
-	<nav class="pc">
-		<a id="home" href="/">Home</a>
-		<a id="list" href="/post_list/others.html">List</a>				
-	</nav>
-	
+		<a id="home" href="/" class="panel jump-link">主页</a>
+		<a href="/post_list/posts.html" id="posts" class="panel jump-link">文章</a>
+		<a href="#body" id="totop" class="panel jump-link">顶部</a>
 
-	<h1>数据结构与算法分析C语言描述 总结笔记 第八章</h1>
-	<p class="meta">13 Jun 2017</p>
-	<div class="post">
-  		<blockquote>
+		<h1>数据结构与算法分析C语言描述 总结笔记 第八章</h1>
+		<p class="meta">13 Jun 2017</p>
+		<div class="post panel">
+	  		<blockquote>
   <p>begin: 20170613<br />
 version: 20170724</p>
 </blockquote>
@@ -62,11 +59,7 @@ version: 20170724</p>
 <h3 id="6-按秩求并和路径压缩的最坏时间">6. 按秩求并和路径压缩的最坏时间</h3>
 <p>M次Find和Union操作的最坏时间O(Mlog*N),加强结论是O（Mα（M,N））,说明其几乎是线性的。</p>
 
+		</div>
 	</div>
-	
-	<nav id="toolbar" class="pc">
-		<a id="totop" href="#pagetop">TOP</a>
-	</nav>	
-</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /*这部分主要用于页面固定定位的几个小图标*/
 a#home,
-a#list,
+a#posts,
 a#totop{
     display: block;
     float: right;
@@ -19,6 +19,15 @@ a#totop{
     font-weight: bold;
 	text-align: center;
 	line-height: 3em;
+}
+#home{
+    top: 10px;
+}
+#posts{
+    top: 200px;
+}
+#totop{
+    top; 390px;
 }
 
 nav.pc a#totop{

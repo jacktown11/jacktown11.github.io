@@ -1,13 +1,9 @@
 ---
 layout: article
 title: 数据结构与算法分析C语言描述 总结笔记 第六章
-categories: others all
-tag_name: others
-backurl: others.html
+categories: [others,all]
+tags: [others,good]
 ---
->begin: 20170610  
->version: 20170724
-
 # 第六章 优先队列(堆)
 ### 1. 基本概念
 一种特殊的队列，至少支持两种操作：Insert和DeleteMin；前者插入元素，相当于队列的enqueue,后者查找、删除、返回最小的元素，相当于队列的dequeue。

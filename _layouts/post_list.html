@@ -3,41 +3,43 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{{page.title}}</title>
-	<link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
-	<link rel="stylesheet" href="{{site.baseurl}}/css/post_list.css">
-	<script src="{{site.baseurl}}/js/post_list.js"></script>
-	<script src="/js/mobile.js"></script>
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/post_list.css">
+	<script src="../js/post_list.js"></script>
 </head>
-<body class="pc">
-<div class="wrap">
-	<div id="home">
-		<a href="../">Home</a>		
-	</div>
-	<div id="sort">
-		<button id="date" type="button" >日期排序</button>
-		<button id="name" type="button" >文件名排序</button>
-		<input type="text">
-		<button id="search" type="button" >搜索</button>
-	</div>
-	<div id="category">
-		<h2>Articles about <span class="cat">{{page.tag_intro}}</span>&nbsp;<button type="button" class="triangle"></button></h2>
-		<div>
-			<ul>
-				<li><a href="abc.html">abc</a></li>
-				<li><a href="html_css.html">html_css</a></li>
-				<li><a href="js.html">javascript</a></li>
-				<li><a href="frontEndOther.html">frontEndOther</a></li>
-				<li><a href="others.html">others</a></li>
-				<li><a href="all.html">all</a></li>
-			</ul>				
+<body id="body">
+<div class="wrap panel">
+	<a class="panel jump-link" id="home" href="../">主页</a>
+	<a href="#body" class="panel jump-link" id="totop" >顶部</a>
+	<h1>Articles</h1>
+	<div class="input">
+		<table>
+			<tr>
+				<td>分类</td>
+				<td id="categories"></td>
+			</tr>
+			<tr>
+				<td>标签</td>
+				<td id="tags"></td>
+			</tr>
+		</table>
+		<hr style="margin: 0px;">
+		<div id="search">
+			<input type="text" id="search-input" name="search-input">		
+			<button for="search-input" class="" id="search-confirm">搜索</button>
 		</div>
 	</div>
+	
 	{{content}}
 	<ul id="aticle-list">
 		{%for post in site.posts%}
-		{% if {{page.tag_name}} == post.tag_name %}
-	    <li data-date="{{post.date}}"><span>{{ post.date | date_to_string }}</span>&nbsp;<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-	    {% endif %}
+		    <li data-date="{{post.date}}" 
+		    	data-title="{{post.title}}" 
+		    	data-url="{{post.url}}" 
+		    	data-tags="{{post.tags | array_to_sentence_string}}" 
+		    	data-categories="{{post.categories | array_to_sentence_string}}">
+		    	<a href="{{ post.url }}"><span>{{ post.date | date_to_string }}</span><span>{{ post.title }}</span></a>
+		    </li>
 		{% endfor %}
 	</ul>
 </div>

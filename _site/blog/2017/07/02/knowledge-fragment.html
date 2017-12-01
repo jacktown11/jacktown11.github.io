@@ -6,21 +6,18 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/article.css">
 	<script src="/js/article.js"></script>
-	<script src="/js/mobile.js"></script>
 </head>
-<body class="pc">
-<div id="pagetop" class="wrap">
+<body id="body">
+	<div class="wrap">
 
-	<nav class="pc">
-		<a id="home" href="/">Home</a>
-		<a id="list" href="/post_list/abc.html">List</a>				
-	</nav>
-	
+		<a id="home" href="/" class="panel jump-link">主页</a>
+		<a href="/post_list/posts.html" id="posts" class="panel jump-link">文章</a>
+		<a href="#body" id="totop" class="panel jump-link">顶部</a>
 
-	<h1>知识片段</h1>
-	<p class="meta">02 Jul 2017</p>
-	<div class="post">
-  		<blockquote>
+		<h1>知识片段</h1>
+		<p class="meta">02 Jul 2017</p>
+		<div class="post panel">
+	  		<blockquote>
   <p>begin: 20170702<br />
 version: 20170724</p>
 </blockquote>
@@ -36,11 +33,7 @@ version: 20170724</p>
 <h3 id="3-软件发布格式">3. 软件发布格式</h3>
 <p>软件的发布格式主要有四种：binary file、compact file、image file、source code四种，（二进制格式、压缩文件包、镜像、源代码），Windows Binary 就是指可以在Windows平台下运行的程序发布格式，可能可以直接运行，也可能需要安装，或者可能需要其他运行库（MFC、MSVCP、msi等），一般还要对Windows平台作具体要求说明（9x、2000、xp、server、directX、dotNetwork、IE、MediaPlayer等）</p>
 
+		</div>
 	</div>
-	
-	<nav id="toolbar" class="pc">
-		<a id="totop" href="#pagetop">TOP</a>
-	</nav>	
-</div>
 </body>
 </html>
