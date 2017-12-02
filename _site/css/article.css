@@ -11,7 +11,6 @@
 
 /* the style of the whole article */
 body{
-    /*background-color: #eaeaea !important;*/
     background-color: rgba(153,204,153,0.5) !important;
 }
 body div.wrap{
@@ -24,16 +23,15 @@ body div.wrap{
 }
 
 body div.post{
-	background-color: #d2e3c7;
-    background-color: #fff;
-    padding: 0.5em 1.5em;
+    background-color: #fffff0;
+    padding: 2em 4em;
     border-radius: 0.6em;
 }
-
 .wrap>h1:first-of-type{
     color: black;
     margin-top: 16px;
     margin-bottom: 16px;
+    background-color: transparent;
 }
 h1+p.meta{
     font-weight: bold;
@@ -53,6 +51,7 @@ nav.catalog p{
     font-size: 120%;
     font-family:'STSong','STHeiti Light','sans-serif';
 
+    text-indent: 0;
     font-weight: bold;
     text-align: center;
     background-color: white;
@@ -131,9 +130,20 @@ body{
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
-h1 {color: #e67008;font-size: 1.8em;}
-h2 { font-size: 1.6em;color: #14877E;}
-h3 { font-size: 1.4em; color: #222222;}
+h1 {
+    background: rgb(0,153,102);
+    color: white;    
+    font-size: 1.8em;
+}
+h2 { 
+    font-size: 1.6em;
+    color: #e67008;
+}
+h3 { 
+    font-size: 1.4em;
+    color: #14877E;
+}
+
 h4 {font-size: 1.2em;color: #111111;}
 h5 {font-size: 1em;}
 h6 {background-color: inherit;font-size: 0.8em;}
