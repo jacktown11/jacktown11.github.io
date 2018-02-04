@@ -5,7 +5,7 @@ categories: [前端框架与插件]
 tags: [jquery]
 ---
 用jQuery clone()方法可以赋值一个节点，但是如果这个节点带有id属性，那么可能导致该id在同一个页面中被重复使用。比如我们在head>script:nth-of-type(3)中代码的最后一行复制了#target5元素。
-``` javascript
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -5,6 +5,7 @@
 	<title></title>
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
 	<script src="/js/article.js"></script>
 </head>
 <body id="body">
@@ -19,16 +20,16 @@
 					
 		<div class="post panel">
 	  		<p>用jQuery clone()方法可以赋值一个节点，但是如果这个节点带有id属性，那么可能导致该id在同一个页面中被重复使用。比如我们在head&gt;script:nth-of-type(3)中代码的最后一行复制了#target5元素。</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">"en"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">"UTF-8"</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">test</span><span class="o">&lt;</span><span class="sr">/title</span><span class="err">&gt;
-</span>  <span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span> 
- <span class="nx">href</span><span class="o">=</span><span class="s2">"http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.css"</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"program.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span>  <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"http://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span>  <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>test<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> 
+ <span class="na">href=</span><span class="s">"http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.css"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"program.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script&gt;</span>
     <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nx">$</span><span class="p">(</span><span class="s2">"#target1"</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s2">"color"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">);</span>
       <span class="nx">$</span><span class="p">(</span><span class="s2">"#target1"</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s2">"disabled"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
@@ -36,36 +37,36 @@
       <span class="nx">$</span><span class="p">(</span><span class="s2">"#target2"</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">"#right-well"</span><span class="p">);</span>
       <span class="nx">$</span><span class="p">(</span><span class="s2">"#target5"</span><span class="p">).</span><span class="nx">clone</span><span class="p">().</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">"#left-well"</span><span class="p">);</span>
     <span class="p">});</span>
-  <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span>
-<span class="o">&lt;</span><span class="sr">/head</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
-<span class="c">&lt;!--</span> <span class="err">请只修改这条注释以上的代码</span> <span class="o">--&gt;</span>
+  <span class="nt">&lt;/script&gt;</span>
 
-  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"container-fluid"</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">h3</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"text-primary text-center"</span><span class="o">&gt;</span><span class="nx">jQuery</span> <span class="nx">Playground</span><span class="o">&lt;</span><span class="sr">/h3</span><span class="err">&gt;
-</span>    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"row"</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"col-xs-6"</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">h4</span><span class="o">&gt;</span><span class="err">#</span><span class="nx">left</span><span class="o">-</span><span class="nx">well</span><span class="o">&lt;</span><span class="sr">/h4</span><span class="err">&gt;
-</span>        <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"well"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"left-well"</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="nx">button</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"btn btn-default target"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"target1"</span><span class="o">&gt;</span><span class="err">#</span><span class="nx">target1</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>          <span class="o">&lt;</span><span class="nx">button</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"btn btn-default target"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"target2"</span><span class="o">&gt;</span><span class="err">#</span><span class="nx">target2</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>          <span class="o">&lt;</span><span class="nx">button</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"btn btn-default target"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"target3"</span><span class="o">&gt;</span><span class="err">#</span><span class="nx">target3</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>      <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>      <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"col-xs-6"</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">h4</span><span class="o">&gt;</span><span class="err">#</span><span class="nx">right</span><span class="o">-</span><span class="nx">well</span><span class="o">&lt;</span><span class="sr">/h4</span><span class="err">&gt;
-</span>        <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"well"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"right-well"</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="nx">button</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"btn btn-default target"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"target4"</span><span class="o">&gt;</span><span class="err">#</span><span class="nx">target4</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>          <span class="o">&lt;</span><span class="nx">button</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"btn btn-default target"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"target5"</span><span class="o">&gt;</span><span class="err">#</span><span class="nx">target5</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>          <span class="o">&lt;</span><span class="nx">button</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"btn btn-default target"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"target6"</span><span class="o">&gt;</span><span class="err">#</span><span class="nx">target6</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>      <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>  <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
-</span></code></pre>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="c">&lt;!-- 请只修改这条注释以上的代码 --&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container-fluid"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"text-primary text-center"</span><span class="nt">&gt;</span>jQuery Playground<span class="nt">&lt;/h3&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-xs-6"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h4&gt;</span>#left-well<span class="nt">&lt;/h4&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"well"</span> <span class="na">id=</span><span class="s">"left-well"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default target"</span> <span class="na">id=</span><span class="s">"target1"</span><span class="nt">&gt;</span>#target1<span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default target"</span> <span class="na">id=</span><span class="s">"target2"</span><span class="nt">&gt;</span>#target2<span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default target"</span> <span class="na">id=</span><span class="s">"target3"</span><span class="nt">&gt;</span>#target3<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-xs-6"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h4&gt;</span>#right-well<span class="nt">&lt;/h4&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"well"</span> <span class="na">id=</span><span class="s">"right-well"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default target"</span> <span class="na">id=</span><span class="s">"target4"</span><span class="nt">&gt;</span>#target4<span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default target"</span> <span class="na">id=</span><span class="s">"target5"</span><span class="nt">&gt;</span>#target5<span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default target"</span> <span class="na">id=</span><span class="s">"target6"</span><span class="nt">&gt;</span>#target6<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
 </div>
 <p>结果发现出现了两个id为<code class="highlighter-rouge">target5</code>的元素，这一点需要注意。
 <img src="http://upload-images.jianshu.io/upload_images/6321648-20e3ea14087b89b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="使用clone()方法后的部分html" /></p>

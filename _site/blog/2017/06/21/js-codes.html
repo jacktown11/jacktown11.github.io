@@ -5,6 +5,7 @@
 	<title></title>
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
 	<script src="/js/article.js"></script>
 </head>
 <body id="body">
@@ -124,89 +125,89 @@
 </code></pre>
 </div>
 <h2 id="获取元素相对页面的左偏移和上偏移量">获取元素相对页面的左偏移和上偏移量</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code>//func: 获取元素相对视窗的左偏移和上偏移量
-//edition: 20170628
-//from: js高程（p321）
-//question: 应该差一个边框宽度
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//func: 获取元素相对视窗的左偏移和上偏移量</span>
+<span class="c1">//edition: 20170628</span>
+<span class="c1">//from: js高程（p321）</span>
+<span class="c1">//question: 应该差一个边框宽度</span>
 
-function getElementLeft(element){
-	var actualLeft = element.offsetLeft,
-		current = element.offsetParent;
-	while(current !== null){
-		actualLeft += current.offsetLeft;
-		current  = current.offsetParent;
-	}
+<span class="kd">function</span> <span class="nx">getElementLeft</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">actualLeft</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">offsetLeft</span><span class="p">,</span>
+		<span class="nx">current</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="nx">current</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+		<span class="nx">actualLeft</span> <span class="o">+=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">offsetLeft</span><span class="p">;</span>
+		<span class="nx">current</span>  <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+	<span class="p">}</span>
 
-	return actualLeft;
-}
-function getElementTop(element){
-	var actualTop = element.offsetTop,
-		current = element.offsetParent;
-	while(current !== null){
-		actualTop += current.offsetTop;
-		current  = current.offsetParent;
-	}
+	<span class="k">return</span> <span class="nx">actualLeft</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">getElementTop</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">actualTop</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">,</span>
+		<span class="nx">current</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="nx">current</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+		<span class="nx">actualTop</span> <span class="o">+=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">;</span>
+		<span class="nx">current</span>  <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+	<span class="p">}</span>
 
-	return actualTop;
+	<span class="k">return</span> <span class="nx">actualTop</span><span class="p">;</span>
 
-}
+<span class="p">}</span>
 </code></pre>
 </div>
 <h2 id="获得视窗大小">获得视窗大小</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code>//func: 获取视窗大小
-//edition: 20170628
-//from: js高程（p323）
-function getViewport(){
-	if(document.compatMode === "BackCompat"){
-		return {
-			width: document.body.clientWidth,
-			height: document.body.clientHeight
-		};
-	}else{
-		return {
-			width: document.documentElement.clientWidth,
-			height: document.documentElement.clientHeight
-		};
-	}
-}
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//func: 获取视窗大小</span>
+<span class="c1">//edition: 20170628</span>
+<span class="c1">//from: js高程（p323）</span>
+<span class="kd">function</span> <span class="nx">getViewport</span><span class="p">(){</span>
+	<span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="s2">"BackCompat"</span><span class="p">){</span>
+		<span class="k">return</span> <span class="p">{</span>
+			<span class="na">width</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">,</span>
+			<span class="na">height</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span>
+		<span class="p">};</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="k">return</span> <span class="p">{</span>
+			<span class="na">width</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">,</span>
+			<span class="na">height</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span>
+		<span class="p">};</span>
+	<span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 <h2 id="获取元素相对视口的位置">获取元素相对视口的位置</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code>//func: 获取元素相对视口的位置
-//edition: 20170628
-//from: js高程（p325）
-function getBoundingClientRect(element){
-	var scrollTop = document.documentElement.scrollTop,
-		scrollLeft = document.documentElement.scrollLeft;
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//func: 获取元素相对视口的位置</span>
+<span class="c1">//edition: 20170628</span>
+<span class="c1">//from: js高程（p325）</span>
+<span class="kd">function</span> <span class="nx">getBoundingClientRect</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">,</span>
+		<span class="nx">scrollLeft</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">;</span>
 
-	if(element.getBoundingClientRect){
-		if(typeof auguments.callee.offset !== "number"){
-			var temp = document.createElement("div");
-			temp.style.cssText = "position: absolute; left: 0; top: 0";
-			document.body.appendChild(temp);
-			arguments.callee.offset = -temp.getBoundingClientRect().top - scrollTop;
-			document.body.removeChild(temp);
-			temp = null;
-		}
-		var rect = element.getBoundingClientRect(),
-			offset = arguments.callee.offset;
-		return {
-			left: rect.left + offset,
-			right: rect.right + offset,
-			top: rect.top + offset,
-			bottom: rect.bottom + offset
-		};
-	}else{
-		var actualTop = getElementTop(element),
-			actualLeft = getElementLeft(element);
-		return {
-			left: actualLeft - scrollLeft,
-			rigth: actualLeft + offsetWidth - scrollLeft,
-			top: actualTop - scrollTop,
-			bottom: actualTop + offsetHeight - scrollTop 
-		};
-	}
-}
+	<span class="k">if</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">auguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">offset</span> <span class="o">!==</span> <span class="s2">"number"</span><span class="p">){</span>
+			<span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
+			<span class="nx">temp</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="s2">"position: absolute; left: 0; top: 0"</span><span class="p">;</span>
+			<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+			<span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">offset</span> <span class="o">=</span> <span class="o">-</span><span class="nx">temp</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">scrollTop</span><span class="p">;</span>
+			<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+			<span class="nx">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="kd">var</span> <span class="nx">rect</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">(),</span>
+			<span class="nx">offset</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">offset</span><span class="p">;</span>
+		<span class="k">return</span> <span class="p">{</span>
+			<span class="na">left</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">offset</span><span class="p">,</span>
+			<span class="na">right</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">right</span> <span class="o">+</span> <span class="nx">offset</span><span class="p">,</span>
+			<span class="na">top</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">offset</span><span class="p">,</span>
+			<span class="na">bottom</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">+</span> <span class="nx">offset</span>
+		<span class="p">};</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">actualTop</span> <span class="o">=</span> <span class="nx">getElementTop</span><span class="p">(</span><span class="nx">element</span><span class="p">),</span>
+			<span class="nx">actualLeft</span> <span class="o">=</span> <span class="nx">getElementLeft</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+		<span class="k">return</span> <span class="p">{</span>
+			<span class="na">left</span><span class="p">:</span> <span class="nx">actualLeft</span> <span class="o">-</span> <span class="nx">scrollLeft</span><span class="p">,</span>
+			<span class="na">rigth</span><span class="p">:</span> <span class="nx">actualLeft</span> <span class="o">+</span> <span class="nx">offsetWidth</span> <span class="o">-</span> <span class="nx">scrollLeft</span><span class="p">,</span>
+			<span class="na">top</span><span class="p">:</span> <span class="nx">actualTop</span> <span class="o">-</span> <span class="nx">scrollTop</span><span class="p">,</span>
+			<span class="na">bottom</span><span class="p">:</span> <span class="nx">actualTop</span> <span class="o">+</span> <span class="nx">offsetHeight</span> <span class="o">-</span> <span class="nx">scrollTop</span> 
+		<span class="p">};</span>
+	<span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 

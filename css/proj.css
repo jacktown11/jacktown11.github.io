@@ -14,25 +14,32 @@ h1{
 	text-align: center;
 }
 ul{
-	width: 90%;
+	width: 85%;
 	list-style-type: none;
 	margin: auto;
 	border-collapse: separate;
 	border-spacing:0px  10px ;
+	padding: 0;
 }
 ul li{
 	overflow: hidden;
 	background-color: #ccc;
-	margin: 8px 0;
+	margin: 0;
 	padding: 5px;
-
 
 	background-color: #9c9;
 	background-color: rgba(153,204,153,0.5);
-	box-shadow: 1px 1px 2px 0 #333 inset;
+	/* box-shadow: 1px 1px 2px 0 #333 inset; */
 }
 li{
 	line-height: 40px;
+	border-bottom: 1px dashed #fff;
+}
+/* li:hover{
+	background-color: rgb(153,204,153);
+} */
+li:last-child{
+	border-bottom: none;
 }
 li a,
 li span{
@@ -40,14 +47,14 @@ li span{
 	vertical-align: middle;
 }
 li span{
-	width: 50%;
+	width: 40%;
 	padding-left: 1em;
 }
 li a{
-	box-shadow: 0 0 4px 0 #888,0 -1px 4px 0 #888 inset;
+	box-shadow: 2px 1px 4px 0 #333;
 	background-color: white;
-	padding: 0 5px;
-	margin: 0 5px;
+	padding: 0px 8px;
+	margin: 0 6px;
 	border-radius: 0.3em;
 }
 

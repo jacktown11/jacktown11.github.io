@@ -12,6 +12,7 @@
 /* the style of the whole article */
 body{
     background-color: rgba(153,204,153,0.5) !important;
+    letter-spacing: 1px;
 }
 body div.wrap{
     padding-top: 0.1em;
@@ -23,7 +24,7 @@ body div.wrap{
 }
 
 body div.post{
-    background-color: #fffff0;
+    /* background-color: #fffff0; */
     padding: 2em 4em;
     border-radius: 0.6em;
 }
@@ -185,11 +186,11 @@ pre code {
 
 code {
     font-family: Consolas, Monaco, Andale Mono, monospace;
-    /*background-color:#F8F8F8;*/
-    background-color: #9c9;
-    background-color: rgba(153,204,153,0.3);
-    /*border: 1px solid #CCCCCC;*/
+    /* background-color: #9c9;
+    background-color: rgba(153,204,153,0.3); */
+    color: #a00;
     border-radius: 3px;
+    
     padding: 0 0.2em;
     line-height: 1;
 }
@@ -198,7 +199,7 @@ pre > code {
     border: 0;
     margin: 0;
     padding: 0;
-
+    width: 100%;
 }
 
 

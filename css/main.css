@@ -2,7 +2,8 @@ body {
 	font-family: 'Microsoft Yahei','Helvetica', 'Arial', 'Sans-Serif';  
 	margin: auto;
 	width: 100%; 
-	background-color: #ffffff;
+	background-color: rgba(153,204,153,0.5);
+
 	font-size: medium;
 	line-height: 1.5;
 }
@@ -52,7 +53,8 @@ common style class
 	background-color: white;
 	border: none;
 	border-radius: 0.5em;
-	box-shadow: 0 0 4px 0 #333,0 -1px 4px 0 #333 inset;
+	/* box-shadow: 0 0 4px 0 #333,0 -1px 4px 0 #333 inset; */
+	box-shadow: 2px 1px 4px 0 #333;
 }
 
 .inset{
@@ -79,5 +81,4 @@ common style class
 	border: none;
 	background-color: white;
 	border-radius: 0.5em;
-	box-shadow: 0 0 4px 0 #888,0 -1px 4px 0 #888 inset;
 }

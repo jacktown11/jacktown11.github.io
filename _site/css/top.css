@@ -16,14 +16,8 @@ div.wrap{
 	margin: 10px auto;
 	padding: 20px;
 	width: 720px;
-/*
-	background-color: white;
-	border: 1px solid #666;
-	border-radius: 0.5em;
-	box-shadow: 0 0 4px 0 #333,0 -1px 4px 0 #333 inset;*/
 }
 .header h1{
-	/*color: #ff8800;*/
 }
 .header p{
 	text-align: right;
@@ -32,10 +26,7 @@ div.wrap{
 .main{
 	width: 720px;
 	height: 400px;
-/*	background-color: #9c9;
-	background-color: rgba(153,204,153,0.5);
-	box-shadow: 1px 1px 2px 0 #333 inset;
-*/	position: relative;
+	position: relative;
 }
 @keyframes rot-pro{
 	from{transform: rotate(0deg) translate(-100px);}
@@ -69,22 +60,20 @@ div.wrap{
 	left: 50%;
 	top: 50%;
 	margin: -50px 0 0 -50px;
-	/*border: 1px solid #ffcccc;*/
+	background-color: #fff;
 	font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
 	font-size: 150%;
+	/* font-weight: bold; */
 	text-align: center;
 	line-height: 100px;
-	/*box-shadow: 0 0 10px 0 black inset;*/
-	/*background: -webkit-radial-gradient(#ffffff 25%,#ffcccc 70%);
-	background: -o-radial-gradient(#ffffff 25%,#ffcccc 70%);
-	background: -moz-radial-gradient(#ffffff 25%,#ffcccc 70%);
-	background: -ms-radial-gradient(#ffffff 25%,#ffcccc 70%);
-	background: radial-gradient(#ffffff 25%,#ffcccc 70%);	*/
-	box-shadow: 0 0 4px 0 #333,0 0px 4px 0 #333 inset;
+	overflow: hidden;
+	box-shadow: none;	
 
 }
 .main .part a{
-	color: #f40;
+	width: 100%;
+	height: 100%;
+	color: #ff4400;
 	display: inline-block;
 }
 
@@ -94,9 +83,14 @@ div.wrap{
 .main .art a{animation: re-rot-art 20s linear infinite;}
 .main .me{transform: translate(50px,87px);animation: rot-me 20s linear infinite;}
 .main .me a{animation: re-rot-me 20s linear infinite;}
+
 .main.paused .pro,
 .main.paused .art,
 .main.paused .me,
 .main.paused .pro a,
 .main.paused .art a,
 .main.paused .me a{animation-play-state: paused;}
+
+.main .part:hover{
+	box-shadow: 0px 0px 2px 0px #000 inset;
+}
