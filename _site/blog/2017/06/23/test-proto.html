@@ -9,16 +9,34 @@
 	<script src="/js/article.js"></script>
 </head>
 <body id="body">
-	<div class="wrap">
+	<div id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/post_list/posts.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/proj/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/about/intro.html">我</a>
+			</li>
+		</ul>
+		<div id="nav-toggle" class="open">
+			展开目录
+		</div>
+	</div>
+	<div id="catalog-wraper" class="hidden">
 
-		<a id="home" href="/" class="panel jump-link">主页</a>
-		<a href="/post_list/posts.html" id="posts" class="panel jump-link">文章</a>
-		<a href="#body" id="totop" class="panel jump-link">顶部</a>
-
+	</div>
+	<div class="wrap panel">
 		<h1>一个关于原型链的探索</h1>
 		<p class="meta">23 Jun 2017</p>
-					
-		<div class="post panel">
+		<div class="post ">
 	  		<h2 id="原型链基础">原型链基础</h2>
 <p>看了《javascript高级程序设计》关于对象继承方面的内容，对原型链有了一定理解：</p>
 <ul>

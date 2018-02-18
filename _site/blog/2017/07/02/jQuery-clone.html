@@ -9,16 +9,34 @@
 	<script src="/js/article.js"></script>
 </head>
 <body id="body">
-	<div class="wrap">
+	<div id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/post_list/posts.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/proj/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/about/intro.html">我</a>
+			</li>
+		</ul>
+		<div id="nav-toggle" class="open">
+			展开目录
+		</div>
+	</div>
+	<div id="catalog-wraper" class="hidden">
 
-		<a id="home" href="/" class="panel jump-link">主页</a>
-		<a href="/post_list/posts.html" id="posts" class="panel jump-link">文章</a>
-		<a href="#body" id="totop" class="panel jump-link">顶部</a>
-
+	</div>
+	<div class="wrap panel">
 		<h1>jQuery clone()方法一个注意点</h1>
 		<p class="meta">02 Jul 2017</p>
-					
-		<div class="post panel">
+		<div class="post ">
 	  		<p>用jQuery clone()方法可以赋值一个节点，但是如果这个节点带有id属性，那么可能导致该id在同一个页面中被重复使用。比如我们在head&gt;script:nth-of-type(3)中代码的最后一行复制了#target5元素。</p>
 <div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>

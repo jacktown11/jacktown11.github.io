@@ -9,16 +9,34 @@
 	<script src="/js/article.js"></script>
 </head>
 <body id="body">
-	<div class="wrap">
+	<div id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/post_list/posts.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/proj/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/about/intro.html">我</a>
+			</li>
+		</ul>
+		<div id="nav-toggle" class="open">
+			展开目录
+		</div>
+	</div>
+	<div id="catalog-wraper" class="hidden">
 
-		<a id="home" href="/" class="panel jump-link">主页</a>
-		<a href="/post_list/posts.html" id="posts" class="panel jump-link">文章</a>
-		<a href="#body" id="totop" class="panel jump-link">顶部</a>
-
+	</div>
+	<div class="wrap panel">
 		<h1>git教程</h1>
 		<p class="meta">24 Jul 2017</p>
-					
-		<div class="post panel">
+		<div class="post ">
 	  		<p>本文是对<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰官方网站 git教程</a>中命令的总结</p>
 
 <table>

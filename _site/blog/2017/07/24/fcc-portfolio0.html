@@ -9,16 +9,34 @@
 	<script src="/js/article.js"></script>
 </head>
 <body id="body">
-	<div class="wrap">
+	<div id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/post_list/posts.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/proj/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/about/intro.html">我</a>
+			</li>
+		</ul>
+		<div id="nav-toggle" class="open">
+			展开目录
+		</div>
+	</div>
+	<div id="catalog-wraper" class="hidden">
 
-		<a id="home" href="/" class="panel jump-link">主页</a>
-		<a href="/post_list/posts.html" id="posts" class="panel jump-link">文章</a>
-		<a href="#body" id="totop" class="panel jump-link">顶部</a>
-
+	</div>
+	<div class="wrap panel">
 		<h1>fcc项目总结系列1：个人作品展示页面制作项目</h1>
 		<p class="meta">24 Jul 2017</p>
-					
-		<div class="post panel">
+		<div class="post ">
 	  		<h2 id="导言">导言</h2>
 <p>近两天勉强完成了free code camp的<a href="https://codepen.io/jacktown/full/eRrYyJ/">portfolio</a>项目（<a href="https://freecodecamp.cn/challenges/build-a-personal-portfolio-webpage">题目地址</a>），自己原生写的，感觉不用框架确实挺麻烦（虽然我目前只接触过一点点bootstrap，但是感觉用起来应该会节省非常多代码），而且做出来的东西我估计在移动端就不能看了。不过做这个项目过程中还是感觉颇有收获。</p>
 <h2 id="主要技术点">主要技术点</h2>

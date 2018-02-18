@@ -1,5 +1,37 @@
 window.onload = function(){
-	generateCatalog();
+	addCatalog();
+	setHandlers();
+}
+function setHandlers(){
+	var doc = document,
+		setting = {
+			toOpen: {
+				str: '折叠目录',
+				marginLeft: '25%'
+			},
+			toClose: {
+				str: '展开目录',
+				marginLeft: '15%'
+			}
+		},
+		navCtrl = doc.getElementById('nav-toggle'),
+		nav = doc.getElementById('catalog-wraper'),
+		article = doc.getElementsByClassName('wrap')[0];
+	navCtrl.onclick = function(e){
+		if(nav.className.indexOf('hidden') !== -1){
+			nav.className = '';
+			navCtrl.innerHTML = setting.toOpen.str;
+			article.style.marginLeft = setting.toOpen.marginLeft;
+		}else{
+			nav.className += ' hidden';
+			navCtrl.innerHTML = setting.toClose.str;
+			article.style.marginLeft = setting.toClose.marginLeft;
+		}
+	};
+}
+function addCatalog(){
+	var catalogWraper = document.getElementById('catalog-wraper');
+	catalogWraper.appendChild(generateCatalog());
 }
 
 function generateCatalog(){
@@ -9,6 +41,12 @@ function generateCatalog(){
 		hlow = 0;/*最低标题号*/
 	var hIndex = 1
 		len = 0;
+
+	var catComplete = document.createElement("nav");/*complete catalog element*/
+	catComplete.className = "catalog";
+	// var p = document.createElement("p");
+	// p.appendChild(document.createTextNode("目录"));
+	// catComplete.appendChild(p);
 
 	/*get hhigh,hmid and hlow*/
 	for(;hIndex <= 6; hIndex++){
@@ -24,14 +62,12 @@ function generateCatalog(){
 	}
 	if(hlow == 0){
 		//no title in this article
-		return ;
+		return catComplete;
 	}
 
 	/*generate catalog*/
-	var catComplete = document.createElement("nav");/*complete catalog element*/
 	var postChild = post.firstChild,
 		catChild = null;
-	catComplete.className = "simple catalog inset close";
 
 	while(postChild !== null){
 		/*check the post element's children*/
@@ -40,7 +76,7 @@ function generateCatalog(){
 			&& Number(name.charAt(1)) >= hhigh && Number(name.charAt(1)) <= hlow){
 			/*a title element between rank hhigh and hmid*/
 			var clsName = "";
-			switch(Number(name.charAt(1))-hhigh){
+			switch(Number(name.charAt(1))-1){
 				case 0:
 					clsName = "first";
 					break;
@@ -67,22 +103,8 @@ function generateCatalog(){
 		}
 		postChild = postChild.nextSibling;
 	}
-	if(catComplete.firstChild){
-		post.insertBefore(catComplete,post.firstChild);	
-		var p = document.createElement("p");
-		p.appendChild(document.createTextNode("目录"));
-		p.className += 'outset';
-		catComplete.insertBefore(p,catComplete.firstChild);
-		p.onclick = function(){
-			if(catComplete.className.indexOf('close') >= 0){
-				console.log('have');
-				catComplete.className = catComplete.className.replace(/close/g,'');
-			}else{
-				console.log('no');
-				catComplete.className += catComplete.className.trim() + ' close';
-			}
-		}
-	}
+
+	return catComplete;
 
 }
 

@@ -1,13 +1,17 @@
-#home{top: 10px;}
-#totop{top: 100px;}
-
+.nav-proj{
+	background-color: #9c9;
+	background-color: rgba(153,204,153,0.5);
+	box-shadow: 0px 0px 1px 0 #333 inset;
+}
 div.wrap{
 	width: 60%;
 	min-width: 480px; 
 	max-width: 1080px;
 	margin:  0 auto;
-	padding-bottom: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	margin-bottom: 16px;
+	margin-top: 40px;
 }
 
 h1{

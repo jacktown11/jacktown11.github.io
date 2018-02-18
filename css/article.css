@@ -1,36 +1,46 @@
-/*这部分主要用于页面固定定位的几个小图标*/
-#home{
-    top: 10px;
+/* css for nav */
+#nav-toggle{
+    position: absolute;
+    left: 0;
+    top: 0px;
+    text-align: center;
+    font-size: 120%;
+    font-weight: bold;
+    color: #080;
+    width: 20%;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    overflow: hidden;
 }
-#posts{
-    top: 100px;
-}
-#totop{
-    top: 190px;
+#nav-toggle:hover{
+    background-color: rgb(153,204,153);
+    box-shadow: 0px 0px 1px 0 #333 inset;
+    color: #f00;
 }
 
 /* the style of the whole article */
 body{
     background-color: rgba(153,204,153,0.5) !important;
     letter-spacing: 1px;
+    padding: 0px;
 }
 body div.wrap{
     padding-top: 0.1em;
     padding-bottom: 5em;
     font-size: 110%;
     width: 70%;
-    margin: 0 auto;
+    margin: 0 0 0 15%;
     border: none;
 }
 
 body div.post{
-    /* background-color: #fffff0; */
-    padding: 2em 4em;
+    padding: 0em 4em;
     border-radius: 0.6em;
 }
 .wrap>h1:first-of-type{
     color: black;
-    margin-top: 16px;
+    margin-top: 36px;
     margin-bottom: 16px;
     background-color: transparent;
 }
@@ -43,20 +53,31 @@ h1+p.meta{
 /*===========
 catalog style
 =============*/
+
+#catalog-wraper{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 20%;
+    padding-top: 30px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
 nav.catalog{
     margin-bottom: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
 nav.catalog p{
-    font-size: 120%;
     font-family:'STSong','STHeiti Light','sans-serif';
 
     text-indent: 0;
     font-weight: bold;
     text-align: center;
-    background-color: white;
     width: 100px;
+    margin: auto;
     border-bottom-left-radius: 1em; 
     border-bottom-right-radius: 1em; 
     border-radius: 1em;
@@ -65,41 +86,61 @@ nav.catalog p{
     -o-user-select:none;
     user-select:none;
 }
-nav.catalog p:hover{
-    cursor: pointer;
+nav.catalog div.first{
+    padding-bottom: 0em;
+    font-size: 90%;
+    background: rgb(0,153,102);
+    color: #fff;
 }
-nav.catalog div.first{padding-bottom: 0.5em;font-size: 120%;}
-nav.catalog div.second{padding-left: 2em;font-size: 110%;}
-nav.catalog div.third{padding-left: 4em;}
-nav.catalog div.forth{padding-left: 6em;}
-nav.catalog div.fifth{padding-left: 8em;}
-nav.catalog div.sixth{padding-left: 10em;}
+nav.catalog div.first a{
+    color: #fff;
+}
+nav.catalog div.second{
+    padding-left: 0.5em;
+    font-size: 80%;
+    color: #e67008;
+}
+nav.catalog div.second a{
+    color: #e67008;
+}
+nav.catalog div.third{
+    padding-left: 0.7em;
+    color: #14877E;
+}
+nav.catalog div.third a{
+    color: #14877E;    
+}
+nav.catalog div.forth{
+    padding-left: 1em;
+    color: #111111;
+}
+nav.catalog div.forth a{
+    color: #111111;    
+}
+nav.catalog div.fifth{
+    padding-left: 1.5em;
+
+}
+nav.catalog div.sixth{
+    padding-left: 2em;
+
+}
 nav.catalog div{
     margin-left: 2px;
     padding: 0 2em 0.2em 0.4em;
     border-bottom: 1px dashed #fff;
+    font-size: 80%;
 }
 nav.catalog div:hover{
     background: rgb(153,204,153);
 }
-
-/*to get catalog closed*/
-nav.catalog.close{
-    background-color: transparent;
-    box-shadow: none;
-}
-nav.catalog.close div{display: none;}
 
 nav.catalog a{
     display: block;
     font-family:'STSong','STHeiti Light','sans-serif';
     font-weight: bold;
     text-decoration:none;
-    color: black;
 }
-nav.catalog a:visited{ color: #555; }
-/*nav.catalog a:hover{ color: #ff5500;}*/
-nav.catalog a:active{ color:#ff5500; }
 nav.catalog a:focus{ outline: thin dotted; }
 nav.catalog a:hover,
 nav.catalog a:active{ outline: 0; }
@@ -120,7 +161,6 @@ body{
     color:#000;
     font-family:'微软雅黑',Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
     font-size: medium;
-    padding:0 1em;
     margin:auto;
     max-width:80em;
     background:#ffffff;
@@ -229,10 +269,10 @@ li p:last-child { margin:0 }
 ul ul li,ul ol li,ol ol li,ol ul li{margin: 0}
 dd { margin: 0 0 0 2em; }
 
-img { border: 0; 
+img { 
+    border: 0; 
     display: block;
     -ms-interpolation-mode: bicubic; 
-    vertical-align: middle; 
     max-width:90%;
     padding: 0em 1em;
     margin: 1em auto;
@@ -240,7 +280,7 @@ img { border: 0;
 }
 
 table { 
-    width: 85%
+    width: 85%;
     border-collapse: separate;
     border-spacing: 0;
     border: 2px solid #80929c;

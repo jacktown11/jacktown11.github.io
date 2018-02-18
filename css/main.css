@@ -13,9 +13,6 @@ body.pc{
 }
 
 a { text-decoration: none; color: #0040b1; }
-a:hover {
-	/*font-weight: bold;*/
-}
 a:visited { color: black;}
 
 h1, h2, h3, h4 { 
@@ -45,15 +42,15 @@ input{
 	padding: 0 0.3em;
 }
 
+
 /*============
 common style class
 ==============*/
 
 .panel{
-	background-color: white;
+	background-color: #fff;
 	border: none;
 	border-radius: 0.5em;
-	/* box-shadow: 0 0 4px 0 #333,0 -1px 4px 0 #333 inset; */
 	box-shadow: 2px 1px 4px 0 #333;
 }
 
@@ -82,3 +79,73 @@ common style class
 	background-color: white;
 	border-radius: 0.5em;
 }
+.hidden{
+	display: none;
+}
+.show-block{
+	display: block;
+}
+.show-inline{
+	display: inline;
+}
+
+/* 
+style for top nav
+*/
+#top-nav{
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 30px;
+	width: 100%;
+	margin: 0 auto;
+	border-radius: 0;
+	z-index: 100;
+}
+#top-nav ul{
+	width: 243px;
+	margin: 0 auto;
+	list-style-type: none;
+	padding: 0;
+}
+#top-nav li{
+	height: 30px;
+	float: left;
+	width: 60px;
+	padding:  0;
+	margin:  0;
+	border: none;
+	border-right: 1px dashed #ccc;
+	text-align: center;
+	background-color: transparent;
+}
+#top-nav li:last-child{
+	border-right: none;
+}
+#top-nav a{
+	display:block;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 110%;
+	border: none;
+	color: #080;
+	font-weight: bold;
+	border-radius: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+#top-nav img{
+	width: 30px;
+	height: 24px;
+	display: block;
+	margin: auto;
+	padding: 4px 0 2px;
+}
+#top-nav a:hover{
+	background-color: rgb(153,204,153);
+	box-shadow: 0px 0px 1px 0 #333 inset;
+	color: #f00;
+}
+
+

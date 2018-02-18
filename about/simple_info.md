@@ -1,6 +1,6 @@
 ---
 
-layout: intro
+# layout: intro
 
 ---
 
