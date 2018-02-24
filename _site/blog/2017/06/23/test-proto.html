@@ -9,7 +9,8 @@
 	<script src="/js/article.js"></script>
 </head>
 <body id="body">
-	<div id="top-nav" class="top-nav panel">
+	<div id="mode">极简</div>
+	<div id="top-nav" class="top-nav panel" class="hidden">
 		<ul>
 			<li>
 				<a class="nav-home" href="/index.html">
@@ -26,18 +27,18 @@
 				<a class="nav-me" href="/about/intro.html">我</a>
 			</li>
 		</ul>
-		<div id="nav-toggle" class="open">
+		<div id="nav-toggle" class="">
 			展开目录
 		</div>
 	</div>
-	<div id="catalog-wraper" class="hidden">
+	<div id="catalog-wraper" class="">
 
 	</div>
 	<div class="wrap panel">
 		<h1>一个关于原型链的探索</h1>
 		<p class="meta">23 Jun 2017</p>
-		<div class="post ">
-	  		<h2 id="原型链基础">原型链基础</h2>
+		<div class="post">
+			  <h2 id="原型链基础">原型链基础</h2>
 <p>看了《javascript高级程序设计》关于对象继承方面的内容，对原型链有了一定理解：</p>
 <ul>
   <li>构造函数也是函数，函数都是对象，构造函数作为一个函数类型的对象，有一个<code class="highlighter-rouge">prototype</code>属性，它引用一个对象，我们称其为<strong>构造函数的原型对象</strong>；</li>
@@ -175,6 +176,12 @@
 <p>在解决问题一的过程中，我发现可以在浏览器调试窗口下通过window对象和添加watch对象，然后一路追踪对象的原型、原型对象、<code class="highlighter-rouge">consctructor</code>等属性看到对象的原型链，然而这毕竟还是有点问题，层次太深以后就容易乱，特别是基本的那几个对象之间有着循环引用；另一个问题是两个对象都写作<code class="highlighter-rouge">Object</code>，我们没有把握判断它们是否真的就是一个对象，为此上面的编程还是有不少帮助的。</p>
 
 <p>借助如上的调试手段和原型探索程序，我们可以很容易地在<code class="highlighter-rouge">window&gt;baseFunc&gt;__proto__(函数X)&gt;__proto__(基本对象Object)&gt;constrctor(构造函数Object)</code>中找到了<code class="highlighter-rouge">getPrototypeOf()</code>方法，它是构造函数<code class="highlighter-rouge">Object</code>的一个属性，所以写作<code class="highlighter-rouge">Object.getPrototypeOf()</code>(其实早该想到，只是这就被明确地证实了，这就好比构造函数<code class="highlighter-rouge">Object</code>作为函数具有<code class="highlighter-rouge">arguments</code>属性一样)，由于它不是基本对象<code class="highlighter-rouge">Object</code>的属性，所以没有被普通对象继承。</p>
+
+			  
+			<p class="to-jianshu">
+				您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p>
 
 		</div>
 	</div>
