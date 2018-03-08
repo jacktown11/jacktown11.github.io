@@ -7,7 +7,6 @@ body{
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background-color: #99cc99;
 	background-color: rgba(153,204,153,0.5);
 	-moz-user-select: none; /*火狐*/
 	-webkit-user-select: none; /*webkit浏览器*/
@@ -21,7 +20,7 @@ div.wrap{
 	top: 50%;
 	left: 50%;
 	transform:translateX(-50%) translateY(-50%);
-	padding: 20px;
+	padding: 20px 40px 30px;
 	width: 720px;
 }
 .header p{
@@ -65,22 +64,41 @@ div.wrap{
 	left: 50%;
 	top: 50%;
 	margin: -50px 0 0 -50px;
-	background-color: #fff;
 	font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
 	font-size: 150%;
 	text-align: center;
 	line-height: 100px;
 	overflow: hidden;
-	box-shadow: none;	
-	box-shadow: 0px 0px 2px 0px #000 inset;
+	box-shadow: none;
+	background-color: rgba(255,255,255, 0.3);	
+}
+.main .pro{
+	background: -webkit-linear-gradient(#f00, #00f); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#f00, #00f); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#f00, #00f); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#f00, #00f); /* 标准的语法 */
+}
+.main .art{
+	background: -webkit-linear-gradient(#0f0, #f00); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#0f0, #f00); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#0f0, #f00); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#0f0, #f00); /* 标准的语法 */
+}
+.main .me{
+	background: -webkit-linear-gradient(#00f,#0f0); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#00f,#0f0); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#00f,#0f0); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#00f,#0f0); /* 标准的语法 */
 }
 .main .part a{
 	width: 100%;
 	height: 100%;
-	color: #ff4400;
+	color: #fff;
 	display: inline-block;
 }
-
+.main .pro a{color: #0f0;}
+.main .art a{color: #00f;}
+.main .me a{color: #f00;}
 .main .pro{transform: translate(-100px);animation: rot-pro 20s linear infinite;}
 .main .pro a{animation: re-rot-pro 20s linear infinite;}
 .main .art{transform: translate(50px,-87px);animation: rot-art 20s linear infinite;}

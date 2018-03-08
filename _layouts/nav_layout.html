@@ -9,8 +9,8 @@
         <link rel="stylesheet" href="../css/{{item}}.css"> 
     {% endfor %}
 </head>
-<body>
-    <div id="top-nav" class="top-nav panel">
+<body class="star-bg attached-bg">
+    <div id="top-nav" class="top-nav">
         <ul>
             <li><a class="nav-home" href="/index.html"><img src="/images/base/home.png" alt="主页"></a></li>
             <li><a class="nav-posts" href="/post_list/posts.html">文章</a></li>
@@ -18,7 +18,9 @@
             <li><a class="nav-me" href="/about/intro.html">我</a></li>
         </ul>
     </div>
-    {{content}}
+    <div class="import-content panel">
+     {{content}}
+    </div>
     {%for item in page.js%}
         <script src="/js/{{item}}.js"></script> 
     {% endfor %}
