@@ -12,25 +12,27 @@
 	width: 300px;
 	overflow: hidden;
 	margin: 20px;
-	border-radius: 15px;
+	border-top-right-radius: 24px;
+	border-bottom-right-radius: 24px;
 	border: 2px solid transparent;
 	cursor: pointer;
 }
 .proj:hover{
-	border-color: #ccc;
-}
-.proj .links{
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	z-index: 10;
+	border-color: #999;
 }
 a img{
 	width: 100%;
-	height: 100%;
+	height: 100%;;
+}
+img.cover{
+	background-image: url(../images/proj/missing.jpg);
+	background-size: 100% 100%;
 }
 .proj a{
-	float: right;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 10;
 	width: 40px;
 	height: 40px;
 	line-height: 40px;
@@ -49,6 +51,7 @@ a img{
 	height: 300px;
 }
 h3{
+	border-top: 1px solid #ddd;
 	color: #444;
 	background-color: #ffe;
 	font-size: 1.2rem;
