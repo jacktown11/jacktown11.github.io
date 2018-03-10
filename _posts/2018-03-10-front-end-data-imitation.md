@@ -5,17 +5,17 @@ categories: [前端其他]
 tags: []
 ---
 
-## 前言
+# 前言
 
 本文参考了博文：[玩转前端之模拟数据](https://www.cnblogs.com/Leo_wl/p/6001952.html) ，但有大幅修改。
 
-##为什么要模拟数据
+# 为什么要模拟数据
 
 前端开发中，往往需要从后台获得数据，但是开发阶段这些实际数据接口并没有部署好，因此需要模拟数据，让我们能够进行具有完整交互流程的开发。我们期望在前后联调，转而使用真实接口时，代码的改动尽可能小。
 
 我在github上开了一个[数据模拟示例仓库](https://github.com/jacktown11/data-imitation)，其中的demo实现了下面提到的各种数据模拟方式，欢迎star和fork。下面正式介绍几种数据模拟的方式。
 
-## 使用（全局）变量
+# 使用（全局）变量
 
 先上代码：
 ```javascript
@@ -87,11 +87,11 @@ function showData(data){
 })();
 ```
 
-可以看到，这段代码中定义了两个变量，`data`和`isDev`，在开发阶段，`isDev`设置为`true`，这是直接把本地变量`data`拿过来，传递给`showData`函数处理；转换到生产环境下，需要做的事情包括：删除`data`和`isDev`对象，删除关于代码环境的`if`判断，直接使用`ajax`。
+可以看到，这段代码中定义了两个变量，`data`和`isDev`，在开发阶段，`isDev`设置为`true`，这时直接把本地变量`data`拿过来，传递给`showData`函数处理；转换到生产环境下，需要做的事情包括：删除`data`和`isDev`对象，删除关于代码环境的`if`判断，直接使用`ajax`。
 
 其问题主要就是删除这些变量和调整代码结构的时候会非常麻烦，很容易出错，因为这些变量和`if`结构可能散落在各个代码文件的各个角落里。另外这种模拟本身没有使用`ajax`，和实际的数据请求过程有较大差异，而且数据是死的，不够灵活。
 
-## 使用数据存储文件
+# 使用数据存储文件
 存放在js代码里的数据变量确实很丑，为此可以把它存成一个数据文件，比如下图的`data.json`：
 
 ![文件目录](https://upload-images.jianshu.io/upload_images/6321648-9c930e35ff1e83b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -127,9 +127,9 @@ function showData(data){
 
 转换为生产环境时，只需要修改 `url`以符合实际的接口，用于模拟数据的文件`data.json`不进行打包即可。然而这样也有一些缺点：数据不够灵活，是写死的，没有状态判断，返回的数据真实度不够高。
 
-## 使用mockjs
+# 使用mockjs
 
-使用一个`javascript`库`mockjs`，你可以访问[它的github仓库](https://github.com/nuysoft/Mock) ，查看详细文档。文件目录如下，其中`data/list.js`是用于数据模拟。
+使用一个`javascript`库`mockjs`，你可以访问[它的github仓库](https://github.com/nuysoft/Mock) ，查看详细文档。文件目录如下，其中`data/list.js`用于数据模拟。
  
 ![目录结构](https://upload-images.jianshu.io/upload_images/6321648-8cda0f058c53777c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -168,13 +168,13 @@ function showData(data){
 })();
 ```
 
-可以看到，和使用本地数据存储文件的方式几乎是一样的，不过这次请求的`url`参数是`/list`，而不是`data.json`，这样在转换到生产环境时，我们不用甚至都不用修改这些`ajax`代码了，直接删除`mockjs`和`list.js`就好了。而且生成的数据也更真实、可定制。
+可以看到，和使用本地数据存储文件的方式几乎是一样的，不过这次请求的`url`参数是`/list`，而不是`data.json`，这样在转换到生产环境时，我们甚至都不用修改这些`ajax`代码了，直接删除`mockjs`和`list.js`就好了。而且生成的数据也更真实、可定制。
 
 然而这种方式对数据的模拟，是通过拦截`ajax`请求来实现的，所以在浏览器的控制台，我们是看不到数据请求的。
 
  ![ajax被拦截](https://upload-images.jianshu.io/upload_images/6321648-474e1f6a39325a61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 使用nodejs
+# 使用nodejs
 
 `nodejs`作用一种后端语言，用它来模拟数据除了数据的内容真实性，其他方面可以说是最接近真实数据请求的。
 
