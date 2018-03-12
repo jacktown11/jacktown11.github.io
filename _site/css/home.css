@@ -20,16 +20,21 @@ div.wrap{
 	top: 50%;
 	left: 50%;
 	transform:translateX(-50%) translateY(-50%);
-	padding: 20px 40px 30px;
-	width: 720px;
+	padding: 1rem 1.5rem 1.5rem;
+	width: 72%;
+	min-width: 15rem;
+	color: #fff;
+}
+.header h1{
+	text-align: center;
 }
 .header p{
 	text-align: right;
 	font-style: italic;
 }
 .main{
-	width: 720px;
-	height: 400px;
+	width: 100%;
+	height: 20rem;
 	position: relative;
 }
 @keyframes rot-pro{
@@ -56,54 +61,58 @@ div.wrap{
 	from{transform: rotate(120deg);}
 	to{transform: rotate(-240deg);}
 }
-.main .part{
-	width: 100px;
-	height: 100px;
+.main .ball{
+	width: 5rem;
+	height: 5rem;
 	border-radius: 50%;
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	margin: -50px 0 0 -50px;
+	margin: -2.5rem 0 0 -2.5rem;
 	font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
 	font-size: 150%;
 	text-align: center;
-	line-height: 100px;
+	line-height: 5rem;
 	overflow: hidden;
 	box-shadow: none;
 	background-color: rgba(255,255,255, 0.3);	
 }
 .main .pro{
-	background: -webkit-linear-gradient(#f00, #00f); /* Safari 5.1 - 6.0 */
-	background: -o-linear-gradient(#f00, #00f); /* Opera 11.1 - 12.0 */
-	background: -moz-linear-gradient(#f00, #00f); /* Firefox 3.6 - 15 */
-	background: linear-gradient(#f00, #00f); /* 标准的语法 */
+	background: -webkit-linear-gradient(#800, #008); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#800, #008); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#800, #008); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#800, #008); /* 标准的语法 */
 }
 .main .art{
-	background: -webkit-linear-gradient(#0f0, #f00); /* Safari 5.1 - 6.0 */
-	background: -o-linear-gradient(#0f0, #f00); /* Opera 11.1 - 12.0 */
-	background: -moz-linear-gradient(#0f0, #f00); /* Firefox 3.6 - 15 */
-	background: linear-gradient(#0f0, #f00); /* 标准的语法 */
+	background: -webkit-linear-gradient(#080, #800); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#080, #800); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#080, #800); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#080, #800); /* 标准的语法 */
 }
 .main .me{
-	background: -webkit-linear-gradient(#00f,#0f0); /* Safari 5.1 - 6.0 */
-	background: -o-linear-gradient(#00f,#0f0); /* Opera 11.1 - 12.0 */
-	background: -moz-linear-gradient(#00f,#0f0); /* Firefox 3.6 - 15 */
-	background: linear-gradient(#00f,#0f0); /* 标准的语法 */
+	background: -webkit-linear-gradient(#008,#080); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#008,#080); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#008,#080); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#008,#080); /* 标准的语法 */
 }
-.main .part a{
+.main .ball a{
 	width: 100%;
 	height: 100%;
 	color: #fff;
 	display: inline-block;
 }
+.main .ball a:hover,
+.main .ball a:active{
+	text-decoration: none;
+}
 .main .pro a{color: #0f0;}
-.main .art a{color: #00f;}
-.main .me a{color: #f00;}
-.main .pro{transform: translate(-100px);animation: rot-pro 20s linear infinite;}
+.main .art a{color: #eee;}
+.main .me a{color: #ffff00;}
+.main .pro{transform: translate(-5rem);animation: rot-pro 20s linear infinite;}
 .main .pro a{animation: re-rot-pro 20s linear infinite;}
-.main .art{transform: translate(50px,-87px);animation: rot-art 20s linear infinite;}
+.main .art{transform: translate(2.5rem,-4.375rem);animation: rot-art 20s linear infinite;}
 .main .art a{animation: re-rot-art 20s linear infinite;}
-.main .me{transform: translate(50px,87px);animation: rot-me 20s linear infinite;}
+.main .me{transform: translate(2.5rem,4.375rem);animation: rot-me 20s linear infinite;}
 .main .me a{animation: re-rot-me 20s linear infinite;}
 
 .main.paused .pro,
@@ -111,4 +120,6 @@ div.wrap{
 .main.paused .me,
 .main.paused .pro a,
 .main.paused .art a,
-.main.paused .me a{animation-play-state: paused;}
+.main.paused .me a{
+	animation-play-state: paused;
+}

@@ -21,9 +21,6 @@ cssClass: posts
         <button for="search-input" class="outset" id="search-confirm">搜索</button>
     </div>
 </div>
-
-{{content}}
-
 <ul id="aticle-list" class="inset">
     {%for post in site.posts%}
     <li data-date="{{post.date}}" data-title="{{post.title}}" data-url="{{post.url}}" data-tags="{{post.tags | join: ','}}" data-categories="{{post.categories | join: ','}}">
