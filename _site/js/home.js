@@ -3,12 +3,12 @@ window.onload = function(){
 }
 function setEvent(){
 	var main = document.getElementsByClassName('main')[0];
-		divs = main.getElementsByClassName('part'),
+		divs = main.getElementsByClassName('ball'),
 		i = 0,
 		len = divs.length;
-
 	for(;i<len;i++){
 		divs[i].onmouseover = function(){
+			console.log('mouseover');
 			if(main.className.indexOf('paused') < 0){
 				main.className += ' paused';
 			}

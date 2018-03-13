@@ -11,7 +11,7 @@ function init(){
 function initPosts(){
 	// get all post reference and datas binded on the list item
 	// modify the date in the li>span
-	var listItems = document.getElementById('aticle-list').childNodes,
+	var listItems = document.getElementById('aticleList').childNodes,
 		posts = [],
 		temp = [];
 	for(var i = 0, len = listItems.length; i < len; i++){
@@ -79,8 +79,8 @@ function addTagsAndCats(posts){
 function addEvents(posts){
 	var tagNodes = document.getElementById('tags').getElementsByTagName('span'),
 		catNodes = document.getElementById('categories').getElementsByTagName('span'),
-		input = document.getElementById('search-input'),
-		inputConfirm = document.getElementById('search-confirm');
+		input = document.getElementById('searchInput'),
+		inputConfirm = document.getElementById('searchConfirm');
 	//when a tag or category is click, filter the posts
 	for(var i = 0, len = tagNodes.length; i < len; i++){
 		tagNodes[i].onclick = function(){

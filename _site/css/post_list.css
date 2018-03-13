@@ -1,23 +1,11 @@
 .down{
 	background-color: #ffff88;
 }
-.nav-posts{
-	background-color: #9c9;
-	background-color: rgba(153,204,153,0.5);
-	box-shadow: 0px 0px 1px 0 #333 inset;
-}
-h1{
-	text-align: center;
-}
-#home{
-	top: 10px;
-}
-#totop{
-	top: 100px;
-}
 div.input{
-	width: 90%;
+	width: 100%;
 	margin: auto;
+	background-color: rgba(255, 255, 255, 0.1);
+	font-size: 0.7rem;
 }
 table{
 	width: 100%;
@@ -36,100 +24,117 @@ td:first-child{
 td:last-child{
 	line-height: 2em;
 }
-
 table span{
 	cursor: pointer;
 	padding: 3px 12px 5px 5px;
 	display: inline-block;
 	margin: 0 8px;
-	background-color: #ffffff;
-	border-radius: 0px 8px 8px 0px;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 0px 4px 4px 0px;
 	box-shadow: 0 0 2px 0 #888,0 -1px 2px 0 #888 inset;
 	-webkit-user-select:none;
 	-moz-user-select:none;
 	-o-user-select:none;
 	user-select:none;
-	line-height: 1.2em;
+	color: #222;
+	line-height: 1.2;
 }
-#search{
+.search{
 	text-align: center;
-	padding: 5px 0;
+	padding: 0.25rem 0;
+	vertical-align: center;
 }
-#search>*{
+.search>*{
 	display: inline-block;
-	height: 30px;
-	line-height: 30px;
-	margin: 5px;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	margin: 0.25rem;
 	font-size: 100%;
 }
-#search input{
+.search input{
+	padding: 0 0.2rem;
 	border-radius: 5px;
 	box-shadow: none;
 	border: none;
-	background-color: rgb(153,204,153);
-	box-shadow: 1px 1px 2px 0 #333 inset;
+	background-color: rgba(153,204,153, 0.3);
+	box-shadow: 1px 1px 2px 0 #000 inset;
+	outline: none;
+	color: #fff;
 }
-#search button{
-	width: 60px;
+.search button{
+	width: 3rem;
 	border: none;
-	border-radius: 0.5em;
-	background-color: #fff;
+	border-radius: 4px;
+	outline: none;
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.8);
+	position: relative;
+	top: 1px;
 }
-#search button:active{
+.search button:active{
 	box-shadow: none;
 }
-ul{
+
+.articles{
 	list-style-type: none;
-	margin: 20px 5%;
 	padding-top: 1px;
 	padding-left: 0;
-	background: rgba(153,204,153,0.5);
+	color: #ffe;
 }
-ul li{
+.articles li{
 	position: relative;
 	margin: 0;
-	border-bottom: 1px dashed #fff;
-	margin-left: 1px;
+	margin-left: -8px;
+	margin-bottom: 0rem;
+	border-bottom: 4px solid transparent;
+	border-top: 4px solid transparent;
+	border-left: 8px solid transparent;
 }
-ul li:last-child{
-	border-bottom: none;
+.articles li:hover{
+	border-left: 8px solid #D96F32;
 }
-ul li:hover{
-	background-color: rgb(153,204,153);
-}
-li a:link,
-li a:hover,
-li a:active{
+.articles li a:link{
+	background-color: rgba(255, 255, 255, 0.1);
 	display: block;
 	font-weight: bold;
-	color: black;
+	color: #ffe;
+	text-decoration: none;
 }
-li a:visited{
-	color: #555;
-	font-weight: bold;
+.articles li a:visited{
+	font-size: 40px;
+	color: #888;
 }
-li span{
+.articles li a:hover{
+	background-color: rgba(255, 255, 255, 0.2);	
+	color: #ffe;
+}
+.articles li span{
 	display: inline-block;
-	padding: 1em 0;
+	padding: 1em 0.5rem;
 }
-li span:first-child{
-	margin-right: 15px;
-	padding-left: 5px;
-	padding-right: 5px;
+.articles li .date{
+	margin-right: 2.5rem;
 }
-li span.bar{
-	padding: 0;
-	margin: 0;
-	width: 4px;
-	height: 100%;
-	background-color: #ff8800;
-	position: absolute;
-	left: -4px;
-	top: 0;
-	display: none;
+@media only screen and (max-width: 50rem){
+	.articles li .date{
+		font-size: 0.6rem;
+	}
+	.articles li .date{
+		margin-right: 0.5rem;
+	}
 }
-li:hover span.bar{
-	display: block;
+@media only screen and (max-width: 35em){
+	.articles li span{
+		display: block;
+		font-size: 0.7rem;
+	}	
+	.articles li .date{
+		font-size: 0.6rem;
+		padding-top: 0.25rem;
+		padding-bottom: 0rem;
+	}
+	.articles li .title{
+		padding-right: 1.2rem;
+		text-align: right;
+	}
 }
-
-

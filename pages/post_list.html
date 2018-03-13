@@ -4,29 +4,28 @@ css: [main, post_list]
 js: [post_list]
 cssClass: posts
 ---
-<div class="input inset">
+<div class="input">
     <table>
         <tr>
             <td>分类</td>
             <td id="categories"></td>
         </tr>
-        <tr>
+        <tr style="display: none;">
             <td>标签</td>
             <td id="tags"></td>
         </tr>
     </table>
-    <hr style="margin: 0px;">
-    <div id="search">
-        <input type="text" id="search-input" name="search-input">
-        <button for="search-input" class="outset" id="search-confirm">搜索</button>
+    <div class="search" id="search">
+        <input type="text" id="searchInput" name="search-input" autocomplete="off">
+        <button for="search-input" class="outset search-confirm" id="searchConfirm">搜索</button>
     </div>
 </div>
-<ul id="aticle-list" class="inset">
+<ul class="articles" id="aticleList">
     {%for post in site.posts%}
     <li data-date="{{post.date}}" data-title="{{post.title}}" data-url="{{post.url}}" data-tags="{{post.tags | join: ','}}" data-categories="{{post.categories | join: ','}}">
         <a href="{{ post.url }}">
-            <span>{{ post.date | date_to_string }}</span>
-            <span>{{ post.title }}</span>
+            <span class="date">{{ post.date | date_to_string }}</span>
+            <span class="title">{{ post.title }}</span>
         </a>
     </li>
     {% endfor %}
