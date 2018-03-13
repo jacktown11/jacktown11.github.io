@@ -10,8 +10,7 @@
 	<script src="/js/article.js"></script>
 </head>
 <body id="body" class="star-bg attached-bg">
-	<div id="mode">极简</div>
-	<div id="top-nav" class="top-nav panel" class="hidden">
+	<nav id="top-nav" class="top-nav panel">
 		<ul>
 			<li>
 				<a class="nav-home" href="/index.html">
@@ -19,23 +18,22 @@
 				</a>
 			</li>
 			<li>
-				<a class="nav-posts" href="/post_list/posts.html">文章</a>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
 			</li>
 			<li>
-				<a class="nav-proj" href="/proj/proj.html">项目</a>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
 			</li>
 			<li>
-				<a class="nav-me" href="/about/intro.html">我</a>
+				<a class="nav-me" href="/pages/intro.html">我</a>
 			</li>
 		</ul>
-		<div id="nav-toggle" class="">
-			展开目录
-		</div>
-	</div>
-	<div id="catalog-wraper" class="">
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper hidden">
 
 	</div>
-	<div class="wrap panel">
+	
+	<article class="wrap panel">
 		<h1>git教程</h1>
 		<p class="meta">24 Jul 2017</p>
 		<div class="post">
@@ -343,6 +341,13 @@
 			</p>
 
 		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="#" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="#" class="mode" id="mode">极简</a>
 	</div>
+
 </body>
 </html>

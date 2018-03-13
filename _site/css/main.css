@@ -207,9 +207,10 @@ part2: class for reuse
 .show-inline{
 	display: inline;
 }
+
 .star-bg{
     background-image: url(../images/star.jpg);
-    background-repeat: repeat;
+		background-repeat: repeat;
 }
 .attached-bg{
     background-attachment: fixed;
@@ -220,8 +221,8 @@ part2: class for reuse
 	min-width: 30rem;
 	padding: 2rem 0 1.5rem;
 	margin: 0 auto;
-	/* border: 1px dashed #fff; */
 	color: #fff;
+	font-size: 0.8rem;
 }
 @media only screen and (max-width: 50em){
 	.import-content{
@@ -252,6 +253,7 @@ part3: style for top nav
 	border-radius: 0;
 	background-color: rgba(128, 0, 128, 0.618);
 	z-index: 100;
+	box-shadow: 0px 0px 4px #000;
 }
 .top-nav ul{
 	width: 243px;

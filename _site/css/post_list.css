@@ -1,6 +1,11 @@
 .down{
 	background-color: #ffff88;
 }
+.nav-post-list{
+	background-color: rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 8px 0 #333 inset;
+}
+
 div.input{
 	width: 100%;
 	margin: auto;
@@ -23,6 +28,7 @@ td:first-child{
 }
 td:last-child{
 	line-height: 2em;
+	line-height: 2.5;
 }
 table span{
 	cursor: pointer;
@@ -36,7 +42,7 @@ table span{
 	-moz-user-select:none;
 	-o-user-select:none;
 	user-select:none;
-	color: #222;
+	color: #000;
 	line-height: 1.2;
 }
 .search{
@@ -99,6 +105,9 @@ table span{
 	font-weight: bold;
 	color: #ffe;
 	text-decoration: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .articles li a:visited{
 	font-size: 40px;
@@ -111,15 +120,18 @@ table span{
 .articles li span{
 	display: inline-block;
 	padding: 1em 0.5rem;
+	line-height: 2rem;
+	vertical-align: middle;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .articles li .date{
 	margin-right: 2.5rem;
 }
-@media only screen and (max-width: 50rem){
+@media only screen and (max-width: 50em){
 	.articles li .date{
 		font-size: 0.6rem;
-	}
-	.articles li .date{
 		margin-right: 0.5rem;
 	}
 }
@@ -129,12 +141,10 @@ table span{
 		font-size: 0.7rem;
 	}	
 	.articles li .date{
-		font-size: 0.6rem;
-		padding-top: 0.25rem;
-		padding-bottom: 0rem;
+		display: none;
 	}
 	.articles li .title{
 		padding-right: 1.2rem;
-		text-align: right;
+		max-width: 90%;
 	}
 }

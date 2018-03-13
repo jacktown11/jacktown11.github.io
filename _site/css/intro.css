@@ -4,27 +4,21 @@
 	padding-right: 32px;
 }
 .nav-me{
-	background-color: #9c9;
-	background-color: rgba(153,204,153,0.5);
-	box-shadow: 0px 0px 1px 0 #333 inset;
+	background-color: rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 8px 0 #333 inset;
 }
-a:link{
+.import-content a:link{
 	text-decoration: none;
-	color: green;
+	color: #99CC99;
 	border-bottom: 1px dashed black;
 	border-color: inherit;
 }
-a:visited{
-	color: #99CC99;
+.import-content a:visited{
+	color: #888;
 }
-#home{
-	float: right;
-	display: block;
-	width: 3em;
-	height: 3em;
-	line-height: 3em;
-	text-align: center;
-	border-bottom: none;
+.import-content a:hover,
+.import-content a:active{
+	color: #f40;
 }
 h1{
 	text-align: center;
