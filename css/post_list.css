@@ -103,7 +103,7 @@ table span{
 	background-color: rgba(255, 255, 255, 0.1);
 	display: block;
 	font-weight: bold;
-	color: #ffe;
+	color: #eee;
 	text-decoration: none;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -115,7 +115,7 @@ table span{
 }
 .articles li a:hover{
 	background-color: rgba(255, 255, 255, 0.2);	
-	color: #ffe;
+	color: #eee;
 }
 .articles li span{
 	display: inline-block;

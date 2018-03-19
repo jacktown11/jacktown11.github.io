@@ -1,73 +1,85 @@
 [
     {
 		"name": "2048",
-		"show": "https://codepen.io/jacktown/full/zdWvZL/",
+        "show": "https://codepen.io/jacktown/full/zdWvZL/",
+        "intro": "2048小游戏",
         "github": "https://github.com/jacktown11/2048",
         "cover": "2048.gif"
     },
     {
         "name": "calculator",
         "show": "https://codepen.io/jacktown/full/ZJBdPq/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/calculator",
         "cover": "calculator.gif"
     },
     {
         "name": "simon game",
         "show": "https://codepen.io/jacktown/full/gxvaMr/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/simon",
         "cover": "simon.gif"
     },
     {
         "name": "tictactoe game",
         "show": "https://codepen.io/jacktown/full/PKjVpj/",
+        "intro": "",
         "github": "",
         "cover": "tictactoe.gif"
     },
     {
         "name": "twitch api",
         "show": "https://codepen.io/jacktown/full/KvMLxv/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/usingTwitchTv0",
         "cover": "twitch.gif"
     },
     {
         "name": "local weather",
         "show": "https://codepen.io/jacktown/full/EvaBKv/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/getWeather0",
         "cover": "weather.gif"
     },
     {
         "name": "wikipedia viewer",
         "show": "https://codepen.io/jacktown/full/RZWLNR/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/wikipediaViewer0",
         "cover": "wikipedia.gif"
     },
     {
         "name": "pomodoro",
         "show": "https://codepen.io/jacktown/full/Ljjxby/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/pomodoro",
         "cover": "pomodoro.gif"
     },
     {
 		"name": "barrage",
-		"show": "https://codepen.io/jacktown/full/awjjGz/",
+        "show": "https://codepen.io/jacktown/full/awjjGz/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/barrage",
         "cover": "barriage.jpg"
     },
     {
 		"name": "portfolio",
-		"show": "https://codepen.io/jacktown/full/eRrYyJ/",
+        "show": "https://codepen.io/jacktown/full/eRrYyJ/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/Build_a_Personal_Portfolio_Webpage0",
         "cover": "portfolio.jpg"
     },
     {
 		"name": "random quote",
-		"show": "https://codepen.io/jacktown/full/rzaBMO/",
+        "show": "https://codepen.io/jacktown/full/rzaBMO/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/RandomQuoteMachine0",
         "cover": "quote.jpg"
     },
     {
 		"name": "tribute page",
-		"show": "https://codepen.io/jacktown/full/eRMamL/",
+        "show": "https://codepen.io/jacktown/full/eRMamL/",
+        "intro": "",
         "github": "https://github.com/jacktown11/fcc/tree/master/Build_a_Tribute_Page0",
         "cover": "tribute.jpg"
     }

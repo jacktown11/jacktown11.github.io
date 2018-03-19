@@ -23,50 +23,69 @@
 	margin: 1rem;
 	border-top-right-radius: 1.2rem;
 	border-bottom-right-radius: 1.2rem;
-	border: 2px solid transparent;
-	cursor: pointer;
+	font-size: 0.8rem;
 }
-.proj:hover{
-	border-color: #999;
-}
-.proj a img{
+.proj .info img{
 	width: 100%;
 	height: 100%;;
 }
-.proj img.cover{
-	background-image: url(../images/proj/missing.jpg);
-	background-size: 100% 100%;
-}
-.proj a{
+.proj .info{
 	position: absolute;
+	z-index: 150;
 	right: 0px;
-	top: 0px;
-	z-index: 10;
 	width: 2rem;
 	height: 2rem;
 	line-height: 2rem;
+	border: 1px solid #666;
 	background-color: #ffe;
-	border: 1px solid #000;
 	border-radius: 50%;
 	font-size: 1rem;
-	margin-left: 0.25rem;
 }
-.proj a:hover{
-	background-color: #f40;
+.proj .info:hover{
+	background-color: rgb(233, 192, 216);
+}
+.proj .github{
+	top: 0px;
+}
+.proj .show{
+	top: 2.5rem;
+}
+.proj img.cover{
+	background-image: url(../images/proj/loading.png);
+	background-size: 100% 100%;
 }
 .proj .cover{
 	display: block;
+	margin: auto;
 	width: 15rem;
 	height: 15rem;
 }
-.proj h3{
-	border-top: 1px solid #ddd;
-	color: #444;
-	background-color: #ffe;
-	font-size: 1.2rem;
-	margin: 0px;
+.proj div{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	margin: 0;
+	width: 13rem;
+	height: 15rem;
+	padding-right: 2rem;
+	background-color: rgba(255,255,255,0.9);
+	text-align: left;
+	color: #222;
+	z-index: 100;
+	display: none;
 }
-
-.proj h1{
+.proj:hover div{
+	display: block;
+}
+.proj h4{
+	height: 1.2rem;
+	margin: 0.2rem 0 0;
+	padding: 0.1rem 0.1rem;
+	font-size: 1rem;
+	line-height: 1.2rem;
 	text-align: center;
+}
+.proj p{
+	padding: 0.2rem 0rem 0.2rem 0.4rem;
+	margin: 0;
 }

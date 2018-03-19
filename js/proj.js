@@ -1,44 +1,47 @@
 ;(function(){
-	var imagePath = '../images/proj/',
-		missImgSrc = imagePath + 'missing.jpg';
+	var imagePath = '../images/proj/';
 		
 	window.onload = function () {
 		init();
 	};
 
 	function init(){
-		ajaxGet('../projects.json', renderProjects);
+		ajaxGet('../data/projects.json', renderProjects);
 	}
-	function bindHandlers(){
-		var divs = document.getElementsByClassName('proj');
-		divs = [].slice.call(divs);
-		var handleClick = function(event){
-			if(event.target === this.firstChild){
-				return;
-			}else{
-				window.open(this.getAttribute('data-show'));
-				// console.log(this.getAttribute('data-show'));
-			}
-		};
-		divs.forEach(function(div, index, arr){
-			div.addEventListener('click',handleClick);
-		});
-	}
+
+	// function bindHandlers(){
+	// 	var divs = document.getElementsByClassName('proj');
+	// 	divs = [].slice.call(divs);
+	// 	var handleClick = function(event){
+	// 		if(event.target === this.firstChild){
+	// 			return;
+	// 		}else{
+	// 			var url = this.getAttribute('data-show');
+	// 			if(!!url){
+	// 				window.open(url);
+	// 			}
+	// 			// window.open(this.getAttribute('data-show'));
+	// 		}
+	// 	};
+	// 	divs.forEach(function(div, index, arr){
+	// 		div.addEventListener('click',handleClick);
+	// 	});
+	// }
 
 	function renderProjects(jsonData){
 		var data = JSON.parse(jsonData);
-		// console.log(data);
 		var frag = document.createDocumentFragment();
 		data.forEach(function(item, index, arr){
 			var name = item.name,
 				show = item.show,
+				intro = item.intro,
 				coverPath = imagePath + item.cover,
 				github = item.github;
-			frag.appendChild(createProjItem(name, show, coverPath, github));
+			frag.appendChild(createProjItem(name, show, intro, coverPath, github));
 		});
 		var parent = document.getElementsByClassName('import-content')[0];
 		parent.appendChild(frag);
-		bindHandlers();
+		// bindHandlers();
 	}
 
 	function ajaxGet(url, successCall){
@@ -54,20 +57,24 @@
 		xhr.send(null);
 	}
 
-	function createProjItem(name, show, coverPath, github){
+	function createProjItem(name, show, intro, coverPath, github){
 		var doc = document;
 		var div = doc.createElement('div');
 		div.className = 'proj';
-		div.setAttribute('data-show', show);
-
-		div.innerHTML = '<a href="' +
+		div.innerHTML = 
+			'<a class="info github" href="' +
 			github + 
 			'" target="_blank"><img src="../images/github.png" alt="github图标"></a>' + 
+			'<a class="info show" href="'+ 
+			show + 
+			'" target="_blank"><img src = "../images/proj/show.png" alt="在线演示"></a>' + 
 			'<img class="cover" src="' + 
 			coverPath + 
-			'" alt="项目封面"><h3>' + 
+			'" alt="项目封面"><div><h4>'+ 
 			name + 
-			'</h3>';
+			'</h4><p>' + 
+			intro + 
+			'</p></div>';
 		return div;
 	}
 
