@@ -6,7 +6,7 @@
 	text-align: center;
 	font-size: 0px;
 }
-@media only screen and (max-width: 50em){
+@media only screen and (max-width: 65em){
 	.import-content{
 		width: 98%;
 	}
@@ -19,11 +19,20 @@
 	position: relative;
 	display: inline-block;
 	width: 15rem;
-	overflow: hidden;
-	margin: 1rem;
-	border-top-right-radius: 1.2rem;
-	border-bottom-right-radius: 1.2rem;
+	margin: 1rem 2rem 1rem 0rem;
+	border-top-right-radius: 1rem;
+	border-bottom-right-radius: 1rem;
 	font-size: 0.8rem;
+}
+@media only screen and (min-width:30em){
+	.proj{
+		margin-right: 3rem;
+	}
+}
+@media only screen and (min-width: 75em){
+	.proj{
+		margin-right: 4rem;
+	}
 }
 .proj .info img{
 	width: 100%;
@@ -32,23 +41,23 @@
 .proj .info{
 	position: absolute;
 	z-index: 150;
-	right: 0px;
+	right: -2rem;
 	width: 2rem;
 	height: 2rem;
 	line-height: 2rem;
-	border: 1px solid #666;
-	background-color: #ffe;
+	background-color: #eee;
 	border-radius: 50%;
 	font-size: 1rem;
+	box-shadow: 1px 1px 4px #222;
 }
 .proj .info:hover{
-	background-color: rgb(233, 192, 216);
+	background-color: #f60;
 }
 .proj .github{
 	top: 0px;
 }
 .proj .show{
-	top: 2.5rem;
+	top: 2rem;
 }
 .proj img.cover{
 	background-image: url(../images/proj/loading.png);

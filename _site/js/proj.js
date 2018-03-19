@@ -61,20 +61,17 @@
 		var doc = document;
 		var div = doc.createElement('div');
 		div.className = 'proj';
-		div.innerHTML = 
-			'<a class="info github" href="' +
-			github + 
-			'" target="_blank"><img src="../images/github.png" alt="github图标"></a>' + 
-			'<a class="info show" href="'+ 
-			show + 
-			'" target="_blank"><img src = "../images/proj/show.png" alt="在线演示"></a>' + 
-			'<img class="cover" src="' + 
-			coverPath + 
-			'" alt="项目封面"><div><h4>'+ 
-			name + 
-			'</h4><p>' + 
-			intro + 
-			'</p></div>';
+
+		var githubIcon = '<a class="info github" href="' +
+				github +
+				'" target="_blank"><img src="../images/github.png" alt="github图标"></a>',
+			showIcon = !show ? '' : 
+				('<a class="info show" href="' + show +
+				'" target="_blank"><img src = "../images/proj/show.png" alt="在线演示"></a>'),
+			cover = '<img class="cover" src="' + coverPath +
+				'" alt="项目封面"><div>',
+			detail = '<h4>' + name + '</h4><p>' + intro + '</p></div>';
+		div.innerHTML = githubIcon + showIcon + cover + detail;
 		return div;
 	}
 
