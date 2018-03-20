@@ -20,6 +20,7 @@
 	display: inline-block;
 	width: 15rem;
 	margin: 1rem 2rem 1rem 0rem;
+	border: 1px solid #333;
 	border-top-right-radius: 1rem;
 	border-bottom-right-radius: 1rem;
 	font-size: 0.8rem;
@@ -36,7 +37,7 @@
 }
 .proj .info img{
 	width: 100%;
-	height: 100%;;
+	height: 100%;
 }
 .proj .info{
 	position: absolute;
@@ -48,7 +49,6 @@
 	background-color: #eee;
 	border-radius: 50%;
 	font-size: 1rem;
-	box-shadow: 1px 1px 4px #222;
 }
 .proj .info:hover{
 	background-color: #f60;
@@ -59,42 +59,65 @@
 .proj .show{
 	top: 2rem;
 }
-.proj img.cover{
-	background-image: url(../images/proj/loading.png);
-	background-size: 100% 100%;
-}
 .proj .cover{
 	display: block;
 	margin: auto;
 	width: 15rem;
 	height: 15rem;
+	background-image: url(../images/proj/loading.png);
+	background-size: 100% 100%;
+	border-top-right-radius: 1rem;
+	border-bottom-right-radius: 1rem;
 }
-.proj div{
+.proj .detail{
 	position: absolute;
 	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	border-bottom-right-radius: 1rem;
+	border-top-right-radius: 1rem;	
+	overflow: hidden;
+}
+.proj .detail div{
+	position: relative;
+	left: -100%;
 	bottom: 0;
 	margin: 0;
-	width: 13rem;
-	height: 15rem;
-	padding-right: 2rem;
-	background-color: rgba(255,255,255,0.9);
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
 	text-align: left;
-	color: #222;
-	z-index: 100;
-	display: none;
+	color: #222;	
+	border-bottom-right-radius: 1rem;
+	border-top-right-radius: 1rem;	
+	transition: all 0.3s ease-in-out;
 }
-.proj:hover div{
-	display: block;
+.proj:hover .detail div{
+	left: 0;
 }
 .proj h4{
 	height: 1.2rem;
-	margin: 0.2rem 0 0;
-	padding: 0.1rem 0.1rem;
+	margin:  0;
+	padding: 0.2rem 0.1rem;
+	border-top-right-radius: 1rem;
+	background-color: #ccf;
 	font-size: 1rem;
 	line-height: 1.2rem;
 	text-align: center;
 }
 .proj p{
 	padding: 0.2rem 0rem 0.2rem 0.4rem;
+	height: 13rem;
 	margin: 0;
+	position: relative;
+}
+.proj p span{
+	display: block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	max-height: 100%;
+	overflow: hidden;
 }

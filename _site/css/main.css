@@ -251,8 +251,8 @@ part3: style for top nav
 	width: 100%;
 	margin: 0 auto;
 	border-radius: 0;
-	background-color: rgba(128, 0, 128, 0.618);
-	z-index: 100;
+	background-color: rgba(128, 0, 128, 0.8);
+	z-index: 200;
 	box-shadow: 0px 0px 4px #000;
 }
 .top-nav ul{
@@ -296,8 +296,8 @@ part3: style for top nav
 }
 
 .top-nav img{
-	width: 30px;
-	height: 24px;
+	width: 24px;
+	height: 22px;
 	display: block;
 	margin: auto;
 	padding: 4px 0 2px;
