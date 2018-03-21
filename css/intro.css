@@ -24,6 +24,9 @@
 h1{
 	text-align: center;
 }
+h2{
+	border-bottom: 1px solid #444;
+}
 li{
 	margin-top: 0.9em;
 }
@@ -149,7 +152,8 @@ li{
 	}
 	a:link,a:visited{
 		color: black;
-		border: none;
+		border: none !important;
+		text-decoration: none !important;
 	}
 	a.explicit-link:after{
 		content: '';

@@ -2,21 +2,21 @@
     {
         "name": "personal blog",
         "show": "/",
-        "intro": "我的个人博客，使用github pages搭建，响应式设计。",
+        "intro": "基于github pages搭建的个人博客网站。该网站作为我平时前端技术学习的练习场，综合使用了html，css3，javascript基础网页开发技术，自主设计UI，采用了响应式的设计。",
         "github": "https://github.com/jacktown11/jacktown11.github.io",
         "cover": "blog.png"
     },
     {
         "name": "vue project",
         "show": "",
-        "intro": "跟随视频教程，使用`vue-cli`脚手架搭建的`Vue`项目，使用了vue + vuex + vue-router + vue-resource，利用`Express`框架来进行数据请求模拟。",
+        "intro": "根据慕课网视频，使用vue-cli脚手架搭建的Vue项目,使用了vue、vuex、vue-router、vue-resource，利用Express框架来进行数据请求模拟。",
         "github": "https://github.com/jacktown11/vue-project1",
         "cover": "vue-project.png"
     },
     {
         "name": "book town webapp",
         "show": "",
-        "intro": "根据慕课网视频，仿照小米书城实现的WebApp。主要包括两个页面：主页和阅读器页面。综合使用了CSS3、Vuejs、Zepto、koa框架。 CSS3用来实现页面的动画、阴影、圆角等效果，Vuejs用来实现数据的双向绑定, Zepto用来操作DOM, Ejs实现模板渲染与整合, koa用来做路由管理、模版渲染中间件和读取mock静态模拟数据，实现前后端分离的开发。",
+        "intro": "根据慕课网视频，仿照小米书城实现的WebApp。主要包括两个页面：主页和阅读器页面。综合使用了CSS3、Vue.js、Zepto、koa框架。用CSS3实现页面的动画、阴影、圆角等效果，用Vuejs实现数据的双向绑定，用Zepto操作DOM，用Ejs实现模板渲染与整合，用koa做路由管理、模板渲染中间件和读取mock静态模拟数据，实现前后端分离的开发。",
         "github": "https://github.com/jacktown11/book-town-webapp",
         "cover": "webapp-reader.png"
     },
