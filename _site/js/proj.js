@@ -9,25 +9,6 @@
 		ajaxGet('../data/projects.json', renderProjects);
 	}
 
-	// function bindHandlers(){
-	// 	var divs = document.getElementsByClassName('proj');
-	// 	divs = [].slice.call(divs);
-	// 	var handleClick = function(event){
-	// 		if(event.target === this.firstChild){
-	// 			return;
-	// 		}else{
-	// 			var url = this.getAttribute('data-show');
-	// 			if(!!url){
-	// 				window.open(url);
-	// 			}
-	// 			// window.open(this.getAttribute('data-show'));
-	// 		}
-	// 	};
-	// 	divs.forEach(function(div, index, arr){
-	// 		div.addEventListener('click',handleClick);
-	// 	});
-	// }
-
 	function renderProjects(jsonData){
 		var data = JSON.parse(jsonData);
 		var frag = document.createDocumentFragment();
@@ -64,10 +45,10 @@
 
 		var githubIcon = '<a class="info github" href="' +
 				github +
-				'" target="_blank"><img src="../images/proj/github.png" alt="github图标"></a>',
+				'" target="_blank"><img src="../images/proj/github2.png" alt="github图标"></a>',
 			showIcon = !show ? '' : 
 				('<a class="info show" href="' + show +
-				'" target="_blank"><img src = "../images/proj/show.png" alt="在线演示"></a>'),
+				'" target="_blank"><img src = "../images/proj/show1.png" alt="在线演示"></a>'),
 			cover = '<img class="cover" src="' + coverPath +
 				'" alt="项目封面">',
 			detail = '<div class="detail"><div><h4>' + name + '</h4><p><span>' + intro + '<span></p></div></div>';

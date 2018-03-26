@@ -25,6 +25,18 @@
 	border-bottom-right-radius: 1rem;
 	font-size: 0.8rem;
 }
+.proj::before{
+	content: "";
+	display: block;
+	position: absolute;
+	z-index: 200;
+	top: 0;
+	left: 0;
+	width: 0.2rem;
+	height: 100%;
+	background-color: #f37d7d;
+	background: linear-gradient(#000, #f37d7d 25%, #f37d7d 75%, #000);
+}
 @media only screen and (min-width:30em){
 	.proj{
 		margin-right: 3rem;
@@ -46,18 +58,18 @@
 	width: 2rem;
 	height: 2rem;
 	line-height: 2rem;
-	background-color: #eee;
-	border-radius: 50%;
+	background: #333;
+	border-radius: 0 50% 50% 0;
 	font-size: 1rem;
 }
 .proj .info:hover{
-	background-color: #f60;
+	background: #f37d7d;
 }
 .proj .github{
-	top: 0px;
+	bottom: 50%;
 }
 .proj .show{
-	top: 2rem;
+	top: 50%;
 }
 .proj .cover{
 	display: block;
