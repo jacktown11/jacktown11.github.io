@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper hidden">
+
+	</div>
+	
+	<article class="wrap panel">
+		<h1>javase day02</h1>
+		<p class="meta">08 Jul 2018</p>
+		<div class="post">
+			  <h3 id="摘要">摘要</h3>
+<ol>
+  <li>变量</li>
+  <li>运算符</li>
+</ol>
+
+<h3 id="01-变量概述">01 变量概述</h3>
+<ul>
+  <li>什么是变量?
+    <ul>
+      <li>变量是一个内存中的小盒子（小容器），容器是什么？生活中也有很多容器，例如水杯是容器，用来装载水；你家里的大衣柜是容器，用来装载衣裤；饭盒是容器，用来装载饭菜。那么变量是装载什么的呢？答案是数据！结论：变量是内存中装载数据的小盒子，你只能用它来存数据和取数据。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="02-计算机存储单元">02 计算机存储单元</h3>
+<ul>
+  <li>计算机中储存和运算的最小单位是?
+    <ul>
+      <li>一个字节,也就是一个byte.
+        <ul>
+          <li>win+r–cmd–回车</li>
+        </ul>
+      </li>
+      <li>常用储存单位
+        <ul>
+          <li>1B（字节） = 8bit</li>
+          <li>1KB = 1024B</li>
+          <li>1MB = 1024KB</li>
+          <li>1GB = 1024MB</li>
+          <li>1TB = 1024GB</li>
+          <li>1PB = 1024TB</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="03-java中数据类型四类八种">03 Java中数据类型四类八种</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>四类</th>
+      <th>八种</th>
+      <th>字节数</th>
+      <th>数据表示范围</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>整型</td>
+      <td>byte</td>
+      <td>1</td>
+      <td>-128～127</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>short</td>
+      <td>2</td>
+      <td>-32768～32767</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>int</td>
+      <td>4</td>
+      <td>-2147483648～2147483648</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>long</td>
+      <td>8</td>
+      <td>-2^63～2^63-1</td>
+    </tr>
+    <tr>
+      <td>浮点型</td>
+      <td>float</td>
+      <td>4</td>
+      <td>-3.403E38～3.403E38</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>double</td>
+      <td>8</td>
+      <td>-1.798E308～1.798E308</td>
+    </tr>
+    <tr>
+      <td>字符型</td>
+      <td>char</td>
+      <td>2</td>
+      <td>表示一个字符，如(‘a’，’A’，’0’，’家’)</td>
+    </tr>
+    <tr>
+      <td>布尔型</td>
+      <td>boolean</td>
+      <td>1</td>
+      <td>只有两个值true与false</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="04-常量和数据类型">04 常量和数据类型</h3>
+<ul>
+  <li>常量的定义
+    <ul>
+      <li>整形常量默认是int类型</li>
+      <li>小数常量默认是double类型</li>
+      <li>定义长整形数据如果值超过int取值范围后面要+”L”</li>
+      <li>定义float类型的数据后面要+”f” 否则默认是double</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="05-变量创建的三要素">05 变量创建的三要素</h3>
+<ul>
+  <li>定义变量的语法格式：<strong>数据类型  变量名  =  变量值;</strong>
+    <ul>
+      <li>int a = 100;</li>
+      <li>代码
+        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Variable</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+      <span class="kt">double</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">3.14</span><span class="o">;</span>
+      <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">'z'</span><span class="o">;</span>
+      <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"i love java"</span><span class="o">;</span>
+		
+      <span class="n">a</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="06-定义所有的基本数据类型变量">06 定义所有的基本数据类型变量</h3>
+<ul>
+  <li>案例演示
+    <ul>
+      <li>八种基本类型数据的创建</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="07-定义字符串变量">07 定义字符串变量</h3>
+<ul>
+  <li>案例演示
+    <ul>
+      <li>创建字符串数据类型变量</li>
+      <li>String 是引用数据类型</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="08-变量定义使用注意事项">08 变量定义使用注意事项</h3>
+<ul>
+  <li>A：变量使用的注意事项
+    <ul>
+      <li>变量定义后可以不赋值，使用时再赋值。不赋值不能使用。
+        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="o">;</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span> <span class="c1">//为x赋值20</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">);</span><span class="c1">//读取x变量中的值，再打印</span>
+  <span class="o">}</span>
+</code></pre>
+        </div>
+      </li>
+      <li>变量使用时有作用域的限制。
+        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+  <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">);</span><span class="c1">//读取x变量中的值，再打印</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">y</span><span class="o">);</span><span class="c1">//读取y变量中的值失败，失败原因，找不到y变量，因为超出了y变量作用范围，所以不能使用y变量</span>
+  <span class="o">}</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="09-数据类型转换_自动转换">09 数据类型转换_自动转换</h3>
+<ul>
+  <li>自动类型转换
+    <ul>
+      <li>
+        <p>表示范围小的数据类型转换成范围大的数据类型，这种方式称为自动类型转换</p>
+      </li>
+      <li>
+        <p>自动类型转换格式：</p>
+
+        <p>范围大的数据类型 变量 = 范围小的数据类型值，如：
+          <code class="highlighter-rouge">double d = 1000;</code>
+      或
+          <code class="highlighter-rouge">int i = 100;
+          double d2 = i;</code></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="10-数据类型转换_强制转换">10 数据类型转换_强制转换</h3>
+<ul>
+  <li>强制类型转换
+    <ul>
+      <li>表示范围大的数据类型转换成范围小的数据类型，这种方式称为强制类型转换</li>
+      <li>
+        <p>强制类型转换格式：</p>
+
+        <p>范围小的数据类型  变量 = (范围小的数据类型) 范围大的数据类型值;
+  如：</p>
+        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kt">int</span>  <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="mf">6.718</span><span class="o">;</span>   <span class="c1">//i的值为6</span>
+  <span class="kt">double</span>  <span class="n">d</span> <span class="o">=</span> <span class="mf">3.14</span><span class="o">;</span> <span class="kt">int</span>  <span class="n">i2</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">d</span><span class="o">;</span> <span class="c1">//i2的值为3</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="11-算数运算符_1">11 算数运算符_1</h3>
+<ul>
+  <li>
+    <p>常见操作</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>运算符</th>
+          <th>运算规则</th>
+          <th>范例</th>
+          <th>结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>+</td>
+          <td>正号</td>
+          <td>+3</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>+</td>
+          <td>加</td>
+          <td>2+3</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>+</td>
+          <td>连接字符串</td>
+          <td>“中”+“国”</td>
+          <td>“中国”</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>负号</td>
+          <td>int a=3;-a</td>
+          <td>-3</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>减</td>
+          <td>3-1</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>*</td>
+          <td>乘</td>
+          <td>2*3</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>/</td>
+          <td>除</td>
+          <td>5/2</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>%</td>
+          <td>取模</td>
+          <td>5/2</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>++</td>
+          <td>自增</td>
+          <td>int a=1;a++/++a</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>–</td>
+          <td>自减</td>
+          <td>int b=3;a–/–a</td>
+          <td>2</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>注意事项
+    <ul>
+      <li>加法运算符在连接字符串时要注意，只有直接与字符串相加才会转成字符串。</li>
+      <li>除法“/”当两边为整数时，取整数部分，舍余数。当其中一边为浮点型时，按正常规则相除。</li>
+      <li>“%”为整除取余符号，小数取余没有意义。结果符号与被取余符号相同。</li>
+      <li>整数做被除数，0不能做除数，否则报错。</li>
+      <li>小数做被除数，整除0结果为Infinity，对0取模结果为NaN</li>
+    </ul>
+  </li>
+  <li>代码演示
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OperatorDemo1</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+      <span class="cm">/*
+      * 常量使用算数运算符
+      */</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mi">10</span><span class="o">+</span><span class="mi">20</span><span class="o">);</span>
+        
+      <span class="cm">/*
+      * 变量使用算数运算符
+      */</span>
+      <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+      <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+      <span class="c1">//"+"作为加法运算使用</span>
+      <span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">;</span> 
+      <span class="c1">//"+"作为连接字符串使用</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x="</span><span class="o">+</span><span class="n">x</span><span class="o">);</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y="</span><span class="o">+</span><span class="n">y</span><span class="o">);</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"z="</span><span class="o">+</span><span class="n">z</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="12-算数运算符_2">12 算数运算符_2</h3>
+<ul>
+  <li>算数运算符++、–的使用
+    <ul>
+      <li>++运算符，会在原有值的基础上自增1</li>
+      <li>–运算符，会在原有值的基础上自减1。</li>
+    </ul>
+  </li>
+  <li>++与– 位置的使用
+    <ul>
+      <li>++,–运算符后置时，先使用变量a原有值参与运算操作，运算操作完成后，变量a的值自增1或者自减1；</li>
+      <li>++，–运算符前置时，先将变量a的值自增1或者自减1，然后使用更新后的新值参与运算操作。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="13-赋值运算符">13 赋值运算符</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>运算符</th>
+      <th>运算规则</th>
+      <th>范例</th>
+      <th>结果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>=</td>
+      <td>赋值</td>
+      <td>int a=2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>+=</td>
+      <td>加后赋值</td>
+      <td>int a=2，a+=2</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>-=</td>
+      <td>减后赋值</td>
+      <td>int a=2，a-=2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>*=</td>
+      <td>乘后赋值</td>
+      <td>int a=2，a*=2</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>/=</td>
+      <td>整除后赋值</td>
+      <td>int a=2，a/=2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>%=</td>
+      <td>取模后赋值</td>
+      <td>int a=2，a%=2</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p>案例演示</p>
+
+    <ul>
+      <li>赋值运算符</li>
+      <li>+=, -=, *=, /=, %= ：</li>
+      <li>上面的运算符作用：将等号左右两边计算，会将结果自动强转成等号左边的数据类型,再赋值给等号左边的</li>
+      <li>注意：赋值运算符左边必须是变量
+        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">OperatorDemo2</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kt">byte</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+      <span class="n">x</span> <span class="o">+=</span> <span class="mi">20</span><span class="o">;</span><span class="c1">// 相当于 x = (byte)(x+20);</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="14-比较运算符">14 比较运算符</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>运算符</th>
+      <th>运算规则</th>
+      <th>范例</th>
+      <th>结果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>==</td>
+      <td>相等于</td>
+      <td>4==3</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>!=</td>
+      <td>不等于</td>
+      <td>4!=3</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>&lt;</td>
+      <td>小于</td>
+      <td>4&lt;3</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>&gt;</td>
+      <td>大于</td>
+      <td>4&gt;3</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>&lt;=</td>
+      <td>小于等于</td>
+      <td>4&lt;=3</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>&gt;=</td>
+      <td>大于等于</td>
+      <td>4&gt;=3</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="15-逻辑运算符">15 逻辑运算符</h3>
+<ul>
+  <li>逻辑运算符的使用</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>运算符</th>
+      <th>运算规则</th>
+      <th>范例</th>
+      <th>结果</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&amp;</td>
+      <td>与</td>
+      <td>false&amp;true</td>
+      <td>False</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>|</td>
+      <td>或</td>
+      <td>false</td>
+      <td>true</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>^</td>
+      <td>异或</td>
+      <td>true^flase</td>
+      <td>True</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>!</td>
+      <td>非</td>
+      <td>!true</td>
+      <td>Flase</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>&amp;&amp;</td>
+      <td>短路与</td>
+      <td>false&amp;&amp;true</td>
+      <td>False</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>||</td>
+      <td>短路或</td>
+      <td>false||true</td>
+      <td>True</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p>规律小结:</p>
+
+    <ul>
+      <li>短路与&amp;&amp;:参与运算的两边数据，有false，则运算结果为false；</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>短路或</td>
+              <td> </td>
+              <td>:参与运算的两边数据，有true，则运算结果为true；</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>逻辑非! : 参与运算的数据，原先是true则变成false，原先是false则变成true。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="16-三元运算符">16 三元运算符</h3>
+<ul>
+  <li>
+    <p>格式:</p>
+
+    <p>(条件表达式)？表达式1：表达式2；</p>
+  </li>
+  <li>
+    <p>代码案例</p>
+
+    <p>方式一：</p>
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="err">`</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="mi">3</span><span class="o">&gt;</span><span class="mi">2</span> <span class="o">?</span> <span class="err">“正确”</span> <span class="o">:</span> <span class="err">“错误”</span> <span class="o">);</span> <span class="err">`</span>
+	
+ <span class="c1">// 三元运算符运算后的结果为true，运算结果为表达式1的值“正确”，然后将结果“正确”，在控制台输出打印</span>
+</code></pre>
+    </div>
+    <p>方式二：</p>
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+ <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
+ <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="o">)</span> <span class="o">?</span> <span class="err">“相等”</span> <span class="o">:</span> <span class="err">“不相等”</span><span class="o">;</span>  
+ <span class="c1">//三元运算符运算后的结果为false，运算结果为表达式2的值“不相等”，然后将结果赋值给了变量result</span>
+</code></pre>
+    </div>
+    <p>方式三：</p>
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="o">(</span><span class="mi">3</span><span class="o">&gt;</span><span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="mi">4</span><span class="o">&gt;</span><span class="mi">6</span><span class="o">)</span> <span class="o">?</span> <span class="mi">100</span> <span class="o">:</span> <span class="mi">200</span><span class="o">;</span>
+ <span class="c1">//三元运算符运算后的结果为false，运算结果为表达式2的值200,然后将结果200赋值给了变量n</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="17-运算符优先级">17 运算符优先级</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>优先级</th>
+      <th>描述</th>
+      <th>运算符</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>括号</td>
+      <td>()、[]</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>正负号</td>
+      <td>+、-</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>自增自减，非</td>
+      <td>++、–、!</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>乘除，取余</td>
+      <td>*、/、%</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>加减</td>
+      <td>+、-</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>移位运算</td>
+      <td>«、»、»&gt;</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>大小关系</td>
+      <td>&gt;、&gt;=、&lt;、&lt;=</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>相等关系</td>
+      <td>==、!=</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>按位与</td>
+      <td>&amp;</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>按位异或</td>
+      <td>^</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>按位或</td>
+      <td>|</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>逻辑与</td>
+      <td>&amp;&amp;</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>逻辑或</td>
+      <td>||</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>条件运算</td>
+      <td>?:</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>赋值运算</td>
+      <td>=、+=、-=、*=、/=、%=</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>位赋值运算</td>
+      <td>&amp;=、|=、«=、»=、»&gt;=</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="18--商场库存清单案例">18 	商场库存清单案例</h3>
+<ul>
+  <li>案例分析.
+    <ul>
+      <li>观察清单后，可将清单分解为三个部分（清单顶部、清单中部、清单底部）</li>
+      <li>清单顶部为固定的数据，直接打印即可</li>
+      <li>清单中部为商品，为变化的数据，需要记录商品信息后，打印。经过观察，我们确定一项商品应该有如下几个属性：
+        <ul>
+          <li>品牌型号: 即商品名称，String型</li>
+          <li>尺寸：物品大小，double型</li>
+          <li>价格：物品单价，double型</li>
+          <li>配置：这一项为每种商品的配置信息，String型</li>
+          <li>库存数：这一项为每种商品的库存个数，int型</li>
+        </ul>
+      </li>
+      <li>清单底部包含了统计操作，需经过计算后，打印。我们发现两个单独的可变化量
+        <ul>
+          <li>总库存数：所有商品总个数，int型</li>
+          <li>库存商品总金额：所有商品金额，double型</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>案例代码实现
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="c1">//步骤一:  创建Demo01库存清单.java文件，编写main主方法</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo01</span><span class="err">库存清单</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="c1">//步骤二:  记录每种库存商品信息</span>
+  <span class="c1">//苹果笔记本电脑</span>
+  <span class="n">String</span> <span class="n">macBrand</span> <span class="o">=</span> <span class="s">"MacBookAir"</span><span class="o">;</span>
+  <span class="kt">double</span> <span class="n">macSize</span> <span class="o">=</span> <span class="mf">13.3</span><span class="o">;</span>
+  <span class="kt">double</span> <span class="n">macPrice</span> <span class="o">=</span> <span class="mf">6988.88</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">macCount</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+
+  <span class="c1">//联想Thinkpad笔记本电脑</span>
+  <span class="n">String</span> <span class="n">thinkpadBrand</span> <span class="o">=</span> <span class="s">"ThinkpadT450"</span><span class="o">;</span>
+  <span class="kt">double</span> <span class="n">thinkpadSize</span> <span class="o">=</span> <span class="mf">14.0</span><span class="o">;</span>
+  <span class="kt">double</span> <span class="n">thinkpadPrice</span> <span class="o">=</span> <span class="mf">5999.99</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">thinkpadCount</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+
+  <span class="c1">//华硕ASUS笔记本电脑</span>
+  <span class="n">String</span> <span class="n">ASUSBrand</span> <span class="o">=</span> <span class="s">"ASUS-FL5800"</span><span class="o">;</span>
+  <span class="kt">double</span> <span class="n">ASUSSize</span> <span class="o">=</span> <span class="mf">15.6</span><span class="o">;</span>
+  <span class="kt">double</span> <span class="n">ASUSPrice</span> <span class="o">=</span> <span class="mf">4999.50</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">ASUSCount</span> <span class="o">=</span> <span class="mi">18</span><span class="o">;</span>
+
+  <span class="c1">//步骤三: 统计库存总个数、库存总金额</span>
+  <span class="kt">int</span> <span class="n">totalCount</span> <span class="o">=</span> <span class="n">macCount</span> <span class="o">+</span> <span class="n">thinkpadCount</span> <span class="o">+</span> <span class="n">ASUSCount</span><span class="o">;</span>
+  <span class="kt">double</span> <span class="n">totalMoney</span> <span class="o">=</span> <span class="o">(</span><span class="n">macCount</span> <span class="o">*</span> <span class="n">macPrice</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">thinkpadCount</span> <span class="o">*</span> <span class="n">thinkpadPrice</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">ASUSCount</span> <span class="o">*</span> <span class="n">ASUSPrice</span><span class="o">);</span>
+
+  <span class="c1">//步骤四: 列表顶部</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------------------商城库存清单-----------------------------"</span><span class="o">);</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"品牌型号	尺寸	价格	库存数"</span><span class="o">);</span>
+
+  <span class="c1">//步骤五:打印库存清单中部信息</span>
+  <span class="c1">//列表中部</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">macBrand</span><span class="o">+</span><span class="s">"	"</span><span class="o">+</span><span class="n">macSize</span><span class="o">+</span><span class="s">"	"</span><span class="o">+</span><span class="n">macPrice</span><span class="o">+</span><span class="s">"	"</span><span class="o">+</span><span class="n">macCount</span><span class="o">);</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">thinkpadBrand</span><span class="o">+</span><span class="s">"	"</span><span class="o">+</span><span class="n">thinkpadSize</span><span class="o">+</span><span class="s">"	"</span><span class="o">+</span><span class="n">thinkpadPrice</span><span class="o">+</span><span class="s">"	"</span><span class="o">+</span><span class="n">thinkpadCount</span><span class="o">);</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ASUSBrand</span><span class="o">+</span><span class="s">"	"</span><span class="o">+</span><span class="n">ASUSSize</span><span class="o">+</span><span class="s">"	"</span><span class="o">+</span><span class="n">ASUSPrice</span><span class="o">+</span><span class="s">"	"</span><span class="n">ASUSCount</span><span class="o">);</span>
+  <span class="c1">//打印库存清单底部信息</span>
+  <span class="c1">//列表底部</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"-----------------------------------------------------------------------"</span><span class="o">);</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"总库存数："</span><span class="o">+</span><span class="n">totalCount</span><span class="o">);</span> 
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"库存商品总金额："</span><span class="o">+</span><span class="n">totalMoney</span><span class="o">);</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+			  
+			<p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p>
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="#" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="#" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>

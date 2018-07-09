@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper hidden">
+
+	</div>
+	
+	<article class="wrap panel">
+		<h1>javase day01</h1>
+		<p class="meta">08 Jul 2018</p>
+		<div class="post">
+			  <h3 id="摘要">摘要</h3>
+<ol>
+  <li>Java开发环境搭建</li>
+  <li>HelloWorld案例</li>
+  <li>注释、关键字、标识符</li>
+  <li>数据（数据类型、常量）</li>
+</ol>
+
+<h3 id="01-java语言概述">01 java语言概述</h3>
+<ul>
+  <li>a: Java是sun公司开发的一门编程语言,目前被Oracle公司收购，编程语言就是用来编写软件的。</li>
+  <li>b: Java的应用
+    <ul>
+      <li>开发QQ、迅雷程序(桌面应用软件)</li>
+      <li>淘宝、京东(互联网应用软件)</li>
+    </ul>
+  </li>
+  <li>c: Java的擅长
+    <ul>
+      <li>互联网：电商、P2P等等</li>
+      <li>企业级应用：ERP、CRM、BOS、OA等等</li>
+    </ul>
+  </li>
+  <li>d: Java语言平台
+    <ul>
+      <li>JavaSE（标准版）部分,基础班学习JavaSE,JavaSE并不能开发大型项目。</li>
+      <li>JavaEE（企业版）部分,就业班学习JavaEE,学习完JavaEE部分就可以开发各种大型项目了。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="02-常用的dos命令">02 常用的DOS命令</h3>
+<ul>
+  <li>a: 打开Dos控制台
+    <ul>
+      <li>win+r–cmd–回车</li>
+    </ul>
+  </li>
+  <li>b: 常用dos命令
+    <ul>
+      <li>cd.. : 退回到上一级目录</li>
+      <li>cd\  : 退回到根目录</li>
+      <li>cd tools: 进入tools文件夹</li>
+      <li>d:   : 回车	盘符切换</li>
+      <li>cd d:\234 :进入d盘的234文件夹,再切换盘符(d:)才能进入d:\234</li>
+      <li>dir  : 列出当前目录下的文件以及文件夹</li>
+      <li>cls  : 清除屏幕</li>
+      <li>ipconfig: 查看本机的相关网络配置</li>
+    </ul>
+  </li>
+  <li>c: dos控制台运行记事本程序
+    <ul>
+      <li>D:&gt;C:\windows\notepad.exe</li>
+      <li>还可以省略“.exe”后缀，例如：D:&gt;C:\windows\notepad</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="03-java语言开发环境jdk">03 java语言开发环境JDK</h3>
+<ul>
+  <li>a: JDK是Java开发环境</li>
+  <li>b: 课程中使用的JDK版本是JDK7，当前最新版本是JDK8</li>
+</ul>
+
+<h3 id="04-jdk的下载和安装">04 JDK的下载和安装</h3>
+<ul>
+  <li>A: JDK的下载
+    <ul>
+      <li>a: 官网 http://www.oracle.com/cn/index.html</li>
+      <li>b: 演示下载流程</li>
+    </ul>
+  </li>
+  <li>B: JDK的安装
+    <ul>
+      <li>a: 傻瓜式安装
+        <ul>
+          <li>双击安装程序，然后一路next即可(但是不建议)</li>
+        </ul>
+      </li>
+      <li>b: 安装的推荐方式
+        <ul>
+          <li>安装路径不要有中文或者特殊符号如空格等。</li>
+          <li>所有和开发相关的软件最好安装目录统一。
+            <ul>
+              <li>举例：我的JDK安装路径
+                <ul>
+                  <li>D:\develop\Java\jdk1.7.0_72</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>当提示安装JRE时，可以选择不安装。建议还是安装上。
+      * D:\develop\Java\jre\</li>
+          <li>安装路径中没有的文件夹,会自动创建</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>C: 验证安装是否成功
+    <ul>
+      <li>a:通过DOS命令，切换到JDK安装的bin目录下。
+        <ul>
+          <li>D:\develop\Java\jdk1.7.0_72\bin</li>
+        </ul>
+      </li>
+      <li>b:然后分别输入javac和java，如果正常显示一些内容，说明安装成功</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="05-jdk和jre跨平台">05 JDK和JRE跨平台</h3>
+<ul>
+  <li>A: JDK与JRE的关系
+    <ul>
+      <li>a: JDK：它是Java开发运行环境，在程序员的电脑上当然要安装JDK；</li>
+      <li>b: JRE：Java Runtime Environment它是Java运行环境，如果你不需要开发只需要运行Java程序，那么你可以安装JRE。例如程序员开发出的程序最终卖给了用户，用户不用开发，只需要运行程序，所以用户在电脑上安装JRE即可。</li>
+      <li>c: JDK包含了JRE。</li>
+    </ul>
+  </li>
+  <li>B: 跨平台特性
+    <ul>
+      <li>a: 平台指的是操作系统 （Windows，Linux，Mac）。</li>
+      <li>b: Java程序可以在任意操作系统上运行，一次编写到处运行</li>
+      <li>c: 实现跨平台需要依赖Java的虚拟机 JVM （Java Virtual Machine）</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="06-编写helloworld程序">06 编写HelloWorld程序</h3>
+<ul>
+  <li>A: 编写步骤(初学者)
+    <ul>
+      <li>a: 创建一个普通文本文件，将其修改为.java文件。</li>
+      <li>b: 完成模板代码：
+        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span><span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>B: 实际开发步骤
+    <ul>
+      <li>a: 定义类</li>
+      <li>b: 写main方法</li>
+      <li>c: 写输出语句(注意：下面的代码是原代码，是不能运行的)	
+  public class HelloWorld {
+      public static void main(String[] args) {
+          System.out.println(“HelloWorld”);
+      }
+  }</li>
+      <li>d：注意：
+        <ul>
+          <li>不要隐藏文件的扩展名</li>
+          <li>类名和文件名要保持一致</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>C: Java代码的编写执行过程
+    <ul>
+      <li>a: 源文件：编写Java源文件（我们也称之为源代码文件），它的扩展名为.java；</li>
+      <li>b: 编译：然后通过编译器把源文件编译成字节码文件，字节码文件扩展名为.class；</li>
+      <li>c: 运行：最后使用解释器来运行字节码文件。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="07-编译java程序">07 编译Java程序</h3>
+<ul>
+  <li>A：程序编译
+    <ul>
+      <li>作用：将程序员写的java源代码生成可以运行的Java程序(.class文件)</li>
+      <li>过程：
+        <ul>
+          <li>a:开启DOS窗口并切换到.java文件所在的目录 比如HelloWord.java存放于d:\234\day01\code 中</li>
+          <li>b:切换到HelloWorld.java所在目录,但是此目录中没有javac命令,所以在编译时要写出javac命令的全路径</li>
+          <li>c: d:\234\day01\code&gt;d:\develop\java\jdk1.7.0_72\bin\javac HelloWorld.java 回车</li>
+          <li>d:在d:\234\day01\code文件夹中多了个HelloWorld.class文件(又叫做字节码文件)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="08-运行java程序">08 运行Java程序</h3>
+<ul>
+  <li>A：运行程序
+    <ul>
+      <li>a: 开启DOS窗口并切换到.class文件所在的目录</li>
+      <li>b: 此目录中没有java命令,所以在运行时也要写出java命令的全路径</li>
+      <li>c: d:\234\day01\code&gt;d:\develop\java\jdk1.7.0_72\bin\java HelloWorld 回车(注意:运行时不用后缀名.class)</li>
+      <li>d: 控制台打印显示结果”HelloWorld”</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="09-环境变量的配置">09 环境变量的配置</h3>
+<ul>
+  <li>A: Path环境变量配置方式一
+    <ul>
+      <li>a: 安装高级文本编辑器notepad++</li>
+      <li>b: 配置Windows的path环境变量
+        <ul>
+          <li>环境变量的作用：让Java的bin目录下的javac命令可以在任意目录下执行</li>
+          <li>配置方法：
+            <ul>
+              <li>右键点击计算机  →  选择属性  →  更改设置  →  点击高级  →  点击环境变量  →  找到系统变量中的path  →  将java安装目录下javac所在的bin目录路径配置到path变量中，用；(英文)与其他变量分隔</li>
+            </ul>
+          </li>
+          <li>注意：
+            <ul>
+              <li>配置path后文件的访问顺序：先访问当前路径，如果当前路径没有该文件，则再访问path配置的路径</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>B:配置过程(建议使用这种方式配置)
+    <ul>
+      <li>a：右键点击计算机  →  选择属性  →  更改设置  →  点击高级  →  点击环境变量  →  创建名为JAVA_HOME的环境变量  →  将jdk所在的目录路径(bin所在的路径)配置到JAVA_HOME变量中</li>
+      <li>b: 用;与其他变量分隔  →  在path环境变量中添加%JAVA_HOME%\bin</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="10-notepad软件安装">10 notepad软件安装</h3>
+<ul>
+  <li>A: 安装
+    <ul>
+      <li>双击.exe文件安装 即可</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="11-注释">11 注释</h3>
+<ul>
+  <li>A: 注释
+    <ul>
+      <li>a: 定义：用来解释和说明程序的文字，注释是不会被执行的</li>
+      <li>b: 分类：
+        <ul>
+          <li>1：单行注释    //注释内容</li>
+          <li>2：多行注释    /*注释内容*/</li>
+          <li>3：文档注释	/**注释内容*/</li>
+        </ul>
+      </li>
+      <li>c: 注意：
+        <ul>
+          <li>1：对于单行和多行注释，被注释的文字，不会被JVM解释执行</li>
+          <li>2：对于文档注释，可以被JDK提供的工具 javadoc 所解析，生成一套以网页文件形式体现的该程序的说明文档</li>
+          <li>3：单行注释可以嵌套使用，多行注释不能嵌套使用</li>
+        </ul>
+      </li>
+      <li>d: 案例代码
+        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="cm">/*
+          实现了一个Java的HelloWorld程序
+          实现步骤：
+          1. 定义类
+          2. 定义主方法
+          3. 一条命令，控制台输出了HelloWorld
+  */</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span><span class="o">{</span>
+      <span class="c1">//main主方法，固定格式，程序的入口点</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+          <span class="c1">//系统 输出 打印    打印的内容</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"HelloWorld"</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="12-关键字">12 关键字</h3>
+<ul>
+  <li>A: 关键字
+    <ul>
+      <li>a: 定义
+        <ul>
+          <li>是被Java语言赋予特殊含义，具有专门用途的单词，比如之前接触的class，int，double均为Java已经预设好的</li>
+        </ul>
+      </li>
+      <li>b: 特点
+        <ul>
+          <li>组成关键字的字母全部小写(代码中的蓝色部分) ,注意String不是关键字</li>
+        </ul>
+      </li>
+      <li>c: 常见关键字
+        <ul>
+          <li>public static void class等</li>
+        </ul>
+      </li>
+      <li>d: 注意事项
+        <ul>
+          <li>goto与const是Java中的保留字，即没有赋予特殊含义却仍被Java占用的单词,类似Editplus这样的高级记事本,针对关键字有特殊的颜色标记，非常直观</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="13-标识符">13 标识符</h3>
+<ul>
+  <li>A: 标识符
+    <ul>
+      <li>a: 定义
+        <ul>
+          <li>就是给类,接口,方法,变量等起名字时使用的字符序列</li>
+        </ul>
+      </li>
+      <li>b: 组成规则(只能包含下面的内容,不能有其它内容)
+        <ul>
+          <li>1: 英文大小写字母</li>
+          <li>2：数字字符</li>
+          <li>3：$和_</li>
+        </ul>
+      </li>
+      <li>c: 注意事项
+        <ul>
+          <li>1：数字不能开头</li>
+          <li>2：不可以使用关键字</li>
+          <li>3：严格区分大小写，不限制长度</li>
+          <li>4：起名时，尽量达到见名知意</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>B：标识符中常见的命名规则(这些规定是不受语法约束的)
+    <ul>
+      <li>a: 包名：多单词组成时所有字母均小写，使用.连接  aaa.bbb.ccc
+        <ul>
+          <li>b: 类名&amp;接口名：大驼峰式   AaaBbbCcc</li>
+          <li>c: 变量名&amp;方法名：小驼峰式   aaaBbbCcc</li>
+          <li>d: 常量名：多单词组成是所有字母均大写，使用_连接AAA_BBB_CCC</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>C: 案例代码
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="cm">/*
+      标识符
+      Java中，自己定义的内容
+      自定义类的名字，上一个案例 HelloWorld
+      标识符的规则：
+          组成： 字母52个A-Z a-z 数字0-9 _ 下划线 $ 美元符
+
+          注意： 不能数字开头，不能是关键字
+			
+          定义名字：
+          _abc  0a  a0  a#a  a$a   void
+              YES  NO  YES NO   YES   NO
+				
+          类的名字： 首字母大写，第二个单词首字母大写
+          BeiJingShiHaiDianQuYiYuan
+          MeiGuoJiaLiFuNiYa
+			
+          方法的名字：首字母小写，每个单词首字母大写
+          addStudent  
+  */</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span><span class="o">{</span>
+		
+  <span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="14-java中的数据类型">14 Java中的数据类型</h3>
+<ul>
+  <li>A:为什么有数据类型
+    <ul>
+      <li>Java语言是强类型语言，对于每一种数据都定义了明确的具体数据类型</li>
+    </ul>
+  </li>
+  <li>B:Java中数据类型的分类
+    <ul>
+      <li>基本数据类型: 基本数据类型是Java语言中内置的类型，分别是整数类型、小数类型、字符类型、布尔类型。
+  这四类基本类型是最简单、最基础的类型。
+        <ul>
+          <li>整数(byte、short、int、long)、小数(float、double)、字符类型(char)、布尔类型(boolean)</li>
+        </ul>
+      </li>
+      <li>引用数据类型: 是强大的数据类型，它是基于基本数据类型创建的。JavaSE中提供了一个超级类库，类库中包含了近万种引用数据类型。
+  不过现在我们先要学习的是基本类型！
+        <ul>
+          <li>数组、类、接口</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="15-java中的常量">15 Java中的常量</h3>
+<ul>
+  <li>A: 常量的定义
+    <ul>
+      <li>常量就是不变的数据量, 在程序执行的过程中其值不可以发生改变</li>
+    </ul>
+  </li>
+  <li>B: 常量分类
+    <ul>
+      <li>a: 整数类型
+        <ul>
+          <li>十进制表示方式：正常数字   如 13、25等</li>
+          <li>二进制表示方式：以0b(0B)开头    如0b1011 、0B1001</li>
+          <li>十六进制表示方式：以0x(0X)开头   数字以0-9及A-F组成  如0x23A2、0xa、0x10</li>
+          <li>八进制表示方式：以0开头   如01、07、0721</li>
+        </ul>
+      </li>
+      <li>b: 小数类型
+        <ul>
+          <li>如1.0、-3.15、3.168等</li>
+        </ul>
+      </li>
+      <li>c: 布尔类型
+        <ul>
+          <li>true、false</li>
+        </ul>
+      </li>
+      <li>d: 字符类型
+        <ul>
+          <li>如’a’，’A’, ‘0’, ‘家’</li>
+          <li>字符必须使用’’ 包裹，并且其中只能且仅能包含一个字符。</li>
+        </ul>
+      </li>
+      <li>e: 字符串类型
+        <ul>
+          <li>字符串String类型是一种引用类型，我们先了解作为常量类型的使用方式</li>
+          <li>如“我爱Java”，“0123”，“”，“null”</li>
+          <li>字符串必须使用“”包裹，其中可以包含0~N个字符。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="16-程序中输出java中的常量">16 程序中输出Java中的常量</h3>
+<ul>
+  <li>A: 案例代码
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="cm">/*
+      Demo_1类，演示Java中的所有类型的常量
+      程序当中输出：
+          输出整数常量
+          小数常量
+          布尔常量
+          字符常量
+          字符串常量
+  */</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo_1</span><span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+          <span class="c1">//输出整数 十进制</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+			
+          <span class="c1">//输出整数，二进制, 数字开头0B</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mi">0</span><span class="n">B11</span><span class="o">);</span>
+			
+          <span class="c1">//输出整数，八进制，数字开头0</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mi">051</span><span class="o">);</span>
+			
+          <span class="c1">//输出整数，十六进制，数组开头0X  0-9 A-F</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mi">0</span><span class="n">XE</span><span class="o">);</span>
+			
+          <span class="c1">//输出浮点数据</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mf">5.0</span><span class="o">);</span>
+			
+          <span class="c1">//输出布尔数据，只有2个值，true，false 关键字</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+			
+          <span class="c1">//输出字符常量，单引号包裹，只能写1个字符</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="sc">'a'</span><span class="o">);</span>
+			
+          <span class="c1">//输出字符串常量，双引号包裹，可以写0-n个字符</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"HelloWorld"</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+			  
+			<p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p>
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="#" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="#" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>
