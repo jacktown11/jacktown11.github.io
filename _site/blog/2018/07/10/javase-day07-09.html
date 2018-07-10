@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper hidden">
+
+	</div>
+	
+	<article class="wrap panel">
+		<h1>javase day07-09</h1>
+		<p class="meta">10 Jul 2018</p>
+		<div class="post">
+			  <h2 id="day07">day07</h2>
+
+<h3 id="摘要">摘要</h3>
+<ol>
+  <li>自定义类型的定义及使用</li>
+  <li>ArrayList集合的基本功能</li>
+</ol>
+
+<h3 id="01-引用数据类型_类">01 引用数据类型_类</h3>
+<ul>
+  <li>数据类型
+    <ul>
+      <li>java中的数据类型分为：<code class="highlighter-rouge">基本类型</code>和<code class="highlighter-rouge">引用类型</code></li>
+    </ul>
+  </li>
+  <li>引用类型的分类
+    <ul>
+      <li>Java为我们提供好的类，比如说：Scanner,Random等。</li>
+      <li>我们自己创建的类，按照类的定义标准，可以在类中包含多个方法与属性，来供我们使用。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="02-自定义类的概述">02 自定义类的概述</h3>
+<ul>
+  <li>java代码映射成现实事物的过程就是定义类的过程。</li>
+  <li>举例：我们就拿一部手机进行分析，它能用来做什么呢？它可以打电话，上网，聊微信等，这些就是手机所提供的功能，也就是方法；手机也有它的特征，如颜色、尺寸大小、品牌型号等，这些就是手机的特征，也就是属性</li>
+</ul>
+
+<h3 id="03-自定义类的格式">03 自定义类的格式</h3>
+<ul>
+  <li>使用类的形式,对现实中的事物进行描述。</li>
+  <li>事物由方法和属性两部分组成。
+    <ul>
+      <li>方法: 这个事物具备的功能。</li>
+      <li>属性: 这个事物具备的特征。</li>
+    </ul>
+  </li>
+  <li>格式
+    <pre><code class="language-txt">  public class 类名{
+      属性定义
+          修饰符 数据类型 变量名 = 值
+		
+      方法定义
+          修饰符 返回值类型  方法名(参数列表){
+				
+          }
+  }
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="04-使用自定义类">04 使用自定义类</h3>
+<ul>
+  <li>调用方法执行流程
+    <ul>
+      <li>导入包,类都是在同一个文件夹,不需要导入包</li>
+      <li>创建引用类型的变量</li>
+      <li>变量.类型中的功能</li>
+    </ul>
+  </li>
+  <li>创建类实例时内存变化
+    <ul>
+      <li>在堆内存中分配出对象存储空间</li>
+      <li>初始化对象上的实例变量</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="05-arraylist创建变量的步骤">05 ArrayList创建变量的步骤</h3>
+
+<ul>
+  <li>导入包 java.util包中</li>
+  <li>创建引用类型的变量
+    <ul>
+      <li><code class="highlighter-rouge">数据类型&lt; 集合存储的数据类型&gt;  变量名 = new 数据类型&lt;集合存储的数据类型&gt;()</code>;</li>
+      <li>集合存储的数据类型: 要将数据存储到集合的容器中</li>
+      <li>创建集合引用变量的时候,必须要指定好,存储的类型是什么</li>
+    </ul>
+  </li>
+  <li>变量名.方法
+    <ul>
+      <li>注意: 集合存储的数据,8个基本类型对应8个引用类型</li>
+      <li>存储引用类型,不存储基本类型</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="06-arraylist的常见方法">06 ArrayList的常见方法</h3>
+<ul>
+  <li><code class="highlighter-rouge">add(参数)</code> 向集合中添加元素</li>
+  <li><code class="highlighter-rouge">get(int index)</code> 取出集合中的元素,get方法的参数,写入索引</li>
+  <li><code class="highlighter-rouge">size()</code> 返回集合的长度, 集合存储元素的个数</li>
+</ul>
+
+<h3 id="07-arraylist集合的遍历">07 ArrayList集合的遍历</h3>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="cm">/*
+	集合的遍历
+	实现思想也是索引思想
+	集合的索引从0开始,到 size()-1
+	方法get(int index)
+*/</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayListDemo_2</span><span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+		<span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+		<span class="n">array</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">121</span><span class="o">);</span>
+		<span class="n">array</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">125</span><span class="o">);</span>
+		<span class="n">array</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">123</span><span class="o">);</span>
+		<span class="n">array</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">120</span><span class="o">);</span>
+		<span class="n">array</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">128</span><span class="o">);</span>
+		
+		<span class="c1">//对集合进行遍历</span>
+		<span class="c1">//使用方法 size+get组合进行遍历</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">array</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h3 id="08-arraylist补充方法">08 ArrayList补充方法</h3>
+<ul>
+  <li><code class="highlighter-rouge">add(int 索引,存储的元素)</code> 将元素添加到指定的索引上</li>
+  <li><code class="highlighter-rouge">set(int 索引,修改后的元素)</code> 将指定索引的元素,进行修改</li>
+  <li><code class="highlighter-rouge">remove(int 索引)</code> 删除指定索引上的元素</li>
+  <li><code class="highlighter-rouge">clear()</code> 清空集合中的所有元素</li>
+</ul>
+
+<h2 id="day08">day08</h2>
+
+<h3 id="摘要-1">摘要</h3>
+<ol>
+  <li>Eclipse开发工具</li>
+</ol>
+
+<h3 id="01-eclipse的下载安装">01 Eclipse的下载安装</h3>
+<ul>
+  <li>Eclipse的下载安装
+    <ul>
+      <li>下载: http://www.eclipse.org</li>
+      <li>安装: 只需要解压后就能使用</li>
+      <li>卸载: 只需要将文件夹删除就可以了</li>
+      <li>注意: 开发软件的安装目录中，尽量不要出现空格与中文</li>
+    </ul>
+  </li>
+  <li>Eclipse的特点
+    <ul>
+      <li>免费</li>
+      <li>纯Java语言编写</li>
+      <li>免安装</li>
+      <li>扩展性强</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="02-eclipse的工作空间和新建工程">02 Eclipse的工作空间和新建工程</h3>
+<ul>
+  <li>Eclipse的工作空间和新建工程
+    <ul>
+      <li>工作空间
+        <ul>
+          <li>其实就是我们写的源代码所在的目录</li>
+        </ul>
+      </li>
+      <li>创建工程(项目)
+        <ul>
+          <li>右键/Package Explore 空白区/new /Java Project/输入项目名称如day08/</li>
+        </ul>
+      </li>
+      <li>创建包(后面讲包的概念)
+  -　打开上面建立的day08项目/右键/new/package/在弹出的对话框的name中输入报名如”com.itheima.tests”/finish</li>
+      <li>创建类
+        <ul>
+          <li>创建一个java类:右击包名/new/class/在对话框的name中输入类名/finish</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>编译与执行
+    <ul>
+      <li>编译
+        <ul>
+          <li>自动编译，当java代码保存的时候，自动 编译class文件</li>
+        </ul>
+      </li>
+      <li>运行
+        <ul>
+          <li>方式1：点击菜单工具栏中的 绿色带有三角形的 run按钮 运行</li>
+          <li>方式2：点击菜单栏中Run， 点击Run 运行  快捷键是 ctrl+F11</li>
+          <li>方式3：选中要运行的java文件，或者在编写代码的空白区域，右键选择 Run As –&gt; 运行java程序</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="03-eclipse的helloworld编写">03 Eclipse的HelloWorld编写</h3>
+<ul>
+  <li>编写过程(参照上个知识点)
+    <ul>
+      <li>建立day08项目</li>
+      <li>建立包结构(不建立包的话,使用默认包结构default)</li>
+      <li>创建HelloWorld类(自动生成main方法)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="04-eclipse的字体设置">04 Eclipse的字体设置</h3>
+<ul>
+  <li>修改编译环境和运行环境
+    <ul>
+      <li>编译环境：Window – Preferences – Java - Compiler</li>
+      <li>运行环境：Window – Preferences – Java - Installed JREs</li>
+    </ul>
+  </li>
+  <li>显示行号与隐藏行号
+    <ul>
+      <li>显示：在代码区域的左边空白区域，右键 – Show Line Numbers</li>
+      <li>隐藏：将上面的操作再做一遍</li>
+    </ul>
+  </li>
+  <li>更改字体大小与颜色
+    <ul>
+      <li>Java代码区域的字体大小和颜色： window – Preferences – General – Appearance – Colors And Fonts –Java修改 – Java Edit Text Font–edit进行修改</li>
+      <li>控制台: window – Preferences – General – Appearance – Colors And Fonts – Debug – Console font</li>
+      <li>其他文件: window – Preferences – General – Appearance – Colors And Fonts – Basic – Text Font</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="05-eclipse的窗口设置">05 Eclipse的窗口设置</h3>
+<ul>
+  <li>显示的窗口乱了，还原默认显示模式
+    <ul>
+      <li>Window – Perspective – Reset Prespective</li>
+    </ul>
+  </li>
+  <li>显示控制台
+    <ul>
+      <li>Window–Show View—Console</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="06-eclipse的去掉多余的注释">06 Eclipse的去掉多余的注释</h3>
+<ul>
+  <li>如何去掉默认注释
+    <ul>
+      <li>Window – Preferences – Java – Code Style – Code Templates – Comments – Methods，点击Edit ，将注释部分删除 (不建议删除)</li>
+      <li>Window – Preferences – Java – Code Style – Code Templates – Code – Method body，点击Edit ，将注释部分删除</li>
+    </ul>
+  </li>
+  <li>切换工作空间
+    <ul>
+      <li>File – Switch Workspace – 指定工作空间 – ok</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="07-eclipse的快捷键">07 Eclipse的快捷键</h3>
+<ul>
+  <li>内容辅助键 <code class="highlighter-rouge">Alt+/</code>
+    <ul>
+      <li>自动补齐main方法  main 然后 Alt+/
+        <ul>
+          <li>自动补齐输出语句  syso 然后 Alt+/</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>格式化代码
+    <ul>
+      <li><code class="highlighter-rouge">Ctrl+Shift+f</code></li>
+      <li>代码区域右键 – Source – Format</li>
+    </ul>
+  </li>
+  <li>自动导包
+    <ul>
+      <li><code class="highlighter-rouge">Ctrl+Shift+o</code></li>
+      <li>如果当前类在多个包中都存在，这时候，使用Ctrl+shift+o,进行选择一个包导入即可。</li>
+    </ul>
+  </li>
+  <li>注释
+    <ul>
+      <li>单行注释： <code class="highlighter-rouge">Ctrl+/</code></li>
+      <li>多行注释： <code class="highlighter-rouge">Ctrl+Shift+/</code></li>
+    </ul>
+  </li>
+  <li>补充
+    <ul>
+      <li>代码上下移动
+        <ul>
+          <li>选中代码<code class="highlighter-rouge">alt+down/up</code></li>
+        </ul>
+      </li>
+      <li>查看源码
+        <ul>
+          <li>选中类名(F3或者Ctrl+鼠标点击)</li>
+        </ul>
+      </li>
+      <li>查找具体的类
+        <ul>
+          <li>ctrl + shift + t，输入要查找的类的名称–&gt;确定</li>
+        </ul>
+      </li>
+      <li>查找具体类的具体方法
+        <ul>
+          <li>ctrl + o</li>
+        </ul>
+      </li>
+      <li>给建议
+        <ul>
+          <li><code class="highlighter-rouge">ctrl+1</code>,根据右边生成左边的数据类型,生成方法</li>
+        </ul>
+      </li>
+      <li>删除代码
+        <ul>
+          <li><code class="highlighter-rouge">ctrl + D</code></li>
+        </ul>
+      </li>
+      <li>抽取方法
+        <ul>
+          <li>alt + shift + m</li>
+        </ul>
+      </li>
+      <li>改名
+        <ul>
+          <li><code class="highlighter-rouge">Ctrl+2 R</code></li>
+          <li>alt + shift + r（类名，方法名，变量名）</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="08-eclipse的断点调试">08 Eclipse的断点调试</h3>
+<ul>
+  <li>断点调试(又称为Debug调试)的作用
+    <ul>
+      <li>调试程序</li>
+      <li>查看程序执行流程</li>
+    </ul>
+  </li>
+  <li>如何查看程序执行流程
+    <ul>
+      <li>断点：就是一个标记，从哪里开始。</li>
+      <li>设置断点: 你想看哪里的程序，你就在那个有效程序的左边双击即可。</li>
+      <li>在哪里设置断点：
+        <ul>
+          <li>程序关键位置</li>
+        </ul>
+      </li>
+      <li>如何运行设置断点后的程序：
+        <ul>
+          <li>右键 – Debug as – Java Application</li>
+        </ul>
+      </li>
+      <li>看哪些地方：
+        <ul>
+          <li>Debug：断点测试的地方
+            <ul>
+              <li>在这个地方，记住F6，或者点击也可以。一次看一行的执行过程。</li>
+            </ul>
+          </li>
+          <li>Variables：查看程序的变量变化</li>
+          <li>ForDemo：被查看的源文件</li>
+          <li>Console：控制台</li>
+        </ul>
+      </li>
+      <li>如何去断点：
+        <ul>
+          <li>再次双击即可</li>
+          <li>找到Debug视图，Variables界面，找到Breakpoints，并点击，然后看到所有的断点，最后点击那个双叉</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="09-eclipse的工程删除和导入">09 Eclipse的工程删除和导入</h3>
+<ul>
+  <li>删除项目
+    <ul>
+      <li>选中项目 – 右键 – 删除
+        <ul>
+          <li>从项目区域中删除</li>
+          <li>从硬盘上删除</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>导入项目
+    <ul>
+      <li>在项目区域右键找到import</li>
+      <li>找到General，展开，并找到</li>
+      <li>Existing Projects into Workspace</li>
+      <li>点击next,然后选择你要导入的项目</li>
+      <li>注意：这里选择的是项目名称</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="day09">day09</h2>
+
+<h3 id="摘要-2">摘要</h3>
+<ol>
+  <li>面向对象思想</li>
+  <li>类与对象的关系</li>
+  <li>局部变量和成员变量的关系</li>
+  <li>封装思想</li>
+  <li>private,this关键字</li>
+</ol>
+
+<h3 id="01-面向对象和面向过程的思想">01 面向对象和面向过程的思想</h3>
+<ul>
+  <li>面向过程与面向对象都是我们编程中，编写程序的一种思维方式
+    <ul>
+      <li>面向过程的程序设计方式，是遇到一件事时，思考“我该怎么做”，然后一步步实现的过程。</li>
+      <li>面向对象的程序设计方式，是遇到一件事时，思考“我该让谁来做”，然后那个“谁”就是对象，他要怎么做这件事是他自己的事，反正最后一群对象合力能把事就好就行了。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="02-面向对象的思想的生活案例">02 面向对象的思想的生活案例</h3>
+<ul>
+  <li>买电脑（组装机）
+    <ul>
+      <li>面向过程：自己该怎么做</li>
+      <li>面向对象：找人帮我们做</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="03-面向对象好处">03 面向对象好处</h3>
+<ul>
+  <li>面向对象思维方式是一种更符合人们思考习惯的思想</li>
+  <li>面向过程思维方式中更多的体现的是执行者（自己做事情），面向对象中更多的体现是指挥者（指挥对象做事情）。</li>
+  <li>面向对象思维方式将复杂的问题简单化。</li>
+</ul>
+
+<h3 id="04-大象装进冰箱的代码案例">04 大象装进冰箱的代码案例</h3>
+<ul>
+  <li>需求：把大象装冰箱里
+    <ul>
+      <li>面向过程
+        <ul>
+          <li>自己打开冰箱门</li>
+          <li>自己将大象装进去</li>
+          <li>自己关闭冰箱门</li>
+        </ul>
+      </li>
+      <li>面向对象
+        <ul>
+          <li>分析发现打开、装、关闭都是冰箱的功能。即冰箱对象具备如下功能:
+            <ul>
+              <li>冰箱打开</li>
+              <li>冰箱存储</li>
+              <li>冰箱关闭</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>通过伪代码描述大象和冰箱
+    <ul>
+      <li>描述大象：
+        <pre><code class="language-txt">  class 大象
+  {
+  }
+</code></pre>
+      </li>
+      <li>描述冰箱
+        <pre><code class="language-txt">  class冰箱
+  {
+      void 打开(){}
+      void 存储(大象){}
+      void 关闭(){}
+  }
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>使用对象：
+    <ul>
+      <li>1、创建冰箱的对象
+        <ul>
+          <li>冰箱 bx = new 冰箱();</li>
+        </ul>
+      </li>
+      <li>2、调用冰箱的功能
+        <ul>
+          <li>对象.功能()；</li>
+          <li>bx.打开();</li>
+          <li>bx.存储(new 大象());</li>
+          <li>bx.关闭();</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>总结：
+    <ul>
+      <li>先按照名词提炼问题领域中的对象</li>
+      <li>对对象进行描述，其实就是在明确对象中应该具备的属性和功能</li>
+      <li>通过new的方式就可以创建该事物的具体对象</li>
+      <li>通过该对象调用它以后的功能。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="05-定义小汽车类">05 定义小汽车类</h3>
+<ul>
+  <li>分析小汽车的属性和功能
+    <ul>
+      <li>属性
+        <ul>
+          <li>颜色</li>
+          <li>轮胎个数</li>
+        </ul>
+      </li>
+      <li>功能
+        <ul>
+          <li>运行</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>通过伪代码描述小汽车
+    <pre><code class="language-txt">  小汽车{
+      颜色
+      轮胎个数
+      运行(){}
+  }
+</code></pre>
+  </li>
+  <li>通过JAVA代码描述小汽车
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Car</span> <span class="o">{</span>
+      <span class="n">String</span> <span class="n">color</span><span class="o">;</span>
+      <span class="kt">int</span> <span class="n">number</span><span class="o">;</span>
+	
+      <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">color</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">number</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="06-测试汽车类">06 测试汽车类</h3>
+<ul>
+  <li>创见对象的格式
+    <ul>
+      <li><code class="highlighter-rouge">类名 变量名 = new 类名();</code></li>
+    </ul>
+  </li>
+  <li>测试汽车类
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CarDemo</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span> 
+          <span class="cm">/*
+              测试：Car类中的run方法。
+              */</span>
+          <span class="c1">// 1,创建Car的对象。给对象起个名字。</span>
+          <span class="n">Car</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Car</span><span class="o">();</span><span class="c1">// c是类类型的变量。c指向了一个具体的Car类型的对象。</span>
+          <span class="c1">// 2,通过已有的对象调用该对象的功能。格式：对象.对象成员;</span>
+          <span class="c1">// 3,可以该对象的属性赋值。</span>
+          <span class="n">c</span><span class="o">.</span><span class="na">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="o">;</span>
+          <span class="n">c</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
+          <span class="n">c</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="07-类和对象的关系">07 类和对象的关系</h3>
+<ul>
+  <li>类和对象的关系
+    <ul>
+      <li>类是对某一类事物的抽象描述，而对象用于表示现实中该类事物的个体</li>
+    </ul>
+  </li>
+  <li>举例
+    <ul>
+      <li>可以将玩具模型看作是一个类，将一个个玩具看作对象，从玩具模型和玩具之间的关系便可以看出类与对象之间的关系</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="08-成员变量和局部变量的区别">08 成员变量和局部变量的区别</h3>
+<ul>
+  <li>区别一：定义的位置不同
+    <ul>
+      <li>定义在类中的变量是成员变量</li>
+      <li>定义在方法中或者{}语句里面的变量是局部变量</li>
+    </ul>
+  </li>
+  <li>区别二：在内存中的位置不同
+    <ul>
+      <li>成员变量存储在堆内存的对象中</li>
+      <li>局部变量存储在栈内存的方法中</li>
+    </ul>
+  </li>
+  <li>区别三：生命周期不同
+    <ul>
+      <li>成员变量随着对象的出现而出现在堆中，随着对象的消失而从堆中消失</li>
+      <li>局部变量随着方法的运行而出现在栈中，随着方法的弹栈而消失</li>
+    </ul>
+  </li>
+  <li>区别四：作用域不同
+    <ul>
+      <li>成员变量是整个类</li>
+      <li>局部变量只在方法或块作用域内部</li>
+    </ul>
+  </li>
+  <li>区别五：初始化不同
+    <ul>
+      <li>成员变量在堆内存中，有默认的初始化值</li>
+      <li>局部变量没有默认的初始化值，必须手动的给其赋值才可以使用。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="09-方法参数是基本数据类型和引用数据类型">09 方法参数是基本数据类型和引用数据类型</h3>
+<ul>
+  <li>基本类型
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Demo</span>
+<span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+  <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
+      <span class="n">show</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x="</span><span class="o">+</span><span class="n">x</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span>
+  <span class="o">{</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+		
+  <span class="o">}</span>
+<span class="o">}</span>	
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p>基本类型作为参数传递时，其实就是将基本类型变量x空间中的值复制了一份传递给调用的方法show()，当在show()方法中x接受到了复制的值，再在show()方法中对x变量进行操作，这时只会影响到show中的x。当show方法执行完成，弹栈后，程序又回到main方法执行，main方法中的x值还是原来的值。</p>
+
+<ul>
+  <li>引用类型
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Demo</span> 
+<span class="o">{</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> 
+  <span class="o">{</span>
+
+      <span class="n">Demo</span> <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Demo</span><span class="o">();</span>
+      <span class="n">d</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+      <span class="n">show</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x="</span><span class="o">+</span><span class="n">d</span><span class="o">.</span><span class="na">x</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="n">Demo</span> <span class="n">d</span><span class="o">)</span>
+  <span class="o">{</span>
+      <span class="n">d</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>	
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p>当引用变量作为参数传递时，这时其实是将引用变量空间中的内存地址(引用)复制了一份传递给了show方法的d引用变量。这时会有两个引用同时指向堆中的同一个对象。当执行show方法中的d.x=6时，会根据d所持有的引用找到堆中的对象，并将其x属性的值改为6.show方法弹栈。
+由于是两个引用指向同一个对象，不管是哪一个引用改变了引用的所指向的对象的中的值，其他引用再次使用都是改变后的值。</p>
+
+<ul>
+  <li>结论
+    <ul>
+      <li>对于基本类型形式参数改变不会影响到实际参数</li>
+      <li>对于引用类型形式参数改变会影响到实际参数</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="10-封装的概述">10 封装的概述</h3>
+<ul>
+  <li>面向对象三大特征
+    <ul>
+      <li><strong>封装、继承、多态</strong></li>
+    </ul>
+  </li>
+  <li>封装表现
+    <ul>
+      <li>1、方法就是一个最基本封装体</li>
+      <li>2、类其实也是一个封装体</li>
+    </ul>
+  </li>
+  <li>封装的好处
+    <ul>
+      <li>1、提高了代码的复用性</li>
+      <li>2、隐藏了实现细节，还要对外提供可以访问的方式。便于调用者的使用。这是核心之一，也可以理解为就是封装的概念</li>
+      <li>3、提高了安全性</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="11-封装的生活中的举例-机箱">11 封装的生活中的举例: 机箱</h3>
+<ul>
+  <li>一台电脑，它是由CPU、主板、显卡、内存、硬盘、电源等部件组长，其实我们将这些部件组装在一起就可以使用电脑了，但是发现这些部件都散落在外面，很容造成不安全因素，于是，使用机箱壳子，把这些部件都装在里面，并在机箱壳上留下一些插口等，若不留插口，大家想想会是什么情况。</li>
+  <li>总结：机箱其实就是隐藏了办卡设备的细节，对外提供了插口以及开关等访问内部细节的方式。</li>
+</ul>
+
+<h3 id="12-private关键字">12 private关键字</h3>
+<ul>
+  <li>private概述
+    <ul>
+      <li>private可以修饰成员内容包括成员方法和成员变量,不能修饰局部变量</li>
+      <li>被private修饰的内容不能在其他类访问</li>
+    </ul>
+  </li>
+  <li>示例
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+	
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">()</span> <span class="o">{</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"age="</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s">",name"</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="13-get和set方法">13 get和set方法</h3>
+<ul>
+  <li>get和set方法
+    <ul>
+      <li>年龄已被私有，错误的值无法赋值，可是正确的值也赋值不了，这样还是不行，那怎么办呢？按照之前所学习的封装的原理，隐藏后，还需要提供访问方式。只要对外提供可以访问的方法，让其他程序访问这些方法。同时在方法中可以对数据进行验证。</li>
+      <li>一般对成员属性的访问动作：赋值(设置<code class="highlighter-rouge">set</code>)，取值(获取<code class="highlighter-rouge">get</code>)，因此对私有的变量访问的方式可以提供对应的<code class="highlighter-rouge">setXxx</code>或者<code class="highlighter-rouge">getXxx</code>的方法。</li>
+      <li>举例
+        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+      <span class="c1">// 私有成员变量</span>
+      <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+		
+      <span class="c1">// 对外提供设置成员变量的方法</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span>
+          <span class="c1">// 由于是设置成员变量的值，这里可以加入数据的验证</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">130</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="s">"不符合年龄的数据范围"</span><span class="o">);</span>
+              <span class="k">return</span><span class="o">;</span>
+          <span class="o">}</span>
+          <span class="n">age</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span> 
+      <span class="o">}</span>
+		
+      <span class="c1">// 对外提供访问成员变量的方法</span>
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="n">age</span><span class="o">;</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>总结
+    <ul>
+      <li>类中不需要对外提供的内容都私有化，包括属性和方法。以后再描述事物，属性都私有化，并提供<code class="highlighter-rouge">setXxx</code>和<code class="highlighter-rouge">getXxx</code>方法对其进行访问</li>
+      <li>注意: 私有仅仅是封装的体现形式而已
+        <h3 id="14-私有化person类带getset">14 私有化Person类带get,set</h3>
+      </li>
+    </ul>
+  </li>
+  <li>标准代码
+  ```java
+  /*
+    <ul>
+      <li>类描述人:</li>
+      <li>属性: 姓名和年龄</li>
+      <li>方法: 说话</li>
+      <li></li>
+      <li>私有化所有的属性 (成员变量) ,必须写对应的get/set方法</li>
+      <li>凡是自定义的类,自定义成员变量,应该私有化,提供get/set</li>
+      <li></li>
+      <li>this关键字:</li>
+      <li>区分成员变量和局部变量同名情况</li>
+      <li>方法中,方位成员变量,写this.
+  */
+  public class Person {
+      private String name;
+      private int age;</li>
+    </ul>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // set方法,变量name,age赋值
+  public void setAge(int age) {
+      this.age = age;
+  }
+
+  public void setName(String name) {
+      this.name = name;
+  }
+
+  // get方法,变量name,age获取值
+  public int getAge() {
+      return age;
+  }
+
+  public String getName() {
+      return name;
+  }
+
+  public void speak() {
+      String  name = "哈哈";
+      int age = 16;
+		
+      System.out.println("人在说话  " + this.name + "..." + this.age);
+  }   }   ```
+</code></pre>
+    </div>
+  </li>
+  <li>标准测试代码
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonTest</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">();</span>
+          <span class="c1">//调用set方法,对成员变量赋值</span>
+          <span class="n">p</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="mi">18</span><span class="o">);</span>
+          <span class="n">p</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"旺财"</span><span class="o">);</span>
+          <span class="n">p</span><span class="o">.</span><span class="na">speak</span><span class="o">();</span>
+			
+			
+          <span class="c1">//调用get方法,获取成员变量的值</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">());</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="15-this关键字_区分成员变量和局部变量的同名">15 this关键字_区分成员变量和局部变量的同名</h3>
+<ul>
+  <li>什么时候用
+    <ul>
+      <li>当类中存在成员变量和局部变量同名的时候为了区分，就需要使用this关键字</li>
+    </ul>
+  </li>
+  <li>代码
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+		
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">speak</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"小强"</span><span class="o">;</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="mi">18</span><span class="o">;</span>
+          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"name="</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">+</span> <span class="s">",age="</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+	
+  <span class="kd">class</span> <span class="nc">PersonDemo</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">();</span>
+          <span class="n">p</span><span class="o">.</span><span class="na">speak</span><span class="o">();</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="16-总结">16 总结</h3>
+<ul>
+  <li>类与对象
+    <ul>
+      <li>类，用于描述多个对象的共同特征，它是对象的模板。</li>
+      <li>对象，用于描述现实中的个体，它是类的实例。</li>
+      <li>类的定义：使用关键字class来定义java中的类</li>
+      <li>格式：
+        <pre><code class="language-txt">  class 类名 {
+      //属性
+      数据类型 变量名;
+      …
+      //方法
+      修饰符 返回值类型 方法名(参数){   }
+      …
+  }
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>创建对象：
+    <ul>
+      <li>类名 对象名 = new 类名();</li>
+    </ul>
+  </li>
+  <li>封装（private关键字）
+    <ul>
+      <li>封装，把对象的属性与方法的实现细节隐藏，仅对外提供一些公共的访问方式</li>
+      <li>封装的体现：
+        <ul>
+          <li>变量:使用 private 修饰，这就是变量的封装</li>
+          <li>方法:也是一种封装，封装了多条代码</li>
+          <li>类： 也是一种封装，封装了多个方法</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>private关键字，私有的意思
+    <ul>
+      <li>它可以用来修饰类中的成员(成员变量，成员方法)</li>
+      <li>private的特点：private修饰的成员只能在当前类中访问，其他类中无法直接访问</li>
+    </ul>
+  </li>
+  <li>this关键字
+    <ul>
+      <li>this关键字，本类对象的引用</li>
+      <li>this是在方法中使用的，哪个对象调用了该方法，那么，this就代表调用该方法的对象引用</li>
+      <li>this什么时候存在的？当创建对象的时候，this存在的</li>
+      <li>this的作用：用来区别同名的成员变量与局部变量（this.成员变量）
+        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+			  
+			<p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p>
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="#" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="#" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>
