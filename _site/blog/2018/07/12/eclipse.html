@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper hidden">
+
+	</div>
+	
+	<article class="wrap panel">
+		<h1>eclipse的使用</h1>
+		<p class="meta">12 Jul 2018</p>
+		<div class="post">
+			  <h1 id="常用快捷键">常用快捷键</h1>
+<ul>
+  <li><code class="highlighter-rouge">Alt+/</code>, 代码补全提示</li>
+  <li><code class="highlighter-rouge">Alt+Shift+S</code>, 自动代码生成</li>
+  <li><code class="highlighter-rouge">Ctrl+Shift+O</code>, 自动导入包</li>
+  <li><code class="highlighter-rouge">Ctrl+T</code>, 查看继承树</li>
+  <li><code class="highlighter-rouge">Ctrl</code>+滑动鼠标点击类/方法名，或者选中类名后，按<code class="highlighter-rouge">F3</code>键查看所选中类/方法的源代码</li>
+</ul>
+
+<h1 id="帮助文档自动生成">帮助文档自动生成</h1>
+
+<p>eclipse可以根据源代码中的文档注释自动生成帮助文档。</p>
+
+<ul>
+  <li>在项目上<code class="highlighter-rouge">右键</code>，选择<code class="highlighter-rouge">export</code></li>
+  <li>选择<code class="highlighter-rouge">Java</code>&gt;<code class="highlighter-rouge">Javadoc</code>&gt;<code class="highlighter-rouge">Next</code></li>
+  <li>给定文档生成所需配置
+    <ul>
+      <li><code class="highlighter-rouge">Javadoc command</code>选择<code class="highlighter-rouge">JDK</code>安装目录下的<code class="highlighter-rouge">bin/javadoc.exe</code></li>
+      <li>选择需要导出帮助文档的包/类</li>
+      <li>选择帮助文档输出路径</li>
+      <li>点击<code class="highlighter-rouge">Next</code></li>
+    </ul>
+  </li>
+  <li>点击<code class="highlighter-rouge">Finish</code>，自动创建完成后，就可以在之前设置的帮助文档输出路径下找到生成的帮助文档，使用浏览器打开<code class="highlighter-rouge">index.html</code>文件即可查看。</li>
+</ul>
+
+<h1 id="jar包的导出">jar包的导出</h1>
+<ul>
+  <li>在项目上<code class="highlighter-rouge">右键</code>，选择<code class="highlighter-rouge">export</code></li>
+  <li>选择<code class="highlighter-rouge">Java</code>&gt;<code class="highlighter-rouge">JAR file</code>&gt;<code class="highlighter-rouge">Next</code></li>
+  <li>选定需要导出的包/类，设置导出路径</li>
+  <li><code class="highlighter-rouge">Finish</code></li>
+</ul>
+
+<h1 id="jar包的导入">jar包的导入</h1>
+<ul>
+  <li>在项目的根目录下创建文件夹<code class="highlighter-rouge">lib</code>，所有需要使用的外部包放到该文件夹下</li>
+  <li>在项目中刷新后，在<code class="highlighter-rouge">lib</code>文件夹下的相应jar包上<code class="highlighter-rouge">右键</code>&gt;<code class="highlighter-rouge">Build Path</code>&gt;<code class="highlighter-rouge">Add to Build Path</code></li>
+  <li>完成后可以在根目录下的<code class="highlighter-rouge">.classpath</code>文件中查看到外部包的路径</li>
+</ul>
+
+
+			  
+			<p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p>
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="#" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="#" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>
