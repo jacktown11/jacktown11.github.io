@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper hidden">
+
+	</div>
+	
+	<article class="wrap panel">
+		<h1>java常用API</h1>
+		<p class="meta">12 Jul 2018</p>
+		<div class="post">
+			  <h1 id="object">Object</h1>
+<p>java中所有引用类型的父类，定义了一系列方法，如<code class="highlighter-rouge">equals</code>、<code class="highlighter-rouge">toString</code>、<code class="highlighter-rouge">hashCode</code>等，因此java所用的引用类型都有了这些方法。</p>
+
+<h2 id="equals方法">equals()方法</h2>
+<p>java源码中该方法的实现如下：</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">obj</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>根据这个实现，两个对象相等意味着他们必定是同一个对象（如果<code class="highlighter-rouge">equals</code>方法未被重写）。然而，java中可用这个方法来比较两个字符串是否相等，这说明<code class="highlighter-rouge">String</code>类一定重写过该方法，通过查看源码确实在<code class="highlighter-rouge">String</code>类找到了该方法的覆盖，如下所示：</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">anObject</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">anObject</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">anObject</span> <span class="k">instanceof</span> <span class="n">String</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">anotherString</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">anObject</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">anotherString</span><span class="o">.</span><span class="na">value</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">char</span> <span class="n">v1</span><span class="o">[]</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+            <span class="kt">char</span> <span class="n">v2</span><span class="o">[]</span> <span class="o">=</span> <span class="n">anotherString</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">n</span><span class="o">--</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">v1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="n">v2</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="n">i</span><span class="o">++;</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+
+</code></pre>
+</div>
+
+<p>上述代码首先进行了类型判断与显式转换，在传入参数确实是字符串的情况下，逐个字符进行比较。（上述代码中<code class="highlighter-rouge">value</code>是<code class="highlighter-rouge">String</code>对象内的私有<code class="highlighter-rouge">char</code>数组常量,储存了字符串的所有字符）。</p>
+
+<h2 id="tostring方法">toString()方法</h2>
+<p>返回对象的字符串表示，通常是形如<code class="highlighter-rouge">类名+内存地址</code>，实际开发使用时通常要重写。</p>
+
+<h1 id="string">String</h1>
+<p><code class="highlighter-rouge">String</code>类实际字符内容都存储在一个字符数组常量<code class="highlighter-rouge">value</code>中，因此字符串创建后其内容是不可变的，如下源码所示：</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">value</span><span class="o">[];</span>
+</code></pre>
+</div>
+
+<h2 id="对象创建">对象创建</h2>
+
+<h3 id="使用字面量">使用字面量</h3>
+<p><code class="highlighter-rouge">String str = "xxx";</code></p>
+
+<h3 id="使用构造函数">使用构造函数</h3>
+
+<p>构造函数有重载</p>
+
+<ul>
+  <li><code class="highlighter-rouge">new String()</code>, 返回空字符串</li>
+  <li><code class="highlighter-rouge">new String("xxx")</code>, 返回参数字符串</li>
+  <li><code class="highlighter-rouge">new String(byte[] bytes)</code>, 将数组各元素根据平台默认字符编码表解码成字符，并返回合并后的字符串</li>
+  <li><code class="highlighter-rouge">new String(byte[] bytes, int offset, int len)</code>, 剪切版本</li>
+  <li><code class="highlighter-rouge">new String(char[] chars)</code>, 返回所有字符合并后的字符串</li>
+  <li><code class="highlighter-rouge">new String(char[] chars, int offset, int len)</code>, 剪切版本</li>
+</ul>
+
+<h2 id="常用方法">常用方法</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>int <code class="highlighter-rouge">length</code>()</td>
+      <td>字符串长度</td>
+    </tr>
+    <tr>
+      <td>String <code class="highlighter-rouge">subString</code>(int beginIndex, int endIndex)</td>
+      <td>字符串截取[beginIndex, endIndex)</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">equals</code>(Object obj)</td>
+      <td>字符串比较</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">equalsIgnoreCase</code>(Object o)</td>
+      <td>字符串比较（忽略大小写）</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">contains</code>(CharSequence cs)</td>
+      <td>是否包含参数</td>
+    </tr>
+    <tr>
+      <td>int <code class="highlighter-rouge">indexOf</code>(String str)</td>
+      <td>参数第一次出现的位置索引</td>
+    </tr>
+    <tr>
+      <td>char <code class="highlighter-rouge">charAt</code>(int index)</td>
+      <td>某位置的字符</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">startsWith</code>(String str)</td>
+      <td>是否以参数为前缀</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">endsWith</code>(String str)</td>
+      <td>是否以参数为后缀</td>
+    </tr>
+    <tr>
+      <td>byte[] <code class="highlighter-rouge">getBytes</code>()</td>
+      <td>转换成byte数组(使用平台默认字符编码表)</td>
+    </tr>
+    <tr>
+      <td>char[] <code class="highlighter-rouge">toCharArray</code>()</td>
+      <td>转换成char数组</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="stringbuffer">StringBuffer</h1>
+<p>一种线程安全的可变字符序列，和<code class="highlighter-rouge">String</code>相比，其用于存储内容的字符数组是可变长、可修改的。</p>
+
+<h2 id="常用方法-1">常用方法</h2>
+<ul>
+  <li>StringBuffer <code class="highlighter-rouge">append</code>(CharSequence cs)
+    <ul>
+      <li>添加字符序列</li>
+    </ul>
+  </li>
+  <li>StringBuffer <code class="highlighter-rouge">delete</code>(int start, int end)
+    <ul>
+      <li>删除[start, end)部分字符</li>
+    </ul>
+  </li>
+  <li>StringBuffer <code class="highlighter-rouge">insert</code>(int dstOffset CharSequence cs)
+    <ul>
+      <li>插入字符序列到目标位置</li>
+    </ul>
+  </li>
+  <li>StringBuffer <code class="highlighter-rouge">replace</code>(int start, int end, String)
+    <ul>
+      <li>删除后插入</li>
+    </ul>
+  </li>
+  <li>StringBuffer <code class="highlighter-rouge">reverse</code>()
+    <ul>
+      <li>翻转字符序列</li>
+    </ul>
+  </li>
+  <li>String <code class="highlighter-rouge">toString</code>()
+    <ul>
+      <li>转换为字符串</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="stringbuilder">StringBuilder</h2>
+<p>一个线程不安全的类，但是速度更快，可能的情况下，优先使用<code class="highlighter-rouge">StringBuilder</code>。</p>
+
+<h1 id="正则表达式">正则表达式</h1>
+<p>java.util.regex包提供了<code class="highlighter-rouge">Matcher</code>和<code class="highlighter-rouge">Pattern</code>两个类。</p>
+
+<h2 id="正则表达式的创建">正则表达式的创建</h2>
+<p>Pattern类有一个静态方法compile(),可根据模式字符串返回正则表达式：</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="kd">static</span> <span class="n">Pattern</span>  <span class="nf">compile</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<h2 id="string对象中的正则表达式方法"><code class="highlighter-rouge">String</code>对象中的正则表达式方法</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">matches</code>(String regex)</td>
+      <td>模式匹配检查</td>
+    </tr>
+    <tr>
+      <td>String[] <code class="highlighter-rouge">split</code>(String regex)</td>
+      <td>字符串分割</td>
+    </tr>
+    <tr>
+      <td>String <code class="highlighter-rouge">replaceAll</code>(String regex, String replacement)</td>
+      <td>按照规则替换字符串</td>
+    </tr>
+  </tbody>
+</table>
+
+
+			  
+			<p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p>
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="#" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="#" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>
