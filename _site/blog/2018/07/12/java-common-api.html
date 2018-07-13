@@ -201,13 +201,22 @@
 <p>一个线程不安全的类，但是速度更快，可能的情况下，优先使用<code class="highlighter-rouge">StringBuilder</code>。</p>
 
 <h1 id="正则表达式">正则表达式</h1>
-<p>java.util.regex包提供了<code class="highlighter-rouge">Matcher</code>和<code class="highlighter-rouge">Pattern</code>两个类。</p>
+<p><code class="highlighter-rouge">java.util.regex</code>包提供了<code class="highlighter-rouge">Matcher</code>和<code class="highlighter-rouge">Pattern</code>两个类。</p>
 
-<h2 id="正则表达式的创建">正则表达式的创建</h2>
-<p>Pattern类有一个静态方法compile(),可根据模式字符串返回正则表达式：</p>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="kd">static</span> <span class="n">Pattern</span>  <span class="nf">compile</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">);</span>
+<h2 id="pattern">Pattern</h2>
+<h3 id="compile方法">compile()方法</h3>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">static</span> <span class="n">Pattern</span>  <span class="nf">compile</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">);</span>
 </code></pre>
 </div>
+<p>这是一个静态方法,可根据模式字符串返回正则表达式。</p>
+
+<h3 id="matcher方法">matcher()方法</h3>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Matcher</span> <span class="nf">matcher</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">input</span><span class="o">);</span>
+</code></pre>
+</div>
+<p>用一个<code class="highlighter-rouge">Pattern</code>实例对象调用该方法，可以获得一个<code class="highlighter-rouge">Matcher</code>对象</p>
+
+<h2 id="matcher">Matcher</h2>
 
 <h2 id="string对象中的正则表达式方法"><code class="highlighter-rouge">String</code>对象中的正则表达式方法</h2>
 
@@ -233,6 +242,69 @@
     </tr>
   </tbody>
 </table>
+
+<h1 id="日期">日期</h1>
+
+<h2 id="javautildate">java.util.Date</h2>
+
+<h3 id="构造方法">构造方法</h3>
+
+<ul>
+  <li>Date(), 以当前时间创建Date对象</li>
+  <li>Date(long date), 根据毫秒值参数创建Date对象</li>
+</ul>
+
+<h3 id="实例方法">实例方法</h3>
+<ul>
+  <li>long <code class="highlighter-rouge">getTime</code>(), 返回毫秒值</li>
+  <li>long <code class="highlighter-rouge">setTime</code>(), 设置毫秒值</li>
+</ul>
+
+<h2 id="javatextsimpledateformat">java.text.SimpleDateFormat</h2>
+<p>继承自<code class="highlighter-rouge">DateFormat</code>抽象类，用于格式化日期</p>
+
+<h3 id="构造方法-1">构造方法</h3>
+<ul>
+  <li>SimpleDateFormat(String datePatternStr), 参数是日期格式模式字符串，例如“yyyy-MM-dd”.</li>
+  <li>常用日期和时间模式
+    <ul>
+      <li>y  年</li>
+      <li>M  年中的月份</li>
+      <li>d  月份中的天数</li>
+      <li>H  一天中的小时数（0-23）</li>
+      <li>m  小时中的分钟数</li>
+      <li>s  分钟中的秒数</li>
+      <li>S  毫秒数</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="实例方法-1">实例方法</h3>
+<ul>
+  <li>String <code class="highlighter-rouge">format</code>(Date date), 根据格式输出参数日期的格式化字符串</li>
+  <li>Date <code class="highlighter-rouge">parse</code>(String str), 根据格式将日期字符串转换成日期对象</li>
+</ul>
+
+<h2 id="javautilcalendar">java.util.Calendar</h2>
+
+<p>不可通过<code class="highlighter-rouge">new</code>的方式产生对象实例，而是通过静态方法<code class="highlighter-rouge">getInstance()</code></p>
+
+<h3 id="常用方法-2">常用方法</h3>
+<ul>
+  <li>int <code class="highlighter-rouge">get</code>(int field), 获取日期某各个字段，<code class="highlighter-rouge">field</code>传入<code class="highlighter-rouge">Calendar</code>类的静态常量。</li>
+  <li>void <code class="highlighter-rouge">set</code>(int field, int value), 设置日期某字段</li>
+  <li>void <code class="highlighter-rouge">set</code>(int year, int month, int day), 一次性设置年月日</li>
+  <li>void <code class="highlighter-rouge">add</code>(int field, int offset), 以字段为单位偏移</li>
+  <li>Date <code class="highlighter-rouge">getTime()</code>, 转换成对于<code class="highlighter-rouge">Date</code>对象</li>
+  <li>void <code class="highlighter-rouge">setTime</code>(Date date), 用<code class="highlighter-rouge">Date</code>对象设置日历</li>
+</ul>
+
+<h3 id="注意">注意</h3>
+<ul>
+  <li>西方星期的开始为周日，中国为周一。</li>
+  <li>在Calendar类中，月份的表示是以0-11代表1-12月。</li>
+  <li>日期是有大小关系的，时间靠后，时间越大。</li>
+</ul>
 
 
 			  
