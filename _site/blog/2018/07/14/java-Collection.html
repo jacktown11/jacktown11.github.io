@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper hidden">
+
+	</div>
+	
+	<article class="wrap panel">
+		<h1>java 集合框架</h1>
+		<p class="meta">14 Jul 2018</p>
+		<div class="post">
+			  <h1 id="概述">概述</h1>
+
+<h2 id="概念">概念</h2>
+<p>集合是对象存储的容器，在<code class="highlighter-rouge">java.util</code>包中有相关的抽象类、接口和实现类。</p>
+
+<h2 id="集合体系">集合体系</h2>
+<ul>
+  <li>Collection(接口)
+    <ul>
+      <li>List(接口)
+        <ul>
+          <li>ArrayList(类)</li>
+          <li>LinkedList(类)</li>
+          <li>…</li>
+        </ul>
+      </li>
+      <li>Set(接口)
+        <ul>
+          <li>HashSet(类)</li>
+          <li>LinkedHashSet(类)</li>
+          <li>…</li>
+        </ul>
+      </li>
+      <li>…</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="colletion接口">Colletion接口</h1>
+
+<h2 id="基本方法">基本方法</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">add</code>(E e)</td>
+      <td>添加(确保存在)某元素</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">clear</code>()</td>
+      <td>清空元素</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">contains</code>(Object o)</td>
+      <td>判断是否包含某元素</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">remove</code>(Object o)</td>
+      <td>删除一个元素实例</td>
+    </tr>
+    <tr>
+      <td>int <code class="highlighter-rouge">size</code>()</td>
+      <td>已存元素总数量</td>
+    </tr>
+    <tr>
+      <td>Object[] <code class="highlighter-rouge">toArray</code>()</td>
+      <td>返回包含所有元素的数组</td>
+    </tr>
+    <tr>
+      <td>Iterator<E> `iterator`()</E></td>
+      <td>获取集合的迭代器</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="iterable超接口">Iterable超接口</h2>
+<p><code class="highlighter-rouge">JDK1.5</code>之后，<code class="highlighter-rouge">Collection</code>接口继承了<code class="highlighter-rouge">Iterable</code>接口（该接口在<code class="highlighter-rouge">java.lang</code>包中）,上述<code class="highlighter-rouge">Collection</code>的基本方法中的<code class="highlighter-rouge">iterator</code>方法实际上在<code class="highlighter-rouge">Iterable</code>接口中就已经声明了。</p>
+
+<p>另外，具有<code class="highlighter-rouge">Iterable</code>接口的对象都可以使用<code class="highlighter-rouge">forEach</code>
+循环（数组也实现了该接口），java中并没有<code class="highlighter-rouge">forEach</code>关键字，使用格式如下：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="o">(</span><span class="n">T</span> <span class="n">item</span> <span class="o">:</span> <span class="n">IterableObject</span><span class="o">){</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h1 id="iterator接口">Iterator接口</h1>
+<p>迭代器，为java的集合框架提供一种通用的枚举方式。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">hasNext</code>()</td>
+      <td>是否还有下一个迭代元素</td>
+    </tr>
+    <tr>
+      <td>E <code class="highlighter-rouge">next</code>()</td>
+      <td>获取下一个迭代元素</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="泛型generic">泛型（Generic）</h1>
+<p>泛型，即“参数化类型”。类似于方法中的变量参数，数据类型（类）也可定义成有参形式，然后在使用时传入具体的类型。泛型提供了编译时类型安全检测机制，该机制允许在编译时检测到非法的类型。</p>
+
+<p>java的泛型是伪泛型，只是编译的手段；编译后的<code class="highlighter-rouge">class</code>文件中是没有泛型的任何信息的。</p>
+
+<h2 id="泛型方法">泛型方法</h2>
+<p>格式：<code class="highlighter-rouge">修饰符 &lt;T&gt; 返回值类型 方法名(引用T的类型 方法参数)</code></p>
+
+<ul>
+  <li><code class="highlighter-rouge">&lt;&gt;</code>内为类型参数声明部分，放在修饰符之后，返回值类型之前</li>
+  <li>每一个类型参数声明部分包含一个或多个类型参数，参数间用逗号隔开。一个泛型参数，也被称为一个类型变量，是用于指定一个泛型类型名称的标识符</li>
+  <li>类型参数能被用来声明返回值类型，并且能作为泛型方法得到的实际参数类型的占位符</li>
+  <li>泛型方法体的声明和其他方法一样。注意类型参数只能代表引用型类型，不能是原始类型（像int,double,char的等）</li>
+</ul>
+
+<h2 id="泛型的限定">泛型的限定</h2>
+<p>可以对类型参数声明中的类型参数做范围限定</p>
+<ul>
+  <li><code class="highlighter-rouge">&lt;? extends A&gt;</code>，上限限定，必须是A或A的子类/实现对象</li>
+  <li><code class="highlighter-rouge">&lt;? super A&gt;</code>，下限限定，A或A的父类对象</li>
+</ul>
+
+<h2 id="泛型类">泛型类</h2>
+<p>类型参数声明部分放在类名后边</p>
+
+<h2 id="泛型继承">泛型继承</h2>
+<p>以泛型接口接口为例</p>
+
+<ul>
+  <li>固定下泛型的类型
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;{}</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span> <span class="kd">implements</span> <span class="n">A</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;{}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>保留泛型
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;{}</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">A</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;{}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h2 id="泛型通配符">泛型通配符</h2>
+<p><code class="highlighter-rouge">?</code>可用替代具体的类型参数，可免去类型参数声明部分</p>
+
+<h2 id="优点">优点</h2>
+<ul>
+  <li>避免类型强转，更加安全</li>
+  <li>将错误由运行时提前到编译时</li>
+</ul>
+
+
+			  
+			<p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p>
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="#" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="#" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>

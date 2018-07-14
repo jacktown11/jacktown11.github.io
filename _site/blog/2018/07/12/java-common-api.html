@@ -200,6 +200,229 @@
 <h2 id="stringbuilder">StringBuilder</h2>
 <p>一个线程不安全的类，但是速度更快，可能的情况下，优先使用<code class="highlighter-rouge">StringBuilder</code>。</p>
 
+<h1 id="包装类型">包装类型</h1>
+<p>基本数据类型的包装类储存了一些与本数据类型相关的静态常量，通过构造方法可以将一个基本类型包装起来，包装类实例可以转换为基本类型和字符串；包装类还提供一些静态方法用于基本类型和字符串的相互转换。（下面以<code class="highlighter-rouge">int</code>和其包装类<code class="highlighter-rouge">Integer</code>为例）</p>
+
+<h2 id="常量">常量</h2>
+<ul>
+  <li><code class="highlighter-rouge">Integer.MAX_VALUE</code>，最大的<code class="highlighter-rouge">int</code>整型</li>
+  <li><code class="highlighter-rouge">Integer.MIN_VALUE</code>，最小的<code class="highlighter-rouge">int</code>整型</li>
+</ul>
+
+<h2 id="基本类型和包装类型的转换构造器与实例方法">基本类型和包装类型的转换(构造器与实例方法)</h2>
+
+<h3 id="包装">包装</h3>
+<ul>
+  <li><code class="highlighter-rouge">new Integer(int i)</code></li>
+  <li><code class="highlighter-rouge">new Integer(String s)</code></li>
+</ul>
+
+<h3 id="解包装">解包装</h3>
+<ul>
+  <li><code class="highlighter-rouge">int intValue()</code></li>
+  <li><code class="highlighter-rouge">String toString()</code></li>
+  <li><code class="highlighter-rouge">String toBinaryString()</code></li>
+  <li><code class="highlighter-rouge">String toHexString()</code></li>
+  <li><code class="highlighter-rouge">String toOctalString()</code></li>
+</ul>
+
+<h2 id="基本类型和字符串的转换静态方法">基本类型和字符串的转换(静态方法)</h2>
+
+<h3 id="字符串解析">字符串解析</h3>
+<ul>
+  <li><code class="highlighter-rouge">static int parseInt(String s)</code></li>
+  <li><code class="highlighter-rouge">static int parseInt(String s, int radix)</code>，其中radix为进制</li>
+</ul>
+
+<h3 id="转换为字符串">转换为字符串</h3>
+<ul>
+  <li><code class="highlighter-rouge">基本类型+""</code></li>
+  <li>调用包装类的静态方法
+    <ul>
+      <li><code class="highlighter-rouge">static String toString(int i);</code></li>
+      <li><code class="highlighter-rouge">static String toString(int i, int radix);</code>，其中<code class="highlighter-rouge">radix</code>是进制</li>
+    </ul>
+  </li>
+  <li>调用<code class="highlighter-rouge">String</code>的静态方法
+    <ul>
+      <li><code class="highlighter-rouge">static String.valueOf(int i)</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="自动装箱与拆箱">自动装箱与拆箱</h2>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</code></pre>
+</div>
+<p>上面的代码是合法的，给引用类型<code class="highlighter-rouge">i</code>赋值时，传入了<code class="highlighter-rouge">int</code>基本类型，这时会自动装箱为引用类型；用<code class="highlighter-rouge">Integer</code>引用类型变量<code class="highlighter-rouge">i</code>进行数学运算，这时会进行自动拆箱；运算结果是基本类型，再赋值给<code class="highlighter-rouge">i</code>时又会自动装箱。</p>
+
+<h3 id="疑难解析">疑难解析</h3>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
+<span class="n">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span> <span class="c1">//true</span>
+</code></pre>
+</div>
+<p>上面的自动装箱过程中由于38在<code class="highlighter-rouge">byte</code>范围内，此时重复出现的数字不会新建包装类，而是重复引用。相当于：</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">38</span><span class="o">);</span>
+<span class="n">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+</code></pre>
+</div>
+
+<h1 id="system">System</h1>
+<ul>
+  <li>Long <code class="highlighter-rouge">currentTimeMillis</code>()
+    <ul>
+      <li>获取当前时间（ms）</li>
+    </ul>
+  </li>
+  <li>static void <code class="highlighter-rouge">exit</code>(int status)
+    <ul>
+      <li>终止当前正在运行的虚拟机（0为正常中止）</li>
+    </ul>
+  </li>
+  <li>static void <code class="highlighter-rouge">gc</code>()
+    <ul>
+      <li>让java虚拟机运行垃圾收集器</li>
+    </ul>
+  </li>
+  <li>static Properties <code class="highlighter-rouge">getProperties</code>()
+    <ul>
+      <li>获取当前操作系统的属性</li>
+    </ul>
+  </li>
+  <li>static void <code class="highlighter-rouge">arraycopy</code>(Object src,int srcPos,Object dest,int destPos,int length)
+    <ul>
+      <li>复制数组，将src数组从srcPos起的length个元素赋值到dest数组的destPos位置(目标数组的原有元素会被覆盖)</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="math">Math</h1>
+<p>提供了大量的静态工具方法，基本都有重载。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法名</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PI</td>
+      <td>圆周率常量</td>
+    </tr>
+    <tr>
+      <td>abs</td>
+      <td>绝对值</td>
+    </tr>
+    <tr>
+      <td>round</td>
+      <td>四舍五入</td>
+    </tr>
+    <tr>
+      <td>floor</td>
+      <td>向下取整</td>
+    </tr>
+    <tr>
+      <td>ceil</td>
+      <td>向上取整</td>
+    </tr>
+    <tr>
+      <td>random</td>
+      <td>[0,1)随机数</td>
+    </tr>
+    <tr>
+      <td>power</td>
+      <td>乘方</td>
+    </tr>
+    <tr>
+      <td>sqrt</td>
+      <td>开平方</td>
+    </tr>
+    <tr>
+      <td>max</td>
+      <td>二者最大值</td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>二者最小值</td>
+    </tr>
+    <tr>
+      <td>log</td>
+      <td>ln函数</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="biginteger">BigInteger</h1>
+<p>来自<code class="highlighter-rouge">java.math</code>包，用于不可变的任意精度的整数。</p>
+
+<h2 id="常用构造方法">常用构造方法</h2>
+<ul>
+  <li><code class="highlighter-rouge">BigInteger(String val)</code></li>
+  <li><code class="highlighter-rouge">BigInteger(String val, int radix)</code></li>
+</ul>
+
+<h2 id="运算">运算</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">add</code>(BigInteger b)</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">subtract</code>(BigInteger b)</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">multiply</code>(BigInteger b)</td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">divide</code>(BigInteger b)</td>
+      <td>/</td>
+    </tr>
+    <tr>
+      <td>int <code class="highlighter-rouge">compareTo</code>(BigInteger b)</td>
+      <td>比较大小,返回-1，0，1</td>
+    </tr>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">abs</code>(BigInteger b)</td>
+      <td>绝对值</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">equals</code>(BigInteger b)</td>
+      <td>相等判断</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="bigdecimal">BigDecimal</h1>
+<p>来自<code class="highlighter-rouge">java.math</code>包，用于不可变的任意精度的浮点数。使用类似<code class="highlighter-rouge">BigInteger</code>。</p>
+
+<p>需要注意的是小数的除法可能结果是无穷小数，所以通常需要给定精度，如下是除法的其中一个实现：</p>
+
+<p><code class="highlighter-rouge">BigDecimal divide(BigDecimal val, int scale, int roundMode)</code></p>
+
+<p>其中<code class="highlighter-rouge">scale</code>是小数精度位数，<code class="highlighter-rouge">roundMode</code>是舍入模式，<code class="highlighter-rouge">BigInteger</code>中提供了舍入模式的静态常量，如<code class="highlighter-rouge">BigInteger.ROUND_CEILING</code>表示向上截取。</p>
+
+<h1 id="arrays">Arrays</h1>
+<p>来自<code class="highlighter-rouge">java.util</code>包，提供大量数组操作的静态工具方法，这些方法大多都有重载。</p>
+<ul>
+  <li><code class="highlighter-rouge">sort</code>，升序排序</li>
+  <li><code class="highlighter-rouge">binarySearch</code>，二分查找，无法找到的话，返回<code class="highlighter-rouge">-插入点索引-1</code></li>
+  <li><code class="highlighter-rouge">toString</code>，数组字符串</li>
+</ul>
+
 <h1 id="正则表达式">正则表达式</h1>
 <p><code class="highlighter-rouge">java.util.regex</code>包提供了<code class="highlighter-rouge">Matcher</code>和<code class="highlighter-rouge">Pattern</code>两个类。</p>
 
@@ -305,7 +528,6 @@
   <li>在Calendar类中，月份的表示是以0-11代表1-12月。</li>
   <li>日期是有大小关系的，时间靠后，时间越大。</li>
 </ul>
-
 
 			  
 			<p class="to-jianshu">
