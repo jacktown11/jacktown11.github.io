@@ -1,6 +1,6 @@
 ---
 layout: article
-title: java常用API 1
+title: java常用API
 categories: [java]
 tags: [javase]
 ---
