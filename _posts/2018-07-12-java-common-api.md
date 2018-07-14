@@ -1,6 +1,6 @@
 ---
 layout: article
-title: java常用API
+title: java常用API 1
 categories: [java]
 tags: [javase]
 ---
@@ -105,6 +105,123 @@ private final char value[];
 ## StringBuilder
 一个线程不安全的类，但是速度更快，可能的情况下，优先使用`StringBuilder`。
 
+
+# 包装类型
+基本数据类型的包装类储存了一些与本数据类型相关的静态常量，通过构造方法可以将一个基本类型包装起来，包装类实例可以转换为基本类型和字符串；包装类还提供一些静态方法用于基本类型和字符串的相互转换。（下面以`int`和其包装类`Integer`为例）
+
+## 常量
+- `Integer.MAX_VALUE`，最大的`int`整型
+- `Integer.MIN_VALUE`，最小的`int`整型
+
+## 基本类型和包装类型的转换(构造器与实例方法)
+
+### 包装
+- `new Integer(int i)`
+- `new Integer(String s)`
+
+### 解包装
+- `int intValue()`
+- `String toString()`
+- `String toBinaryString()`
+- `String toHexString()`
+- `String toOctalString()`
+
+## 基本类型和字符串的转换(静态方法)
+
+### 字符串解析
+- `static int parseInt(String s)`
+- `static int parseInt(String s, int radix)`，其中radix为进制
+
+### 转换为字符串
+- `基本类型+""`
+- 调用包装类的静态方法
+    * `static String toString(int i);`
+    * `static String toString(int i, int radix);`，其中`radix`是进制
+- 调用`String`的静态方法
+    * `static String.valueOf(int i)`
+
+## 自动装箱与拆箱
+```java
+Integer i = 1;
+i = i + 1;
+```
+上面的代码是合法的，给引用类型`i`赋值时，传入了`int`基本类型，这时会自动装箱为引用类型；用`Integer`引用类型变量`i`进行数学运算，这时会进行自动拆箱；运算结果是基本类型，再赋值给`i`时又会自动装箱。
+
+### 疑难解析
+```java
+Integer a = 38;
+Integer b = 38;
+System.out.println(a == b); //true
+```
+上面的自动装箱过程中由于38在`byte`范围内，此时重复出现的数字不会新建包装类，而是重复引用。相当于：
+```java
+Integer a = new Integer(38);
+Integer b = a;
+```
+
+# System
+- Long `currentTimeMillis`()
+    * 获取当前时间（ms）
+- static void `exit`(int status)
+    * 终止当前正在运行的虚拟机（0为正常中止）
+- static void `gc`()
+    * 让java虚拟机运行垃圾收集器
+- static Properties `getProperties`()
+    * 获取当前操作系统的属性
+- static void `arraycopy`(Object src,int srcPos,Object dest,int destPos,int length)
+    * 复制数组，将src数组从srcPos起的length个元素赋值到dest数组的destPos位置(目标数组的原有元素会被覆盖)
+
+# Math
+提供了大量的静态工具方法，基本都有重载。
+
+|方法名|作用|
+|-|-|
+|PI |圆周率常量 |
+|abs|绝对值 |
+|round |四舍五入 |
+|floor |向下取整 |
+|ceil |向上取整 |
+|random |[0,1)随机数 |
+|power |乘方|
+|sqrt |开平方 |
+|max |二者最大值 |
+|min |二者最小值 |
+|log |ln函数 |
+
+# BigInteger
+来自`java.math`包，用于不可变的任意精度的整数。
+
+## 常用构造方法
+- `BigInteger(String val)`
+- `BigInteger(String val, int radix)`
+
+## 运算
+
+|方法|解释|
+|-|-|
+|BigInteger `add`(BigInteger b)|+|
+|BigInteger `subtract`(BigInteger b)|-|
+|BigInteger `multiply`(BigInteger b)|*|
+|BigInteger `divide`(BigInteger b)|/|
+|int `compareTo`(BigInteger b)|比较大小,返回-1，0，1|
+|BigInteger `abs`(BigInteger b)|绝对值|
+|boolean `equals`(BigInteger b)|相等判断|
+
+# BigDecimal
+来自`java.math`包，用于不可变的任意精度的浮点数。使用类似`BigInteger`。
+
+需要注意的是小数的除法可能结果是无穷小数，所以通常需要给定精度，如下是除法的其中一个实现：
+
+`BigDecimal divide(BigDecimal val, int scale, int roundMode)`
+
+其中`scale`是小数精度位数，`roundMode`是舍入模式，`BigInteger`中提供了舍入模式的静态常量，如`BigInteger.ROUND_CEILING`表示向上截取。
+
+# Arrays
+来自`java.util`包，提供大量数组操作的静态工具方法，这些方法大多都有重载。
+- `sort`，升序排序
+- `binarySearch`，二分查找，无法找到的话，返回`-插入点索引-1`
+- `toString`，数组字符串
+
 # 正则表达式
 `java.util.regex`包提供了`Matcher`和`Pattern`两个类。
 
@@ -179,5 +296,3 @@ Matcher matcher(CharSequence input);
 - 西方星期的开始为周日，中国为周一。
 - 在Calendar类中，月份的表示是以0-11代表1-12月。
 - 日期是有大小关系的，时间靠后，时间越大。
-
-
