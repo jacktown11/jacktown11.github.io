@@ -1315,6 +1315,12 @@
       </li>
     </ul>
   </li>
+  <li>引用类型包导入
+    <ul>
+      <li>要使用内部的预定义类，需要使用<code class="highlighter-rouge">import</code>关键字导入</li>
+      <li>静态导入: 如果某个要访问的成员变量在类中较深（比如<code class="highlighter-rouge">System.out.println</code>）可以通过静态导入的方式，如<code class="highlighter-rouge">import static java.lang.System.out</code>，需要注意最后的成员必须是静态的，这是可以如<code class="highlighter-rouge">out.println()</code>这样简化调用输入。</li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="02-scanner类的使用">02 Scanner类的使用</h3>

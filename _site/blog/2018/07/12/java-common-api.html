@@ -76,6 +76,19 @@
 
 <p>上述代码首先进行了类型判断与显式转换，在传入参数确实是字符串的情况下，逐个字符进行比较。（上述代码中<code class="highlighter-rouge">value</code>是<code class="highlighter-rouge">String</code>对象内的私有<code class="highlighter-rouge">char</code>数组常量,储存了字符串的所有字符）。</p>
 
+<h3 id="equals方法官方约定">equals()方法官方约定</h3>
+<ul>
+  <li>自反性</li>
+  <li>对称性</li>
+  <li>传递性</li>
+  <li>一致性</li>
+  <li>任何非空对象不和hull相等</li>
+</ul>
+
+<p>以上约定说明了<code class="highlighter-rouge">equals()</code>方法上建立了的二元关系是等价关系。</p>
+
+<p>重写<code class="highlighter-rouge">equals()</code>方法时通常需要重写<code class="highlighter-rouge">hashCode()</code>方法，以维护<code class="highlighter-rouge">hashCode()</code>方法的<strong>对象相等时哈希值必相等的约定</strong>。</p>
+
 <h2 id="tostring方法">toString()方法</h2>
 <p>返回对象的字符串表示，通常是形如<code class="highlighter-rouge">类名+内存地址</code>，实际开发使用时通常要重写。</p>
 

@@ -210,7 +210,6 @@ part2: class for reuse
 
 .star-bg{
 		background-color: #222;
-    background-image: url(../images/star.jpg);
 		background-repeat: repeat;
 }
 .attached-bg{
