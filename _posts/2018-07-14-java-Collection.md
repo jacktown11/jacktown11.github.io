@@ -29,6 +29,7 @@ tags: [javase]
         - Properties（类）
         - ...
     * ...
+
 # Colletion接口
 
 ## 基本方法
@@ -206,7 +207,7 @@ Set的方法基本全是Collection的方法
 3. 用该元素调用equals()方法，传入各个同hash值的已有元素与之比较，如果都返回false，那么在该hash值对应链表中加入该元素；否则，放弃存入该元素
 
 ## LinkedHashSet类
-具有**可预知迭代顺序**的**Set**接口的哈希表和链表实现，是HashSet的子类；线程不安全，运行速度快
+具有可预知迭代顺序的`Set接口的哈希表和链表实现，是`HashSet`的子类；线程不安全，运行速度快
 
 ## 重复元素的判断-和ArrayList的比较
 比如`ArrayList`的`contains()`、`HashSet`的`contains()`和`add()`方法都需要判断是否有相同元素
