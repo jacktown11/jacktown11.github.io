@@ -1,6 +1,6 @@
 ---
 layout: article
-title: javase day01-03
+title: javase 开发环境、标识符、变量、数据类型、控制流程
 categories: [java]
 tags: [javase]
 ---
