@@ -5,23 +5,30 @@ categories: [java]
 tags: [javase]
 ---
 
-# 概述
+# 集合框架概述
 
 ## 概念
 集合是对象存储的容器，在`java.util`包中有相关的抽象类、接口和实现类。
 
 ## 集合体系
-- Collection(接口)
-    * List(接口)
-        - ArrayList(类)
-        - LinkedList(类)
+- Collection（接口）
+    * List（接口）
+        - ArrayList（类）
+        - LinkedList（类）
         - ...
-    * Set(接口)
-        - HashSet(类)
-        - LinkedHashSet(类)
+    * Set（接口）
+        - HashSet（类）
+        - LinkedHashSet（类）
         - ...
     * ...
-
+- Map（接口）
+    * HashMap（类）
+        - LinkedHashMap（类）
+        - ...
+    * Hashtable（类）
+        - Properties（类）
+        - ...
+    * ...
 # Colletion接口
 
 ## 基本方法
@@ -202,10 +209,72 @@ Set的方法基本全是Collection的方法
 具有**可预知迭代顺序**的**Set**接口的哈希表和链表实现，是HashSet的子类；线程不安全，运行速度快
 
 ## 重复元素的判断-和ArrayList的比较
-比如ArrayList的contains()、HashSet的contains()和add()方法都需要判断是否有相同元素
+比如`ArrayList`的`contains()`、`HashSet`的`contains()`和`add()`方法都需要判断是否有相同元素
 
 - ArrayList，直接依赖于equals()方法
 - HashSet，依赖于hashCode()和equals()方法
 
+# Map接口
+`Map`（将键映射到值的对象）中的集合称为双列集合，`Collection`中的集合称为单列集合。
+
+`Map`集合中键名不能重复，键值没有关系，当键名是对象时，作为键名的对象通常要重写`hashCode()`和`equals()`。
+
+## 常用方法
+
+|方法 |解释 |
+| - | - |
+|V `put`(K key, V value) |放入一对键值，注意：返回的是同键名被覆盖之前的值，否则返回null |
+|V `get`(K key) |通过键获取值，无该键返回null |
+|V `remove`(K key) |移出给定键名的键值对，返回该键名对应的值，无键名返回null |
+|int `size`() |返回已存储的键值对数目 |
+
+## 遍历
+`Map`本身没有实现`Iterable`接口，不能直接用`forEach`遍历，但可以借用两个实例方法间接遍历。
+
+- `Set<E> keySet()`
+
+    获取所有的键名，放入`Set`集合中，然后遍历`Set`集合，通过键名在`Map`中取值，从而实现`Map`的遍历
+- `Set<Map.Entry<K, V>> entrySet()`
+
+    `Entry<K,V>`是`Map`中的内部静态接口（因为`Map`抽象类中不可能实例化），用于代表映射关系对象
+
+    该方法将每一个键值对以`Entry<K,V>`的形式存储，然后全部放入一个`Set`集合中，通过遍历`Set`集合可以获得这些`Entry<K,V>`，然后调用`getKey()`和`getValue()`可以获得键与值。
+
+## Map的实现类
+- HashMap（类）
+    * LinkedHashMap（类）
+    * ...
+- Hashtable（类）
+    * Properties（类）
+    * ...
+- ...
+
+`HashMap`和`LinkedHashMap`都是线程不安全的集合，其中`LinkedHashMap`是有序的。
+
+`Hashtable`是线程安全的，性能差，使用不多；而其子类`Properties`在`IO流`中应用较多
+
+# Collections工具类
+`java.util`中除了有一个`Collection`接口，另一个`Collections`类，提供了大量静态方法，用于操作集合类对象，
+
+## sort
+`static <T extends Comparable<? super T>> void sort(List<T> list)`
+
+对`List`集合的升序排序
+
+## binarySearch
+- `static <T> int binarySearch(List<? extends Comparable<? super T>> list, T key)`
+- `static <T> int binarySearch(List<? extends T> list, T key, Comparator<? super T> c)`
+
+`List`集合的二分查找
+
+## shuffle
+`static void shuffle(List<?> list)`
+
+随机打乱
+
+## reverse
+`static void reverse(List<?> list)`
+
+翻转
 
 
