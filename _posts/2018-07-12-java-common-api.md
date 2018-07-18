@@ -206,6 +206,8 @@ Integer b = a;
 - `BigInteger(String val)`
 - `BigInteger(String val, int radix)`
 
+另外还可以用静态方法`BigInteger.valueOf(long l)`将整型转为`BigInteger`对象。
+
 ## 运算
 
 |方法|解释|
