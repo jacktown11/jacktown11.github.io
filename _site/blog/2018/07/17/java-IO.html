@@ -164,6 +164,476 @@
 
 <p>编译时异常继承<code class="highlighter-rouge">Exception</code>，运行时异常继承<code class="highlighter-rouge">RuntimeException</code>。</p>
 
+<h1 id="io概述">IO概述</h1>
+<ul>
+  <li>当需要把内存中的数据存储到持久化设备上这个动作称为输出（写）<code class="highlighter-rouge">Output</code>操作。</li>
+  <li>当把持久设备上的数据读取到内存中的这个动作称为输入（读）<code class="highlighter-rouge">Input</code>操作。</li>
+  <li>因此我们把这种输入和输出动作称为<code class="highlighter-rouge">IO</code>操作。</li>
+</ul>
+
+<h2 id="常用接口与类">常用接口与类</h2>
+
+<ul>
+  <li>File类</li>
+  <li>字节流
+    <ul>
+      <li>OutputStream抽象类
+        <ul>
+          <li>FileOutputStream类</li>
+          <li>ObjectOutputStream类</li>
+          <li>…
+            <ul>
+              <li>BufferedOutputStream类（缓冲流）</li>
+            </ul>
+          </li>
+          <li>…</li>
+        </ul>
+      </li>
+      <li>InputStream抽象类
+        <ul>
+          <li>FileInputStream类</li>
+          <li>ObjectInputStream类</li>
+          <li>…
+            <ul>
+              <li>BufferedInputStream类（缓冲流）</li>
+            </ul>
+          </li>
+          <li>…</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>字符流
+    <ul>
+      <li>Writer抽象类
+        <ul>
+          <li>BufferedWriter类（缓冲流）</li>
+          <li>OutputStreamWriter类（转换流）
+            <ul>
+              <li>FileWriter类</li>
+              <li>…</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Reader抽象类
+        <ul>
+          <li>BufferedReader类</li>
+          <li>InputStreamReader类（转换流）
+            <ul>
+              <li>FileReader类（缓冲流）</li>
+              <li>…</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="file类">File类</h1>
+<p>文件和目录路径名的抽象表示形式，该类具有平台无关性。</p>
+
+<h2 id="路径">路径</h2>
+<ul>
+  <li><code class="highlighter-rouge">windows</code>下文件（夹）名不区分大小写，<code class="highlighter-rouge">linux</code>下则区分。</li>
+</ul>
+
+<h3 id="绝对路径与相对路径">绝对路径与相对路径</h3>
+
+<h4 id="绝对路径">绝对路径</h4>
+<p>在系统中具有唯一性，如<code class="highlighter-rouge">c:\\windows\\system32</code>、<code class="highlighter-rouge">http://www.baidu.com</code></p>
+
+<h4 id="相对路径">相对路径</h4>
+<p>表示的是路径之间的相对关系</p>
+
+<ul>
+  <li>父目录，唯一</li>
+  <li>子目录，可以不唯一</li>
+</ul>
+
+<h2 id="静态字段">静态字段</h2>
+<ul>
+  <li><code class="highlighter-rouge">static String pathSeparator</code>，与系统有关的路径分隔符（整个目录的分割，表示整个目录结束，比如<code class="highlighter-rouge">windows</code>下为<code class="highlighter-rouge">;</code>，在<code class="highlighter-rouge">linux</code>下为<code class="highlighter-rouge">:</code>）</li>
+  <li><code class="highlighter-rouge">static Char separator</code>，与系统相关的名称分隔符（单个目录名称的分隔符，表示单个目录名称结束，比如在<code class="highlighter-rouge">windows</code>下为<code class="highlighter-rouge">\</code>，在<code class="highlighter-rouge">linux</code>下为<code class="highlighter-rouge">/</code>）</li>
+</ul>
+
+<h2 id="构造方法">构造方法</h2>
+<p>构造方法本身不判断路径是否存在</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>声明</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">File(String pathname)</code></td>
+      <td><code class="highlighter-rouge">pathname</code>表示的是文件或文件夹的路径，将其封装成<code class="highlighter-rouge">File</code>对象</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">File(String parent, String child)</code></td>
+      <td>将父路径和子路径组装起来得到整个路径，并将其转为<code class="highlighter-rouge">File</code>对象，优点：可以单独操作父路径或子路径</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">File(File parent, String child)</code></td>
+      <td>基于父<code class="highlighter-rouge">File</code>对象的路径组装子路径，并转为<code class="highlighter-rouge">File</code>对象，有点：父路径可以直接调用<code class="highlighter-rouge">File</code>的方法</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="创建与删除">创建与删除</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">createNewFile</code>()</td>
+      <td>创建文件（路径在构造方法参数中），若已存在不再创建，返回false</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">mkdir</code>()</td>
+      <td>创建单层文件夹，若已存在不再创建，返回false</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">mkdirs</code>()</td>
+      <td>创建（可多层）文件夹，若已存在不再创建，返回false</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">delete</code>()</td>
+      <td>删除文件/文件夹，返回值为删除是否成功；删除的文件不进入回收站</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="获取功能">获取功能</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>String <code class="highlighter-rouge">getName</code>()</td>
+      <td>返回路径表示的最后的文件或者文件夹名，不考虑是否真实存在</td>
+    </tr>
+    <tr>
+      <td>String	<code class="highlighter-rouge">getPath</code>()</td>
+      <td>返回路径字符串，相当于<code class="highlighter-rouge">toString()</code></td>
+    </tr>
+    <tr>
+      <td>long <code class="highlighter-rouge">length()</code></td>
+      <td>返回路径中表示的文件的字节数,文件夹的话总是0</td>
+    </tr>
+    <tr>
+      <td>String <code class="highlighter-rouge">getAbsolutePath()</code></td>
+      <td>返回绝对路径字符串</td>
+    </tr>
+    <tr>
+      <td>File <code class="highlighter-rouge">getAbsoluteFile()</code></td>
+      <td>返回绝对路径形式的<code class="highlighter-rouge">File</code>对象(即使最初的<code class="highlighter-rouge">File</code>使用相对路径产生的)</td>
+    </tr>
+    <tr>
+      <td>String <code class="highlighter-rouge">getParent</code>()</td>
+      <td>返回父路径的字符串</td>
+    </tr>
+    <tr>
+      <td>String <code class="highlighter-rouge">getParent</code>()</td>
+      <td>返回父路径的<code class="highlighter-rouge">File</code>对象</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="判断功能">判断功能</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">exists</code>()</td>
+      <td>返回<code class="highlighter-rouge">File</code>对象封装的路径是否存在</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">isDirectory</code>()</td>
+      <td><code class="highlighter-rouge">File</code>对象封装的路径是不是目录</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">isFile</code>()</td>
+      <td><code class="highlighter-rouge">File</code>对象封装的路径是不是文件</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="list和listfile获取功能">list和listFile获取功能</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>String[] <code class="highlighter-rouge">list</code>()</td>
+      <td>获取<code class="highlighter-rouge">File</code>中封装的路径中的所有文件夹和文件名数组，对文件调用总是返回null</td>
+    </tr>
+    <tr>
+      <td>File[] <code class="highlighter-rouge">listFile</code>()</td>
+      <td>获取<code class="highlighter-rouge">File</code>中封装的路径中的的所有文件与目录的<code class="highlighter-rouge">File</code>对象</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="文件过滤器">文件过滤器</h2>
+
+<p>使用<code class="highlighter-rouge">listFile</code>的重载形式</p>
+
+<ul>
+  <li><code class="highlighter-rouge">File[] listFile(FileFilter filter) </code>，返回满足指定条件的文件夹与文件数组，其中的接口<code class="highlighter-rouge">FileFilter</code>需要自己实现如下方法
+    <ul>
+      <li><code class="highlighter-rouge">boolean accept(File file)</code></li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">File[] listFile(FileNameFilter nameFilter)</code>，返回满足指定条件的文件夹与文件数组，其中的接口<code class="highlighter-rouge">FileFilter</code>需要自己实现如下方法
+    <ul>
+      <li><code class="highlighter-rouge">boolean accept(File dir, String name)</code>，其中的<code class="highlighter-rouge">dir</code>实际是进行文件搜索的文件夹</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="递归">递归</h2>
+
+<p>方法定义中调用方法本身的现象</p>
+
+<h3 id="直接递归">直接递归</h3>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodA</span><span class="o">(){</span>
+    <span class="n">methodA</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+<h3 id="间接递归">间接递归</h3>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">metohdB</span><span class="o">(){</span>
+    <span class="n">methodC</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodC</span><span class="o">(){</span>
+    <span class="n">methodB</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h3 id="递归注意实现">递归注意实现</h3>
+
+<ul>
+  <li>要有出口，否则就是死递归</li>
+  <li>次数不能太多，否则就内存溢出</li>
+</ul>
+
+<h1 id="字节流">字节流</h1>
+
+<p><code class="highlighter-rouge">IO</code>输入输出以程序为参考点，从硬盘、网络、文件等获取数据到程序中使用为输入，反之为输出。</p>
+
+<h2 id="outputstream抽象类">OutputStream抽象类</h2>
+
+<p>所有字节输出流的父类</p>
+
+<h3 id="常用方法">常用方法</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>void <code class="highlighter-rouge">write</code>(int b)</td>
+      <td>写入一个字节</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">write</code>(byte[] bs)</td>
+      <td>写入字节数组</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">write</code>(byte[] bs, int start, int len)</td>
+      <td>写入字节数组给定起始位置和个数的字节</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">close</code>()</td>
+      <td>关闭字节流并释放相关资源</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">flush</code>()</td>
+      <td>强制写出</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="fileoutputstream类">FileOutputStream类</h3>
+
+<h4 id="构造方法-1">构造方法</h4>
+
+<ul>
+  <li>FileOutputStream(File file)</li>
+  <li>FileOutputStream(String name)</li>
+  <li>FileOutputStream(File file, boolean append)</li>
+  <li>FileOutputStream(String name, boolean append)</li>
+</ul>
+
+<p>构造器需要传入输出目的地，如果没有可以自动创建，如果已存在，当单参数时会自动覆盖；两个参数的构造方法的第二个参数为<code class="highlighter-rouge">true</code>时可以以添加的方式输出数据。</p>
+
+<h4 id="异常处理参考写法">异常处理参考写法</h4>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"a.txt"</span><span class="o">);</span>
+<span class="n">OutputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">is</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+    <span class="n">is</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"fail to write"</span><span class="o">);</span>
+<span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">is</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">is</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">IOException</span> <span class="n">ioEx</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"fail to close file"</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+<h2 id="inputstream抽象类">InputStream抽象类</h2>
+
+<h3 id="常用方法-1">常用方法</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>abstract int <code class="highlighter-rouge">read</code>()</td>
+      <td>读取一个字节，已到达文件末尾返回-1</td>
+    </tr>
+    <tr>
+      <td>int <code class="highlighter-rouge">read</code>(byte[] bs)</td>
+      <td>读取一定量字节数组存到缓存数组中，返回读取到的长度，到了文件末尾返回-1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="fileinputstream类">FileInputStream类</h3>
+
+<p>与<code class="highlighter-rouge">OutputStream</code>相对，是<code class="highlighter-rouge">InputStream</code>的子类</p>
+
+<h1 id="字符流">字符流</h1>
+
+<p>由于某些编码表中用多字节存储单个字符，因此使用字节码容易出现问题，为此可以使用字符流。</p>
+
+<h2 id="writer抽象类">Writer抽象类</h2>
+
+<p>所有字符输出流的超类，只能用于写文本文件。使用时注意使用<code class="highlighter-rouge">flush()</code>刷新。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>void <code class="highlighter-rouge">write</code>(int c)</td>
+      <td>写单个字符</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">write</code>(char[] b, int off, int len</td>
+      <td>写字符数组</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">write</code>(String str)</td>
+      <td>写字符串</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">write</code>(String str, int off, int len)</td>
+      <td>写字符串特定部分</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="filewriter类">FileWriter类</h3>
+
+<p><code class="highlighter-rouge">Writer</code>子类，常用构造方法：</p>
+
+<ul>
+  <li>FileWriter(File file[, boolean append])</li>
+  <li>FileWriter(String name[, boolean append])</li>
+</ul>
+
+<h2 id="reader抽象类">Reader抽象类</h2>
+
+<p>所有字符输入流的超类，只能用于读文本文件。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>int <code class="highlighter-rouge">read</code>()</td>
+      <td>读取单字符</td>
+    </tr>
+    <tr>
+      <td>int <code class="highlighter-rouge">read</code>(char[] cbuf)</td>
+      <td>读取字节数组</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="filereader类">FileReader类</h3>
+
+<p>构造方法类似<code class="highlighter-rouge">FileWriter</code>。</p>
+
+<h1 id="转换流">转换流</h1>
+
+<h2 id="bufferedwriter类">BufferedWriter类</h2>
+
+<p>构造方法；<code class="highlighter-rouge">BufferedWriter(Writer r)</code></p>
+
+<p>特有方法：<code class="highlighter-rouge">void newLine()</code>，换行</p>
+
+<h2 id="bufferedreader类">BufferedReader类</h2>
+
+<p>构造方法：<code class="highlighter-rouge">BufferedReader(Reader r)</code></p>
+
+<p>特有方法：<code class="highlighter-rouge">String readLine()</code>，读取一个行</p>
+
+
 			  
 			<!-- <p class="to-jianshu">
 				转载请注明出处，您还可以在

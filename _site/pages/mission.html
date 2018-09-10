@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission</title>
+    <style>
+        html,body,h1,ul,ol,li{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            padding-left: 2em;
+            cursor: pointer;
+        }
+        h1{
+            text-align: center;
+            margin: 8px 0;
+        }
+        h1 a{
+            margin-top: 8px;
+            float: left;
+            text-decoration: none;
+            font-size: 1rem;
+            color: #000;
+        }
+        h1 a:hover,
+        h1 a:active{
+            color: orange;
+        }
+        h1>div{
+            display: inline-block;
+        }
+        button{
+            padding: 4px;
+            border: none;
+            background-color: transparent;
+            box-shadow: 0px 0px 2px #000;
+            border-radius: 2px;
+            cursor: pointer;
+            outline: none;
+        }
+        button:hover,
+        button:active,
+        button:focus{
+            background-color: #b0cab0;;
+        }
+        ul{
+            list-style: none;
+            padding-left: 1em;
+        }
+        .mission-wrap{
+            padding-left: 0px;
+        }
+        .mission-wrap>li{
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .mission-wrap>li>ul:not(.children){
+            background-color: #b0cab0;
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+        .mission-wrap>li>ul:not(.children):hover{
+            background: #4cbfa5;
+            background: linear-gradient(45deg, #4cbfa5, #4cbfa5 90%, orange);
+        }
+        .mission-wrap>li,
+        .children>li{
+            padding: 4px 0;
+        }
+       
+        li.closed,
+        li.open{
+            position: relative;
+        }
+        ul.composed{
+            position: relative;
+        }
+        .closed ul.composed::before,
+        .open ul.composed::before{
+            position: absolute;
+            left: 0em;
+            top: 14px;
+            content: '\25bc';
+        }
+        .open ul.composed::before{
+            content: '\25B2';
+        }
+        .item li{
+            display: inline-block;
+            margin-right: 16px;
+            vertical-align: middle;
+        }
+        li.mission{
+            min-width: 20%;
+        }
+        li.finished{
+            position: relative;
+            background-color: #DC3545;
+            width: 360px;
+            height: 24px;
+            border-radius: 3px;
+        }
+        .finished-bar{
+            display: inline-block;
+            background-color: rgb(0, 155, 36);
+            height: 24px;
+        }
+        .finished-text{
+            display: block;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            margin-right: 0.2em;
+            color: #fff;
+        }
+        .children{
+            font-size: 1rem;
+            font-weight: normal;
+            margin-left: 25px;
+        }
+        .closed .children{
+            display: none;
+        }
+        .open .children{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <a href="../index.html">返回首页</a>
+        Mission
+        <div>
+            <button id="collapseAll">全折叠</button>
+            <button id="expandAll">全展开</button>
+        </div>
+    </h1>
+    <ul class="mission-wrap">
+        <!-- <li class="open">
+            <ul class="item composed">
+                <li class="mission">《未来简史》</li>
+                <li class="created-time">20180909创建</li>
+                <li class="finished">
+                    <span class="finished-bar" style="width: 20%;"></span>
+                    <span class="finished-text">2/10</span>
+                </li>
+                <li class="completed-time">20180911完成</li>
+            </ul>
+            <ul class="children">
+                hello
+            </ul>
+        </li> -->
+    </ul>
+
+    <script src="../lib/jquery-3.2.1.min.js"></script>
+    <script>
+        $('.mission-wrap').on('click', '.composed', function(event){
+                toggleChildren(this.parentNode);
+        });
+        function toggleChildren(ele){
+            $(ele).toggleClass('open');
+            $(ele).toggleClass('closed');
+        }
+
+        $.get('../data/mission.json', function(data){
+            console.log(data);
+            let htmlStr = '';
+            for (let item of data) {
+                htmlStr += genItemStr(item);
+            }
+            console.log(htmlStr);
+            $('.mission-wrap').html(htmlStr);
+        });
+        
+        function genItemStr(missionItem){
+            let mi = missionItem;
+
+            let part1 = '<li class="' + (mi.children?'closed':'') + '"><ul class="item ' + (mi.children?'composed':'') + '"><li class="mission">' + mi.mission + 
+            '</li><li class="created-time">' + mi.createdTime + 
+            '创建</li><li class="finished"><span class="finished-bar" style="width:' + mi.finished/mi.total*100 + 
+            '%;"></span><span class="finished-text">' + mi.finished + 
+            '/' + mi.total + '</span></li><li class="completed-time">' + (mi.completedTime?mi.completedTime:'未') + '完成</li></ul>';
+
+            let part2 = '';
+            if(mi.children){
+                part2 += '<ul class="children">';
+                for(let item of mi.children){
+                    part2 += genItemStr(item);
+                }
+                part2 += '</ul>';
+            }
+
+            let part3 = '</li>';
+
+            return part1 + part2 + part3;
+        }
+
+        $('#collapseAll').on('click', function(){
+            $('.open').removeClass('open').addClass('closed');
+        });
+        $('#expandAll').on('click', function(){
+            $('.closed').removeClass('closed').addClass('open');
+        });
+    </script>
+</body>
+</html>
