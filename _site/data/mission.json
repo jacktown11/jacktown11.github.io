@@ -6,5 +6,13 @@
         "finished": 3,
         "completedTime": 20180909,
         "children": null
+    },
+    {
+        "mission": "《枪炮、病菌与钢铁》",
+        "createdTime": 20180911,
+        "total": 350,
+        "finished": 178,
+        "completedTime": null,
+        "children": null
     }
 ]
