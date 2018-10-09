@@ -12,39 +12,65 @@ div.input{
 	background-color: rgba(255, 255, 255, 0.1);
 	font-size: 0.7rem;
 }
-table{
+
+/* category and tags */
+.container{
+	position: relative;
 	width: 100%;
-	padding: 10px 0;
+	margin: auto;
+	/* text-align: center; */
 }
-td{
-	vertical-align: top;
-	padding-top: 5px;
-}
-td:first-child{
-	font-weight: bold;
-	padding-left: 20px;
-	width: 40px;
-	padding: 10px 0 5px 20px;
-}
-td:last-child{
-	line-height: 2em;
-	line-height: 2.5;
-}
-table span{
-	cursor: pointer;
-	padding: 3px 12px 5px 5px;
+.container span{
 	display: inline-block;
-	margin: 0 8px;
-	background-color: rgba(255, 255, 255, 0.8);
-	border-radius: 0px 4px 4px 0px;
-	box-shadow: 0 0 2px 0 #888,0 -1px 2px 0 #888 inset;
-	-webkit-user-select:none;
-	-moz-user-select:none;
-	-o-user-select:none;
-	user-select:none;
-	color: #000;
-	line-height: 1.2;
+	color: #fff;
+	font-weight: bold;
+	padding: 4px 8px;
+	margin: 5px;
+	position: relative;
+	z-index: 10;
+	cursor: pointer;
 }
+.categories{
+	width: 100%;
+	margin: 0 4px;
+}
+.pipe{
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+.categories span{
+	background-color: #ddd;
+	color: #000;
+}
+.categories span.selected{
+	background-color: transparent;
+}
+.tags{
+	background-color: #fff;
+}
+.tags span{
+	font-weight: normal;
+	color: #000;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: transparent;
+}
+.tags .selected{
+	color: #fff;
+	background-color: #e91e63;
+}
+.pipe{
+	position: absolute;
+	width: 50px;
+	height: 86px;
+	left: 225px;
+	top: 76px;
+	z-index: 5;
+	background-color: #fff;
+	display: none;
+}
+
+/* search */
 .search{
 	text-align: center;
 	padding: 0.25rem 0;
