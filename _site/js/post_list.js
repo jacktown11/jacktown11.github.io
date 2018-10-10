@@ -1,15 +1,232 @@
 window.onload = function(){
-	init();
+	posts.init();
+	catsAndTags.init();
+	search.init();
 };
 
-function init(){
-	let	posts = initPosts();
-	posts.cats = genCategoryTree(posts);
-	displayCategories(posts.cats);
-	addEvents(posts);
-}
+// categories and tags
+let catsAndTags = {
+	cats: document.getElementById('categories'),
+	tags: document.getElementById('tags'),
+	pipe: document.getElementById('pipe'),
+	tree: {}, // categories and tags tree
+	init(){
+		this.generateTree();
+		this.displayCategories();
+		this.addEvent();
+	},
+	generateTree(){
+		let tree = this.tree;
+		let infos = posts.infos;
+		infos.forEach(function (postInfo) {
+			let category = postInfo.cats[0];
+			if (!(category in tree)) {
+				tree[category] = [];
+			}
+			postInfo.tags.forEach(function (tag) {
+				Util.addIntoArr(tag, tree[category]);
+			});
+		});
+	},
+	displayCategories(){
+		// display all categories
+		let tree = this.tree;
+		let innerHTML = '';
+		for (let category in tree) {
+			innerHTML += '<span>' + category + '</span>';
+		}
+		this.cats.innerHTML = innerHTML;
+	},
+	displayTags(category) {
+		// display all tags belong to specified category
+		let tags = this.tags;
+		if (category) {
+			let innerHTML = '';
+			category.forEach(function (tag) {
+				innerHTML += '<span>' + tag + '</span>';
+			});
+			tags.innerHTML = innerHTML;
+		} else {
+			// if no category specified, nothing will be displayed
+			tags.innerHTML = '';
+		}
+	},
+	connectByPipe(categorySpan) {
+		let span = categorySpan;
+		let left = span.offsetLeft,
+		top = span.offsetTop,
+		width = span.clientWidth,
+		height = this.cats.clientHeight - top;
+		this.setPipe(left, top, width, height);
+	},
+	setPipe(left, top, width, height) {
+		let p = this.pipe;
+		if (left !== undefined) {
+			p.style.left = left + 'px';
+			p.style.top = top + 'px';
+			p.style.width = width + 'px';
+			p.style.height = height + 'px';
+			p.style.display = 'block';
+		} else {
+			// 不带参数时，隐藏连接块
+			p.style.display = 'none';
+		}
+	},
+	addEvent(){
+		let self = this;
+		this.cats.addEventListener('click', function (event) {
+			let cats = self.cats,
+				tree = self.tree;
+			let target = event.target;
+			if (target.nodeName.toLowerCase() === 'span') {
+				// 当点击的是某个代表分类的span标签时
+				if (Util.hasClass(target, 'selected')) {
+					// 取消当前分类被选中状态（这使得所有分类都未被选中）
+					Util.removeClass(target, 'selected');
+					self.setPipe();
+					self.displayTags();
+				} else {
+					// 让当前分类切换为选中状态
+					let currentSelected = cats.getElementsByClassName('selected')[0];
+					if (currentSelected) {
+						Util.removeClass(currentSelected, 'selected');
+					}
+					// 将这个被点击的分类设为选中
+					Util.addClass(target, 'selected');
+					self.connectByPipe(target);
+					self.displayTags(tree[target.innerHTML.trim()]);
+				}
+				let cond = self.getFilterCondition();
+				posts.filterPosts(cond);
+				posts.refreshPosts();
+			}
+		}),
+		this.tags.addEventListener('click', function (event) {
+			let target = event.target;
+			let tags = self.tags;
+			if (target.nodeName.toLowerCase() === 'span') {
+				if(Util.hasClass(target, 'selected')){
+					Util.removeClass(target, 'selected');
+				}else{
+					let currentSelected = tags.getElementsByClassName('selected')[0];
+					if(currentSelected){
+						Util.removeClass(currentSelected, 'selected');
+					}
+					Util.addClass(target, 'selected');
+				}
+				let cond = self.getFilterCondition();
+				posts.filterPosts(cond);
+				posts.refreshPosts();
+			}
+		});
+	},
+	getFilterCondition(){
+		let filterConditon = {
+			cats: [],
+			tags: []
+		};
+		let catsNode = catsAndTags.cats;
+		let tagsNode = catsAndTags.tags;
+
+		let selectedCategory = catsNode.getElementsByClassName('selected')[0];
+		if (selectedCategory) {
+			filterConditon.cats.push(selectedCategory.innerHTML.trim());
+			let selectedTags = tagsNode.getElementsByClassName('selected');
+			let len = selectedTags.length;
+			if (len > 0) {
+				for (let i = 0; i < len; i++) {
+					filterConditon.tags.push(selectedTags[i].innerHTML.trim());
+				}
+			}
+		}
+		return filterConditon;
+	}
+};
+
+// posts infomation and operation
+let posts = {
+	infos: [],
+	init() {
+		// get all post reference and datas binded on the list item
+		// modify the date in the li>span
+		let listItems = document.getElementById('aticleList').childNodes,
+			// posts = [],
+			temp = [];
+		for (let i = 0, len = listItems.length; i < len; i++) {
+			//filter to get all the 'li' element
+			if (listItems[i].nodeType === 1) {
+				temp.push(listItems[i]);
+			}
+		}
+		listItems = temp;
+		for (let i = 0, len = listItems.length; i < len; i++) {
+			//get posts' data from list items
+			let post = listItems[i];
+			let postInfo = {
+				node: post,
+				isShow: true,
+				title: post.getAttribute('data-title'),
+				date: post.getAttribute('data-date').split(' ')[0],
+				url: post.getAttribute('data-url'),
+				tags: post.getAttribute('data-tags').trim().split(',').map(function (item) {
+					return item.trim();
+				}).filter(function (item) {
+					return !!item;
+				}),
+				cats: post.getAttribute('data-categories').split(',').map(function (item) {
+					return item.trim();
+				})
+			};
+			this.infos.push(postInfo);
+		}
+		this.infos.forEach(function (postInfo) {
+			// modify the date shown in the span
+			postInfo.node.getElementsByTagName('span')[0].innerHTML = postInfo.date;
+		});
+	},
+	filterPosts(filterConditon) {
+		// if no request for  categories or tags, pass an empty array []
+		this.infos.forEach(function (postInfo) {
+			if (Util.ifContain(postInfo.cats, filterConditon.cats) &&
+				Util.ifContain(postInfo.tags, filterConditon.tags)) {
+				postInfo.isShow = true;
+			} else {
+				postInfo.isShow = false;
+			}
+		});
+	},
+	refreshPosts() {
+		this.infos.forEach(function (postInfo) {
+			if (postInfo.isShow === true) {
+				Util.removeClass(postInfo.node, 'hidden');
+			} else {
+				Util.addClass(postInfo.node, 'hidden');
+			}
+		});
+	},
+	searchPosts(searchStr){
+		// if no request for searchStr, pass an empty string ''
+		this.infos.forEach(function (postInfo) {
+			if(postInfo.isShow === true){
+				if (postInfo.title.indexOf(searchStr) >= 0) {
+					postInfo.isShow = true;
+				} else {
+					postInfo.isShow = false;
+				}
+			}
+		});
+		this.refreshPosts();
+	}
+};
 
 let Util = {
+	ifContain(containerArr, demandArr) {
+		// test if any item in demandArr is contained in containerArr
+		return demandArr.length === 0 ||
+			demandArr.some(function (item) {
+				return containerArr.indexOf(item) >= 0;
+			});
+	},
 	addIntoArr(item, arr){
 		if(arr.indexOf(item) < 0){
 			arr.push(item);
@@ -43,301 +260,29 @@ let Util = {
 		}
 	}
 };
-let nodes = {
-	pipe: document.getElementById('pipe'),
-	categories: document.getElementById('categories'),
-	tags: document.getElementById('tags')
-};
-function initPosts(){
-	// get all post reference and datas binded on the list item
-	// modify the date in the li>span
-	var listItems = document.getElementById('aticleList').childNodes,
-		posts = [],
-		temp = [];
-	for(var i = 0, len = listItems.length; i < len; i++){
-		//filter to get all the 'li' element
-		if(listItems[i].nodeType === 1){
-			temp.push(listItems[i]);
-		}
-	}
-	listItems = temp;
-	for(var i = 0, len = listItems.length; i < len; i++){
-		//get posts' data from list items
-		var post = listItems[i],
-			postInfo = {};
-		postInfo = {
-			node: post,
-			isShow: true,
-			title: post.getAttribute('data-title'),
-			date: post.getAttribute('data-date').split(' ')[0],
-			url: post.getAttribute('data-url'),
-			tags: post.getAttribute('data-tags').trim().split(',').map(function(item){
-				return item.trim();
-			}).filter(function(item){
-				return !!item;
-			}),
-			categories: post.getAttribute('data-categories').split(',').map(function(item){
-				return item.trim();
-			})
-		};
-		posts.push(postInfo);
-	}
-	posts.forEach(function(item){
-		// modify the date shown in the span
-		item.node.getElementsByTagName('span')[0].innerHTML = item.date;
-	});
 
-	return posts;
-}
-function genCategoryTree(posts){
-	// get category and tag tree
-	let cats = {};
-	posts.forEach(function(postInfo){
-		let category = postInfo.categories[0];
-		if(!(category in cats)){
-			cats[category] = [];
-		}
-		postInfo.tags.forEach(function(tag){
-			Util.addIntoArr(tag, cats[category]);
-		});
-	});
-	return cats;
-}
-
-// 显示所有的分类
-function displayCategories(cats){
-	let categories = nodes.categories;
-	let innerHTML = '';
-	for(let category in cats){
-		innerHTML += '<span>' + category + '</span>';
-	}
-	nodes.categories.innerHTML = innerHTML;
-}
-
-// 显示某一分类下的所有标签
-function displayTags(category){
-	let tags = nodes.tags;
-	if(category){
-		let innerHTML = '';
-		category.forEach(function(tag){
-			innerHTML += '<span>' + tag + '</span>';
-		});
-		tags.innerHTML = innerHTML;
-	}else{
-		tags.innerHTML = '';
-	}
-}
-
-function addEvents(posts){
-	var tagNodes = document.getElementById('tags').getElementsByTagName('span'),
-		catNodes = document.getElementById('categories').getElementsByTagName('span'),
-		input = document.getElementById('searchInput'),
-		inputConfirm = document.getElementById('searchConfirm');
-	//when a tag or category is click, filter the posts
-	for(var i = 0, len = tagNodes.length; i < len; i++){
-		tagNodes[i].onclick = function(){
-			toggleClass(this,'down');
-			var cond = getFilterCondition();
-			filterPosts(posts,cond.categories,cond.tags);
-			displayPosts(posts);
-		};
-	}
-	for(var i = 0, len = catNodes.length; i < len; i++){
-		catNodes[i].onclick = function(){
-			var isDown = this.className.indexOf('down') >= 0;
-			removeSelectedCategories();
-			if(!isDown){
-				addClass(this,'down');			
-			}
-			var cond = getFilterCondition();
-			filterPosts(posts,cond.categories,cond.tags);
-			displayPosts(posts);
-		};
-	}
-
-	nodes.categories.addEventListener('click', function (event) {
-		let target = event.target;
-		if (target.nodeName.toLowerCase() === 'span') {
-			// 当点击的是某个代表分类的span标签时
-			if (Util.hasClass(target, 'selected')) {
-				// 取消当前分类被选中状态（这使得所有分类都未被选中）
-				Util.removeClass(target, 'selected');
-				setPipe();
-				displayTags();
-			} else {
-				// 让当前分类切换为选中状态
-				let currentSelected = nodes.categories.getElementsByClassName('selected')[0];
-				if (currentSelected) {
-					Util.removeClass(currentSelected, 'selected');
+// search input and button
+let search = {
+	input: document.getElementById('searchInput'),
+	confirm: document.getElementById('searchConfirm'),
+	init(){
+		this.addEvent();
+	},
+	addEvent(){
+		let self = this;
+		this.input.onkeyup = function (event) {
+			if (event.keyCode === 13) {
+				var searchStr = this.value.trim();
+				if (!!searchStr) {
+					posts.searchPosts(searchStr);
 				}
-				// 将这个被点击的分类设为选中
-				Util.addClass(target, 'selected');
-				connectByPipe(target);
-				displayTags(posts.cats[target.innerHTML.trim()]);
 			}
-			let cond = getFilterCondition();
-			filterPosts(posts, cond.categories, cond.tags);
-			displayPosts(posts);
-		}
-	});
-
-	nodes.tags.addEventListener('click', function(event){
-		let target = event.target;
-		if(target.nodeName.toLowerCase() === 'span'){
-			Util.toggleClass(target, 'selected');
-		}
-		let cond = getFilterCondition();
-		filterPosts(posts, cond.categories, cond.tags);
-		displayPosts(posts);
-	});
-	//when finish search input, search for posts
-	input.onkeyup = function(event){
-		if(event.keyCode === 13){
-			var searchStr = this.value.trim();
-			if(!!searchStr){
-				removeSelectedTags();
-				removeSelectedCategories();
-				searchPosts(posts,searchStr);
-				displayPosts(posts);
+		};
+		this.confirm.onclick = function (event) {
+			var searchStr = self.input.value.trim();
+			if (!!searchStr) {
+				posts.searchPosts(searchStr);
 			}
-		}		
-	};
-	input.oninput = function(event){
-		if(!this.value){
-			removeSelectedTags();
-			removeSelectedCategories();
-
-			var cond = getFilterCondition();
-			filterPosts(posts,cond.categories,cond.tags);
-			displayPosts(posts);
-		}
-	};
-	inputConfirm.onclick = function(event){
-		var searchStr = input.value.trim();
-		if(!!searchStr){
-			removeSelectedTags();
-			removeSelectedCategories();
-
-			searchPosts(posts,searchStr);
-			displayPosts(posts);
-		}
-	};
-}
-function connectByPipe(categorySpan) {
-	let span = categorySpan;
-	let left = span.offsetLeft,
-		top = span.offsetTop,
-		width = span.clientWidth,
-		height = nodes.categories.clientHeight - top;
-	setPipe(left, top, width, height);
-}
-function setPipe(left, top, width, height) {
-	let p = nodes.pipe;
-	if (left !== undefined) {
-		p.style.left = left + 'px';
-		p.style.top = top + 'px';
-		p.style.width = width + 'px';
-		p.style.height = height + 'px';
-		p.style.display = 'block';
-	} else {
-		// 不带参数时，隐藏连接块
-		p.style.display = 'none';
+		};
 	}
-}
-function getFilterCondition(){
-	let filterConditon = {
-		categories: [],
-		tags: []
-	};
-	let categories = nodes.categories;
-	let tags = nodes.tags;
-
-	let selectedCategory = categories.getElementsByClassName('selected')[0];
-	if(selectedCategory){
-		filterConditon.categories.push(selectedCategory.innerHTML.trim());
-		let selectedTags = tags.getElementsByClassName('selected');
-		let len = selectedTags.length;
-		if(len > 0){
-			for(let i = 0; i <len; i++){
-				filterConditon.tags.push(selectedTags[i].innerHTML.trim());
-			}
-		}
-	}
-	return filterConditon;
-}
-
-function removeSelectedTags(){
-	var tagNodes = document.getElementById('tags').getElementsByTagName('span');
-	for(var i = 0, len = tagNodes.length; i<len; i++){
-		removeClass(tagNodes[i],'down');
-	}
-}
-
-function removeSelectedCategories(){
-	var categoryNodes = document.getElementById('categories').getElementsByTagName('span');
-	
-	for(var i = 0, len = categoryNodes.length; i<len; i++){
-		removeClass(categoryNodes[i],'down');
-	}
-}
-
-function filterPosts(posts, filterCategories, filterTags){
-	// if no request for  categories or tags, pass an empty array []
-	posts.forEach(function(post){
-		if(ifContain(post.categories, filterCategories) && 
-			ifContain(post.tags, filterTags)){
-			post.isShow = true;
-		}else{
-			post.isShow = false;
-		}		
-	});
-}
-
-function searchPosts(posts,searchStr){
-	// if no request for searchStr, pass an empty string ''
-	posts.forEach(function(post){
-		if(post.title.indexOf(searchStr) >= 0){
-			post.isShow = true;
-		}else{
-			post.isShow = false;
-		}		
-	});
-}
-
-function displayPosts(posts){
-	posts.forEach(function(post,index,arr){
-		if(post.isShow === true){
-			removeClass(post.node,'hidden');
-		}else{
-			addClass(post.node,'hidden');
-		}
-	});
-}
-
-function ifContain(containerArr, demandArr){
-	// test if any item in demandArr is contained in containerArr
-	return demandArr.length === 0 || 
-		demandArr.some(function(item){
-			return containerArr.indexOf(item) >= 0;
-		});
-}
-
-function addClass(el,className){
-	if(el.className.indexOf(className) < 0){
-		el.className = el.className.trim() + ' ' + className;
-	}
-}
-
-function removeClass(el,className){
-	while(el.className.indexOf(className) >= 0){
-		el.className = el.className.replace(className,'');
-	}
-}
-
-function toggleClass(el,className){
-	if(el.className.indexOf(className) >= 0){
-		removeClass(el,className);
-	}else{
-		addClass(el,className);
-	}
-}
+};
