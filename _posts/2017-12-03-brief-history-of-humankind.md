@@ -1,7 +1,7 @@
 ---
 layout: article
 title: 《人类简史》笔记和感想
-categories: [读书生活]
+categories: [读书与生活]
 tags: [历史]
 ---
 
