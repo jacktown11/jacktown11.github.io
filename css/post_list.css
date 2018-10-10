@@ -18,7 +18,7 @@ div.input{
 	position: relative;
 	width: 100%;
 	margin: auto;
-	/* text-align: center; */
+	text-align: center;
 }
 .container span{
 	display: inline-block;
@@ -33,17 +33,20 @@ div.input{
 .categories{
 	width: 100%;
 	margin: 0 4px;
+	padding: 6px 4px;
 }
 .pipe{
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 }
 .categories span{
+	padding: 6px 9px;
 	background-color: #ddd;
 	color: #000;
 }
 .categories span.selected{
 	background-color: transparent;
+	box-shadow: none;
 }
 .tags{
 	background-color: #fff;
@@ -102,6 +105,7 @@ div.input{
 	background-color: rgba(255, 255, 255, 0.8);
 	position: relative;
 	top: 1px;
+	box-shadow: 0 0 4px #000 inset;
 }
 .search button:active{
 	box-shadow: none;
