@@ -41,12 +41,13 @@ div.input{
 }
 .categories span{
 	padding: 6px 9px;
-	background-color: #ddd;
-	color: #000;
+	color: #fff;
+	background-color: #3c88cc;
+	background: linear-gradient(#3c88cc,#276195);
 }
 .categories span.selected{
-	background-color: transparent;
-	box-shadow: none;
+	color: #222;
+	background: transparent;
 }
 .tags{
 	background-color: #fff;
@@ -70,6 +71,7 @@ div.input{
 	top: 76px;
 	z-index: 5;
 	background-color: #fff;
+	background: linear-gradient(#3c88cc,#fff);	
 	display: none;
 }
 
