@@ -1,8 +1,8 @@
 ---
 layout: article
 title: 《高性能javascript》笔记
-categories: [前端其他]
-tags: []
+categories: [js]
+tags: [js基础]
 ---
 
 # 第一章 加载和执行

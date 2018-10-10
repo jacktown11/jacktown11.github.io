@@ -2,7 +2,7 @@
 layout: article
 title: 前端数据模拟
 categories: [前端其他]
-tags: []
+tags: [杂]
 ---
 
 # 前言

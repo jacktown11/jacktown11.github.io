@@ -1,8 +1,8 @@
 ---
 layout: article
 title: 优秀文章收集
-categories: [杂集]
-tags: []
+categories: [编程相关]
+tags: [教程与资源]
 ---
 
 # html css

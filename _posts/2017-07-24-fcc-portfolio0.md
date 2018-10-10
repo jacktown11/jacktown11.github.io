@@ -1,7 +1,7 @@
 ---
 layout: article
 title: fcc项目总结系列1：个人作品展示页面制作项目
-categories: [项目总结与日常记录]
+categories: [前端]
 tags: [项目总结]
 ---
 ## 导言

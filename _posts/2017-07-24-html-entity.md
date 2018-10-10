@@ -1,7 +1,7 @@
 ---
 layout: article
 title: html字符实体
-categories: [htmlcss]
+categories: [前端]
 tags: [html]
 ---
 ## 为什么在html文档中使用html实体字符？

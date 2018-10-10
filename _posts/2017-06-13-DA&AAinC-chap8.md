@@ -1,8 +1,8 @@
 ---
 layout: article
 title: 数据结构与算法分析C语言描述 总结笔记 第八章
-categories: [计算机与编程基础]
-tags: [算法]
+categories: [编程相关]
+tags: [数据结构与算法]
 ---
 # 第八章 不相交集ADT
 ### 1.等价关系
