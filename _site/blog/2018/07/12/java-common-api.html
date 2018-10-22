@@ -442,13 +442,18 @@
 <p><code class="highlighter-rouge">java.util.regex</code>包提供了<code class="highlighter-rouge">Matcher</code>和<code class="highlighter-rouge">Pattern</code>两个类。</p>
 
 <h2 id="pattern">Pattern</h2>
-<h3 id="compile方法">compile()方法</h3>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">static</span> <span class="n">Pattern</span>  <span class="nf">compile</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">);</span>
+
+<h3 id="静态compile方法">静态compile()方法</h3>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">static</span> <span class="n">Pattern</span> <span class="nf">compile</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">);</span>
+<span class="kd">static</span> <span class="n">Pattern</span> <span class="nf">compile</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">);</span>
 </code></pre>
 </div>
+
 <p>这是一个静态方法,可根据模式字符串返回正则表达式。</p>
 
 <h3 id="matcher方法">matcher()方法</h3>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Matcher</span> <span class="nf">matcher</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">input</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -456,7 +461,7 @@
 
 <h2 id="matcher">Matcher</h2>
 
-<h2 id="string对象中的正则表达式方法"><code class="highlighter-rouge">String</code>对象中的正则表达式方法</h2>
+<h2 id="string对象中的正则表达式方法">String对象中的正则表达式方法</h2>
 
 <table>
   <thead>

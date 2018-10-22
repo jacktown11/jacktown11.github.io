@@ -239,13 +239,18 @@ Integer b = a;
 `java.util.regex`包提供了`Matcher`和`Pattern`两个类。
 
 ## Pattern
-### compile()方法
+
+### 静态compile()方法
+
 ```java
-static Pattern  compile(String regex, int flags);
+static Pattern compile(String regex);
+static Pattern compile(String regex, int flags);
 ```
+
 这是一个静态方法,可根据模式字符串返回正则表达式。
 
 ### matcher()方法
+
 ```java
 Matcher matcher(CharSequence input);
 ```
@@ -254,7 +259,7 @@ Matcher matcher(CharSequence input);
 ## Matcher
 
 
-## `String`对象中的正则表达式方法
+## String对象中的正则表达式方法
 
 |方法|解释|
 |-|-|
