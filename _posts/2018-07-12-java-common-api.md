@@ -277,10 +277,12 @@ Matcher matcher(CharSequence input);
 - Date(long date), 根据毫秒值参数创建Date对象
 
 ### 实例方法
+
 - long `getTime`(), 返回毫秒值
-- long `setTime`(), 设置毫秒值
+- void `setTime`(), 设置毫秒值
 
 ## java.text.SimpleDateFormat
+
 继承自`DateFormat`抽象类，用于格式化日期
 
 ### 构造方法
