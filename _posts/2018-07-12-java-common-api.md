@@ -309,7 +309,7 @@ Matcher matcher(CharSequence input);
 - void `set`(int field, int value), 设置日期某字段
 - void `set`(int year, int month, int day), 一次性设置年月日
 - void `add`(int field, int offset), 以字段为单位偏移
-- Date `getTime()`, 转换成对于`Date`对象
+- Date `getTime()`, 转换成对应`Date`对象
 - void `setTime`(Date date), 用`Date`对象设置日历
 
 ### 注意
