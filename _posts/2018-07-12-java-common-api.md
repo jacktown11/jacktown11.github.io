@@ -118,7 +118,19 @@ private final char value[];
 
 
 # 包装类型
+
 基本数据类型的包装类储存了一些与本数据类型相关的静态常量，通过构造方法可以将一个基本类型包装起来，包装类实例可以转换为基本类型和字符串；包装类还提供一些静态方法用于基本类型和字符串的相互转换。（下面以`int`和其包装类`Integer`为例）
+
+|类型|基本类型关键字|包装类型|
+|-|-|-|
+| 字节型| byte| Byte|
+| 短整型| short| Short|
+| 整型| int| **Integer**|
+| 长整型| long| Long|
+| 字符型| char| **Character**|
+| 布尔型| boolean| Boolean|
+| 浮点型| float| Float|
+| 双精度浮点型| double| Double|
 
 ## 常量
 - `Integer.MAX_VALUE`，最大的`int`整型
@@ -133,9 +145,9 @@ private final char value[];
 ### 解包装
 - `int intValue()`
 - `String toString()`
-- `String toBinaryString()`
-- `String toHexString()`
-- `String toOctalString()`
+- `static String toBinaryString(int i)`
+- `static String toHexString(int i)`
+- `static String toOctalString(int i)`
 
 ## 基本类型和字符串的转换(静态方法)
 
@@ -152,19 +164,24 @@ private final char value[];
     * `static String.valueOf(int i)`
 
 ## 自动装箱与拆箱
+
 ```java
 Integer i = 1;
 i = i + 1;
 ```
+
 上面的代码是合法的，给引用类型`i`赋值时，传入了`int`基本类型，这时会自动装箱为引用类型；用`Integer`引用类型变量`i`进行数学运算，这时会进行自动拆箱；运算结果是基本类型，再赋值给`i`时又会自动装箱。
 
 ### 疑难解析
+
 ```java
 Integer a = 38;
 Integer b = 38;
 System.out.println(a == b); //true
 ```
+
 上面的自动装箱过程中由于38在`byte`范围内，此时重复出现的数字不会新建包装类，而是重复引用。相当于：
+
 ```java
 Integer a = new Integer(38);
 Integer b = a;

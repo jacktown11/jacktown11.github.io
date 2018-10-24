@@ -214,7 +214,60 @@
 <p>一个线程不安全的类，但是速度更快，可能的情况下，优先使用<code class="highlighter-rouge">StringBuilder</code>。</p>
 
 <h1 id="包装类型">包装类型</h1>
+
 <p>基本数据类型的包装类储存了一些与本数据类型相关的静态常量，通过构造方法可以将一个基本类型包装起来，包装类实例可以转换为基本类型和字符串；包装类还提供一些静态方法用于基本类型和字符串的相互转换。（下面以<code class="highlighter-rouge">int</code>和其包装类<code class="highlighter-rouge">Integer</code>为例）</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型</th>
+      <th>基本类型关键字</th>
+      <th>包装类型</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>字节型</td>
+      <td>byte</td>
+      <td>Byte</td>
+    </tr>
+    <tr>
+      <td>短整型</td>
+      <td>short</td>
+      <td>Short</td>
+    </tr>
+    <tr>
+      <td>整型</td>
+      <td>int</td>
+      <td><strong>Integer</strong></td>
+    </tr>
+    <tr>
+      <td>长整型</td>
+      <td>long</td>
+      <td>Long</td>
+    </tr>
+    <tr>
+      <td>字符型</td>
+      <td>char</td>
+      <td><strong>Character</strong></td>
+    </tr>
+    <tr>
+      <td>布尔型</td>
+      <td>boolean</td>
+      <td>Boolean</td>
+    </tr>
+    <tr>
+      <td>浮点型</td>
+      <td>float</td>
+      <td>Float</td>
+    </tr>
+    <tr>
+      <td>双精度浮点型</td>
+      <td>double</td>
+      <td>Double</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="常量">常量</h2>
 <ul>
@@ -234,9 +287,9 @@
 <ul>
   <li><code class="highlighter-rouge">int intValue()</code></li>
   <li><code class="highlighter-rouge">String toString()</code></li>
-  <li><code class="highlighter-rouge">String toBinaryString()</code></li>
-  <li><code class="highlighter-rouge">String toHexString()</code></li>
-  <li><code class="highlighter-rouge">String toOctalString()</code></li>
+  <li><code class="highlighter-rouge">static String toBinaryString(int i)</code></li>
+  <li><code class="highlighter-rouge">static String toHexString(int i)</code></li>
+  <li><code class="highlighter-rouge">static String toOctalString(int i)</code></li>
 </ul>
 
 <h2 id="基本类型和字符串的转换静态方法">基本类型和字符串的转换(静态方法)</h2>
@@ -264,19 +317,24 @@
 </ul>
 
 <h2 id="自动装箱与拆箱">自动装箱与拆箱</h2>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
 </code></pre>
 </div>
+
 <p>上面的代码是合法的，给引用类型<code class="highlighter-rouge">i</code>赋值时，传入了<code class="highlighter-rouge">int</code>基本类型，这时会自动装箱为引用类型；用<code class="highlighter-rouge">Integer</code>引用类型变量<code class="highlighter-rouge">i</code>进行数学运算，这时会进行自动拆箱；运算结果是基本类型，再赋值给<code class="highlighter-rouge">i</code>时又会自动装箱。</p>
 
 <h3 id="疑难解析">疑难解析</h3>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
 <span class="n">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span> <span class="c1">//true</span>
 </code></pre>
 </div>
+
 <p>上面的自动装箱过程中由于38在<code class="highlighter-rouge">byte</code>范围内，此时重复出现的数字不会新建包装类，而是重复引用。相当于：</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">38</span><span class="o">);</span>
 <span class="n">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
 </code></pre>
