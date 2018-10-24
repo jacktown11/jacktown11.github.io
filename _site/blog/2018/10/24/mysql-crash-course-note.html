@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper hidden">
+
+	</div>
+	
+	<article class="wrap panel">
+		<h1>《mysql必知必会》笔记</h1>
+		<p class="meta">24 Oct 2018</p>
+		<div class="post">
+			  <h1 id="第一章-了解sql">第一章 了解SQL</h1>
+
+<p>一些基本的数据库术语：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">数据库</code>（database）：保存有组织的数据的容器（通常是一个文件或一组文件）</li>
+  <li><code class="highlighter-rouge">表</code>（table）：某种特定类型数据的结构化清单</li>
+  <li><code class="highlighter-rouge">模式</code>（schema）:关于数据库和表的布局及特性的信息</li>
+  <li><code class="highlighter-rouge">列</code>（column）：表中的一个字段；所有表都是由一个或多个列组成</li>
+  <li><code class="highlighter-rouge">数据类型</code>（datatype）：所容许的数据的类型；每个表列都有相应的数据类型，它限制`（或容许）该列中存储的数据</li>
+  <li><code class="highlighter-rouge">行</code>（row）：表中的一个记录</li>
+  <li><code class="highlighter-rouge">主键</code>（primary key）：一列（或一组列），其值能够唯一区分表中每个行</li>
+  <li><code class="highlighter-rouge">SQL</code>（Structured Query Language）：结构化查询语言，一种专门用来与数据库通信的语言</li>
+</ul>
+
+<h1 id="第二章-mysql简介">第二章 MySQL简介</h1>
+
+<h2 id="什么是mysql">什么是MySQL</h2>
+
+<p>MySQL是一种数据库软件（DBMS，Database Management System，数据库管理系统），负责数据的所有存储、检索、管理与实际处理，即通过它与数据库（<code class="highlighter-rouge">database</code>）交互。</p>
+
+<p>DBMS分类：</p>
+
+<ul>
+  <li>基于文件系统的DBMS（如Microsoft Access）</li>
+  <li>基于客户机-服务器的DBMS（如MySQL、Oracle、Microsoft SQL Server）</li>
+</ul>
+
+<h2 id="基于客户机-服务器的dbms">基于客户机-服务器的DBMS</h2>
+
+<ul>
+  <li>服务器软件：如MySQL</li>
+  <li>客户机
+    <ul>
+      <li>各种工具：如MySQL Administrator、MySQL Query Browser、SQLyog</li>
+      <li>脚本语言：如Perl</li>
+      <li>Web应用开发语言：如ASP、JSP、PHP</li>
+      <li>程序设计语言：如Java、C、C++</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="mysql客户机工具">MySQL客户机工具</h2>
+
+<ul>
+  <li>命令行实用程序</li>
+  <li>MySQL Administrator</li>
+  <li>MySQL Query Browser</li>
+</ul>
+
+<h3 id="mysql命令行入门">MySQL命令行入门</h3>
+
+<ul>
+  <li>登录；<code class="highlighter-rouge">mysql -u username -p</code></li>
+  <li>帮助：<code class="highlighter-rouge">\h</code>或<code class="highlighter-rouge">help</code>或<code class="highlighter-rouge">help &lt;keyword&gt;</code></li>
+  <li>退出：<code class="highlighter-rouge">exit</code>或<code class="highlighter-rouge">quit</code></li>
+  <li>命令以<code class="highlighter-rouge">\g</code>或<code class="highlighter-rouge">;</code>结束</li>
+</ul>
+
+
+			  
+			<!-- <p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p> -->
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="#" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="#" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>
