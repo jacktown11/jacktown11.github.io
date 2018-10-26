@@ -119,7 +119,7 @@
       <td>返回包含所有元素的数组</td>
     </tr>
     <tr>
-      <td>Iterator<E> `iterator`()</E></td>
+      <td>Iterator&lt;E&gt; <code class="highlighter-rouge">iterator</code>()</td>
       <td>获取集合的迭代器</td>
     </tr>
   </tbody>
@@ -141,10 +141,25 @@
 <p>迭代器，为java的集合框架提供一种通用的枚举方式。</p>
 
 <h2 id="方法">方法</h2>
-<p>|方法|解释|
-|-|-|
-|boolean <code class="highlighter-rouge">hasNext</code>() |是否还有下一个迭代元素 |
-|E <code class="highlighter-rouge">next</code>() |获取下一个迭代元素 |</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">hasNext</code>()</td>
+      <td>是否还有下一个迭代元素</td>
+    </tr>
+    <tr>
+      <td>E <code class="highlighter-rouge">next</code>()</td>
+      <td>获取下一个迭代元素</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="并发修改异常">并发修改异常</h2>
 <p>在迭代过程中，不应该修改正在迭代的集合（或数组），特别是不能修改其长度，否则会出现并发修改异常。</p>
@@ -361,9 +376,9 @@
 </ol>
 
 <h2 id="linkedhashset类">LinkedHashSet类</h2>
-<p>具有可预知迭代顺序的<code class="highlighter-rouge">Set接口的哈希表和链表实现，是</code>HashSet`的子类；线程不安全，运行速度快</p>
+<p>具有可预知迭代顺序的<code class="highlighter-rouge">Set</code>接口的哈希表和链表实现，是<code class="highlighter-rouge">HashSet</code>的子类；线程不安全，运行速度快</p>
 
-<h2 id="重复元素的判断-和arraylist的比较">重复元素的判断-和ArrayList的比较</h2>
+<h2 id="重复元素的判断和arraylist的比较">重复元素的判断和ArrayList的比较</h2>
 <p>比如<code class="highlighter-rouge">ArrayList</code>的<code class="highlighter-rouge">contains()</code>、<code class="highlighter-rouge">HashSet</code>的<code class="highlighter-rouge">contains()</code>和<code class="highlighter-rouge">add()</code>方法都需要判断是否有相同元素</p>
 
 <ul>

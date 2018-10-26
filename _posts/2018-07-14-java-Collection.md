@@ -42,7 +42,7 @@ tags: [javase]
 |boolean `remove`(Object o) |删除一个元素实例 |
 |int `size`() |已存元素总数量 |
 |Object[] `toArray`() |返回包含所有元素的数组 |
-|Iterator<E> `iterator`() |获取集合的迭代器 |
+|Iterator&lt;E&gt; `iterator`() |获取集合的迭代器 |
 
 ## Iterable超接口
 `JDK1.5`之后，`Collection`接口继承了`Iterable`接口（该接口在`java.lang`包中）,上述`Collection`的基本方法中的`iterator`方法实际上在`Iterable`接口中就已经声明了。
@@ -60,6 +60,7 @@ for(T item : IterableObject){
 迭代器，为java的集合框架提供一种通用的枚举方式。
 
 ## 方法
+
 |方法|解释|
 |-|-|
 |boolean `hasNext`() |是否还有下一个迭代元素 |
@@ -207,9 +208,9 @@ Set的方法基本全是Collection的方法
 3. 用该元素调用equals()方法，传入各个同hash值的已有元素与之比较，如果都返回false，那么在该hash值对应链表中加入该元素；否则，放弃存入该元素
 
 ## LinkedHashSet类
-具有可预知迭代顺序的`Set接口的哈希表和链表实现，是`HashSet`的子类；线程不安全，运行速度快
+具有可预知迭代顺序的`Set`接口的哈希表和链表实现，是`HashSet`的子类；线程不安全，运行速度快
 
-## 重复元素的判断-和ArrayList的比较
+## 重复元素的判断和ArrayList的比较
 比如`ArrayList`的`contains()`、`HashSet`的`contains()`和`add()`方法都需要判断是否有相同元素
 
 - ArrayList，直接依赖于equals()方法
