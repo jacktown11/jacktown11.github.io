@@ -29,11 +29,11 @@
 		</ul>
 	</nav>
 
-	<div id="catalog-wraper" class="catalog-wraper hidden">
+	<div id="catalog-wraper" class="catalog-wraper">
 
 	</div>
 	
-	<article class="wrap panel">
+	<article class="wrap panel right">
 		<h1>java 集合框架</h1>
 		<p class="meta">14 Jul 2018</p>
 		<div class="post">
@@ -82,9 +82,52 @@
   </li>
 </ul>
 
-<h1 id="colletion接口">Colletion接口</h1>
+<h2 id="常见数据结构">常见数据结构</h2>
 
-<h2 id="基本方法">基本方法</h2>
+<h3 id="堆栈">堆栈</h3>
+<ul>
+  <li>先进后出</li>
+  <li>存数据：压栈</li>
+  <li>取数据：弹栈</li>
+</ul>
+
+<h3 id="队列">队列</h3>
+<ul>
+  <li>先进先出</li>
+</ul>
+
+<h3 id="数组">数组</h3>
+<ul>
+  <li>查找速度快（通过索引）</li>
+  <li>增删元素慢（需要创建新数组）</li>
+</ul>
+
+<h3 id="链表">链表</h3>
+<ul>
+  <li>后一个元素的位置被前一个元素所存储</li>
+  <li>查找慢</li>
+  <li>增删快</li>
+</ul>
+
+<h3 id="哈希表hash-table">哈希表（Hash Table）</h3>
+<p>链表数组结合体，每一个元素都映射到一个确定的哈希值，同一个哈希值的元素放在同一个链表中，各个哈希值放在数组中</p>
+
+<h4 id="哈希值的计算">哈希值的计算</h4>
+<p>java的Object对象声明了<code class="highlighter-rouge">int hashCode()</code>方法，这表示每一个java中的对象都可以调用该方法的某种特定实现计算出一个哈希值。</p>
+
+<p>java语言官方约定：</p>
+
+<ul>
+  <li>同一个对象，多次调用hashCode()，必须返回一个相同的确定值</li>
+  <li>两个对象，如果调用equals()方法返回true,那么他们的hashCode()返回值应该相同</li>
+  <li>两个对象，如果其hashCode()方法返回了相同值，不要求它们之间调用equals()方法返回true，但是为不同对象提供不同的hash值有利于提高性能</li>
+</ul>
+
+<h1 id="colletion接口及其实现类">Colletion接口及其实现类</h1>
+
+<h2 id="collection接口">Collection接口</h2>
+
+<h3 id="基本方法">基本方法</h3>
 
 <table>
   <thead>
@@ -125,7 +168,7 @@
   </tbody>
 </table>
 
-<h2 id="iterable超接口">Iterable超接口</h2>
+<h3 id="iterable超接口">Iterable超接口</h3>
 <p><code class="highlighter-rouge">JDK1.5</code>之后，<code class="highlighter-rouge">Collection</code>接口继承了<code class="highlighter-rouge">Iterable</code>接口（该接口在<code class="highlighter-rouge">java.lang</code>包中）,上述<code class="highlighter-rouge">Collection</code>的基本方法中的<code class="highlighter-rouge">iterator</code>方法实际上在<code class="highlighter-rouge">Iterable</code>接口中就已经声明了。</p>
 
 <p>另外，具有<code class="highlighter-rouge">Iterable</code>接口的对象都可以使用<code class="highlighter-rouge">forEach</code>
@@ -137,10 +180,10 @@
 </code></pre>
 </div>
 
-<h1 id="iterator接口">Iterator接口</h1>
+<h2 id="iterator接口">Iterator接口</h2>
 <p>迭代器，为java的集合框架提供一种通用的枚举方式。</p>
 
-<h2 id="方法">方法</h2>
+<h3 id="方法">方法</h3>
 
 <table>
   <thead>
@@ -161,15 +204,15 @@
   </tbody>
 </table>
 
-<h2 id="并发修改异常">并发修改异常</h2>
+<h3 id="并发修改异常">并发修改异常</h3>
 <p>在迭代过程中，不应该修改正在迭代的集合（或数组），特别是不能修改其长度，否则会出现并发修改异常。</p>
 
-<h1 id="泛型generic">泛型（Generic）</h1>
+<h2 id="泛型generic">泛型（Generic）</h2>
 <p>泛型，即“参数化类型”。类似于方法中的变量参数，数据类型（类）也可定义成有参形式，然后在使用时传入具体的类型。泛型提供了编译时类型安全检测机制，该机制允许在编译时检测到非法的类型。</p>
 
 <p>java的泛型是伪泛型，只是编译的手段；编译后的<code class="highlighter-rouge">class</code>文件中是没有泛型的任何信息的。</p>
 
-<h2 id="泛型方法">泛型方法</h2>
+<h3 id="泛型方法">泛型方法</h3>
 <p>格式：<code class="highlighter-rouge">修饰符 &lt;T&gt; 返回值类型 方法名(引用T的类型 方法参数)</code></p>
 
 <ul>
@@ -179,17 +222,17 @@
   <li>泛型方法体的声明和其他方法一样。注意类型参数只能代表引用型类型，不能是原始类型（像int,double,char的等）</li>
 </ul>
 
-<h2 id="泛型的限定">泛型的限定</h2>
+<h3 id="泛型的限定">泛型的限定</h3>
 <p>可以对类型参数声明中的类型参数做范围限定</p>
 <ul>
   <li><code class="highlighter-rouge">&lt;? extends A&gt;</code>，上限限定，必须是A或A的子类/实现对象</li>
   <li><code class="highlighter-rouge">&lt;? super A&gt;</code>，下限限定，A或A的父类对象</li>
 </ul>
 
-<h2 id="泛型类">泛型类</h2>
+<h3 id="泛型类">泛型类</h3>
 <p>类型参数声明部分放在类名后边</p>
 
-<h2 id="泛型继承">泛型继承</h2>
+<h3 id="泛型继承">泛型继承</h3>
 <p>以泛型接口接口为例</p>
 
 <ul>
@@ -207,67 +250,26 @@
   </li>
 </ul>
 
-<h2 id="泛型通配符">泛型通配符</h2>
+<h3 id="泛型通配符">泛型通配符</h3>
 <p><code class="highlighter-rouge">?</code>可用替代具体的类型参数，可免去类型参数声明部分</p>
 
-<h2 id="优点">优点</h2>
+<h3 id="优点">优点</h3>
 <ul>
   <li>避免类型强转，更加安全</li>
   <li>将错误由运行时提前到编译时</li>
 </ul>
 
-<h1 id="常见数据结构">常见数据结构</h1>
-
-<h2 id="堆栈">堆栈</h2>
-<ul>
-  <li>先进后出</li>
-  <li>存数据：压栈</li>
-  <li>取数据：弹栈</li>
-</ul>
-
-<h2 id="队列">队列</h2>
-<ul>
-  <li>先进先出</li>
-</ul>
-
-<h2 id="数组">数组</h2>
-<ul>
-  <li>查找速度快（通过索引）</li>
-  <li>增删元素慢（需要创建新数组）</li>
-</ul>
-
-<h2 id="链表">链表</h2>
-<ul>
-  <li>后一个元素的位置被前一个元素所存储</li>
-  <li>查找慢</li>
-  <li>增删快</li>
-</ul>
-
-<h2 id="哈希表hash-table">哈希表（Hash Table）</h2>
-<p>链表数组结合体，每一个元素都映射到一个确定的哈希值，同一个哈希值的元素放在同一个链表中，各个哈希值放在数组中</p>
-
-<h3 id="哈希值的计算">哈希值的计算</h3>
-<p>java的Object对象声明了<code class="highlighter-rouge">int hashCode()</code>方法，这表示每一个java中的对象都可以调用该方法的某种特定实现计算出一个哈希值。</p>
-
-<p>java语言官方约定：</p>
-
-<ul>
-  <li>同一个对象，多次调用hashCode()，必须返回一个相同的确定值</li>
-  <li>两个对象，如果调用equals()方法返回true,那么他们的hashCode()返回值应该相同</li>
-  <li>两个对象，如果其hashCode()方法返回了相同值，不要求它们之间调用equals()方法返回true，但是为不同对象提供不同的hash值有利于提高性能</li>
-</ul>
-
-<h1 id="list接口">List接口</h1>
+<h2 id="list接口">List接口</h2>
 <p>Collection的子接口</p>
 
-<h2 id="特点">特点</h2>
+<h3 id="特点">特点</h3>
 <ul>
   <li>有序</li>
   <li>具有整数索引</li>
   <li>可以储存重复元素</li>
 </ul>
 
-<h2 id="常用方法">常用方法</h2>
+<h3 id="常用方法">常用方法</h3>
 <ul>
   <li>boolean <code class="highlighter-rouge">add</code>(int index, E e)，在指定索引位置插入元素</li>
   <li>E <code class="highlighter-rouge">set</code>(int index, E e)，覆盖指定索引位置为给定值，返回原来的值</li>
@@ -276,13 +278,13 @@
   <li>boolean <code class="highlighter-rouge">isEmpty</code>()，是否为空</li>
 </ul>
 
-<h1 id="arraylist类">ArrayList类</h1>
+<h2 id="arraylist类">ArrayList类</h2>
 <ul>
   <li>List的大小可变的数组的实现，此实现是不同步的（线程不安全）。</li>
   <li>增删慢，查找快；由于日常开发中使用较多的是查询数据和遍历数据，因此该类型较常用。</li>
 </ul>
 
-<h1 id="linkedlist类">LinkedList类</h1>
+<h2 id="linkedlist类">LinkedList类</h2>
 <ul>
   <li>List链表实现（增删速度快，查找慢），线程不同步。</li>
   <li>提供了大量操作首尾元素的方法</li>
@@ -335,24 +337,24 @@
   </tbody>
 </table>
 
-<h1 id="vector类">Vector类</h1>
+<h2 id="vector类">Vector类</h2>
 <p>List中的子类，JDK中最早的集合，线程同步，现在的开发中多被ArrayList取代。</p>
 
-<h2 id="常见方法">常见方法</h2>
+<h3 id="常见方法">常见方法</h3>
 <ul>
   <li>void addElement(E e)，添加元素</li>
   <li>E elementAt(int index)，返回指定元素处的组件</li>
   <li>Enumeration elements()，返回向量组件的枚举</li>
 </ul>
 
-<h2 id="enumeration">Enumeration</h2>
+<h3 id="enumeration">Enumeration</h3>
 <p>Enumeration是早期的迭代器</p>
 <ul>
   <li>boolean hasMoreElements()，是否还能继续枚举取出</li>
   <li>E nextElement()，枚举获取下一个元素</li>
 </ul>
 
-<h1 id="set接口">Set接口</h1>
+<h2 id="set接口">Set接口</h2>
 <ul>
   <li>无序（存储与取出顺序不保证相同）</li>
   <li>不允许重复</li>
@@ -361,24 +363,24 @@
 
 <p>Set的方法基本全是Collection的方法</p>
 
-<h1 id="hashset">HashSet</h1>
+<h2 id="hashset">HashSet</h2>
 <ul>
   <li>实现了Set接口，由哈希表（实际是个HashMap实例）支持</li>
   <li>不保证set的迭代顺序，允许使用null元素</li>
   <li>存取比较快，线程不安全，允许速度快</li>
 </ul>
 
-<h2 id="存储过程">存储过程</h2>
+<h3 id="存储过程">存储过程</h3>
 <ol>
   <li>获取元素的哈希值，查看hash值数组中是否有该哈希值；若没有，走步骤2，若有，走步骤3</li>
   <li>在hash值数组中新加一个hash值，并在其对应链表中存入第一个值</li>
   <li>用该元素调用equals()方法，传入各个同hash值的已有元素与之比较，如果都返回false，那么在该hash值对应链表中加入该元素；否则，放弃存入该元素</li>
 </ol>
 
-<h2 id="linkedhashset类">LinkedHashSet类</h2>
+<h3 id="linkedhashset类">LinkedHashSet类</h3>
 <p>具有可预知迭代顺序的<code class="highlighter-rouge">Set</code>接口的哈希表和链表实现，是<code class="highlighter-rouge">HashSet</code>的子类；线程不安全，运行速度快</p>
 
-<h2 id="重复元素的判断和arraylist的比较">重复元素的判断和ArrayList的比较</h2>
+<h3 id="重复元素的判断和arraylist的比较">重复元素的判断和ArrayList的比较</h3>
 <p>比如<code class="highlighter-rouge">ArrayList</code>的<code class="highlighter-rouge">contains()</code>、<code class="highlighter-rouge">HashSet</code>的<code class="highlighter-rouge">contains()</code>和<code class="highlighter-rouge">add()</code>方法都需要判断是否有相同元素</p>
 
 <ul>
@@ -386,12 +388,15 @@
   <li>HashSet，依赖于hashCode()和equals()方法</li>
 </ul>
 
-<h1 id="map接口">Map接口</h1>
+<h1 id="map接口及其实现类">Map接口及其实现类</h1>
+
+<h2 id="map接口">Map接口</h2>
+
 <p><code class="highlighter-rouge">Map</code>（将键映射到值的对象）中的集合称为双列集合，<code class="highlighter-rouge">Collection</code>中的集合称为单列集合。</p>
 
 <p><code class="highlighter-rouge">Map</code>集合中键名不能重复，键值没有关系，当键名是对象时，作为键名的对象通常要重写<code class="highlighter-rouge">hashCode()</code>和<code class="highlighter-rouge">equals()</code>。</p>
 
-<h2 id="常用方法-1">常用方法</h2>
+<h3 id="常用方法-1">常用方法</h3>
 
 <table>
   <thead>
@@ -420,7 +425,7 @@
   </tbody>
 </table>
 
-<h2 id="遍历">遍历</h2>
+<h3 id="遍历">遍历</h3>
 <p><code class="highlighter-rouge">Map</code>本身没有实现<code class="highlighter-rouge">Iterable</code>接口，不能直接用<code class="highlighter-rouge">forEach</code>遍历，但可以借用两个实例方法间接遍历。</p>
 
 <ul>
@@ -439,6 +444,9 @@
 </ul>
 
 <h2 id="map的实现类">Map的实现类</h2>
+
+<h3 id="体系">体系</h3>
+
 <ul>
   <li>HashMap（类）
     <ul>
@@ -455,12 +463,16 @@
   <li>…</li>
 </ul>
 
-<p><code class="highlighter-rouge">HashMap</code>和<code class="highlighter-rouge">LinkedHashMap</code>都是线程不安全的集合，其中<code class="highlighter-rouge">LinkedHashMap</code>是有序的。</p>
+<h3 id="注意">注意</h3>
 
-<p><code class="highlighter-rouge">Hashtable</code>是线程安全的，性能差，使用不多；而其子类<code class="highlighter-rouge">Properties</code>在<code class="highlighter-rouge">IO流</code>中应用较多</p>
+<ul>
+  <li><code class="highlighter-rouge">HashMap</code>和<code class="highlighter-rouge">LinkedHashMap</code>都是线程不安全的集合，其中<code class="highlighter-rouge">LinkedHashMap</code>是有序的。</li>
+  <li><code class="highlighter-rouge">Hashtable</code>是线程安全的，性能差，使用不多；而其子类<code class="highlighter-rouge">Properties</code>在<code class="highlighter-rouge">IO流</code>中应用较多</li>
+  <li><code class="highlighter-rouge">HashMap</code>运行存储<code class="highlighter-rouge">null</code>键与值，<code class="highlighter-rouge">Hashtable</code>则不行</li>
+</ul>
 
 <h1 id="collections工具类">Collections工具类</h1>
-<p><code class="highlighter-rouge">java.util</code>中除了有一个<code class="highlighter-rouge">Collection</code>接口，另一个<code class="highlighter-rouge">Collections</code>类，提供了大量静态方法，用于操作集合类对象，</p>
+<p><code class="highlighter-rouge">java.util</code>中除了有一个<code class="highlighter-rouge">Collection</code>接口，另一个<code class="highlighter-rouge">Collections</code>类，提供了大量静态方法，用于操作集合类对象。</p>
 
 <h2 id="sort">sort</h2>
 <p><code class="highlighter-rouge">static &lt;T extends Comparable&lt;? super T&gt;&gt; void sort(List&lt;T&gt; list)</code></p>

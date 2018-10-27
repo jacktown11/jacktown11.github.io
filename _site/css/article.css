@@ -36,6 +36,7 @@ nav.catalog p{
     user-select:none;
 }
 nav.catalog div.first{
+    padding-left: 0.4em;
     padding-bottom: 0em;
     font-size: 90%;
     background-color: rgb(0,153,102);
@@ -45,6 +46,7 @@ nav.catalog div.first a{
     color: #fff;
 }
 nav.catalog div.second{
+    padding-left: 0.4em;
     font-size: 80%;
     color: #e67008;
 }
@@ -71,7 +73,7 @@ nav.catalog div.sixth{
 }
 nav.catalog div{
     margin-left: 2px;
-    padding: 0 0 0.2em 0.4em;
+    padding: 0 0 0.2em 1.5em;
     border-bottom: 1px dashed #fff;
     font-size: 80%;
 }

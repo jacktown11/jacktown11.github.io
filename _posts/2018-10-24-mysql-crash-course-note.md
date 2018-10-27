@@ -47,7 +47,7 @@ DBMS分类：
 ### MySQL命令行入门
 
 - 登录；`mysql -u username -p`
-- 帮助：`\h`或`help`或`help <keyword>`
+- 帮助：`\h`或`help`或`help 关键字`
 - 退出：`exit`或`quit`
 - 命令以`\g`或`;`结束
 
@@ -60,20 +60,20 @@ DBMS分类：
 
 ## 选择数据库与查看内部信息
 
-- `SHOW DATABASES;`，显示所有可用数据库的列表
-- `USE databasex;`，选择指定名称的数据库
-- `SHOW TABLES;`，显示所有选定的数据库内的可用表的列表
-- `SHOW COLUMNS FROM tablex;`，显示给定名称的表的列信息
+- **`SHOW DATABASES;`**，显示所有可用数据库的列表
+- **`USE databasex;`**，选择指定名称的数据库
+- **`SHOW TABLES;`**，显示所有选定的数据库内的可用表的列表
+- **`SHOW COLUMNS FROM tablex;`**，显示给定名称的表的列信息
 
 # 第四章 检索数据
 
-- `SELECT` columnx `FROM` tablex，从某表中检索给定列名的一列
-- SELECT column1`,`column2 FROM tablex，从某表中检索给定列名的多列
-- SELECT `*` FROM tablex，从某表中检索给定列名的列
-- SELECT `DISCTINCT` column1,column2 FROM tablex，从某表中检索给定列名的多列去重后的结果（重复是指被检索的各列都相同）
-- SELECT column FROM tablex `LIMIT` count，从某表中检索给定列名的一列，结果最多count条
-- SELECT column FROM tablex `LIMIT` pos, count，从某表中检索给定列名的一列，结果为pos位置之后（不含）的最多count条
-- SELECT tablex`.`columnx FROM databasex`.`tablex，列和表都可以选择性地使用完全限定的写法
+- **`SELECT` columnx `FROM` tablex**，从某表中检索给定列名的一列
+- **SELECT column1`,`column2 FROM tablex**，从某表中检索给定列名的多列
+- **SELECT `*` FROM tablex，从某表中检索给定列名的列
+- **SELECT `DISCTINCT` column1,column2 FROM tablex**，从某表中检索给定列名的多列去重后的结果（重复是指被检索的各列都相同）
+- **SELECT column FROM tablex `LIMIT` count**，从某表中检索给定列名的一列，结果最多count条
+- **SELECT column FROM tablex `LIMIT` pos, count**，从某表中检索给定列名的一列，结果为pos位置之后（不含）的最多count条
+- **SELECT tablex`.`columnx FROM databasex`.`tablex**，列和表都可以选择性地使用完全限定的写法
 
 # 第五章 排序检索数据
 
@@ -81,8 +81,72 @@ DBMS分类：
 
 `ORDER BY`子句，用于按照一个或多个列对输出进行排序的子句。
 
-- SELECT columnx FROM tablex `ORDER BY` columny，检索出指定列并给定列排序（用于排序的列可能是非检索的）
-- SELECT columnx FROM tablex `ORDER BY` column1,column2，检索出指定列并给定的多个列排序（先按column1排序，column1存在重复项再按column2排序）
-- SELECT columnx FROM tablex ORDER BY column1 `DESC`,column2，检索出指定列并给定的多个列排序（先按column1降序排序，column1存在重复项再按column2升序（默认）排序）。注意降序`DESC`和升序`ASC`需要逐个指定到作为排序根据的各个列后。
+- **SELECT columnx FROM tablex `ORDER BY` columny**，检索出指定列并给定列排序（用于排序的列可能是非检索的）
+- **SELECT columnx FROM tablex `ORDER BY` column1,column2**，检索出指定列并给定的多个列排序（先按column1排序，column1存在重复项再按column2排序）
+- **SELECT columnx FROM tablex ORDER BY column1 `DESC`,column2**，检索出指定列并给定的多个列排序（先按column1降序排序，column1存在重复项再按column2升序（默认）排序）。注意降序`DESC`和升序`ASC`需要逐个指定到作为排序根据的各个列后。
+
+# 第六章 过滤数据（1）
+
+使用`WHERE`子句给定搜索条件（过滤条件）。
+
+## 格式
+
+- **SELECT columnx FROM tablex `WHERE 条件`**
+
+其中的条件可以使用如下的一些操作符：
+
+|操作符 |含义 |
+|-|-|
+|= |相等（可以用于字符串） |
+|<> |不等于 |
+|!= |不等于 |
+|< |小于 |
+|<= |小于等于 |
+|> |大于 |
+|>= |大于等于 |
+|BETWEEN a AND b |在区间[a,b]中 |
+
+## 空值检查
+
+- **SELECT columnx FROM tablex WHERE columny `IS NULL`**
+
+`NULL`不同于0、空串或空格，它表示无值（no value）。要注意：在过滤选择具有特定值或不具有特定值的行时，都不会返回具有`NULL`值的行。
+
+# 第七章 过滤数据（2）
+
+- **SELECT columnx FROM tablex WHERE 条件1 `AND` 条件2**，多重条件与过滤
+- **SELECT columnx FROM tablex WHERE 条件1 `OR` 条件2**，多重条件或过滤
+- `AND`优先级高于`OR`,可以通过圆括号`()`改变条件计算次序
+- **SELECT columnx FROM tablex WHERE columny `IN` (值1, 值2, 值3)**，筛选某列值在备选值中的条目
+- **SELECT columnx FROM tablex WHERE `NOT` 条件**，对其后的条件（`IN`、`BETWEEN`、`EXISTS`）取反
+
+# 第八章 用通配符进行过滤
+
+**通配符**（wildcard），用来匹配值的一部分的特殊字符。
+
+**搜素模式**（search pattern），由字面值、通配符或两者组合构成的搜索条件。
+
+- **SELECT columnx FROM tablex WHERE columny `LIKE` 搜索模式**，筛选某列符合给定搜索模式的条目
+
+两种通配符：
+
+- `%`，匹配0或多个任意字符
+- `_`，匹配1个任意字符
+
+# 第九章 用正则表达式进行搜索
+
+- **SELECT columnx FROM tablex WHERE columny `REGEXP` 正则表达式**
+
+MySQL中正则表示式中特殊字符需要双重转义（js注释：好比js中通过`new RegExp(regstr)`的方式建立正则表达式一样，另外MySQL中的字符类和词开头结尾定位符和js明显不同）
+
+# 第十章 创建计算字段
+
+**字段**（field），基本与列同意，常互换使用，字段更多用在计算字段的连接上。
+
+**拼接**（concatenate），把值联结到一起构成单个值。
+
+**别名**（alias），一个字段或值的替换名。
+
+- **SELECT `计算字段 AS 别名` FROM tablex**，将搜索结果，通过算术运算（加减乘除）和函数（`Concat()`、`Trim()`）等得到新字段，同时为计算字段添加别名
 
 
