@@ -1,6 +1,6 @@
 ---
 layout: article
-title: 全栈课程01 ES6(1)
+title: 全栈课程02 ES6(1)
 categories: [前端]
 tags: [全栈课程]
 ---
