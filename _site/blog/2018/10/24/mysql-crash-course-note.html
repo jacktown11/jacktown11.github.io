@@ -159,35 +159,35 @@
   </thead>
   <tbody>
     <tr>
-      <td>=</td>
+      <td><code class="highlighter-rouge">=</code></td>
       <td>相等（可以用于字符串）</td>
     </tr>
     <tr>
-      <td>&lt;&gt;</td>
+      <td><code class="highlighter-rouge">&lt;&gt;</code></td>
       <td>不等于</td>
     </tr>
     <tr>
-      <td>!=</td>
+      <td><code class="highlighter-rouge">!=</code></td>
       <td>不等于</td>
     </tr>
     <tr>
-      <td>&lt;</td>
+      <td><code class="highlighter-rouge">&lt;</code></td>
       <td>小于</td>
     </tr>
     <tr>
-      <td>&lt;=</td>
+      <td><code class="highlighter-rouge">&lt;=</code></td>
       <td>小于等于</td>
     </tr>
     <tr>
-      <td>&gt;</td>
+      <td><code class="highlighter-rouge">&gt;</code></td>
       <td>大于</td>
     </tr>
     <tr>
-      <td>&gt;=</td>
+      <td><code class="highlighter-rouge">&gt;=</code></td>
       <td>大于等于</td>
     </tr>
     <tr>
-      <td>BETWEEN a AND b</td>
+      <td><code class="highlighter-rouge">BETWEEN a AND b</code></td>
       <td>在区间[a,b]中</td>
     </tr>
   </tbody>
@@ -248,6 +248,123 @@
   <li><strong>SELECT <code class="highlighter-rouge">计算字段 AS 别名</code> FROM tablex</strong>，将搜索结果，通过算术运算（加减乘除）和函数（<code class="highlighter-rouge">Concat()</code>、<code class="highlighter-rouge">Trim()</code>）等得到新字段，同时为计算字段添加别名</li>
 </ul>
 
+<h1 id="第十一章-使用数据处理函数">第十一章 使用数据处理函数</h1>
+
+<p>MySQL提供了一系列数据处理函数：</p>
+
+<ul>
+  <li>文本处理函数，如 <code class="highlighter-rouge">Upper()</code>、<code class="highlighter-rouge">Trim()</code>、<code class="highlighter-rouge">LTrim()</code></li>
+  <li>日期与时间处理函数，如<code class="highlighter-rouge">Date()</code>返回<code class="highlighter-rouge">yyyy-mm-dd</code>格式的日期、<code class="highlighter-rouge">Year()</code>返回完整年份</li>
+  <li>数值处理函数，如<code class="highlighter-rouge">Abs()</code>、<code class="highlighter-rouge">Sin()</code>、<code class="highlighter-rouge">Sqrt()</code></li>
+</ul>
+
+<h1 id="第十二章-汇总数据">第十二章 汇总数据</h1>
+
+<p><strong>聚集函数</strong>（aggregate function），运行在行组上，计算和返回单个值的函数。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>聚集函数</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">AVG()</code></td>
+      <td>平均值，忽略<code class="highlighter-rouge">NULL</code>行</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">COUNT()</code></td>
+      <td>条目数，列名参数时忽略<code class="highlighter-rouge">NULL</code>行，<code class="highlighter-rouge">*</code>参数时计算所有行</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">MAX()</code></td>
+      <td>最大值，忽略<code class="highlighter-rouge">NULL</code>行</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">MIN()</code></td>
+      <td>最小值，忽略<code class="highlighter-rouge">NULL</code>行</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">SUM()</code></td>
+      <td>求和，忽略<code class="highlighter-rouge">NULL</code>行</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>在列名参数前加上<code class="highlighter-rouge">DISTINCT</code>(默认为<code class="highlighter-rouge">ALL</code>)时，只聚集不同的值</li>
+  <li>可以组合使用聚集函数，也可与算术操作符配合</li>
+</ul>
+
+<h1 id="第十三章-分组数据">第十三章 分组数据</h1>
+
+<ul>
+  <li><code class="highlighter-rouge">GROUP BY</code>子句可以让聚集函数在根据给定的列分组以后，再分别计算各个分组</li>
+  <li><code class="highlighter-rouge">HAVING</code>子句可以对分组后的计算结果再次筛选（而不是像<code class="highlighter-rouge">WHERE</code>那样过滤原始数据行本身）</li>
+  <li><code class="highlighter-rouge">GROUP BY</code>分组计算结果本身是不排序的，为此可以再使用<code class="highlighter-rouge">ORDER BY</code>对计算结果排序</li>
+</ul>
+
+<h2 id="group-by使用注意事项">GROUP BY使用注意事项</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">GROUP BY</code>子句可以包含任意数量的列，从而允许嵌套</li>
+  <li>嵌套的分组，数据将在最后规定的分组上汇总</li>
+  <li><code class="highlighter-rouge">GRUOP BY</code>子句列出的列必须是有效的表达式或建所列（但不能是聚集函数）；<code class="highlighter-rouge">SELECT</code>中使用表达式，则必须在<code class="highlighter-rouge">GROUP BY</code>中指定相同的表达式，不能使用别名</li>
+  <li>除聚集计算语句外，<code class="highlighter-rouge">SELECT</code>语句的每个列必须在<code class="highlighter-rouge">GROUP BY</code>子句中给出</li>
+  <li>如果分组列包含<code class="highlighter-rouge">NULL</code>值，那么将各<code class="highlighter-rouge">NULL</code>行一起作为一个分组</li>
+  <li><code class="highlighter-rouge">GROUP BY</code>放在<code class="highlighter-rouge">WHERE</code>之后，<code class="highlighter-rouge">ORDER BY</code>之前</li>
+</ul>
+
+<h2 id="select子句顺序">SELECT子句顺序</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>子句</th>
+      <th>说明</th>
+      <th>是否必须使用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">SELECT</code></td>
+      <td>要返回的列或表达式</td>
+      <td>是</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">FROM</code></td>
+      <td>从中检索数据的表</td>
+      <td>仅在从表选择数据时使用</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">WHERE</code></td>
+      <td>行级过滤</td>
+      <td>否</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">GROUP BY</code></td>
+      <td>分组说明</td>
+      <td>仅在按组计算聚集时使用</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">HAVING</code></td>
+      <td>组级过滤</td>
+      <td>否</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ORDER BY</code></td>
+      <td>输出排序顺序</td>
+      <td>否</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">LIMIT</code></td>
+      <td>要检索的行数</td>
+      <td>否</td>
+    </tr>
+  </tbody>
+</table>
 
 			  
 			<!-- <p class="to-jianshu">
