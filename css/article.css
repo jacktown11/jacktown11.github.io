@@ -9,6 +9,10 @@ part1: 导航条样式
 .top-nav a:hover{
     color: #f00;
 }
+.top-nav a{
+    text-decoration: none;
+    border-bottom: none !important;
+}
 
 /*=====================
 part2: 目录样式
@@ -151,7 +155,7 @@ article > h1{
     color: black;
     margin-top: 1.8rem;
     margin-bottom: 0.8rem;
-    background-color: transparent;
+    background: transparent;
     text-align: center;
 }
 article > p{
@@ -193,16 +197,18 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 h1 {
+    padding-left: 2px;
     background: rgb(0,153,102);
+    background: linear-gradient(to right, #009966, #009966 60%, #4cbfa5 );
     color: white;    
-    font-size: 1.8em;
+    font-size: 1.4em;
 }
 h2 { 
-    font-size: 1.6em;
+    font-size: 1.4em;
     color: #e67008;
 }
 h3 { 
-    font-size: 1.4em;
+    font-size: 1.3em;
     color: #14877E;
 }
 
@@ -259,14 +265,24 @@ pre > code {
     padding: 0;
     width: 100%;
 }
+.post a:link{
+    border-bottom: 1px dashed black;
+    border-color: inherit;
+}
 
-
-a{ color: #0645ad; text-decoration:none;}
-a:visited{ color: #0b0080; }
-a:hover{ color: #06e; }
-a:active{ color:#faa700; }
+a:link{ 
+    text-decoration: none;
+	color: #009966;
+}
+a:visited{
+	color: #444;
+}
 a:focus{ outline: thin dotted; }
-a:hover, a:active{ outline: 0; }
+a:hover,
+a:active{
+    color: #f40;
+    outline: 0;
+}
 
 ::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
 ::selection{background:rgba(255,255,0,0.3);color:#000}
