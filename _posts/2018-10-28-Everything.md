@@ -5,4 +5,29 @@ categories: [草稿]
 tags: [万有笔记]
 ---
 
-everything is here.
+# 工作
+
+# 编程相关
+
+# java
+
+# js
+
+# 后端
+
+# 前端
+
+## electron
+
+## node
+
+[windows 下更新 npm 和 node](https://www.cnblogs.com/xinjie-just/p/7061619.html)
+
+### tricks and debug
+
+
+
+
+# 读书与生活
+
+# temp

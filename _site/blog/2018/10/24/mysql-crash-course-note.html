@@ -366,6 +366,37 @@
   </tbody>
 </table>
 
+<h1 id="第14章-使用子查询">第14章 使用子查询</h1>
+
+<ul>
+  <li><strong>SELECT 列x FROM 表 WHERE 列y IN (<code class="highlighter-rouge">SELECT 列y ...</code>)</strong>，使用子查询进行过滤</li>
+  <li><strong>SELECT 列x, <code class="highlighter-rouge">(SELECT COUNT(*) FROM 表2 WHERE 表2.列y = 表1.列y)</code> AS 列名 FROM 表1</strong>，使用子查询得到计算字段</li>
+</ul>
+
+<h1 id="第15章-联结表">第15章 联结表</h1>
+
+<p><strong>外键</strong>（foreign key），某个表中的一列，它包含另一个表的主键值，定义了两个表之间的关系。</p>
+
+<p><strong>可伸缩性</strong>（scale），能够适应不断增加的工作量而不失败。设计良好的数据库或应用程序称之为可伸缩性好。</p>
+
+<ul>
+  <li><strong>SELECT 列x FROM 表1,表2 WHERE 表1.列x=表2.列x</strong>，联结多个表同时查询</li>
+  <li><strong>SELECT 列x FROM 表1 <code class="highlighter-rouge">INNER JOIN</code> 表2 ON 表1.列x=表2.列x</strong>，对于等值联结（内部联结），可以使用<code class="highlighter-rouge">INNER JOIN</code>和<code class="highlighter-rouge">ON</code>关键字</li>
+</ul>
+
+<h1 id="第16章-创建高级联结">第16章 创建高级联结</h1>
+
+<p>除了<strong>内部联结</strong>，还有<strong>自联结</strong>、<strong>自然联结</strong>、<strong>外部联结</strong>这些高级联结。</p>
+
+<ul>
+  <li>为了方便查询，可以用<code class="highlighter-rouge">AS</code>给表取别名，该别名用于查询并不返回给客户机</li>
+  <li><strong>SELECT 列x FROM <code class="highlighter-rouge">表1 AS A,表1 AS B</code> WHERE A.列y=B.列y AND B.列z=某值</strong>，自联结</li>
+  <li>自然联结</li>
+  <li><strong>SELECT 列x FROM <code class="highlighter-rouge">表1 LEFT OUTER JOIN 表2</code> ON 表1.列y=表2.列y</strong>，外部联结，可用来保证在表1中的行都被检出（即使该行对应的作为联结条件的列在表2中没有出现），而<code class="highlighter-rouge">RIGHT OUTER JOIN</code>则保证表2都被检出</li>
+  <li>联结可以和聚集函数一起使用</li>
+</ul>
+
+
 			  
 			<!-- <p class="to-jianshu">
 				转载请注明出处，您还可以在
