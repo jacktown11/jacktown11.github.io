@@ -55,6 +55,19 @@
 
 <p><a href="https://www.cnblogs.com/xinjie-just/p/7061619.html">windows 下更新 npm 和 node</a></p>
 
+<h2 id="npm">npm</h2>
+
+<ul>
+  <li>我根据<code class="highlighter-rouge">babel</code>的官方文档执行<code class="highlighter-rouge">npm install @babel/preset-env --save-dev</code>命令时,出现了<code class="highlighter-rouge">peerDependencies WARNING @babel/preset-env@* requires a peer of @babel/core@^7.0.0-0 but none was installed</code>报错。
+    <ul>
+      <li>首先解释下<code class="highlighter-rouge">peerDependencies</code>，这是会发生在如下的情况：A依赖于B和C1，B依赖于C2的一种插件，C1和C2是同一种包的不同版本，在我的项目中，C1直接可见，C2并不直接可见，而B却是依赖于它，因此B在代码中可能会有类似<code class="highlighter-rouge">require(C)</code>之类的代码，两者版本不同，那么B就可能与实际引入的C1的代码不兼容，为此，B可能需要明确指定它的同级依赖（<code class="highlighter-rouge">peerDependencies</code>）。</li>
+      <li>解决办法：手动安装</li>
+      <li>参考1：<a href="https://blog.csdn.net/zhangchao19890805/article/details/78988364">Peer Dependencies （同版本依赖）</a></li>
+      <li>参考1：<a href="https://blog.csdn.net/whc996/article/details/82865474?utm_source=blogxgwz0">探讨npm依赖管理之peerDependencies</a></li>
+    </ul>
+  </li>
+</ul>
+
 <h3 id="tricks-and-debug">tricks and debug</h3>
 
 <h1 id="读书与生活">读书与生活</h1>
