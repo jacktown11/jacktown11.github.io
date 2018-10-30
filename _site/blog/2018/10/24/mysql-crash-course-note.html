@@ -398,6 +398,33 @@
 
 <h1 id="第17章-组合查询">第17章 组合查询</h1>
 
+<ul>
+  <li><strong>SELECT语句1 <code class="highlighter-rouge">UNION</code> SELECT语句2</strong>，将多条查询语句的汇总成一个结果集</li>
+  <li>注意事项
+    <ul>
+      <li>各条查询语句的结果列应该是相同的列、表达式或聚集函数，数据类型应该兼容</li>
+      <li>使用<code class="highlighter-rouge">UNION ALL</code>可以放弃去重的默认行为</li>
+      <li><code class="highlighter-rouge">ORDER BY</code>语句应该只出现一次，放在最后</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="第18章-全文本搜索">第18章 全文本搜索</h1>
+
+<ul>
+  <li>全文本搜索优势：性能、明确控制、智能化结果</li>
+  <li>启用全文本搜索：创建表示使用<code class="highlighter-rouge">FULLTEXT</code>子句</li>
+  <li><strong>SELECT 列1 FROM 表1 WHERE <code class="highlighter-rouge">Match(列名) Against(搜索表达式)</code></strong>，使用全文本搜索</li>
+  <li><strong>SELECT 列1 FROM 表1 WHERE Match(列名) Against(搜索表达式 <code class="highlighter-rouge">WITH QUERY EXPANSION</code>)</strong>，使用查询扩展以匹配更多的可能相关的行</li>
+  <li><strong>SELECT 列1 FROM 表1 WHERE Match(列名) Against(<code class="highlighter-rouge">可带全文本布尔操作符的搜索表达式 IN BOOLEAN MODE</code>)</strong>，使用布尔文本搜索，以实现必须匹配、必须不匹配、等级提示、分组等更智能的搜索，全文本布尔操作符包括<code class="highlighter-rouge">+ - &lt; &gt; () ~ * ""</code>，布尔方式不对结果排序</li>
+</ul>
+
+<h1 id="第19章-插入数据">第19章 插入数据</h1>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">INSERT INTO</code> 表1 (以逗号分隔的各列名) VALUES (以逗号分隔的各列值),(以逗号分隔的各列值)</strong>，向表中插入一至多行，那些有默认值或运行NULL值的列可以省略</li>
+  <li><strong><code class="highlighter-rouge">INSERT</code> INTO 表1 (以逗号分隔的各列名) <code class="highlighter-rouge">SELECT</code> 检索列名 FROM 表2</strong>，将查询结果插入表，检索列名不需要和插入的列名保持一致，重要的只是顺序</li>
+</ul>
 
 			  
 			<!-- <p class="to-jianshu">
