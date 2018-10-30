@@ -33,9 +33,6 @@ tags: [万有笔记]
 
 ### tricks and debug
 
-
-
-
 # 读书与生活
 
 # temp
