@@ -243,3 +243,75 @@ MySQL提供了一系列数据处理函数：
 
 - **`INSERT INTO` 表1 (以逗号分隔的各列名) VALUES (以逗号分隔的各列值),(以逗号分隔的各列值)**，向表中插入一至多行，那些有默认值或运行NULL值的列可以省略
 - **`INSERT` INTO 表1 (以逗号分隔的各列名) `SELECT` 检索列名 FROM 表2**，将查询结果插入表，检索列名不需要和插入的列名保持一致，重要的只是顺序
+
+# 第20章 更新和删除数据
+
+- **`UPDATE` 表1 `SET` 列1=值1,列2=值2 WHERE子句**，更新过滤出的行的指定列的数据 
+- **`DELETE FROM` 表1 WHERE子句**，删除某些行
+
+# 第21章 创建和操纵表
+
+## 创建表
+
+```mysql
+CREATE TABLE customers
+(
+  cust_id      int       NOT NULL AUTO_INCREMENT,
+  cust_name    char(50)  NOT NULL ,
+  cust_address char(50)  NULL ,
+  cust_city    char(50)  NULL ,
+  cust_state   char(5)   NULL ,
+  cust_zip     char(10)  NULL ,
+  cust_country char(50)  NULL ,
+  cust_contact char(50)  NULL ,
+  cust_email   char(255) NULL ,
+  PRIMARY KEY (cust_id)
+) ENGINE=InnoDB;
+```
+
+以上是一个创建表的示例：
+
+- 以`CREATE TABLE 表名`其实，各列需要给出`列名`、`数据类型`
+- `NULL`和`NOT NULL`指定该列是否可以是`NULL`值，不给该关键字时默认情况下是`NULL`
+- `PRIMARY KEY`指定主键，必须是唯一的；可以用多个列做主键，此时多个列的组合必须唯一，主键列必须是非`NULL`的
+- `AUTO INCREMENT`使得某列在添加新行时自动递增（缺省时），该列必须被索引（如被作为主键）
+- `DEFAULT 默认值`可以指定某列的默认值
+- `ENGINE=引擎`指定引擎类型，如下是几种引擎简介：
+    * `InnoDB`，一个可靠的事务处理引擎，不支持全文本搜索
+    * `MEMORY`，功能等同于`MyISAM`，但数据存储在内存而不是磁盘中，速度快（适合临时表）
+    * `MyISAM`，性能极高，支持全文本搜索，不支持事务处理
+
+## 更新表
+
+- **`ALTER` TABLE 表1 `ADD` 列名 数据类型**，添加新列
+- **`ALTER` TABLE 表1 `DROP COLUMN` 列1**，输出列
+- 定义外键等
+
+## 删除表
+
+- **`DROP` TABLE 表名**，删除
+
+## 重命名表
+
+- **`RENAME` TABLE 新表名 `TO` 旧表名**，重命名
+
+# 第22章 使用视图
+
+视图一种虚拟的表，它本身不包含任何的列或数据，而是根据需要检索数据的查询。其用处：
+
+- 重用`SQL`语句
+- 简化复杂`SQL`语句
+- 使用表的组成部分而不是整个表
+- 保护数据
+- 更改数据格式和表示
+
+主要使用：
+
+- `CREATE VIEW 视图名 AS`，创建视图
+- `SHOW CREATE VIEW 视图名`，查看创建视图的语句
+- `DROP VIEW 视图名`，删除视图
+- 更新视图：先`DROP`再`CREATE`，或者`CREATE OR REPLACE VIEW`直接创建（若存在则覆盖）
+
+创建视图后，可以像查表一样使用`SELECT`语句；视图是否可更新（`INSERT`、`UPDATE`、`DELETE`）要依情况而定。
+
+

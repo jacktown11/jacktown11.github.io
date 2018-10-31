@@ -426,6 +426,93 @@
   <li><strong><code class="highlighter-rouge">INSERT</code> INTO 表1 (以逗号分隔的各列名) <code class="highlighter-rouge">SELECT</code> 检索列名 FROM 表2</strong>，将查询结果插入表，检索列名不需要和插入的列名保持一致，重要的只是顺序</li>
 </ul>
 
+<h1 id="第20章-更新和删除数据">第20章 更新和删除数据</h1>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">UPDATE</code> 表1 <code class="highlighter-rouge">SET</code> 列1=值1,列2=值2 WHERE子句</strong>，更新过滤出的行的指定列的数据</li>
+  <li><strong><code class="highlighter-rouge">DELETE FROM</code> 表1 WHERE子句</strong>，删除某些行</li>
+</ul>
+
+<h1 id="第21章-创建和操纵表">第21章 创建和操纵表</h1>
+
+<h2 id="创建表">创建表</h2>
+
+<pre><code class="language-mysql">CREATE TABLE customers
+(
+  cust_id      int       NOT NULL AUTO_INCREMENT,
+  cust_name    char(50)  NOT NULL ,
+  cust_address char(50)  NULL ,
+  cust_city    char(50)  NULL ,
+  cust_state   char(5)   NULL ,
+  cust_zip     char(10)  NULL ,
+  cust_country char(50)  NULL ,
+  cust_contact char(50)  NULL ,
+  cust_email   char(255) NULL ,
+  PRIMARY KEY (cust_id)
+) ENGINE=InnoDB;
+</code></pre>
+
+<p>以上是一个创建表的示例：</p>
+
+<ul>
+  <li>以<code class="highlighter-rouge">CREATE TABLE 表名</code>其实，各列需要给出<code class="highlighter-rouge">列名</code>、<code class="highlighter-rouge">数据类型</code></li>
+  <li><code class="highlighter-rouge">NULL</code>和<code class="highlighter-rouge">NOT NULL</code>指定该列是否可以是<code class="highlighter-rouge">NULL</code>值，不给该关键字时默认情况下是<code class="highlighter-rouge">NULL</code></li>
+  <li><code class="highlighter-rouge">PRIMARY KEY</code>指定主键，必须是唯一的；可以用多个列做主键，此时多个列的组合必须唯一，主键列必须是非<code class="highlighter-rouge">NULL</code>的</li>
+  <li><code class="highlighter-rouge">AUTO INCREMENT</code>使得某列在添加新行时自动递增（缺省时），该列必须被索引（如被作为主键）</li>
+  <li><code class="highlighter-rouge">DEFAULT 默认值</code>可以指定某列的默认值</li>
+  <li><code class="highlighter-rouge">ENGINE=引擎</code>指定引擎类型，如下是几种引擎简介：
+    <ul>
+      <li><code class="highlighter-rouge">InnoDB</code>，一个可靠的事务处理引擎，不支持全文本搜索</li>
+      <li><code class="highlighter-rouge">MEMORY</code>，功能等同于<code class="highlighter-rouge">MyISAM</code>，但数据存储在内存而不是磁盘中，速度快（适合临时表）</li>
+      <li><code class="highlighter-rouge">MyISAM</code>，性能极高，支持全文本搜索，不支持事务处理</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="更新表">更新表</h2>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">ALTER</code> TABLE 表1 <code class="highlighter-rouge">ADD</code> 列名 数据类型</strong>，添加新列</li>
+  <li><strong><code class="highlighter-rouge">ALTER</code> TABLE 表1 <code class="highlighter-rouge">DROP COLUMN</code> 列1</strong>，输出列</li>
+  <li>定义外键等</li>
+</ul>
+
+<h2 id="删除表">删除表</h2>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">DROP</code> TABLE 表名</strong>，删除</li>
+</ul>
+
+<h2 id="重命名表">重命名表</h2>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">RENAME</code> TABLE 新表名 <code class="highlighter-rouge">TO</code> 旧表名</strong>，重命名</li>
+</ul>
+
+<h1 id="第22章-使用视图">第22章 使用视图</h1>
+
+<p>视图一种虚拟的表，它本身不包含任何的列或数据，而是根据需要检索数据的查询。其用处：</p>
+
+<ul>
+  <li>重用<code class="highlighter-rouge">SQL</code>语句</li>
+  <li>简化复杂<code class="highlighter-rouge">SQL</code>语句</li>
+  <li>使用表的组成部分而不是整个表</li>
+  <li>保护数据</li>
+  <li>更改数据格式和表示</li>
+</ul>
+
+<p>主要使用：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">CREATE VIEW 视图名 AS</code>，创建视图</li>
+  <li><code class="highlighter-rouge">SHOW CREATE VIEW 视图名</code>，查看创建视图的语句</li>
+  <li><code class="highlighter-rouge">DROP VIEW 视图名</code>，删除视图</li>
+  <li>更新视图：先<code class="highlighter-rouge">DROP</code>再<code class="highlighter-rouge">CREATE</code>，或者<code class="highlighter-rouge">CREATE OR REPLACE VIEW</code>直接创建（若存在则覆盖）</li>
+</ul>
+
+<p>创建视图后，可以像查表一样使用<code class="highlighter-rouge">SELECT</code>语句；视图是否可更新（<code class="highlighter-rouge">INSERT</code>、<code class="highlighter-rouge">UPDATE</code>、<code class="highlighter-rouge">DELETE</code>）要依情况而定。</p>
+
+
 			  
 			<!-- <p class="to-jianshu">
 				转载请注明出处，您还可以在
