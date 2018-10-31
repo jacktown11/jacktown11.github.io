@@ -1,6 +1,6 @@
 ---
 layout: article
-title: 全栈课程04 通信相关
+title: 全栈课程04&05 通信与数据交互
 categories: [前端]
 tags: [全栈课程]
 ---
@@ -46,6 +46,8 @@ tags: [全栈课程]
 
 注意：`GET`和`POST`安全性完全一样，真正的安全方式`https`。
 
+`POST`请求时两种`Content-Type`: `multipart/form-data`(文件上传时，在`form`标签中设定)、`application/x-www-form-urlencoded`
+
 ### 表单校验
 
 绑定表单的`submit`事件
@@ -62,6 +64,22 @@ tags: [全栈课程]
 
 ### XMLHttpRequest
 
+- 连接，`xhr.open(method, url, isAsync)`，`isAsync`是否异步
+    * 同步：串行（在很多浏览器中`ajax`的同步已被废弃）
+    * 异步：并行
+- 发送，`xhr.send()`
+- 接收，`xhr.onreadystatechange`，`xhr.readystate`
+    * 0 初始化，刚刚创建
+    * 1 已连接
+    * 2 已发送
+    * 3 已接收（头部）
+    * 4 已接收（body），此时需要查看`xhr.status`（`http`状态码）
+- 结果数据
+    * `xhr.responseText`，文本数据
+    * `xhr.responseXML`，以`XML`返回的数据
+
+#### get
+
 ```javascript
 let xhr = new XMLHttpRequest();
 xhr.open('get', './index.php?a=3&b=2',true);
@@ -77,19 +95,90 @@ xhr.onreadystatechange = () => {
 xhr.send();
 ```
 
-- 连接，`xhr.open(method, url, isAsync)`，`isAsync`是否异步
-    * 同步：串行（在很多浏览器中`ajax`的同步已被废弃）
-    * 异步：并行
-- 发送，`xhr.send()`
-- 接收，`xhr.onreadystatechange`，`xhr.readystate`
-    * 0 初始化，刚刚创建
-    * 1 已连接
-    * 2 已发送
-    * 3 已接收（头部）
-    * 4 已接收（body），此时需要查看`xhr.status`（`http`状态码）
-- 结果数据
-    * `xhr.responseText`，文本数据
-    * `xhr.responseXML`，以`XML`返回的数据
+#### post
+
+```javascript
+let xhr = new XMLHttpRequest();
+xhr.open('post','./2.php', true);
+xhr.onreadystatechange = ()=>{
+    if(xhr.readyState === 4){
+        if(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304){
+            console.log(xhr.responseText);
+        }else{
+            console.log('failed to load data');
+        }
+    }
+};
+xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+xhr.send('a=2&b=3');
+```
+#### 封装
+
+以下是一个利用`XMLHttpRequest`对`ajax`进行手工封装的尝试：
+
+```javascript
+/**
+ * @param {ajax请求选项} options 
+ * 可能选项包括：url,type,data,datatype,success,error
+ * 默认参数：请求方式: get，请求参数：{}，数据类型： text
+ */
+function ajax(options){
+    // 不兼容IE6
+
+    // 默认GET请求、普通文本、无参数
+    options = options || {};
+    options.data= options.data || {};
+    options.type = options.type || 'GET';
+    options.dataType = options.dataType || 'text';
+
+    // 将查询参数对象转为查询字符串
+    let dataArr = [];
+    for(let name in options.data){
+        dataArr.push(`${encodeURIComponent(name)}=${encodeURIComponent(options.data[name])}`);
+    }
+    let dataStr = dataArr.join('&');
+
+    // 新建xhr对象并open
+    let xhr = new XMLHttpRequest();
+    if(options.type.toLowerCase() === 'get'){
+        xhr.open('get', options.url+'?'+dataStr, true);
+    }else if(options.type.toLowerCase() === 'post'){
+        xhr.open('post', options.url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    }
+
+    // 绑定返回响应时间
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState === 4){
+            if(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304){
+                let data;
+                switch(options.dataType.toLowerCase()){
+                    case 'json':
+                        if(window.JSON && JSON.parse){
+                            data = JSON.parse(xhr.responseText);
+                        }else{
+                            data = eval('('+xhr.responseText+')');
+                        }
+                        break;
+                    case 'xml':
+                        data = xhr.responseXML;
+                        break;
+                    default:
+                        data = xhr.responseText;
+                        break;
+                };
+                options.success && options.success(data);
+            }else{
+                options.error && options.error();
+            }
+        }
+    };
+
+    // 发送
+    xhr.send(options.type.toLowerCase() === 'post' ? dataStr : null);
+
+}
+```
 
 ### http状态码
  
@@ -111,6 +200,17 @@ xhr.send();
 ### XML
 
 `XML`早于`HTML`，也是由标签构成，但是没有固定的标签名，比`json`浪费空间。
+
+## jsonp
+
+- 逐渐淡出，用于跨域
+- 有安全性问题（过于开放，接口很容易能被他方调用）
+
+## ajax CORS跨域
+
+## websocket
+
+## formData
 
 ## 比较
 
@@ -203,3 +303,19 @@ xhr.send();
 
 - 系统级安全性，个人难以解决
 - 代码安全性，程序员需要关注的，重要来源——蠢，懒，不重视
+
+## 单点登录
+
+OAuth，指多个客户端（比如淘宝、阿里云等）采用同一个验证服务器来进行登录验证。
+
+## RESTful
+
+不是接口、不是标准，是一种风格、习惯；根据请求`method`和`url`共同决定接口访问的实际效果。
+
+## 数据提交常用Content-Type
+
+- `text/plain`，纯文本
+- `application/x-www-form-urlencoded`，`urlencoded`是指`key=value&key=value`形式（简单数据）
+- `multipart/form-data`，用定界符分割各个数据（文件上传）
+
+
