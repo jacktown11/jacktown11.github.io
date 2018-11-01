@@ -549,6 +549,145 @@
 
 <p>特有方法：<code class="highlighter-rouge">void newLine()</code>，换行，平台无关</p>
 
+<h1 id="properties类">Properties类</h1>
+
+<h2 id="基本使用">基本使用</h2>
+
+<p><code class="highlighter-rouge">HashTable</code>的子类，有<code class="highlighter-rouge">Map</code>的相应功能，但有自己的一些特有方法：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>String <code class="highlighter-rouge">getProperty</code>(String key)</td>
+      <td>获取键对应的值</td>
+    </tr>
+    <tr>
+      <td>Object <code class="highlighter-rouge">setProperty</code>(String key, String value)</td>
+      <td>设定键对应的值</td>
+    </tr>
+    <tr>
+      <td>Set&lt;String&gt; <code class="highlighter-rouge">stringPropertyNames</code>()</td>
+      <td>获取键的集合</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="结合io流使用">结合IO流使用</h2>
+
+<p>可以用利用IO流，实现文件中的键值对和集合中的键值对的相互存取</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>void <code class="highlighter-rouge">load</code>(InputStream is)</td>
+      <td>从字节输入流读入数据进<code class="highlighter-rouge">Properties</code>集合</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">load</code>(Reader r)</td>
+      <td>从字符输入流读入数据进<code class="highlighter-rouge">Properties</code>集合</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">store</code>(OutputStream os, String comments)</td>
+      <td>将<code class="highlighter-rouge">Properties</code>集合键值对写入字节输出流</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">store</code>(Writer w, String comments)</td>
+      <td>将<code class="highlighter-rouge">Properties</code>集合键值对写入字符输出流</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="对象序列化">对象序列化</h1>
+
+<ul>
+  <li>能被序列化的对象的列需要实现<code class="highlighter-rouge">Serializable</code>接口，这是一个标记接口，不需要实现具体的方法</li>
+  <li>实现<code class="highlighter-rouge">Serializable</code>接口的类，自动获得一个序列版本号<code class="highlighter-rouge">serialVersionUID</code>，源码修改后会自动改变，可以人为强制固定，如<code class="highlighter-rouge">private static final long serialVersionUID = 1L;</code></li>
+  <li>静态成员不能被序列化</li>
+  <li><code class="highlighter-rouge">transient</code>标记的成员不被序列化</li>
+</ul>
+
+<h2 id="存储">存储</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">ObjectOutputStream</code>(InputStream is)，创建对象序列化输出流</li>
+  <li>void <code class="highlighter-rouge">writeObject</code>(Object o)，将对象写入流中</li>
+</ul>
+
+<h2 id="读取">读取</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">ObjectOutputStream</code>(InputStream is)，创建对象序列化输入流</li>
+  <li>Object <code class="highlighter-rouge">readObject</code>(Object o)，从流中读取对象</li>
+</ul>
+
+<h1 id="打印流">打印流</h1>
+
+<ul>
+  <li><code class="highlighter-rouge">PrintStream</code>和<code class="highlighter-rouge">PrintWriter</code>，后者更灵活常用</li>
+  <li>不负责输入流，为其他输出流添加了功能</li>
+  <li>满足以下两个条件可以启用自动刷新
+    <ul>
+      <li>数据目的是流对象</li>
+      <li>调用<code class="highlighter-rouge">println</code>、<code class="highlighter-rouge">printf</code>、<code class="highlighter-rouge">format</code>之一的方法</li>
+    </ul>
+  </li>
+  <li>总是不会抛出<code class="highlighter-rouge">IOException</code>，但可能抛其他异常</li>
+</ul>
+
+<h2 id="构造方法-2">构造方法</h2>
+
+<ul>
+  <li>PrintStream(File f)</li>
+  <li>PrintStream(String filename)</li>
+  <li>PrintStream(OuputStream os)</li>
+  <li>PrintWriter(File f)</li>
+  <li>PrintWriter(String filename)</li>
+  <li>PrintWriter(OutputSteam os)</li>
+  <li>PrintWriter(Writer w)</li>
+</ul>
+
+<h2 id="实例方法">实例方法</h2>
+
+<ul>
+  <li>void <code class="highlighter-rouge">print</code>(String str): 输出任意类型的数据，</li>
+  <li>void <code class="highlighter-rouge">println</code>(String str): 输出任意类型的数据，自动写入换行操作</li>
+</ul>
+
+<p>其中的参数有多种重载，可以是数字、字符、对象等。</p>
+
+<h1 id="commons-io工具类">commons-io工具类</h1>
+
+<p>这是一个外来工具包，<code class="highlighter-rouge">JDK</code>本身不自带；提供了操作文件夹和文件的方法；更多详情可查看<a href="http://commons.apache.org/proper/commons-io/">官网</a>和<a href="http://commons.apache.org/proper/commons-io/javadocs/api-2.4/index.html">在线API文档</a>。</p>
+
+<h2 id="filenameutils">FilenameUtils</h2>
+
+<ul>
+  <li>static String <code class="highlighter-rouge">getExtension</code>(String path)，获取文件的扩展名</li>
+  <li>static String <code class="highlighter-rouge">getName</code>()，获取文件名</li>
+  <li>static boolean <code class="highlighter-rouge">isExtension</code>(String fileName,String ext)，判断fileName是否是ext后缀名</li>
+</ul>
+
+<h2 id="fileutils">FileUtils</h2>
+
+<ul>
+  <li>static <code class="highlighter-rouge">readFileToString</code>(File file)，读取文件内容，并返回一个String</li>
+  <li>static <code class="highlighter-rouge">writeStringToFile</code>(File file，String content)，将内容content写入到file中</li>
+  <li>static <code class="highlighter-rouge">copyFile</code>(File srcFile,File destFile)，文件复制</li>
+  <li>static <code class="highlighter-rouge">copyDirectoryToDirectory</code>(File srcDir,File destDir)，文件夹复制</li>
+</ul>
+
 
 			  
 			<!-- <p class="to-jianshu">
