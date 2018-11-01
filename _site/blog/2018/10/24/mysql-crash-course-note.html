@@ -512,6 +512,73 @@
 
 <p>创建视图后，可以像查表一样使用<code class="highlighter-rouge">SELECT</code>语句；视图是否可更新（<code class="highlighter-rouge">INSERT</code>、<code class="highlighter-rouge">UPDATE</code>、<code class="highlighter-rouge">DELETE</code>）要依情况而定。</p>
 
+<h1 id="第23章-使用存储过程">第23章 使用存储过程</h1>
+
+<p>存储过程为以后使用而保存的一条或多条<code class="highlighter-rouge">MySQL</code>语句的集合；类似批文件，作用不仅限于批处理；有点：简单、安全、高性能。</p>
+
+<h2 id="存储过程使用案例">存储过程使用案例</h2>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span> <span class="p">;</span>
+<span class="k">DELIMITER</span> <span class="o">//</span>
+<span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">ordertotal</span><span class="p">(</span>
+	<span class="k">IN</span> <span class="n">onumber</span> <span class="n">INT</span><span class="p">,</span>
+	<span class="k">OUT</span> <span class="n">ototal</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">BEGIN</span>
+	<span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">item_price</span> <span class="o">*</span> <span class="n">quantity</span><span class="p">)</span> <span class="k">INTO</span> <span class="n">ototal</span> <span class="k">FROM</span> <span class="n">orderitems</span> <span class="k">WHERE</span> <span class="n">order_num</span> <span class="o">=</span> <span class="n">onumber</span><span class="p">;</span>
+<span class="k">END</span> <span class="o">//</span>
+<span class="k">DELIMITER</span> <span class="p">;</span>
+
+<span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="mi">20005</span><span class="p">,</span> <span class="o">@</span><span class="n">total</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="o">@</span><span class="n">total</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>第一行是删除存储过程，<code class="highlighter-rouge">IF EXISTS</code>使得在本不存在的情况下不会报错</li>
+  <li><code class="highlighter-rouge">DELIMITER //</code>，暂时性切换<code class="highlighter-rouge">MySQL</code>语句分隔符，以使得存储过程内部的分隔符能够顺利传递给引擎。</li>
+  <li>存储过程可以传参，<code class="highlighter-rouge">IN</code>为传入存储过程的参数，<code class="highlighter-rouge">OUT</code>为从存储过程传出，甚至可以使用<code class="highlighter-rouge">INOUT</code>；参数类型和表创建时可用的数据类型相同（不能使用记录集）</li>
+  <li>实际的存储过程中使用了<code class="highlighter-rouge">INTO</code>将结果传递给<code class="highlighter-rouge">OUT</code>参数</li>
+  <li><code class="highlighter-rouge">CALL</code>语句传参调用调用了存储过程，调用中<code class="highlighter-rouge">OUT</code>参数须以<code class="highlighter-rouge">@</code>开头</li>
+  <li>最后的<code class="highlighter-rouge">SELECT</code>语句获取了调用结果</li>
+</ul>
+
+<h2 id="智能存储过程">智能存储过程</h2>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span><span class="p">;</span>
+<span class="k">DELIMITER</span> <span class="o">//</span>
+<span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">ordertotal</span><span class="p">(</span>
+	<span class="k">IN</span> <span class="n">onumber</span> <span class="n">INT</span><span class="p">,</span>
+	<span class="k">IN</span> <span class="n">taxable</span> <span class="n">BOOLEAN</span><span class="p">,</span>
+	<span class="k">OUT</span> <span class="n">ototal</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">BEGIN</span>
+	<span class="k">DECLARE</span> <span class="n">total</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+	<span class="k">DECLARE</span> <span class="n">taxrate</span> <span class="n">INT</span> <span class="k">DEFAULT</span> <span class="mi">6</span><span class="p">;</span>
+	<span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">item_price</span> <span class="o">*</span> <span class="n">quantity</span><span class="p">)</span> <span class="k">INTO</span> <span class="n">total</span> <span class="k">FROM</span> <span class="n">orderitems</span> <span class="k">WHERE</span> <span class="n">order_num</span> <span class="o">=</span> <span class="n">onumber</span><span class="p">;</span>
+	<span class="n">IF</span> <span class="n">taxable</span> <span class="k">THEN</span> 
+		<span class="k">SELECT</span> <span class="n">total</span> <span class="o">+</span> <span class="p">(</span><span class="n">total</span> <span class="o">*</span> <span class="n">taxrate</span> <span class="o">/</span><span class="mi">100</span> <span class="p">)</span> <span class="k">INTO</span> <span class="n">total</span><span class="p">;</span>
+	<span class="k">END</span> <span class="n">IF</span><span class="p">;</span>
+	<span class="k">SELECT</span> <span class="n">total</span> <span class="k">INTO</span> <span class="n">ototal</span><span class="p">;</span>
+<span class="k">END</span> <span class="o">//</span>
+<span class="k">DELIMITER</span> <span class="p">;</span>
+
+<span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="mi">20005</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">@</span><span class="n">ototal</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="o">@</span><span class="n">ototal</span><span class="p">;</span>
+<span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="mi">20005</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">@</span><span class="n">ototal</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="o">@</span><span class="n">ototal</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>上面这个示例，内部使用了<code class="highlighter-rouge">DECLARE</code>定义局部变量、 <code class="highlighter-rouge">IF</code>进行逻辑判断以实现更复杂的功能。</p>
+
+<h2 id="检查存储过程">检查存储过程</h2>
+
+<ul>
+  <li><strong>SHOW CREATE PROCEDURE 存储过程名</strong>，显示存储过程的创建语句</li>
+  <li><strong>SHOW PROCEDURE STATUS</strong>，显示存储过程创建时间、创建者等更详细信息</li>
+</ul>
+
 
 			  
 			<!-- <p class="to-jianshu">

@@ -314,4 +314,67 @@ CREATE TABLE customers
 
 创建视图后，可以像查表一样使用`SELECT`语句；视图是否可更新（`INSERT`、`UPDATE`、`DELETE`）要依情况而定。
 
+# 第23章 使用存储过程
+
+存储过程为以后使用而保存的一条或多条`MySQL`语句的集合；类似批文件，作用不仅限于批处理；有点：简单、安全、高性能。
+
+## 存储过程使用案例
+
+```sql
+DROP PROCEDURE IF EXISTS ordertotal ;
+DELIMITER //
+CREATE PROCEDURE ordertotal(
+	IN onumber INT,
+	OUT ototal DECIMAL(8,2)
+)
+BEGIN
+	SELECT SUM(item_price * quantity) INTO ototal FROM orderitems WHERE order_num = onumber;
+END //
+DELIMITER ;
+
+CALL ordertotal(20005, @total);
+SELECT @total;
+```
+
+- 第一行是删除存储过程，`IF EXISTS`使得在本不存在的情况下不会报错
+- `DELIMITER //`，暂时性切换`MySQL`语句分隔符，以使得存储过程内部的分隔符能够顺利传递给引擎。
+- 存储过程可以传参，`IN`为传入存储过程的参数，`OUT`为从存储过程传出，甚至可以使用`INOUT`；参数类型和表创建时可用的数据类型相同（不能使用记录集）
+- 实际的存储过程中使用了`INTO`将结果传递给`OUT`参数
+- `CALL`语句传参调用调用了存储过程，调用中`OUT`参数须以`@`开头
+- 最后的`SELECT`语句获取了调用结果
+
+## 智能存储过程
+
+```sql
+DROP PROCEDURE IF EXISTS ordertotal;
+DELIMITER //
+CREATE PROCEDURE ordertotal(
+	IN onumber INT,
+	IN taxable BOOLEAN,
+	OUT ototal DECIMAL(8,2)
+)
+BEGIN
+	DECLARE total DECIMAL(8,2);
+	DECLARE taxrate INT DEFAULT 6;
+	SELECT SUM(item_price * quantity) INTO total FROM orderitems WHERE order_num = onumber;
+	IF taxable THEN 
+		SELECT total + (total * taxrate /100 ) INTO total;
+	END IF;
+	SELECT total INTO ototal;
+END //
+DELIMITER ;
+
+CALL ordertotal(20005, 0, @ototal);
+SELECT @ototal;
+CALL ordertotal(20005, 1, @ototal);
+SELECT @ototal;
+```
+
+上面这个示例，内部使用了`DECLARE`定义局部变量、 `IF`进行逻辑判断以实现更复杂的功能。
+
+## 检查存储过程
+
+- **SHOW CREATE PROCEDURE 存储过程名**，显示存储过程的创建语句
+- **SHOW PROCEDURE STATUS**，显示存储过程创建时间、创建者等更详细信息
+
 
