@@ -579,6 +579,71 @@
   <li><strong>SHOW PROCEDURE STATUS</strong>，显示存储过程创建时间、创建者等更详细信息</li>
 </ul>
 
+<h1 id="第24章-使用游标">第24章 使用游标</h1>
+
+<p><strong>游标</strong>是一种在<strong>存储过程</strong>中使用的技术，它是一个存储在<code class="highlighter-rouge">MySQL</code>服务器上的数据库查询，它不是一条语句，而是该语句检索出来的结果集。使用它，可以滚动浏览其中的数据。</p>
+
+<h2 id="常用操作">常用操作</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">DECLARE 游标名 CURSOR FOR 查询语句</code>，定义游标</li>
+  <li><code class="highlighter-rouge">OPEN 游标名</code>，打开游标</li>
+  <li><code class="highlighter-rouge">CLOSE 游标名</code>，关闭游标</li>
+  <li><code class="highlighter-rouge">FETCH 列名</code>，检索下一行的某列</li>
+</ul>
+
+<h2 id="使用示例">使用示例</h2>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">processorders</span><span class="p">;</span>
+
+<span class="k">DELIMITER</span> <span class="o">//</span>
+<span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">processorders</span><span class="p">()</span>
+<span class="k">BEGIN</span>
+	<span class="k">DECLARE</span> <span class="n">done</span> <span class="n">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">DECLARE</span> <span class="n">o</span> <span class="n">INT</span><span class="p">;</span>
+	<span class="k">DECLARE</span> <span class="n">t</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+	
+	<span class="k">DECLARE</span> <span class="n">ordernumbers</span> <span class="k">CURSOR</span>
+	<span class="k">FOR</span> 
+	<span class="k">SELECT</span> <span class="n">order_num</span> <span class="k">FROM</span> <span class="n">orders</span><span class="p">;</span>
+	
+	<span class="k">DECLARE</span> <span class="k">CONTINUE</span> <span class="k">HANDLER</span> <span class="k">FOR</span> <span class="k">SQLSTATE</span> <span class="s1">'02000'</span> <span class="k">SET</span> <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+	<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">ordertotals</span>
+	<span class="p">(</span><span class="n">order_num</span> <span class="n">INT</span><span class="p">,</span> <span class="n">total</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+	
+	<span class="k">OPEN</span> <span class="n">ordernumbers</span><span class="p">;</span>
+	<span class="n">REPEAT</span>
+		<span class="k">FETCH</span> <span class="n">ordernumbers</span> <span class="k">INTO</span> <span class="n">o</span><span class="p">;</span>
+		<span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
+		<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">ordertotals</span> <span class="p">(</span><span class="n">order_num</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
+	<span class="k">UNTIL</span> <span class="n">done</span> <span class="k">END</span> <span class="n">REPEAT</span><span class="p">;</span>
+	
+	<span class="k">CLOSE</span> <span class="n">ordernumbers</span><span class="p">;</span>
+<span class="k">END</span><span class="o">//</span>
+<span class="k">DELIMITER</span> <span class="p">;</span>
+
+<span class="k">CALL</span> <span class="n">processorders</span><span class="p">();</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ordertotals</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>从<code class="highlighter-rouge">orders</code>表中获取了所有<code class="highlighter-rouge">order_num</code>列，存储为<code class="highlighter-rouge">ordernumbers</code>游标</li>
+  <li>打开游标，遍历结果集，调用了另一个<strong>存储过程</strong><code class="highlighter-rouge">ordertotal</code></li>
+  <li>将各<code class="highlighter-rouge">order_num</code>与其对应的<code class="highlighter-rouge">ordertotal</code>值存储在新表<code class="highlighter-rouge">ordertotals</code>中</li>
+  <li>上面<code class="highlighter-rouge">REPEAT</code>是一个循环，通过定义<code class="highlighter-rouge">CONTINU HANDLE</code>，让<code class="highlighter-rouge">FETCH</code>不到下一条语句时，将变量<code class="highlighter-rouge">done</code>设置为1，以结束循环</li>
+</ul>
+
+<h1 id="第25章-使用触发器">第25章 使用触发器</h1>
+
+<p><strong>触发器</strong>是<code class="highlighter-rouge">MySQL</code>在执行<code class="highlighter-rouge">INSERT</code>、<code class="highlighter-rouge">DELETE</code>、<code class="highlighter-rouge">UPDATE</code>时将自动执行的一条/一组语句。</p>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">CREATE TRIGGER 触发器名 AFTER INSERT ON 表名 FOR EACH ROW 触发器内容语句</code></strong>，创建触发器的示例，需要指定：触发器名、关联的表、应该响应的活动（增/删/改）、何时触发（<code class="highlighter-rouge">AFTER</code>/<code class="highlighter-rouge">BEFORE</code>）</li>
+  <li><strong><code class="highlighter-rouge">DROP TRIGGER 触发器名</code></strong>，删除触发器</li>
+</ul>
 
 			  
 			<!-- <p class="to-jianshu">

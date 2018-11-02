@@ -377,4 +377,62 @@ SELECT @ototal;
 - **SHOW CREATE PROCEDURE 存储过程名**，显示存储过程的创建语句
 - **SHOW PROCEDURE STATUS**，显示存储过程创建时间、创建者等更详细信息
 
+# 第24章 使用游标
 
+**游标**是一种在**存储过程**中使用的技术，它是一个存储在`MySQL`服务器上的数据库查询，它不是一条语句，而是该语句检索出来的结果集。使用它，可以滚动浏览其中的数据。
+
+## 常用操作
+
+- `DECLARE 游标名 CURSOR FOR 查询语句`，定义游标
+- `OPEN 游标名`，打开游标
+- `CLOSE 游标名`，关闭游标
+- `FETCH 列名`，检索下一行的某列
+
+## 使用示例
+
+```sql
+DROP PROCEDURE IF EXISTS processorders;
+
+DELIMITER //
+CREATE PROCEDURE processorders()
+BEGIN
+	DECLARE done BOOLEAN DEFAULT 0;
+	DECLARE o INT;
+	DECLARE t DECIMAL(8,2);
+	
+	DECLARE ordernumbers CURSOR
+	FOR 
+	SELECT order_num FROM orders;
+	
+	DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
+
+	CREATE TABLE IF NOT EXISTS ordertotals
+	(order_num INT, total DECIMAL(8,2));
+	
+	OPEN ordernumbers;
+	REPEAT
+		FETCH ordernumbers INTO o;
+		CALL ordertotal(o,1,t);
+		INSERT INTO ordertotals (order_num, total) VALUES(o,t);
+	UNTIL done END REPEAT;
+	
+	CLOSE ordernumbers;
+END//
+DELIMITER ;
+
+CALL processorders();
+
+SELECT * FROM ordertotals;
+```
+
+- 从`orders`表中获取了所有`order_num`列，存储为`ordernumbers`游标
+- 打开游标，遍历结果集，调用了另一个**存储过程**`ordertotal`
+- 将各`order_num`与其对应的`ordertotal`值存储在新表`ordertotals`中
+- 上面`REPEAT`是一个循环，通过定义`CONTINU HANDLE`，让`FETCH`不到下一条语句时，将变量`done`设置为1，以结束循环
+
+# 第25章 使用触发器
+
+**触发器**是`MySQL`在执行`INSERT`、`DELETE`、`UPDATE`时将自动执行的一条/一组语句。
+
+- **`CREATE TRIGGER 触发器名 AFTER INSERT ON 表名 FOR EACH ROW 触发器内容语句`**，创建触发器的示例，需要指定：触发器名、关联的表、应该响应的活动（增/删/改）、何时触发（`AFTER`/`BEFORE`）
+- **`DROP TRIGGER 触发器名`**，删除触发器

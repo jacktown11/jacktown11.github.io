@@ -39,12 +39,6 @@ nav.catalog p{
     -o-user-select:none;
     user-select:none;
 }
-nav.catalog div{
-    margin-left: 2px;
-    padding: 0 0 0.2em 1.5em;
-    border-bottom: 1px dashed #fff;
-    font-size: 80%;
-}
 nav.catalog div.first{
     padding-left: 0.4em;
     padding-bottom: 0em;
@@ -64,31 +58,28 @@ nav.catalog div.second a{
     color: #e67008;
 }
 nav.catalog div.third{
-    padding-left: 1.5em;
     color: #14877E;
 }
 nav.catalog div.third a{
     color: #14877E;    
 }
 nav.catalog div.forth{
-    padding-left: 1.5em;
     color: #111111;
 }
-nav.catalog div.forth a,
-nav.catalog div.fifth a,
-nav.catalog div.sixth a{
-    color: #111111;
-}
-nav.catalog div.fifth a,
-nav.catalog div.sixth a{
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: normal;
+nav.catalog div.forth a{
+    color: #111111;    
 }
 nav.catalog div.fifth{
-    padding-left: 2.5em;
+    padding-left: 1em;
 }
 nav.catalog div.sixth{
-    padding-left: 3.5em;
+    padding-left: 2em;
+}
+nav.catalog div{
+    margin-left: 2px;
+    padding: 0 0 0.2em 1.5em;
+    border-bottom: 1px dashed #fff;
+    font-size: 80%;
 }
 nav.catalog div:hover{
     background: rgb(153,204,153);
