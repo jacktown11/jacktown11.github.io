@@ -2,7 +2,7 @@
 layout: article
 title: jQuery源码解读笔记
 categories: [js]
-tags: [jQuery]
+tags: [jquery]
 ---
 
 # 前言
@@ -185,6 +185,297 @@ console.log('a = ' + a);
 ![运行结果][运行结果]
 
 我们可以看到插入`script`标签后代码执行进入了其内部，这就好像一个`中断`，上面结果图片我们可以看到`inner code`后面显示的`VM315:1`，这可能是内部引擎防止这段代码的地方；`中断`完成前，外层代码的`parentNode`属性读取和`removeChild`函数调用应该都不会执行，也就是说在移除`script`标签前其内部的代码已经执行完毕了。
+
+# 第2847-3042行
+
+## 功能概述
+
+这部分提供一个统一的回调函数管理对象，通过`let callbackManager = $.Callbacks(模式选项);`的方式获得这个管理对象；内部实际上将各回调函数存储在一个数组中，它提供了`add`、`remove`、`fire`等方法来实现会回调函数的添加、删除、触发等操作。更多使用说明可查看[官网API](https://api.jquery.com/jQuery.Callbacks/)。如下是一段使用示例代码：
+
+```javascript
+function a(arg){
+    console.log('a: ' + arg);
+}
+function b(arg){
+    console.log('b: ' + arg);
+}
+let manager = $.Callbacks();
+manager.add(a);
+manager.add(b);
+manager.fire('hello');
+//a: hello
+//b: hello
+```
+
+## 模式选项
+
+上述的示例代码很类似事件绑定与触发的过程，但该回调函数管理对象通过给定**模式选项**参数可以实现更加灵活、强大的功能。其主要模式选项参数及其解释如下：
+
+|模式|解释|
+|- |- |
+|`once` |只能被触发（`fire`）一次 |
+|`memory` |记忆功能，添加新函数时，如果之前曾触发过，那么这个新添加的函数添加时会被传入之间的参数被触发 |
+|`unique` |保持回调函数列表中函数的唯一性（不重复出现） |
+|`stopOnFalse` |在某个函数调用返回`false`时，取消本次触发过程的后续函数的调用 |
+
+## 各种模式的组合测试
+
+下面的一段代码可以测试各种模式组合下的运行效果：
+
+```javascript
+function fn1(arg) {
+    document.write(`<span style="color: #666;">fn1:${arg}</span>&nbsp;&nbsp;`)
+    return false;
+}
+function fn2(arg) {
+    document.write(`<span style="color: #666;">fn2:${arg}</span>&nbsp;&nbsp;`)
+    return false;
+}
+
+let options = [''];
+['once', 'memory', 'stopOnFalse', 'unique'].forEach(item => {
+    let len = options.length;
+    for (let i = 0; i < len; i++) {
+        options.push((options[i] + ' ' + item).trim());
+    }
+});
+options.sort((item1, item2) => {
+    return item1.length - item2.length;
+});
+
+options.forEach(option => {
+    document.write(`<h4 style="margin: 8px 0px 0px;">模式：${option}</h4>`);
+
+    let cb = $.Callbacks(option);
+
+    document.write('cb.add(fn1); <span style="color: #666;  ">&nbsp;// </span>');
+    cb.add(fn1);
+
+    document.write('<br>cb.fire(1); <span style="color: #666;">&nbsp;// </span>');
+    cb.fire(1);
+
+    document.write('<br>cb.add(fn2); <span style="color: #666;">&nbsp;// </span>');
+    cb.add(fn2);
+
+    document.write('<br>cb.add(fn2); <span style="color: #666;">&nbsp;// </span>');
+    cb.add(fn2);
+
+    document.write('<br>cb.fire(2); <span style="color: #666;">&nbsp;// </span>');
+    cb.fire(2);
+
+    document.write('<br>cb.remove(fn2); <span style="color: #666;">&nbsp;// </span>');
+    cb.remove(fn2);
+
+    document.write('<br>cb.fire(3); <span style="color: #666;">&nbsp;// </span>');
+    cb.fire(3);
+});
+```
+
+## 源码解读
+
+```javascript
+// 表示字符串格式的模式和对象格式的模式之间对应关系的缓存对象
+var optionsCache = {};
+
+/**
+ * 该函数将字符串形式的配置参数转换为对象的形式
+ * 如`memory unique`将转变为对象：
+ * {
+ *      memory: true,
+ *      unique: true
+ * }
+ * 并且会以该对象为值、以`memory unique`为key存在optionsCache缓存对象中
+ * @param {String} options 配置参数字符串
+ */
+function createOptions(options) {
+    var object = optionsCache[options] = {}; // 初始化
+    jQuery.each(options.match(core_rnotwhite) || [], function (_, flag) {
+        // 以所有给定的模式为键，true为值放入选项对象中
+        object[flag] = true;
+    });
+    return object;
+}
+
+/*
+ * 使用如下的一些选项创建一个回调函数列表（数组）
+ * options: 一个用空格分割的选项字符串或者选项对象，它们可以控制回调函数列表的行为
+ * 默认情况下，这个回调函数列表表现得就像一个时间回调函数列表一样，并且可以被多次触发
+ *
+ * 可能的选项:
+ *	once:			使得回调函数列表只能被触发一次(就像一个Deferred)
+ *	memory:			记录之前回调触发是的参数值，如果列表已经被触发过，
+ *                  那么后续有函数加入这个列表式它们会被传入记录的参数，立即执行 (就像一个Deferred)
+ *	unique:			保证回调函数列表中的函数不会有重复
+ *	stopOnFalse:	如果某一个回调函数返回了false，回调将会终止
+ */
+jQuery.Callbacks = function (options) {
+    // 如果需要的话，讲一个字符串形式的参数列表转换为对象形式（过程中会首先查看缓存中是否已有）
+    options = typeof options === "string" ?
+        (optionsCache[options] || createOptions(options)) :
+        jQuery.extend({}, options);
+
+    var memory, // 上次触发的参数
+        fired, // 列表是否已被触发过的标记
+        firing, // 当且列表是否正在触发过程中
+        firingStart, // 触发的遍历起始位置（被add和fireWith内部调用）
+        firingLength, // 触发的回调函数列表总长度
+        firingIndex, // 当前正在触发的回调函数的位置索引
+        list = [], // 实际回调函数列表
+        stack = !options.once && [], // 触发等待队列，用于可多次触发的回调函数列表，堆中保存的是后续各次调用的参数
+        fire = function (data) {
+            // 有memory选项时，保存参数data，否则将是falsy的（false或undefined）
+            memory = options.memory && data; 
+            fired = true;
+            firingIndex = firingStart || 0;
+            firingStart = 0;
+            firingLength = list.length;
+            firing = true;
+            for (; list && firingIndex < firingLength; firingIndex++) {
+                if (list[firingIndex].apply(data[0], data[1]) === false && options.stopOnFalse) {
+                    // 在stopOnFalse模式下，确实返回了false，终止触发过程
+                    memory = false; // 阻止后续通过add的方式触发
+                    break;
+                }
+            }
+            firing = false;
+            if (list) {
+                // 还没有被禁用（disable()）
+                if (stack) {
+                    // 可多次触发
+                    if (stack.length) {
+                        // 还有后续触发队列，继续下一轮触发
+                        fire(stack.shift());
+                    }
+                } else if (memory) {
+                    // 只能单次触发，但是还有是记忆模式，那么后续add的函数可能还会被触发
+                    // 当前需要清空已经被触发过的所有函数
+                    list = [];
+                } else {
+                    // 非记忆、单次触发模式，以后绝不可能以任何方式触发了
+                    // 那么可以直接禁用该回调列表
+                    self.disable();
+                }
+            }
+        },
+
+        // 实际回调对象
+        self = {
+            // 向list中添加函数（集合）
+            add: function () {
+                if (list) {
+                    // 非禁用状态
+                    var start = list.length; // 当前列表长
+                    (function add(args) {
+                        jQuery.each(args, function (_, arg) {
+                            var type = jQuery.type(arg);
+                            if (type === "function") {
+                                if (!options.unique || !self.has(arg)) {
+                                    // 在非单次触发模式或在单次触发模式时的新函数
+                                    list.push(arg);
+                                }
+                            } else if (arg && arg.length && type !== "string") {
+                                // 非空类数组参数，持续解构
+                                add(arg);
+                            }
+                        });
+                    })(arguments);
+
+                    if (firing) {
+                        // 正处在触发过程中，只需要将回调函数列表长度更新给待触发函数的索引上界
+                        firingLength = list.length;
+                    } else if (memory) {
+                        // 当前不在触发过程中，且是记忆模式、且一定被调用过（否则memory会是undefined），即刻调用新添加的所有函数
+                        firingStart = start;
+                        fire(memory);
+                    }
+                }
+                return this;
+            },
+            // 移除回调函数
+            remove: function () {
+                if (list) {
+                    jQuery.each(arguments, function (_, arg) {
+                        var index;
+                        while ((index = jQuery.inArray(arg, list, index)) > -1) {
+                            // 持续移除（因为可能有重复）
+                            list.splice(index, 1);
+                            if (firing) {
+                                // 处理正在触发中的情况
+                                if (index <= firingLength) {
+                                    // 移除了原本要触发的函数
+                                    firingLength--;
+                                }
+                                if (index <= firingIndex) {
+                                    // 移除了已被触发的函数
+                                    firingIndex--;
+                                }
+                            }
+                        }
+                    });
+                }
+                return this;
+            },
+            // 检查列表中是否有给定的函数
+            // 空参数表示返回列表是否已有函数
+            has: function (fn) {
+                return fn ? jQuery.inArray(fn, list) > -1 : !!(list && list.length);
+            },
+            // 清空列表
+            empty: function () {
+                list = [];
+                firingLength = 0;
+                return this;
+            },
+            // 禁用列表
+            disable: function () {
+                list = stack = memory = undefined;
+                return this;
+            },
+            // 判断列表是否被禁用
+            disabled: function () {
+                return !list;
+            },
+            // 将列表锁止在当前状态
+            lock: function () {
+                stack = undefined;
+                if (!memory) {
+                    self.disable();
+                }
+                return this;
+            },
+            // 列表是否处于锁止状态
+            locked: function () {
+                return !stack;
+            },
+            // 使用给定的上下文和参数调用所有的回调函数
+            fireWith: function (context, args) {
+                if (list && (!fired || stack)) {
+                    args = args || [];
+                    args = [context, args.slice ? args.slice() : args];
+                    if (firing) {
+                        // 正在触发中，放在等待队列中
+                        stack.push(args);
+                    } else {
+                        // 目前不在触发中，直接触发
+                        fire(args);
+                    }
+                }
+                return this;
+            },
+            // 使用给定的参数触发所有回调函数
+            fire: function () {
+                self.fireWith(this, arguments);
+                return this;
+            },
+            // 列表是否被触发过
+            fired: function () {
+                return !!fired;
+            }
+        };
+
+    return self;
+};
+```
 
 
 

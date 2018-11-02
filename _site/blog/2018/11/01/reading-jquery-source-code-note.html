@@ -218,6 +218,317 @@
 
 <p>我们可以看到插入<code class="highlighter-rouge">script</code>标签后代码执行进入了其内部，这就好像一个<code class="highlighter-rouge">中断</code>，上面结果图片我们可以看到<code class="highlighter-rouge">inner code</code>后面显示的<code class="highlighter-rouge">VM315:1</code>，这可能是内部引擎防止这段代码的地方；<code class="highlighter-rouge">中断</code>完成前，外层代码的<code class="highlighter-rouge">parentNode</code>属性读取和<code class="highlighter-rouge">removeChild</code>函数调用应该都不会执行，也就是说在移除<code class="highlighter-rouge">script</code>标签前其内部的代码已经执行完毕了。</p>
 
+<h1 id="第2847-3042行">第2847-3042行</h1>
+
+<h2 id="功能概述">功能概述</h2>
+
+<p>这部分提供一个统一的回调函数管理对象，通过<code class="highlighter-rouge">let callbackManager = $.Callbacks(模式选项);</code>的方式获得这个管理对象；内部实际上将各回调函数存储在一个数组中，它提供了<code class="highlighter-rouge">add</code>、<code class="highlighter-rouge">remove</code>、<code class="highlighter-rouge">fire</code>等方法来实现会回调函数的添加、删除、触发等操作。更多使用说明可查看<a href="https://api.jquery.com/jQuery.Callbacks/">官网API</a>。如下是一段使用示例代码：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">a</span><span class="p">(</span><span class="nx">arg</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'a: '</span> <span class="o">+</span> <span class="nx">arg</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">b</span><span class="p">(</span><span class="nx">arg</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'b: '</span> <span class="o">+</span> <span class="nx">arg</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">manager</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Callbacks</span><span class="p">();</span>
+<span class="nx">manager</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="nx">manager</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+<span class="nx">manager</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
+<span class="c1">//a: hello</span>
+<span class="c1">//b: hello</span>
+</code></pre>
+</div>
+
+<h2 id="模式选项">模式选项</h2>
+
+<p>上述的示例代码很类似事件绑定与触发的过程，但该回调函数管理对象通过给定<strong>模式选项</strong>参数可以实现更加灵活、强大的功能。其主要模式选项参数及其解释如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>模式</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">once</code></td>
+      <td>只能被触发（<code class="highlighter-rouge">fire</code>）一次</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">memory</code></td>
+      <td>记忆功能，添加新函数时，如果之前曾触发过，那么这个新添加的函数添加时会被传入之间的参数被触发</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">unique</code></td>
+      <td>保持回调函数列表中函数的唯一性（不重复出现）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">stopOnFalse</code></td>
+      <td>在某个函数调用返回<code class="highlighter-rouge">false</code>时，取消本次触发过程的后续函数的调用</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="各种模式的组合测试">各种模式的组合测试</h2>
+
+<p>下面的一段代码可以测试各种模式组合下的运行效果：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fn1</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="err">`</span><span class="o">&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">"color: #666;"</span><span class="o">&gt;</span><span class="nx">fn1</span><span class="err">:</span><span class="nx">$</span><span class="p">{</span><span class="nx">arg</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/span&gt;&amp;nbsp;&amp;nbsp;`</span><span class="err">)
+</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">fn2</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="err">`</span><span class="o">&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">"color: #666;"</span><span class="o">&gt;</span><span class="nx">fn2</span><span class="err">:</span><span class="nx">$</span><span class="p">{</span><span class="nx">arg</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/span&gt;&amp;nbsp;&amp;nbsp;`</span><span class="err">)
+</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">''</span><span class="p">];</span>
+<span class="p">[</span><span class="s1">'once'</span><span class="p">,</span> <span class="s1">'memory'</span><span class="p">,</span> <span class="s1">'stopOnFalse'</span><span class="p">,</span> <span class="s1">'unique'</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nx">push</span><span class="p">((</span><span class="nx">options</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="nx">item</span><span class="p">).</span><span class="nx">trim</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">options</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">item1</span><span class="p">,</span> <span class="nx">item2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">item1</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">item2</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nx">options</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">option</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="err">`</span><span class="o">&lt;</span><span class="nx">h4</span> <span class="nx">style</span><span class="o">=</span><span class="s2">"margin: 8px 0px 0px;"</span><span class="o">&gt;</span><span class="err">模式：</span><span class="nx">$</span><span class="p">{</span><span class="nx">option</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h4&gt;`</span><span class="se">)</span><span class="err">;
+</span>
+    <span class="kd">let</span> <span class="nx">cb</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Callbacks</span><span class="p">(</span><span class="nx">option</span><span class="p">);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'cb.add(fn1); &lt;span style="color: #666;  "&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nx">cb</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">fn1</span><span class="p">);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.fire(1); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nx">cb</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.add(fn2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nx">cb</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">fn2</span><span class="p">);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.add(fn2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nx">cb</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">fn2</span><span class="p">);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.fire(2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nx">cb</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.remove(fn2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nx">cb</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">fn2</span><span class="p">);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.fire(3); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nx">cb</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h2 id="源码解读">源码解读</h2>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// 表示字符串格式的模式和对象格式的模式之间对应关系的缓存对象</span>
+<span class="kd">var</span> <span class="nx">optionsCache</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="cm">/**
+ * 该函数将字符串形式的配置参数转换为对象的形式
+ * 如`memory unique`将转变为对象：
+ * {
+ *      memory: true,
+ *      unique: true
+ * }
+ * 并且会以该对象为值、以`memory unique`为key存在optionsCache缓存对象中
+ * @param {String} options 配置参数字符串
+ */</span>
+<span class="kd">function</span> <span class="nx">createOptions</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">optionsCache</span><span class="p">[</span><span class="nx">options</span><span class="p">]</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// 初始化</span>
+    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">core_rnotwhite</span><span class="p">)</span> <span class="o">||</span> <span class="p">[],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">flag</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 以所有给定的模式为键，true为值放入选项对象中</span>
+        <span class="nx">object</span><span class="p">[</span><span class="nx">flag</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">object</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/*
+ * 使用如下的一些选项创建一个回调函数列表（数组）
+ * options: 一个用空格分割的选项字符串或者选项对象，它们可以控制回调函数列表的行为
+ * 默认情况下，这个回调函数列表表现得就像一个时间回调函数列表一样，并且可以被多次触发
+ *
+ * 可能的选项:
+ *	once:			使得回调函数列表只能被触发一次(就像一个Deferred)
+ *	memory:			记录之前回调触发是的参数值，如果列表已经被触发过，
+ *                  那么后续有函数加入这个列表式它们会被传入记录的参数，立即执行 (就像一个Deferred)
+ *	unique:			保证回调函数列表中的函数不会有重复
+ *	stopOnFalse:	如果某一个回调函数返回了false，回调将会终止
+ */</span>
+<span class="nx">jQuery</span><span class="p">.</span><span class="nx">Callbacks</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 如果需要的话，讲一个字符串形式的参数列表转换为对象形式（过程中会首先查看缓存中是否已有）</span>
+    <span class="nx">options</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">options</span> <span class="o">===</span> <span class="s2">"string"</span> <span class="p">?</span>
+        <span class="p">(</span><span class="nx">optionsCache</span><span class="p">[</span><span class="nx">options</span><span class="p">]</span> <span class="o">||</span> <span class="nx">createOptions</span><span class="p">(</span><span class="nx">options</span><span class="p">))</span> <span class="p">:</span>
+        <span class="nx">jQuery</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">options</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">memory</span><span class="p">,</span> <span class="c1">// 上次触发的参数</span>
+        <span class="nx">fired</span><span class="p">,</span> <span class="c1">// 列表是否已被触发过的标记</span>
+        <span class="nx">firing</span><span class="p">,</span> <span class="c1">// 当且列表是否正在触发过程中</span>
+        <span class="nx">firingStart</span><span class="p">,</span> <span class="c1">// 触发的遍历起始位置（被add和fireWith内部调用）</span>
+        <span class="nx">firingLength</span><span class="p">,</span> <span class="c1">// 触发的回调函数列表总长度</span>
+        <span class="nx">firingIndex</span><span class="p">,</span> <span class="c1">// 当前正在触发的回调函数的位置索引</span>
+        <span class="nx">list</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1">// 实际回调函数列表</span>
+        <span class="nx">stack</span> <span class="o">=</span> <span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">once</span> <span class="o">&amp;&amp;</span> <span class="p">[],</span> <span class="c1">// 触发等待队列，用于可多次触发的回调函数列表，堆中保存的是后续各次调用的参数</span>
+        <span class="nx">fire</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 有memory选项时，保存参数data，否则将是falsy的（false或undefined）</span>
+            <span class="nx">memory</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">memory</span> <span class="o">&amp;&amp;</span> <span class="nx">data</span><span class="p">;</span> 
+            <span class="nx">fired</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="nx">firingIndex</span> <span class="o">=</span> <span class="nx">firingStart</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="nx">firingStart</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="nx">firingLength</span> <span class="o">=</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+            <span class="nx">firing</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(;</span> <span class="nx">list</span> <span class="o">&amp;&amp;</span> <span class="nx">firingIndex</span> <span class="o">&lt;</span> <span class="nx">firingLength</span><span class="p">;</span> <span class="nx">firingIndex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">firingIndex</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">===</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">stopOnFalse</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// 在stopOnFalse模式下，确实返回了false，终止触发过程</span>
+                    <span class="nx">memory</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// 阻止后续通过add的方式触发</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="nx">firing</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 还没有被禁用（disable()）</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// 可多次触发</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="c1">// 还有后续触发队列，继续下一轮触发</span>
+                        <span class="nx">fire</span><span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">shift</span><span class="p">());</span>
+                    <span class="p">}</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">memory</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// 只能单次触发，但是还有是记忆模式，那么后续add的函数可能还会被触发</span>
+                    <span class="c1">// 当前需要清空已经被触发过的所有函数</span>
+                    <span class="nx">list</span> <span class="o">=</span> <span class="p">[];</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="c1">// 非记忆、单次触发模式，以后绝不可能以任何方式触发了</span>
+                    <span class="c1">// 那么可以直接禁用该回调列表</span>
+                    <span class="nx">self</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="c1">// 实际回调对象</span>
+        <span class="nx">self</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1">// 向list中添加函数（集合）</span>
+            <span class="na">add</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// 非禁用状态</span>
+                    <span class="kd">var</span> <span class="nx">start</span> <span class="o">=</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// 当前列表长</span>
+                    <span class="p">(</span><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">jQuery</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">unique</span> <span class="o">||</span> <span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">arg</span><span class="p">))</span> <span class="p">{</span>
+                                    <span class="c1">// 在非单次触发模式或在单次触发模式时的新函数</span>
+                                    <span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">arg</span> <span class="o">&amp;&amp;</span> <span class="nx">arg</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">type</span> <span class="o">!==</span> <span class="s2">"string"</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="c1">// 非空类数组参数，持续解构</span>
+                                <span class="nx">add</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span>
+                            <span class="p">}</span>
+                        <span class="p">});</span>
+                    <span class="p">})(</span><span class="nx">arguments</span><span class="p">);</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">firing</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="c1">// 正处在触发过程中，只需要将回调函数列表长度更新给待触发函数的索引上界</span>
+                        <span class="nx">firingLength</span> <span class="o">=</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">memory</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="c1">// 当前不在触发过程中，且是记忆模式、且一定被调用过（否则memory会是undefined），即刻调用新添加的所有函数</span>
+                        <span class="nx">firingStart</span> <span class="o">=</span> <span class="nx">start</span><span class="p">;</span>
+                        <span class="nx">fire</span><span class="p">(</span><span class="nx">memory</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="c1">// 移除回调函数</span>
+            <span class="na">remove</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="kd">var</span> <span class="nx">index</span><span class="p">;</span>
+                        <span class="k">while</span> <span class="p">((</span><span class="nx">index</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="nx">arg</span><span class="p">,</span> <span class="nx">list</span><span class="p">,</span> <span class="nx">index</span><span class="p">))</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="c1">// 持续移除（因为可能有重复）</span>
+                            <span class="nx">list</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="nx">firing</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="c1">// 处理正在触发中的情况</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&lt;=</span> <span class="nx">firingLength</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="c1">// 移除了原本要触发的函数</span>
+                                    <span class="nx">firingLength</span><span class="o">--</span><span class="p">;</span>
+                                <span class="p">}</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&lt;=</span> <span class="nx">firingIndex</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="c1">// 移除了已被触发的函数</span>
+                                    <span class="nx">firingIndex</span><span class="o">--</span><span class="p">;</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">});</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="c1">// 检查列表中是否有给定的函数</span>
+            <span class="c1">// 空参数表示返回列表是否已有函数</span>
+            <span class="na">has</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">fn</span> <span class="p">?</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="p">:</span> <span class="o">!!</span><span class="p">(</span><span class="nx">list</span> <span class="o">&amp;&amp;</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+            <span class="p">},</span>
+            <span class="c1">// 清空列表</span>
+            <span class="na">empty</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="nx">list</span> <span class="o">=</span> <span class="p">[];</span>
+                <span class="nx">firingLength</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="c1">// 禁用列表</span>
+            <span class="na">disable</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="nx">list</span> <span class="o">=</span> <span class="nx">stack</span> <span class="o">=</span> <span class="nx">memory</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="c1">// 判断列表是否被禁用</span>
+            <span class="na">disabled</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="o">!</span><span class="nx">list</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="c1">// 将列表锁止在当前状态</span>
+            <span class="na">lock</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="nx">stack</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">memory</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">self</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="c1">// 列表是否处于锁止状态</span>
+            <span class="na">locked</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="o">!</span><span class="nx">stack</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="c1">// 使用给定的上下文和参数调用所有的回调函数</span>
+            <span class="na">fireWith</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">list</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">fired</span> <span class="o">||</span> <span class="nx">stack</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">args</span> <span class="o">=</span> <span class="nx">args</span> <span class="o">||</span> <span class="p">[];</span>
+                    <span class="nx">args</span> <span class="o">=</span> <span class="p">[</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">slice</span> <span class="p">?</span> <span class="nx">args</span><span class="p">.</span><span class="nx">slice</span><span class="p">()</span> <span class="p">:</span> <span class="nx">args</span><span class="p">];</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">firing</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="c1">// 正在触发中，放在等待队列中</span>
+                        <span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="c1">// 目前不在触发中，直接触发</span>
+                        <span class="nx">fire</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="c1">// 使用给定的参数触发所有回调函数</span>
+            <span class="na">fire</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="nx">self</span><span class="p">.</span><span class="nx">fireWith</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">},</span>
+            <span class="c1">// 列表是否被触发过</span>
+            <span class="na">fired</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="o">!!</span><span class="nx">fired</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+
+    <span class="k">return</span> <span class="nx">self</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
 
 			  
 			<!-- <p class="to-jianshu">
