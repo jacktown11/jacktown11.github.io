@@ -292,6 +292,86 @@ Running task in Thread pool-1-thread-2
 </code></pre>
 </div>
 
+<h1 id="线程安全">线程安全</h1>
+
+<p>如果一个程序中有多个线程，这些线程可能共同操作某些数据，每个线程每次在操作数据时可能需要一系列的步骤，如果这些步骤由于多线程被分割成几次来执行，可能导致逻辑错误、数据被破坏。</p>
+
+<p>解决方案：<code class="highlighter-rouge">synchronized</code>代码块、<code class="highlighter-rouge">synchronized</code>方法、<code class="highlighter-rouge">Lock</code>接口。</p>
+
+<h2 id="使用synchronized">使用synchronized</h2>
+
+<p>使用同步的方式可以解决以上的问题。</p>
+
+<h3 id="同步代码块">同步代码块</h3>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">synchronized</span> <span class="o">(</span><span class="cm">/*锁对象*/</span><span class="o">)</span> <span class="o">{</span>
+	<span class="c1">// 可能会产生线程安全问题的代码</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>同步代码块中的锁对象可以是任意的对象；但多个线程时，要使用同一个锁对象才能够保证线程安全。</p>
+
+<h3 id="同步方法">同步方法</h3>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(){</span>
+   	<span class="c1">// 可能会产生线程安全问题的代码</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>同步的非静态方法中实际的锁对象是<code class="highlighter-rouge">本类对象</code>（<code class="highlighter-rouge">this</code>）</li>
+  <li>同步的静态方法中实际的锁是<code class="highlighter-rouge">本类.class</code></li>
+</ul>
+
+<h2 id="使用lock接口">使用Lock接口</h2>
+
+<p>Lock提供了一个更加面对对象的锁，在该锁中提供了更多的操作锁的功能；可以获得比<code class="highlighter-rouge">synchronized</code>广泛的锁定操作。</p>
+
+<ul>
+  <li>void <code class="highlighter-rouge">lock</code>()，上锁</li>
+  <li>void <code class="highlighter-rouge">unlock</code>()，解锁</li>
+</ul>
+
+<p>使用示例：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">Lock</span> <span class="n">l</span> <span class="o">=</span> <span class="o">...;</span>
+ <span class="n">l</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+ <span class="k">try</span> <span class="o">{</span>
+   <span class="c1">// access the resource protected by this lock</span>
+ <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+   <span class="n">l</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+ <span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="死锁">死锁</h2>
+
+<p>当线程任务中出现了多个同步(多个锁)时，如果同步中嵌套了其他的同步。这时容易引发一种现象：程序出现无限等待，这种现象我们称为死锁。这种情况需要避免掉。</p>
+
+<blockquote>
+  <p>线程1：A锁 &gt; B锁</p>
+</blockquote>
+
+<blockquote>
+  <p>线程2：B锁 &gt; A锁</p>
+</blockquote>
+
+<blockquote>
+  <p>// 若线程1拿到了A锁，同时线程2拿到了B锁，那么就出现了死锁</p>
+</blockquote>
+
+<h2 id="等待唤醒机制">等待唤醒机制</h2>
+
+<ul>
+  <li>void <code class="highlighter-rouge">wait</code>(): 等待，将正在执行的线程释放其执行资格 和 执行权，并存储到线程池中。</li>
+  <li>void <code class="highlighter-rouge">notify</code>(): 唤醒，唤醒线程池中被<code class="highlighter-rouge">wait</code>（）的线程，一次唤醒一个，而且是任意的。</li>
+  <li>void <code class="highlighter-rouge">notifyAll</code>(): 唤醒全部：可以将线程池中的所有<code class="highlighter-rouge">wait</code>() 线程都唤醒。</li>
+</ul>
+
+<p>这上面的方法都在继承自<code class="highlighter-rouge">Object</code>，因为同步锁可以是任意对象；上面所说的线程池，实际是指在该对象监视器（<code class="highlighter-rouge">object's monitor</code>）上等待的那些线程</p>
+
 
 			  
 			<!-- <p class="to-jianshu">
