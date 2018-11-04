@@ -39,7 +39,11 @@
 		<h1>《mysql必知必会》笔记</h1>
 		<p class="meta">24 Oct 2018</p>
 		<div class="post">
-			  <h1 id="第一章-了解sql">第一章 了解SQL</h1>
+			  <p><strong>按</strong>：为便于查看，将章节分为了多个部分，对原书章节名字也做了修改简化。</p>
+
+<h1 id="小白入门">小白入门</h1>
+
+<h2 id="第一章-了解sql">第一章 了解SQL</h2>
 
 <p>一些基本的数据库术语：</p>
 
@@ -54,9 +58,9 @@
   <li><code class="highlighter-rouge">SQL</code>（Structured Query Language）：结构化查询语言，一种专门用来与数据库通信的语言</li>
 </ul>
 
-<h1 id="第二章-mysql简介">第二章 MySQL简介</h1>
+<h2 id="第二章-mysql简介">第二章 MySQL简介</h2>
 
-<h2 id="什么是mysql">什么是MySQL</h2>
+<h3 id="什么是mysql">什么是MySQL</h3>
 
 <p>MySQL是一种数据库软件（DBMS，Database Management System，数据库管理系统），负责数据的所有存储、检索、管理与实际处理，即通过它与数据库（<code class="highlighter-rouge">database</code>）交互。</p>
 
@@ -67,7 +71,7 @@
   <li>基于客户机-服务器的DBMS（如MySQL、Oracle、Microsoft SQL Server）</li>
 </ul>
 
-<h2 id="基于客户机-服务器的dbms">基于客户机-服务器的DBMS</h2>
+<h3 id="基于客户机-服务器的dbms">基于客户机-服务器的DBMS</h3>
 
 <ul>
   <li>服务器软件：如MySQL</li>
@@ -81,7 +85,7 @@
   </li>
 </ul>
 
-<h2 id="mysql客户机工具">MySQL客户机工具</h2>
+<h3 id="mysql客户机工具">MySQL客户机工具</h3>
 
 <ul>
   <li>命令行实用程序</li>
@@ -89,7 +93,7 @@
   <li>MySQL Query Browser</li>
 </ul>
 
-<h3 id="mysql命令行入门">MySQL命令行入门</h3>
+<h4 id="mysql命令行入门">MySQL命令行入门</h4>
 
 <ul>
   <li>登录；<code class="highlighter-rouge">mysql -u username -p</code></li>
@@ -98,16 +102,16 @@
   <li>命令以<code class="highlighter-rouge">\g</code>或<code class="highlighter-rouge">;</code>结束</li>
 </ul>
 
-<h1 id="第三章-使用mysql">第三章 使用MySQL</h1>
+<h2 id="第三章-使用mysql">第三章 使用MySQL</h2>
 
-<h2 id="连接到mysql">连接到MySQL</h2>
+<h3 id="连接到mysql">连接到MySQL</h3>
 
 <ul>
   <li>需要提供主机名、端口、用户名、口令</li>
   <li>MySQL内部有用户列表，各用户有相应的权限；管理登录（root）由于有完全的权限，因此受到密切保护</li>
 </ul>
 
-<h2 id="选择数据库与查看内部信息">选择数据库与查看内部信息</h2>
+<h3 id="选择数据库与查看内部信息">选择数据库与查看内部信息</h3>
 
 <ul>
   <li><strong><code class="highlighter-rouge">SHOW DATABASES;</code></strong>，显示所有可用数据库的列表</li>
@@ -116,7 +120,9 @@
   <li><strong><code class="highlighter-rouge">SHOW COLUMNS FROM tablex;</code></strong>，显示给定名称的表的列信息</li>
 </ul>
 
-<h1 id="第四章-检索数据">第四章 检索数据</h1>
+<h1 id="select基础">SELECT基础</h1>
+
+<h2 id="第四章-select">第四章 SELECT</h2>
 
 <ul>
   <li><strong><code class="highlighter-rouge">SELECT</code> columnx <code class="highlighter-rouge">FROM</code> tablex</strong>，从某表中检索给定列名的一列</li>
@@ -128,7 +134,7 @@
   <li><strong>SELECT tablex<code class="highlighter-rouge">.</code>columnx FROM databasex<code class="highlighter-rouge">.</code>tablex</strong>，列和表都可以选择性地使用完全限定的写法</li>
 </ul>
 
-<h1 id="第五章-排序检索数据">第五章 排序检索数据</h1>
+<h2 id="第五章-order-by">第五章 ORDER BY</h2>
 
 <p><code class="highlighter-rouge">子句</code>（clause），SQL语句由某些必须的和可选的子句组成，一个子句通常由一个关键字和所提供的数据组成，子句的例子：FROM子句。</p>
 
@@ -140,11 +146,11 @@
   <li><strong>SELECT columnx FROM tablex ORDER BY column1 <code class="highlighter-rouge">DESC</code>,column2</strong>，检索出指定列并给定的多个列排序（先按column1降序排序，column1存在重复项再按column2升序（默认）排序）。注意降序<code class="highlighter-rouge">DESC</code>和升序<code class="highlighter-rouge">ASC</code>需要逐个指定到作为排序根据的各个列后。</li>
 </ul>
 
-<h1 id="第六章-过滤数据1">第六章 过滤数据（1）</h1>
+<h2 id="第六章-where1">第六章 WHERE(1)</h2>
 
 <p>使用<code class="highlighter-rouge">WHERE</code>子句给定搜索条件（过滤条件）。</p>
 
-<h2 id="格式">格式</h2>
+<h3 id="格式">格式</h3>
 
 <ul>
   <li><strong>SELECT columnx FROM tablex <code class="highlighter-rouge">WHERE 条件</code></strong></li>
@@ -195,7 +201,7 @@
   </tbody>
 </table>
 
-<h2 id="空值检查">空值检查</h2>
+<h3 id="空值检查">空值检查</h3>
 
 <ul>
   <li><strong>SELECT columnx FROM tablex WHERE columny <code class="highlighter-rouge">IS NULL</code></strong></li>
@@ -203,7 +209,7 @@
 
 <p><code class="highlighter-rouge">NULL</code>不同于0、空串或空格，它表示无值（no value）。要注意：在过滤选择具有特定值或不具有特定值的行时，都不会返回具有<code class="highlighter-rouge">NULL</code>值的行。</p>
 
-<h1 id="第七章-过滤数据2">第七章 过滤数据（2）</h1>
+<h2 id="第七章-where2">第七章 WHERE(2)</h2>
 
 <ul>
   <li><strong>SELECT columnx FROM tablex WHERE 条件1 <code class="highlighter-rouge">AND</code> 条件2</strong>，多重条件与过滤</li>
@@ -213,7 +219,7 @@
   <li><strong>SELECT columnx FROM tablex WHERE <code class="highlighter-rouge">NOT</code> 条件</strong>，对其后的条件（<code class="highlighter-rouge">IN</code>、<code class="highlighter-rouge">BETWEEN</code>、<code class="highlighter-rouge">EXISTS</code>）取反</li>
 </ul>
 
-<h1 id="第八章-用通配符进行过滤">第八章 用通配符进行过滤</h1>
+<h2 id="第八章-like">第八章 LIKE</h2>
 
 <p><strong>通配符</strong>（wildcard），用来匹配值的一部分的特殊字符。</p>
 
@@ -230,7 +236,7 @@
   <li><code class="highlighter-rouge">_</code>，匹配1个任意字符</li>
 </ul>
 
-<h1 id="第九章-用正则表达式进行搜索">第九章 用正则表达式进行搜索</h1>
+<h2 id="第九章-regexp">第九章 REGEXP</h2>
 
 <ul>
   <li><strong>SELECT columnx FROM tablex WHERE columny <code class="highlighter-rouge">REGEXP</code> 正则表达式</strong></li>
@@ -238,7 +244,7 @@
 
 <p>MySQL中正则表示式中特殊字符需要双重转义（js注释：好比js中通过<code class="highlighter-rouge">new RegExp(regstr)</code>的方式建立正则表达式一样，另外MySQL中的字符类和词开头结尾定位符和js明显不同）</p>
 
-<h1 id="第十章-创建计算字段">第十章 创建计算字段</h1>
+<h2 id="第十章-计算字段">第十章 计算字段</h2>
 
 <p><strong>字段</strong>（field），基本与列同意，常互换使用，字段更多用在计算字段的连接上。</p>
 
@@ -250,7 +256,7 @@
   <li><strong>SELECT <code class="highlighter-rouge">计算字段 AS 别名</code> FROM tablex</strong>，将搜索结果，通过算术运算（加减乘除）和函数（<code class="highlighter-rouge">Concat()</code>、<code class="highlighter-rouge">Trim()</code>）等得到新字段，同时为计算字段添加别名</li>
 </ul>
 
-<h1 id="第十一章-使用数据处理函数">第十一章 使用数据处理函数</h1>
+<h2 id="第十一章-处理函数">第十一章 处理函数</h2>
 
 <p>MySQL提供了一系列数据处理函数：</p>
 
@@ -260,7 +266,7 @@
   <li>数值处理函数，如<code class="highlighter-rouge">Abs()</code>、<code class="highlighter-rouge">Sin()</code>、<code class="highlighter-rouge">Sqrt()</code></li>
 </ul>
 
-<h1 id="第十二章-汇总数据">第十二章 汇总数据</h1>
+<h2 id="第十二章-聚集函数">第十二章 聚集函数</h2>
 
 <p><strong>聚集函数</strong>（aggregate function），运行在行组上，计算和返回单个值的函数。</p>
 
@@ -300,7 +306,7 @@
   <li>可以组合使用聚集函数，也可与算术操作符配合</li>
 </ul>
 
-<h1 id="第十三章-分组数据">第十三章 分组数据</h1>
+<h2 id="第十三章-group-by">第十三章 GROUP BY</h2>
 
 <ul>
   <li><code class="highlighter-rouge">GROUP BY</code>子句可以让聚集函数在根据给定的列分组以后，再分别计算各个分组</li>
@@ -308,7 +314,7 @@
   <li><code class="highlighter-rouge">GROUP BY</code>分组计算结果本身是不排序的，为此可以再使用<code class="highlighter-rouge">ORDER BY</code>对计算结果排序</li>
 </ul>
 
-<h2 id="group-by使用注意事项">GROUP BY使用注意事项</h2>
+<h3 id="group-by使用注意事项">GROUP BY使用注意事项</h3>
 
 <ul>
   <li><code class="highlighter-rouge">GROUP BY</code>子句可以包含任意数量的列，从而允许嵌套</li>
@@ -319,7 +325,7 @@
   <li><code class="highlighter-rouge">GROUP BY</code>放在<code class="highlighter-rouge">WHERE</code>之后，<code class="highlighter-rouge">ORDER BY</code>之前</li>
 </ul>
 
-<h2 id="select子句顺序">SELECT子句顺序</h2>
+<h3 id="select子句顺序">SELECT子句顺序</h3>
 
 <table>
   <thead>
@@ -368,14 +374,16 @@
   </tbody>
 </table>
 
-<h1 id="第14章-使用子查询">第14章 使用子查询</h1>
+<h1 id="select高级">SELECT高级</h1>
+
+<h2 id="第14章-子查询">第14章 子查询</h2>
 
 <ul>
   <li><strong>SELECT 列x FROM 表 WHERE 列y IN (<code class="highlighter-rouge">SELECT 列y ...</code>)</strong>，使用子查询进行过滤</li>
   <li><strong>SELECT 列x, <code class="highlighter-rouge">(SELECT COUNT(*) FROM 表2 WHERE 表2.列y = 表1.列y)</code> AS 列名 FROM 表1</strong>，使用子查询得到计算字段</li>
 </ul>
 
-<h1 id="第15章-联结表">第15章 联结表</h1>
+<h2 id="第15章-联结表join">第15章 联结表（JOIN）</h2>
 
 <p><strong>外键</strong>（foreign key），某个表中的一列，它包含另一个表的主键值，定义了两个表之间的关系。</p>
 
@@ -386,7 +394,7 @@
   <li><strong>SELECT 列x FROM 表1 <code class="highlighter-rouge">INNER JOIN</code> 表2 ON 表1.列x=表2.列x</strong>，对于等值联结（内部联结），可以使用<code class="highlighter-rouge">INNER JOIN</code>和<code class="highlighter-rouge">ON</code>关键字</li>
 </ul>
 
-<h1 id="第16章-创建高级联结">第16章 创建高级联结</h1>
+<h2 id="第16章-高级联结">第16章 高级联结</h2>
 
 <p>除了<strong>内部联结</strong>，还有<strong>自联结</strong>、<strong>自然联结</strong>、<strong>外部联结</strong>这些高级联结。</p>
 
@@ -398,7 +406,7 @@
   <li>联结可以和聚集函数一起使用</li>
 </ul>
 
-<h1 id="第17章-组合查询">第17章 组合查询</h1>
+<h2 id="第17章-组合查询union">第17章 组合查询（UNION）</h2>
 
 <ul>
   <li><strong>SELECT语句1 <code class="highlighter-rouge">UNION</code> SELECT语句2</strong>，将多条查询语句的汇总成一个结果集</li>
@@ -411,7 +419,7 @@
   </li>
 </ul>
 
-<h1 id="第18章-全文本搜索">第18章 全文本搜索</h1>
+<h2 id="第18章-全文本搜索match-against">第18章 全文本搜索（Match Against）</h2>
 
 <ul>
   <li>全文本搜索优势：性能、明确控制、智能化结果</li>
@@ -421,23 +429,27 @@
   <li><strong>SELECT 列1 FROM 表1 WHERE Match(列名) Against(<code class="highlighter-rouge">可带全文本布尔操作符的搜索表达式 IN BOOLEAN MODE</code>)</strong>，使用布尔文本搜索，以实现必须匹配、必须不匹配、等级提示、分组等更智能的搜索，全文本布尔操作符包括<code class="highlighter-rouge">+ - &lt; &gt; () ~ * ""</code>，布尔方式不对结果排序</li>
 </ul>
 
-<h1 id="第19章-插入数据">第19章 插入数据</h1>
+<h1 id="增删改">增、删、改</h1>
+
+<h2 id="第19章-insert-into">第19章 INSERT INTO</h2>
 
 <ul>
   <li><strong><code class="highlighter-rouge">INSERT INTO</code> 表1 (以逗号分隔的各列名) VALUES (以逗号分隔的各列值),(以逗号分隔的各列值)</strong>，向表中插入一至多行，那些有默认值或运行NULL值的列可以省略</li>
   <li><strong><code class="highlighter-rouge">INSERT</code> INTO 表1 (以逗号分隔的各列名) <code class="highlighter-rouge">SELECT</code> 检索列名 FROM 表2</strong>，将查询结果插入表，检索列名不需要和插入的列名保持一致，重要的只是顺序</li>
 </ul>
 
-<h1 id="第20章-更新和删除数据">第20章 更新和删除数据</h1>
+<h2 id="第20章-updatedelete">第20章 UPDATE/DELETE</h2>
 
 <ul>
   <li><strong><code class="highlighter-rouge">UPDATE</code> 表1 <code class="highlighter-rouge">SET</code> 列1=值1,列2=值2 WHERE子句</strong>，更新过滤出的行的指定列的数据</li>
   <li><strong><code class="highlighter-rouge">DELETE FROM</code> 表1 WHERE子句</strong>，删除某些行</li>
 </ul>
 
-<h1 id="第21章-创建和操纵表">第21章 创建和操纵表</h1>
+<h1 id="表操作">表操作</h1>
 
-<h2 id="创建表">创建表</h2>
+<h2 id="第21章-创建和操纵表">第21章 创建和操纵表</h2>
+
+<h3 id="创建表">创建表</h3>
 
 <pre><code class="language-mysql">CREATE TABLE customers
 (
@@ -471,7 +483,7 @@
   </li>
 </ul>
 
-<h2 id="更新表">更新表</h2>
+<h3 id="更新表">更新表</h3>
 
 <ul>
   <li><strong><code class="highlighter-rouge">ALTER</code> TABLE 表1 <code class="highlighter-rouge">ADD</code> 列名 数据类型</strong>，添加新列</li>
@@ -479,19 +491,21 @@
   <li>定义外键等</li>
 </ul>
 
-<h2 id="删除表">删除表</h2>
+<h3 id="删除表">删除表</h3>
 
 <ul>
   <li><strong><code class="highlighter-rouge">DROP</code> TABLE 表名</strong>，删除</li>
 </ul>
 
-<h2 id="重命名表">重命名表</h2>
+<h3 id="重命名表">重命名表</h3>
 
 <ul>
   <li><strong><code class="highlighter-rouge">RENAME</code> TABLE 新表名 <code class="highlighter-rouge">TO</code> 旧表名</strong>，重命名</li>
 </ul>
 
-<h1 id="第22章-使用视图">第22章 使用视图</h1>
+<h1 id="高级技术">高级技术</h1>
+
+<h2 id="第22章-视图">第22章 视图</h2>
 
 <p>视图一种虚拟的表，它本身不包含任何的列或数据，而是根据需要检索数据的查询。其用处：</p>
 
@@ -514,11 +528,11 @@
 
 <p>创建视图后，可以像查表一样使用<code class="highlighter-rouge">SELECT</code>语句；视图是否可更新（<code class="highlighter-rouge">INSERT</code>、<code class="highlighter-rouge">UPDATE</code>、<code class="highlighter-rouge">DELETE</code>）要依情况而定。</p>
 
-<h1 id="第23章-使用存储过程">第23章 使用存储过程</h1>
+<h2 id="第23章-存储过程">第23章 存储过程</h2>
 
 <p>存储过程为以后使用而保存的一条或多条<code class="highlighter-rouge">MySQL</code>语句的集合；类似批文件，作用不仅限于批处理；有点：简单、安全、高性能。</p>
 
-<h2 id="存储过程使用案例">存储过程使用案例</h2>
+<h3 id="存储过程使用案例">存储过程使用案例</h3>
 
 <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span> <span class="p">;</span>
 <span class="k">DELIMITER</span> <span class="o">//</span>
@@ -545,7 +559,7 @@
   <li>最后的<code class="highlighter-rouge">SELECT</code>语句获取了调用结果</li>
 </ul>
 
-<h2 id="智能存储过程">智能存储过程</h2>
+<h3 id="智能存储过程">智能存储过程</h3>
 
 <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span><span class="p">;</span>
 <span class="k">DELIMITER</span> <span class="o">//</span>
@@ -574,18 +588,18 @@
 
 <p>上面这个示例，内部使用了<code class="highlighter-rouge">DECLARE</code>定义局部变量、 <code class="highlighter-rouge">IF</code>进行逻辑判断以实现更复杂的功能。</p>
 
-<h2 id="检查存储过程">检查存储过程</h2>
+<h3 id="检查存储过程">检查存储过程</h3>
 
 <ul>
   <li><strong>SHOW CREATE PROCEDURE 存储过程名</strong>，显示存储过程的创建语句</li>
   <li><strong>SHOW PROCEDURE STATUS</strong>，显示存储过程创建时间、创建者等更详细信息</li>
 </ul>
 
-<h1 id="第24章-使用游标">第24章 使用游标</h1>
+<h2 id="第24章-游标">第24章 游标</h2>
 
 <p><strong>游标</strong>是一种在<strong>存储过程</strong>中使用的技术，它是一个存储在<code class="highlighter-rouge">MySQL</code>服务器上的数据库查询，它不是一条语句，而是该语句检索出来的结果集。使用它，可以滚动浏览其中的数据。</p>
 
-<h2 id="常用操作">常用操作</h2>
+<h3 id="常用操作">常用操作</h3>
 
 <ul>
   <li><code class="highlighter-rouge">DECLARE 游标名 CURSOR FOR 查询语句</code>，定义游标</li>
@@ -594,7 +608,7 @@
   <li><code class="highlighter-rouge">FETCH 列名</code>，检索下一行的某列</li>
 </ul>
 
-<h2 id="使用示例">使用示例</h2>
+<h3 id="使用示例">使用示例</h3>
 
 <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">processorders</span><span class="p">;</span>
 
@@ -638,7 +652,7 @@
   <li>上面<code class="highlighter-rouge">REPEAT</code>是一个循环，通过定义<code class="highlighter-rouge">CONTINU HANDLE</code>，让<code class="highlighter-rouge">FETCH</code>不到下一条语句时，将变量<code class="highlighter-rouge">done</code>设置为1，以结束循环</li>
 </ul>
 
-<h1 id="第25章-使用触发器">第25章 使用触发器</h1>
+<h2 id="第25章-触发器">第25章 触发器</h2>
 
 <p><strong>触发器</strong>是<code class="highlighter-rouge">MySQL</code>在执行<code class="highlighter-rouge">INSERT</code>、<code class="highlighter-rouge">DELETE</code>、<code class="highlighter-rouge">UPDATE</code>时将自动执行的一条/一组语句。</p>
 
@@ -646,6 +660,67 @@
   <li><strong><code class="highlighter-rouge">CREATE TRIGGER 触发器名 AFTER INSERT ON 表名 FOR EACH ROW 触发器内容语句</code></strong>，创建触发器的示例，需要指定：触发器名、关联的表、应该响应的活动（增/删/改）、何时触发（<code class="highlighter-rouge">AFTER</code>/<code class="highlighter-rouge">BEFORE</code>）</li>
   <li><strong><code class="highlighter-rouge">DROP TRIGGER 触发器名</code></strong>，删除触发器</li>
 </ul>
+
+<h2 id="第26章-事务处理">第26章 事务处理</h2>
+
+<p><strong>事务处理</strong>，一种机制，用来管理必须成批执行的<code class="highlighter-rouge">MySQL</code>操作，以保证数据库不包含不完整的操作结果。</p>
+
+<ul>
+  <li>事务（transaction），一组<code class="highlighter-rouge">SQL</code>语句</li>
+  <li>回退（rollback），撤销指定<code class="highlighter-rouge">SQL</code>语句的过程</li>
+  <li>提交（commit），将未存储的<code class="highlighter-rouge">SQL</code>语句结果写入数据库表</li>
+  <li>保留点（savepoint），事务处理中设置的临时占位符，可以对它发布回退</li>
+</ul>
+
+<p>开启事务与事务回退：</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<span class="c1">-- SQL语句组</span>
+<span class="k">ROLLBACK</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>在事务中使用<code class="highlighter-rouge">commit</code>显示提交（默认是隐式提交的），使得如果更改出错会不会提交:</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<span class="c1">-- SQL 语句</span>
+<span class="k">COMMIT</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>设置保留点与回退到保留点：</p>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">SAVEPOINT</code> 保留点名</strong></li>
+  <li><strong><code class="highlighter-rouge">ROLLBACK TO</code> 保留点名</strong></li>
+</ul>
+
+<p>让<code class="highlighter-rouge">MySQL</code>默认显示提交（针对每个连接而非服务器）：</p>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">SET autocommit = 0;</code></strong></li>
+</ul>
+
+<h2 id="第27章-字符集和校对">第27章 字符集和校对</h2>
+
+<ul>
+  <li>字符集，字母和符号的集合</li>
+  <li>编码，某个字符集成员的内部表示</li>
+  <li>校对，规定字符如何比较的指令</li>
+</ul>
+
+<p>查看字符集和校对：</p>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">SHOW CAHRACTER SET;</code></strong>，查看所有可用的字符集及其描述和默认使用的校对</li>
+  <li><strong><code class="highlighter-rouge">SHOW COLLATION;</code></strong>，显示所有可用的校对及其适用的字符串</li>
+  <li><strong><code class="highlighter-rouge">SHOW VARIABLES LIKE 'character%';</code></strong>，查看数据库的默认字符集</li>
+  <li><strong><code class="highlighter-rouge">SHOW VARIABLES LIKE 'collation%';</code></strong>，查看数据库的默认校对</li>
+</ul>
+
+<p>指定字符集和校对：可以指定表、表中的列的字符集和校对，或在排序是临时指定校对，校对也可用于<code class="highlighter-rouge">GROUP BY</code>、<code class="highlighter-rouge">HAVING</code>、聚集函数、别名等。（示例：略）</p>
+
+<h2 id="第28章-安全管理">第28章 安全管理</h2>
 
 			  
 			<!-- <p class="to-jianshu">
