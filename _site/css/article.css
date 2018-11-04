@@ -82,9 +82,10 @@ nav.catalog div{
     font-size: 80%;
 }
 nav.catalog div:hover{
-    background: rgb(153,204,153);
-    background-color: #333 ;
-
+    background-color: #fff;
+}
+nav.catalog div.first:hover{
+    background-color: #03ad74;
 }
 
 nav.catalog a{
@@ -97,7 +98,7 @@ nav.catalog a:focus{ outline: thin dotted; }
 nav.catalog a:hover,
 nav.catalog a:active{ 
     outline: 0; 
-    color: #fff !important;
+    /* color: #fff !important; */
 }
 .to-jianshu{
     border-top: 1px solid #333;
@@ -130,7 +131,7 @@ body{
     height: 100%;
     box-sizing: border-box;
     overflow-y: scroll;
-    background: linear-gradient(#fff, #ccc);
+    background: linear-gradient(#f8f8f8, #f0f0f0);
     box-shadow: 0 2px 8px #000;
 }
 article{
