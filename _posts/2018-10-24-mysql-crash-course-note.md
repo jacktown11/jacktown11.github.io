@@ -75,7 +75,7 @@ DBMS分类：
 
 - **`SELECT` columnx `FROM` tablex**，从某表中检索给定列名的一列
 - **SELECT column1`,`column2 FROM tablex**，从某表中检索给定列名的多列
-- **SELECT `*` FROM tablex，从某表中检索给定列名的列
+- **SELECT `*` FROM tablex**，从某表中检索给定列名的列
 - **SELECT `DISCTINCT` column1,column2 FROM tablex**，从某表中检索给定列名的多列去重后的结果（重复是指被检索的各列都相同）
 - **SELECT column FROM tablex `LIMIT` count**，从某表中检索给定列名的一列，结果最多count条
 - **SELECT column FROM tablex `LIMIT` pos, count**，从某表中检索给定列名的一列，结果为pos位置之后（不含）的最多count条
@@ -501,3 +501,38 @@ COMMIT;
 指定字符集和校对：可以指定表、表中的列的字符集和校对，或在排序是临时指定校对，校对也可用于`GROUP BY`、`HAVING`、聚集函数、别名等。（示例：略）
 
 ## 第28章 安全管理
+
+`MySQL`服务器安全的基础是：用户应该对他们需要的数据具有适当的访问权。通过创建与管理用户账号可以实现**访问控制**。
+
+### 管理用户
+
+- 用户账号信息存储在`mysql`数据库的`user`表中
+- **`SELECT user FROM user`**，查看用户账号列表
+- **`CREATE USER 用户名 IDENTIFIED BY 密码`**，创建新用户
+- **`RENAME 用户名 TO 新用户名`**，更改用户名
+
+### 删除用户账号
+
+- **`DROP USER 用户名`**，删除账号
+
+### 设置访问权限
+
+- **`SHOW GRANTS FOR 用户名`**，查看某用户的权限
+- **`GRANT 权限名 ON 访问对象（数据库、表、列、存储过程等） TO 用户名`**，给某用户添加特定权限
+- **`REVOKE 权限名 ON 访问对象（数据库、表、列、存储过程等） FROM 用户名`**，撤销某用户特定权限
+
+### 更改口令
+
+- **`SET PASSWORD FOR 用户名 = 口令`**，给某用户设置口令
+- **`SET PASSWORD = 口令`**，设置当前登录用户口令
+
+## 第29章 数据库维护
+
+- **备份数据**，使用`mysqldump`、`mysqlhotcopy`命令
+- **数据库维护**，使用`analyze`、`check`等命令来查看数据库状态，保证当前的数据正常运行
+- **诊断启动问题**，排除启动问题时，尽量手动启动，并结合`mysqld`及相关选项辅助排除
+- **查看日志文件**，可以看出数据库错误、查询等日志
+
+## 第30章 改善性能
+
+总结了一些改善性能的要点。

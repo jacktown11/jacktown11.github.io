@@ -127,7 +127,7 @@
 <ul>
   <li><strong><code class="highlighter-rouge">SELECT</code> columnx <code class="highlighter-rouge">FROM</code> tablex</strong>，从某表中检索给定列名的一列</li>
   <li><strong>SELECT column1<code class="highlighter-rouge">,</code>column2 FROM tablex</strong>，从某表中检索给定列名的多列</li>
-  <li>**SELECT <code class="highlighter-rouge">*</code> FROM tablex，从某表中检索给定列名的列</li>
+  <li><strong>SELECT <code class="highlighter-rouge">*</code> FROM tablex</strong>，从某表中检索给定列名的列</li>
   <li><strong>SELECT <code class="highlighter-rouge">DISCTINCT</code> column1,column2 FROM tablex</strong>，从某表中检索给定列名的多列去重后的结果（重复是指被检索的各列都相同）</li>
   <li><strong>SELECT column FROM tablex <code class="highlighter-rouge">LIMIT</code> count</strong>，从某表中检索给定列名的一列，结果最多count条</li>
   <li><strong>SELECT column FROM tablex <code class="highlighter-rouge">LIMIT</code> pos, count</strong>，从某表中检索给定列名的一列，结果为pos位置之后（不含）的最多count条</li>
@@ -721,6 +721,51 @@
 <p>指定字符集和校对：可以指定表、表中的列的字符集和校对，或在排序是临时指定校对，校对也可用于<code class="highlighter-rouge">GROUP BY</code>、<code class="highlighter-rouge">HAVING</code>、聚集函数、别名等。（示例：略）</p>
 
 <h2 id="第28章-安全管理">第28章 安全管理</h2>
+
+<p><code class="highlighter-rouge">MySQL</code>服务器安全的基础是：用户应该对他们需要的数据具有适当的访问权。通过创建与管理用户账号可以实现<strong>访问控制</strong>。</p>
+
+<h3 id="管理用户">管理用户</h3>
+
+<ul>
+  <li>用户账号信息存储在<code class="highlighter-rouge">mysql</code>数据库的<code class="highlighter-rouge">user</code>表中</li>
+  <li><strong><code class="highlighter-rouge">SELECT user FROM user</code></strong>，查看用户账号列表</li>
+  <li><strong><code class="highlighter-rouge">CREATE USER 用户名 IDENTIFIED BY 密码</code></strong>，创建新用户</li>
+  <li><strong><code class="highlighter-rouge">RENAME 用户名 TO 新用户名</code></strong>，更改用户名</li>
+</ul>
+
+<h3 id="删除用户账号">删除用户账号</h3>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">DROP USER 用户名</code></strong>，删除账号</li>
+</ul>
+
+<h3 id="设置访问权限">设置访问权限</h3>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">SHOW GRANTS FOR 用户名</code></strong>，查看某用户的权限</li>
+  <li><strong><code class="highlighter-rouge">GRANT 权限名 ON 访问对象（数据库、表、列、存储过程等） TO 用户名</code></strong>，给某用户添加特定权限</li>
+  <li><strong><code class="highlighter-rouge">REVOKE 权限名 ON 访问对象（数据库、表、列、存储过程等） FROM 用户名</code></strong>，撤销某用户特定权限</li>
+</ul>
+
+<h3 id="更改口令">更改口令</h3>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">SET PASSWORD FOR 用户名 = 口令</code></strong>，给某用户设置口令</li>
+  <li><strong><code class="highlighter-rouge">SET PASSWORD = 口令</code></strong>，设置当前登录用户口令</li>
+</ul>
+
+<h2 id="第29章-数据库维护">第29章 数据库维护</h2>
+
+<ul>
+  <li><strong>备份数据</strong>，使用<code class="highlighter-rouge">mysqldump</code>、<code class="highlighter-rouge">mysqlhotcopy</code>命令</li>
+  <li><strong>数据库维护</strong>，使用<code class="highlighter-rouge">analyze</code>、<code class="highlighter-rouge">check</code>等命令来查看数据库状态，保证当前的数据正常运行</li>
+  <li><strong>诊断启动问题</strong>，排除启动问题时，尽量手动启动，并结合<code class="highlighter-rouge">mysqld</code>及相关选项辅助排除</li>
+  <li><strong>查看日志文件</strong>，可以看出数据库错误、查询等日志</li>
+</ul>
+
+<h2 id="第30章-改善性能">第30章 改善性能</h2>
+
+<p>总结了一些改善性能的要点。</p>
 
 			  
 			<!-- <p class="to-jianshu">
