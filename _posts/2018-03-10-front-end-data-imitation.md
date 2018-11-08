@@ -1,7 +1,7 @@
 ---
 layout: article
 title: 前端数据模拟
-categories: [前端其他]
+categories: [前端]
 tags: [杂]
 ---
 
