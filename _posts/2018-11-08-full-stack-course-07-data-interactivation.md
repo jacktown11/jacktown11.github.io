@@ -16,7 +16,7 @@ const fs = require('fs');
 let server = http.createServer((req, res)=>{
     fs.readFile(`htdocs${req.url}`, (err, data)=>{
         if(err){
-            res.writeHeader('404');
+            res.writeHead('404');
             res.write('Not Found');
         }else{
             res.write(data);
@@ -93,34 +93,65 @@ server.listen(8080);
     * 容错强得多（如果某数据包有错，只需要重传错误的包就可以了）
 - 每次数据数据到达触发`request`的`data`事件，传输完成触发`end`事件
 
-
 # 接口
 
-前端不能直接操作数据库，都是由服务端做中间人，前后端需要指定一套接口（确定、并且写成接口文档）
+前端不能直接操作数据库，都是由服务端做中间人，前后端需要指定一套接口（确定、并且写成接口文档）。
 
-用户注册：
-/reg?user=xxx&pass=xxx
-=>{err: 0, msg: '说明'}
+比如，我们以前面的表单为例，考虑用户注册和登录：
 
-用户登陆：
-/login?user=xxx&pass=xxx
-=>{err: 0, msg: '说明'}
+- 用户注册：
+    * /reg?user=xxx&pass=xxx => {err: 0, msg: '说明'}
+- 用户登陆：
+    * /login?user=xxx&pass=xxx => {err: 0, msg: '说明'}
 
---------------------------------------------------------------------------------
+以下代码通过判断请求的访问路径`pathname`，来将请求分为登录、注册、静态资源，对于找不到/不存在的静态资源，返回`Not Found`。
+
+```javascript
+const http = require('http');
+const url = require('url');
+const fs = require('fs');
+const querystring = require('querystring');
+
+let server = http.createServer((req, res)=>{
+    let {pathname, query} = url.parse(req.url);
+
+    let str = ''; // 暂时使用string,待改进
+    req.on('data', data=>{
+        str += data;
+    });
+    req.on('end', ()=>{
+        let params = querystring.parse(str);
+        switch(pathname){
+            case '/reg':
+                // 注册接口
+                break;
+            case '/login':
+                // 登录接口
+                break;
+            default:
+                // 静态资源
+                fs.readFile(`htdocs${pathname}`, (err, data)=>{
+                    if(err){
+                        res.writeHead('404');
+                        res.write('Not Found')
+                    }else{
+                        res.write(data);
+                    }
+                    res.end();
+                });
+                break;
+        }
+    });
+
+});
+server.listen(8080);
+```
 
 安全性：99.9%的漏洞都是懒
 1.一切来自前台的数据都不可信
 2.前后台都得进行数据校验
   前台校验：用户体验
   后台校验：安全性
-
---------------------------------------------------------------------------------
-
-http://localhost:8080/1.html      =>    /1.html
-`www/1.html`
-
-http://localhost:8080/www/1.html  =>    /www/1.html
-`www/www/1.html`
 
 --------------------------------------------------------------------------------
 

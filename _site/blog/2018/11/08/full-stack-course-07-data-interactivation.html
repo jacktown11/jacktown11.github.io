@@ -49,7 +49,7 @@
 <span class="kd">let</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
     <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="err">`</span><span class="nx">htdocs$</span><span class="p">{</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">}</span><span class="err">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
-            <span class="nx">res</span><span class="p">.</span><span class="nx">writeHeader</span><span class="p">(</span><span class="s1">'404'</span><span class="p">);</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="s1">'404'</span><span class="p">);</span>
             <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'Not Found'</span><span class="p">);</span>
         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
             <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -138,31 +138,71 @@
 
 <h1 id="接口">接口</h1>
 
-<p>前端不能直接操作数据库，都是由服务端做中间人，前后端需要指定一套接口（确定、并且写成接口文档）</p>
+<p>前端不能直接操作数据库，都是由服务端做中间人，前后端需要指定一套接口（确定、并且写成接口文档）。</p>
 
-<p>用户注册：
-/reg?user=xxx&amp;pass=xxx
-=&gt;{err: 0, msg: ‘说明’}</p>
+<p>比如，我们以前面的表单为例，考虑用户注册和登录：</p>
 
-<p>用户登陆：
-/login?user=xxx&amp;pass=xxx
-=&gt;{err: 0, msg: ‘说明’}</p>
+<ul>
+  <li>用户注册：
+    <ul>
+      <li>/reg?user=xxx&amp;pass=xxx =&gt; {err: 0, msg: ‘说明’}</li>
+    </ul>
+  </li>
+  <li>用户登陆：
+    <ul>
+      <li>/login?user=xxx&amp;pass=xxx =&gt; {err: 0, msg: ‘说明’}</li>
+    </ul>
+  </li>
+</ul>
 
-<hr />
+<p>以下代码通过判断请求的访问路径<code class="highlighter-rouge">pathname</code>，来将请求分为登录、注册、静态资源，对于找不到/不存在的静态资源，返回<code class="highlighter-rouge">Not Found</code>。</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'url'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">querystring</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'querystring'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="kd">let</span> <span class="p">{</span><span class="nx">pathname</span><span class="p">,</span> <span class="nx">query</span><span class="p">}</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+
+    <span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span> <span class="c1">// 暂时使用string,待改进</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="nx">data</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nx">str</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'end'</span><span class="p">,</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">querystring</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+        <span class="k">switch</span><span class="p">(</span><span class="nx">pathname</span><span class="p">){</span>
+            <span class="k">case</span> <span class="s1">'/reg'</span><span class="p">:</span>
+                <span class="c1">// 注册接口</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s1">'/login'</span><span class="p">:</span>
+                <span class="c1">// 登录接口</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="nl">default</span><span class="p">:</span>
+                <span class="c1">// 静态资源</span>
+                <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="err">`</span><span class="nx">htdocs$</span><span class="p">{</span><span class="nx">pathname</span><span class="p">}</span><span class="err">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+                        <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="s1">'404'</span><span class="p">);</span>
+                        <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'Not Found'</span><span class="p">)</span>
+                    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                        <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+                    <span class="p">}</span>
+                    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+                <span class="p">});</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
+</code></pre>
+</div>
 
 <p>安全性：99.9%的漏洞都是懒
 1.一切来自前台的数据都不可信
 2.前后台都得进行数据校验
   前台校验：用户体验
   后台校验：安全性</p>
-
-<hr />
-
-<p>http://localhost:8080/1.html      =&gt;    /1.html
-<code class="highlighter-rouge">www/1.html</code></p>
-
-<p>http://localhost:8080/www/1.html  =&gt;    /www/1.html
-<code class="highlighter-rouge">www/www/1.html</code></p>
 
 <hr />
 
