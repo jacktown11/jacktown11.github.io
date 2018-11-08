@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper">
+
+	</div>
+	
+	<article class="wrap panel right">
+		<h1>《计算机科学导论》笔记</h1>
+		<p class="meta">08 Nov 2018</p>
+		<div class="post">
+			  <h1 id="第一章--绪论">第一章  绪论</h1>
+
+<h2 id="1图灵模型">1.图灵模型</h2>
+
+<ul>
+  <li>数据处理器：一个接受输入数据、处理数据并产生输出数据的黑盒。这种对计算机的定义太宽泛。</li>
+  <li>可编程数据处理器：计算机的输出数据除依赖于输入数据外，还依赖于程序，<code class="highlighter-rouge">输出数据=f(输入数据,程序)</code>。</li>
+  <li>通用图灵机：一种只要提供了合适的程序就能做任何运算的机器，这是对现代计算机的首次描述。</li>
+</ul>
+
+<h2 id="2冯诺依曼模型">2.冯.诺依曼模型</h2>
+
+<ul>
+  <li>程序和数据在逻辑上是相同的，因此程序也应该存储在计算机的存储器中。</li>
+  <li>该模型包括四个子系统
+    <ul>
+      <li><strong>存储器</strong>，存储数据与程序</li>
+      <li><strong>算术逻辑单元</strong>，进行算术逻辑运算</li>
+      <li><strong>控制单元</strong>，控制其他几个子系统</li>
+      <li><strong>输入/输出</strong>
+        <ul>
+          <li>输入接受输入数据和程序</li>
+          <li>输出将结果送到计算机外部</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>存储的程序（指令）是按照顺序执行的（虽然可能会有跳转）</li>
+</ul>
+
+<h2 id="3计算机的组成部分">3.计算机的组成部分</h2>
+
+<ul>
+  <li><strong>计算机硬件</strong>，依据冯.诺依曼模型且包含四部分</li>
+  <li><strong>数据</strong>
+    <ul>
+      <li>存储数据，以01位模式存储在计算机内部</li>
+      <li>组织数据，数据存储在计算机中前，可以有效组织成不同的实体和格式</li>
+    </ul>
+  </li>
+  <li><strong>计算机软件</strong>，冯.诺依曼模型的主要特征是程序的概念
+    <ul>
+      <li>程序必须是存储的</li>
+      <li>程序必须是有序的指令集，指令集使得重用成为可能</li>
+      <li>算法，通过合适组织指令来给出解决问题的一系列步骤</li>
+      <li>语言，（高级）计算机语言使得能以方便人理解与编写的方式来生产程序，避免直接使用机器语言编程的低效</li>
+      <li>软件工程，结构化程序的设计和编写中应遵循的原理和规则</li>
+      <li>操作系统，最初是为程序访问计算机部件提供方便的一种管理程序，如今功能更加强大</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="4历史">4.历史</h2>
+
+<ul>
+  <li>机械计算机器（1930年以前）</li>
+  <li>电子计算机的诞生（1930年-1950年）
+    <ul>
+      <li>早期的电子计算机（ENIAC等）</li>
+      <li>基于冯.诺依曼模型的计算机（EDVAC等）</li>
+    </ul>
+  </li>
+  <li>计算机的诞生（1950年至今）</li>
+</ul>
+
+<h2 id="5社会问题和道德问题略">5.社会问题和道德问题（略）</h2>
+
+<h2 id="6计算机作为一门科学">6.计算机作为一门科学</h2>
+
+<ul>
+  <li>系统领域：计算机体系结构、计算机网络、安全问题、操作系统、算法、程序设计语言、软件工程等</li>
+  <li>应用领域：数据库、人工智能等</li>
+</ul>
+
+
+			  
+			<!-- <p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p> -->
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="javascript:;" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>
