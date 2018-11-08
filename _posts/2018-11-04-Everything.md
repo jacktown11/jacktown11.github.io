@@ -23,6 +23,9 @@ tags: [万有笔记]
 
 ## electron
 
+- [打造你的第一个 Electron 应用](https://electronjs.org/docs/tutorial/first-app)
+- [electron安装+运行+打包成桌面应用+打包成安装文件+开机自启动](http://www.cnblogs.com/kakayang/p/9559777.html)
+
 ## node
 
 [windows 下更新 npm 和 node](https://www.cnblogs.com/xinjie-just/p/7061619.html)
