@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper">
+
+	</div>
+	
+	<article class="wrap panel right">
+		<h1>全栈课程07 数据交互</h1>
+		<p class="meta">08 Nov 2018</p>
+		<div class="post">
+			  <h1 id="搭建web服务器">搭建Web服务器</h1>
+
+<h2 id="v20-请求结果404的正确写法">v2.0 请求结果404的正确写法</h2>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="err">`</span><span class="nx">htdocs$</span><span class="p">{</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">}</span><span class="err">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">writeHeader</span><span class="p">(</span><span class="s1">'404'</span><span class="p">);</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'Not Found'</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
+</code></pre>
+</div>
+<p>在<code class="highlighter-rouge">v1.0</code>中，没找到资源的情况下直接通过<code class="highlighter-rouge">res.write('404')</code>写返回前端的内容，但是这是写在返回结果的<code class="highlighter-rouge">体</code>中的，此时如果在浏览器端查看状态码依然是<code class="highlighter-rouge">200</code>，为此需要使用<code class="highlighter-rouge">writeHead()</code>方法，这使得状态码真的变成<code class="highlighter-rouge">404</code>。</p>
+
+<h2 id="v21-处理get和post请求">v2.1 处理GET和POST请求</h2>
+
+<p>作为一个web服务器，其工作包括：</p>
+
+<ul>
+  <li>返回文件</li>
+  <li>与前端数据交互(<code class="highlighter-rouge">GET</code>、<code class="highlighter-rouge">POST</code>)
+    <ul>
+      <li><code class="highlighter-rouge">GET</code>数据：<code class="highlighter-rouge">url</code>里面，小，最多32K</li>
+      <li><code class="highlighter-rouge">POST</code>数据：作为<code class="highlighter-rouge">body</code>，大，最多1G</li>
+    </ul>
+  </li>
+  <li>与数据库交互</li>
+</ul>
+
+<p>之前的版本，可以让前端访问<code class="highlighter-rouge">htdocs</code>文件夹中存在的文件，但是没有实现后面两个功能，下面实现处理<code class="highlighter-rouge">GET</code>和<code class="highlighter-rouge">POST</code>请求。</p>
+
+<h3 id="处理get">处理GET</h3>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"http://localhost:8080/api"</span> <span class="na">method=</span><span class="s">"get"</span><span class="nt">&gt;</span>
+    用户名：<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"username"</span><span class="nt">&gt;&lt;br&gt;</span>
+    密码：<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">name=</span><span class="s">"password"</span><span class="nt">&gt;&lt;br&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"提交"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'url'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="kd">let</span> <span class="p">{</span><span class="nx">pathname</span><span class="p">,</span> <span class="nx">query</span><span class="p">}</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pathname</span><span class="p">);</span> <span class="c1">// /api</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span> <span class="c1">// { username: 'jacktown', password: '122345' }</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+<span class="p">});</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">GET</code>请求的参数放在<code class="highlighter-rouge">url</code>中，使用<code class="highlighter-rouge">node</code>中的<code class="highlighter-rouge">url</code>模块来解析就可以了。</p>
+
+<h3 id="处理post">处理POST</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">querystring</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'querystring'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span> <span class="c1">// 暂时使用string,待改进</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="nx">data</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nx">str</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'end'</span><span class="p">,</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">querystring</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span> <span class="c1">// { username: 'jacktown', password: '123' }</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">POST</code>请求中，表单的数据在请求体中，需要从中解析数请求参数</li>
+  <li>请求体的数据可能是很大，需要切成很多个小数据包传输，原因：
+    <ul>
+      <li>方便所有人（否则如果允许很大数据包一次性传输，这可能需要很长时间，那么该网络通路上其他用户网络就相当于断掉了）</li>
+      <li>容错强得多（如果某数据包有错，只需要重传错误的包就可以了）</li>
+    </ul>
+  </li>
+  <li>每次数据数据到达触发<code class="highlighter-rouge">request</code>的<code class="highlighter-rouge">data</code>事件，传输完成触发<code class="highlighter-rouge">end</code>事件</li>
+</ul>
+
+<h1 id="接口">接口</h1>
+
+<p>前端不能直接操作数据库，都是由服务端做中间人，前后端需要指定一套接口（确定、并且写成接口文档）</p>
+
+<p>用户注册：
+/reg?user=xxx&amp;pass=xxx
+=&gt;{err: 0, msg: ‘说明’}</p>
+
+<p>用户登陆：
+/login?user=xxx&amp;pass=xxx
+=&gt;{err: 0, msg: ‘说明’}</p>
+
+<hr />
+
+<p>安全性：99.9%的漏洞都是懒
+1.一切来自前台的数据都不可信
+2.前后台都得进行数据校验
+  前台校验：用户体验
+  后台校验：安全性</p>
+
+<hr />
+
+<p>http://localhost:8080/1.html      =&gt;    /1.html
+<code class="highlighter-rouge">www/1.html</code></p>
+
+<p>http://localhost:8080/www/1.html  =&gt;    /www/1.html
+<code class="highlighter-rouge">www/www/1.html</code></p>
+
+<hr />
+
+<p>数据库：
+1.关系型数据库——MySQL、Oracle    最常见、最常用
+  数据之间是有关系的
+2.文件型数据库——sqlite
+  简单、小
+3.文档型数据库——MongoDB
+  直接存储异构数据——方便</p>
+
+<p>MySQL     80%         免费    绝大多数普通应用
+  性能很高、安全性很高
+  容灾略差</p>
+
+<p>Oracle                要钱    金融、医疗
+  容灾特别强</p>
+
+<hr />
+
+<p>NoSQL   没有复杂的关系、对性能有极高的要求
+redis、memcached、hypertable、bigtable</p>
+
+<hr />
+
+<p>数据库
+数据库+接口+前台
+ajax
+formData
+WebSocket</p>
+
+<hr />
+
+<h1 id="外话">外话</h1>
+
+<ul>
+  <li>程序员内功
+    <ul>
+      <li>算法</li>
+      <li>设计模式</li>
+      <li>架构</li>
+    </ul>
+  </li>
+  <li>如何应对页面被运营商劫持
+    <ul>
+      <li><code class="highlighter-rouge">HTTPS</code></li>
+    </ul>
+  </li>
+  <li>进程之间怎么通信
+    <ul>
+      <li>管道</li>
+      <li>共享内存</li>
+      <li><code class="highlighter-rouge">socket</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>单线程和非阻塞<code class="highlighter-rouge">IO</code></p>
+
+    <ul>
+      <li>阻塞<code class="highlighter-rouge">IO</code>：导致整个程序卡住不动
+        <div class="language-c highlighter-rouge"><pre class="highlight"><code>  <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="o">=</span><span class="n">fopen</span><span class="p">(</span><span class="s">"a.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+  <span class="n">size</span><span class="o">=</span><span class="n">fread</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">),</span> <span class="n">fp</span><span class="p">);</span>
+  <span class="c1">// &lt;-等待20s
+</span>  <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+</code></pre>
+        </div>
+      </li>
+      <li>非阻塞<code class="highlighter-rouge">IO</code>：继续往下执行，不卡
+        <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">'a.txt'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>       <span class="c1">// &lt;-等待0s</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'a'</span><span class="p">);</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>前端把加密数据传到后台，后台怎么进行校验的
+    <ul>
+      <li>校验签名</li>
+    </ul>
+  </li>
+  <li>怎么加密的 怎么解密
+    <ul>
+      <li>极其成熟的算法——<code class="highlighter-rouge">RSA</code>（一类算法的总称）</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">request.on('data', data=&gt;{})</code>的<code class="highlighter-rouge">on</code>是一直轮寻吗？
+    <ul>
+      <li>不是，是监听、通知、回调、异步</li>
+    </ul>
+  </li>
+</ul>
+
+<p>天天听后台说 sip2 协议，这是现在接口的标准协议吗</p>
+
+<p>讲下Graphql么？</p>
+
+<hr />
+
+<p>可以用assert</p>
+
+<hr />
+
+<p>ctrl+c退出是不是会被监测到，上次在生产环境用了，被批评了。。</p>
+
+<hr />
+
+<p>前端容灾 都包括啥
+磁盘镜像(增量)</p>
+
+<hr />
+
+<p>node有缓存的概念吗？</p>
+
+<hr />
+
+<p>node的垃圾回收、JavaScript的gc、Java的gc
+1.只要某个东西不再使用了，释放掉所占据的内存</p>
+
+<hr />
+
+<p>C语言：
+int <em>arr=(int</em>)malloc(sizeof(int)*100);
+…
+…
+…
+…
+free(arr);      //程序员自己动手释放</p>
+
+<p>忘了释放</p>
+
+<p>内存泄漏</p>
+
+<hr />
+
+<p>Person p=new Person();
+Person p2=p;</p>
+
+<p>p   -&gt; 空
+p2  -&gt; 间</p>
+
+<p>p=Null;   //还剩1个
+…
+…
+…
+p2=Null;  //还剩0个</p>
+
+<hr />
+
+<p>还想请教一个问题：重新发布程序后，浏览器每次需要ctrl+r来强制刷新，如何做到F5刷新就可以获取最新资源呢？
+1.后台配置
+2.<script src="a.js?t=2018012323"></script></p>
+
+<p>a.php?user=xxx&amp;pass=123456</p>
+
+<hr />
+
+<p>服务器的缓冲池怎么理解
+最近使用的、最常使用的资源(文件、数据)，直接留在内存里</p>
+
+<p>策略-&gt;缓冲命中率</p>
+
+<hr />
+
+<p>简单讲讲SSO、OAuth</p>
+
+<hr />
+
+			  
+			<!-- <p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p> -->
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="javascript:;" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>
