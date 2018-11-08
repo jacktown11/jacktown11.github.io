@@ -1,6 +1,6 @@
 ---
 layout: article
-title: java 集合框架
+title: javase 集合框架
 categories: [java]
 tags: [javase]
 ---

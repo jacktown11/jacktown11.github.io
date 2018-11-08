@@ -1,6 +1,6 @@
 ---
 layout: article
-title: java Exception
+title: javase Exception
 categories: [java]
 tags: [javase]
 ---

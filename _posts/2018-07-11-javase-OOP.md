@@ -1,8 +1,8 @@
 ---
 layout: article
-title: javase OOP
+title: javase 面向对象
 categories: [java]
-tags: [javase, OOP]
+tags: [javase]
 ---
 
 ## 类与对象
