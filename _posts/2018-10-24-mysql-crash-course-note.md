@@ -1,7 +1,7 @@
 ---
 layout: article
 title: 《mysql必知必会》笔记
-categories: [草稿]
+categories: [后端]
 tags: [mysql]
 ---
 
