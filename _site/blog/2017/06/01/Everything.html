@@ -37,7 +37,7 @@
 	
 	<article class="wrap panel right">
 		<h1>万有笔记</h1>
-		<p class="meta">04 Nov 2018</p>
+		<p class="meta">01 Jun 2017</p>
 		<div class="post">
 			  <h1 id="问题与待学习">问题与待学习</h1>
 
@@ -54,6 +54,25 @@
 <h1 id="js">js</h1>
 
 <h1 id="后端">后端</h1>
+
+<h2 id="mysql">mysql</h2>
+
+<h3 id="重命名数据库">重命名数据库</h3>
+
+<p>网上查到几种<code class="highlighter-rouge">RENAME</code>命令在很多版本下都不行，为此采用了直接修改本地数据库文件名的方式。（win7开发环境）</p>
+
+<ul>
+  <li><code class="highlighter-rouge">net start mysql57</code></li>
+  <li>找到数据库的文件，我个人的数据库文件位置：<code class="highlighter-rouge">C:\ProgramData\MySQL\MySQL Server 5.7\Data</code>，直接修改重命名数据库对应的文件夹名</li>
+  <li><code class="highlighter-rouge">net stop mysql57</code></li>
+</ul>
+
+<p>ref:</p>
+
+<ul>
+  <li><a href="https://blog.csdn.net/zyz511919766/article/details/49335897">MySQL中数据库重命名</a></li>
+  <li><a href="https://www.cnblogs.com/gomysql/p/3584881.html">MySQL数据库改名的三种方法</a></li>
+</ul>
 
 <h1 id="前端">前端</h1>
 

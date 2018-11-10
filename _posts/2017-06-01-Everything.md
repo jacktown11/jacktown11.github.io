@@ -8,7 +8,7 @@ tags: [万有笔记]
 
 - js对象深浅拷贝
 
-
+ 
 # 工作
 
 # 编程相关
@@ -18,6 +18,21 @@ tags: [万有笔记]
 # js
 
 # 后端
+
+## mysql
+
+### 重命名数据库
+
+网上查到几种`RENAME`命令在很多版本下都不行，为此采用了直接修改本地数据库文件名的方式。（win7开发环境）
+
+- `net start mysql57`
+- 找到数据库的文件，我个人的数据库文件位置：`C:\ProgramData\MySQL\MySQL Server 5.7\Data`，直接修改重命名数据库对应的文件夹名
+- `net stop mysql57`
+
+ref: 
+
+- [MySQL中数据库重命名](https://blog.csdn.net/zyz511919766/article/details/49335897)
+- [MySQL数据库改名的三种方法](https://www.cnblogs.com/gomysql/p/3584881.html)
 
 # 前端
 
