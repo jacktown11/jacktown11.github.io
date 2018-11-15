@@ -51,7 +51,18 @@
 
 <h1 id="java">java</h1>
 
-<h1 id="js">js</h1>
+<h2 id="tomcat">tomcat</h2>
+
+<ul>
+  <li>tomcat启动太慢问题
+    <ul>
+      <li>将<code class="highlighter-rouge">$JAVA_PATH/jre/lib/security/java.security</code>这个文件，找到下面的内容：<code class="highlighter-rouge">securerandom.source=file:/dev/urandom</code>，替换成<code class="highlighter-rouge">securerandom.source=file:/dev/./urandom</code></li>
+      <li>参考：<a href="https://blog.csdn.net/u011627980/article/details/54024974">tomcat启动慢， Creation of SecureRandom instance for session ID generation using SHA1PRNG took xx mil</a>
+        <h1 id="js">js</h1>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h1 id="后端">后端</h1>
 
