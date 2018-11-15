@@ -317,6 +317,81 @@
 
 <h2 id="存储文本">存储文本</h2>
 
+<ul>
+  <li>文本由一系列的符号构成，表示一个字符集的所需要的位模式的长度和字符集字符数量之间是对数关系</li>
+  <li>不同的位模式集合被设计来表示文本符号，这些集合称为代码；表示符号的过程称为<strong>编码</strong></li>
+  <li>常用编码：
+    <ul>
+      <li><code class="highlighter-rouge">ASCII</code>（American Standard Code for Information Interchange，美国信息交换标准码），7位，可表示128个字符</li>
+      <li><code class="highlighter-rouge">Unicode</code>，32位，兼容<code class="highlighter-rouge">ASCII</code></li>
+      <li>其他编码，相对没有<code class="highlighter-rouge">Unicode</code>流行</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="音频">音频</h2>
+
+<p>音频本身是模拟数据，需要离散采样才能存储，大致分为如下几步：</p>
+
+<ul>
+  <li>采样
+    <ul>
+      <li>合适的<strong>采样率</strong>和音频的变化剧烈程度相关，通常40000采样率的音频足够好</li>
+    </ul>
+  </li>
+  <li>量化
+    <ul>
+      <li>可能会将样本值进行截取取整</li>
+    </ul>
+  </li>
+  <li>编码
+    <ul>
+      <li><code class="highlighter-rouge">位率R = 每样本位的数量（位深度）B * 每秒样本数S</code></li>
+      <li>流行的<code class="highlighter-rouge">MP3</code>音频编码使用每秒样本数44100，位深度16，结果信号位率705600b/s，采用有损压缩法</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="存储图像">存储图像</h2>
+
+<h3 id="光栅图">光栅图</h3>
+
+<p>在存储模拟图像时使用，类似音频需要对图像进行采样（<strong>扫描</strong>），其样本称为<strong>像素</strong>（图像元素）</p>
+
+<ul>
+  <li>解析度
+    <ul>
+      <li>单位尺寸的像素数量</li>
+    </ul>
+  </li>
+  <li>色彩深度
+    <ul>
+      <li>存储像素色彩的位的数量</li>
+      <li>真彩色：使用24位，可以表示1600多万种颜色值</li>
+      <li>索引色（调色板色）：部分颜色（通常256种）的索引</li>
+    </ul>
+  </li>
+  <li>图像编码标准
+    <ul>
+      <li><code class="highlighter-rouge">JPEG</code>使用真彩色，但压缩图像以减少位的数量</li>
+      <li><code class="highlighter-rouge">GIF</code>使用索引色</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="矢量图">矢量图</h3>
+
+<ul>
+  <li>使用数学公式来表达图像，而非逐个像素表达，从而缩放不失真</li>
+  <li>应用：<code class="highlighter-rouge">flash</code>、字体、工程制图等</li>
+</ul>
+
+<h2 id="视频">视频</h2>
+
+<ul>
+  <li>视频是图像（帧）在时间上的表示，帧的序列构成了视频</li>
+  <li>视频通常是被压缩存储的，<code class="highlighter-rouge">MPEG</code>是一种常见的视频压缩技术</li>
+</ul>
 
 			  
 			<!-- <p class="to-jianshu">
