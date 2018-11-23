@@ -26,6 +26,15 @@ tags: [万有笔记]
 
 ## mysql
 
+## linux
+
+- centos6.9 安装完毕后，输入提示光标闪烁太快
+    * 问题描述：如上
+    * 解决：
+        + 修改`/etc/rc.local`文件权限：`chmod a+x /etc/rc.local`
+        + 修改`/etc/rc.local`文件内容：`echo 0 > /sys/class/graphics/fbcon/cursor_blink`
+    * 参考：[设置禁止centos7 控制台光标闪烁『disable blinking cursors』](https://blog.csdn.net/buxiaoxindasuile/article/details/80793139)
+
 
 # 前端
 
