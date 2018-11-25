@@ -68,6 +68,23 @@
 
 <h2 id="mysql">mysql</h2>
 
+<h2 id="linux">linux</h2>
+
+<ul>
+  <li>centos6.9 安装完毕后，输入提示光标闪烁太快
+    <ul>
+      <li>问题描述：如上</li>
+      <li>解决：
+        <ul>
+          <li>修改<code class="highlighter-rouge">/etc/rc.local</code>文件权限：<code class="highlighter-rouge">chmod a+x /etc/rc.local</code></li>
+          <li>修改<code class="highlighter-rouge">/etc/rc.local</code>文件内容：<code class="highlighter-rouge">echo 0 &gt; /sys/class/graphics/fbcon/cursor_blink</code></li>
+        </ul>
+      </li>
+      <li>参考：<a href="https://blog.csdn.net/buxiaoxindasuile/article/details/80793139">设置禁止centos7 控制台光标闪烁『disable blinking cursors』</a></li>
+    </ul>
+  </li>
+</ul>
+
 <h1 id="前端">前端</h1>
 
 <h2 id="electron">electron</h2>
@@ -99,6 +116,78 @@
 <h1 id="读书与生活">读书与生活</h1>
 
 <h1 id="temp">temp</h1>
+
+<h2 id="恶魔分金">恶魔分金</h2>
+
+<h3 id="题目">题目</h3>
+
+<p>现在有10个足够聪明且贪婪的人，有机会从恶魔那里得到1000斤黄金（1000等份，每斤不可分割），但是恶魔对黄金的分配提供了如下的规则：</p>
+
+<ul>
+  <li>10个人按顺序给出分配提案</li>
+  <li>这个提案会所有活着的人投票表决，每个人只能赞同或反对，且必须投票</li>
+  <li>如果超过一半（含一半）的人反对，提案的人会被恶魔吃掉；反之投票通过，实施提案</li>
+  <li>直到有提案被通过，恶魔才会离去</li>
+</ul>
+
+<p>那么如果你正好是第一个给出提案的人，那么你该如何分配？</p>
+
+<h3 id="解答思路">解答思路</h3>
+
+<p>按照分金人数，用递归的方式，先从基本情况考虑。下面的叙述以数组形式表示分金方案，第<code class="highlighter-rouge">s</code>个提案的人标记为<code class="highlighter-rouge">Ps</code>。另外，一个不言自明的事实是：提出方案的人必然会投赞成票。</p>
+
+<h4 id="1个人">1个人</h4>
+
+<p>此时，方案必然是<code class="highlighter-rouge">[1000]</code>，且通过</p>
+
+<h4 id="2个人">2个人</h4>
+
+<p>此时<code class="highlighter-rouge">P1</code>事实上没有决定权，但是只要自己不为0，必然会被（足够贪婪的）<code class="highlighter-rouge">P2</code>否掉，因此他必须分配成<code class="highlighter-rouge">[0,1000]</code>，如果<code class="highlighter-rouge">P2</code>善良的话，会直接同意，让<code class="highlighter-rouge">P1</code>保命。所以，最终的结果是：<code class="highlighter-rouge">P1</code>分金为0，且存在被吃掉的风险。</p>
+
+<h4 id="3个人">3个人</h4>
+
+<p>此时不论<code class="highlighter-rouge">P1</code>如何分配，<code class="highlighter-rouge">P2</code>必然会同意，因为如果他不通过，就会沦为2个人的情况，自己不但没金子还有被吃的风险。那么由于<code class="highlighter-rouge">P1</code>、<code class="highlighter-rouge">P2</code>都赞成，那么提案必然通过，因此<code class="highlighter-rouge">P1</code>为了最大利益，分配情况是<code class="highlighter-rouge">[1000,0,0]</code>。</p>
+
+<h4 id="4个人">4个人</h4>
+
+<p>我们先来看要使得<code class="highlighter-rouge">P2</code>到<code class="highlighter-rouge">P4</code>都通过，<code class="highlighter-rouge">P1</code>该如何分配？此时，需要使得提案通过时，<code class="highlighter-rouge">P2</code>到<code class="highlighter-rouge">P4</code>得到的金子多于不通过时（此时变为3人分配的情况）的金子就可以了。</p>
+
+<ul>
+  <li>给<code class="highlighter-rouge">P2</code>的只要大于1000，他必然接受，也就是1001</li>
+  <li>给<code class="highlighter-rouge">P3</code>大于0，他必然接受，所以给1</li>
+  <li>同理，给<code class="highlighter-rouge">P4</code>也为1就可以了</li>
+  <li>因此如果提案为<code class="highlighter-rouge">[x, 1001, 1, 1]</code>，所有人都会通过，我们称该方案为<strong>完美方案</strong></li>
+</ul>
+
+<p>但事实上，<code class="highlighter-rouge">P1</code>只需要让分配方案后面3人中的2人通过就可以，为了自己得到更多的金子，他应该选择完美方案中，分配额最少的2人，即<code class="highlighter-rouge">P3</code>和<code class="highlighter-rouge">P4</code>，而<code class="highlighter-rouge">P2</code>就直接分配0。所以最后的分配方案是<code class="highlighter-rouge">[998, 0, 1, 1]</code>。</p>
+
+<h4 id="5个人">5个人</h4>
+
+<p>此时的完美方案是：<code class="highlighter-rouge">[x, 999, 1, 2, 2]</code>，实际方案有两种都可以：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">[997, 0, 1, 2, 0]</code></li>
+  <li><code class="highlighter-rouge">[997, 0, 1, 0, 2]</code></li>
+</ul>
+
+<h4 id="6个人">6个人</h4>
+
+<p>此时的完美方案是：<code class="highlighter-rouge">[x, 998, 1, 2, 2, 2]</code>，这里需要注意一下由于5人的情况下，<code class="highlighter-rouge">P1</code>的选择有两种，所以最后两人最后可以获得2斤金子，但是只有50%的概率。因此，6人情况下，<code class="highlighter-rouge">P1</code>分配时，只要让他们100%地获得2，那么他们都必然会接受。</p>
+
+<p>此时的实际方案有三种：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">[995, 0, 1, 2, 2, 0]</code></li>
+  <li><code class="highlighter-rouge">[995, 0, 1, 2, 0, 2]</code></li>
+  <li><code class="highlighter-rouge">[995, 0, 1, 0, 2, 2]</code></li>
+</ul>
+
+<p>…</p>
+
+<h4 id="10个人">10个人</h4>
+
+<p>以此类推，10人时，<code class="highlighter-rouge">P1</code>应该给出的提案数共有<code class="highlighter-rouge">C(7,3)</code>种，需要满足前三人的分配额是：<code class="highlighter-rouge">[991, 0, 1]</code>，后面7人中4人分配2，3人分配0。比如<code class="highlighter-rouge">[991, 0, 1, 0, 2, 2, 2, 2, 0, 0]</code>。</p>
+
 
 			  
 			<!-- <p class="to-jianshu">
