@@ -393,6 +393,124 @@
   <li>视频通常是被压缩存储的，<code class="highlighter-rouge">MPEG</code>是一种常见的视频压缩技术</li>
 </ul>
 
+<h1 id="第四章-数据运算">第四章 数据运算</h1>
+
+<h2 id="逻辑运算">逻辑运算</h2>
+
+<h3 id="位层次上的逻辑运算">位层次上的逻辑运算</h3>
+
+<ul>
+  <li>非（<code class="highlighter-rouge">NOT</code>）</li>
+  <li>与（<code class="highlighter-rouge">AND</code>）</li>
+  <li>或（<code class="highlighter-rouge">OR</code>）</li>
+  <li>异或（<code class="highlighter-rouge">XOR</code>）</li>
+</ul>
+
+<p>真值表如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>(a,b)</th>
+      <th>NOT(a)</th>
+      <th>a AND b</th>
+      <th>a OR b</th>
+      <th>a XOR b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>(0,0)</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>(0,1)</td>
+      <td> </td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>(1,0)</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>(1,1)</td>
+      <td> </td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="模式层次上的逻辑运算">模式层次上的逻辑运算</h3>
+
+<p>只需要将位层次上的各逻辑运算应用到一个模式的各个位，或两个模式的各对应位对。</p>
+
+<h4 id="应用">应用</h4>
+
+<ul>
+  <li><strong>求反</strong>，利用<code class="highlighter-rouge">NOT</code>，让模式的各位取反</li>
+  <li><strong>使指定的位复位</strong>，利用<code class="highlighter-rouge">AND</code>，其中第二个输入称为<code class="highlighter-rouge">掩码</code>，掩码中的值为0的位对应位置被复位（设为0）</li>
+  <li><strong>使指定的位置位</strong>，利用<code class="highlighter-rouge">OR</code>，掩码中的值为1的位对应位置被置位（设为1）</li>
+  <li><strong>使指定的位反转</strong>，利用<code class="highlighter-rouge">XOR</code>，掩码中的值为1的位对应位置被反转</li>
+</ul>
+
+<h2 id="移位运算">移位运算</h2>
+
+<h3 id="逻辑移位">逻辑移位</h3>
+
+<ul>
+  <li>用于无符号整数的移位，分为左移和右移，空位以0填充</li>
+  <li>另一种逻辑移位：循环移位，空位被移出位填充</li>
+</ul>
+
+<h3 id="算术移位">算术移位</h3>
+
+<ul>
+  <li>用于使用二进制补码方式的带符号整数</li>
+  <li>算术右移：保留符号位，并将符号位复制到空位上，用于除以2（向下）取整操作</li>
+  <li>算术左移：和逻辑左移相同的方式，但是结果以有符号数解读，用于乘以2操作，可能发生溢出（符号位改变）</li>
+</ul>
+
+<p>举例：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>原数(无符号,有符号)</th>
+      <th>逻辑左移</th>
+      <th>逻辑右移</th>
+      <th>算术左移</th>
+      <th>算术右移</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0100 0001 (65, 65)</td>
+      <td>1000 0010 (130)</td>
+      <td>0010 0000 (32)</td>
+      <td>1000 0010 (-126，上溢)</td>
+      <td>0010 0000 (32)</td>
+    </tr>
+    <tr>
+      <td>1011 0000 (176,-80)</td>
+      <td>0110 0000 (96，上溢)</td>
+      <td>0101 1000 (88)</td>
+      <td>0110 0000 (96，下溢)</td>
+      <td>1101 1000 (-40)</td>
+    </tr>
+  </tbody>
+</table>
+
+
 			  
 			<!-- <p class="to-jianshu">
 				转载请注明出处，您还可以在
