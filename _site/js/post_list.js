@@ -205,16 +205,24 @@ let posts = {
 		});
 	},
 	searchPosts(searchStr){
-		// if no request for searchStr, pass an empty string ''
-		this.infos.forEach(function (postInfo) {
-			if(postInfo.isShow === true){
-				if (postInfo.title.indexOf(searchStr) >= 0) {
-					postInfo.isShow = true;
-				} else {
-					postInfo.isShow = false;
+		// if no demand for searchStr, pass an empty string '' or just pass nothing
+
+		// filter out post not belong to the current category and tags
+		this.filterPosts(catsAndTags.getFilterCondition());
+
+		// filter according to search string
+		if(searchStr){
+			searchStr = searchStr.toLowerCase();
+			this.infos.forEach(function (postInfo) {
+				if(postInfo.isShow === true){
+					if ((postInfo.date+postInfo.title).toLowerCase().indexOf(searchStr) >= 0) {
+						postInfo.isShow = true;
+					} else {
+						postInfo.isShow = false;
+					}
 				}
-			}
-		});
+			});
+		}
 		this.refreshPosts();
 	}
 };
@@ -271,12 +279,8 @@ let search = {
 	addEvent(){
 		let self = this;
 		this.input.onkeyup = function (event) {
-			if (event.keyCode === 13) {
-				var searchStr = this.value.trim();
-				if (!!searchStr) {
-					posts.searchPosts(searchStr);
-				}
-			}
+			var searchStr = this.value.trim();
+			posts.searchPosts(searchStr); // emptry string actually mean no search string
 		};
 		this.confirm.onclick = function (event) {
 			var searchStr = self.input.value.trim();
