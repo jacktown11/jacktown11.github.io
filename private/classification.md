@@ -1,9 +1,3 @@
----
-layout: article
-title: 笔记分类
-categories: [草稿]
-tags: [笔记分类]
----
 
 AAtmp：笔记一开始都记在这里面，每周末整理归档。
 

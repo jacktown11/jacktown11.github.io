@@ -2,3 +2,4 @@ name: jacktown's blog
 permalink: /blog/:year/:month/:day/:title
 markdown: kramdown
 highlighter: rouge
+exclude: [/private]
