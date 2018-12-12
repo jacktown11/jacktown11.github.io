@@ -69,15 +69,7 @@ function App(){
 
     this.init();
 }
-console.log(Utils.encode(JSON.stringify({
-    phone: 17341969096,
-    email: 'jikai_tang@163.com',
-    weixin: 'jacktown93',
-    qq: 1797784409,
-    name: '唐基凯/男/1993',
-    education: '清华大学/本科/车辆工程专业',
-    picture: '/images/intro/me.jpg'
-}), '唐基凯'));
+
 App.prototype = {
     constructor: App,
     init: function(){
