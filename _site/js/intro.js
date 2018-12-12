@@ -43,6 +43,7 @@ function App(){
     var doc = document;
     this.nodes = {
         info: {
+            // 所有被加密的个人信息对应的节点
             phone: doc.getElementById('phone'),
             email: doc.getElementById('email'),
             weixin: doc.getElementById('weixin'),
@@ -60,9 +61,23 @@ function App(){
             warning: doc.getElementById('warning')
         }
     };
-    this.encodedStr = 'U2FsdGVkX19/MDErDGUICKXGwgNMOabWiVRn0KhTeag68nY/JGMFxw8CNo+W6nQyIBssWB50E8A3jxT1BQQ7zBfdGADH0uD9Kw9KFWu1EkW97lHNNzbLMvYWJss453MYpfwy9Cd45jF6bjhWupURp0YZvULnT1GdWQ6ERjuaX/i8Eebapw1FoXT94Rzda468MWB3ebGcRKloATK2aL7DXh4S432osmBz9IhSeBP735aSsL+mN+09fAicr0PedgzVE2nCnKBPQucbTp5UGBNnButdmhwmJk4QLEmizfhbShGIa1gA0B7LXa7w+H7iT2MA';
+    // 对应152手机号的加密字符串
+    // this.encodedStr = 'U2FsdGVkX19/MDErDGUICKXGwgNMOabWiVRn0KhTeag68nY/JGMFxw8CNo+W6nQyIBssWB50E8A3jxT1BQQ7zBfdGADH0uD9Kw9KFWu1EkW97lHNNzbLMvYWJss453MYpfwy9Cd45jF6bjhWupURp0YZvULnT1GdWQ6ERjuaX/i8Eebapw1FoXT94Rzda468MWB3ebGcRKloATK2aL7DXh4S432osmBz9IhSeBP735aSsL+mN+09fAicr0PedgzVE2nCnKBPQucbTp5UGBNnButdmhwmJk4QLEmizfhbShGIa1gA0B7LXa7w+H7iT2MA';
+
+    // 对应173手机号的加密字符串
+    this.encodedStr = 'U2FsdGVkX1+V+v5RDbKKDq81irrUDW/1ZRageJbEFkhYPWwwxFnp8oJlz1xypAtYInGa6qcSiOcS3Fle9Ke9Pk1p42vux5bmFNnnAQm9rPYZsy1xMxro0AwWT0j2PmwuzCf+IQPZ9gv8caBBWust5tcmSb+RBfKr7TkDbWH0CYOa82Aa7Va0z04SUCoZMu+In2mq9ecKMct4gdIbELXpVvCR3QPM9Evx0zxA/EmYyPW25PNtYzBLkroig4q2hj7n5gWXJLVI6p6jXQJBVc0r1/N0BXhxQ7pdy/6HIeBwLHM=';
+
     this.init();
 }
+console.log(Utils.encode(JSON.stringify({
+    phone: 17341969096,
+    email: 'jikai_tang@163.com',
+    weixin: 'jacktown93',
+    qq: 1797784409,
+    name: '唐基凯/男/1993',
+    education: '清华大学/本科/车辆工程专业',
+    picture: '/images/intro/me.jpg'
+}), '唐基凯'));
 App.prototype = {
     constructor: App,
     init: function(){
