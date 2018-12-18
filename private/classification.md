@@ -28,9 +28,6 @@ AAtmp：笔记一开始都记在这里面，每周末整理归档。
     * js基础
     * es6
     * jQuery
-    * vue
-    * angular
-    * react
 - 后端
     * c
     * php
@@ -40,6 +37,9 @@ AAtmp：笔记一开始都记在这里面，每周末整理归档。
     * apache
     * xml
 - 前端
+    * vue
+    * react
+    * angular
     * sublime
     * vscode
     * html

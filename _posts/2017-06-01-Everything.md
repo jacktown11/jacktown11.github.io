@@ -8,7 +8,6 @@ tags: [万有笔记]
 
 - js对象深浅拷贝
 
- 
 # 工作
 
 # 编程相关
@@ -39,8 +38,191 @@ tags: [万有笔记]
         + 修改`/etc/rc.local`文件内容：`echo 0 > /sys/class/graphics/fbcon/cursor_blink`
     * 参考：[设置禁止centos7 控制台光标闪烁『disable blinking cursors』](https://blog.csdn.net/buxiaoxindasuile/article/details/80793139)
 
-
 # 前端
+
+## vue
+
+### 外卖webapp项目
+
+### 知识点
+
+#### stiky footer
+
+- [CSS秘密花园： Sticky footers](https://www.w3cplus.com/css3/css-secrets/sticky-footers.html)
+
+#### flex布局
+
+- [Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+- [Flex 布局教程：实例篇](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+
+### 工具、配置、debug
+
+#### 使用vue-cli3.x的配置文件vue.config.js
+
+```javascript
+const path = require('path')
+const express = require('express')
+
+// mock code
+const mockData = require('./mock/data.json')
+
+function resolve (folder) {
+  return path.join(__dirname, folder)
+}  
+
+module.exports = {
+  /** 区分打包环境与开发环境
+   * process.env.NODE_ENV==='production'  (打包环境)
+   * process.env.NODE_ENV==='development' (开发环境)
+   * baseUrl: process.env.NODE_ENV==='production'?"https://cdn.didabisai.com/front/":'front/',
+   */
+  // 基本路径
+  baseUrl: '/',
+  // 输出文件目录
+  outputDir: 'dist',
+  // eslint-loader 是否在保存的时候检查
+  lintOnSave: true,
+  // webpack配置
+  // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
+  chainWebpack: () => { },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@src': resolve('src'),
+        '@components': resolve('components')
+      }
+    }
+   },
+  //如果想要引入babel-polyfill可以这样写
+  // configureWebpack: (config) => {
+  //   config.entry = ["babel-polyfill", "./src/main.js"]
+  // },
+
+  // 生产环境是否生成 sourceMap 文件
+  productionSourceMap: true,
+  // css相关配置
+  css: {
+    // 是否使用css分离插件 ExtractTextPlugin
+    extract: true,
+    // 开启 CSS source maps?
+    sourceMap: false,
+    // css预设器配置项
+    loaderOptions: {},
+    // 启用 CSS modules for all css / pre-processor files.
+    modules: false
+  },
+  // use thread-loader for babel & TS in production build
+  // enabled by default if the machine has more than 1 cores
+  parallel: require('os').cpus().length > 1,
+  // PWA 插件相关配置
+  // see https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
+  pwa: {},
+  // webpack-dev-server 相关配置
+  devServer: {
+    open: process.platform === 'darwin',
+    host: '127.0.0.1',
+    port: 8080,
+    https: false,
+    hotOnly: false,
+    proxy: {
+      '/outer': {
+        target: 'http://localhost:8080/api/seller',
+        onProxyReq (proxyReq, req, res) {
+          console.log(proxyReq, req, res)
+        },
+        onProxyRes(proxyRes, req, res) {
+          console.log(proxyRes, req, res)
+        },
+        pathRewrite: {
+          '^/outer': '' // 这里一定要删掉，不然会导致死递归
+        }
+      }
+    },
+    before: app => { 
+      const apiRoutes = express.Router()
+      const pathArr = ['/seller', '/goods', '/ratings']
+      pathArr.forEach((urlPath) => {
+        apiRoutes.get(urlPath, (req, res) => {
+          console.log(urlPath)
+          res.json({
+            errno: 0,
+            data: mockData[urlPath.slice(1)]
+          });
+        });
+      })
+
+      app.use('/api', apiRoutes)
+    }
+  },
+  // 第三方插件配置
+  pluginOptions: {
+    // ...
+  }
+}
+
+```
+#### 图标代码生成工具
+
+- [阿里图标库：iconfont](https://www.iconfont.cn/)
+- [icomoon](https://icomoon.io/app/#/select)
+
+以上两个工具的介绍文章：[前端字体图标的使用（阿里、icomoon）](https://blog.csdn.net/huangxiaoguo1/article/details/79623573)
+
+#### 在vscode中stylus自动格式化插件
+
+安装插件`stylus supremacy`，`vscode`中使用快捷键`ctrl ,`打开配置页，进行相关配置（搜索`supremacy`可以看到28项配置），控制自动格式化时是否使用大括号、分号等，`vscode`中自动格式化快捷键：`alt+shift+F`。
+
+#### 安装JSONView
+
+这是一个浏览器插件，可以在浏览器中格式化地查看`json`数据，可参考文章：[谷歌浏览器中安装JsonView扩展程序](https://www.cnblogs.com/whycxb/p/7126116.html)。另外实际上在`chrome`中打开开发这工具，在`network`中查看相应的请求的`response`，点击左下角的`{}符号，也可以查看格式化好的`json`数据。
+
+#### vscode为.vue单文件设置模板
+
+`File > Preferences > User Snippets`，输入`vue.json`，即可配置，如下：
+
+```json
+{
+	// Place your snippets for vue here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Vue Single File": {
+		"prefix": "vue",
+		"body": [
+			"<template>\n",
+			"</template>\n",
+			"<script>",
+			"export default {",
+			"  data() {",
+			"    return {\n",
+			"    }",
+			"  },",
+			"  components: {\n",
+			"  }",
+			"}",
+			"</script>\n",
+			"<style scoped lang=\"stylus\">\n",
+			"</style>",
+			"$2"
+		],
+		"description": "generate snippets for .vue single file"
+	}
+}
+```
+配置好以后，我们新建一个`.vue`文件，在其中输入`vue`，然后按`Tab`键（或者回车键），就会自动填充设置的模板代码。
+
+参考：[在vscode里使用.vue代码模板的方法](https://segmentfault.com/a/1190000014653201)
+
+#### 手机无法通过该ip地址访问项目
+
+- 确认可以使用`ip`地址方式在电脑上访问项目，注意需要将`devServer.host`配置为`0.0.0.0`，否则可能不行
+- 确认手机和电脑是一个局域网下（比如`wifi`或数据线共享网络）
+- 检查一下电脑防火墙是否拦截掉了请求，参考文章[解决apache服务器本地可以访问，同局域网内他人不能访问的问题](https://www.2cto.com/os/201203/123953.html)
+
+#### 滚动插件
+
+`better-scroll`，`github`地址是[https://github.com/ustbhuangyi/better-scroll](https://github.com/ustbhuangyi/better-scroll)
 
 ## electron
 
