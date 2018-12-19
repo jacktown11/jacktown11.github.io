@@ -42,22 +42,53 @@ tags: [万有笔记]
 
 ## vue
 
+### 大小写的推荐写法
+
+#### 单文件组件的文件名
+
+建议始终使用`PascalCase`或`kebab-case`，前者利于编辑器自动提示并于在`js`文件中对它的引用更一致，不过在某些大写不敏感的文件系统中可能出现问题。
+
+#### 组件名称
+
+- 在字符串模板/单文件组件模板中建议：`PascalCase`或`kebab-case`
+- 在`DOM`模板中使用：`kebab-case`（鉴于`html`大小写不敏感，这是必须的）
+- 在`js`中建议：`PascalCase`
+  * 但是使用`Vue.component()`注册全局组件的话，建议`kebab-case`.(因为它们会在`js`中用得少，而`kebab-case`和`html`一致)
+
+#### 属性名称
+
+- `html`中建议`kebab-case`
+- `js`中建议`camelCase`
+
+#### 事件名称
+
+始终使用`kebab-case`（注意：`vue`不会将`js`中其他形式事件名自动转换为`kebab-case`，因为它几乎不被作为标识符使用）
+
+#### 个人小结（一种参考）
+
+- `html`(`DOM template`、`string template`、`single file component template`): `kebab-case`
+- `js`
+  * 组件名：`PascalCase`
+  * 属性名：`camelCase`
+  * 事件名：`kebab-case`
+- 单文件组件文件名：`kebab-case`
+
 ### 外卖webapp项目
 
-### 知识点
+#### 知识点
 
-#### stiky footer
+##### stiky footer
 
 - [CSS秘密花园： Sticky footers](https://www.w3cplus.com/css3/css-secrets/sticky-footers.html)
 
-#### flex布局
+##### flex布局
 
 - [Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 - [Flex 布局教程：实例篇](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
 
-### 工具、配置、debug
+#### 工具、配置、debug
 
-#### 使用vue-cli3.x的配置文件vue.config.js
+##### 使用vue-cli3.x的配置文件vue.config.js
 
 ```javascript
 const path = require('path')
@@ -161,32 +192,27 @@ module.exports = {
 }
 
 ```
-#### 图标代码生成工具
+##### 图标代码生成工具
 
 - [阿里图标库：iconfont](https://www.iconfont.cn/)
 - [icomoon](https://icomoon.io/app/#/select)
 
 以上两个工具的介绍文章：[前端字体图标的使用（阿里、icomoon）](https://blog.csdn.net/huangxiaoguo1/article/details/79623573)
 
-#### 在vscode中stylus自动格式化插件
+##### 在vscode中stylus自动格式化插件
 
 安装插件`stylus supremacy`，`vscode`中使用快捷键`ctrl ,`打开配置页，进行相关配置（搜索`supremacy`可以看到28项配置），控制自动格式化时是否使用大括号、分号等，`vscode`中自动格式化快捷键：`alt+shift+F`。
 
-#### 安装JSONView
+##### 安装JSONView
 
-这是一个浏览器插件，可以在浏览器中格式化地查看`json`数据，可参考文章：[谷歌浏览器中安装JsonView扩展程序](https://www.cnblogs.com/whycxb/p/7126116.html)。另外实际上在`chrome`中打开开发这工具，在`network`中查看相应的请求的`response`，点击左下角的`{}符号，也可以查看格式化好的`json`数据。
+这是一个浏览器插件，可以在浏览器中格式化地查看`json`数据，可参考文章：[谷歌浏览器中安装JsonView扩展程序](https://www.cnblogs.com/whycxb/p/7126116.html)。另外实际上在`chrome`中打开开发这工具，在`network`中查看相应的请求的`response`，点击左下角的`{}`符号，也可以查看格式化好的`json`数据。
 
-#### vscode为.vue单文件设置模板
+##### vscode为.vue单文件设置模板
 
 `File > Preferences > User Snippets`，输入`vue.json`，即可配置，如下：
 
 ```json
 {
-	// Place your snippets for vue here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
 	"Vue Single File": {
 		"prefix": "vue",
 		"body": [
@@ -214,13 +240,13 @@ module.exports = {
 
 参考：[在vscode里使用.vue代码模板的方法](https://segmentfault.com/a/1190000014653201)
 
-#### 手机无法通过该ip地址访问项目
+##### 手机无法通过该ip地址访问项目
 
 - 确认可以使用`ip`地址方式在电脑上访问项目，注意需要将`devServer.host`配置为`0.0.0.0`，否则可能不行
 - 确认手机和电脑是一个局域网下（比如`wifi`或数据线共享网络）
 - 检查一下电脑防火墙是否拦截掉了请求，参考文章[解决apache服务器本地可以访问，同局域网内他人不能访问的问题](https://www.2cto.com/os/201203/123953.html)
 
-#### 滚动插件
+##### 滚动插件
 
 `better-scroll`，`github`地址是[https://github.com/ustbhuangyi/better-scroll](https://github.com/ustbhuangyi/better-scroll)
 
