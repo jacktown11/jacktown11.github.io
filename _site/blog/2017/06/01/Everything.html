@@ -149,6 +149,24 @@
   <li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">Flex 布局教程：实例篇</a></li>
 </ul>
 
+<h5 id="better-scroll使用注意事项">better-scroll使用注意事项</h5>
+
+<ul>
+  <li><a href="https://github.com/ustbhuangyi/better-scroll">better-scroll</a>是一个滚动插件，可以查看其<a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/">中文文档</a>了解更多</li>
+  <li><code class="highlighter-rouge">new</code>新的滚动控制器时，传入的包裹元素，通常情况下内部有唯一一个元素，是实际内容；实际内容溢出包裹元素时就可以滚动；如果内部有多个元素，那么只针对第一个元素。</li>
+  <li>默认情况下，使用了滚动控制的部分，禁用了点击事件，可以在创建时提供参数项<code class="highlighter-rouge">click: true</code>来使用点击；此时点击事件是插件内部触发的，其事件对象有一个<code class="highlighter-rouge">_constructed</code>属性；在<code class="highlighter-rouge">pc</code>浏览器下，同时原生点击事件也会触发，导致一次点击触发两次事件，为此可以检测该<code class="highlighter-rouge">_constructed</code>属性，只响应派发的事件，从而使得移动端和桌面端一致</li>
+  <li>如果需要监听<code class="highlighter-rouge">scroll</code>事件，可以在参数项中控制<a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/options.html#probetype">probeType</a>的值</li>
+  <li><code class="highlighter-rouge">new</code>出来的滚动控制器有<a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/api.html#refresh">refresh()</a>方法，调用时重新计算 <code class="highlighter-rouge">better-scroll</code>，当<code class="highlighter-rouge">DOM</code>结构发生变化的时候务必要调用确保滚动的效果正常</li>
+  <li>利用<code class="highlighter-rouge">scrollTo</code>和<code class="highlighter-rouge">scrollToElement</code>可以代码触发滚动</li>
+</ul>
+
+<h5 id="vue中动画注意事项">vue中动画注意事项</h5>
+
+<ul>
+  <li>如果一个元素需要它完成一个动画后，让其执行另一个动画，前一个动画的结束可以利用<code class="highlighter-rouge">after-leave</code>钩子事件来监听</li>
+  <li>利用一个变量来控制动画元素时，如<code class="highlighter-rouge">v-show="isShow"</code>，如果我们利用代码修改了变量<code class="highlighter-rouge">isShow</code>的值，<code class="highlighter-rouge">DOM</code>通常不能立即被修改，可以用<code class="highlighter-rouge">vm.$nextTick(()=&gt;{...})</code>的方式，使得<code class="highlighter-rouge">DOM</code>修改生效后再执行后续任务</li>
+</ul>
+
 <h4 id="工具配置debug">工具、配置、debug</h4>
 
 <h5 id="使用vue-cli3x的配置文件vueconfigjs">使用vue-cli3.x的配置文件vue.config.js</h5>
@@ -355,7 +373,7 @@
 
 <ul>
   <li>10个人按顺序给出分配提案</li>
-  <li>这个提案会所有活着的人投票表决，每个人只能赞同或反对，且必须投票</li>
+  <li>这个提案会被所有活着的人投票表决，每个人只能赞同或反对，且必须投票</li>
   <li>如果超过一半（含一半）的人反对，提案的人会被恶魔吃掉；反之投票通过，实施提案</li>
   <li>直到有提案被通过，恶魔才会离去</li>
 </ul>

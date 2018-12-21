@@ -92,13 +92,13 @@ tags: [万有笔记]
 - `new`新的滚动控制器时，传入的包裹元素，通常情况下内部有唯一一个元素，是实际内容；实际内容溢出包裹元素时就可以滚动；如果内部有多个元素，那么只针对第一个元素。
 - 默认情况下，使用了滚动控制的部分，禁用了点击事件，可以在创建时提供参数项`click: true`来使用点击；此时点击事件是插件内部触发的，其事件对象有一个`_constructed`属性；在`pc`浏览器下，同时原生点击事件也会触发，导致一次点击触发两次事件，为此可以检测该`_constructed`属性，只响应派发的事件，从而使得移动端和桌面端一致
 - 如果需要监听`scroll`事件，可以在参数项中控制[probeType](https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/options.html#probetype)的值
-- `new`出来的滚动控制器有[refresh()](https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/api.html#refresh)方法，调用时重新计算 better-scroll，当 DOM 结构发生变化的时候务必要调用确保滚动的效果正常
+- `new`出来的滚动控制器有[refresh()](https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/api.html#refresh)方法，调用时重新计算 `better-scroll`，当`DOM`结构发生变化的时候务必要调用确保滚动的效果正常
 - 利用`scrollTo`和`scrollToElement`可以代码触发滚动
 
 ##### vue中动画注意事项
 
 - 如果一个元素需要它完成一个动画后，让其执行另一个动画，前一个动画的结束可以利用`after-leave`钩子事件来监听
-- 利用一个变量来控制动画元素时，如`v-show="isShow"`，如果我们利用代码中修改了变量`isShow`的值，`DOM`通常不能立即被修改，可以用`vm.$nextTick(()=>{...})`的方式，使得`DOM`修改生效后再执行后续任务
+- 利用一个变量来控制动画元素时，如`v-show="isShow"`，如果我们利用代码修改了变量`isShow`的值，`DOM`通常不能立即被修改，可以用`vm.$nextTick(()=>{...})`的方式，使得`DOM`修改生效后再执行后续任务
 
 #### 工具、配置、debug
 
@@ -295,7 +295,7 @@ module.exports = {
 现在有10个足够聪明且贪婪的人，有机会从恶魔那里得到1000斤黄金（1000等份，每斤不可分割），但是恶魔对黄金的分配提供了如下的规则：
 
 - 10个人按顺序给出分配提案
-- 这个提案会所有活着的人投票表决，每个人只能赞同或反对，且必须投票
+- 这个提案会被所有活着的人投票表决，每个人只能赞同或反对，且必须投票
 - 如果超过一半（含一半）的人反对，提案的人会被恶魔吃掉；反之投票通过，实施提案
 - 直到有提案被通过，恶魔才会离去
 
