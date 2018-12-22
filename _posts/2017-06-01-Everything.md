@@ -42,31 +42,32 @@ tags: [万有笔记]
 
 ## vscode
 
-### js的格式化
+### .vue的格式化
 
-可以安装这三个插件：`eslint`,`prettier`,`vetur`。其中最后一个是专门用于`.vue`文件的，实际上，如果不安装前两个，它仍能工作（内部集成）；`prettier`内部也有选项控制是否使用集成`eslint`的格式化。
-
-用户配置文件添加如下一些项目：
+安装`vetur`插件
 
 ```json
 {
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    {
-      "language": "vue",
-      "autoFix": true
+  "editor.formatOnSave": true,
+    "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "vetur.format.defaultFormatterOptions": {
+      "js-beautify-html": {
+        "wrap_attributes": "force-expand-multiline"
+      },
+      "prettyhtml": {
+        "printWidth": 100,
+        "singleQuote": false,
+        "wrapAttributes": false,
+        "sortAttributes": false
+      },
+      "prettier": {
+        "singleQuote": true
+      }
     }
-  ],
-  "eslint.autoFixOnSave": true,
-  "vetur.format.defaultFormatter.js": "vscode-typescript",
-  "vetur.format.defaultFormatter.html": "js-beautify-html",
 }
 ```
 
-这样每次保存文件会自动格式化并修复。
-
-以下两篇文章可供参考（并非完美）：
+参考：
 
 - [VScode格式化ESlint-方法（最全最好用方法！）](https://www.jianshu.com/p/23a5d6194a4b)
 - [聊一聊 vscode 的代码格式化](https://blog.csdn.net/userkang/article/details/84305689)
