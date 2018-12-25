@@ -87,6 +87,40 @@
 
 <h1 id="前端">前端</h1>
 
+<h2 id="vscode">vscode</h2>
+
+<h3 id="vue的格式化">.vue的格式化</h3>
+
+<p>安装<code class="highlighter-rouge">vetur</code>插件</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"editor.formatOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vetur.format.defaultFormatter.html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js-beautify-html"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vetur.format.defaultFormatterOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"js-beautify-html"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"wrap_attributes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"force-expand-multiline"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"prettyhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"printWidth"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"wrapAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sortAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"prettier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>参考：</p>
+
+<ul>
+  <li><a href="https://www.jianshu.com/p/23a5d6194a4b">VScode格式化ESlint-方法（最全最好用方法！）</a></li>
+  <li><a href="https://blog.csdn.net/userkang/article/details/84305689">聊一聊 vscode 的代码格式化</a></li>
+</ul>
+
 <h2 id="vue">vue</h2>
 
 <h3 id="大小写的推荐写法">大小写的推荐写法</h3>
@@ -131,209 +165,6 @@
   </li>
   <li>单文件组件文件名：<code class="highlighter-rouge">kebab-case</code></li>
 </ul>
-
-<h3 id="外卖webapp项目">外卖webapp项目</h3>
-
-<h4 id="知识点">知识点</h4>
-
-<h5 id="stiky-footer">stiky footer</h5>
-
-<ul>
-  <li><a href="https://www.w3cplus.com/css3/css-secrets/sticky-footers.html">CSS秘密花园： Sticky footers</a></li>
-</ul>
-
-<h5 id="flex布局">flex布局</h5>
-
-<ul>
-  <li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程：语法篇</a></li>
-  <li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">Flex 布局教程：实例篇</a></li>
-</ul>
-
-<h5 id="better-scroll使用注意事项">better-scroll使用注意事项</h5>
-
-<ul>
-  <li><a href="https://github.com/ustbhuangyi/better-scroll">better-scroll</a>是一个滚动插件，可以查看其<a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/">中文文档</a>了解更多</li>
-  <li><code class="highlighter-rouge">new</code>新的滚动控制器时，传入的包裹元素，通常情况下内部有唯一一个元素，是实际内容；实际内容溢出包裹元素时就可以滚动；如果内部有多个元素，那么只针对第一个元素。</li>
-  <li>默认情况下，使用了滚动控制的部分，禁用了点击事件，可以在创建时提供参数项<code class="highlighter-rouge">click: true</code>来使用点击；此时点击事件是插件内部触发的，其事件对象有一个<code class="highlighter-rouge">_constructed</code>属性；在<code class="highlighter-rouge">pc</code>浏览器下，同时原生点击事件也会触发，导致一次点击触发两次事件，为此可以检测该<code class="highlighter-rouge">_constructed</code>属性，只响应派发的事件，从而使得移动端和桌面端一致</li>
-  <li>如果需要监听<code class="highlighter-rouge">scroll</code>事件，可以在参数项中控制<a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/options.html#probetype">probeType</a>的值</li>
-  <li><code class="highlighter-rouge">new</code>出来的滚动控制器有<a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/api.html#refresh">refresh()</a>方法，调用时重新计算 <code class="highlighter-rouge">better-scroll</code>，当<code class="highlighter-rouge">DOM</code>结构发生变化的时候务必要调用确保滚动的效果正常</li>
-  <li>利用<code class="highlighter-rouge">scrollTo</code>和<code class="highlighter-rouge">scrollToElement</code>可以代码触发滚动</li>
-</ul>
-
-<h5 id="vue中动画注意事项">vue中动画注意事项</h5>
-
-<ul>
-  <li>如果一个元素需要它完成一个动画后，让其执行另一个动画，前一个动画的结束可以利用<code class="highlighter-rouge">after-leave</code>钩子事件来监听</li>
-  <li>利用一个变量来控制动画元素时，如<code class="highlighter-rouge">v-show="isShow"</code>，如果我们利用代码修改了变量<code class="highlighter-rouge">isShow</code>的值，<code class="highlighter-rouge">DOM</code>通常不能立即被修改，可以用<code class="highlighter-rouge">vm.$nextTick(()=&gt;{...})</code>的方式，使得<code class="highlighter-rouge">DOM</code>修改生效后再执行后续任务</li>
-</ul>
-
-<h4 id="工具配置debug">工具、配置、debug</h4>
-
-<h5 id="使用vue-cli3x的配置文件vueconfigjs">使用vue-cli3.x的配置文件vue.config.js</h5>
-
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">)</span>
-
-<span class="c1">// mock code</span>
-<span class="kr">const</span> <span class="nx">mockData</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./mock/data.json'</span><span class="p">)</span>
-
-<span class="kd">function</span> <span class="nx">resolve</span> <span class="p">(</span><span class="nx">folder</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="nx">folder</span><span class="p">)</span>
-<span class="p">}</span>  
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="cm">/** 区分打包环境与开发环境
-   * process.env.NODE_ENV==='production'  (打包环境)
-   * process.env.NODE_ENV==='development' (开发环境)
-   * baseUrl: process.env.NODE_ENV==='production'?"https://cdn.didabisai.com/front/":'front/',
-   */</span>
-  <span class="c1">// 基本路径</span>
-  <span class="na">baseUrl</span><span class="p">:</span> <span class="s1">'/'</span><span class="p">,</span>
-  <span class="c1">// 输出文件目录</span>
-  <span class="na">outputDir</span><span class="p">:</span> <span class="s1">'dist'</span><span class="p">,</span>
-  <span class="c1">// eslint-loader 是否在保存的时候检查</span>
-  <span class="na">lintOnSave</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="c1">// webpack配置</span>
-  <span class="c1">// see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md</span>
-  <span class="na">chainWebpack</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="p">},</span>
-  <span class="na">configureWebpack</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">resolve</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">alias</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">'@src'</span><span class="p">:</span> <span class="nx">resolve</span><span class="p">(</span><span class="s1">'src'</span><span class="p">),</span>
-        <span class="s1">'@components'</span><span class="p">:</span> <span class="nx">resolve</span><span class="p">(</span><span class="s1">'components'</span><span class="p">)</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-   <span class="p">},</span>
-  <span class="c1">//如果想要引入babel-polyfill可以这样写</span>
-  <span class="c1">// configureWebpack: (config) =&gt; {</span>
-  <span class="c1">//   config.entry = ["babel-polyfill", "./src/main.js"]</span>
-  <span class="c1">// },</span>
-
-  <span class="c1">// 生产环境是否生成 sourceMap 文件</span>
-  <span class="na">productionSourceMap</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="c1">// css相关配置</span>
-  <span class="na">css</span><span class="p">:</span> <span class="p">{</span>
-    <span class="c1">// 是否使用css分离插件 ExtractTextPlugin</span>
-    <span class="na">extract</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="c1">// 开启 CSS source maps?</span>
-    <span class="na">sourceMap</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="c1">// css预设器配置项</span>
-    <span class="na">loaderOptions</span><span class="p">:</span> <span class="p">{},</span>
-    <span class="c1">// 启用 CSS modules for all css / pre-processor files.</span>
-    <span class="na">modules</span><span class="p">:</span> <span class="kc">false</span>
-  <span class="p">},</span>
-  <span class="c1">// use thread-loader for babel &amp; TS in production build</span>
-  <span class="c1">// enabled by default if the machine has more than 1 cores</span>
-  <span class="na">parallel</span><span class="p">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'os'</span><span class="p">).</span><span class="nx">cpus</span><span class="p">().</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="c1">// PWA 插件相关配置</span>
-  <span class="c1">// see https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa</span>
-  <span class="na">pwa</span><span class="p">:</span> <span class="p">{},</span>
-  <span class="c1">// webpack-dev-server 相关配置</span>
-  <span class="na">devServer</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">open</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">platform</span> <span class="o">===</span> <span class="s1">'darwin'</span><span class="p">,</span>
-    <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
-    <span class="na">port</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
-    <span class="na">https</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="na">hotOnly</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="na">proxy</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s1">'/outer'</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">target</span><span class="p">:</span> <span class="s1">'http://localhost:8080/api/seller'</span><span class="p">,</span>
-        <span class="nx">onProxyReq</span> <span class="p">(</span><span class="nx">proxyReq</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">proxyReq</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
-        <span class="p">},</span>
-        <span class="nx">onProxyRes</span><span class="p">(</span><span class="nx">proxyRes</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">proxyRes</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
-        <span class="p">},</span>
-        <span class="na">pathRewrite</span><span class="p">:</span> <span class="p">{</span>
-          <span class="s1">'^/outer'</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// 这里一定要删掉，不然会导致死递归</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="na">before</span><span class="p">:</span> <span class="nx">app</span> <span class="o">=&gt;</span> <span class="p">{</span> 
-      <span class="kr">const</span> <span class="nx">apiRoutes</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">()</span>
-      <span class="kr">const</span> <span class="nx">pathArr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'/seller'</span><span class="p">,</span> <span class="s1">'/goods'</span><span class="p">,</span> <span class="s1">'/ratings'</span><span class="p">]</span>
-      <span class="nx">pathArr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">urlPath</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">apiRoutes</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">urlPath</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">urlPath</span><span class="p">)</span>
-          <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span>
-            <span class="na">errno</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="na">data</span><span class="p">:</span> <span class="nx">mockData</span><span class="p">[</span><span class="nx">urlPath</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
-          <span class="p">});</span>
-        <span class="p">});</span>
-      <span class="p">})</span>
-
-      <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">'/api'</span><span class="p">,</span> <span class="nx">apiRoutes</span><span class="p">)</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="c1">// 第三方插件配置</span>
-  <span class="na">pluginOptions</span><span class="p">:</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre>
-</div>
-<h5 id="图标代码生成工具">图标代码生成工具</h5>
-
-<ul>
-  <li><a href="https://www.iconfont.cn/">阿里图标库：iconfont</a></li>
-  <li><a href="https://icomoon.io/app/#/select">icomoon</a></li>
-</ul>
-
-<p>以上两个工具的介绍文章：<a href="https://blog.csdn.net/huangxiaoguo1/article/details/79623573">前端字体图标的使用（阿里、icomoon）</a></p>
-
-<h5 id="在vscode中stylus自动格式化插件">在vscode中stylus自动格式化插件</h5>
-
-<p>安装插件<code class="highlighter-rouge">stylus supremacy</code>，<code class="highlighter-rouge">vscode</code>中使用快捷键<code class="highlighter-rouge">ctrl ,</code>打开配置页，进行相关配置（搜索<code class="highlighter-rouge">supremacy</code>可以看到28项配置），控制自动格式化时是否使用大括号、分号等，<code class="highlighter-rouge">vscode</code>中自动格式化快捷键：<code class="highlighter-rouge">alt+shift+F</code>。</p>
-
-<h5 id="安装jsonview">安装JSONView</h5>
-
-<p>这是一个浏览器插件，可以在浏览器中格式化地查看<code class="highlighter-rouge">json</code>数据，可参考文章：<a href="https://www.cnblogs.com/whycxb/p/7126116.html">谷歌浏览器中安装JsonView扩展程序</a>。另外实际上在<code class="highlighter-rouge">chrome</code>中打开开发这工具，在<code class="highlighter-rouge">network</code>中查看相应的请求的<code class="highlighter-rouge">response</code>，点击左下角的<code class="highlighter-rouge"><span class="p">{}</span></code>符号，也可以查看格式化好的<code class="highlighter-rouge">json</code>数据。</p>
-
-<h5 id="vscode为vue单文件设置模板">vscode为.vue单文件设置模板</h5>
-
-<p><code class="highlighter-rouge">File &gt; Preferences &gt; User Snippets</code>，输入<code class="highlighter-rouge">vue.json</code>，即可配置，如下：</p>
-
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="nt">"Vue Single File"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-		</span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vue"</span><span class="p">,</span><span class="w">
-		</span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-			</span><span class="s2">"&lt;template&gt;\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;/template&gt;\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;script&gt;"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"export default {"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"  data() {"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"    return {\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"    }"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"  },"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"  components: {\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"  }"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"}"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;/script&gt;\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;style scoped lang=\"stylus\"&gt;\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;/style&gt;"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"$2"</span><span class="w">
-		</span><span class="p">],</span><span class="w">
-		</span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate snippets for .vue single file"</span><span class="w">
-	</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-<p>配置好以后，我们新建一个<code class="highlighter-rouge">.vue</code>文件，在其中输入<code class="highlighter-rouge">vue</code>，然后按<code class="highlighter-rouge">Tab</code>键（或者回车键），就会自动填充设置的模板代码。</p>
-
-<p>参考：<a href="https://segmentfault.com/a/1190000014653201">在vscode里使用.vue代码模板的方法</a></p>
-
-<h5 id="手机无法通过该ip地址访问项目">手机无法通过该ip地址访问项目</h5>
-
-<ul>
-  <li>确认可以使用<code class="highlighter-rouge">ip</code>地址方式在电脑上访问项目，注意需要将<code class="highlighter-rouge">devServer.host</code>配置为<code class="highlighter-rouge">0.0.0.0</code>，否则可能不行</li>
-  <li>确认手机和电脑是一个局域网下（比如<code class="highlighter-rouge">wifi</code>或数据线共享网络）</li>
-  <li>检查一下电脑防火墙是否拦截掉了请求，参考文章<a href="https://www.2cto.com/os/201203/123953.html">解决apache服务器本地可以访问，同局域网内他人不能访问的问题</a></li>
-</ul>
-
-<h5 id="滚动插件">滚动插件</h5>
-
-<p><code class="highlighter-rouge">better-scroll</code>，<code class="highlighter-rouge">github</code>地址是<a href="https://github.com/ustbhuangyi/better-scroll">https://github.com/ustbhuangyi/better-scroll</a></p>
 
 <h2 id="electron">electron</h2>
 
