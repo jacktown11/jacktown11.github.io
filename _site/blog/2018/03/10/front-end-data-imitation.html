@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper">
+
+	</div>
+	
+	<article class="wrap panel right">
+		<h1>前端数据模拟</h1>
+		<p class="meta">2018-03-10</p>
+		<div class="post">
+			  <h1 id="前言">前言</h1>
+
+<p>本文参考了博文：<a href="https://www.cnblogs.com/Leo_wl/p/6001952.html">玩转前端之模拟数据</a> ，但有大幅修改。</p>
+
+<h1 id="为什么要模拟数据">为什么要模拟数据</h1>
+
+<p>前端开发中，往往需要从后台获得数据，但是开发阶段这些实际数据接口并没有部署好，因此需要模拟数据，让我们能够进行具有完整交互流程的开发。我们期望在前后联调，转而使用真实接口时，代码的改动尽可能小。</p>
+
+<p>我在github上开了一个<a href="https://github.com/jacktown11/data-imitation">数据模拟示例仓库</a>，其中的demo实现了下面提到的各种数据模拟方式，欢迎star和fork。下面正式介绍几种数据模拟的方式。</p>
+
+<h1 id="使用全局变量">使用（全局）变量</h1>
+
+<p>先上代码：</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">;(</span><span class="kd">function</span><span class="p">(){</span>
+
+<span class="kd">var</span> <span class="nx">isDev</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"hello world"</span><span class="p">,</span>
+    <span class="s2">"string"</span><span class="p">:</span> <span class="s2">"★★★"</span><span class="p">,</span>
+    <span class="s2">"number"</span><span class="p">:</span> <span class="mi">69</span><span class="p">,</span>
+    <span class="s2">"boolean"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"object"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"110000"</span><span class="p">:</span> <span class="s2">"北京市"</span><span class="p">,</span>
+        <span class="s2">"120000"</span><span class="p">:</span> <span class="s2">"天津市"</span><span class="p">,</span>
+        <span class="s2">"130000"</span><span class="p">:</span> <span class="s2">"黑龙江省"</span>
+    <span class="p">},</span>
+    <span class="s2">"array"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Hello"</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Mock.js"</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"!"</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Hello"</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Mock.js"</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"!"</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"regexp"</span><span class="p">:</span> <span class="s2">"6288712123-"</span><span class="p">,</span>
+    <span class="s2">"time"</span><span class="p">:</span> <span class="s2">"2014-01-16 21:21:22"</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="p">:</span> <span class="s2">"rgba(121, 242, 135, 0.94)"</span><span class="p">,</span>
+    <span class="s2">"word"</span><span class="p">:</span> <span class="s2">"jztuqwmur"</span><span class="p">,</span>
+    <span class="s2">"text"</span><span class="p">:</span> <span class="s2">"而风气究及。"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"崔杰"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"news://imkpjsnq.ev/dhthtrgqy"</span>
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="nx">init</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">init</span><span class="p">(){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-get'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">isDev</span><span class="p">){</span>
+            <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+                <span class="na">url</span><span class="p">:</span> <span class="s1">'/list'</span><span class="p">,</span>
+                <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+                <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+                <span class="na">success</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">})</span>    
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-show'</span><span class="p">).</span><span class="nx">JSONView</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="na">collapsed</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="p">})();</span>
+</code></pre>
+</div>
+
+<p>可以看到，这段代码中定义了两个变量，<code class="highlighter-rouge">data</code>和<code class="highlighter-rouge">isDev</code>，在开发阶段，<code class="highlighter-rouge">isDev</code>设置为<code class="highlighter-rouge">true</code>，这时直接把本地变量<code class="highlighter-rouge">data</code>拿过来，传递给<code class="highlighter-rouge">showData</code>函数处理；转换到生产环境下，需要做的事情包括：删除<code class="highlighter-rouge">data</code>和<code class="highlighter-rouge">isDev</code>对象，删除关于代码环境的<code class="highlighter-rouge">if</code>判断，直接使用<code class="highlighter-rouge">ajax</code>。</p>
+
+<p>其问题主要就是删除这些变量和调整代码结构的时候会非常麻烦，很容易出错，因为这些变量和<code class="highlighter-rouge">if</code>结构可能散落在各个代码文件的各个角落里。另外这种模拟本身没有使用<code class="highlighter-rouge">ajax</code>，和实际的数据请求过程有较大差异，而且数据是死的，不够灵活。</p>
+
+<h1 id="使用数据存储文件">使用数据存储文件</h1>
+<p>存放在js代码里的数据变量确实很丑，为此可以把它存成一个数据文件，比如下图的<code class="highlighter-rouge">data.json</code>：</p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/6321648-9c930e35ff1e83b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文件目录" /></p>
+
+<p>这样一来，数据和<code class="highlighter-rouge">javascript</code>代码就隔离开来了，获取数据时也使用真实的<code class="highlighter-rouge">ajax</code>方式获取。</p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/6321648-7e34f5b5ca7125d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据请求ajax" /></p>
+
+<p>下面是请求数据的代码：</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">;(</span><span class="kd">function</span><span class="p">(){</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="nx">init</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">init</span><span class="p">(){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-get'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+            <span class="na">url</span><span class="p">:</span> <span class="s1">'./data.json'</span><span class="p">,</span>
+            <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+            <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+            <span class="na">success</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">});</span>    
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-show'</span><span class="p">).</span><span class="nx">JSONView</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="na">collapsed</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="p">})();</span>
+</code></pre>
+</div>
+
+<p>转换为生产环境时，只需要修改 <code class="highlighter-rouge">url</code>以符合实际的接口，用于模拟数据的文件<code class="highlighter-rouge">data.json</code>不进行打包即可。然而这样也有一些缺点：数据不够灵活，是写死的，没有状态判断，返回的数据真实度不够高。</p>
+
+<h1 id="使用mockjs">使用mockjs</h1>
+
+<p>使用一个<code class="highlighter-rouge">javascript</code>库<code class="highlighter-rouge">mockjs</code>，你可以访问<a href="https://github.com/nuysoft/Mock">它的github仓库</a> ，查看详细文档。文件目录如下，其中<code class="highlighter-rouge">data/list.js</code>用于数据模拟。</p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/6321648-8cda0f058c53777c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构" /></p>
+
+<p>自然，我们需要在<code class="highlighter-rouge">index.html</code>引入这两个文件。</p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/6321648-fe0dde516fb5b19a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文件引入" /></p>
+
+<p>下图是<code class="highlighter-rouge">list.js</code>模拟对<code class="highlighter-rouge">/list</code>数据请求的代码。</p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/6321648-6b4e579dd161f9be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="list.js" /></p>
+
+<p>使用了<code class="highlighter-rouge">mockjs</code>，再来看看我们在<code class="highlighter-rouge">javascript</code>文件中是如何请求数据的：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">;(</span><span class="kd">function</span><span class="p">(){</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="nx">init</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">init</span><span class="p">(){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-get'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+            <span class="na">url</span><span class="p">:</span> <span class="s1">'/list'</span><span class="p">,</span>
+            <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+            <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+            <span class="na">success</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">});</span>    
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-show'</span><span class="p">).</span><span class="nx">JSONView</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="na">collapsed</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="p">})();</span>
+</code></pre>
+</div>
+
+<p>可以看到，和使用本地数据存储文件的方式几乎是一样的，不过这次请求的<code class="highlighter-rouge">url</code>参数是<code class="highlighter-rouge">/list</code>，而不是<code class="highlighter-rouge">data.json</code>，这样在转换到生产环境时，我们甚至都不用修改这些<code class="highlighter-rouge">ajax</code>代码了，直接删除<code class="highlighter-rouge">mockjs</code>和<code class="highlighter-rouge">list.js</code>就好了。而且生成的数据也更真实、可定制。</p>
+
+<p>然而这种方式对数据的模拟，是通过拦截<code class="highlighter-rouge">ajax</code>请求来实现的，所以在浏览器的控制台，我们是看不到数据请求的。</p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/6321648-474e1f6a39325a61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ajax被拦截" /></p>
+
+<h1 id="使用nodejs">使用nodejs</h1>
+
+<p><code class="highlighter-rouge">nodejs</code>作用一种后端语言，用它来模拟数据除了数据的内容真实性，其他方面可以说是最接近真实数据请求的。</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">),</span>
+    <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'url'</span><span class="p">),</span>
+    <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+
+<span class="nx">http</span>
+<span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">pathname</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">).</span><span class="nx">pathname</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'requesting '</span> <span class="o">+</span> <span class="nx">pathname</span><span class="p">);</span>
+    <span class="k">switch</span><span class="p">(</span><span class="nx">pathname</span><span class="p">){</span>
+        <span class="k">case</span> <span class="s1">'/list'</span><span class="err">:</span> 
+            <span class="nx">provideData</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">'/'</span><span class="err">:</span>
+        <span class="k">case</span> <span class="s1">'/index.html'</span><span class="err">:</span>
+            <span class="nx">provideIndexPage</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="nl">default</span><span class="p">:</span> 
+            <span class="nx">provideStatic</span><span class="p">(</span><span class="s1">'.'</span><span class="o">+</span> <span class="nx">pathname</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">4000</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The node server is listening 4000'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>上面是<code class="highlighter-rouge">server.js</code>文件的部分代码，通过<code class="highlighter-rouge">createServer</code>方法创建了服务器，通过<code class="highlighter-rouge">switch</code>语句判断请求的路径，在请求<code class="highlighter-rouge">/list</code>时，我们就用<code class="highlighter-rouge">provideData</code>函数返回请求的数据，<code class="highlighter-rouge">provideData</code>中实际是用<code class="highlighter-rouge">nodejs</code>的<code class="highlighter-rouge">fs</code>模块读取了本地的<code class="highlighter-rouge">./static/data.json</code>文件，事实上和前面的在本地提供<code class="highlighter-rouge">data.json</code>文件直接请求的方法是一致的，不过现在我们可以控制服务器的行为，因此可以在<code class="highlighter-rouge">ajax</code>请求的url是<code class="highlighter-rouge">/list</code>的时候也能返回该文件，这样我们的前端代码在转换到生产环境的时候也不用修改了。</p>
+
+<p>而真正使用<code class="highlighter-rouge">nodejs</code>搭建开发环境的话，数据模拟就可以看作只是路由的一部分，可以借用<code class="highlighter-rouge">express</code>、<code class="highlighter-rouge">koa</code>这样的框架。</p>
+
+			  
+			<!-- <p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p> -->
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="javascript:;" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>

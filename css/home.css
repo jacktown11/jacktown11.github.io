@@ -1,0 +1,125 @@
+/*主页css*/
+html{
+	width: 100%;
+	height: 100%;
+}
+body{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(153,204,153,0.5);
+	-moz-user-select: none; /*火狐*/
+	-webkit-user-select: none; /*webkit浏览器*/
+	-ms-user-select: none; /*IE10*/
+	-khtml-user-select: none; /*早期浏览器*/
+	user-select: none;
+}
+
+div.wrap{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform:translateX(-50%) translateY(-50%);
+	padding: 0;
+	width: 72%;
+	min-width: 15rem;
+	color: #fff;
+}
+.header h1{
+	text-align: center;
+}
+.header p{
+	text-align: right;
+	font-style: italic;
+}
+.main{
+	width: 100%;
+	height: 15rem;
+	position: relative;
+}
+@keyframes rot-pro{
+	from{transform: rotate(0deg) translate(-100px);}
+	to{transform: rotate(360deg) translate(-100px);}
+}
+@keyframes re-rot-pro{
+	from{transform: rotate(0deg);}
+	to{transform: rotate(-360deg);}
+}
+@keyframes rot-art{
+	from{transform: rotate(120deg) translate(-100px);}
+	to{transform: rotate(480deg) translate(-100px);}
+}
+@keyframes re-rot-art{
+	from{transform: rotate(240deg);}
+	to{transform: rotate(-120deg);}
+}
+@keyframes rot-me{
+	from{transform: rotate(240deg) translate(-100px);}
+	to{transform: rotate(600deg) translate(-100px);}
+}
+@keyframes re-rot-me{
+	from{transform: rotate(120deg);}
+	to{transform: rotate(-240deg);}
+}
+.main .ball{
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -2.5rem 0 0 -2.5rem;
+	font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+	font-size: 150%;
+	text-align: center;
+	line-height: 5rem;
+	overflow: hidden;
+	box-shadow: none;
+	background-color: rgba(255,255,255, 0.3);	
+}
+.main .pro{
+	background: -webkit-linear-gradient(#800, #008); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#800, #008); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#800, #008); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#800, #008); /* 标准的语法 */
+}
+.main .art{
+	background: -webkit-linear-gradient(#080, #800); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#080, #800); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#080, #800); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#080, #800); /* 标准的语法 */
+}
+.main .me{
+	background: -webkit-linear-gradient(#008,#080); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#008,#080); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#008,#080); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#008,#080); /* 标准的语法 */
+}
+.main .ball a{
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	display: inline-block;
+}
+.main .ball a:hover,
+.main .ball a:active{
+	text-decoration: none;
+}
+.main .pro a{color: #0f0;}
+.main .art a{color: #eee;}
+.main .me a{color: #ffff00;}
+.main .pro{transform: translate(-5rem);animation: rot-pro 20s linear infinite;}
+.main .pro a{animation: re-rot-pro 20s linear infinite;}
+.main .art{transform: translate(2.5rem,-4.375rem);animation: rot-art 20s linear infinite;}
+.main .art a{animation: re-rot-art 20s linear infinite;}
+.main .me{transform: translate(2.5rem,4.375rem);animation: rot-me 20s linear infinite;}
+.main .me a{animation: re-rot-me 20s linear infinite;}
+
+.main.paused .pro,
+.main.paused .art,
+.main.paused .me,
+.main.paused .pro a,
+.main.paused .art a,
+.main.paused .me a{
+	animation-play-state: paused;
+}

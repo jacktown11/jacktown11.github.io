@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper">
+
+	</div>
+	
+	<article class="wrap panel right">
+		<h1>《计算机科学导论》笔记</h1>
+		<p class="meta">2018-11-08</p>
+		<div class="post">
+			  <h1 id="第一章--绪论">第一章  绪论</h1>
+
+<h2 id="1图灵模型">1.图灵模型</h2>
+
+<ul>
+  <li>数据处理器：一个接受输入数据、处理数据并产生输出数据的黑盒。这种对计算机的定义太宽泛。</li>
+  <li>可编程数据处理器：计算机的输出数据除依赖于输入数据外，还依赖于程序，<code class="highlighter-rouge">输出数据=f(输入数据,程序)</code>。</li>
+  <li>通用图灵机：一种只要提供了合适的程序就能做任何运算的机器，这是对现代计算机的首次描述。</li>
+</ul>
+
+<h2 id="2冯诺依曼模型">2.冯.诺依曼模型</h2>
+
+<ul>
+  <li>程序和数据在逻辑上是相同的，因此程序也应该存储在计算机的存储器中。</li>
+  <li>该模型包括四个子系统
+    <ul>
+      <li><strong>存储器</strong>，存储数据与程序</li>
+      <li><strong>算术逻辑单元</strong>，进行算术逻辑运算</li>
+      <li><strong>控制单元</strong>，控制其他几个子系统</li>
+      <li><strong>输入/输出</strong>
+        <ul>
+          <li>输入接受输入数据和程序</li>
+          <li>输出将结果送到计算机外部</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>存储的程序（指令）是按照顺序执行的（虽然可能会有跳转）</li>
+</ul>
+
+<h2 id="3计算机的组成部分">3.计算机的组成部分</h2>
+
+<ul>
+  <li><strong>计算机硬件</strong>，依据冯.诺依曼模型且包含四部分</li>
+  <li><strong>数据</strong>
+    <ul>
+      <li>存储数据，以01位模式存储在计算机内部</li>
+      <li>组织数据，数据存储在计算机中前，可以有效组织成不同的实体和格式</li>
+    </ul>
+  </li>
+  <li><strong>计算机软件</strong>，冯.诺依曼模型的主要特征是程序的概念
+    <ul>
+      <li>程序必须是存储的</li>
+      <li>程序必须是有序的指令集，指令集使得重用成为可能</li>
+      <li>算法，通过合适组织指令来给出解决问题的一系列步骤</li>
+      <li>语言，（高级）计算机语言使得能以方便人理解与编写的方式来生产程序，避免直接使用机器语言编程的低效</li>
+      <li>软件工程，结构化程序的设计和编写中应遵循的原理和规则</li>
+      <li>操作系统，最初是为程序访问计算机部件提供方便的一种管理程序，如今功能更加强大</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="4历史">4.历史</h2>
+
+<ul>
+  <li>机械计算机器（1930年以前）</li>
+  <li>电子计算机的诞生（1930年-1950年）
+    <ul>
+      <li>早期的电子计算机（ENIAC等）</li>
+      <li>基于冯.诺依曼模型的计算机（EDVAC等）</li>
+    </ul>
+  </li>
+  <li>计算机的诞生（1950年至今）</li>
+</ul>
+
+<h2 id="5社会问题和道德问题略">5.社会问题和道德问题（略）</h2>
+
+<h2 id="6计算机作为一门科学">6.计算机作为一门科学</h2>
+
+<ul>
+  <li>系统领域：计算机体系结构、计算机网络、安全问题、操作系统、算法、程序设计语言、软件工程等</li>
+  <li>应用领域：数据库、人工智能等</li>
+</ul>
+
+<h1 id="第二章-数字系统">第二章 数字系统</h1>
+
+<p><strong>数字系统</strong>定义了如何用独特的符号来表示一个数字。可分为<strong>位置化数字系统</strong>和<strong>非位置化数字系统</strong>。</p>
+
+<h2 id="位置化数字系统">位置化数字系统</h2>
+
+<ul>
+  <li>通用表示方法：<code class="highlighter-rouge">+/-(Sk-1 ... S2 S1 S0 . S-1 S-2 S-l)b</code></li>
+  <li>常见位置化数字系统
+    <ul>
+      <li>十进制(<code class="highlighter-rouge">decimal</code>)</li>
+      <li>二进制(<code class="highlighter-rouge">binary</code>)</li>
+      <li>八进制(<code class="highlighter-rouge">octol</code>)</li>
+      <li>十六进制(<code class="highlighter-rouge">hexadecimal</code>)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="其他进制转换为十进制">其他进制转换为十进制</h3>
+
+<p>直接用各数位上的十进制值乘以相应的位置量值，然后相加。例如：<code class="highlighter-rouge">-(A1.C)16 = -(10*16^1 + 1*16^0 + 12*16^-1) = -161.75</code>。</p>
+
+<h3 id="十进制转换为其他进制">十进制转换为其他进制</h3>
+
+<p>根据书中的算法，将其以<code class="highlighter-rouge">javascript</code>实现如下：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
+<span class="cm">/**
+ * 将十进制实数字符串转换为其他进制(2-16)的字符串表示
+ * @param {String} numStr 十进制实数字符串
+ * @param {number} radix 目标进制（2-16）
+ * @param {number} precision 小数最长保留位数，默认值12
+ */</span>
+<span class="kd">function</span> <span class="nx">radixConvert</span><span class="p">(</span><span class="nx">numStr</span><span class="p">,</span> <span class="nx">radix</span><span class="p">,</span> <span class="nx">precision</span><span class="p">){</span>
+    <span class="nx">numStr</span> <span class="o">=</span> <span class="nx">numStr</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+    <span class="nx">assert</span><span class="p">(</span><span class="sr">/^</span><span class="se">[\+\-]?((\d</span><span class="sr">+</span><span class="se">)</span><span class="sr">|</span><span class="se">([\d</span><span class="sr">A-F</span><span class="se">]</span><span class="sr">+</span><span class="se">\.[\d</span><span class="sr">A-F</span><span class="se">]</span><span class="sr">+</span><span class="se">))</span><span class="sr">$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">numStr</span><span class="p">),</span> <span class="s1">'非法十进制实数'</span><span class="p">);</span>
+    <span class="nx">assert</span><span class="p">(</span><span class="nx">radix</span><span class="o">&gt;=</span><span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="nx">radix</span><span class="o">&lt;=</span><span class="mi">16</span><span class="p">,</span> <span class="s1">'不满足进制取值的合法区间[2,16]'</span><span class="p">);</span>
+    <span class="nx">precision</span> <span class="o">=</span> <span class="nx">precision</span> <span class="o">||</span> <span class="mi">12</span><span class="p">;</span>
+
+    <span class="kd">let</span> <span class="nx">getCharOf</span> <span class="o">=</span> <span class="nx">num</span><span class="o">=&gt;</span><span class="nx">num</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">?</span><span class="s1">''</span><span class="o">+</span><span class="nx">num</span><span class="p">:</span><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="mi">55</span><span class="o">+</span><span class="nx">num</span><span class="p">);</span>
+    
+    <span class="c1">// 符号</span>
+    <span class="kd">let</span> <span class="nx">symbol</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="sr">/^</span><span class="se">[\+\-]</span><span class="sr">/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">numStr</span><span class="p">)){</span>
+        <span class="nx">symbol</span> <span class="o">=</span> <span class="nx">numStr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="nx">numStr</span> <span class="o">=</span> <span class="nx">numStr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// 分解整数和小数部分</span>
+    <span class="kd">let</span> <span class="nx">parts</span> <span class="o">=</span> <span class="nx">numStr</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">);</span>
+
+    <span class="c1">// 转换整数部分</span>
+    <span class="kd">let</span> <span class="kr">int</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="kd">let</span> <span class="nx">intTarget</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">while</span><span class="p">(</span><span class="kr">int</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="nx">intTarget</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="kr">int</span><span class="o">%</span><span class="nx">radix</span><span class="p">);</span>
+        <span class="kr">int</span> <span class="o">=</span> <span class="p">(</span><span class="kr">int</span><span class="o">-</span><span class="nx">intTarget</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="nx">radix</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">intTarget</span> <span class="o">=</span> <span class="nx">intTarget</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span><span class="o">=&gt;</span><span class="nx">getCharOf</span><span class="p">(</span><span class="nx">item</span><span class="p">));</span>
+
+    <span class="c1">// 转换小数部分</span>
+    <span class="kd">let</span> <span class="nx">floatTarget</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">parts</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">){</span>
+        <span class="kd">let</span> <span class="kr">float</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="s1">'0.'</span><span class="o">+</span><span class="nx">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="k">while</span><span class="p">(</span><span class="kr">float</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">floatTarget</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">precision</span><span class="p">){</span>
+            <span class="kr">float</span> <span class="o">*=</span> <span class="nx">radix</span><span class="p">;</span>
+            <span class="nx">floatTarget</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="kr">float</span><span class="p">));</span>
+            <span class="kr">float</span> <span class="o">-=</span> <span class="nx">floatTarget</span><span class="p">[</span><span class="nx">floatTarget</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="nx">floatTarget</span> <span class="o">=</span> <span class="nx">floatTarget</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span><span class="o">=&gt;</span><span class="nx">getCharOf</span><span class="p">(</span><span class="nx">item</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">symbol</span> <span class="o">+</span> 
+        <span class="p">(</span><span class="nx">intTarget</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">?</span> <span class="nx">intTarget</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span> <span class="p">:</span> <span class="s1">'0'</span><span class="p">)</span><span class="o">+</span> 
+        <span class="p">(</span><span class="nx">floatTarget</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;</span><span class="mi">0</span> <span class="p">?</span> <span class="s1">'.'</span><span class="o">+</span><span class="nx">floatTarget</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span> <span class="p">:</span> <span class="s1">''</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="o">-</span><span class="mf">101.625</span><span class="p">;</span>
+<span class="c1">// 测试</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">radixConvert</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="mi">16</span><span class="p">));</span><span class="c1">// -65.A</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">radixConvert</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="mi">8</span><span class="p">));</span><span class="c1">// -145.5</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">radixConvert</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="mi">2</span><span class="p">));</span><span class="c1">// -1100101.101</span>
+
+<span class="c1">// js的原生转换方法</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">));</span><span class="c1">// -65.a</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">8</span><span class="p">));</span><span class="c1">// -145.5</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="c1">// -1100101.101</span>
+</code></pre>
+</div>
+
+<p>其主要思路是：</p>
+
+<ul>
+  <li>对于整数部分，不断除以进制，将各次的余数从右到左排列起来</li>
+  <li>对于小数部分，不断乘以进制，将各次的结果的整数部分从左到右排列起来</li>
+  <li>十进制有限小数可能在其他进制中不能以有限位小数准确表示，为此通常需要指定精度</li>
+</ul>
+
+<h3 id="其他进制间的转换">其他进制间的转换</h3>
+
+<ul>
+  <li>二进制和八进制：每三个二进制位对应一个八进制位</li>
+  <li>二进制和十六进制：每四个二进制位对应一个八进制位</li>
+  <li>八进制和十六进制：以二进制为中介</li>
+</ul>
+
+<h2 id="非位置化数字系统">非位置化数字系统</h2>
+
+<ul>
+  <li>这种系统仍旧使用有限的数字符号，但是他们的值和位置没有关系</li>
+  <li>为求其值，将各数字符号的代表值相加即可；一个</li>
+  <li>罗马数字系统是个例子（虽然各符号的值和位置无关，但是有一定的书写规范）</li>
+</ul>
+
+<h1 id="第三章-数据存储">第三章 数据存储</h1>
+
+<h2 id="数据类型">数据类型</h2>
+
+<ul>
+  <li>数据能以数字、文本、音频、图像、视频等形式存在，包含这些数据的信息在计算机行业中成为<strong>多媒体</strong></li>
+  <li>计算机内部的数据采用<strong>位模式</strong>的通用格式来存储
+    <ul>
+      <li><code class="highlighter-rouge">位</code>（bit，binary digit），计算机中的最小存储单元，只能表示两种状态0或1</li>
+      <li><code class="highlighter-rouge">位模式</code>，位的序列，也被成为位流；长度为8的为模式成为1<code class="highlighter-rouge">字节</code></li>
+    </ul>
+  </li>
+  <li>数据存储在计算机中还会涉及到压缩、错误检测和纠正等</li>
+</ul>
+
+<h2 id="存储数字">存储数字</h2>
+
+<p>存储数字时，对于小数点有两种处理方式</p>
+
+<ul>
+  <li>定点，把数字作为整数存储，无小数部分</li>
+  <li>浮点，把数字作为实数存储，带小数部分</li>
+</ul>
+
+<h3 id="存储整数">存储整数</h3>
+
+<p>整数通常使用定点的方式存储在内存中。</p>
+
+<h4 id="无符号表示法">无符号表示法</h4>
+
+<ul>
+  <li>只能表示非负整数，分配n为能表示的整数范围：0~2^n-1</li>
+  <li>应用：计数、寻址、存储其他数据类型（如文本、图像、音视频）</li>
+</ul>
+
+<h4 id="符号加绝对值表示法">符号加绝对值表示法</h4>
+
+<ul>
+  <li>直接用最左边1位表示符号（0表示正数，1表示负数），后续位表示绝对值</li>
+  <li>这种表示法会出现两个零：+0和-0</li>
+  <li>应用：采集模拟信号（如音频）</li>
+</ul>
+
+<h4 id="二进制补码表示法">二进制补码表示法</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">反码</code>：所有位全部反转后得到反码，两次反码操作复原</li>
+  <li><code class="highlighter-rouge">补码</code>：反码+1（或：从右复制位，直到有1被复制，然后翻转其余各位），两次补码操作复原</li>
+  <li>补码表示法
+    <ul>
+      <li>最左位表示符号，0正1负</li>
+      <li>计算机中整数的标准表示法</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="存储实数">存储实数</h3>
+
+<ul>
+  <li>很大的整数部分或很小的小数部分不应该使用定点方式存储，浮点表示法（如科学计数法）是个很好的选择</li>
+  <li>使用浮点表示法规范化实数：<code class="highlighter-rouge">符号 指数 尾数</code>，例如<code class="highlighter-rouge">(1001.011)2</code>规划化后为<code class="highlighter-rouge">+ 1.001011 * 2^3</code>
+    <ul>
+      <li>符号用1个二进制位表示（0正1负）</li>
+      <li>指数表示小数点移动位数（可正可负），它采用<code class="highlighter-rouge">余码</code>的方式表示</li>
+      <li>尾数省略小数点前的1（对于二进制总会是1）</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">IEEE</code>的单双精度浮点数标准
+    <ul>
+      <li>单精度：符号（S）1位，指数（E）8位，尾数（M）23位，共计4字节
+        <ul>
+          <li>最大绝对值：<code class="highlighter-rouge">(1-2^-24)*2^128</code>，此时指数为<code class="highlighter-rouge">0xFE</code>，尾数为<code class="highlighter-rouge">0x7FFFFF</code></li>
+          <li>最小绝对值：<code class="highlighter-rouge">2^-126</code>，此时指数为<code class="highlighter-rouge">0x01</code>，尾数为<code class="highlighter-rouge">0x000000</code></li>
+          <li>非正规化最小绝对值<code class="highlighter-rouge">2^-149</code>，此时指数为<code class="highlighter-rouge">0x00</code>(此时表示的是-126而不是-127)，尾数为<code class="highlighter-rouge">0x0000001</code></li>
+          <li>另外还有特定的模式表示0（全部为0）和正负无穷</li>
+        </ul>
+      </li>
+      <li>双精度：符号（S）1位，指数（E）11位，尾数（M）52位，共计8字节</li>
+      <li>（更多参考）
+        <ul>
+          <li>维基百科：<a href="https://en.wikipedia.org/wiki/IEEE_754-1985#Single_precision">https://en.wikipedia.org/wiki/IEEE_754-1985#Single_precision</a></li>
+          <li>CSDN博客文章：<a href="https://www.cnblogs.com/german-iris/p/5759557.html">IEEE 754浮点数表示标准</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="存储文本">存储文本</h2>
+
+<ul>
+  <li>文本由一系列的符号构成，表示一个字符集的所需要的位模式的长度和字符集字符数量之间是对数关系</li>
+  <li>不同的位模式集合被设计来表示文本符号，这些集合称为代码；表示符号的过程称为<strong>编码</strong></li>
+  <li>常用编码：
+    <ul>
+      <li><code class="highlighter-rouge">ASCII</code>（American Standard Code for Information Interchange，美国信息交换标准码），7位，可表示128个字符</li>
+      <li><code class="highlighter-rouge">Unicode</code>，32位，兼容<code class="highlighter-rouge">ASCII</code></li>
+      <li>其他编码，相对没有<code class="highlighter-rouge">Unicode</code>流行</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="音频">音频</h2>
+
+<p>音频本身是模拟数据，需要离散采样才能存储，大致分为如下几步：</p>
+
+<ul>
+  <li>采样
+    <ul>
+      <li>合适的<strong>采样率</strong>和音频的变化剧烈程度相关，通常40000采样率的音频足够好</li>
+    </ul>
+  </li>
+  <li>量化
+    <ul>
+      <li>可能会将样本值进行截取取整</li>
+    </ul>
+  </li>
+  <li>编码
+    <ul>
+      <li><code class="highlighter-rouge">位率R = 每样本位的数量（位深度）B * 每秒样本数S</code></li>
+      <li>流行的<code class="highlighter-rouge">MP3</code>音频编码使用每秒样本数44100，位深度16，结果信号位率705600b/s，采用有损压缩法</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="存储图像">存储图像</h2>
+
+<h3 id="光栅图">光栅图</h3>
+
+<p>在存储模拟图像时使用，类似音频需要对图像进行采样（<strong>扫描</strong>），其样本称为<strong>像素</strong>（图像元素）</p>
+
+<ul>
+  <li>解析度
+    <ul>
+      <li>单位尺寸的像素数量</li>
+    </ul>
+  </li>
+  <li>色彩深度
+    <ul>
+      <li>存储像素色彩的位的数量</li>
+      <li>真彩色：使用24位，可以表示1600多万种颜色值</li>
+      <li>索引色（调色板色）：部分颜色（通常256种）的索引</li>
+    </ul>
+  </li>
+  <li>图像编码标准
+    <ul>
+      <li><code class="highlighter-rouge">JPEG</code>使用真彩色，但压缩图像以减少位的数量</li>
+      <li><code class="highlighter-rouge">GIF</code>使用索引色</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="矢量图">矢量图</h3>
+
+<ul>
+  <li>使用数学公式来表达图像，而非逐个像素表达，从而缩放不失真</li>
+  <li>应用：<code class="highlighter-rouge">flash</code>、字体、工程制图等</li>
+</ul>
+
+<h2 id="视频">视频</h2>
+
+<ul>
+  <li>视频是图像（帧）在时间上的表示，帧的序列构成了视频</li>
+  <li>视频通常是被压缩存储的，<code class="highlighter-rouge">MPEG</code>是一种常见的视频压缩技术</li>
+</ul>
+
+<h1 id="第四章-数据运算">第四章 数据运算</h1>
+
+<h2 id="逻辑运算">逻辑运算</h2>
+
+<h3 id="位层次上的逻辑运算">位层次上的逻辑运算</h3>
+
+<ul>
+  <li>非（<code class="highlighter-rouge">NOT</code>）</li>
+  <li>与（<code class="highlighter-rouge">AND</code>）</li>
+  <li>或（<code class="highlighter-rouge">OR</code>）</li>
+  <li>异或（<code class="highlighter-rouge">XOR</code>）</li>
+</ul>
+
+<p>真值表如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>(a,b)</th>
+      <th>NOT(a)</th>
+      <th>a AND b</th>
+      <th>a OR b</th>
+      <th>a XOR b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>(0,0)</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>(0,1)</td>
+      <td> </td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>(1,0)</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>(1,1)</td>
+      <td> </td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="模式层次上的逻辑运算">模式层次上的逻辑运算</h3>
+
+<p>只需要将位层次上的各逻辑运算应用到一个模式的各个位，或两个模式的各对应位对。</p>
+
+<h4 id="应用">应用</h4>
+
+<ul>
+  <li><strong>求反</strong>，利用<code class="highlighter-rouge">NOT</code>，让模式的各位取反</li>
+  <li><strong>使指定的位复位</strong>，利用<code class="highlighter-rouge">AND</code>，其中第二个输入称为<code class="highlighter-rouge">掩码</code>，掩码中的值为0的位对应位置被复位（设为0）</li>
+  <li><strong>使指定的位置位</strong>，利用<code class="highlighter-rouge">OR</code>，掩码中的值为1的位对应位置被置位（设为1）</li>
+  <li><strong>使指定的位反转</strong>，利用<code class="highlighter-rouge">XOR</code>，掩码中的值为1的位对应位置被反转</li>
+</ul>
+
+<h2 id="移位运算">移位运算</h2>
+
+<h3 id="逻辑移位">逻辑移位</h3>
+
+<ul>
+  <li>用于无符号整数的移位，分为左移和右移，空位以0填充</li>
+  <li>另一种逻辑移位：循环移位，空位被移出位填充</li>
+</ul>
+
+<h3 id="算术移位">算术移位</h3>
+
+<ul>
+  <li>用于使用二进制补码方式的带符号整数</li>
+  <li>算术右移：保留符号位，并将符号位复制到空位上，用于除以2（向下）取整操作</li>
+  <li>算术左移：和逻辑左移相同的方式，但是结果以有符号数解读，用于乘以2操作，可能发生溢出（符号位改变）</li>
+</ul>
+
+<p>举例：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>原数(无符号,有符号)</th>
+      <th>逻辑左移</th>
+      <th>逻辑右移</th>
+      <th>算术左移</th>
+      <th>算术右移</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0100 0001 (65, 65)</td>
+      <td>1000 0010 (130)</td>
+      <td>0010 0000 (32)</td>
+      <td>1000 0010 (-126，上溢)</td>
+      <td>0010 0000 (32)</td>
+    </tr>
+    <tr>
+      <td>1011 0000 (176,-80)</td>
+      <td>0110 0000 (96，上溢)</td>
+      <td>0101 1000 (88)</td>
+      <td>0110 0000 (96，下溢)</td>
+      <td>1101 1000 (-40)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="算术运算">算术运算</h2>
+
+<p>由于乘法、除法复杂度太高，只讲加减法。</p>
+
+<ul>
+  <li>整数的算术运算
+    <ul>
+      <li>二进制补码中的加减法
+        <ul>
+          <li>减法中将被减数转变为其补码，然后做加法</li>
+          <li>注意结果是否有溢出</li>
+        </ul>
+      </li>
+      <li>符号加绝对值整数的加减法</li>
+    </ul>
+  </li>
+  <li>实数的算术运算
+    <ul>
+      <li>实数的加减法：将两个实数取规范化，移位以统一指数，然后做符号加绝对值（尾数）格式整数的加减法</li>
+    </ul>
+  </li>
+</ul>
+
+
+			  
+			<!-- <p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p> -->
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="javascript:;" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>

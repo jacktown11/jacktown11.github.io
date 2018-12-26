@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<script src="/js/article.js"></script>
+</head>
+<body id="body" class="star-bg attached-bg">
+	<nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div id="catalog-wraper" class="catalog-wraper">
+
+	</div>
+	
+	<article class="wrap panel right">
+		<h1>git教程</h1>
+		<p class="meta">2017-07-24</p>
+		<div class="post">
+			  <p>本文是对<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰官方网站 git教程</a>中命令的总结</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>安装和简单使用git</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git config –global user.name xxx</td>
+      <td>设置用户名字，如果不加名字，则查询</td>
+    </tr>
+    <tr>
+      <td>git config –global user.email xxx</td>
+      <td>设置用户邮箱，如果不加邮箱，则查询</td>
+    </tr>
+    <tr>
+      <td>mkdir learngit</td>
+      <td>创建目录learngit</td>
+    </tr>
+    <tr>
+      <td>cd learngit</td>
+      <td>切换到learngit目录下</td>
+    </tr>
+    <tr>
+      <td>pwd</td>
+      <td>显示当前目录</td>
+    </tr>
+    <tr>
+      <td>git init</td>
+      <td>在当前目录下初始化一个仓库</td>
+    </tr>
+    <tr>
+      <td>git add readme.txt</td>
+      <td>将文件添加到仓库</td>
+    </tr>
+    <tr>
+      <td>git commit -m “wrote a readme file”</td>
+      <td>把文件提交到仓库</td>
+    </tr>
+    <tr>
+      <td><strong>时光穿梭机</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git status</td>
+      <td>查看当前仓库状态</td>
+    </tr>
+    <tr>
+      <td>git diff readme.txt</td>
+      <td>查看readme.txt修改详情</td>
+    </tr>
+    <tr>
+      <td><strong>版本回退</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git log</td>
+      <td>版本历史记录</td>
+    </tr>
+    <tr>
+      <td>git log –pretty=oneline</td>
+      <td>简化显示的版本历史记录</td>
+    </tr>
+    <tr>
+      <td>git reset –hard HEAD^</td>
+      <td>HEAD表示当前版本，^的个数表示版本后退次数，后退n个版本也可写为HEAD~n</td>
+    </tr>
+    <tr>
+      <td>cat readme.txt</td>
+      <td>查看当前版本下的readme.txt文件</td>
+    </tr>
+    <tr>
+      <td>git reset –hard 11ce59bceec5</td>
+      <td>最后一个参数是版本号，恢复到对应版本，版本号可以只写开始几位数字</td>
+    </tr>
+    <tr>
+      <td>git reflog</td>
+      <td>版本跳转日志</td>
+    </tr>
+    <tr>
+      <td>git diff HEAD – readme.txt</td>
+      <td>查看工作区readme.txt文件和版本库内最新版本的该文件的区别</td>
+    </tr>
+    <tr>
+      <td><strong>撤销修改</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git checkout – readme.txt</td>
+      <td>将readme.txt文件撤销到最近以此commit或add后的状态</td>
+    </tr>
+    <tr>
+      <td>git reset HEAD readme.txt</td>
+      <td>撤销暂存区readme.txt文件，工作区修改仍然在，这是后再使用上一个命令checkout可以撤销掉工作去该文件的修改</td>
+    </tr>
+    <tr>
+      <td><strong>删除文件</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git rm test.txt</td>
+      <td>在工作区删除版本库中存在的文件后，使用该操作确认要删除，然后commit可以从版本库中删除该文件，和git add相对应</td>
+    </tr>
+    <tr>
+      <td><strong>添加远程仓库</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git remote add origin githubUrl</td>
+      <td>关联远程仓库origin</td>
+    </tr>
+    <tr>
+      <td>git push -u origin master</td>
+      <td>把本地仓库推送到远程仓库origin的master分支，-u在第一推送时起到关联本地master分支和远程master分支的作用</td>
+    </tr>
+    <tr>
+      <td>git push origin master</td>
+      <td>向远程仓库推送本地最新修改</td>
+    </tr>
+    <tr>
+      <td><strong>从远程仓库克隆</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git clone git@github.com:jacktown11/getskill.git</td>
+      <td>复制远程仓库，从而创建本地仓库</td>
+    </tr>
+    <tr>
+      <td><strong>创建与合并分支</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git branch dev</td>
+      <td>创建dev分支</td>
+    </tr>
+    <tr>
+      <td>git checkout dev</td>
+      <td>切换到dev分支</td>
+    </tr>
+    <tr>
+      <td>git checkout -b dev</td>
+      <td>创建dev分支并切换到这个分支</td>
+    </tr>
+    <tr>
+      <td>git branch</td>
+      <td>查看所有分支</td>
+    </tr>
+    <tr>
+      <td>git merge dev</td>
+      <td>把dev分支合并到当前分支</td>
+    </tr>
+    <tr>
+      <td>git branch -d dev</td>
+      <td>删除dev分支</td>
+    </tr>
+    <tr>
+      <td><strong>分支管理策略</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git merge –no-ff -m “some message” dev</td>
+      <td>将dev分支采用非fast forward模式合并到当前分支，该模式会保留合并历史，该次合并会进行一次新的commit，所以采用-m参数提供提交信息</td>
+    </tr>
+    <tr>
+      <td><strong>bug分支</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git stash</td>
+      <td>储存当前分支工作现场</td>
+    </tr>
+    <tr>
+      <td>git stash list</td>
+      <td>显示存储的工作现场列表</td>
+    </tr>
+    <tr>
+      <td>git apply stash@{n}</td>
+      <td>恢复指定的工作现场</td>
+    </tr>
+    <tr>
+      <td>git stash drop</td>
+      <td>删除stash内容（最上一条，栈方式）</td>
+    </tr>
+    <tr>
+      <td>git stash pop</td>
+      <td>恢复工作现场并删除stash内容</td>
+    </tr>
+    <tr>
+      <td><strong>feature分支</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git branch -D branchName</td>
+      <td>强制删除分支</td>
+    </tr>
+    <tr>
+      <td><strong>多人协作</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git remote</td>
+      <td>查看远程仓库信息</td>
+    </tr>
+    <tr>
+      <td>git remote -v</td>
+      <td>查看远程仓库详细信息</td>
+    </tr>
+    <tr>
+      <td>git pull origin master</td>
+      <td>将远程master分支合并到当前版本库分支</td>
+    </tr>
+    <tr>
+      <td>git push origin dev</td>
+      <td>将本地分支推送到远程dev分支，如果远程没有该分支会创建该分支</td>
+    </tr>
+    <tr>
+      <td>git branch –set-upstream dev origin/dev</td>
+      <td>指定本地dev分支与远程dev分支的链接</td>
+    </tr>
+    <tr>
+      <td>git pull</td>
+      <td>抓取远程提交的新更新</td>
+    </tr>
+    <tr>
+      <td><strong>标签创建与管理</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git tag</td>
+      <td>查看所有标签</td>
+    </tr>
+    <tr>
+      <td>git tag <name></name></td>
+      <td>给当前分支添加标签名name</td>
+    </tr>
+    <tr>
+      <td>git tag <name> <commit></commit></name></td>
+      <td>给<commit>版本添加标签名<name></name></commit></td>
+    </tr>
+    <tr>
+      <td>git tag -a <name> -m <message></message></name></td>
+      <td>带有信息地指定标签名</td>
+    </tr>
+    <tr>
+      <td>git tag -s <name> -m <message></message></name></td>
+      <td>使用PGP签名标签</td>
+    </tr>
+    <tr>
+      <td>git show <tagname></tagname></td>
+      <td>查看指定标签名的版本</td>
+    </tr>
+    <tr>
+      <td>git tag -d <tagname></tagname></td>
+      <td>删除标签</td>
+    </tr>
+    <tr>
+      <td>git push origin <tagname></tagname></td>
+      <td>将某标签推送到远程</td>
+    </tr>
+    <tr>
+      <td>git push origin –tags</td>
+      <td>将所有标签推送到远程</td>
+    </tr>
+    <tr>
+      <td>git push origin :refs/tags/<tagname></tagname></td>
+      <td>在本地删除标签后，删除远程标签</td>
+    </tr>
+    <tr>
+      <td><strong>自定义git</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git config –global color.ui true</td>
+      <td>让bash界面显示颜色</td>
+    </tr>
+    <tr>
+      <td>git add -f <filename></filename></td>
+      <td>强制添加某个文件（它可能被.ignore文件忽略添加了）</td>
+    </tr>
+    <tr>
+      <td>git check-ignore -v <filename></filename></td>
+      <td>检查某个文件被忽略是出于.ignore文件中哪条规则</td>
+    </tr>
+    <tr>
+      <td>git config –global alias.<short> <longCmd></longCmd></short></td>
+      <td>全局性地为命令（组合）<longCmd>配置别名<short></short></longCmd></td>
+    </tr>
+  </tbody>
+</table>
+
+			  
+			<!-- <p class="to-jianshu">
+				转载请注明出处，您还可以在
+				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
+			</p> -->
+
+		</div>
+	</article>
+
+	<div class="sidebar">
+		<a href="#" class="to-top"></a>
+		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
+		<a href="javascript:;" class="mode" id="mode">极简</a>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+---
+layout: nav_layout 
+css: [main, intro] 
+js: [aes_2,intro] 
+title: 个人简历
+---
+
+<!-- 前端求职简历 -->
+
+<div class="interact hidden no-print" id="interact">
+    <label for="password">
+        <span class="ask">请输入我的中文姓名以查看具有完整信息的简历
+        </span><br>
+        <input type="text" id="password">
+    </label>
+    <button id="confirm">确认</button>
+    <p class="warning hidden" id="warning">好心塞，你这么快就把我忘了 :(</p>
+    <button class="ignore" id="ignore">忽略</button>    
+</div>
+
+<h1 id="个人简历">个人简历</h1>
+
+<section class="contact">
+    <h2>联系方式</h2>
+    <img class="hidden" id="picture" src="../images/intro/missing.jpg" alt="我的照片">
+    <ul>
+        <li>手机：<span id="phone">****</span></li>
+        <li>邮箱：<span id="email">****</span></li>
+        <li>微信号：<span id="weixin">****</span></li>
+        <li>QQ：<span id="qq">****</span></li>
+    </ul>
+</section>
+
+<section class="info">
+    <h2 id="个人信息">个人信息</h2>
+    <ul>
+        <li id="name">****</li>
+        <li id="education">****</li>
+        <li>技术博客：
+            <a class="explicit-link" href="https://jacktown11.github.io/">https://jacktown11.github.io/</a>
+        </li>
+        <li>Github：
+            <a class="explicit-link"  href="https://github.com/jacktown11">https://github.com/jacktown11</a>
+        </li>
+        <li>CodePen：
+            <a class="explicit-link" href="https://codepen.io/jacktown/">https://codepen.io/jacktown/</a></li>
+        <li>期望职位：初级前端开发工程师/前端开发实习生</li>
+        <li>期望薪资：3k ~ 5k</li>
+        <li>期望城市：成都</li>
+    </ul>
+</section>
+
+<section class="skills">
+    <h2>技能清单</h2>
+    <ul>
+        <li>熟练：html，css，javascript</li>
+        <li>熟悉：jQuery，Vue.js，git，gulp，webpack</li>
+        <li>了解：bootstrap，ES6，Node.js</li>
+    </ul>
+</section>
+
+<section class="works">
+    <h2>部分项目作品</h2>
+    <ul>
+        <li>
+            <h3>个人博客</h3>
+            <p>基于github pages搭建的个人博客网站。该网站作为我平时前端技术学习的练习场，综合使用了html，css3，javascript基础网页开发技术，自主设计UI，采用了响应式的设计。</p>
+        </li>
+        <li>
+            <h3>书城WebApp</h3>
+            <p>根据慕课网视频，仿照小米书城实现的WebApp。主要包括两个页面：主页和阅读器页面。综合使用了CSS3、Vue.js、Zepto、koa框架。用CSS3实现页面的动画、阴影、圆角等效果，用Vuejs实现数据的双向绑定，用Zepto操作DOM，用Ejs实现模板渲染与整合，用koa做路由管理、模板渲染中间件和读取mock静态模拟数据，实现前后端分离的开发。</p>
+        </li>
+        <li>
+            <h3>产品售卖网站</h3>
+            <p>根据慕课网视频，使用vue-cli脚手架搭建的Vue项目,使用了vue、vuex、vue-router、vue-resource，利用Express框架来进行数据请求模拟。</p>
+        </li>
+        <li>
+            <h3>更多...</h3>
+            <p><a class="explicit-link" href="https://jacktown11.github.io/pages/proj.html">https://jacktown11.github.io/pages/proj.html</a></p>
+        </li>
+    </ul>
+</section>
+
+<section class="past">
+    <h2>个人经历</h2>
+
+    <h3>自学前端 （ 2016年12月 ~ 2018年3月 ）</h3>
+    <p>脱产自学前端开发技术，初期以阅读经典书籍为主，中期以free code camp上的编程题目加以练习，获得了<a href="https://freecodecamp.cn/jacktown11/front-end-certification">前端开发证书</a>，后期结合慕课网视频和官网文档进行项目实战练习。</p>
+
+    <h3>高中培训老师/纸厂工人 （ 2016年7月 ~ 2016年12月 ）</h3>
+    <p>先后在江苏教育辅导机构做数学辅导老师、广东纸厂做包装工人。意识到生活之艰辛，同时不愿废弃多年苦学，考虑到IT行业的机遇和自己颇强的自学能力与探索精神，决定转行做程序员。</p>
+
+    <h3 id="清华大学学生--2011年8月--2016年6月-">清华大学学生 （ 2011年8月 ~ 2016年6月 ）</h3>    
+    <p>2011年考入清华大学汽车工程系，在校期间成绩优良，具有保研资格（前1/3）；但由于不愿进入中国兵器工业集团工作而违约，毕业证原件被扣。</p>
+</section>
+
+<section class="thanks">
+    <h2 id="致谢">致谢</h2>
+    <p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
+</section>

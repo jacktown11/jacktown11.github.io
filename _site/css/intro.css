@@ -1,0 +1,161 @@
+/*part1: 简历页面的css*/
+.import-content{
+	padding-left: 32px;
+	padding-right: 32px;
+	padding-top: 1.5rem;
+}
+.nav-me{
+	background-color: rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 8px 0 #333 inset;
+}
+.import-content a:link{
+	text-decoration: none;
+	color: #99CC99;
+	border-bottom: 1px dashed black;
+	border-color: inherit;
+}
+.import-content a:visited{
+	color: #888;
+}
+.import-content a:hover,
+.import-content a:active{
+	color: #f40;
+}
+h1{
+	text-align: center;
+}
+h2{
+	border-bottom: 1px solid #444;
+}
+li{
+	margin-top: 0.9em;
+}
+
+.interact{
+	text-align: center;
+	position: fixed;
+	z-index: 100;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	line-height: 2rem;
+	font-size: 1rem;
+	background-color: rgba(255, 64, 0, 0.9);
+	padding: 2rem 0 0.5rem;
+}
+
+.interact input{
+	text-align: center;
+	outline: none;
+}
+.interact button{
+	color: #fff;
+	background-color: #096;
+	border-radius: 4px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+.interact .warning{
+	position: relative;
+	left: 0px;
+	font-weight: bold;
+	color: #000;
+	transition: all 0.2s;
+}
+.interact .ignore{
+	display: block;
+	margin: 1rem auto 0;
+	width: 4rem;
+	padding: 0.5rem;
+	background-color: #f40;
+	color: #eee;
+}
+
+.contact img{
+	float: right;
+	max-height: 7rem;
+}
+
+/*part2: 通用打印样式 */
+@media only print{
+    *,
+    *:before,
+    *:after{
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    a,
+    a:visited{
+        text-decoration: underline;
+    }
+    a[href]:after{
+        content:  " (" attr(href) ")";
+    }
+    abbr[title]:after{
+        content: " (" attr(title) ")";
+    }
+    /* 使用#和javascript的超链接不打印href */
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after{
+        content: "";
+    }
+    pre,
+    blockquote{
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+    thead{
+        display: table-header-group;
+    }
+    tr,
+    img{
+        page-break-inside: avoid;
+    }
+    img{
+        max-width: 100% !important;
+    }
+    p,
+    h2,
+    h3{
+        orphans: 3;
+        widows: 3;
+    }
+    h2,
+    h3{
+        page-break-after: avoid;
+    }
+
+}
+/* part3: 补充自定义打印样式 */
+
+@media print{
+	body{
+		padding-top: 0px;
+		margin: 0px;
+	}
+	*{
+		color: #000;
+	}
+
+	.no-print,
+	.top-nav{
+		display: none;
+	}
+	.import-content{
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+	a:link,a:visited{
+		color: black;
+		border: none !important;
+		text-decoration: none !important;
+	}
+	a.explicit-link:after{
+		content: '';
+	}
+}
