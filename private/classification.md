@@ -38,7 +38,7 @@ AAtmp：笔记一开始都记在这里面，每周末整理归档。
     * vue
     * react
     * angular
-    * sublime
+    * typescript
     * vscode
     * html
     * css
