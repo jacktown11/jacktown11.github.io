@@ -772,6 +772,66 @@
   <li>端到端模式（<code class="highlighter-rouge">P2P</code>），灵活低成本，其问题在于安全性和适应性，例如网络电话、网络用户文件共享</li>
 </ul>
 
+<h2 id="标准化客户端-服务器程序">标准化客户端-服务器程序</h2>
+
+<h3 id="万维网">万维网</h3>
+
+<p>万维网（<code class="highlighter-rouge">WWW</code>，或<code class="highlighter-rouge">Web</code>）是<strong>分布</strong>在世界各地、相互间具有<strong>链接</strong>的的文档构成的信息存储库。</p>
+
+<p>万维网是一个分布式的客户机-服务器服务。提供服务的服务器称为站点，每个站点有一到多个文档，这些文档称为网页，一个网页中可能有到本站点或其他站点的其他文档的链接。每个网页都是一个具有名称和地址的文件。</p>
+
+<h3 id="url">URL</h3>
+
+<p>客户端通过<code class="highlighter-rouge">URL</code>（<code class="highlighter-rouge">Uniform Resource Locator</code>，统一资源定位符）来找到网页所在的服务器和文件本身。一个<code class="highlighter-rouge">URL</code>包含四个部分：</p>
+
+<ul>
+  <li>协议，它是要使用的客户端-服务器程序类型（服务类型）的缩写，如<code class="highlighter-rouge">http</code>、<code class="highlighter-rouge">ftp</code></li>
+  <li>主机，服务器的<code class="highlighter-rouge">IP</code>地址或特定名称</li>
+  <li>端口，服务器预定义的16为整数，用来指定服务器上的具体服务，比如<code class="highlighter-rouge">http</code>默认端口是<code class="highlighter-rouge">80</code></li>
+  <li>路径，标识请求的网页文件的名字和位置</li>
+</ul>
+
+<p><code class="highlighter-rouge">URL</code>格式：<code class="highlighter-rouge">protocol://host:port/path</code>，由于常用服务都有默认端口号，通常可以省略端口号写作<code class="highlighter-rouge">protocol://host/path</code>。</p>
+
+<h3 id="浏览器">浏览器</h3>
+
+<p>浏览器通常包括以下三部分：</p>
+
+<ul>
+  <li>客户端协议，用于存取文档，如<code class="highlighter-rouge">http</code>、<code class="highlighter-rouge">ftp</code></li>
+  <li>控制器，接受键盘、鼠标等输入</li>
+  <li>解释器，用于将文档具体显示在屏幕上，解释器可以是<code class="highlighter-rouge">HTML</code>、<code class="highlighter-rouge">javascript</code>、<code class="highlighter-rouge">java</code>等</li>
+</ul>
+
+<h3 id="http协议">http协议</h3>
+
+<p>它定义了如何编写客户端-服务器程序以便从网络中检索网页；客户端发送请求，服务器响应请求，默认端口<code class="highlighter-rouge">80</code>。</p>
+
+<h3 id="ftp协议">ftp协议</h3>
+
+<ul>
+  <li>客户端三部分：客户端控制进程、客户端数据传输进程、用户接口</li>
+  <li>服务器两部分：服务器控制进程、服务器数据传输进程</li>
+  <li>控制连接建立在控制进程间，用于命令传输，整个<code class="highlighter-rouge">FTP</code>交互会话中都打开</li>
+  <li>数据连接建立在数据传输进程间，用于数据传输，为每个文件分别打开和关闭</li>
+</ul>
+
+<h3 id="电子邮件">电子邮件</h3>
+
+<p>电子邮件（<code class="highlighter-rouge">electronic mail</code>或<code class="highlighter-rouge">e-mail</code>），允许客户交换信息。但是事实上，邮件的发送与回复是两个不相关的单向事务。客户A与B都可以在对方不开机的情况下向对方发送邮件，这就需要中间服务器，而客户A与B与这中间服务器间都是客户机/服务器模式。一个邮件发送与接收过程如下：</p>
+
+<p><img src="/images/2018/12/mail_send.png" alt="邮件发送示意图" /></p>
+
+<p>客户1 <code class="highlighter-rouge">使用</code> UA1 <code class="highlighter-rouge">准备信息，并使用</code> MTA客户端1 <code class="highlighter-rouge">发送邮件到</code> MTA服务器1 <code class="highlighter-rouge">通过队列传送给</code> MTA客户端1 <code class="highlighter-rouge">发送邮件到</code> MTA服务器2<code class="highlighter-rouge">存入邮箱</code> MAA服务器2 <code class="highlighter-rouge">被</code> MAA客户端2 <code class="highlighter-rouge">拉取邮件，并被</code> UA2 <code class="highlighter-rouge">处理显示给</code> 客户2</p>
+
+<ul>
+  <li><code class="highlighter-rouge">UA</code>, <code class="highlighter-rouge">User Agent</code>, 用户代理</li>
+  <li><code class="highlighter-rouge">MTA</code>, <code class="highlighter-rouge">Mail Transfer Agent</code>, 邮件传输代理</li>
+  <li><code class="highlighter-rouge">MAA</code>, <code class="highlighter-rouge">Mail Access Agent</code>, 邮件访问代理</li>
+  <li><code class="highlighter-rouge">MTA</code>客户端可以主动发送邮件，<code class="highlighter-rouge">MTA</code>服务器可以被动获取(接受)邮件</li>
+  <li><code class="highlighter-rouge">MAA</code>服务器可以被动发送邮件，<code class="highlighter-rouge">MAA</code>客户端可以主动获取邮件</li>
+</ul>
+
 
 			  
 			<!-- <p class="to-jianshu">
