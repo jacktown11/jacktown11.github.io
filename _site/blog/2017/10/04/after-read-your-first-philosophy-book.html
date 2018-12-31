@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 	<meta charset="UTF-8">
 	<title></title>
@@ -9,37 +10,21 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/article.css">
 	<link rel="stylesheet" href="/css/monokai.css">
-	<script src="/js/article.js"></script>
 </head>
-<body id="body" class="star-bg attached-bg">
-	<nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav>
 
-	<div id="catalog-wraper" class="catalog-wraper">
+<body>
+	<div id="app">
+		<div id="catalog-container" class="catalog-container">
+			<blog-catalog :tree-node="tree"></blog-catalog>
+		</div>
 
-	</div>
-	
-	<article class="wrap panel right">
-		<h1>《你的第一本哲学书》读后感</h1>
-		<p class="meta">2017-10-04</p>
-		<div class="post">
-			  <h2 id="导言">导言</h2>
+		<!-- wrap panel right -->
+		<div class="article-wrap">
+			<article id="article-container">
+				<h1>《你的第一本哲学书》读后感</h1>
+				<p class="meta">2017-10-04</p>
+				<div class="post" ref="post">
+					<h2 id="导言">导言</h2>
 <p>一本很薄的书，130页，半天就差不多能看完，然而里面的问题也许会让你思考一辈子。高中时，一同学曾对我说，你可以看看哲学书，好有意思，为了显示我的无所不知和智慧超群，我说：哲学就是鬼扯。其实那时我还没看过一点哲学书（虽然现在也没看多少），只是约略听说这东西有点玄。现在我不会说它是鬼扯了，因为里面好些问题自己曾多次粗浅想过，我也相信绝大多数人都或多或少想过。</p>
 
 <p>书中就一些问题进行了引导性的思考和简单探寻，薄薄的一本书用具体问题揭开了哲学神秘的面纱，作为你的第一本哲学书是相当不错的。书中谈及的问题包括：外部世界是否存在、他人的心灵、身心问题、词语的意义、自由意志、对与错、公正、死亡、生活的意义。</p>
@@ -80,20 +65,39 @@
 <h2 id="最后">最后</h2>
 <p>写到最后，实在不知道写的是读后感还是读书笔记，异或是自我思考的记录，大概间或有之，其中的观点也许我所说的并不是这本书上的意思，有的本来就是我自己的思考。不管怎样，哲学的核心不就是思考吗？</p>
 
-			  
-			<!-- <p class="to-jianshu">
-				转载请注明出处，您还可以在
-				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
-			</p> -->
-
+				</div>
+			</article>
 		</div>
-	</article>
+	</div>
 
+	<!-- <nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav> -->
+
+	<!-- 
 	<div class="sidebar">
 		<a href="#" class="to-top"></a>
 		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
 		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div>
+	</div> -->
 
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+	<script src="/js/article.js"></script>
 </body>
+
 </html>

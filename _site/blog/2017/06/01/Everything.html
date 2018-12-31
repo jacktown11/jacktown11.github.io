@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 	<meta charset="UTF-8">
 	<title></title>
@@ -9,37 +10,21 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/article.css">
 	<link rel="stylesheet" href="/css/monokai.css">
-	<script src="/js/article.js"></script>
 </head>
-<body id="body" class="star-bg attached-bg">
-	<nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav>
 
-	<div id="catalog-wraper" class="catalog-wraper">
+<body>
+	<div id="app">
+		<div id="catalog-container" class="catalog-container">
+			<blog-catalog :tree-node="tree"></blog-catalog>
+		</div>
 
-	</div>
-	
-	<article class="wrap panel right">
-		<h1>万有笔记</h1>
-		<p class="meta">2017-06-01</p>
-		<div class="post">
-			  <h1 id="问题与待学习">问题与待学习</h1>
+		<!-- wrap panel right -->
+		<div class="article-wrap">
+			<article id="article-container">
+				<h1>万有笔记</h1>
+				<p class="meta">2017-06-01</p>
+				<div class="post" ref="post">
+					<h1 id="问题与待学习">问题与待学习</h1>
 
 <ul>
   <li>js对象深浅拷贝</li>
@@ -292,20 +277,39 @@
 <p>以此类推，10人时，<code class="highlighter-rouge">P1</code>应该给出的提案数共有<code class="highlighter-rouge">C(7,3)</code>种，需要满足前三人的分配额是：<code class="highlighter-rouge">[991, 0, 1]</code>，后面7人中4人分配2，3人分配0。比如<code class="highlighter-rouge">[991, 0, 1, 0, 2, 2, 2, 2, 0, 0]</code>。</p>
 
 
-			  
-			<!-- <p class="to-jianshu">
-				转载请注明出处，您还可以在
-				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
-			</p> -->
-
+				</div>
+			</article>
 		</div>
-	</article>
+	</div>
 
+	<!-- <nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav> -->
+
+	<!-- 
 	<div class="sidebar">
 		<a href="#" class="to-top"></a>
 		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
 		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div>
+	</div> -->
 
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+	<script src="/js/article.js"></script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 	<meta charset="UTF-8">
 	<title></title>
@@ -9,37 +10,21 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/article.css">
 	<link rel="stylesheet" href="/css/monokai.css">
-	<script src="/js/article.js"></script>
 </head>
-<body id="body" class="star-bg attached-bg">
-	<nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav>
 
-	<div id="catalog-wraper" class="catalog-wraper">
+<body>
+	<div id="app">
+		<div id="catalog-container" class="catalog-container">
+			<blog-catalog :tree-node="tree"></blog-catalog>
+		</div>
 
-	</div>
-	
-	<article class="wrap panel right">
-		<h1>fcc项目总结系列1：个人作品展示页面制作项目</h1>
-		<p class="meta">2017-07-24</p>
-		<div class="post">
-			  <h2 id="导言">导言</h2>
+		<!-- wrap panel right -->
+		<div class="article-wrap">
+			<article id="article-container">
+				<h1>fcc项目总结系列1：个人作品展示页面制作项目</h1>
+				<p class="meta">2017-07-24</p>
+				<div class="post" ref="post">
+					<h2 id="导言">导言</h2>
 <p>近两天勉强完成了free code camp的<a href="https://codepen.io/jacktown/full/eRrYyJ/">portfolio</a>项目（<a href="https://freecodecamp.cn/challenges/build-a-personal-portfolio-webpage">题目地址</a>），自己原生写的，感觉不用框架确实挺麻烦（虽然我目前只接触过一点点bootstrap，但是感觉用起来应该会节省非常多代码），而且做出来的东西我估计在移动端就不能看了。不过做这个项目过程中还是感觉颇有收获。</p>
 <h2 id="主要技术点">主要技术点</h2>
 <h3 id="1表单label动态隐藏显示">1.表单label动态隐藏/显示</h3>
@@ -98,20 +83,39 @@ function setDocScrollTop(height){
 <h2 id="项目github地址">项目github地址</h2>
 <p><a href="https://github.com/jacktown11/fcc/tree/master/Build_a_Personal_Portfolio_Webpage0">https://github.com/jacktown11/fcc/tree/master/Build_a_Personal_Portfolio_Webpage0</a></p>
 
-			  
-			<!-- <p class="to-jianshu">
-				转载请注明出处，您还可以在
-				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
-			</p> -->
-
+				</div>
+			</article>
 		</div>
-	</article>
+	</div>
 
+	<!-- <nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav> -->
+
+	<!-- 
 	<div class="sidebar">
 		<a href="#" class="to-top"></a>
 		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
 		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div>
+	</div> -->
 
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+	<script src="/js/article.js"></script>
 </body>
+
 </html>

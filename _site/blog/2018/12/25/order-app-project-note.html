@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 	<meta charset="UTF-8">
 	<title></title>
@@ -9,37 +10,21 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/article.css">
 	<link rel="stylesheet" href="/css/monokai.css">
-	<script src="/js/article.js"></script>
 </head>
-<body id="body" class="star-bg attached-bg">
-	<nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav>
 
-	<div id="catalog-wraper" class="catalog-wraper">
+<body>
+	<div id="app">
+		<div id="catalog-container" class="catalog-container">
+			<blog-catalog :tree-node="tree"></blog-catalog>
+		</div>
 
-	</div>
-	
-	<article class="wrap panel right">
-		<h1>基于vue-cli3仿制饿了么WebApp项目总结</h1>
-		<p class="meta">2018-12-25</p>
-		<div class="post">
-			  <p>使用<code class="highlighter-rouge">vue-clie3</code>仿制的饿了么外卖<code class="highlighter-rouge">WebApp</code>，这是一个<code class="highlighter-rouge">SPA</code>（单页面应用，<code class="highlighter-rouge">Single Page Application</code>）。主要技术包括<code class="highlighter-rouge">Vue.js</code>、<code class="highlighter-rouge">vue-router</code>、<code class="highlighter-rouge">Axios</code>，使用<code class="highlighter-rouge">better-scroll</code>插件优化页面滚动，<code class="highlighter-rouge">css</code>使用<code class="highlighter-rouge">stylus</code>编写，采用<code class="highlighter-rouge">flex</code>布局、<code class="highlighter-rouge">sticky footer</code>等技术。</p>
+		<!-- wrap panel right -->
+		<div class="article-wrap">
+			<article id="article-container">
+				<h1>基于vue-cli3仿制饿了么WebApp项目总结</h1>
+				<p class="meta">2018-12-25</p>
+				<div class="post" ref="post">
+					<p>使用<code class="highlighter-rouge">vue-clie3</code>仿制的饿了么外卖<code class="highlighter-rouge">WebApp</code>，这是一个<code class="highlighter-rouge">SPA</code>（单页面应用，<code class="highlighter-rouge">Single Page Application</code>）。主要技术包括<code class="highlighter-rouge">Vue.js</code>、<code class="highlighter-rouge">vue-router</code>、<code class="highlighter-rouge">Axios</code>，使用<code class="highlighter-rouge">better-scroll</code>插件优化页面滚动，<code class="highlighter-rouge">css</code>使用<code class="highlighter-rouge">stylus</code>编写，采用<code class="highlighter-rouge">flex</code>布局、<code class="highlighter-rouge">sticky footer</code>等技术。</p>
 
 <ul>
   <li><code class="highlighter-rouge">github</code>：<a href="https://github.com/jacktown11/order-app">https://github.com/jacktown11/order-app</a></li>
@@ -334,20 +319,39 @@
 
 <p>参考：<a href="https://cloud.tencent.com/developer/ask/66544">我可以在存储库的子文件夹中拥有我的Github Pages index.html吗？</a></p>
 
-			  
-			<!-- <p class="to-jianshu">
-				转载请注明出处，您还可以在
-				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
-			</p> -->
-
+				</div>
+			</article>
 		</div>
-	</article>
+	</div>
 
+	<!-- <nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav> -->
+
+	<!-- 
 	<div class="sidebar">
 		<a href="#" class="to-top"></a>
 		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
 		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div>
+	</div> -->
 
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+	<script src="/js/article.js"></script>
 </body>
+
 </html>

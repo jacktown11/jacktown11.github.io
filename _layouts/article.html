@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 	<meta charset="UTF-8">
 	<title>{{post.title}}</title>
@@ -9,10 +10,27 @@
 	<link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
 	<link rel="stylesheet" href="{{site.baseurl}}/css/article.css">
 	<link rel="stylesheet" href="{{site.baseurl}}/css/monokai.css">
-	<script src="/js/article.js"></script>
 </head>
-<body id="body" class="star-bg attached-bg">
-	<nav id="top-nav" class="top-nav panel">
+
+<body>
+	<div id="app">
+		<div id="catalog-container" class="catalog-container">
+			<blog-catalog :tree-node="tree"></blog-catalog>
+		</div>
+
+		<!-- wrap panel right -->
+		<div class="article-wrap">
+			<article id="article-container">
+				<h1>{{ page.title }}</h1>
+				<p class="meta">{{ page.date | date: "%Y-%m-%d" }}</p>
+				<div class="post" ref="post">
+					{{ content }}
+				</div>
+			</article>
+		</div>
+	</div>
+
+	<!-- <nav id="top-nav" class="top-nav panel">
 		<ul>
 			<li>
 				<a class="nav-home" href="/index.html">
@@ -29,31 +47,17 @@
 				<a class="nav-me" href="/pages/intro.html">我</a>
 			</li>
 		</ul>
-	</nav>
+	</nav> -->
 
-	<div id="catalog-wraper" class="catalog-wraper">
-
-	</div>
-	
-	<article class="wrap panel right">
-		<h1>{{ page.title }}</h1>
-		<p class="meta">{{ page.date | date: "%Y-%m-%d" }}</p>
-		<div class="post">
-			  {{ content }}
-			  
-			<!-- <p class="to-jianshu">
-				转载请注明出处，您还可以在
-				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
-			</p> -->
-
-		</div>
-	</article>
-
+	<!-- 
 	<div class="sidebar">
 		<a href="#" class="to-top"></a>
 		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
 		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div>
+	</div> -->
 
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+	<script src="/js/article.js"></script>
 </body>
+
 </html>

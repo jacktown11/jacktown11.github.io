@@ -2,7 +2,7 @@
 part1: 导航条样式
 ========================*/
 /* css for nav */
-.top-nav a:link,
+/* .top-nav a:link,
 .top-nav a:visited{
     color: #fff;
 }
@@ -12,113 +12,56 @@ part1: 导航条样式
 .top-nav a{
     text-decoration: none;
     border-bottom: none !important;
-}
+} */
 
 /*=====================
 part2: 目录样式
 =======================*/
-
-nav.catalog{
-    margin-bottom: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.catalog-container{
+    position: fixed;
+    z-index: 50;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30%;
+    max-width: 400px;
+    padding: 12px 2px 80px 2px;
+    font-size: 16px;
+    background: #f8f9f8;
+    color: #222;
+    overflow: auto;
+    overflow-x: hidden;
 }
-nav.catalog p{
-    font-family:'STSong','STHeiti Light','sans-serif';
-
-    text-indent: 0;
+.title{
+    margin: 4px 0;
+}
+.expand-controller{
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 2px;
+    line-height: 1em;
     font-weight: bold;
     text-align: center;
-    width: 100px;
-    margin: auto;
-    border-bottom-left-radius: 1em; 
-    border-bottom-right-radius: 1em; 
-    border-radius: 1em;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -o-user-select:none;
-    user-select:none;
+    background-color: #ccf;
+    color: #000;
+    cursor: pointer;
 }
-nav.catalog div{
-    margin-left: 2px;
-    padding: 2px 2px 2px 0;
-    border-bottom: 1px dashed #fff;
-    font-size: 80%;
-}
-nav.catalog div.first{
-    padding-left: 4px;
-    padding-bottom: 0px;
-    font-size: 90%;
-    background-color: rgb(0,153,102);
-    color: #fff;
-}
-nav.catalog div.first a{
-    color: #fff;
-}
-nav.catalog div.second{
-    padding-left: 4px;
-    font-size: 80%;
-    color: #e67008;
-}
-nav.catalog div.second a{
-    color: #e67008;
-}
-nav.catalog div.third{
-    padding-left: 18px;
-    color: #14877E;
-}
-nav.catalog div.third a{
-    color: #14877E;
-}
-nav.catalog div.forth{
-    padding-left: 18px;
-    color: #111111;
-}
-nav.catalog div.forth a{
-    color: #111111;
-    font-weight: bold;
-}
-nav.catalog div.fifth{
-    padding-left: 32px
-}
-nav.catalog div.fifth a{
-    color: #222;
-}
-nav.catalog div.sixth{
-    padding-left: 32px;
-    font-size: 70%;
-}
-nav.catalog div.sixth a{
-    font-weight: normal;
-    color: #222;
+.single{
+    background-color: transparent;
 }
 
-nav.catalog div:hover{
-    background-color: #fff;
-}
-nav.catalog div.first:hover{
-    background-color: #03ad74;
+.children{
+    padding-left: 0.8em;
 }
 
-nav.catalog a{
-    display: block;
-    font-family:'STSong','STHeiti Light','sans-serif';
-    font-weight: bold;
-    text-decoration:none;
+.title-link:link,
+.title-link:visited{
+    color: #222;
 }
-nav.catalog a:focus{ outline: thin dotted; }
-nav.catalog a:hover,
-nav.catalog a:active{ 
-    outline: 0; 
-    /* color: #fff !important; */
-}
-.to-jianshu{
-    border-top: 1px solid #333;
-    border-bottom: 1px solid #333;
-    padding: 0.5em 0;
-    margin-top: 2em;
-    text-align: center;
-    background-color: #ccc;
+.title-link:hover,
+.title-link:active{
+    color:#000;
 }
 
 /*=================
@@ -129,28 +72,19 @@ html{
     -ms-text-size-adjust: 100%; 
 }
 body{
+    background-color: #fff;
     color:#000;
     font-family:'微软雅黑',Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
     letter-spacing: 1px;
 }
-.catalog-wraper{
-    position: fixed;
-    z-index: 50;
-    top: 0px;
-    left: 0px;
-    width: 30%;
-    padding-top: 30px;
-    height: 100%;
-    box-sizing: border-box;
-    overflow-y: scroll;
-    background: linear-gradient(#f8f8f8, #f0f0f0);
-    box-shadow: 0 2px 8px #000;
+.article-wrap{
+    margin-left: 30%;
 }
 article{
     box-sizing: border-box;
     padding: 0.1rem 2rem 2rem;
     font-size: 0.8rem;
-    width: 70%;
+    width: 96%;
     max-width: 54rem;
     min-width: 35rem;
     margin: 1.5rem auto 3rem;
@@ -365,7 +299,7 @@ part5: 悬浮控制条样式
     outline: none;
     background-color: #fff;
 }
-.sidebar a:last-child{
+.sidebar a:last-child{ 
     border-top: none;
 }
 .sidebar .to-top{

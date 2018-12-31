@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 	<meta charset="UTF-8">
 	<title></title>
@@ -9,37 +10,21 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/article.css">
 	<link rel="stylesheet" href="/css/monokai.css">
-	<script src="/js/article.js"></script>
 </head>
-<body id="body" class="star-bg attached-bg">
-	<nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav>
 
-	<div id="catalog-wraper" class="catalog-wraper">
+<body>
+	<div id="app">
+		<div id="catalog-container" class="catalog-container">
+			<blog-catalog :tree-node="tree"></blog-catalog>
+		</div>
 
-	</div>
-	
-	<article class="wrap panel right">
-		<h1>html字符实体</h1>
-		<p class="meta">2017-07-24</p>
-		<div class="post">
-			  <h2 id="为什么在html文档中使用html实体字符">为什么在html文档中使用html实体字符？</h2>
+		<!-- wrap panel right -->
+		<div class="article-wrap">
+			<article id="article-container">
+				<h1>html字符实体</h1>
+				<p class="meta">2017-07-24</p>
+				<div class="post" ref="post">
+					<h2 id="为什么在html文档中使用html实体字符">为什么在html文档中使用html实体字符？</h2>
 <p>假设我们在一个html文档中的一个段落元素<code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code>内部放一段文本，如果这段文本的内容是<code class="highlighter-rouge">&lt;em&gt;&lt;/em&gt;</code>（从而这段html代码是<code class="highlighter-rouge">&lt;p&gt;&lt;em&gt;&lt;/em&gt;&lt;/p&gt;</code>），由于这个文本的内容本身就是一个标签，那么浏览器是不会把p元素中的内容当作文本处理的，它只会将其看作一个没有包含任何内容的<code class="highlighter-rouge">em</code>标签，那么如何才能达到本意呢？我们可以这样写：<code class="highlighter-rouge">&lt;p&gt;&lt;em&gt;&lt;/em&gt;&lt;/p&gt;</code>，其中<code class="highlighter-rouge">&lt;</code>和<code class="highlighter-rouge">&amp;gt</code>分别表示了字符<code class="highlighter-rouge">&lt;</code>和<code class="highlighter-rouge">&gt;</code>，这样就能把带有特殊字符（如<code class="highlighter-rouge">&lt;</code>、<code class="highlighter-rouge">&gt;</code>、<code class="highlighter-rouge">&amp;</code>等）的文本显示出来了。</p>
 
 <h2 id="其他表示实体html字符的方法">其他表示实体html字符的方法</h2>
@@ -82,20 +67,39 @@
   <li><a href="https://www.zhihu.com/question/23374078">知乎：unicode和utf-8区别</a></li>
 </ul>
 
-			  
-			<!-- <p class="to-jianshu">
-				转载请注明出处，您还可以在
-				<a href="https://www.jianshu.com/u/4b533d3e0184" target="_blank">我的简书</a>上找到本文并评论。
-			</p> -->
-
+				</div>
+			</article>
 		</div>
-	</article>
+	</div>
 
+	<!-- <nav id="top-nav" class="top-nav panel">
+		<ul>
+			<li>
+				<a class="nav-home" href="/index.html">
+					<img src="/images/base/home.png" alt="主页">
+				</a>
+			</li>
+			<li>
+				<a class="nav-posts" href="/pages/post_list.html">文章</a>
+			</li>
+			<li>
+				<a class="nav-proj" href="/pages/proj.html">项目</a>
+			</li>
+			<li>
+				<a class="nav-me" href="/pages/intro.html">我</a>
+			</li>
+		</ul>
+	</nav> -->
+
+	<!-- 
 	<div class="sidebar">
 		<a href="#" class="to-top"></a>
 		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
 		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div>
+	</div> -->
 
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+	<script src="/js/article.js"></script>
 </body>
+
 </html>
