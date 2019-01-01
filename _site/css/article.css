@@ -1,39 +1,92 @@
-/*======================
-part1: 导航条样式
-========================*/
-/* css for nav */
-/* .top-nav a:link,
-.top-nav a:visited{
-    color: #fff;
+body::-webkit-scrollbar{
+	width:10px;
+	height:10px;
 }
-.top-nav a:hover{
-    color: #f00;
+body::-webkit-scrollbar-track{
+	background: #f6f6f6;
+	border-radius:5px;
 }
-.top-nav a{
-    text-decoration: none;
-    border-bottom: none !important;
-} */
+body::-webkit-scrollbar-thumb{
+	background: #aaa;
+	border-radius:5px;
+}
+body::-webkit-scrollbar-thumb:hover{
+	background: #747474;
+}
+body::-webkit-scrollbar-corner{
+	background: #f6f6f6;
+}
+
 
 /*=====================
-part2: 目录样式
+part1: 目录样式
 =======================*/
 .catalog-container{
     position: fixed;
     z-index: 50;
     left: 0;
     top: 0;
-    bottom: 0;
+    bottom: 100px;
     width: 30%;
-    max-width: 400px;
-    padding: 12px 2px 80px 2px;
+    box-sizing: border-box;
+    padding: 6px 0;
     font-size: 16px;
-    background: #f8f9f8;
+    background-color: #f8f9f8;
     color: #222;
     overflow: auto;
     overflow-x: hidden;
+    border-right: 1px solid #ccc;
+}
+.catalog-container::-webkit-scrollbar{
+	width:4px;
+	height:4px;
+}
+.catalog-container::-webkit-scrollbar-track{
+	background: #f6f6f6;
+	border-radius:2px;
+}
+.catalog-container::-webkit-scrollbar-thumb{
+	background: #aaa;
+	border-radius:2px;
+}
+.catalog-container::-webkit-scrollbar-thumb:hover{
+	background: #747474;
+}
+.catalog-container::-webkit-scrollbar-corner{
+	background: #f6f6f6;
+}
+
+.level-controller{
+    margin: 0;
+    background-color: #f4f4f4;
+    background: linear-gradient(90deg,#ccc 0%, #e4e4e4 10%, #f4f4f4 50%, #e4e4e4 90%, #ccc 100%);
+    color: #366;
+    text-align: center;
+}
+.level-btn{
+    display: inline-block;
+    width: 1.5em;
+    height: 1em;
+    padding: 0;
+    line-height: 1;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    color: #366;
+}
+
+.catalogs{
+    padding: 0 2px;
 }
 .title{
     margin: 4px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+.title0,
+.title1{
+    font-weight: 700;
 }
 .expand-controller{
     display: inline-block;
@@ -43,8 +96,7 @@ part2: 目录样式
     line-height: 1em;
     font-weight: bold;
     text-align: center;
-    background-color: #ccf;
-    color: #000;
+    color: #488;
     cursor: pointer;
 }
 .single{
@@ -62,6 +114,38 @@ part2: 目录样式
 .title-link:hover,
 .title-link:active{
     color:#000;
+}
+
+/*=================
+part2: 更多文章导航样式
+===================*/
+.post-nav{
+    position: fixed;
+    z-index: 50;
+    left:0;
+    bottom: 0;
+    height: 100px;
+    width: 30%;
+    padding: 0 2px;
+    box-sizing: border-box;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.post-list{
+    margin: 8px 0;
+}
+.prev{
+    margin: 6px 0;
+}
+.post-nav a:link,
+.post-nav a:visited{
+    color: #366;
+}
+
+.post-nav a:hover,
+.post-nav a:active{
+    color: #096;
 }
 
 /*=================
@@ -87,7 +171,7 @@ article{
     width: 96%;
     max-width: 54rem;
     min-width: 35rem;
-    margin: 1.5rem auto 3rem;
+    margin: 0 auto 16px;
     border: none;
     overflow-x: hidden;
 }
@@ -109,7 +193,7 @@ article > p{
     font-weight: bold;
     text-align: right;
 }
-@media only screen and (max-width: 50em){
+/* @media only screen and (max-width: 50em){
     article{
         width: 100%;
         padding-left: 1.5rem;
@@ -135,7 +219,7 @@ article > p{
     article.right{
         min-width: 15rem;
     }
-}
+} */
 
 /*=================
 part4: 文章内部样式
@@ -222,7 +306,7 @@ a:link{
 	color: #009966;
 }
 a:visited{
-	color: #444;
+	color: #366;
 }
 a:focus{ outline: thin dotted; }
 a:hover,
@@ -274,57 +358,3 @@ th{
     background-color: #cadcd0;
 }
 td { vertical-align: top; }
-
-
-/*========================
-part5: 悬浮控制条样式
-==========================*/
-.sidebar{
-    position: fixed;
-    z-index: 200;
-    width: 2rem;
-    right: 2rem;
-    bottom: 2rem;
-}
-.sidebar a{
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    height: 2rem;
-    line-height: 2rem;
-    text-align: center;
-    color: #666;
-    text-decoration: none;
-    border: 1px solid #aaa;
-    outline: none;
-    background-color: #fff;
-}
-.sidebar a:last-child{ 
-    border-top: none;
-}
-.sidebar .to-top{
-    height: 1rem;
-    border: none;
-    margin-bottom: 0.3rem;
-    background-color: transparent;
-}
-.sidebar .to-top:before{
-    content: "";
-    display: block;
-    width: 0rem;
-    height: 0rem;
-    border-bottom: 1rem solid #aaa;
-    border-left: 1rem solid transparent; 
-    border-right: 1rem solid transparent; 
-}
-.mode:hover,
-.nav-ctrl:hover{
-    box-shadow: 0px 0px 1px 0 #333 inset;
-    color: #f00;
-}
-@media only screen and (max-width: 35em){
-    .sidebar{
-        bottom: 1rem;
-        right: 0.5rem;
-    }
-}

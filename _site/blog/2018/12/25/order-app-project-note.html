@@ -14,14 +14,35 @@
 
 <body>
 	<div id="app">
+
+		<!-- 文章目录 -->
 		<div id="catalog-container" class="catalog-container">
-			<blog-catalog :tree-node="tree"></blog-catalog>
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+			<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
 		</div>
 
-		<!-- wrap panel right -->
+		<!-- 更多文章导航 -->
+		<div class="post-nav">
+			<div class="post-list">
+				<a class="home-link" href="/">返回首页</a>
+			</div>
+			<div class="prev no-wrap">
+				上一篇：<a href="/blog/2018/12/07/html5-technology">HTML5 新特性</a>
+			</div>
+			<div class="next no-wrap">
+				下一篇：<a href="/blog/2018/12/30/typescript-learn-note">typescript学习笔记</a>
+			</div>
+		</div>
+
+		<!-- 文章内容区 -->
 		<div class="article-wrap">
 			<article id="article-container">
-				<h1>基于vue-cli3仿制饿了么WebApp项目总结</h1>
+				<h1 id="post-title">基于vue-cli3仿制饿了么WebApp项目总结</h1>
 				<p class="meta">2018-12-25</p>
 				<div class="post" ref="post">
 					<p>使用<code class="highlighter-rouge">vue-clie3</code>仿制的饿了么外卖<code class="highlighter-rouge">WebApp</code>，这是一个<code class="highlighter-rouge">SPA</code>（单页面应用，<code class="highlighter-rouge">Single Page Application</code>）。主要技术包括<code class="highlighter-rouge">Vue.js</code>、<code class="highlighter-rouge">vue-router</code>、<code class="highlighter-rouge">Axios</code>，使用<code class="highlighter-rouge">better-scroll</code>插件优化页面滚动，<code class="highlighter-rouge">css</code>使用<code class="highlighter-rouge">stylus</code>编写，采用<code class="highlighter-rouge">flex</code>布局、<code class="highlighter-rouge">sticky footer</code>等技术。</p>
@@ -320,35 +341,11 @@
 <p>参考：<a href="https://cloud.tencent.com/developer/ask/66544">我可以在存储库的子文件夹中拥有我的Github Pages index.html吗？</a></p>
 
 				</div>
+				<p>（本文完）</p>
 			</article>
 		</div>
+
 	</div>
-
-	<!-- <nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav> -->
-
-	<!-- 
-	<div class="sidebar">
-		<a href="#" class="to-top"></a>
-		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
-		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div> -->
 
 	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
 	<script src="/js/article.js"></script>

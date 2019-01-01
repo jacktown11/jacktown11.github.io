@@ -14,14 +14,35 @@
 
 <body>
 	<div id="app">
+
+		<!-- 文章目录 -->
 		<div id="catalog-container" class="catalog-container">
-			<blog-catalog :tree-node="tree"></blog-catalog>
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+			<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
 		</div>
 
-		<!-- wrap panel right -->
+		<!-- 更多文章导航 -->
+		<div class="post-nav">
+			<div class="post-list">
+				<a class="home-link" href="/">返回首页</a>
+			</div>
+			<div class="prev no-wrap">
+				上一篇：<a href="/blog/2017/07/24/html-entity">html字符实体</a>
+			</div>
+			<div class="next no-wrap">
+				下一篇：<a href="/blog/2017/12/02/resee-capitalism">资本主义再理解</a>
+			</div>
+		</div>
+
+		<!-- 文章内容区 -->
 		<div class="article-wrap">
 			<article id="article-container">
-				<h1>《你的第一本哲学书》读后感</h1>
+				<h1 id="post-title">《你的第一本哲学书》读后感</h1>
 				<p class="meta">2017-10-04</p>
 				<div class="post" ref="post">
 					<h2 id="导言">导言</h2>
@@ -66,35 +87,11 @@
 <p>写到最后，实在不知道写的是读后感还是读书笔记，异或是自我思考的记录，大概间或有之，其中的观点也许我所说的并不是这本书上的意思，有的本来就是我自己的思考。不管怎样，哲学的核心不就是思考吗？</p>
 
 				</div>
+				<p>（本文完）</p>
 			</article>
 		</div>
+
 	</div>
-
-	<!-- <nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav> -->
-
-	<!-- 
-	<div class="sidebar">
-		<a href="#" class="to-top"></a>
-		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
-		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div> -->
 
 	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
 	<script src="/js/article.js"></script>

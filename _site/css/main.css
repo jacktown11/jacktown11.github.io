@@ -173,11 +173,21 @@ a:active{
 	color: #f90;
 	text-decoration: underline;
 }
-
+button{
+	padding: 0;
+	border: none;
+	outline: none;
+	background-color: transparent;
+}
 
 /*============
 part2: class for reuse
 ==============*/
+.no-wrap{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 .panel{
 	background-color: #fff;

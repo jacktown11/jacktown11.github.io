@@ -14,14 +14,35 @@
 
 <body>
 	<div id="app">
+
+		<!-- 文章目录 -->
 		<div id="catalog-container" class="catalog-container">
-			<blog-catalog :tree-node="tree"></blog-catalog>
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+			<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
 		</div>
 
-		<!-- wrap panel right -->
+		<!-- 更多文章导航 -->
+		<div class="post-nav">
+			<div class="post-list">
+				<a class="home-link" href="/">返回首页</a>
+			</div>
+			<div class="prev no-wrap">
+				上一篇：<a href="/blog/2017/06/23/test-proto">一个关于原型链的探索</a>
+			</div>
+			<div class="next no-wrap">
+				下一篇：<a href="/blog/2017/07/02/jsgc-prototype">《javascript高级程序设计》对象创建与继承 总结笔记</a>
+			</div>
+		</div>
+
+		<!-- 文章内容区 -->
 		<div class="article-wrap">
 			<article id="article-container">
-				<h1>jQuery clone()方法一个注意点</h1>
+				<h1 id="post-title">jQuery clone()方法一个注意点</h1>
 				<p class="meta">2017-07-02</p>
 				<div class="post" ref="post">
 					<p>用jQuery clone()方法可以赋值一个节点，但是如果这个节点带有id属性，那么可能导致该id在同一个页面中被重复使用。比如我们在head&gt;script:nth-of-type(3)中代码的最后一行复制了#target5元素。</p>
@@ -77,35 +98,11 @@
 <img src="http://upload-images.jianshu.io/upload_images/6321648-20e3ea14087b89b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="使用clone()方法后的部分html" /></p>
 
 				</div>
+				<p>（本文完）</p>
 			</article>
 		</div>
+
 	</div>
-
-	<!-- <nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav> -->
-
-	<!-- 
-	<div class="sidebar">
-		<a href="#" class="to-top"></a>
-		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
-		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div> -->
 
 	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
 	<script src="/js/article.js"></script>

@@ -14,14 +14,35 @@
 
 <body>
 	<div id="app">
+
+		<!-- 文章目录 -->
 		<div id="catalog-container" class="catalog-container">
-			<blog-catalog :tree-node="tree"></blog-catalog>
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+			<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
 		</div>
 
-		<!-- wrap panel right -->
+		<!-- 更多文章导航 -->
+		<div class="post-nav">
+			<div class="post-list">
+				<a class="home-link" href="/">返回首页</a>
+			</div>
+			<div class="prev no-wrap">
+				上一篇：<a href="/blog/2018/02/25/good-articles-collection">优秀文章收集</a>
+			</div>
+			<div class="next no-wrap">
+				下一篇：<a href="/blog/2018/03/15/high-performance-javascript-notes">《高性能javascript》笔记</a>
+			</div>
+		</div>
+
+		<!-- 文章内容区 -->
 		<div class="article-wrap">
 			<article id="article-container">
-				<h1>前端数据模拟</h1>
+				<h1 id="post-title">前端数据模拟</h1>
 				<p class="meta">2018-03-10</p>
 				<div class="post" ref="post">
 					<h1 id="前言">前言</h1>
@@ -228,35 +249,11 @@
 <p>而真正使用<code class="highlighter-rouge">nodejs</code>搭建开发环境的话，数据模拟就可以看作只是路由的一部分，可以借用<code class="highlighter-rouge">express</code>、<code class="highlighter-rouge">koa</code>这样的框架。</p>
 
 				</div>
+				<p>（本文完）</p>
 			</article>
 		</div>
+
 	</div>
-
-	<!-- <nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav> -->
-
-	<!-- 
-	<div class="sidebar">
-		<a href="#" class="to-top"></a>
-		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
-		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div> -->
 
 	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
 	<script src="/js/article.js"></script>

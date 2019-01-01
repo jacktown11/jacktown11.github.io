@@ -14,14 +14,35 @@
 
 <body>
 	<div id="app">
+
+		<!-- 文章目录 -->
 		<div id="catalog-container" class="catalog-container">
-			<blog-catalog :tree-node="tree"></blog-catalog>
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+			<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
 		</div>
 
-		<!-- wrap panel right -->
+		<!-- 更多文章导航 -->
+		<div class="post-nav">
+			<div class="post-list">
+				<a class="home-link" href="/">返回首页</a>
+			</div>
+			<div class="prev no-wrap">
+				上一篇：<a href="/blog/2018/07/11/javase-OOP">javase 面向对象</a>
+			</div>
+			<div class="next no-wrap">
+				下一篇：<a href="/blog/2018/07/12/javase-common-api">javase 常用API</a>
+			</div>
+		</div>
+
+		<!-- 文章内容区 -->
 		<div class="article-wrap">
 			<article id="article-container">
-				<h1>eclipse的使用</h1>
+				<h1 id="post-title">eclipse的使用</h1>
 				<p class="meta">2018-07-12</p>
 				<div class="post" ref="post">
 					<h1 id="eclipse的下载安装">Eclipse的下载安装</h1>
@@ -335,35 +356,11 @@
 </ul>
 
 				</div>
+				<p>（本文完）</p>
 			</article>
 		</div>
+
 	</div>
-
-	<!-- <nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav> -->
-
-	<!-- 
-	<div class="sidebar">
-		<a href="#" class="to-top"></a>
-		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
-		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div> -->
 
 	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
 	<script src="/js/article.js"></script>

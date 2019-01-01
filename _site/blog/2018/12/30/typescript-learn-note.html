@@ -14,14 +14,35 @@
 
 <body>
 	<div id="app">
+
+		<!-- 文章目录 -->
 		<div id="catalog-container" class="catalog-container">
-			<blog-catalog :tree-node="tree"></blog-catalog>
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+			<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
 		</div>
 
-		<!-- wrap panel right -->
+		<!-- 更多文章导航 -->
+		<div class="post-nav">
+			<div class="post-list">
+				<a class="home-link" href="/">返回首页</a>
+			</div>
+			<div class="prev no-wrap">
+				上一篇：<a href="/blog/2018/12/25/order-app-project-note">基于vue-cli3仿制饿了么WebApp项目总结</a>
+			</div>
+			<div class="next no-wrap">
+				下一篇：没有更多了
+			</div>
+		</div>
+
+		<!-- 文章内容区 -->
 		<div class="article-wrap">
 			<article id="article-container">
-				<h1>typescript学习笔记</h1>
+				<h1 id="post-title">typescript学习笔记</h1>
 				<p class="meta">2018-12-30</p>
 				<div class="post" ref="post">
 					<p>按：本笔记基于慕课网课程<a href="https://www.imooc.com/learn/763">TypeScript入门</a>。</p>
@@ -447,35 +468,11 @@ tsc --version
 <p><code class="highlighter-rouge">.d.ts</code>，用于帮助开发者在<code class="highlighter-rouge">TypeScript</code>中使用已有的<code class="highlighter-rouge">JavaScript</code>的工具包，如<code class="highlighter-rouge">jQuery</code>。github上的<a href="https://github.com/DefinitelyTyped/DefinitelyTyped">DefinitelyTyped</a>仓库定义了各种库的类型定义文件，<a href="https://github.com/typings/typings">types</a>仓库可以帮助我们下载类型定义文件</p>
 
 				</div>
+				<p>（本文完）</p>
 			</article>
 		</div>
+
 	</div>
-
-	<!-- <nav id="top-nav" class="top-nav panel">
-		<ul>
-			<li>
-				<a class="nav-home" href="/index.html">
-					<img src="/images/base/home.png" alt="主页">
-				</a>
-			</li>
-			<li>
-				<a class="nav-posts" href="/pages/post_list.html">文章</a>
-			</li>
-			<li>
-				<a class="nav-proj" href="/pages/proj.html">项目</a>
-			</li>
-			<li>
-				<a class="nav-me" href="/pages/intro.html">我</a>
-			</li>
-		</ul>
-	</nav> -->
-
-	<!-- 
-	<div class="sidebar">
-		<a href="#" class="to-top"></a>
-		<a href="javascript:;" class="nav-ctrl" id="navCtrl">目录</a>
-		<a href="javascript:;" class="mode" id="mode">极简</a>
-	</div> -->
 
 	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
 	<script src="/js/article.js"></script>
