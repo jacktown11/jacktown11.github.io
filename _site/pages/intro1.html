@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人简历</title>
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
-        <link rel="stylesheet" href="../css/main.css"> 
+    <link rel="stylesheet" href="../css/main.css">
     
-        <link rel="stylesheet" href="../css/intro.css"> 
+    <link rel="stylesheet" href="../css/intro.css">
     
+    <style>
+        .back-to-home {
+            position: fixed;
+            z-index: 300;
+            left: 5px;
+            top: 5px;
+            height: 18px;
+            padding: 4px;
+            line-height: 18px;
+            font-size: 18px;
+            background-color: #fff;
+            border-radius: 9px;
+        }
+    </style>
 </head>
-<body class="star-bg attached-bg">
-    <div id="top-nav" class="top-nav">
-        <ul>
-            <li><a class="nav-home" href="/index.html"><img src="/images/base/home.png" alt="主页"></a></li>
-            <li><a class="nav-post-list" href="/pages/post_list.html">文章</a></li>
-            <li><a class="nav-proj" href="/pages/proj.html">项目</a></li>
-            <li><a class="nav-me" href="/pages/intro.html">我</a></li>
-        </ul>
-    </div>
-    <div class="import-content">
-     <h1 id="个人简历">个人简历</h1>
+
+<body>
+    <h1 id="个人简历">个人简历</h1>
 
 <h2 id="联系方式">联系方式</h2>
 
@@ -102,8 +109,11 @@
 <h2 id="致谢">致谢</h2>
 <p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
 
-    </div>
+
+    <a href="/" class="back-to-home no-print" id="back-to-home">返回首页</a>
+
     
 
 </body>
+
 </html>

@@ -1,24 +1,24 @@
 /*part1: 简历页面的css*/
-.import-content{
+body{
+	max-width: 54em;
+	margin: auto;
 	padding-left: 32px;
 	padding-right: 32px;
 	padding-top: 1.5rem;
+	background-color: #222;
+	color: #fff;
 }
-.nav-me{
-	background-color: rgba(0,0,0,0.5);
-	box-shadow: 0px 0px 8px 0 #333 inset;
-}
-.import-content a:link{
+body a:link{
 	text-decoration: none;
 	color: #99CC99;
 	border-bottom: 1px dashed black;
 	border-color: inherit;
 }
-.import-content a:visited{
+body a:visited{
 	color: #888;
 }
-.import-content a:hover,
-.import-content a:active{
+body a:hover,
+body a:active{
 	color: #f40;
 }
 h1{
@@ -145,7 +145,7 @@ li{
 	.top-nav{
 		display: none;
 	}
-	.import-content{
+	body{
 		width: 100%;
 		padding: 0;
 		margin: 0;

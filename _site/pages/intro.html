@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人简历</title>
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
-        <link rel="stylesheet" href="../css/main.css"> 
+    <link rel="stylesheet" href="../css/main.css">
     
-        <link rel="stylesheet" href="../css/intro.css"> 
+    <link rel="stylesheet" href="../css/intro.css">
     
+    <style>
+        .back-to-home {
+            position: fixed;
+            z-index: 300;
+            left: 5px;
+            top: 5px;
+            height: 18px;
+            padding: 4px;
+            line-height: 18px;
+            font-size: 18px;
+            background-color: #fff;
+            border-radius: 9px;
+        }
+    </style>
 </head>
-<body class="star-bg attached-bg">
-    <div id="top-nav" class="top-nav">
-        <ul>
-            <li><a class="nav-home" href="/index.html"><img src="/images/base/home.png" alt="主页"></a></li>
-            <li><a class="nav-post-list" href="/pages/post_list.html">文章</a></li>
-            <li><a class="nav-proj" href="/pages/proj.html">项目</a></li>
-            <li><a class="nav-me" href="/pages/intro.html">我</a></li>
-        </ul>
-    </div>
-    <div class="import-content">
-     <!-- 前端求职简历 -->
+
+<body>
+    <!-- 前端求职简历 -->
 
 <div class="interact hidden no-print" id="interact">
     <label for="password">
@@ -33,7 +40,7 @@
     </label>
     <button id="confirm">确认</button>
     <p class="warning hidden" id="warning">好心塞，你这么快就把我忘了 :(</p>
-    <button class="ignore" id="ignore">忽略</button>    
+    <button class="ignore" id="ignore">忽略</button>
 </div>
 
 <h1 id="个人简历">个人简历</h1>
@@ -58,7 +65,7 @@
             <a class="explicit-link" href="https://jacktown11.github.io/">https://jacktown11.github.io/</a>
         </li>
         <li>Github：
-            <a class="explicit-link"  href="https://github.com/jacktown11">https://github.com/jacktown11</a>
+            <a class="explicit-link" href="https://github.com/jacktown11">https://github.com/jacktown11</a>
         </li>
         <li>CodePen：
             <a class="explicit-link" href="https://codepen.io/jacktown/">https://codepen.io/jacktown/</a></li>
@@ -108,7 +115,7 @@
     <h3>高中培训老师/纸厂工人 （ 2016年7月 ~ 2016年12月 ）</h3>
     <p>先后在江苏教育辅导机构做数学辅导老师、广东纸厂做包装工人。意识到生活之艰辛，同时不愿废弃多年苦学，考虑到IT行业的机遇和自己颇强的自学能力与探索精神，决定转行做程序员。</p>
 
-    <h3 id="清华大学学生--2011年8月--2016年6月-">清华大学学生 （ 2011年8月 ~ 2016年6月 ）</h3>    
+    <h3 id="清华大学学生--2011年8月--2016年6月-">清华大学学生 （ 2011年8月 ~ 2016年6月 ）</h3>
     <p>2011年考入清华大学汽车工程系，在校期间成绩优良，具有保研资格（前1/3）；但由于不愿进入中国兵器工业集团工作而违约，毕业证原件被扣。</p>
 </section>
 
@@ -117,12 +124,14 @@
     <p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
 </section>
 
-    </div>
+    <a href="/" class="back-to-home no-print" id="back-to-home">返回首页</a>
+
     
-        <script src="/js/aes_2.js"></script> 
+    <script src="/js/aes_2.js"></script>
     
-        <script src="/js/intro.js"></script> 
+    <script src="/js/intro.js"></script>
     
 
 </body>
+
 </html>

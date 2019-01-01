@@ -1,6 +1,6 @@
 ---
 
-layout: nav_layout
+layout: page
 css: [main, intro]
 js: []
 title: 个人简历

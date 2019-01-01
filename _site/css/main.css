@@ -161,12 +161,30 @@ html{
 body{
 	font-size: 0.8rem;
 }
+body::-webkit-scrollbar{
+	width:10px;
+	height:10px;
+}
+body::-webkit-scrollbar-track{
+	background: #f6f6f6;
+	border-radius:5px;
+}
+body::-webkit-scrollbar-thumb{
+	background: #aaa;
+	border-radius:5px;
+}
+body::-webkit-scrollbar-thumb:hover{
+	background: #747474;
+}
+body::-webkit-scrollbar-corner{
+	background: #f6f6f6;
+}
 a:link{ 
 	text-decoration: none;
-	color: #0040b1;
+	color: #096;
 }
 a:visited{
-	color: #ccc;
+	color: #336;
 }
 a:hover,
 a:active{
@@ -178,6 +196,10 @@ button{
 	border: none;
 	outline: none;
 	background-color: transparent;
+}
+ul{
+	list-style: none;
+	padding: 0;
 }
 
 /*============

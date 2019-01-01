@@ -1,13 +1,14 @@
-.import-content{
+body{
 	max-width: 70rem;
 	width: 90%;
-	background-color: transparent;
+	background-color: #222;
+	color: #fff;
 	border-radius: 0;
 	text-align: center;
 	font-size: 0px;
 }
 @media only screen and (max-width: 65em){
-	.import-content{
+	body{
 		width: 98%;
 	}
 }
