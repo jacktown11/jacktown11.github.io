@@ -1,4 +1,3 @@
-
 // ajax,
 // method: get and post
 // dataType: json, xml, txt
@@ -11,25 +10,26 @@ function ajax(config) {
 	config.error = config.error || function () { };
 
 	// 组装参数列表
-	let paramArr = [],
+	var paramArr = [],
 		param = config.data;
-	for (let key in param) {
+	for (var key in param) {
 		if (Array.isArray(param[key])) {
-			let arr = params[key];
-			for (let item of arr) {
+			var arr = params[key];
+			for (var i = 0; i < arr.length; i++) {
+				var item = arr[i];
 				paramArr.push(encodeURIComponent(key) + '=' + encodeURIComponent(item));
 			}
 		} else {
 			paramArr.push(encodeURIComponent(key) + '=' + encodeURIComponent(param[key]));
 		}
 	}
-	let paramStr = paramArr.join('&');
+	var paramStr = paramArr.join('&');
 
-	let xhr = new XMLHttpRequest();
+	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4) {
 			if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-				let data;
+				var data;
 				switch (config.dataType.toLowerCase()) {
 					case 'json':
 						if (window.JSON && JSON.parse) {
