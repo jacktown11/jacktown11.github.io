@@ -25,43 +25,53 @@ part1: 目录样式
     position: fixed;
     z-index: 50;
     left: 0;
-    top: 0;
+    top: 28px;
     bottom: 100px;
     width: 30%;
     box-sizing: border-box;
-    padding: 6px 0;
+    padding: 6px 0 12px;
     font-size: 16px;
     background-color: #f8f9f8;
     color: #222;
     overflow: auto;
     overflow-x: hidden;
-    border-right: 1px solid #ccc;
 }
 .catalog-container::-webkit-scrollbar{
 	width:4px;
 	height:4px;
 }
 .catalog-container::-webkit-scrollbar-track{
-	background: #f6f6f6;
+	/* background: #f6f6f6; */
+	background: #333;
 	border-radius:2px;
 }
 .catalog-container::-webkit-scrollbar-thumb{
-	background: #aaa;
+	/* background: #aaa; */
+	background: #d1dafb;
 	border-radius:2px;
 }
 .catalog-container::-webkit-scrollbar-thumb:hover{
-	background: #747474;
+	/* background: #747474; */
+	background: #abbcf7;
 }
 .catalog-container::-webkit-scrollbar-corner{
-	background: #f6f6f6;
+	/* background: #f6f6f6; */
+	background: #333;
 }
 
 .level-controller{
+    position: fixed;
+    z-index: 55;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 28px;
     margin: 0;
-    background-color: #f4f4f4;
-    background: linear-gradient(90deg,#ccc 0%, #e4e4e4 10%, #f4f4f4 50%, #e4e4e4 90%, #ccc 100%);
-    color: #366;
-    text-align: center;
+    box-sizing: border-box;
+    line-height: 28px;
+    color: #ccc;
+    background-color: #333;
+    box-shadow: 0 1px 2px #000;
 }
 .level-btn{
     display: inline-block;
@@ -72,12 +82,17 @@ part1: 目录样式
     text-align: center;
     font-weight: bold;
     cursor: pointer;
-    color: #366;
+    color: #eee;
 }
 
 .catalogs{
     padding: 0 2px;
 }
+
+.children{
+    padding-left: 0.8em;
+}
+
 .title{
     margin: 4px 0;
     overflow: hidden;
@@ -88,6 +103,31 @@ part1: 目录样式
 .title1{
     font-weight: 700;
 }
+
+.title-link:link,
+.title-link:visited{
+    color: #222;
+}
+.title1,
+.title1 .title-link{
+    color: #fff;
+    background-color: #096;
+}
+.title2,
+.title2 .title-link{
+    color: #e67008;
+}
+.title3,
+.title3 .title-link{
+    color: #14877E;
+}
+
+.title-link:hover,
+.title-link:active{
+    /* color:#000; */
+    text-decoration: underline;
+}
+
 .expand-controller{
     display: inline-block;
     width: 1em;
@@ -99,21 +139,11 @@ part1: 目录样式
     color: #488;
     cursor: pointer;
 }
+.title1 .expand-controller{
+    color: #fff;
+}
 .single{
     background-color: transparent;
-}
-
-.children{
-    padding-left: 0.8em;
-}
-
-.title-link:link,
-.title-link:visited{
-    color: #222;
-}
-.title-link:hover,
-.title-link:active{
-    color:#000;
 }
 
 /*=================
@@ -127,25 +157,44 @@ part2: 更多文章导航样式
     height: 100px;
     width: 30%;
     padding: 0 2px;
+    background-color: #333;
+    color: #ccc;
     box-sizing: border-box;
-    border-top: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #636;
 }
 
-.post-list{
-    margin: 8px 0;
-}
-.prev{
-    margin: 6px 0;
-}
 .post-nav a:link,
 .post-nav a:visited{
-    color: #366;
+    color: #eee;
 }
 
 .post-nav a:hover,
 .post-nav a:active{
-    color: #096;
+    color: #f40;
+}
+
+.home{
+    height: 40px;
+    line-height: 40px;
+}
+.home-link{
+    display: inline-block;
+    height: 30px;
+    margin-top: 6px;
+    line-height: 30px;
+    border-radius: 20px;
+    padding: 0 8px;
+    border: 2px solid #ccc;
+    font-weight: 700;
+}
+a.home-link:hover,
+a.home-link:active{
+    color: #f40;
+    border-color: #f40;
+}
+.prev, .next{
+    height: 30px;
+    line-height: 30px;
 }
 
 /*=================

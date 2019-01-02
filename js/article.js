@@ -11,7 +11,7 @@ function Title(text, level) {
 
 // 标题树单例
 var tree = {
-	text: document.getElementById('post-title').innerHTML,
+	text: '目录',
 	level: 0,
 	children: [],
 	insert: function (title) {
@@ -58,7 +58,7 @@ Vue.component('blog-catalog', {
 			return 'title' + this.treeNode.level;
 		},
 		href: function () {
-			var text = this.treeNode.text.replace(/\s/g, '-').replace(/[\.\/]/g, '');
+			var text = this.treeNode.text.replace(/\s/g, '-').replace(/[\.\/\(\)（）]/g, '');
 			return this.treeNode.level > 0 ?
 				'#' + text :
 				'#';
