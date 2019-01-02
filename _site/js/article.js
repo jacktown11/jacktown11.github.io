@@ -98,7 +98,9 @@ new Vue({
 	el: '#app',
 	data: {
 		tree: tree,
-		expandLevel: 2
+		expandLevel: 1,
+		minLevel: 1,
+		maxLevel: 1
 	},
 	mounted: function () {
 		this.gatherTitles();
@@ -112,14 +114,17 @@ new Vue({
 				/*check the post element's children*/
 				var name = postChild.nodeName;
 				if (hReg.test(name)) {
-					this.tree.insert(new Title(postChild.innerHTML, +(name.charAt(1))));
+					var level = +name.charAt(1),
+						text = postChild.innerHTML;
+					if (level > this.maxLevel) this.maxLevel = level;
+					this.tree.insert(new Title(text, level));
 				}
 				postChild = postChild.nextSibling;
 			}
 		},
 		modifyLevel: function (inc) {
 			var newLevel = this.expandLevel + inc;
-			if (newLevel >= 1 && newLevel <= 6) {
+			if (newLevel >= this.minLevel && newLevel <= this.maxLevel) {
 				this.expandLevel = newLevel;
 			}
 		}
