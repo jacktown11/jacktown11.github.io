@@ -2,9 +2,9 @@
     {
         "name": "personal blog",
         "show": "/",
-        "intro": "基于github pages搭建的个人博客网站。该网站作为我平时前端技术学习的练习场，综合使用了html，css3，javascript基础网页开发技术，自主设计UI，采用了响应式的设计。",
+        "intro": "基于github pages搭建的个人博客网站。综合使用了html，css3，javascript基础网页开发技术，自主设计UI，部分页面使用了Vue.js",
         "github": "https://github.com/jacktown11/jacktown11.github.io",
-        "cover": "blog.png"
+        "cover": "blog.jpg"
     },
     {
         "name": "vue project",
@@ -77,32 +77,31 @@
         "cover": "pomodoro.gif"
     },
     {
-		"name": "barrage",
+        "name": "barrage",
         "show": "https://codepen.io/jacktown/full/awjjGz/",
         "intro": "一个简单的弹幕应用。",
         "github": "https://github.com/jacktown11/fcc/tree/master/barrage",
         "cover": "barriage.jpg"
     },
     {
-		"name": "portfolio",
+        "name": "portfolio",
         "show": "https://codepen.io/jacktown/full/eRrYyJ/",
         "intro": "一个简单的个人主页页面。在导航条点击各连接时，页面能动态滚动到相应位置；表单实现了漂亮的动态响应效果。",
         "github": "https://github.com/jacktown11/fcc/tree/master/Build_a_Personal_Portfolio_Webpage0",
         "cover": "portfolio.jpg"
     },
     {
-		"name": "random quote",
+        "name": "random quote",
         "show": "https://codepen.io/jacktown/full/rzaBMO/",
         "intro": "随机名言显示。",
         "github": "https://github.com/jacktown11/fcc/tree/master/RandomQuoteMachine0",
         "cover": "quote.jpg"
     },
     {
-		"name": "tribute page",
+        "name": "tribute page",
         "show": "https://codepen.io/jacktown/full/eRMamL/",
         "intro": "伟人纪念页面。",
         "github": "https://github.com/jacktown11/fcc/tree/master/Build_a_Tribute_Page0",
         "cover": "tribute.jpg"
     }
-   
 ]

@@ -4,17 +4,24 @@ css: [main, proj]
 js: [proj]
 title: 项目
 ---
-<!-- 
-<div class="proj">
-	<a class="info github" href="" target="_blank">
-		<img src="../images/proj/github.png" alt="github图标">
-	</a>
-	<a class="info show" href="" target="_blank">
-		<img src="../images/proj/show.png" alt="在线演示">
-	</a>
-	<img class="cover" src="../images/proj/2048.gif" alt="项目封面">
-	<div class="detail">
-		<h4></h4>
-		<p><span></span></p>
-	</div>
-</div> -->
+
+<h1 class="page-title">Projects</h1>
+<!-- 由于vue中{{}}也会被jekyll解析，因此需要使用v-html与v-text来插入文本-->
+<div id="proj-list" class="container">
+	<p class="loading" v-show="!isLoaded"><img src="/images/proj/loading.png" alt="加载中"></p>
+	<ul class="proj-list" v-show="isLoaded">
+		<li class="proj-item" v-for="proj in projects" :key="proj.name">
+			<div class="img-wrapper">
+				<img :src="'/images/proj/'+proj.cover" alt="项目封面" class="proj-img" :class="{enlarge: proj.isEnlarge}" @click="proj.isEnlarge = !proj.isEnlarge;">
+			</div>
+			<h2 class="proj-header">
+				<span class="name" v-text="proj.name"></span>
+				<a :href="proj.github" class="link-icon" v-if="proj.github" title="github"><span class="github-icon"></span></a>
+				<a :href="proj.show" class="link-icon" v-if="proj.show" title="view online"><span class="show-icon"></span></a>
+			</h2>
+			<p class="proj-intro" v-text="proj.intro"></p>
+		</li>
+	</ul>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
