@@ -30,16 +30,15 @@ var tree = {
 };
 
 Vue.component('blog-catalog', {
-	template: `
-	<div class="title-wrapper">
-		<p class="title" :class="cls" v-if="treeNode.text">
-			<span class="expand-controller" :class="status" @click.stop="toggleChildren" v-html="sign"></span>
-			<a class="title-link" :href="href" :data-level="treeNode.level">{{treeNode.text}}</a></p>
-		<div class="children" v-show="hasChildren && isShowChildren">
-			<blog-catalog v-for="node in treeNode.children" :tree-node="node" :expand-level="expandLevel" :key="node.text"></blog-catalog>
-		</div>
-	</div>
-	`,
+	template: '<div class="title-wrapper">'
+		+ '<p class="title" :class="cls" v-if="treeNode.text" >'
+		+ '<span class="expand-controller" :class="status" @click.stop="toggleChildren" v-html="sign" ></span >'
+		+ '<a class="title-link" :href="href" :data-level="treeNode.level">{{ treeNode.text }}</a>'
+		+ '</p>'
+		+ '<div class="children" v-show="hasChildren && isShowChildren">'
+		+ '<blog-catalog v-for="node in treeNode.children" :tree-node="node" :expand-level="expandLevel" :key="node.text"></blog-catalog>'
+		+ '</div >'
+		+ '</div >',
 	props: ['treeNode', 'expandLevel'],
 	data: function () {
 		return {
