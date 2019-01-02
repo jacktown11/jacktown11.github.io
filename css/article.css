@@ -33,7 +33,7 @@ part1: 目录样式
     font-size: 16px;
     background-color: #f8f9f8;
     color: #222;
-    overflow: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
 }
 .catalog-container::-webkit-scrollbar{
@@ -124,7 +124,6 @@ part1: 目录样式
 
 .title-link:hover,
 .title-link:active{
-    /* color:#000; */
     text-decoration: underline;
 }
 
@@ -151,7 +150,7 @@ part2: 更多文章导航样式
 ===================*/
 .post-nav{
     position: fixed;
-    z-index: 50;
+    z-index: 55;
     left:0;
     bottom: 0;
     height: 100px;
@@ -160,7 +159,7 @@ part2: 更多文章导航样式
     background-color: #333;
     color: #ccc;
     box-sizing: border-box;
-    border-right: 1px solid #636;
+    box-shadow: 0 -1px 2px #000;
 }
 
 .post-nav a:link,
@@ -242,33 +241,6 @@ article > p{
     font-weight: bold;
     text-align: right;
 }
-/* @media only screen and (max-width: 50em){
-    article{
-        width: 100%;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        min-width: 15rem;
-    }
-    .catalog-wraper{
-        height: 50%;
-        width: 100%;
-    }
-    article.right{
-        min-width: 35rem;
-        width: 100%;
-        margin-left: 0rem;
-    }
-}
-@media only screen and (max-width: 35em){
-    article{
-        font-size: 0.75rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-    article.right{
-        min-width: 15rem;
-    }
-} */
 
 /*=================
 part4: 文章内部样式
