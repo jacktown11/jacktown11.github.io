@@ -8,7 +8,7 @@ title: 项目
 <h1 class="page-title">Projects</h1>
 <!-- 由于vue中{{}}也会被jekyll解析，因此需要使用v-html与v-text来插入文本-->
 <div id="proj-list" class="container">
-	<p class="loading" v-show="!isLoaded"><img src="/images/proj/loading.png" alt="加载中"></p>
+	<p class="loading" v-show="!isLoaded"><img src="/images/proj/loading.gif" alt="加载中"></p>
 	<ul class="proj-list" v-show="isLoaded">
 		<li class="proj-item" v-for="proj in projects" :key="proj.name">
 			<div class="img-wrapper">
