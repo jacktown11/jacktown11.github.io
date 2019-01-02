@@ -203,10 +203,10 @@ var search = {
 		this.addEvent();
 	},
 	addEvent: function () {
-		this.input.onkeyup = function (event) {
+		this.input.oninput = function (e) {
 			var searchStr = this.value.trim();
 			posts.searchPosts(searchStr); // emptry string actually mean no search string
-		};
+		}
 	}
 };
 
