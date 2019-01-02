@@ -236,35 +236,10 @@ div.input{
 	outline: none;
 }
 .search input{
-	margin-right: 0px;
 	padding: 0 0.2rem;
 	border-radius: 4px;
-	border-top-right-radius: 0px;
-	border-bottom-right-radius: 0px;
 	background-color: rgba(153,204,153, 0.3);
 	box-shadow: 1px 1px 2px 0 #000 inset;
-}
-.search button{
-	margin-left: 0px;
-	width: 1.5rem;
-	height: 1.5rem;
-	border-radius: 4px;
-	border-top-left-radius: 0px;
-	border-bottom-left-radius: 0px;
-	cursor: pointer;
-	/* background-color: #3385ff; */
-	background: url(../images/base/search.png) center/60% no-repeat #3385ff;
-	border-bottom: 1px solid #2d78f4;
-	box-shadow: 0px 1px 2px 0 #000 inset;
-}
-.search button:hover{
-	background-color: #317ef3;
-    border-bottom: 1px solid #2868c8;
-}
-.search button:active{
-	background-color: #3075dc;
-    /* box-shadow: inset 1px 1px 3px #2964bb;
-    -webkit-box-shadow: inset 1px 1px 3px #2964bb; */
 }
 
 .articles{
