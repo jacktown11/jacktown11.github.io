@@ -58,7 +58,7 @@ Vue.component('blog-catalog', {
 			return 'title' + this.treeNode.level;
 		},
 		href: function () {
-			var text = this.treeNode.text.replace(/\s/g, '-').replace(/[\.\/\(\)（）]/g, '');
+			var text = this.treeNode.text.replace(/\s/g, '-').replace(/[\.\/\(\)（）]/g, '').toLowerCase();
 			return this.treeNode.level > 0 ?
 				'#' + text :
 				'#';
