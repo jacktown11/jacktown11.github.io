@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+</head>
+
+<body>
+	<div id="app">
+
+		<!-- 文章目录 -->
+		<div id="catalog-container" class="catalog-container">
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+			<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
+		</div>
+
+		<!-- 更多文章导航 -->
+		<div class="post-nav">
+			<div class="home">
+				<a class="home-link" href="/">返回首页</a>
+			</div>
+			<div class="prev no-wrap">
+				上一篇：<a href="/blog/2018/12/30/typescript-learn-note">typescript学习笔记</a>
+			</div>
+			<div class="next no-wrap">
+				下一篇：没有更多了
+			</div>
+		</div>
+
+		<!-- 文章内容区 -->
+		<div class="article-wrap">
+			<article id="article-container">
+				<h1 id="post-title">《JavaScript 高级程序设计》（第3版）笔记</h1>
+				<p class="meta">2019-01-03</p>
+				<div class="post" ref="post">
+					<h1 id="第1章-javascript简介">第1章 JavaScript简介</h1>
+
+<p>JavaScript 于1995年由当时就职于 Netscape 公司的 Brendan Eich 开发，最初是为了通过提供前端表单校验，在当时普遍低网速的情况下极大提升用户体验。</p>
+
+<p>JavaScript 包括三部分：</p>
+
+<ul>
+  <li>核心( ECMAScript )
+    <ul>
+      <li>其标准是<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"> ECMA-262 </a>，由 ECMA (欧洲计算机制造商协会)下的 TC39 技术委员会制定</li>
+      <li>2009年发布了第5版，2015年发布第6版（ ES2015 ），之后每年都会有版本更新，直接有年份表示版本（如 ES2018 ）</li>
+    </ul>
+  </li>
+  <li>文档对象模型( DOM )
+    <ul>
+      <li>定义访问与操作网页内容的方法与接口</li>
+      <li>DOM1 ，1998年10月成为 W3C 推荐标准，包括 DOM Core 和 DOM HTML ，主要映射文档结构</li>
+      <li>DOM2 ，给出很多新模块：DOM视图、DOM事件、DOM样式、DOM遍历和范围</li>
+      <li>DOM3 ，引入了DOM加载与保持模块、DOM验证模块、开始支持 XML1.0 规范</li>
+      <li>其他DOM标准： SVG 、 MathMl 、 SMIL</li>
+      <li>IE6~8 支持 DOM1 （几乎全部），IE9+ 支持 DOM1~3</li>
+    </ul>
+  </li>
+  <li>浏览器对象模型( BOM )
+    <ul>
+      <li>提供与浏览器交互的方法和接口</li>
+      <li>HTML5 之前没有正式规范，但有如 window 对象、 navigator 对象等事实标准</li>
+    </ul>
+  </li>
+</ul>
+
+<p>JavaScript 的版本通常以 ECMAScript 的版本为准，只有 Mozilla 公司还在沿用原来的 JavaScript 的版本序号。</p>
+
+<h1 id="第2章-在html中使用javascript">第2章 在HTML中使用JavaScript</h1>
+
+<ul>
+  <li>使用 script 标签在 html 页面中插入脚本，通常认为使用 <code class="highlighter-rouge">src</code> 属性指定外部脚本要优于嵌入代码，因为具有可维护性和可缓存的优点</li>
+  <li>利用 <code class="highlighter-rouge">src</code> 属性加载外部文件不受浏览器同源策略的限制，这也是 jsonp 跨域的基础。</li>
+  <li>默认情况下，页面都是从上往下加载和执行，因此通常将 <code class="highlighter-rouge">js</code> 脚本放在页面最后以避免其阻塞页面加载；但是 <code class="highlighter-rouge">defer</code> 和 <code class="highlighter-rouge">async</code> 属性（仅外部文件可用）也可以改变其默认行为：
+    <ul>
+      <li><code class="highlighter-rouge">defer</code> 让浏览器立即加载，延迟执行（遇到<code class="highlighter-rouge">&lt;/html&gt;</code>后）</li>
+      <li><code class="highlighter-rouge">async</code> 让浏览器异步地加载和执行</li>
+      <li>使用这两个属性时，代码的执行顺序通常是不确定的，因此一定要确认文件间的依赖不会因此破坏</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">type</code> 属性默认是 <code class="highlighter-rouge">text/javascript</code> ，通常省略</li>
+</ul>
+
+
+				</div>
+				<p>（本文完）</p>
+			</article>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+	<script src="/js/article.js"></script>
+</body>
+
+</html>

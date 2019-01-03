@@ -198,7 +198,7 @@ button{
 	background-color: transparent;
 }
 ul{
-	list-style: none;
+	list-style-type: none;
 	padding: 0;
 }
 
