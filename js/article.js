@@ -3,8 +3,9 @@
 	 * @param {string} text 标题文本内容
 	 * @param {number} level 标题级别1-6
 	 */
-function Title(text, level) {
+function Title(text, id, level) {
 	this.text = text;
+	this.id = id;
 	this.level = level;
 	this.children = [];
 }
@@ -12,6 +13,7 @@ function Title(text, level) {
 // 标题树单例
 var tree = {
 	text: '目录',
+	id: '#',
 	level: 0,
 	children: [],
 	insert: function (title) {
@@ -20,7 +22,7 @@ var tree = {
 		while (title.level - parent.level > 1) {
 			var children = parent.children;
 			if (children.length === 0) {
-				children.push(new Title(null, parent.level + 1));
+				children.push(new Title('(空)', '##', parent.level + 1));
 			}
 			parent = children[children.length - 1];
 		}
@@ -58,10 +60,7 @@ Vue.component('blog-catalog', {
 			return 'title' + this.treeNode.level;
 		},
 		href: function () {
-			var text = this.treeNode.text.replace(/\s/g, '-').replace(/[\.\/\(\)（）]/g, '').toLowerCase();
-			return this.treeNode.level > 0 ?
-				'#' + text :
-				'#';
+			return '#' + this.treeNode.id;
 		},
 		hasChildren: function () {
 			return !!this.treeNode.children && this.treeNode.children.length > 0;
@@ -115,9 +114,10 @@ new Vue({
 				var name = postChild.nodeName;
 				if (hReg.test(name)) {
 					var level = +name.charAt(1),
-						text = postChild.innerHTML;
+						text = postChild.innerHTML,
+						id = postChild.id;
 					if (level > this.maxLevel) this.maxLevel = level;
-					this.tree.insert(new Title(text, level));
+					this.tree.insert(new Title(text, id, level));
 				}
 				postChild = postChild.nextSibling;
 			}
