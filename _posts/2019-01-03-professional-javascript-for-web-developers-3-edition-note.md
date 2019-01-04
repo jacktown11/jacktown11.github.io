@@ -1,8 +1,8 @@
 ---
 layout: article
 title: 《JavaScript 高级程序设计》（第3版）笔记
-categories: [前端]
-tags: [草稿]
+categories: [草稿]
+tags: [js基础]
 ---
 
 # 第1章 JavaScript简介
@@ -36,4 +36,56 @@ JavaScript 的版本通常以 ECMAScript 的版本为准，只有 Mozilla 公司
   * `async` 让浏览器异步地加载和执行
   * 使用这两个属性时，代码的执行顺序通常是不确定的，因此一定要确认文件间的依赖不会因此破坏
 - `type` 属性默认是 `text/javascript` ，通常省略
+
+# 第3章 基本概念
+
+本章介绍了 javascript 中的语法、关键字和保留字、变量、数据类型、操作符、语句、函数等，下面是部分要点总结。
+
+## typeof 操作符
+
+`typeof <操作数>`，总是返回一个字符串。
+
+|操作数类型|返回字符串|
+|-|-|
+|Undefined |'undefined'  |
+|Boolean  |'boolean'|
+|Number |'number'|
+|String |'string'|
+|Null |'object'|
+|Obejct |'object'|
+|Function |'function'|
+
+## undefined 和 null
+
+- 如果一个变量声明时未初始化，其值为 undefined
+- 对包含 undefined 值的变量和未定义的变量，使用 typeof 操作符，结果都是 undefined
+- `null == undefined` 的结果是 true
+- undefined 表示缺少值（应该有值，但未定义，如未初始化的变量、未传入值的函数参数、无返回语句的函数返回值等），没必要显式的将一个变量赋值为 undefined
+- null 表示空对象（比如 Object 对象的原型就是 null），可以显式地用来表示空对象指针
+- [undefined与null的区别](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html)
+
+## 六个falsy值
+
+有六个值强制转换为 Boolean 类型时结果是 false: `false` 、 `0` 、 `NaN` 、 `''` 、 `undefined` 、 `null`。
+
+## 类型转换
+
+### 转为布尔值
+
+- `Boolean()`
+- `!` 或 `!!`
+
+### 转为数值
+
+- 通用转换方式： Number() 或一元加操作符 `+`，可以将任何类型转为数值
+  * 用于字符串时格式要求严格，如果确定字符串是严格的数字格式（可以有正负号和小数点，但是没有空格及其他非数字字符），这种方式比较简单
+- 字符串转换： parseInt() 和 parseFloat()，相对通用方式更智能
+  * parseInt()，字符串中可以有前导的空格，后面也可以有非数字字符；支持第二个可选参数转换的进制基数，如2、8、10、16等，建议始终使用，否则默认判断的进制可能不是想要的
+  * parseFloat()，只支持十进制
+
+### 转为字符串
+
+- `toString()` 方法，除了 null 和 undefined可用
+- `String()` 函数，通用，非 null 和 undefined 值实际会调用相应的 toString() 方法
+- 加法，`'' + 被转换者`，将一个值和空字符串相加，会自动调用 toString() 方法或 String()函数
 

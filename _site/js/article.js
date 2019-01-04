@@ -13,7 +13,7 @@ function Title(text, id, level) {
 // 标题树单例
 var tree = {
 	text: '目录',
-	id: '#',
+	id: '',
 	level: 0,
 	children: [],
 	insert: function (title) {
@@ -22,7 +22,7 @@ var tree = {
 		while (title.level - parent.level > 1) {
 			var children = parent.children;
 			if (children.length === 0) {
-				children.push(new Title('(空)', '##', parent.level + 1));
+				children.push(new Title('(空)', '#', parent.level + 1));
 			}
 			parent = children[children.length - 1];
 		}

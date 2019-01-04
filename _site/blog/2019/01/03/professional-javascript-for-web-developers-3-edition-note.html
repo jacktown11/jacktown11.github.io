@@ -93,6 +93,101 @@
   <li><code class="highlighter-rouge">type</code> 属性默认是 <code class="highlighter-rouge">text/javascript</code> ，通常省略</li>
 </ul>
 
+<h1 id="第3章-基本概念">第3章 基本概念</h1>
+
+<p>本章介绍了 javascript 中的语法、关键字和保留字、变量、数据类型、操作符、语句、函数等，下面是部分要点总结。</p>
+
+<h2 id="typeof-操作符">typeof 操作符</h2>
+
+<p><code class="highlighter-rouge">typeof &lt;操作数&gt;</code>，总是返回一个字符串。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>操作数类型</th>
+      <th>返回字符串</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Undefined</td>
+      <td>‘undefined’</td>
+    </tr>
+    <tr>
+      <td>Boolean</td>
+      <td>‘boolean’</td>
+    </tr>
+    <tr>
+      <td>Number</td>
+      <td>‘number’</td>
+    </tr>
+    <tr>
+      <td>String</td>
+      <td>‘string’</td>
+    </tr>
+    <tr>
+      <td>Null</td>
+      <td>‘object’</td>
+    </tr>
+    <tr>
+      <td>Obejct</td>
+      <td>‘object’</td>
+    </tr>
+    <tr>
+      <td>Function</td>
+      <td>‘function’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="undefined-和-null">undefined 和 null</h2>
+
+<ul>
+  <li>如果一个变量声明时未初始化，其值为 undefined</li>
+  <li>对包含 undefined 值的变量和未定义的变量，使用 typeof 操作符，结果都是 undefined</li>
+  <li><code class="highlighter-rouge">null == undefined</code> 的结果是 true</li>
+  <li>undefined 表示缺少值（应该有值，但未定义，如未初始化的变量、未传入值的函数参数、无返回语句的函数返回值等），没必要显式的将一个变量赋值为 undefined</li>
+  <li>null 表示空对象（比如 Object 对象的原型就是 null），可以显式地用来表示空对象指针</li>
+  <li><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html">undefined与null的区别</a></li>
+</ul>
+
+<h2 id="六个falsy值">六个falsy值</h2>
+
+<p>有六个值强制转换为 Boolean 类型时结果是 false: <code class="highlighter-rouge">false</code> 、 <code class="highlighter-rouge">0</code> 、 <code class="highlighter-rouge">NaN</code> 、 <code class="highlighter-rouge">''</code> 、 <code class="highlighter-rouge">undefined</code> 、 <code class="highlighter-rouge">null</code>。</p>
+
+<h2 id="类型转换">类型转换</h2>
+
+<h3 id="转为布尔值">转为布尔值</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">Boolean()</code></li>
+  <li><code class="highlighter-rouge">!</code> 或 <code class="highlighter-rouge">!!</code></li>
+</ul>
+
+<h3 id="转为数值">转为数值</h3>
+
+<ul>
+  <li>通用转换方式： Number() 或一元加操作符 <code class="highlighter-rouge">+</code>，可以将任何类型转为数值
+    <ul>
+      <li>用于字符串时格式要求严格，如果确定字符串是严格的数字格式（可以有正负号和小数点，但是没有空格及其他非数字字符），这种方式比较简单</li>
+    </ul>
+  </li>
+  <li>字符串转换： parseInt() 和 parseFloat()，相对通用方式更智能
+    <ul>
+      <li>parseInt()，字符串中可以有前导的空格，后面也可以有非数字字符；支持第二个可选参数转换的进制基数，如2、8、10、16等，建议始终使用，否则默认判断的进制可能不是想要的</li>
+      <li>parseFloat()，只支持十进制</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="转为字符串">转为字符串</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">toString()</code> 方法，除了 null 和 undefined可用</li>
+  <li><code class="highlighter-rouge">String()</code> 函数，通用，非 null 和 undefined 值实际会调用相应的 toString() 方法</li>
+  <li>加法，<code class="highlighter-rouge">'' + 被转换者</code>，将一个值和空字符串相加，会自动调用 toString() 方法或 String()函数</li>
+</ul>
+
 
 				</div>
 				<p>（本文完）</p>
