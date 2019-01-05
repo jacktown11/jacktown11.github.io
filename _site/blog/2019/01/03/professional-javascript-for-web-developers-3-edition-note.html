@@ -188,6 +188,32 @@
   <li>加法，<code class="highlighter-rouge">'' + 被转换者</code>，将一个值和空字符串相加，会自动调用 toString() 方法或 String()函数</li>
 </ul>
 
+<h3 id="逻辑与逻辑或">逻辑与、逻辑或</h3>
+
+<ul>
+  <li>逻辑与操作符<code class="highlighter-rouge">&amp;&amp;</code>规则：
+    <ul>
+      <li>第一个操作数如果是falsy的值，就返回第一个操作数</li>
+      <li>否则返回第二个操作数</li>
+    </ul>
+  </li>
+  <li>逻辑或操作符<code class="highlighter-rouge">||</code>规则：
+    <ul>
+      <li>第一个操作数如果是falsy的值，就返回第二个操作数</li>
+      <li>否则返回第一个操作数</li>
+    </ul>
+  </li>
+</ul>
+
+<p>以上规则表明，这两个操作符的返回结果不一定是布尔类型。</p>
+
+<h3>==、===</h3>
+
+<ul>
+  <li>相等操作符 <code class="highlighter-rouge">==</code> 会遵循一套比较复杂的规则进行类型转换以后再比较，比如 <code class="highlighter-rouge">undefined == null</code> 结果是 true</li>
+  <li>全等操作符 <code class="highlighter-rouge">===</code> 不会进行类型转换，也就是说只要类型不同就一定不会相等，推荐始终使用全等操作符</li>
+</ul>
+
 
 				</div>
 				<p>（本文完）</p>
@@ -196,7 +222,7 @@
 
 	</div>
 
-	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
 	<script src="/js/article.js"></script>
 </body>
 
