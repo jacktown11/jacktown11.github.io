@@ -214,6 +214,104 @@
   <li>全等操作符 <code class="highlighter-rouge">===</code> 不会进行类型转换，也就是说只要类型不同就一定不会相等，推荐始终使用全等操作符</li>
 </ul>
 
+<h1 id="第4章-变量作用域和内存问题">第4章 变量、作用域和内存问题</h1>
+
+<ul>
+  <li>javascript 中五种基本类型是 Null, Undefined, Boolean, Number, String，它们占用固定大小的空间，被保存在栈内存中</li>
+  <li>引用类型都继承 Object，它们保存在堆内存中</li>
+  <li>javascript 中函数传参始终是按值传递</li>
+  <li><strong>执行环境</strong>定义了变量和函数能够访问的其他数据及其自身的行为</li>
+  <li>每个执行环境中有一个<strong>变量对象</strong>包含当前环境可访问的变量与函数；函数的执行环境的变量对象就是它的活动对象</li>
+  <li>各执行环境的变量对象的嵌套构成了<strong>作用域链</strong>，其最前端是当前执行环境的变量对象，全局执行环境的变量对象则是最后一个对象</li>
+  <li>标识符按照作用域链进行查找，通常执行环境只有两种：全局和局部（函数），有两种情况会延长作用域链： with 语句和 try-catch 语句中的 catch 块</li>
+  <li>javascript 中有自动垃圾收集机制：标记清除与引用计数</li>
+  <li>标记清除是主流算法，引用计数在循环引用情况下会导致内存泄漏，如 IE9 之前的非原生 javascript 对象都是是采用引用计数算法来清除的</li>
+  <li>不使用的全局变量及时解引用，有助于消除循环引用、进行有效的垃圾回收</li>
+</ul>
+
+<h1 id="第5章-引用类型">第5章 引用类型</h1>
+
+<h2 id="数组">数组</h2>
+
+<h3 id="类型检测">类型检测</h3>
+
+<p>instanceof 操作符在非单一执行环境（如有框架）下可能有问题，Array.isArray() 方法需要较高版本浏览器（IE9+等），兼容低版本浏览器的通用方法：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">isArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">===</span> <span class="s1">'[object Array]'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="修改方法">修改方法</h3>
+
+<p>以下的这些’修改方法’都会直接在原数组上操作。</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span> <span class="c1">// arr: [1, 2] </span>
+<span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// arr: [0, 2] </span>
+<span class="nx">arr</span><span class="p">[</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// arr: [0, 2, 3] </span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// arr: [0, 2, 3, 1, 5](返回新数组长度) </span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span> <span class="c1">// arr: [0, 2, 3, 1](返回弹出的元素) </span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span> <span class="c1">// arr: [2, 3, 1](返回弹出的元素) </span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span> <span class="c1">// arr: [7, 2, 3, 1](返回新数组长度) </span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span> <span class="c1">// arr: [1, 3, 2, 7] </span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span> <span class="p">});</span> <span class="c1">// arr: [1, 2, 3, 7] </span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// arr: [1, 3, 4, 7]</span>
+</code></pre>
+</div>
+
+<h3 id="生产方法">生产方法</h3>
+
+<p>以下这些’生产方法’基本不会直接操作原数组，而是使用原数组作为材料，返回一个新数组或者原数组的相关信息。</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">'_'</span><span class="p">));</span> <span class="c1">// 1_2_3_4_3_5</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]));</span> <span class="c1">// [1, 2, 3, 4, 3, 5, 6, 7]</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// [2, 3, 4, 3, 5]</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// [2, 3, 4, 3]</span>
+
+<span class="c1">// 后面这些方法需要高版本浏览器（IE9+等）。</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">item</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">;</span> <span class="p">}));</span> <span class="c1">//[4, 5]</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">item</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="p">}));</span> <span class="c1">// [2, 4, 6, 8, 6, 10]</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">item</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">;</span> <span class="p">}));</span> <span class="c1">// false</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">item</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">;</span> <span class="p">}));</span> <span class="c1">// true</span>
+<span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">item</span><span class="p">;</span> <span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span> <span class="c1">// 18 </span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">prev</span> <span class="o">+</span> <span class="nx">cur</span><span class="p">;</span> <span class="p">},</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// 18</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">prev</span> <span class="o">+</span> <span class="nx">cur</span><span class="p">;</span> <span class="p">}));</span> <span class="c1">// 18</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// 4</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// 4</span>
+</code></pre>
+</div>
+
+<h2 id="date">Date</h2>
+
+<h3 id="日期创建">日期创建</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// 基于当前时间创建的日期</span>
+<span class="kd">var</span> <span class="nx">d1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+<span class="c1">// 指定相对于UTC1970-01-01 00:00:00过去的毫秒数来创建日期</span>
+<span class="kd">var</span> <span class="nx">d2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="c1">// 指定日期参数的方式来创建日期（月份以0开始，基于本地系统时区，年和月是必须的，后面的参数可选）</span>
+<span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h3 id="日期转毫秒数值">日期转毫秒数值</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">t1</span> <span class="o">=</span> <span class="nx">d1</span><span class="p">.</span><span class="nx">getTime</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">t2</span> <span class="o">=</span> <span class="o">+</span><span class="nx">d1</span><span class="p">;</span>
+<span class="c1">// 获取当期时间毫秒值，IE9+等</span>
+<span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="c1">// 日期的 valueOf 方法默认返回的是毫秒值而非字符串，故可以直接比较大小</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d1</span> <span class="o">&lt;</span> <span class="nx">d2</span><span class="p">);</span> <span class="c1">// false</span>
+</code></pre>
+</div>
+
+<h3 id="日期字符串的解析与生成">日期字符串的解析与生成</h3>
+
 
 				</div>
 				<p>（本文完）</p>

@@ -117,3 +117,87 @@ JavaScript 的版本通常以 ECMAScript 的版本为准，只有 Mozilla 公司
 - javascript 中有自动垃圾收集机制：标记清除与引用计数
 - 标记清除是主流算法，引用计数在循环引用情况下会导致内存泄漏，如 IE9 之前的非原生 javascript 对象都是是采用引用计数算法来清除的
 - 不使用的全局变量及时解引用，有助于消除循环引用、进行有效的垃圾回收
+
+# 第5章 引用类型
+
+## 数组
+
+### 类型检测
+
+instanceof 操作符在非单一执行环境（如有框架）下可能有问题，Array.isArray() 方法需要较高版本浏览器（IE9+等），兼容低版本浏览器的通用方法：
+
+```javascript
+function isArray(arr){
+  return Object.prototype.toString.call(value) === '[object Array]';
+}
+```
+
+### 修改方法
+
+以下的这些'修改方法'都会直接在原数组上操作。
+
+```javascript
+var arr = [1, 2]; // arr: [1, 2] 
+arr[0] = 0; // arr: [0, 2] 
+arr[arr.length] = 3; // arr: [0, 2, 3] 
+arr.push(1, 5); // arr: [0, 2, 3, 1, 5](返回新数组长度) 
+arr.pop(); // arr: [0, 2, 3, 1](返回弹出的元素) 
+arr.shift(); // arr: [2, 3, 1](返回弹出的元素) 
+arr.unshift(7); // arr: [7, 2, 3, 1](返回新数组长度) 
+arr.reverse(); // arr: [1, 3, 2, 7] 
+arr.sort(function (a, b) { return a - b; }); // arr: [1, 2, 3, 7] 
+arr.splice(1, 2, 3, 4); // arr: [1, 3, 4, 7]
+```
+
+### 生产方法
+
+以下这些'生产方法'基本不会直接操作原数组，而是使用原数组作为材料，返回一个新数组或者原数组的相关信息。
+
+```javascript
+function log(x) { console.log(x); };
+var arr = [1, 2, 3, 4, 3, 5];
+log(arr.join('_')); // 1_2_3_4_3_5
+log(arr.concat([6, 7])); // [1, 2, 3, 4, 3, 5, 6, 7]
+log(arr.slice(1)); // [2, 3, 4, 3, 5]
+log(arr.slice(1, -1)); // [2, 3, 4, 3]
+
+// 后面这些方法需要高版本浏览器（IE9+等）。
+log(arr.filter(function (item) { return item > 3; })); //[4, 5]
+log(arr.map(function (item) { return item * 2; })); // [2, 4, 6, 8, 6, 10]
+log(arr.every(function (item) { return item > 2; })); // false
+log(arr.some(function (item) { return item > 2; })); // true
+var sum = 0;
+arr.forEach(function (item) { sum += item; });
+console.log(sum); // 18 
+log(arr.reduce(function (prev, cur) { return prev + cur; }, 0)); // 18
+log(arr.reduceRight(function (prev, cur) { return prev + cur; })); // 18
+log(arr.indexOf(3, 3)); // 4
+log(arr.lastIndexOf(3)); // 4
+```
+
+## Date
+
+### 日期创建
+
+```javascript
+// 基于当前时间创建的日期
+var d1 = new Date();
+// 指定相对于UTC1970-01-01 00:00:00过去的毫秒数来创建日期
+var d2 = new Date(0);
+// 指定日期参数的方式来创建日期（月份以0开始，基于本地系统时区，年和月是必须的，后面的参数可选）
+var d3 = new Date(2019, 0, 7, 11, 20, 35);
+```
+
+### 日期转毫秒数值
+
+```javascript
+var t1 = d1.getTime();
+var t2 = +d1;
+// 获取当期时间毫秒值，IE9+等
+var now = Date.now();
+// 日期的 valueOf 方法默认返回的是毫秒值而非字符串，故可以直接比较大小
+console.log(d1 < d2); // false
+```
+
+### 日期字符串的解析与生成
+
