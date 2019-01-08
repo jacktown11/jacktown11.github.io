@@ -55,38 +55,6 @@ tags: [万有笔记]
 
 # 前端
 
-## vscode
-
-### .vue的格式化
-
-安装`vetur`插件
-
-```json
-{
-  "editor.formatOnSave": true,
-    "vetur.format.defaultFormatter.html": "js-beautify-html",
-    "vetur.format.defaultFormatterOptions": {
-      "js-beautify-html": {
-        "wrap_attributes": "force-expand-multiline"
-      },
-      "prettyhtml": {
-        "printWidth": 100,
-        "singleQuote": false,
-        "wrapAttributes": false,
-        "sortAttributes": false
-      },
-      "prettier": {
-        "singleQuote": true
-      }
-    }
-}
-```
-
-参考：
-
-- [VScode格式化ESlint-方法（最全最好用方法！）](https://www.jianshu.com/p/23a5d6194a4b)
-- [聊一聊 vscode 的代码格式化](https://blog.csdn.net/userkang/article/details/84305689)
-
 ## vue
 
 ### 大小写的推荐写法
@@ -120,6 +88,56 @@ tags: [万有笔记]
   * 事件名：`kebab-case`
 - 单文件组件文件名：`kebab-case`
 
+## react
+
+### react developer tools chrome插件安装
+
+- 谷歌浏览器中安装 ctx 格式的插件可能出现‘无法从该网站添加应用，拓展程序或脚本’的报错，此时可以将该文件后缀名修改为 rar 并解压，然后加载解压后的文件夹。
+- 安装好以后，发现页面上提示说当前页面不是 react 应用，后来发现是因为该插件是在页面加载的过程中，创建一个 `__REACT_DEVTOOLS_GLOBAL_HOOK__` 全局变量来和页面交互的，重新加载就好了。
+
+## typescript
+
+### 在 vscode 中自动编译 typescript 文件
+
+- `npm install -g typescript`，全局安装 typescript
+- `tsc --init`， 初始化 `tsconfig.json` 文件，可以参考[官网](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)根据需要配置
+- 在 vscode 中使用快捷键 `Ctrl + Shift + B` 运行任务（或任务栏选择 Ternimal > Run build task），然后选择 `tsc:watch - tsconfig.json`
+  * 不依赖于 vscode 更通用的方法是直接在命令行使用命令 `tsc -w`，可在官网查看[更多编译参数](http://www.typescriptlang.org/docs/handbook/compiler-options.html)
+- 参考：[vscode 下的 typescript 自动编译方法](http://www.cnblogs.com/yanliangnh/p/8366655.html)
+
+
+## vscode
+
+### .vue的格式化
+
+安装`vetur`插件
+
+```json
+{
+  "editor.formatOnSave": true,
+    "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "vetur.format.defaultFormatterOptions": {
+      "js-beautify-html": {
+        "wrap_attributes": "force-expand-multiline"
+      },
+      "prettyhtml": {
+        "printWidth": 100,
+        "singleQuote": false,
+        "wrapAttributes": false,
+        "sortAttributes": false
+      },
+      "prettier": {
+        "singleQuote": true
+      }
+    }
+}
+```
+
+参考：
+
+- [VScode格式化ESlint-方法（最全最好用方法！）](https://www.jianshu.com/p/23a5d6194a4b)
+- [聊一聊 vscode 的代码格式化](https://blog.csdn.net/userkang/article/details/84305689)
+
 ## electron
 
 - [打造你的第一个 Electron 应用](https://electronjs.org/docs/tutorial/first-app)
@@ -131,16 +149,49 @@ tags: [万有笔记]
 
 ## npm
 
+### peer dependency
+
 - 我根据`babel`的官方文档执行`npm install @babel/preset-env --save-dev`命令时,出现了`peerDependencies WARNING @babel/preset-env@* requires a peer of @babel/core@^7.0.0-0 but none was installed`报错。
     * 首先解释下`peerDependencies`，这是会发生在如下的情况：A依赖于B和C1，B依赖于C2的一种插件，C1和C2是同一种包的不同版本，在我的项目中，C1直接可见，C2并不直接可见，而B却是依赖于它，因此B在代码中可能会有类似`require(C)`之类的代码，两者版本不同，那么B就可能与实际引入的C1的代码不兼容，为此，B可能需要明确指定它的同级依赖（`peerDependencies`）。
     * 解决办法：手动安装
     * 参考1：[Peer Dependencies （同版本依赖）](https://blog.csdn.net/zhangchao19890805/article/details/78988364)
     * 参考1：[探讨npm依赖管理之peerDependencies](https://blog.csdn.net/whc996/article/details/82865474?utm_source=blogxgwz0)
 
+### 创建自己的 npm 包
+
+- 新建一个项目文件夹，进入该文件夹，执行 `npm init -y`，将会在该目录下生成一个默认的 package.json 文件，这个文件中你可以指定该 npm 包的名称和版本，同时使用可以使用语义化的版本号给出你依赖的包及其版本信息；另外还有其他一些信息，你可以手动修改。更多参见[官网：package.json 文件创建](https://docs.npmjs.com/creating-a-package-json-file)
+  ```json
+  {
+    "name": "package-name", // 必填，不能有空格
+    "version": "1.0.0", // 必填，x.x.x格式
+    "description": "", 
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ashleygwilliams/my_package.git" // 远程仓库
+    },
+    "keywords": [],
+    "author": "Your Name <email@example.com> (http://example.com)", // 邮箱和个人主页都是可选的
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/ashleygwilliams/my_package/issues" // bug提交页
+    },
+    "homepage": "https://github.com/ashleygwilliams/my_package" // 项目主页
+  }
+  ```
+- 创建 `index.js` 文件，用模块化的方式书写你的代码，如 `module.exports = 123;`
+- 命令行运行 `npm login`，登录您的 npm 帐号，如果没有请到[官网](https://www.npmjs.com/)注册
+- 登录以后，运行 `npm publish --access=public`，发布你的 npm 包；以后包需要更新的时候，你需要修改 `package.json` 中的版本号为新版本，否则会报错
+- 到 `https://www.npmjs.com/package/包名` 查看您的 npm 包，您还可以另外创建项目 `npm i 包名` 来安装您的包，并测试
+- 您可以在24小时内强制删除，`npm --force unpublish 包名`
+- 参考： [创建发布自己的npm包](https://www.cnblogs.com/marymei0107/p/6339710.html)
+
 ### tricks and debug
 
 # 读书与生活
-
 
 # temp
 
