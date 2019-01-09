@@ -117,40 +117,6 @@
 
 <h1 id="前端">前端</h1>
 
-<h2 id="vscode">vscode</h2>
-
-<h3 id="vue的格式化">.vue的格式化</h3>
-
-<p>安装<code class="highlighter-rouge">vetur</code>插件</p>
-
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"editor.formatOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"vetur.format.defaultFormatter.html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js-beautify-html"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"vetur.format.defaultFormatterOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"js-beautify-html"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"wrap_attributes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"force-expand-multiline"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"prettyhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"printWidth"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"wrapAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"sortAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"prettier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-<p>参考：</p>
-
-<ul>
-  <li><a href="https://www.jianshu.com/p/23a5d6194a4b">VScode格式化ESlint-方法（最全最好用方法！）</a></li>
-  <li><a href="https://blog.csdn.net/userkang/article/details/84305689">聊一聊 vscode 的代码格式化</a></li>
-</ul>
-
 <h2 id="vue">vue</h2>
 
 <h3 id="大小写的推荐写法">大小写的推荐写法</h3>
@@ -196,6 +162,64 @@
   <li>单文件组件文件名：<code class="highlighter-rouge">kebab-case</code></li>
 </ul>
 
+<h2 id="react">react</h2>
+
+<h3 id="react-developer-tools-chrome插件安装">react developer tools chrome插件安装</h3>
+
+<ul>
+  <li>谷歌浏览器中安装 ctx 格式的插件可能出现‘无法从该网站添加应用，拓展程序或脚本’的报错，此时可以将该文件后缀名修改为 rar 并解压，然后加载解压后的文件夹。</li>
+  <li>安装好以后，发现页面上提示说当前页面不是 react 应用，后来发现是因为该插件是在页面加载的过程中，创建一个 <code class="highlighter-rouge">__REACT_DEVTOOLS_GLOBAL_HOOK__</code> 全局变量来和页面交互的，重新加载就好了。</li>
+</ul>
+
+<h2 id="typescript">typescript</h2>
+
+<h3 id="在-vscode-中自动编译-typescript-文件">在 vscode 中自动编译 typescript 文件</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">npm install -g typescript</code>，全局安装 typescript</li>
+  <li><code class="highlighter-rouge">tsc --init</code>， 初始化 <code class="highlighter-rouge">tsconfig.json</code> 文件，可以参考<a href="http://www.typescriptlang.org/docs/handbook/tsconfig-json.html">官网</a>根据需要配置</li>
+  <li>在 vscode 中使用快捷键 <code class="highlighter-rouge">Ctrl + Shift + B</code> 运行任务（或任务栏选择 Ternimal &gt; Run build task），然后选择 <code class="highlighter-rouge">tsc:watch - tsconfig.json</code>
+    <ul>
+      <li>不依赖于 vscode 更通用的方法是直接在命令行使用命令 <code class="highlighter-rouge">tsc -w</code>，可在官网查看<a href="http://www.typescriptlang.org/docs/handbook/compiler-options.html">更多编译参数</a></li>
+    </ul>
+  </li>
+  <li>参考：<a href="http://www.cnblogs.com/yanliangnh/p/8366655.html">vscode 下的 typescript 自动编译方法</a></li>
+</ul>
+
+<h2 id="vscode">vscode</h2>
+
+<h3 id="vue的格式化">.vue的格式化</h3>
+
+<p>安装<code class="highlighter-rouge">vetur</code>插件</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"editor.formatOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vetur.format.defaultFormatter.html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js-beautify-html"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vetur.format.defaultFormatterOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"js-beautify-html"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"wrap_attributes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"force-expand-multiline"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"prettyhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"printWidth"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"wrapAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sortAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"prettier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>参考：</p>
+
+<ul>
+  <li><a href="https://www.jianshu.com/p/23a5d6194a4b">VScode格式化ESlint-方法（最全最好用方法！）</a></li>
+  <li><a href="https://blog.csdn.net/userkang/article/details/84305689">聊一聊 vscode 的代码格式化</a></li>
+</ul>
+
 <h2 id="electron">electron</h2>
 
 <ul>
@@ -209,6 +233,8 @@
 
 <h2 id="npm">npm</h2>
 
+<h3 id="peer-dependency">peer dependency</h3>
+
 <ul>
   <li>我根据<code class="highlighter-rouge">babel</code>的官方文档执行<code class="highlighter-rouge">npm install @babel/preset-env --save-dev</code>命令时,出现了<code class="highlighter-rouge">peerDependencies WARNING @babel/preset-env@* requires a peer of @babel/core@^7.0.0-0 but none was installed</code>报错。
     <ul>
@@ -218,6 +244,41 @@
       <li>参考1：<a href="https://blog.csdn.net/whc996/article/details/82865474?utm_source=blogxgwz0">探讨npm依赖管理之peerDependencies</a></li>
     </ul>
   </li>
+</ul>
+
+<h3 id="创建自己的-npm-包">创建自己的 npm 包</h3>
+
+<ul>
+  <li>新建一个项目文件夹，进入该文件夹，执行 <code class="highlighter-rouge">npm init -y</code>，将会在该目录下生成一个默认的 package.json 文件，这个文件中你可以指定该 npm 包的名称和版本，同时使用可以使用语义化的版本号给出你依赖的包及其版本信息；另外还有其他一些信息，你可以手动修改。更多参见<a href="https://docs.npmjs.com/creating-a-package-json-file">官网：package.json 文件创建</a>
+    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"package-name"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">必填，不能有空格</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">必填，x.x.x格式</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"index.js"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"repository"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/ashleygwilliams/my_package.git"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">远程仓库</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Name &lt;email@example.com&gt; (http://example.com)"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">邮箱和个人主页都是可选的</span><span class="w">
+  </span><span class="nt">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISC"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bugs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/ashleygwilliams/my_package/issues"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">bug提交页</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"homepage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/ashleygwilliams/my_package"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">项目主页</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+  </li>
+  <li>创建 <code class="highlighter-rouge">index.js</code> 文件，用模块化的方式书写你的代码，如 <code class="highlighter-rouge">module.exports = 123;</code></li>
+  <li>命令行运行 <code class="highlighter-rouge">npm login</code>，登录您的 npm 帐号，如果没有请到<a href="https://www.npmjs.com/">官网</a>注册</li>
+  <li>登录以后，运行 <code class="highlighter-rouge">npm publish --access=public</code>，发布你的 npm 包；以后包需要更新的时候，你需要修改 <code class="highlighter-rouge">package.json</code> 中的版本号为新版本，否则会报错</li>
+  <li>到 <code class="highlighter-rouge">https://www.npmjs.com/package/包名</code> 查看您的 npm 包，您还可以另外创建项目 <code class="highlighter-rouge">npm i 包名</code> 来安装您的包，并测试</li>
+  <li>您可以在24小时内强制删除，<code class="highlighter-rouge">npm --force unpublish 包名</code></li>
+  <li>参考： <a href="https://www.cnblogs.com/marymei0107/p/6339710.html">创建发布自己的npm包</a></li>
 </ul>
 
 <h3 id="tricks-and-debug">tricks and debug</h3>

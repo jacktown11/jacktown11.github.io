@@ -172,7 +172,7 @@
       <li>用于字符串时格式要求严格，如果确定字符串是严格的数字格式（可以有正负号和小数点，但是没有空格及其他非数字字符），这种方式比较简单</li>
     </ul>
   </li>
-  <li>字符串转换： parseInt() 和 parseFloat()，相对通用方式更智能
+  <li>字符串转为数值： parseInt() 和 parseFloat()，相对通用方式更智能
     <ul>
       <li>parseInt()，字符串中可以有前导的空格，后面也可以有非数字字符；支持第二个可选参数转换的进制基数，如2、8、10、16等，建议始终使用，否则默认判断的进制可能不是想要的</li>
       <li>parseFloat()，只支持十进制</li>
@@ -183,12 +183,20 @@
 <h3 id="转为字符串">转为字符串</h3>
 
 <ul>
-  <li><code class="highlighter-rouge">toString()</code> 方法，除了 null 和 undefined可用</li>
+  <li><code class="highlighter-rouge">toString()</code> 方法，非通用（非 null 和 undefined 值都可用）</li>
   <li><code class="highlighter-rouge">String()</code> 函数，通用，非 null 和 undefined 值实际会调用相应的 toString() 方法</li>
-  <li>加法，<code class="highlighter-rouge">'' + 被转换者</code>，将一个值和空字符串相加，会自动调用 toString() 方法或 String()函数</li>
+  <li><code class="highlighter-rouge">'' + 被转换者</code>，通用，将一个值和空字符串相加，会自动调用 toString() 方法或 String()函数</li>
+  <li>数字转字符串
+    <ul>
+      <li><code class="highlighter-rouge">toString([radix])</code>，可以指定目标进制，参数默认值10</li>
+      <li><code class="highlighter-rouge">toFixed([digits])</code>，指定小数位数（以0填充或舍入），参数默认值是0</li>
+      <li><code class="highlighter-rouge">toExponential([fractionDigits])</code>，转为以科学表示法表示的字符串，可指定小数位数</li>
+      <li><code class="highlighter-rouge">toPresion([precision])</code>，指定有效数字格式，自动推断是否使用科学表示法</li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="逻辑与逻辑或">逻辑与、逻辑或</h3>
+<h2 id="逻辑与逻辑或">逻辑与、逻辑或</h2>
 
 <ul>
   <li>逻辑与操作符<code class="highlighter-rouge">&amp;&amp;</code>规则：
@@ -207,7 +215,7 @@
 
 <p>以上规则表明，这两个操作符的返回结果不一定是布尔类型。</p>
 
-<h3>==、===</h3>
+<h2>==、===</h2>
 
 <ul>
   <li>相等操作符 <code class="highlighter-rouge">==</code> 会遵循一套比较复杂的规则进行类型转换以后再比较，比如 <code class="highlighter-rouge">undefined == null</code> 结果是 true</li>
@@ -310,7 +318,553 @@
 </code></pre>
 </div>
 
+<h3 id="获取日期特定部分值">获取日期特定部分值</h3>
+
+<p>以下方法可以获取年、月（0起始）、日、时、分、秒、毫秒值，还可调用相应的 set 方法设置日期特定部分。</p>
+
+<ul>
+  <li>getFullYear()</li>
+  <li>getMonth()</li>
+  <li>getDate()</li>
+  <li>getHours()</li>
+  <li>getMinutes()</li>
+  <li>getSeconds()</li>
+  <li>getMilliSeconds()</li>
+</ul>
+
 <h3 id="日期字符串的解析与生成">日期字符串的解析与生成</h3>
+
+<p>Date 类型自带的 toString() 在不同浏览器中显示不一致，而且也不容易灵活的满足实际开发需求，为此笔者写了个 npm 包<a href="https://www.npmjs.com/package/@jacktown/simple-date-format">@jacktown/simple-date-format</a>可以实现日期字符串和日期对象的简单转换。</p>
+
+<h2 id="正则表达式">正则表达式</h2>
+
+<h3 id="创建">创建</h3>
+
+<p>创建正则表达式有两种方式：字面量方式和构造函数方式。</p>
+
+<h4 id="正则表达式字面量">正则表达式字面量</h4>
+
+<p>如 <code class="highlighter-rouge">/[bc]at/i</code></p>
+
+<h4 id="使用-regexp-构造函数">使用 RegExp 构造函数</h4>
+
+<ul>
+  <li>RegExp 构造函数
+    <ul>
+      <li>参数：两个字符串，分别为匹配模式和可选的标志字符串</li>
+      <li>返回值：一个RegExp实例对象</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="注意事项">注意事项</h4>
+
+<p>由于匹配模式是以字符串的形式传入的，因此在某些情况下需要双重转义 。比如：所有元字符（如<code class="highlighter-rouge">[</code>字符）、已经转义过的字符（如 <code class="highlighter-rouge">\n</code> 字符）。特别地，字符 <code class="highlighter-rouge">\</code> 在普通字符串中需要转义为 <code class="highlighter-rouge">\\</code>，那么在匹配模式参数字符串中就要写作 <code class="highlighter-rouge">\\\\</code> 。下表是一些例子。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>字面量模式</th>
+      <th>等价的匹配模式参数字符串</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">/\[bc\]/</code></td>
+      <td><code class="highlighter-rouge">'\\[bc\\]at'</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/\.at/</code></td>
+      <td><code class="highlighter-rouge">'\\.at'</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/name\/age/</code></td>
+      <td><code class="highlighter-rouge">'name\\/age'</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/\d.\d{1,2}/</code></td>
+      <td><code class="highlighter-rouge">'\\d.\\d\d{1,2}'</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/\w\\hello\\123/</code></td>
+      <td><code class="highlighter-rouge">'\\w\\\\hello\\\\123'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="正则表达式模式">正则表达式模式</h3>
+
+<h4 id="元字符">元字符</h4>
+
+<p><code class="highlighter-rouge">( [ { \ ^ $ | ) ? * + . ] }</code>，如果要匹配这些字符需要转义。</p>
+
+<h4 id="预定义的特殊字符常见">预定义的特殊字符（常见）</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td>字符</td>
+      <td>含义</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\t</code></td>
+      <td>制表符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\n</code></td>
+      <td>换行符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\r</code></td>
+      <td>回车符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\b</code></td>
+      <td>回退字符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\v</code></td>
+      <td>垂直制表符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\0</code></td>
+      <td>空字符</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="字符类">字符类</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型</th>
+      <th>示例</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>简单类</td>
+      <td><code class="highlighter-rouge">[abc]</code></td>
+      <td>匹配中括号中的任意字符</td>
+    </tr>
+    <tr>
+      <td>负向类</td>
+      <td><code class="highlighter-rouge">[^abc]</code></td>
+      <td>匹配中括号中所含之外的所有字符</td>
+    </tr>
+    <tr>
+      <td>范围类</td>
+      <td><code class="highlighter-rouge">[a-z]</code> <code class="highlighter-rouge">[A-Z]</code> <code class="highlighter-rouge">[0-4]</code></td>
+      <td>首末两个字符间（含两端）的所有字符</td>
+    </tr>
+    <tr>
+      <td>组合类</td>
+      <td><code class="highlighter-rouge">[3-5a-g\n]</code></td>
+      <td>各字符类的并</td>
+    </tr>
+    <tr>
+      <td>预定义类</td>
+      <td>见下一个表</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>字符类</td>
+      <td>等价写法</td>
+      <td>含义</td>
+    </tr>
+    <tr>
+      <td>.</td>
+      <td><code class="highlighter-rouge">[^\n\r]</code></td>
+      <td>换行回车以外字符</td>
+    </tr>
+    <tr>
+      <td>\d</td>
+      <td><code class="highlighter-rouge">[0-9]</code></td>
+      <td>数字字符</td>
+    </tr>
+    <tr>
+      <td>\D</td>
+      <td><code class="highlighter-rouge">[^0-9]</code></td>
+      <td>非数字字符</td>
+    </tr>
+    <tr>
+      <td>\s</td>
+      <td><code class="highlighter-rouge">[\t\n\x0B\f\r]</code></td>
+      <td>空白字符</td>
+    </tr>
+    <tr>
+      <td>\S</td>
+      <td><code class="highlighter-rouge">[^\t\n\x0B\f\r]</code></td>
+      <td>非空白字符</td>
+    </tr>
+    <tr>
+      <td>\w</td>
+      <td><code class="highlighter-rouge">[a-zA-Z_0-9]</code></td>
+      <td>单词字符（字母数字连字符）</td>
+    </tr>
+    <tr>
+      <td>\W</td>
+      <td><code class="highlighter-rouge">[^a-zA-Z_0-9]</code></td>
+      <td>非单词字符</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="量词">量词</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>代码</th>
+      <th>类型</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>？</td>
+      <td>软性量词</td>
+      <td>0，1</td>
+    </tr>
+    <tr>
+      <td>*</td>
+      <td>软性量词</td>
+      <td>0，1，2，3，…</td>
+    </tr>
+    <tr>
+      <td>+</td>
+      <td>软性量词</td>
+      <td>1，2，3，…</td>
+    </tr>
+    <tr>
+      <td>{n}</td>
+      <td>硬性量词</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>{n,m}</td>
+      <td>软性量词</td>
+      <td>n,n+1,…,m</td>
+    </tr>
+    <tr>
+      <td>{n,}</td>
+      <td>软性量词</td>
+      <td>n,n+1,…</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="分组">分组</h4>
+
+<p>用 <code class="highlighter-rouge">()</code> 将一些字符串模式放在一起作为一组。</p>
+
+<h4 id="反向引用">反向引用</h4>
+
+<p><code class="highlighter-rouge">\1 \2 …</code> 分别表示第1个、第2个…分组。</p>
+
+<h4 id="候选">候选</h4>
+
+<p>在分组中插入管道符号 <code class="highlighter-rouge">|</code> ，表示多个候选项。</p>
+
+<h4 id="非捕获性分组">非捕获性分组</h4>
+
+<p><code class="highlighter-rouge">(?: )</code>，由于匹配非捕获性分组，其不能创建反向引用</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>正则</th>
+      <th>名称</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>(?=exp)</td>
+      <td>先行断言(lookahead)</td>
+      <td>匹配exp前面的位置</td>
+    </tr>
+    <tr>
+      <td>(?!exp)</td>
+      <td>先行否定断言(negative lookahead)</td>
+      <td>匹配不在exp前面的位置</td>
+    </tr>
+    <tr>
+      <td>(?&lt;=exp)</td>
+      <td>后行断言(lookbehind)</td>
+      <td>匹配exp前面的位置(es6提案)</td>
+    </tr>
+    <tr>
+      <td>(?&lt;!exp)</td>
+      <td>后行否定断言(negative lookbehind)</td>
+      <td>匹配不在exp前面的位置（es6提案）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="边界">边界</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>正则</th>
+      <th>名称</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>^</td>
+      <td>开头</td>
+      <td>紧跟在左中括号后含义不同</td>
+    </tr>
+    <tr>
+      <td>$</td>
+      <td>结尾</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="正则表达式标志flags">正则表达式标志（flags）</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>标识</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>g</td>
+      <td>global，全局模式，模式应用于所有字符串，并不会在发现第一个匹配项时停止</td>
+    </tr>
+    <tr>
+      <td>i</td>
+      <td>case-insensitive，不区分大小写模式</td>
+    </tr>
+    <tr>
+      <td>m</td>
+      <td>multiline，多行模式，到达一行文本末尾时还会继续查找下一行</td>
+    </tr>
+    <tr>
+      <td>u</td>
+      <td>es6新增，Unicode模式，用于支持识别Unicode码点超过U+FFFF的四字节字符</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>es6新增，粘连模式</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="regexp-实例属性">RegExp 实例属性</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>global</td>
+      <td>布尔值，是否设置了g标志</td>
+    </tr>
+    <tr>
+      <td>ignoreCase</td>
+      <td>布尔值，是否设置了i标志</td>
+    </tr>
+    <tr>
+      <td>multiline</td>
+      <td>布尔值，是否设置了m标志</td>
+    </tr>
+    <tr>
+      <td>source</td>
+      <td>正则表达式的字符串表示，按照字面量形式而非传入构造函数的字符串模式返回</td>
+    </tr>
+    <tr>
+      <td>lastIndex</td>
+      <td>整数，下一次匹配是起始位置，从0算起</td>
+    </tr>
+    <tr>
+      <td>flags</td>
+      <td>正则表达式的标志符，es6</td>
+    </tr>
+    <tr>
+      <td>sticky</td>
+      <td>布尔值，是否设置了y标志，es6</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="regexp-实例方法">RegExp 实例方法</h3>
+
+<h4 id="exec">exec()</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td>参数</td>
+      <td>应用模式的字符串</td>
+    </tr>
+    <tr>
+      <td>返回值</td>
+      <td>无匹配项：返回null;<br />有匹配性：返回一个Array实例，该实例额外含有index（匹配项位置）和input（参数字符串）属性</td>
+    </tr>
+    <tr>
+      <td>功能详述</td>
+      <td>1. 其返回值数组第一项为与整个模式匹配的字符串，其他项依次是各个捕获组匹配的字符串；<br />2. 如果正则表达式含有g标志，该表达式每次调用一次该方法，其lastIndex会自动变化，从而可以对字符串依次向后应用模式，否则每次返回结果都一样即第一个匹配项信息</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="test">test()</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td>参数</td>
+      <td>应用模式的字符串</td>
+    </tr>
+    <tr>
+      <td>返回值</td>
+      <td>如果参数能与模式匹配，则返回true,否则返回false</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="regexp-构造函数">RegExp 构造函数</h3>
+
+<p>RegExp 构造函数除了可以用于生成正则表达式，函数本身还有一些属性（可以通过两种属性名来访问），其值基于作用域内的所有正则表达式，并只和最近一次正则表达式操作相关。其兼容性不够好，特别是<code class="highlighter-rouge">Opera</code>和<code class="highlighter-rouge">IE</code>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>长属性名</th>
+      <th>短属性名</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">input</code></td>
+      <td><code class="highlighter-rouge">$_</code></td>
+      <td>最近一次要匹配的字符串</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">lastMatch</code></td>
+      <td><code class="highlighter-rouge">$&amp;</code></td>
+      <td>最近一次的匹配组</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">lastParen</code></td>
+      <td><code class="highlighter-rouge">$+</code></td>
+      <td>最近一次匹配的捕获组</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">multiline</code></td>
+      <td><code class="highlighter-rouge">$*</code></td>
+      <td>布尔值，是否所有的表达式都采用多行模式</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">leftContext</code></td>
+      <td><code class="highlighter-rouge">$\</code></td>
+      <td><code class="highlighter-rouge">input</code>字符串中<code class="highlighter-rouge">lastMatch</code>之前的文本</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rightContext</code></td>
+      <td><code class="highlighter-rouge">$’</code></td>
+      <td><code class="highlighter-rouge">input</code>字符串中<code class="highlighter-rouge">lastMatch</code>之后的文本</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="正则表达式的性能">正则表达式的性能</h3>
+
+<ul>
+  <li>回溯是其基本工作原理，也是性能问题主要源头；</li>
+  <li>避免回溯失控方法：让相邻字元互斥、避免嵌套量词对同一字符串的相同部分多次匹配、重复利用预查原子组去除不必要回溯；</li>
+  <li>更多优化方法：
+    <ul>
+      <li>提高匹配失败速度；</li>
+      <li>以简单、必要的字元开头；</li>
+      <li>使用量词模式，使其与后面的字元互斥；</li>
+      <li>减小分支数量、缩小分支范围；</li>
+      <li>使用捕获组；</li>
+      <li>让捕获组只捕获需要的文本，较少后处理；</li>
+      <li>暴露必须的字元；</li>
+      <li>使用合适的量词；</li>
+      <li>把正则表达式赋给变量，避免重复编译；</li>
+      <li>将复杂正则表达式拆分为多个简单的正则表达式；</li>
+    </ul>
+  </li>
+  <li>充分利用字符串自有的一些方法，其速度都较快。</li>
+</ul>
+
+<h2 id="function-类型">Function 类型</h2>
+
+<h3 id="创建函数三种方式">创建函数三种方式</h3>
+
+<ul>
+  <li>函数声明：<code class="highlighter-rouge">function sum(a, b){ return a + b; }</code></li>
+  <li>函数表达式：<code class="highlighter-rouge">var sum = function (a, b){ return a + b; }</code></li>
+  <li>使用 Function 构造函数：<code class="highlighter-rouge">var sum = new Function('a', 'b', 'return a + b;');</code></li>
+</ul>
+
+<p>其中只有函数声明的方式会被提升（function declaration hoisting），即解析器会率先读取函数声明，将其放到源码树的顶部，这样在真正执行任何代码之前就可以访问函数了。</p>
+
+<p>使用构造函数的方式不推荐，因为会有二次解析，性能差。</p>
+
+<h3 id="函数内部属性">函数内部属性</h3>
+
+<ul>
+  <li>arguments，一个类数组对象，保存着实际传入的所有参数
+    <ul>
+      <li>arguments.callee，对拥有这个 arguments 对象的函数的引用</li>
+    </ul>
+  </li>
+  <li>this，函数执行时的环境对象，web 中全局环境下默认是 window</li>
+</ul>
+
+<h3 id="实例属性和方法">实例属性和方法</h3>
+
+<ul>
+  <li>length，希望接受到的命名参数的个数</li>
+  <li>caller，调用本函数的外层函数</li>
+  <li>prototype，函数的原型对象，借由它可访问 toString() 、 valueOf() 等方法</li>
+  <li>call()，指定函数内的 this，并以逐个列出的方式传入参数，调用函数，非继承方法</li>
+  <li>apply()，指定函数内的 this，并以（类）数组的方式传入参数，调用函数，非继承方法</li>
+  <li>bind()，es5方法（IE9+等支持），传入一个对象，返回将 this 值绑定为该对象后的函数</li>
+</ul>
+
+<h2 id="基本包装类型">基本包装类型</h2>
+
+<p>布尔、数字、字符串有三个对应的引用类型（基本包装类型）：Boolean, Number, String ，这些包装类型上提供了一些方法；在基本类型上可以直接调用这些方法，这时后台会自动完成如下的处理：</p>
+
+<ul>
+  <li>创建相应的基本包装类型的实例</li>
+  <li>在这个实例上调用指定的方法</li>
+  <li>销毁这个实例</li>
+</ul>
+
+<p>基本包装类型实例都是引用类型，使用 typeof 操作符会返回 <code class="highlighter-rouge">'object'</code> ，转为布尔类型值都是 true。</p>
+
+<h3 id="booelean-类型">Booelean 类型</h3>
+<h3 id="number-类型">Number 类型</h3>
+
+<p>提供了一些转换为字符串的方法，如 valueOf(), toString(), toFixed() 等，更多参见本笔记第3章类型转换。</p>
+
+<h3 id="string-类型">String 类型</h3>
 
 
 				</div>
