@@ -436,4 +436,153 @@ RegExp 构造函数除了可以用于生成正则表达式，函数本身还有�
 
 ### String 类型
 
+#### 字符方法
+
+- `charAt(i)`，获取位置i的字符
+- `[i]`，获取位置i的字符（ ES5 方法），IE8+ 支持
+- `charCodeAt(i)`，获取位置i的字符码值
+
+#### 连接与裁剪
+
+- `concat(moreStr)`，连接更多字符串
+- `+`，连接多个字符串
+- `trim()`，删除字符串前后的空格，ES5 方法，IE9+等支持
+- `slice(start [,end])`，获取位置在`[start, end)`区间中的子字符串，负值会被加上字符串长度
+- `substring(start [,end])`，获取位置在`[start, end)`区间中的子字符串，负值被转换成0
+- `substr(start [,count])`，获取位置在`[start, start+count)`区间中的子字符串，第一个负值会被加上字符串长度，第二个负值被转换成0
+
+#### 位置查找
+
+- `indexOf(targetStr [, startPos])`，查找目标字符串从指定位置（包含，默认是0）往后，第一次出现的位置，没找到返回-1
+- `lastIndexOf(targetStr [, startPos])`，查找目标字符串从指定位置（包含，默认是length-1）往前，最后一次出现的位置，没找到返回-1
+- `search(pattern)`，查找通过字符串或正则表达式给定的模式第一次出现的位置，没找到返回-1
+
+#### 模式匹配
+
+- `match(reg)`
+  * 参数：正则表达式
+  * 返回结果和正则表达式的 [`exec()`](#exec) 方法是一致
+- `replace(pattern, replacement)`，替换操作
+  * 参数1：字符串或正则表达式
+    + **默认只替换第一个**，需要全部替换的话，参数1需要使用带有 `g` 修饰符的正则表达式
+  * 参数2：用于替换的字符串或返回字符串的函数
+    + 参数2是字符串的话，可以引用正则表达式的匹配结果，如 `$n` 引用第n个捕获组
+    + 参数2是函数的话，可以接收匹配字符串、位置、原字符串、捕获组等以实现更细致的控制
+  * 返回替换后的结果字符串
+- `split(pattern [, maxLength])`
+  * 接收一个字符串或正则表达式表示的模式
+  * 返回一个数组，数组的元素是原字符串根据传入模式分割后的各个子字符串，可控制结果数组最大长度
+
+#### 其他方法
+
+- `localCompare()`，比较两个字符串顺序，如果排在参数字符串之前返回负数，之后返回整数，相等返回0，实现和语言相关
+- `fromCharCode(code [, code]...)`，**静态方法**，根据码值序列返回字符串
+
+## 单体内置对象
+
+内置对象是指由 ECMAScript 提供的，不依赖于宿主环境的对象，不必显式的实例化，如 Object, Array 等；
+ECMAScript 中有两个单体内置对象： Global 和 Math 。
+
+### Global 对象
+
+ECMAScript 中的终极对象，全局的变量、函数都是它的属性和方法，浏览器环境下，它作为 window 对象的一部分来实现。在不同环境下通用地获取 Global 对象可以使用下面的方法：
+
+```javascript
+var global = (function(){return this;})();
+```
+
+#### URI 编码解码方法
+
+- `encodeURI()`，编码整个 RUI（Uniform Resource Identifiers，统一资源标识符 ），不会对冒号、斜杠这些本身属于 URI 的特殊字符进行编码
+- `encodeURIComponent()`，编码一切非标准字符（如空格），实际开发中常用，多用于对查询字符串进行编码
+- `decodeURI()`，解码用 encodeURI 编码的字符串
+- `decodeURIComponent()`，解码用 encodeURIComponent 编码的字符串
+
+#### eval() 方法
+
+将字符串解析成 ECMAScript 代码并执行，被执行的代码具有其所在环境相同的作用域链，因此在 eval 之内和之外可以交叉定义和使用变量与函数。（严格模式下则访问不到 eval 中创建的变量与函数）。
+
+#### Global 对象的属性
+
+undefined、NaN、Infinity、各个原生的构造函数等都是 Global 对象的属性
+
+### Math 对象
+
+该对象提供了一些方便数学计算的属性和方法，对  ECMAScript 的不同的实现可能采用不同的算法从而有不同的精度。
+
+- 利用属性提供了一些数学常数如： `Math.PI` 、 `Math.E` 。
+- 利用方法提供了一些数学函数如： `Math.abs()` 、 `Math.sin()`
+
+#### max() 和 min() 方法
+
+接受任意多个参数，求取最大或最小值。下面给出了几种求一个数值数组最大值的几种方法：
+
+```javascript
+let arr = [3, 4, 5, 1, 2, 8, 6];
+
+let max1 = arr.reduce(function (prev, cur) {
+  return prev < cur ? cur : prev;
+});
+let max2 = Math.max.apply(Math, arr);
+let max3 = Math.max(...arr);
+
+console.log(max1, max2, max3); // 8 8 8
+```
+
+#### 舍入方法
+
+Math.ceil(), Math.round(), Math.floor() ，规则参见下表：
+
+|方法|-0.8|-0.5|-0.2|0.2|0.5|0.8|
+| -| -| -| -| -| -| -|
+|ceil |0  |0  |0  |1  |1  |1  |
+|round|-1 |0  |0  |0  |1  |1  |
+|floor|-1 |-1 |-1 |0  |0  |0  |
+
+#### random() 方法
+
+获取一个 `(0,1)` 区间内的随机数。
+
+# 第6章 面向对象的程序设计
+
+## 理解对象
+
+对象的属性包括两种类型：数据属性和访问器属性。属性( property )具有描述其特征的特性( attribute )，这些特性都是内部值，不能直接访问它们，规范中使用双中括号来表示。
+
+### 数据属性
+
+数据属性有如下四个特性：
+
+- [[Configurable]]，是否可删除属性、修改特性或修改属性类型
+- [[Enumerable]]，是否可 for-in 枚举
+- [[Writable]]，是否可写入
+- [[Value]]，实际读写的数据值
+
+使用字面量方法定义的属性都是数据属性，这时上述四个特性默认值分别是 true, true, true, undefined ，也可通过 ES5 的 `Object.defineProperty()` 来间接设置数据属性。第三个参数是描述符对象，如果不指定前三个特性中的某些特性，会默认是 false 。
+
+```javascript
+let person = {};
+Object.defineProperty(person, 'name', {
+  configurable: true,
+  writable: true,
+  enumerable: true,
+  value: 'jack'
+});
+```
+
+### 访问器属性
+
+访问器属性有如下四个特性：
+
+- [[Configurable]]，是否可删除属性、修改特性或修改属性类型
+- [[Enumerable]]，是否可 for-in 枚举
+- [[Get]]，getter 函数，默认 undefined
+- [[Set]]，setter 函数，默认 undefined
+
+访问器属性必须通过 `Object.defineProperty()` 方法来定义
+
+### 定义多个属性和获取属性描述符对象
+
+- Object.defineProperties(obj, propterties)
+- Object.getOwnPropertyDescriptor(obj, key)
 
