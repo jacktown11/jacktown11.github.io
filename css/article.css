@@ -307,6 +307,9 @@ pre {
     overflow: auto;
     border-radius: 10px;
 }
+div.highlight{
+    background: transparent;
+}
 pre.highlight{
     background: #282C34;
 }
