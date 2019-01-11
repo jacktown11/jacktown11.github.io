@@ -586,3 +586,204 @@ Object.defineProperty(person, 'name', {
 - Object.defineProperties(obj, propterties)
 - Object.getOwnPropertyDescriptor(obj, key)
 
+## 创建对象
+
+### 工厂模式
+
+使用一个对象创建函数作为工厂，每次传入需要的参数来调用这个函数，返回出新的对象，如下所示；问题：
+
+- 生产的对象只是 Object 的实例，没有特定的类型（从而用 instanceof 来检测）
+- 各个生产出来的对象上的方法都是独立，没有复用
+
+```javascript
+function createPerson(name, age, job) {
+  let o = new Object();
+  o.name = name;
+  o.age = age;
+  o.job = job;
+  o.sayName = function () {
+    console.log(this.name);
+  };
+  return o;
+}
+```
+
+### 构造函数模式
+
+将一个构造函数（本质也就是个函数）通过 `new` 的方式来创建对象，这样创建出来的函数有了确定的类型（可以用 instanceof 判断），问题：
+
+- 方法没有复用（当然可以通过将方法声明在全局环境中来解决，但是这严重破坏封装性）
+
+```javascript
+function Person(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = function () {
+    console.log(this.name);
+  }
+}
+```
+
+### 原型模式
+
+```javascript
+function Person() { }
+Person.prototype = {
+  name: 'jack',
+  age: 25,
+  job: 'developer',
+  sayName: function () {
+    console.log(this.name);
+  }
+};
+Object.defineProperty(Person.prototype, 'constructor', {
+  enumerable: false,
+  value: Person
+});
+```
+
+上面是用 `defineProperty()` 方法是为了让 `constructor` 属性不可枚举(符合标准)；单独的原型模式中，所有的实例对象的属性都是默认相同而共享的，这对非函数属性通常都不是我们需要：
+
+- 对于基本类型的共享属性，如果在实例中修改属性值时，会覆盖原型上的属性，而不会影响其他实例
+- 但是对于引用类型的共享属性，如果在实例中对这个引用类型值的内容进行了修改，所有的实例都会受到影响
+
+#### (构造)函数、原型对象、实例对象
+
+- 每个函数都有一个 prototype 属性，指向原型对象；原型对象中 constructor 属性反过来指向这个函数
+- 由构造函数创建的实例对象有一个内部属性 [[Prototype]] 指向原型对象，原型对象的获取与检测：
+  * 使用实例对象的 `__proto__` 属性（非标准）可以获取原型对象
+  * 使用 `Object.getPrototypeOf()` 传入实例对象，返回原型对象（ ES5 方法，IE9+ 等支持）
+  * 在原型对象 A 上调用 `isPrototypeOf()` 方法，传入实例对象 B ，可检测 A 是否是 B 的原型对象
+
+#### 实例对象与原型对象上的属性
+
+- 在实例对象上访问属性，会沿着原型链逐步回溯；在实例对象上重写与原型对象同名的属性，会使得利用该实例访问该属性时，原型对象上的同名属性被覆盖掉；但这并不会重写原型对象上的属性，从而不会影响其他实例对象
+- 单独使用 `in` 操作符，会对对象上可访问的**所有属性**（原型链上也可以）返回 true ，反之返回 false
+- 在实例对象上使用 `for in` 可以遍历**可枚举的、所有属性**
+- 在实例对象上调用 `hasOwnProperty()` 方法会对**实例属性**返回 true ，反之返回 false
+- 使用 `Object.getOwnPropertyNames()` 方法会返回**实例属性**的字符串数组
+- 使用 `Object.keys()` 方法获得**可枚举的、实例属性**的字符串数组
+
+### 组合使用构造函数模式和原型模式
+
+```javascript
+function Person(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+}
+Person.prototype = {
+  sayName: function () {
+    console.log(this.name);
+  }
+};
+Object.defineProperty(Person.prototype, 'constructor', {
+  enumerable: false,
+  value: Person
+});
+```
+定义引用类型的默认模式，实现了方法的复用和属性的参数化设置。
+
+### 动态原型模式
+
+```javascript
+function Person(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  if (typeof Person.prototype.sayName !== 'function') {
+    Object.assign(Person.prototype, {
+      sayName: function () {
+        console.log(this.name);
+      }
+    });
+    Object.defineProperty(Person.prototype, 'constructor', {
+      enumerable: false,
+      value: Person
+    });
+  }
+}
+```
+
+动态原型模式将在原型对象上添加方法的代码封装到了构造函数内部，这些代码只在第一次创建实例对象的时候真正执行（注意：由于原型对象的动态性，不能使用对象字面量直接赋值的方式修改原型，否则第一个创建出的实例会有问题）。
+
+### 寄生构造函数模式
+
+```javascript
+function Person(name, age, job) {
+  let o = new Object();
+  o.name = name;
+  o.age = age;
+  o.job = job;
+  o.sayName = function () {
+    console.log(this.name);
+  };
+  return o;
+}
+let p1 = new Person('jack', 25, 'developer');
+```
+
+这种模式其实和工厂模式差不多，不过借用了构造函数的 `new` 语法，创建出来的对象其实和构造函数没有关系，尽量不用。
+
+### 稳妥构造函数模式
+
+```javascript
+function Person(name, age, job) {
+  let o = new Object();
+  o.sayName = function () {
+    console.log(name);
+  };
+  return o;
+}
+let p1 = new Person('jack', 25, 'developer');
+```
+
+和借用构造函数模式类似，不过不使用 `new` 操作符，方法中不使用 `this` 对象，实例对象没法直接访问传入的参数，必须借助方法，主要用于某些安全环境下；创建出的对象一样和构造函数没有关系。
+
+## 继承
+
+### 原型链
+
+```javascript
+function SuperType(superName) {
+  this.superName = superName;
+  if (typeof SuperType.prototype.getSuperName !== 'function') {
+    SuperType.prototype.getSuperName = function () {
+      return this.superName;
+    };
+    Object.defineProperty(SuperType.prototype, 'constructor', {
+      enumerable: false,
+      value: SuperType
+    });
+  }
+}
+
+SubType.prototype = new SuperType('super');
+
+function SubType(subName) {
+  this.subName = subName;
+  if (typeof SubType.prototype.getSubName !== 'function') {
+    SubType.prototype.getSubName = function () {
+      return this.subName;
+    };
+    Object.defineProperty(SubType.prototype, 'constructor', {
+      enumerable: false,
+      value: SubType
+    });
+  }
+}
+
+let sub1 = new SubType('sub1');
+let sub2 = new SubType('sub2');
+console.log(sub1.getSuperName()); // super
+console.log(sub2.getSuperName()); // super
+console.log(sub1.getSubName()); // sub1
+console.log(sub2.getSubName()); // sub2
+```
+
+如上所示，我们手动的将 SubType 的原型对象设置为 SuperType 类型的实例对象，从而修改了原型链实现了继承。
+
+其中的问题：没法在不影响其他实例对象的情况下向父类型传参，因为原型对象是同一父类的实例对象，而父类的属性就在这上面从而被共享，也因为如此，如果被共享的属性是引用类型值，在一个实例中对值进行内部修改（如数组的 push 方法）会影响所有实例。
+
+

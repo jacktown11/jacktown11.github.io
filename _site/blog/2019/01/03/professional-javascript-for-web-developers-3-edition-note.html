@@ -1088,6 +1088,219 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <li>Object.getOwnPropertyDescriptor(obj, key)</li>
 </ul>
 
+<h2 id="创建对象">创建对象</h2>
+
+<h3 id="工厂模式">工厂模式</h3>
+
+<p>使用一个对象创建函数作为工厂，每次传入需要的参数来调用这个函数，返回出新的对象，如下所示；问题：</p>
+
+<ul>
+  <li>生产的对象只是 Object 的实例，没有特定的类型（从而用 instanceof 来检测）</li>
+  <li>各个生产出来的对象上的方法都是独立，没有复用</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createPerson</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span><span class="p">;</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="构造函数模式">构造函数模式</h3>
+
+<p>将一个构造函数（本质也就是个函数）通过 <code class="highlighter-rouge">new</code> 的方式来创建对象，这样创建出来的函数有了确定的类型（可以用 instanceof 判断），问题：</p>
+
+<ul>
+  <li>方法没有复用（当然可以通过将方法声明在全局环境中来解决，但是这严重破坏封装性）</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="原型模式">原型模式</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'jack'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+  <span class="na">job</span><span class="p">:</span> <span class="s1">'developer'</span><span class="p">,</span>
+  <span class="na">sayName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s1">'constructor'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">value</span><span class="p">:</span> <span class="nx">Person</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>上面是用 <code class="highlighter-rouge">defineProperty()</code> 方法是为了让 <code class="highlighter-rouge">constructor</code> 属性不可枚举(符合标准)；单独的原型模式中，所有的实例对象的属性都是默认相同而共享的，这对非函数属性通常都不是我们需要：</p>
+
+<ul>
+  <li>对于基本类型的共享属性，如果在实例中修改属性值时，会覆盖原型上的属性，而不会影响其他实例</li>
+  <li>但是对于引用类型的共享属性，如果在实例中对这个引用类型值的内容进行了修改，所有的实例都会受到影响</li>
+</ul>
+
+<h4 id="构造函数原型对象实例对象">(构造)函数、原型对象、实例对象</h4>
+
+<ul>
+  <li>每个函数都有一个 prototype 属性，指向原型对象；原型对象中 constructor 属性反过来指向这个函数</li>
+  <li>由构造函数创建的实例对象有一个内部属性 [[Prototype]] 指向原型对象，原型对象的获取与检测：
+    <ul>
+      <li>使用实例对象的 <code class="highlighter-rouge">__proto__</code> 属性（非标准）可以获取原型对象</li>
+      <li>使用 <code class="highlighter-rouge">Object.getPrototypeOf()</code> 传入实例对象，返回原型对象（ ES5 方法，IE9+ 等支持）</li>
+      <li>在原型对象 A 上调用 <code class="highlighter-rouge">isPrototypeOf()</code> 方法，传入实例对象 B ，可检测 A 是否是 B 的原型对象</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="实例对象与原型对象上的属性">实例对象与原型对象上的属性</h4>
+
+<ul>
+  <li>在实例对象上访问属性，会沿着原型链逐步回溯；在实例对象上重写与原型对象同名的属性，会使得利用该实例访问该属性时，原型对象上的同名属性被覆盖掉；但这并不会重写原型对象上的属性，从而不会影响其他实例对象</li>
+  <li>单独使用 <code class="highlighter-rouge">in</code> 操作符，会对对象上可访问的<strong>所有属性</strong>（原型链上也可以）返回 true ，反之返回 false</li>
+  <li>在实例对象上使用 <code class="highlighter-rouge">for in</code> 可以遍历<strong>可枚举的、所有属性</strong></li>
+  <li>在实例对象上调用 <code class="highlighter-rouge">hasOwnProperty()</code> 方法会对<strong>实例属性</strong>返回 true ，反之返回 false</li>
+  <li>使用 <code class="highlighter-rouge">Object.getOwnPropertyNames()</code> 方法会返回<strong>实例属性</strong>的字符串数组</li>
+  <li>使用 <code class="highlighter-rouge">Object.keys()</code> 方法获得<strong>可枚举的、实例属性</strong>的字符串数组</li>
+</ul>
+
+<h3 id="组合使用构造函数模式和原型模式">组合使用构造函数模式和原型模式</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">sayName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s1">'constructor'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">value</span><span class="p">:</span> <span class="nx">Person</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+<p>定义引用类型的默认模式，实现了方法的复用和属性的参数化设置。</p>
+
+<h3 id="动态原型模式">动态原型模式</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">sayName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s1">'constructor'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">value</span><span class="p">:</span> <span class="nx">Person</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>动态原型模式将在原型对象上添加方法的代码封装到了构造函数内部，这些代码只在第一次创建实例对象的时候真正执行（注意：由于原型对象的动态性，不能使用对象字面量直接赋值的方式修改原型，否则第一个创建出的实例会有问题）。</p>
+
+<h3 id="寄生构造函数模式">寄生构造函数模式</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span><span class="p">;</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'jack'</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">'developer'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>这种模式其实和工厂模式差不多，不过借用了构造函数的 <code class="highlighter-rouge">new</code> 语法，创建出来的对象其实和构造函数没有关系，尽量不用。</p>
+
+<h3 id="稳妥构造函数模式">稳妥构造函数模式</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+  <span class="nx">o</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'jack'</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">'developer'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>和借用构造函数模式类似，不过不使用 <code class="highlighter-rouge">new</code> 操作符，方法中不使用 <code class="highlighter-rouge">this</code> 对象，实例对象没法直接访问传入的参数，必须借助方法，主要用于某些安全环境下；创建出的对象一样和构造函数没有关系。</p>
+
+<h2 id="继承">继承</h2>
+
+<h3 id="原型链">原型链</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">superName</span> <span class="o">=</span> <span class="nx">superName</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">superName</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s1">'constructor'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">value</span><span class="p">:</span> <span class="nx">SuperType</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperType</span><span class="p">(</span><span class="s1">'super'</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">SubType</span><span class="p">(</span><span class="nx">subName</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">subName</span> <span class="o">=</span> <span class="nx">subName</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">subName</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s1">'constructor'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">value</span><span class="p">:</span> <span class="nx">SubType</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">sub1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">(</span><span class="s1">'sub1'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">sub2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">(</span><span class="s1">'sub2'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub1</span><span class="p">.</span><span class="nx">getSuperName</span><span class="p">());</span> <span class="c1">// super</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub2</span><span class="p">.</span><span class="nx">getSuperName</span><span class="p">());</span> <span class="c1">// super</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub1</span><span class="p">.</span><span class="nx">getSubName</span><span class="p">());</span> <span class="c1">// sub1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub2</span><span class="p">.</span><span class="nx">getSubName</span><span class="p">());</span> <span class="c1">// sub2</span>
+</code></pre>
+</div>
+
+<p>如上所示，我们手动的将 SubType 的原型对象设置为 SuperType 类型的实例对象，从而修改了原型链实现了继承。</p>
+
+<p>其中的问题：没法在不影响其他实例对象的情况下向父类型传参，因为原型对象是同一父类的实例对象，而父类的属性就在这上面从而被共享，也因为如此，如果被共享的属性是引用类型值，在一个实例中对值进行内部修改（如数组的 push 方法）会影响所有实例。</p>
+
 
 				</div>
 				<p>（本文完）</p>
