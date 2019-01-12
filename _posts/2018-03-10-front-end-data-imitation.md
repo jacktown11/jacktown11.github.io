@@ -3,6 +3,7 @@ layout: article
 title: 前端数据模拟
 categories: [前端]
 tags: [杂]
+issueNum: 21
 ---
 
 # 前言

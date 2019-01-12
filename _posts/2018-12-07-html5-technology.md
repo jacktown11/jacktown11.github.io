@@ -3,6 +3,7 @@ layout: article
 title: HTML5 新特性
 categories: [前端]
 tags: [html5]
+issueNum: 41
 ---
 
 按：在[我的练习](https://jacktown11.github.io/practice/)中可以找到本文中的`html5`新特性相关demo。

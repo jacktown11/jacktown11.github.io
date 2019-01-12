@@ -3,6 +3,7 @@ layout: article
 title: javase 集合框架
 categories: [java]
 tags: [javase]
+issueNum: 28
 ---
 
 # 集合框架概述

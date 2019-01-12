@@ -3,6 +3,7 @@ layout: article
 title: javase 基本语法
 categories: [java]
 tags: [javase]
+issueNum: 24
 ---
 
 # HelloWorld

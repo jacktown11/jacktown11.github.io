@@ -3,6 +3,7 @@ layout: article
 title: 纪念我的母亲
 categories: [读书与生活]
 tags: [随笔]
+issueNum: 23
 ---
 
 自2016年3月24日母亲去世已是两周年，若不把现存的那些回忆记下来，我怕自己会忘了。

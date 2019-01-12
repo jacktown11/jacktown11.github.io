@@ -3,6 +3,7 @@ layout: article
 title: typescript学习笔记
 categories: [前端]
 tags: [typescript]
+issueNum: 43
 ---
 
 按：本笔记基于慕课网课程[TypeScript入门](https://www.imooc.com/learn/763)。

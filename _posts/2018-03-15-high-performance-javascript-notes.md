@@ -3,6 +3,7 @@ layout: article
 title: 《高性能javascript》笔记
 categories: [js]
 tags: [js基础]
+issueNum: 22
 ---
 
 # 第一章 加载和执行

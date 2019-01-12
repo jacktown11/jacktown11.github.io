@@ -3,6 +3,7 @@ layout: article
 title: javase 面向对象
 categories: [java]
 tags: [javase]
+issueNum: 25
 ---
 
 ## 类与对象

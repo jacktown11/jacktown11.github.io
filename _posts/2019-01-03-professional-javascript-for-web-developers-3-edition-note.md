@@ -3,6 +3,7 @@ layout: article
 title: 《JavaScript 高级程序设计》（第3版）笔记
 categories: [草稿]
 tags: [js基础]
+issueNum: 44
 ---
 
 # 第1章 JavaScript简介

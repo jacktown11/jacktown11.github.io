@@ -3,6 +3,7 @@ layout: article
 title: javase 常用API
 categories: [java]
 tags: [javase]
+issueNum: 27
 ---
 
 # Object

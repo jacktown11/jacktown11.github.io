@@ -3,6 +3,7 @@ layout: article
 title: 全栈课程05&06 Node.js入门
 categories: [前端]
 tags: [全栈课程]
+issueNum: 36
 ---
 
 # 概述

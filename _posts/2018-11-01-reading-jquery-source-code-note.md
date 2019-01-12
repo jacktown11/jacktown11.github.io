@@ -3,6 +3,7 @@ layout: article
 title: jQuery源码解读笔记
 categories: [js]
 tags: [jquery]
+issueNum: 37
 ---
 
 # 前言

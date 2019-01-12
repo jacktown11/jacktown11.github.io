@@ -3,6 +3,7 @@ layout: article
 title: javase 多线程
 categories: [java]
 tags: [javase]
+issueNum: 38
 ---
 
 # 线程基础

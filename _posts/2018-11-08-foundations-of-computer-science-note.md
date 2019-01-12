@@ -3,6 +3,7 @@ layout: article
 title: 《计算机科学导论》笔记
 categories: [草稿]
 tags: [计算机科学]
+issueNum: 39
 ---
 
 # 第一章  绪论

@@ -3,6 +3,7 @@ layout: article
 title: 全栈课程04&05 通信与数据交互
 categories: [前端]
 tags: [全栈课程]
+issueNum: 35
 ---
 
 # 数据交互

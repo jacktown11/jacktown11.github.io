@@ -3,6 +3,7 @@ layout: article
 title: 正则表达式学习笔记(转)
 categories: [js]
 tags: [js基础]
+issueNum: 17
 ---
 
 # 前言

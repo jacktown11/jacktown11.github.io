@@ -3,6 +3,7 @@ layout: article
 title: 《javascript高级程序设计》对象创建与继承 总结笔记
 categories: [js]
 tags: [js基础]
+issueNum: 9
 ---
 # 1. 创建对象
 # 2. 继承

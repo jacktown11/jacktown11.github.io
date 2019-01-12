@@ -3,6 +3,7 @@ layout: article
 title: 全栈课程03 ES6(2)
 categories: [前端]
 tags: [全栈课程]
+issueNum: 34
 ---
 
 # promise

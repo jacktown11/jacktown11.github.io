@@ -3,6 +3,7 @@ layout: article
 title: 数据结构与算法分析C语言描述 总结笔记 第六章
 categories: [编程相关]
 tags: [数据结构与算法]
+issueNum: 4
 ---
 # 第六章 优先队列(堆)
 ## 1. 基本概念

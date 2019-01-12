@@ -3,6 +3,7 @@ layout: article
 title: 全栈课程07 数据交互
 categories: [前端]
 tags: [全栈课程]
+issueNum: 40
 ---
 
 # 搭建Web服务器

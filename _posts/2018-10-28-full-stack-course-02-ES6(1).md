@@ -3,6 +3,7 @@ layout: article
 title: 全栈课程02 ES6(1)
 categories: [前端]
 tags: [全栈课程]
+issueNum: 33
 ---
 
 # ES6简述

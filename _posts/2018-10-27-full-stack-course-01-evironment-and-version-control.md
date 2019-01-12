@@ -3,6 +3,7 @@ layout: article
 title: 全栈课程01 开发环境与版本控制简介
 categories: [前端]
 tags: [全栈课程]
+issueNum: 32
 ---
 
 # 怎么学好东西——克服懒

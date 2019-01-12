@@ -3,6 +3,7 @@ layout: article
 title: 《mysql必知必会》笔记
 categories: [后端]
 tags: [mysql]
+issueNum: 31
 ---
 
 **按**：为便于查看，将章节分为了多个部分，对原书章节名字也做了修改简化。

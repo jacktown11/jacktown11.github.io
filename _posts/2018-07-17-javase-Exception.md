@@ -3,6 +3,7 @@ layout: article
 title: javase Exception
 categories: [java]
 tags: [javase]
+issueNum: 29
 ---
 
 # 异常
