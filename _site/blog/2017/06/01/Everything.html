@@ -45,13 +45,7 @@
 				<h1 id="post-title">万有笔记</h1>
 				<p class="meta">2017-06-01</p>
 				<div class="post" ref="post">
-					<h1 id="问题与待学习">问题与待学习</h1>
-
-<ul>
-  <li>js对象深浅拷贝</li>
-</ul>
-
-<h1 id="工作">工作</h1>
+					<h1 id="工作">工作</h1>
 
 <h1 id="编程相关">编程相关</h1>
 
@@ -220,6 +214,18 @@
   <li><a href="https://blog.csdn.net/userkang/article/details/84305689">聊一聊 vscode 的代码格式化</a></li>
 </ul>
 
+<h3 id="让-js-文件关联-jsx-语法模式">让 .js 文件关联 jsx 语法模式</h3>
+
+<p>打开 vscode 的配置（<code class="highlighter-rouge">ctrl + ,</code>），添加如下的配置；可以将其作为工作空间配置，从而不影响其他项目。</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"files.associations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"*.js"</span><span class="p">:</span><span class="w"> </span><span class="s2">"javascriptreact"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
 <h2 id="electron">electron</h2>
 
 <ul>
@@ -281,9 +287,74 @@
   <li>参考： <a href="https://www.cnblogs.com/marymei0107/p/6339710.html">创建发布自己的npm包</a></li>
 </ul>
 
-<h3 id="tricks-and-debug">tricks and debug</h3>
+<h2 id="工具">工具</h2>
+
+<h3 id="charles">charles</h3>
+
+<p>这是一个网页调试代理工具，官网：<a href="https://www.charlesproxy.com">https://www.charlesproxy.com</a>。使用该工具可以在一个本地特定端口与路径的数据请求映射到本地文件，具体方法：</p>
+
+<ul>
+  <li>软件菜单栏选择：Tools &gt; Map Local，添加新的映射</li>
+  <li>填写相关信息：
+    <ul>
+      <li>Protocol: 协议</li>
+      <li>Host: 主机名，本地主机也就是 <code class="highlighter-rouge">127.0.0.0.1</code></li>
+      <li>Port: 端口号，比如我们前端项目启动的服务在3000端口，那么我们也就可以将其设置为3000端口，也不存在跨域问题</li>
+      <li>Path: 请求的路径，如 <code class="highlighter-rouge">/api/dataList</code></li>
+      <li>Local Path: 本地文件路径，可以写一个 json 文件，选择其路径</li>
+    </ul>
+  </li>
+  <li>点击 ok 确认，就可以访问本地的模拟数据了（可以先直接在浏览器输入 url 测试一下）</li>
+</ul>
 
 <h1 id="读书与生活">读书与生活</h1>
+
+<h2 id="吃货">吃货</h2>
+
+<h3 id="菜单">菜单</h3>
+
+<ul>
+  <li>土豆烧肉</li>
+  <li>胡萝卜烧肉</li>
+  <li>无筋豆烧肉</li>
+  <li>烧鸭子</li>
+  <li>酸菜鱼
+    <ul>
+      <li>锅中加油（多一点），加热</li>
+      <li>加入花椒、豆瓣、酸菜、生姜末、干辣椒面炒一两分钟，这些料都要稍微多一些鱼汤才有味</li>
+      <li>炒香以后加水（水量以之后刚好可以淹没鱼为准），加入大蒜块，尝下汤的味道咸味是否够，不够味的话再加些盐，否则鱼没味道</li>
+      <li>水烧开以后，中小火多熬一会汤，汤泛白为佳</li>
+      <li>加入鱼片（鱼头和比较厚大的鱼块可以先煮一会，再加入薄的鱼片）</li>
+      <li>起锅前加闫旭和葱花</li>
+    </ul>
+  </li>
+  <li>青椒炒肉</li>
+  <li>芹菜炒肉</li>
+  <li>甜椒炒肉</li>
+  <li>蒜苗回锅肉</li>
+  <li>麻婆豆腐</li>
+  <li>蚂蚁上树
+    <ul>
+      <li>用冷水将粉丝提前浸泡半小时。（大致有些软就可以了）。</li>
+      <li>锅内冷油，放入姜蓉，蒜蓉爆香，放入肉沫煸炒至熟。</li>
+      <li>放入豆瓣酱2/3大匙，料酒1大匙，炒至出红油。</li>
+      <li>倒入高汤2/3杯，生抽1/2大匙，中火煮开。</li>
+      <li>放入泡软粉丝后，转小火煮至水即干未干的状态。</li>
+      <li>最后临出锅前撒上些香菜葱花就行了。</li>
+    </ul>
+  </li>
+  <li>西红柿炒蛋</li>
+  <li>炒莲花白</li>
+  <li>炒莴笋</li>
+  <li>炒莴笋叶</li>
+  <li>炒土豆丝</li>
+  <li>炒茄子</li>
+  <li>酸辣白菜</li>
+  <li></li>
+  <li>莴笋叶汤</li>
+  <li>青菜汤</li>
+  <li>白菜汤</li>
+</ul>
 
 <h1 id="temp">temp</h1>
 
