@@ -787,4 +787,82 @@ console.log(sub2.getSubName()); // sub2
 
 其中的问题：没法在不影响其他实例对象的情况下向父类型传参，因为原型对象是同一父类的实例对象，而父类的属性就在这上面从而被共享，也因为如此，如果被共享的属性是引用类型值，在一个实例中对值进行内部修改（如数组的 push 方法）会影响所有实例。
 
+### 借用构造函数
 
+```javascript
+function SuperType(name) {
+  this.name = name;
+}
+function SubType(name, job) {
+  SuperType.call(this, name);
+  this.job = job;
+}
+```
+
+通过借用构造函数，可以让超类型的实例属性成为子类型的实例属性，而非子类型的原型属性。不单独用。
+
+### 组合继承
+
+将原型链和借用构造函数的方式结合起来，也叫伪经典继承。
+
+```javascript
+function SuperType(superName) {
+  this.superName = superName;
+  if (typeof SuperType.prototype.getSuperName !== 'function') {
+    SuperType.prototype.getSuperName = function () {
+      return this.superName;
+    };
+    Object.defineProperty(SuperType.prototype, 'constructor', {
+      enumerable: false,
+      value: SuperType
+    });
+  }
+}
+
+SubType.prototype = new SuperType('super');
+
+function SubType(subName, superName) {
+  SuperType.call(this, superName);
+  this.subName = subName;
+  if (typeof SubType.prototype.getSubName !== 'function') {
+    SubType.prototype.getSubName = function () {
+      return this.subName;
+    };
+    Object.defineProperty(SubType.prototype, 'constructor', {
+      enumerable: false,
+      value: SubType
+    });
+  }
+}
+```
+
+### 原型式继承
+
+这种方式的目的在于直接通过一个已有的对象，创建一个类似的对象，而不必定义一种新的类型。
+
+```javascript
+function object(o){
+  function F(){}
+  F.prototype = o;
+  return new F();
+}
+```
+
+ES5 定义 Object.create() 方法可以实现原型式继承：
+
+- 参数1：用作新对象原型的对象
+- 参数2（可选）：新对象上的更多的属性，以对象的形式传入，所有属性作为键，对应的描述符对象作为值
+
+### 寄生式继承
+
+这种方式与寄生构造函数和工厂模式很类似，首先利用基于原始对象创建一个新的对象（比如使用原型式继承），然后对该对象做功能增强，最后返回这个新的对象。
+
+```javascript
+function createAnother(original){
+  let o = object(original);
+  o.anotherMethod = function(){
+    //...
+  }
+  return o;
+}
+```
