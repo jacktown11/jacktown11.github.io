@@ -684,6 +684,7 @@ Object.defineProperty(Person.prototype, 'constructor', {
   value: Person
 });
 ```
+
 定义引用类型的默认模式，实现了方法的复用和属性的参数化设置。
 
 ### 动态原型模式
@@ -698,10 +699,6 @@ function Person(name, age, job) {
       sayName: function () {
         console.log(this.name);
       }
-    });
-    Object.defineProperty(Person.prototype, 'constructor', {
-      enumerable: false,
-      value: Person
     });
   }
 }
@@ -753,10 +750,6 @@ function SuperType(superName) {
     SuperType.prototype.getSuperName = function () {
       return this.superName;
     };
-    Object.defineProperty(SuperType.prototype, 'constructor', {
-      enumerable: false,
-      value: SuperType
-    });
   }
 }
 
@@ -768,10 +761,6 @@ function SubType(subName) {
     SubType.prototype.getSubName = function () {
       return this.subName;
     };
-    Object.defineProperty(SubType.prototype, 'constructor', {
-      enumerable: false,
-      value: SubType
-    });
   }
 }
 
@@ -812,14 +801,8 @@ function SuperType(superName) {
     SuperType.prototype.getSuperName = function () {
       return this.superName;
     };
-    Object.defineProperty(SuperType.prototype, 'constructor', {
-      enumerable: false,
-      value: SuperType
-    });
   }
 }
-
-SubType.prototype = new SuperType('super');
 
 function SubType(subName, superName) {
   SuperType.call(this, superName);
@@ -828,12 +811,10 @@ function SubType(subName, superName) {
     SubType.prototype.getSubName = function () {
       return this.subName;
     };
-    Object.defineProperty(SubType.prototype, 'constructor', {
-      enumerable: false,
-      value: SubType
-    });
   }
 }
+
+SubType.prototype = new SuperType();
 ```
 
 ### 原型式继承
@@ -866,3 +847,183 @@ function createAnother(original){
   return o;
 }
 ```
+### 寄生组合式继承
+
+组合式继承中，超类型的构造函数被重复调用了（借用构造函数添加实例属性、创建实例作为子类型原型），实际上子类型的原型上不需要那些多余的、只需要在实例上的属性；为此，可以利用寄生式继承的模式，创建一个超类原型的副本（干净的实例），将其作为子类的原型，即 inheritPrototype 函数。这种继承方式被普遍认为是理想的继承范式。
+
+需要注意一下，下面的代码使用了动态原型模式添加原型的方法，此时一定不要采用重写原型的方式，否则第一个实例会有问题，继承也同样有问题（超类型的原型改了，子类型的原型链却没动！）；如果方法实在很多，可以使用 Object.assign() 来添加方法到原型上。
+
+```javascript
+let F = function () { };
+
+function object(o) {
+  F.prototype = o;
+  return new F();
+}
+function inheritPrototype(subType, superType) {
+  let prototype = object(superType.prototype);
+  prototype.constructor = subType;
+  subType.prototype = prototype;
+}
+
+function SuperType(superName) {
+  this.superName = superName;
+  if (typeof SuperType.prototype.getSuperName !== 'function') {
+    SuperType.prototype.getSuperName = function () {
+      return this.superName;
+    };
+  }
+}
+
+function SubType(subName, superName) {
+  SuperType.call(this, superName);
+  this.subName = subName;
+  if (typeof SubType.prototype.getSubName !== 'function') {
+    SubType.prototype.getSubName = function () {
+      return this.subName;
+    };
+  }
+}
+
+inheritPrototype(SubType, SuperType);
+
+let sub = new SubType('sub', 'sup');
+console.log(sub.getSubName()); // 'sub'
+console.log(sub.getSuperName()); // 'sup'
+console.log(sub instanceof SubType); // true
+console.log(sub instanceof SuperType); // true
+console.log(sub instanceof F); // true
+```
+
+# 第7章 函数表达式
+
+## 递归函数
+
+在不使用 arguments.callee 的情况下，可以使用命名函数表达式实现更通用健壮的递归函数：
+
+```javascript
+let rc = (function f(n){
+  if (n <= 1) {
+    return 1;
+  }else {
+    return n * f(n-1);
+  }
+});
+```
+
+## 闭包
+
+### 定义
+
+书中的定义：闭包是指有权访问另一个函数作用域中的变量的函数。
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) 上的定义：A closure is the combination of a function and the lexical environment within which that function was declared. 
+
+### 内存泄漏
+
+在 IE8- 中由于 COM 对象使用使用不同的垃圾搜集例程（引用计数），如果闭包的作用域链包含着对 HTML 对象的引用，那么该对象无法被销毁；为此，可以使用局部变量保存闭包中需要使用的值，并清除对 HTML 对象的引用。
+
+```javascript
+function setHandler(){
+  let ele = document.getElementById('btn');
+  let id = ele.id; // 局部变量保存
+  ele.onClick = function(){
+    console.log(id);
+    // console.log(ele.id); // 这样导致了循环引用
+  };
+  ele = null; // 解引用
+}
+```
+
+## 块级作用域
+
+ES5 中没有块级作用域，但是可以通过立即执行函数来模仿；利用它可以避免过多的全局变量。
+
+## 私有变量
+
+### 构造函数模式
+
+可以利用构造函数中的局部变量（或者直接使用参数）作为静态变量，它们没法在实例上直接通过属性访问，只有通过特权（公有）方法进行存取。这种方式的静态变量是每个实例单独拥有的，显然构造函数模式的公有方法没有做到复用。
+
+```javascript
+function Book(year) {
+  let _edition = 1
+    , _firstYear = year;
+  this.year = year;
+  this.getEdition = function () {
+    return _edition;
+  };
+  this.setYear = function (year) {
+    this.year = year;
+    _edition = year - _firstYear + 1;
+  };
+}
+```
+
+### 静态私有变量
+
+所谓静态，即与实例无关，这些静态的变量（/方法）能被所有实例共享，使用立即执行函数来实现。
+
+```javascript
+let Book = (function () {
+  let bookCount = 0;
+  let addBookCount = function () {
+    bookCount++;
+  }
+
+  let _Book = function (name) {
+    addBookCount();
+    this.name = name;
+  };
+  _Book.prototype.getBookCount = function () {
+    return bookCount;
+  }
+
+  return _Book;
+})();
+```
+
+### 模块模式
+
+该模式用于为单例添加静态变量和特权方法：
+
+```javascript
+let singleton = (function () {
+  let privateVariable = 10;
+  function privateMethod() {
+    return false;
+  }
+
+  return {
+    publicProperty: true,
+    publicMethod: function () {
+      privateVariable++;
+      return privateMethod();
+    }
+  }
+})();
+```
+
+### 增强的模块模式
+
+如果需要单例本身是某种自定义类型，可以使用这种模式：
+
+```javascript
+let singleton = (function () {
+  let privateVariable = 10;
+  function privateMethod() {
+    return false;
+  }
+
+  let o = new CustomType();
+
+  o.publicProperty = true;
+  o.publicMethod = function () {
+    privateVariable++;
+    return privateMethod();
+  };
+
+  return o;
+})();
+```
+
