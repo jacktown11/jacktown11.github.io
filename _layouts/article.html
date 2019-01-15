@@ -13,34 +13,48 @@
 </head>
 
 <body>
-	<div id="app">
+	<div id="app" class="app-wrap">
 
-		<!-- 文章目录 -->
-		<div id="catalog-container" class="catalog-container">
+		<!-- 侧边栏显隐控制钮 -->
+		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
+			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+				<line x1="8" y1="8" x2="32" y2="8"></line>
+				<line x1="8" y1="16" x2="32" y2="16"></line>
+				<line x1="8" y1="24" x2="32" y2="24"></line>
+			</g>
+		</svg>
+
+		<div class="sidebar" style="display: none;" v-show="isShowSidebar">
+			<!-- 目录级别控制条 -->
 			<p class="level-controller">
 				展开级别：
 				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
 				<span class="level-now" v-html="expandLevel"></span>
 				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
 			</p>
-			<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
-		</div>
 
-		<!-- 更多文章导航 -->
-		<div class="post-nav">
-			<div class="home">
-				<a class="home-link" href="/">返回首页</a>
+			<!-- 文章目录 -->
+			<div id="catalog-container" class="catalog-container">
+				<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
 			</div>
-			<div class="prev no-wrap">
-				上一篇：{% if page.previous %}<a href="{{page.previous.url}}">{{page.previous.title}}</a>{% else %}没有更多了{% endif %}
+
+			<!-- 更多文章导航 -->
+			<div class="post-nav">
+				<div class="home">
+					<a class="home-link" href="/">返回首页</a>
+				</div>
+				<div class="prev no-wrap">
+					上一篇：{% if page.previous %}<a href="{{page.previous.url}}">{{page.previous.title}}</a>{% else %}没有更多了{% endif %}
+				</div>
+				<div class="next no-wrap">
+					下一篇：{% if page.next %}<a href="{{page.next.url}}">{{page.next.title}}</a>{% else %}没有更多了{% endif %}
+				</div>
 			</div>
-			<div class="next no-wrap">
-				下一篇：{% if page.next %}<a href="{{page.next.url}}">{{page.next.title}}</a>{% else %}没有更多了{% endif %}
-			</div>
+
 		</div>
 
 		<!-- 文章内容区 -->
-		<div class="article-wrap">
+		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
 			<article id="article-container">
 				<h1 id="post-title">{{ page.title }}</h1>
 				<p class="meta">{{ page.date | date: "%Y-%m-%d" }}</p>

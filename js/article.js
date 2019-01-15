@@ -33,8 +33,8 @@ var tree = {
 
 Vue.component('blog-catalog', {
 	template: '<div class="title-wrapper">'
-		+ '<p class="title" :class="cls" v-if="treeNode.text" >'
-		+ '<span class="expand-controller" :class="status" @click.stop="toggleChildren" v-html="sign" ></span >'
+		+ '<p class="title" :class="cls" v-if="treeNode.text" @click.stop.self="toggleChildren">'
+		+ '<span class="expand-controller" :class="status"  v-html="sign" @click.stop="toggleChildren"></span >'
 		+ '<a class="title-link" :href="href" :data-level="treeNode.level">{{ treeNode.text }}</a>'
 		+ '</p>'
 		+ '<div class="children" v-show="hasChildren && isShowChildren">'
@@ -70,7 +70,7 @@ Vue.component('blog-catalog', {
 				this.isShowChildren ? 'open' : 'closed';
 		},
 		sign: function () {
-			let controlStrMap = {
+			var controlStrMap = {
 				single: '&nbsp;',
 				closed: '+',
 				open: '-'
@@ -99,7 +99,18 @@ new Vue({
 		tree: tree,
 		expandLevel: 1,
 		minLevel: 1,
-		maxLevel: 1
+		maxLevel: 1,
+		isShowSidebar: true,
+		isNarrowScreen: false
+	},
+	created: function () {
+		// test if is narrow screen
+		var width = window.innerWidth;
+		if (width < 720) {
+			this.isNarrowScreen = true;
+			// hide sidebar for narrow screen defautly
+			this.hideSidebar();
+		}
 	},
 	mounted: function () {
 		this.gatherTitles();
@@ -127,6 +138,9 @@ new Vue({
 			if (newLevel >= this.minLevel && newLevel <= this.maxLevel) {
 				this.expandLevel = newLevel;
 			}
+		},
+		hideSidebar: function () {
+			this.isShowSidebar = false;
 		}
 	}
 });

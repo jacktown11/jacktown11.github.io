@@ -1,3 +1,11 @@
+/*=====================
+本样式文件导航：
+part1: 总体样式与布局
+part2: 博客总览侧边栏样式
+part3: 文章列表样式
+=======================*/
+
+
 /*========================
 part1: 总体样式与布局
 ========================*/
@@ -29,11 +37,13 @@ part2: 博客总览侧边栏样式
 	text-align: center;
 }
 
+/* 头像、标题、slogan */
 .header-wrapper{
 	position: relative;
 	width: 100%;
 	height: 0;
 	padding-top: 100%;
+	overflow: hidden;
 }
 .header{
 	position: absolute;
@@ -70,6 +80,25 @@ part2: 博客总览侧边栏样式
 .blog-title{
 	font-size: 140%;
 }
+
+/* 子页面链接 */
+.pages{
+	margin: 24px 0;
+}
+.page-item{
+	margin: 16px 0;
+}
+a.page-link:link,
+a.page-link:visited{
+	color: #00f9d8;
+}
+a.page-link:hover,
+a.page-link:active{
+	text-decoration: none;
+	color: #f40;
+}
+
+/* 社交帐号 */
 .social-account-wrapper{
 	font-size: 0;
 }
@@ -78,13 +107,10 @@ part2: 博客总览侧边栏样式
 	width: 20px;
 	height: 20px;
 	padding: 3px;
-	margin-right: 12px;
+	margin: 6px;
 	border: 1px solid transparent;
 	border-radius: 50%;
 	cursor: pointer;
-}
-.social-account:last-child{
-	margin-right: 0;
 }
 .social-account:hover{
 	border-color: #f40;;
@@ -121,22 +147,6 @@ part2: 博客总览侧边栏样式
 
 .qq-img{
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABnElEQVR42p1Tu0oDQRSNJvhMfGBlERC0sBBLBfUDfGCX3kYE0XSpVPQTxN5SVFawDNhYRLAIiAhiZyFplIW4CbpuZu7M9QxGkxg2u3rhMI+dOXvunXMjkYBg5l6DyH+ienkGWCdSx8CpINqUzLPYi/+FZAW4AQTXQijmOyEoXS7zUBBJm+uKaSi41FoTN4dC3EopFzCPtiLqwR8zWrPD/uECu0DCl8h1OQk1RxwcFjDiS1Sp8CSIroJYSOtHDHO+RES8iNq8hVCEB+Rlv/rEleIdDhn46RqGjgaSe2zgaTc08zOHj7zneWO/1YwiJVMbHZYF50sfglYxjf0QIeElfHjCpheSRAHvUql9LDtrr0WUIqIskA9DBFO+SKJrlOMAy6761JJfjqY05q8t1YAHSk7g7nn0z1SDw01rWJYVLVd4nBSfB6gpgWirWCz2Y9ne9Py2bSegKIODdpCHUJ8HKX0MaXJFl6YEnI2D3+nl4K1tjGnsnaEmWVLqAooO0QUTrZo2BgwAw6ZujuMM7lXlG8MCfQaFQqHblKP+7ier9Tn3Qkd+6AAAAABJRU5ErkJggg==);
-}
-
-.pages{
-	margin: 24px 0;
-}
-.page-item{
-	margin: 16px 0;
-}
-a.page-link:link,
-a.page-link:visited{
-	color: #00f9d8;
-}
-a.page-link:hover,
-a.page-link:active{
-	text-decoration: none;
-	color: #f40;
 }
 
 
@@ -176,6 +186,7 @@ div.input{
 	width: 100%;
 	margin: 0 4px;
 	padding: 6px 4px;
+	box-sizing: border-box;
 }
 .pipe{
 	border-top-left-radius: 4px;

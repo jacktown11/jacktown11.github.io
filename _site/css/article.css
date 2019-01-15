@@ -1,77 +1,86 @@
-body::-webkit-scrollbar{
-	width:10px;
-	height:10px;
-}
-body::-webkit-scrollbar-track{
-	background: #f6f6f6;
-	border-radius:5px;
-}
-body::-webkit-scrollbar-thumb{
-	background: #aaa;
-	border-radius:5px;
-}
-body::-webkit-scrollbar-thumb:hover{
-	background: #747474;
-}
-body::-webkit-scrollbar-corner{
-	background: #f6f6f6;
-}
+/*=====================
+本样式文件导航：
+part1: 页面总体布局
+part2: 边栏样式
+part3: 文章结构样式
+part4: 文章内部样式
+part5: 对窄屏设备的适配
+=======================*/
 
 
 /*=====================
-part1: 目录样式
+part1: 页面总体布局
 =======================*/
-.catalog-container{
-    position: fixed;
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.app-wrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.sidebar{
+    position: absolute;
     z-index: 50;
+    top: 0;
+    bottom: 0;
     left: 0;
-    top: 28px;
-    bottom: 100px;
     width: 30%;
-    box-sizing: border-box;
-    padding: 6px 0 12px;
-    font-size: 16px;
-    background-color: #f8f9f8;
-    color: #222;
-    overflow-y: scroll;
+    background-color: #333;
+}
+.article-wrap{
+    margin-left: 30%;
+    margin-right: auto;
+    height: 100%;
     overflow-x: hidden;
+    overflow-y: auto;
 }
-.catalog-container::-webkit-scrollbar{
-	width:4px;
-	height:4px;
+.extended{
+    margin-left: auto;
 }
-.catalog-container::-webkit-scrollbar-track{
-	/* background: #f6f6f6; */
-	background: #333;
-	border-radius:2px;
+.article-wrap::-webkit-scrollbar{
+	width:10px;
+	height:10px;
 }
-.catalog-container::-webkit-scrollbar-thumb{
-	/* background: #aaa; */
-	background: #d1dafb;
-	border-radius:2px;
+.article-wrap::-webkit-scrollbar-track{
+	background: #f6f6f6;
+	border-radius:5px;
 }
-.catalog-container::-webkit-scrollbar-thumb:hover{
-	/* background: #747474; */
-	background: #abbcf7;
+.article-wrap::-webkit-scrollbar-thumb{
+	background: #aaa;
+	border-radius:5px;
 }
-.catalog-container::-webkit-scrollbar-corner{
-	/* background: #f6f6f6; */
-	background: #333;
+.article-wrap::-webkit-scrollbar-thumb:hover{
+	background: #747474;
+}
+.article-wrap::-webkit-scrollbar-corner{
+	background: #f6f6f6;
+} 
+
+/*=====================
+part2: 边栏样式
+=======================*/
+
+/* 侧边栏显隐控制钮 */
+.sidebar-control{
+    position: fixed;
+    top: 0;
+    left: 4px;
+    z-index: 100;
+    background-color: #222;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
+/* 级别控制条 */
 .level-controller{
-    position: fixed;
-    z-index: 55;
-    top: 0;
-    left: 0;
-    width: 30%;
-    height: 28px;
     margin: 0;
-    box-sizing: border-box;
-    line-height: 28px;
+    height: 32px;
+    line-height: 32px;
     color: #ccc;
-    background-color: #333;
-    box-shadow: 0 1px 2px #000;
+    text-align: right;
 }
 .level-btn{
     display: inline-block;
@@ -85,19 +94,71 @@ part1: 目录样式
     color: #eee;
 }
 
+/* 文章目录 */
+.catalog-container{
+    position: absolute;
+    z-index: 50;
+    left: 0;
+    top: 32px;
+    bottom: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 0 12px;
+    font-size: 16px;
+    background-color: #f8f9f8;
+    color: #222;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.catalog-container::-webkit-scrollbar{
+	width:4px;
+	height:4px;
+}
+.catalog-container::-webkit-scrollbar-track{
+	background: #333;
+	/* border-radius:2px; */
+}
+.catalog-container::-webkit-scrollbar-thumb{
+	background: #d1dafb;
+	border-radius:2px;
+}
+.catalog-container::-webkit-scrollbar-thumb:hover{
+	background: #abbcf7;
+}
+.catalog-container::-webkit-scrollbar-corner{
+	background: #333;
+}
 .catalogs{
     padding: 0 2px;
 }
-
 .children{
     padding-left: 0.8em;
 }
-
 .title{
     margin: 4px 0;
+    height: 1.7em;
+    line-height: 1.7em;
     overflow: hidden;
     white-space: nowrap;
     text-overflow:ellipsis;
+    cursor: pointer;
+}
+.title:hover{
+    box-shadow: 0 0 2px #ff92cc;
+}
+.title-link,
+.expand-controller{
+    display: inline-block;
+    vertical-align: top;
+    height: 1.7em;
+}
+.expand-controller{
+    width: 1em;
+    margin-right: 2px;
+    font-weight: bold;
+    text-align: center;
+    color: #488;
+    cursor: pointer;
 }
 
 .title-link:link,
@@ -122,18 +183,6 @@ part1: 目录样式
 .title-link:active{
     text-decoration: underline;
 }
-
-.expand-controller{
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    margin-right: 2px;
-    line-height: 1em;
-    font-weight: bold;
-    text-align: center;
-    color: #488;
-    cursor: pointer;
-}
 .title1 .expand-controller{
     color: #fff;
 }
@@ -141,33 +190,27 @@ part1: 目录样式
     background-color: transparent;
 }
 
-/*=================
-part2: 更多文章导航样式
-===================*/
+/* 更多文章导航 */
 .post-nav{
-    position: fixed;
-    z-index: 55;
+    position: absolute;
+    z-index: 50;
     left:0;
     bottom: 0;
     height: 100px;
-    width: 30%;
+    width: 100%;
     padding: 0 2px;
-    background-color: #333;
     color: #ccc;
     box-sizing: border-box;
-    box-shadow: 0 -1px 2px #000;
+    /* box-shadow: 0 -1px 2px #000; */
 }
-
 .post-nav a:link,
 .post-nav a:visited{
     color: #eee;
 }
-
 .post-nav a:hover,
 .post-nav a:active{
     color: #f40;
 }
-
 .home{
     height: 40px;
     line-height: 40px;
@@ -207,16 +250,13 @@ body{
     font-weight: 400;
     letter-spacing: 1px;
 }
-.article-wrap{
-    margin-left: 30%;
-}
+
 article{
     box-sizing: border-box;
     padding: 0.1rem 2rem 2rem;
     font-size: 0.85rem;
     width: 96%;
     max-width: 54rem;
-    min-width: 35rem;
     margin: 0 auto 16px;
     border: none;
     overflow-x: hidden;
@@ -396,9 +436,7 @@ th{
 }
 td { vertical-align: top; }
 
-/*=================
-part5: 版权声明
-===================*/
+/* 版权声明 */
 
 .license{
     background-color: #ffe0e0;
@@ -411,4 +449,23 @@ part5: 版权声明
     display: inline;
     margin: 0;
     padding: 0;
+}
+
+/*=================
+part5: 对窄屏设备的适配
+===================*/
+
+@media (max-width: 719px){
+
+.sidebar{
+    width: 70%;
+}
+.article-wrap{
+    margin-left: auto;
+    margin-right: auto;
+}
+article{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
 }
