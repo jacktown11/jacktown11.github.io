@@ -93,6 +93,10 @@ issueNum: 2
 - 谷歌浏览器中安装 ctx 格式的插件可能出现‘无法从该网站添加应用，拓展程序或脚本’的报错，此时可以将该文件后缀名修改为 rar 并解压，然后加载解压后的文件夹。
 - 安装好以后，发现页面上提示说当前页面不是 react 应用，后来发现是因为该插件是在页面加载的过程中，创建一个 `__REACT_DEVTOOLS_GLOBAL_HOOK__` 全局变量来和页面交互的，重新加载就好了。
 
+### redux dev tools chrome浏览器插件安装
+
+github: [https://github.com/zalmoxisus/redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension)，可直接在上面下载，安装参考 react developer tools 的安装。
+
 ## typescript
 
 ### 在 vscode 中自动编译 typescript 文件
