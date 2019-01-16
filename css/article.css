@@ -361,7 +361,7 @@ pre.highlight .err{
 
 code {
     font-family: Consolas, Monaco, Andale Mono, monospace;
-    color: #1a1a1a;
+    color: #222;
     background-color: #FFFAE0;
 }
 
@@ -369,6 +369,7 @@ pre > code {
     width: 100%;
     margin: 0;
     padding: 0;
+    color: #fff;
     border-radius: 10px;
     background-color: transparent;
 }
