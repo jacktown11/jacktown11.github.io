@@ -1027,3 +1027,76 @@ let singleton = (function () {
 })();
 ```
 
+# 第8章 BOM
+
+## window 对象
+
+### 全局作用域
+
+- 在 javascript 中 window 对象既表示浏览器窗口对象，也是 ECMAScript 中的 global 对象
+- window 作为 global 对象，全局作用域中声明的变量和函数都会成为它的属性
+- 全局声明的变量与函数和直接在 window 上挂载的属性的两点区别：
+  * 直接挂载的属性可以通过 delete 操作符来删除
+  * 直接挂载的属性如果不存在，访问也不会报错（属性查询），而未声明的全局变量直接访问则会报错
+
+### 窗口关系及框架
+
+- 每个框架有相应的 window 对象，top 始终指向最外层框架（浏览器窗口）
+- 通过 `top.frames[序号]` 或 `top.frames[窗口名]` 可以访问到各窗口的 window 对象
+- parent 指向父层框架（在没有框架的页面中，它和 top 是相等的，都指向 window）
+- self 始终指向 window
+
+### 窗口的位置
+
+获取窗口的左边和上边的位置，事实上并不能真正做到兼容。
+
+```javascript
+var leftPos = (typeof window.screenLeft === 'number') ? window.screenLeft : window.screenX;
+var topPos = (typeof window.screenTop === 'number') ? window.screenTop : window.screenY;
+```
+
+两个移动浏览器窗口的方法（它们可能是被默认禁用的）：
+
+- moveTo(x, y)
+- moveBy(deltaX, deltaY)
+
+### 窗口的大小
+
+获取页面视口的通用方法（桌面浏览器）：
+
+```javascript
+var w = window.innerWidth,
+  h = window.innerHeight;
+if(typeof w !== 'number'){
+  var ele = ducument.compatMode === 'CSS1Compat' ? 
+    document.documentElement :
+    document.body;
+  w = ele.clientWidth;
+  h = ele.clientHeight;
+}
+```
+
+两个调整窗口大小的方法： resizeTo() 和 resizeBy() ，它们也可能是被默认禁用的。
+
+### 导航和打开窗口
+
+使用 window.open() 可以导航到一个新的网址。
+
+#### 参数
+
+它接收4个参数，只有第一个是必须的。
+
+- URL
+- 目标窗口，已有窗口或框架的名称，如果不存在则创建窗口并以其作为窗口名称
+- 特性字符串，如果打开了新窗口，根据该参数设置新窗口的特性
+- 新页面是否取代浏览器历史记录中的当前页面，只在不打开新页面的情况下使用
+
+#### 返回值
+
+- 该方法会返回打开的窗口的 window 对象的引用，该对象的 opener 属性反过来指向打开它的窗口对象
+- 在新创建的窗口对象上调用 resizeTo() 、 moveTo() 等方法可以调整位置大小
+- 调用 close() 方法可以关闭弹出窗口
+
+通过检测返回的新窗口对象是否是 null，以及使用 try-catch 包裹打开新窗口的代码，可以检测新窗口是否被浏览器或用户插件阻止弹出。
+
+
