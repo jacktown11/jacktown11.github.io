@@ -53,23 +53,44 @@
     <h1 class="page-title">Projects</h1>
 
 <div id="proj-list" class="container">
-	<p class="loading" v-show="!isLoaded"><img src="/images/proj/loading.gif" alt="加载中"></p>
-	<ul class="proj-list" v-show="isLoaded">
-		<li class="proj-item" v-for="proj in projects" :key="proj.name">
-			<div class="img-wrapper">
-				<img :src="'/images/proj/'+proj.cover" alt="项目封面" class="proj-img" :class="{enlarge: proj.isEnlarge}" @click="proj.isEnlarge = !proj.isEnlarge;">
-			</div>
-			<h2 class="proj-header">
-				<span class="name" v-text="proj.name"></span>
-				<a :href="proj.github" class="link-icon" v-if="proj.github" title="github"><span class="github-icon"></span></a>
-				<a :href="proj.show" class="link-icon" v-if="proj.show" title="view online"><span class="show-icon"></span></a>
-			</h2>
-			<p class="proj-intro" v-text="proj.intro"></p>
-		</li>
-	</ul>
+  <p class="loading" v-show="!isLoaded">
+    <img src="/images/proj/loading.gif" alt="加载中" />
+  </p>
+  <ul class="proj-list" v-show="isLoaded">
+    <li class="proj-item" v-for="proj in projects" :key="proj.name">
+      <div class="img-wrapper">
+        <img
+          :src="'/images/proj/'+proj.cover"
+          alt="项目封面"
+          class="proj-img"
+          :class="{enlarge: proj.isEnlarge}"
+          @click="proj.isEnlarge = !proj.isEnlarge;"
+        />
+      </div>
+      <h2 class="proj-header">
+        <span class="name" v-text="proj.name"></span>
+        <a
+          :href="proj.github"
+          class="link-icon"
+          v-if="proj.github"
+          title="github"
+          ><span class="github-icon"></span
+        ></a>
+        <a
+          :href="proj.show"
+          class="link-icon"
+          v-if="proj.show"
+          title="view online"
+          ><span class="show-icon"></span
+        ></a>
+      </h2>
+      <p class="proj-intro" v-text="proj.intro"></p>
+    </li>
+  </ul>
 </div>
 
 <script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
+
 
     
     <script src="/js/proj.js"></script>
