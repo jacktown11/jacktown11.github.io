@@ -13,14 +13,14 @@ issueNum: 42
 
 # stiky footer
 
-- [CSS秘密花园： Sticky footers](https://www.w3cplus.com/css3/css-secrets/sticky-footers.html)
+- [CSS 秘密花园： Sticky footers](https://www.w3cplus.com/css3/css-secrets/sticky-footers.html)
 
-# flex布局
+# flex 布局
 
 - [Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 - [Flex 布局教程：实例篇](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
 
-# better-scroll使用注意事项
+# better-scroll 使用注意事项
 
 - [better-scroll](https://github.com/ustbhuangyi/better-scroll)是一个滚动插件，可以查看其[中文文档](https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/)了解更多
 - `new`新的滚动控制器时，传入的包裹元素，通常情况下内部有唯一一个元素，是实际内容；实际内容溢出包裹元素时就可以滚动；如果内部有多个元素，那么只针对第一个元素。
@@ -29,23 +29,23 @@ issueNum: 42
 - `new`出来的滚动控制器有[refresh()](https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/api.html#refresh)方法，调用时重新计算 `better-scroll`，当`DOM`结构发生变化的时候务必要调用确保滚动的效果正常
 - 利用`scrollTo`和`scrollToElement`可以代码触发滚动
 
-# vue中动画注意事项
+# vue 中动画注意事项
 
 - 如果一个元素需要它完成一个动画后，让其执行另一个动画，前一个动画的结束可以利用`after-leave`钩子事件来监听
 - 利用一个变量来控制动画元素时，如`v-show="isShow"`，如果我们利用代码修改了变量`isShow`的值，`DOM`通常不能立即被修改，可以用`vm.$nextTick(()=>{...})`的方式，使得`DOM`修改生效后再执行后续任务
 
-# 配置文件vue.config.js（vue-cli3.x）
+# 配置文件 vue.config.js（vue-cli3.x）
 
 ```javascript
-const path = require('path')
-const express = require('express')
+const path = require('path');
+const express = require('express');
 
 // mock code
-const mockData = require('./mock/data.json')
+const mockData = require('./mock/data.json');
 
-function resolve (folder) {
-  return path.join(__dirname, folder)
-}  
+function resolve(folder) {
+  return path.join(__dirname, folder);
+}
 
 module.exports = {
   /** 区分打包环境与开发环境
@@ -61,7 +61,7 @@ module.exports = {
   lintOnSave: true,
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
-  chainWebpack: () => { },
+  chainWebpack: () => {},
   configureWebpack: {
     resolve: {
       alias: {
@@ -69,7 +69,7 @@ module.exports = {
         '@components': resolve('components')
       }
     }
-   },
+  },
   //如果想要引入babel-polyfill可以这样写
   // configureWebpack: (config) => {
   //   config.entry = ["babel-polyfill", "./src/main.js"]
@@ -104,39 +104,38 @@ module.exports = {
     proxy: {
       '/outer': {
         target: 'http://localhost:8080/api/seller',
-        onProxyReq (proxyReq, req, res) {
-          console.log(proxyReq, req, res)
+        onProxyReq(proxyReq, req, res) {
+          console.log(proxyReq, req, res);
         },
         onProxyRes(proxyRes, req, res) {
-          console.log(proxyRes, req, res)
+          console.log(proxyRes, req, res);
         },
         pathRewrite: {
           '^/outer': '' // 这里一定要删掉，不然会导致死递归
         }
       }
     },
-    before: app => { 
-      const apiRoutes = express.Router()
-      const pathArr = ['/seller', '/goods', '/ratings']
+    before: (app) => {
+      const apiRoutes = express.Router();
+      const pathArr = ['/seller', '/goods', '/ratings'];
       pathArr.forEach((urlPath) => {
         apiRoutes.get(urlPath, (req, res) => {
-          console.log(urlPath)
+          console.log(urlPath);
           res.json({
             errno: 0,
             data: mockData[urlPath.slice(1)]
           });
         });
-      })
+      });
 
-      app.use('/api', apiRoutes)
+      app.use('/api', apiRoutes);
     }
   },
   // 第三方插件配置
   pluginOptions: {
     // ...
   }
-}
-
+};
 ```
 
 # 图标代码生成工具
@@ -146,54 +145,55 @@ module.exports = {
 
 以上两个工具的介绍文章：[前端字体图标的使用（阿里、icomoon）](https://blog.csdn.net/huangxiaoguo1/article/details/79623573)
 
-# 在vscode中stylus自动格式化插件
+# 在 vscode 中 stylus 自动格式化插件
 
-安装插件`stylus supremacy`，`vscode`中使用快捷键`ctrl ,`打开配置页，进行相关配置（搜索`supremacy`可以看到28项配置），控制自动格式化时是否使用大括号、分号等，`vscode`中自动格式化快捷键：`alt+shift+F`。
+安装插件`stylus supremacy`，`vscode`中使用快捷键`ctrl ,`打开配置页，进行相关配置（搜索`supremacy`可以看到 28 项配置），控制自动格式化时是否使用大括号、分号等，`vscode`中自动格式化快捷键：`alt+shift+F`。
 
-# 安装JSONView
+# 安装 JSONView
 
-这是一个浏览器插件，可以在浏览器中格式化地查看`json`数据，可参考文章：[谷歌浏览器中安装JsonView扩展程序](https://www.cnblogs.com/whycxb/p/7126116.html)。另外实际上在`chrome`中打开开发这工具，在`network`中查看相应的请求的`response`，点击左下角的`{}`符号，也可以查看格式化好的`json`数据。
+这是一个浏览器插件，可以在浏览器中格式化地查看`json`数据，可参考文章：[谷歌浏览器中安装 JsonView 扩展程序](https://www.cnblogs.com/whycxb/p/7126116.html)。另外实际上在`chrome`中打开开发这工具，在`network`中查看相应的请求的`response`，点击左下角的`{}`符号，也可以查看格式化好的`json`数据。
 
-# vscode为.vue单文件设置模板
+# vscode 为.vue 单文件设置模板
 
 `File > Preferences > User Snippets`，输入`vue.json`，即可配置，如下：
 
 ```json
 {
-	"Vue Single File": {
-		"prefix": "vue",
-		"body": [
-			"<template>\n",
-			"</template>\n",
-			"<script>",
-			"export default {",
-			"  data() {",
-			"    return {\n",
-			"    }",
-			"  },",
-			"  components: {\n",
-			"  }",
-			"}",
-			"</script>\n",
-			"<style scoped lang=\"stylus\">\n",
-			"</style>",
-			"$2"
-		],
-		"description": "generate snippets for .vue single file"
-	}
+  "Vue Single File": {
+    "prefix": "vue",
+    "body": [
+      "<template>\n",
+      "</template>\n",
+      "<script>",
+      "export default {",
+      "  data() {",
+      "    return {\n",
+      "    }",
+      "  },",
+      "  components: {\n",
+      "  }",
+      "}",
+      "</script>\n",
+      "<style scoped lang=\"stylus\">\n",
+      "</style>",
+      "$2"
+    ],
+    "description": "generate snippets for .vue single file"
+  }
 }
 ```
+
 配置好以后，我们新建一个`.vue`文件，在其中输入`vue`，然后按`Tab`键（或者回车键），就会自动填充设置的模板代码。
 
-参考：[在vscode里使用.vue代码模板的方法](https://segmentfault.com/a/1190000014653201)
+参考：[在 vscode 里使用.vue 代码模板的方法](https://segmentfault.com/a/1190000014653201)
 
-# 手机无法通过该ip地址访问项目
+# 手机无法通过该 ip 地址访问项目
 
 - 确认可以使用`ip`地址方式在电脑上访问项目，注意需要将`devServer.host`配置为`0.0.0.0`，否则可能不行
 - 确认手机和电脑是一个局域网下（比如`wifi`或数据线共享网络）
-- 检查一下电脑防火墙是否拦截掉了请求，参考文章[解决apache服务器本地可以访问，同局域网内他人不能访问的问题](https://www.2cto.com/os/201203/123953.html)
+- 检查一下电脑防火墙是否拦截掉了请求，参考文章[解决 apache 服务器本地可以访问，同局域网内他人不能访问的问题](https://www.2cto.com/os/201203/123953.html)
 
-# 项目部署baseUrl
+# 项目部署 baseUrl
 
 整个项目完成以后，我希望将项目放到`github`上，这时候配置文件需要有些改动。
 
@@ -209,7 +209,7 @@ module.exports = {
 
 如果希望在本地运行打包后的项目，需要将`dist`文件夹放到一个本地服务器中，如`apache`服务器，也可以自己用`node`搭建个简单的服务器，那么上面的生产环境下的`baseUrl`需要修改为项目打包后的文件夹相对服务器根路径的地址，比如服务器根路径为`some/path/htdocs`，项目打包好后在其下的`projects/order-app/dist`目录中，那么就将后面这个目录设为`baseUrl`就可以了。
 
-# 项目部署mock数据处理
+# 项目部署 mock 数据处理
 
 在开发环境下，使用了`vue-resource`进行数据请求，借助了`express`读取本地根目录下的`mock`文件夹中的数据文件（详见`vue.config.js`）。但是这样一来，生产环境下有两个问题：
 
@@ -238,14 +238,14 @@ if (process.env.NODE_ENV === 'development') {
 
 // 生成环境下的axios的拦截器（实际上开发环境中也有代理的，在vue.config.js的devServer中配置的）
 if (process.env.NODE_ENV === 'production') {
-  axios.interceptors.request.use(function (config) {
+  axios.interceptors.request.use(function(config) {
     // eslint-disable-next-line
     let url = config.url.replace(/api\/([^\/\?]+)/, 'mock/data.json');
     config.url = url;
     config.dataKey = RegExp.$1;
     return config;
   });
-  axios.interceptors.response.use(function (res) {
+  axios.interceptors.response.use(function(res) {
     res.data = {
       errNum: 0,
       data: res.data[res.config.dataKey]
@@ -259,7 +259,7 @@ if (process.env.NODE_ENV === 'production') {
 
 接着，我们只需要在`main.js`中`import @src/api/config;`就可以了。
 
-参考：[vue打包后如何区分开发、测试和生产等不同的开发环境](https://blog.csdn.net/qq_35430000/article/details/80485311)
+参考：[vue 打包后如何区分开发、测试和生产等不同的开发环境](https://blog.csdn.net/qq_35430000/article/details/80485311)
 
 # 开发环境下手机端调试
 
@@ -267,19 +267,19 @@ if (process.env.NODE_ENV === 'production') {
 
 通过插入`js`文件的方式调试，比较能够确定页面是加载了的，很可能是内部的出现了错误，为此找到一个浏览器端的控制台插件[eruda](https://github.com/liriliri/eruda)，之后在控制台中看到了`use of const in strict mode.`报错，查到了类似下面的`issue`：
 
-- [使用webpack-dev-server在移动端调试时，出现"SyntaxError: Use of const in strict mode."的问题 #35](https://github.com/mrdulin/blog/issues/35)
+- [使用 webpack-dev-server 在移动端调试时，出现"SyntaxError: Use of const in strict mode."的问题 #35](https://github.com/mrdulin/blog/issues/35)
 - [Webpack Dev Server No Longer Runs On Older Browsers #1105](https://github.com/webpack/webpack-dev-server/issues/1105)
 
 其原因应该是高版本的`webpack-dev-server`中使用的`es6`语法在一些低版本浏览器中不被支持。这和项目代码中的`es6`语法不一样，它们默认情况下不会被`babel`这样的插件转义，因为它们用在开发环境中，并不会对生成环境的代码造成影响，这些`issue`中给出的解决方案是降低`webpack-dev-serve`的版本。
 
 由于不太想修改`vue-cli`的开发环境，笔者没有尝试过这一方案，而是使用高版本一些的手机浏览器，发现问题被解决了。
 
-# 项目部署gh-pages分支
+# 项目部署 gh-pages 分支
 
 打包后的文件在`dist`文件夹中，为了在`github`项目主页中直接使用这个子文件中的内容，我们可以另外创建一个`gh-pages`分支，每次打包都要推送以更新该分支。然后在`github`中的`Setting > Github Pages`中选择该分支作为项目主页。
 
-```batch
+```
 git subtree push --prefix build/dist origin gh-pages
 ```
 
-参考：[我可以在存储库的子文件夹中拥有我的Github Pages index.html吗？](https://cloud.tencent.com/developer/ask/66544)
+参考：[我可以在存储库的子文件夹中拥有我的 Github Pages index.html 吗？](https://cloud.tencent.com/developer/ask/66544)

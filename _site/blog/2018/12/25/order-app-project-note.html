@@ -69,17 +69,17 @@
 <h1 id="stiky-footer">stiky footer</h1>
 
 <ul>
-  <li><a href="https://www.w3cplus.com/css3/css-secrets/sticky-footers.html">CSS秘密花园： Sticky footers</a></li>
+  <li><a href="https://www.w3cplus.com/css3/css-secrets/sticky-footers.html">CSS 秘密花园： Sticky footers</a></li>
 </ul>
 
-<h1 id="flex布局">flex布局</h1>
+<h1 id="flex-布局">flex 布局</h1>
 
 <ul>
   <li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程：语法篇</a></li>
   <li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">Flex 布局教程：实例篇</a></li>
 </ul>
 
-<h1 id="better-scroll使用注意事项">better-scroll使用注意事项</h1>
+<h1 id="better-scroll-使用注意事项">better-scroll 使用注意事项</h1>
 
 <ul>
   <li><a href="https://github.com/ustbhuangyi/better-scroll">better-scroll</a>是一个滚动插件，可以查看其<a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/">中文文档</a>了解更多</li>
@@ -90,24 +90,24 @@
   <li>利用<code class="highlighter-rouge">scrollTo</code>和<code class="highlighter-rouge">scrollToElement</code>可以代码触发滚动</li>
 </ul>
 
-<h1 id="vue中动画注意事项">vue中动画注意事项</h1>
+<h1 id="vue-中动画注意事项">vue 中动画注意事项</h1>
 
 <ul>
   <li>如果一个元素需要它完成一个动画后，让其执行另一个动画，前一个动画的结束可以利用<code class="highlighter-rouge">after-leave</code>钩子事件来监听</li>
   <li>利用一个变量来控制动画元素时，如<code class="highlighter-rouge">v-show="isShow"</code>，如果我们利用代码修改了变量<code class="highlighter-rouge">isShow</code>的值，<code class="highlighter-rouge">DOM</code>通常不能立即被修改，可以用<code class="highlighter-rouge">vm.$nextTick(()=&gt;{...})</code>的方式，使得<code class="highlighter-rouge">DOM</code>修改生效后再执行后续任务</li>
 </ul>
 
-<h1 id="配置文件vueconfigjsvue-cli3x">配置文件vue.config.js（vue-cli3.x）</h1>
+<h1 id="配置文件-vueconfigjsvue-cli3x">配置文件 vue.config.js（vue-cli3.x）</h1>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">)</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 
 <span class="c1">// mock code</span>
-<span class="kr">const</span> <span class="nx">mockData</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./mock/data.json'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">mockData</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./mock/data.json'</span><span class="p">);</span>
 
-<span class="kd">function</span> <span class="nx">resolve</span> <span class="p">(</span><span class="nx">folder</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="nx">folder</span><span class="p">)</span>
-<span class="p">}</span>  
+<span class="kd">function</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">folder</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="nx">folder</span><span class="p">);</span>
+<span class="p">}</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
   <span class="cm">/** 区分打包环境与开发环境
@@ -123,7 +123,7 @@
   <span class="na">lintOnSave</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="c1">// webpack配置</span>
   <span class="c1">// see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md</span>
-  <span class="na">chainWebpack</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="p">},</span>
+  <span class="na">chainWebpack</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{},</span>
   <span class="na">configureWebpack</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">resolve</span><span class="p">:</span> <span class="p">{</span>
       <span class="na">alias</span><span class="p">:</span> <span class="p">{</span>
@@ -131,7 +131,7 @@
         <span class="s1">'@components'</span><span class="p">:</span> <span class="nx">resolve</span><span class="p">(</span><span class="s1">'components'</span><span class="p">)</span>
       <span class="p">}</span>
     <span class="p">}</span>
-   <span class="p">},</span>
+  <span class="p">},</span>
   <span class="c1">//如果想要引入babel-polyfill可以这样写</span>
   <span class="c1">// configureWebpack: (config) =&gt; {</span>
   <span class="c1">//   config.entry = ["babel-polyfill", "./src/main.js"]</span>
@@ -166,39 +166,38 @@
     <span class="na">proxy</span><span class="p">:</span> <span class="p">{</span>
       <span class="s1">'/outer'</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">target</span><span class="p">:</span> <span class="s1">'http://localhost:8080/api/seller'</span><span class="p">,</span>
-        <span class="nx">onProxyReq</span> <span class="p">(</span><span class="nx">proxyReq</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">proxyReq</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+        <span class="nx">onProxyReq</span><span class="p">(</span><span class="nx">proxyReq</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">proxyReq</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
         <span class="p">},</span>
         <span class="nx">onProxyRes</span><span class="p">(</span><span class="nx">proxyRes</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">proxyRes</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">proxyRes</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
         <span class="p">},</span>
         <span class="na">pathRewrite</span><span class="p">:</span> <span class="p">{</span>
           <span class="s1">'^/outer'</span><span class="p">:</span> <span class="s1">''</span> <span class="c1">// 这里一定要删掉，不然会导致死递归</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">},</span>
-    <span class="na">before</span><span class="p">:</span> <span class="nx">app</span> <span class="o">=&gt;</span> <span class="p">{</span> 
-      <span class="kr">const</span> <span class="nx">apiRoutes</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">()</span>
-      <span class="kr">const</span> <span class="nx">pathArr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'/seller'</span><span class="p">,</span> <span class="s1">'/goods'</span><span class="p">,</span> <span class="s1">'/ratings'</span><span class="p">]</span>
+    <span class="na">before</span><span class="p">:</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">apiRoutes</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+      <span class="kr">const</span> <span class="nx">pathArr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'/seller'</span><span class="p">,</span> <span class="s1">'/goods'</span><span class="p">,</span> <span class="s1">'/ratings'</span><span class="p">];</span>
       <span class="nx">pathArr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">urlPath</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="nx">apiRoutes</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">urlPath</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">urlPath</span><span class="p">)</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">urlPath</span><span class="p">);</span>
           <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span>
             <span class="na">errno</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
             <span class="na">data</span><span class="p">:</span> <span class="nx">mockData</span><span class="p">[</span><span class="nx">urlPath</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
           <span class="p">});</span>
         <span class="p">});</span>
-      <span class="p">})</span>
+      <span class="p">});</span>
 
-      <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">'/api'</span><span class="p">,</span> <span class="nx">apiRoutes</span><span class="p">)</span>
+      <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">'/api'</span><span class="p">,</span> <span class="nx">apiRoutes</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="c1">// 第三方插件配置</span>
   <span class="na">pluginOptions</span><span class="p">:</span> <span class="p">{</span>
     <span class="c1">// ...</span>
   <span class="p">}</span>
-<span class="p">}</span>
-
+<span class="p">};</span>
 </code></pre>
 </div>
 
@@ -211,56 +210,57 @@
 
 <p>以上两个工具的介绍文章：<a href="https://blog.csdn.net/huangxiaoguo1/article/details/79623573">前端字体图标的使用（阿里、icomoon）</a></p>
 
-<h1 id="在vscode中stylus自动格式化插件">在vscode中stylus自动格式化插件</h1>
+<h1 id="在-vscode-中-stylus-自动格式化插件">在 vscode 中 stylus 自动格式化插件</h1>
 
-<p>安装插件<code class="highlighter-rouge">stylus supremacy</code>，<code class="highlighter-rouge">vscode</code>中使用快捷键<code class="highlighter-rouge">ctrl ,</code>打开配置页，进行相关配置（搜索<code class="highlighter-rouge">supremacy</code>可以看到28项配置），控制自动格式化时是否使用大括号、分号等，<code class="highlighter-rouge">vscode</code>中自动格式化快捷键：<code class="highlighter-rouge">alt+shift+F</code>。</p>
+<p>安装插件<code class="highlighter-rouge">stylus supremacy</code>，<code class="highlighter-rouge">vscode</code>中使用快捷键<code class="highlighter-rouge">ctrl ,</code>打开配置页，进行相关配置（搜索<code class="highlighter-rouge">supremacy</code>可以看到 28 项配置），控制自动格式化时是否使用大括号、分号等，<code class="highlighter-rouge">vscode</code>中自动格式化快捷键：<code class="highlighter-rouge">alt+shift+F</code>。</p>
 
-<h1 id="安装jsonview">安装JSONView</h1>
+<h1 id="安装-jsonview">安装 JSONView</h1>
 
-<p>这是一个浏览器插件，可以在浏览器中格式化地查看<code class="highlighter-rouge">json</code>数据，可参考文章：<a href="https://www.cnblogs.com/whycxb/p/7126116.html">谷歌浏览器中安装JsonView扩展程序</a>。另外实际上在<code class="highlighter-rouge">chrome</code>中打开开发这工具，在<code class="highlighter-rouge">network</code>中查看相应的请求的<code class="highlighter-rouge">response</code>，点击左下角的<code class="highlighter-rouge"><span class="p">{}</span></code>符号，也可以查看格式化好的<code class="highlighter-rouge">json</code>数据。</p>
+<p>这是一个浏览器插件，可以在浏览器中格式化地查看<code class="highlighter-rouge">json</code>数据，可参考文章：<a href="https://www.cnblogs.com/whycxb/p/7126116.html">谷歌浏览器中安装 JsonView 扩展程序</a>。另外实际上在<code class="highlighter-rouge">chrome</code>中打开开发这工具，在<code class="highlighter-rouge">network</code>中查看相应的请求的<code class="highlighter-rouge">response</code>，点击左下角的<code class="highlighter-rouge"><span class="p">{}</span></code>符号，也可以查看格式化好的<code class="highlighter-rouge">json</code>数据。</p>
 
-<h1 id="vscode为vue单文件设置模板">vscode为.vue单文件设置模板</h1>
+<h1 id="vscode-为vue-单文件设置模板">vscode 为.vue 单文件设置模板</h1>
 
 <p><code class="highlighter-rouge">File &gt; Preferences &gt; User Snippets</code>，输入<code class="highlighter-rouge">vue.json</code>，即可配置，如下：</p>
 
 <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="nt">"Vue Single File"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-		</span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vue"</span><span class="p">,</span><span class="w">
-		</span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-			</span><span class="s2">"&lt;template&gt;\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;/template&gt;\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;script&gt;"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"export default {"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"  data() {"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"    return {\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"    }"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"  },"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"  components: {\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"  }"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"}"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;/script&gt;\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;style scoped lang=\"stylus\"&gt;\n"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"&lt;/style&gt;"</span><span class="p">,</span><span class="w">
-			</span><span class="s2">"$2"</span><span class="w">
-		</span><span class="p">],</span><span class="w">
-		</span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate snippets for .vue single file"</span><span class="w">
-	</span><span class="p">}</span><span class="w">
+  </span><span class="nt">"Vue Single File"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vue"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"&lt;template&gt;\n"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;/template&gt;\n"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;script&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"export default {"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"  data() {"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"    return {\n"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"    }"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"  },"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"  components: {\n"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"  }"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"}"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;/script&gt;\n"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;style scoped lang=\"stylus\"&gt;\n"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;/style&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"$2"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate snippets for .vue single file"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
+
 <p>配置好以后，我们新建一个<code class="highlighter-rouge">.vue</code>文件，在其中输入<code class="highlighter-rouge">vue</code>，然后按<code class="highlighter-rouge">Tab</code>键（或者回车键），就会自动填充设置的模板代码。</p>
 
-<p>参考：<a href="https://segmentfault.com/a/1190000014653201">在vscode里使用.vue代码模板的方法</a></p>
+<p>参考：<a href="https://segmentfault.com/a/1190000014653201">在 vscode 里使用.vue 代码模板的方法</a></p>
 
-<h1 id="手机无法通过该ip地址访问项目">手机无法通过该ip地址访问项目</h1>
+<h1 id="手机无法通过该-ip-地址访问项目">手机无法通过该 ip 地址访问项目</h1>
 
 <ul>
   <li>确认可以使用<code class="highlighter-rouge">ip</code>地址方式在电脑上访问项目，注意需要将<code class="highlighter-rouge">devServer.host</code>配置为<code class="highlighter-rouge">0.0.0.0</code>，否则可能不行</li>
   <li>确认手机和电脑是一个局域网下（比如<code class="highlighter-rouge">wifi</code>或数据线共享网络）</li>
-  <li>检查一下电脑防火墙是否拦截掉了请求，参考文章<a href="https://www.2cto.com/os/201203/123953.html">解决apache服务器本地可以访问，同局域网内他人不能访问的问题</a></li>
+  <li>检查一下电脑防火墙是否拦截掉了请求，参考文章<a href="https://www.2cto.com/os/201203/123953.html">解决 apache 服务器本地可以访问，同局域网内他人不能访问的问题</a></li>
 </ul>
 
-<h1 id="项目部署baseurl">项目部署baseUrl</h1>
+<h1 id="项目部署-baseurl">项目部署 baseUrl</h1>
 
 <p>整个项目完成以后，我希望将项目放到<code class="highlighter-rouge">github</code>上，这时候配置文件需要有些改动。</p>
 
@@ -276,7 +276,7 @@
 
 <p>如果希望在本地运行打包后的项目，需要将<code class="highlighter-rouge">dist</code>文件夹放到一个本地服务器中，如<code class="highlighter-rouge">apache</code>服务器，也可以自己用<code class="highlighter-rouge">node</code>搭建个简单的服务器，那么上面的生产环境下的<code class="highlighter-rouge">baseUrl</code>需要修改为项目打包后的文件夹相对服务器根路径的地址，比如服务器根路径为<code class="highlighter-rouge">some/path/htdocs</code>，项目打包好后在其下的<code class="highlighter-rouge">projects/order-app/dist</code>目录中，那么就将后面这个目录设为<code class="highlighter-rouge">baseUrl</code>就可以了。</p>
 
-<h1 id="项目部署mock数据处理">项目部署mock数据处理</h1>
+<h1 id="项目部署-mock-数据处理">项目部署 mock 数据处理</h1>
 
 <p>在开发环境下，使用了<code class="highlighter-rouge">vue-resource</code>进行数据请求，借助了<code class="highlighter-rouge">express</code>读取本地根目录下的<code class="highlighter-rouge">mock</code>文件夹中的数据文件（详见<code class="highlighter-rouge">vue.config.js</code>）。但是这样一来，生产环境下有两个问题：</p>
 
@@ -306,14 +306,14 @@
 
 <span class="c1">// 生成环境下的axios的拦截器（实际上开发环境中也有代理的，在vue.config.js的devServer中配置的）</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">'production'</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">axios</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">axios</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// eslint-disable-next-line</span>
     <span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/api</span><span class="se">\/([^\/\?]</span><span class="sr">+</span><span class="se">)</span><span class="sr">/</span><span class="p">,</span> <span class="s1">'mock/data.json'</span><span class="p">);</span>
     <span class="nx">config</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="nx">url</span><span class="p">;</span>
     <span class="nx">config</span><span class="p">.</span><span class="nx">dataKey</span> <span class="o">=</span> <span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span><span class="p">;</span>
     <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
   <span class="p">});</span>
-  <span class="nx">axios</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">axios</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
       <span class="na">errNum</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="na">data</span><span class="p">:</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">res</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">dataKey</span><span class="p">]</span>
@@ -328,7 +328,7 @@
 
 <p>接着，我们只需要在<code class="highlighter-rouge">main.js</code>中<code class="highlighter-rouge">import @src/api/config;</code>就可以了。</p>
 
-<p>参考：<a href="https://blog.csdn.net/qq_35430000/article/details/80485311">vue打包后如何区分开发、测试和生产等不同的开发环境</a></p>
+<p>参考：<a href="https://blog.csdn.net/qq_35430000/article/details/80485311">vue 打包后如何区分开发、测试和生产等不同的开发环境</a></p>
 
 <h1 id="开发环境下手机端调试">开发环境下手机端调试</h1>
 
@@ -337,7 +337,7 @@
 <p>通过插入<code class="highlighter-rouge">js</code>文件的方式调试，比较能够确定页面是加载了的，很可能是内部的出现了错误，为此找到一个浏览器端的控制台插件<a href="https://github.com/liriliri/eruda">eruda</a>，之后在控制台中看到了<code class="highlighter-rouge">use of const in strict mode.</code>报错，查到了类似下面的<code class="highlighter-rouge">issue</code>：</p>
 
 <ul>
-  <li><a href="https://github.com/mrdulin/blog/issues/35">使用webpack-dev-server在移动端调试时，出现”SyntaxError: Use of const in strict mode.”的问题 #35</a></li>
+  <li><a href="https://github.com/mrdulin/blog/issues/35">使用 webpack-dev-server 在移动端调试时，出现”SyntaxError: Use of const in strict mode.”的问题 #35</a></li>
   <li><a href="https://github.com/webpack/webpack-dev-server/issues/1105">Webpack Dev Server No Longer Runs On Older Browsers #1105</a></li>
 </ul>
 
@@ -345,14 +345,15 @@
 
 <p>由于不太想修改<code class="highlighter-rouge">vue-cli</code>的开发环境，笔者没有尝试过这一方案，而是使用高版本一些的手机浏览器，发现问题被解决了。</p>
 
-<h1 id="项目部署gh-pages分支">项目部署gh-pages分支</h1>
+<h1 id="项目部署-gh-pages-分支">项目部署 gh-pages 分支</h1>
 
 <p>打包后的文件在<code class="highlighter-rouge">dist</code>文件夹中，为了在<code class="highlighter-rouge">github</code>项目主页中直接使用这个子文件中的内容，我们可以另外创建一个<code class="highlighter-rouge">gh-pages</code>分支，每次打包都要推送以更新该分支。然后在<code class="highlighter-rouge">github</code>中的<code class="highlighter-rouge">Setting &gt; Github Pages</code>中选择该分支作为项目主页。</p>
 
-<pre><code class="language-batch">git subtree push --prefix build/dist origin gh-pages
+<div class="highlighter-rouge"><pre class="highlight"><code>git subtree push --prefix build/dist origin gh-pages
 </code></pre>
+</div>
 
-<p>参考：<a href="https://cloud.tencent.com/developer/ask/66544">我可以在存储库的子文件夹中拥有我的Github Pages index.html吗？</a></p>
+<p>参考：<a href="https://cloud.tencent.com/developer/ask/66544">我可以在存储库的子文件夹中拥有我的 Github Pages index.html 吗？</a></p>
 
 				</div>
 				<p>（本文完）</p>
