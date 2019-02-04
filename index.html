@@ -7,71 +7,112 @@ cssClass: posts
 
 <!-- 博客总览 -->
 <div class="overview">
-    <!-- 头像、标题、slogan -->
-    <div class="header-wrapper">
-        <div class="header">
-            <div class="header-content">
-                <div class="avatar"><img class="avatar-img" src="{{site.baseUrl}}/images/base/faith.jpg" alt="头像"></div>
-                <h1 class="blog-title"><span class="grey-bg-text">Jacktown's Blog</span></h1>
-                <p class="slogan"><span class="grey-bg-text">是雨是晴都是好天气</span></p>
-            </div>
+  <!-- 头像、标题、slogan -->
+  <div class="header-wrapper">
+    <div class="header">
+      <div class="header-content">
+        <div class="avatar">
+          <img
+            class="avatar-img"
+            src="{{ site.baseUrl }}/images/base/faith.jpg"
+            alt="头像"
+          />
         </div>
+        <h1 class="blog-title">
+          <span class="grey-bg-text">Jacktown's Blog</span>
+        </h1>
+        <p class="slogan">
+          <span class="grey-bg-text">是雨是晴都是好天气</span>
+        </p>
+      </div>
     </div>
+  </div>
 
-    <!-- 子页面链接 -->
-    <ul class="pages">
-        <li class="page-item"><a class="page-link" href="{{site.baseUrl}}/pages/proj.html">我的项目</a></li>
-        <li class="page-item"><a class="page-link" href="{{site.baseUrl}}/pages/intro_php.html">个人简历</a></li>
-    </ul>
+  <!-- 子页面链接 -->
+  <ul class="pages">
+    <li class="page-item">
+      <a class="page-link" href="{{ site.baseUrl }}/pages/proj.html"
+        >我的项目</a
+      >
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="{{ site.baseUrl }}/pages/intro.html"
+        >个人简历</a
+      >
+    </li>
+  </ul>
 
-    <!-- 社交帐号 -->
-    <div class="social-account-wrapper">
-        <a target="_blank" href="mailto:jikai_tang@163.com" class="social-account email" title="email">
-            <span class="social-account-img email-img"></span>
-        </a>
-        <a target="_blank" href="https://github.com/jacktown11" class="social-account github" title="github">
-            <span class="social-account-img github-img"></span>
-        </a>
-        <a target="_blank" href="https://segmentfault.com/u/jacktown" class="social-account segmentfault" title="segmentfault">
-            <span class="social-account-img segmentfault-img"></span>
-        </a>
-        <a target="_blank" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1797784409" class="social-account qq"
-            title="qq">
-            <span class="social-account-img qq-img"></span>
-        </a>
-    </div>
+  <!-- 社交帐号 -->
+  <div class="social-account-wrapper">
+    <a
+      target="_blank"
+      href="mailto:jikai_tang@163.com"
+      class="social-account email"
+      title="email"
+    >
+      <span class="social-account-img email-img"></span>
+    </a>
+    <a
+      target="_blank"
+      href="https://github.com/jacktown11"
+      class="social-account github"
+      title="github"
+    >
+      <span class="social-account-img github-img"></span>
+    </a>
+    <a
+      target="_blank"
+      href="https://segmentfault.com/u/jacktown"
+      class="social-account segmentfault"
+      title="segmentfault"
+    >
+      <span class="social-account-img segmentfault-img"></span>
+    </a>
+    <a
+      target="_blank"
+      href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1797784409"
+      class="social-account qq"
+      title="qq"
+    >
+      <span class="social-account-img qq-img"></span>
+    </a>
+  </div>
 </div>
 
 <!-- 文章列表 -->
 <div class="post-list">
-    <!-- 检索区 -->
-    <div class="input">
-        <div class="container">
-            <div class="categories" id="categories">
-
-            </div>
-            <div class="tags" id="tags">
-
-            </div>
-            <div class="pipe" id="pipe">
-
-            </div>
-        </div>
-        <div class="search" id="search">
-            <input type="text" id="searchInput" name="search-input" autocomplete="off">
-        </div>
+  <!-- 检索区 -->
+  <div class="input">
+    <div class="container">
+      <div class="categories" id="categories"></div>
+      <div class="tags" id="tags"></div>
+      <div class="pipe" id="pipe"></div>
     </div>
+    <div class="search" id="search">
+      <input
+        type="text"
+        id="searchInput"
+        name="search-input"
+        autocomplete="off"
+      />
+    </div>
+  </div>
 
-    <!-- 检索结果列表 -->
-    <ul class="articles" id="aticleList">
-        {%for post in site.posts%}
-        <li data-date="{{post.date}}" data-title="{{post.title}}" data-url="{{post.url}}" data-tags="{{post.tags | join: ','}}"
-            data-categories="{{post.categories | join: ','}}">
-            <a href="{{ post.url }}">
-                <span class="date">{{ post.date | date_to_string }}</span>
-                <span class="title">{{ post.title }}</span>
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+  <!-- 检索结果列表 -->
+  <ul class="articles" id="aticleList">
+    {%for post in site.posts%}
+    <li
+      data-date="{{ post.date }}"
+      data-title="{{ post.title }}"
+      data-url="{{ post.url }}"
+      data-tags="{{ post.tags | join: ',' }}"
+      data-categories="{{ post.categories | join: ',' }}"
+    >
+      <a href="{{ post.url }}">
+        <span class="date">{{ post.date | date_to_string }}</span>
+        <span class="title">{{ post.title }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
 </div>
