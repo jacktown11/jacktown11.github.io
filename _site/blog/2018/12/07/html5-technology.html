@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -128,14 +128,13 @@
 
 <p>本身不可见，它为<code class="highlighter-rouge">input</code>提供输入列表，用户可以从中选取，也可以手动输入。</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;datalist</span> <span class="na">id=</span><span class="s">"listA"</span><span class="nt">&gt;</span> 
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;datalist</span> <span class="na">id=</span><span class="s">"listA"</span><span class="nt">&gt;</span> 
     <span class="nt">&lt;option&gt;</span>xx<span class="nt">&lt;/option&gt;</span>
     <span class="nt">&lt;option&gt;</span>yy<span class="nt">&lt;/option&gt;</span>
     <span class="nt">&lt;option&gt;</span>zz<span class="nt">&lt;/option&gt;</span>
 <span class="nt">&lt;/datalist&gt;</span>
 listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">list=</span><span class="s">"listA"</span><span class="nt">&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="progress">progress</h3>
 
@@ -146,30 +145,27 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
   <li>具有一定进度值（0-1）的进度条</li>
 </ol>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- 左右摇晃的进度条 --&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 左右摇晃的进度条 --&gt;</span>
 进度条1：<span class="nt">&lt;progress&gt;&lt;/progress&gt;&lt;br&gt;</span>
 <span class="c">&lt;!-- 具有进度值的进度条 --&gt;</span>
 进度条2：<span class="nt">&lt;progress</span> <span class="na">value=</span><span class="s">"0"</span> <span class="na">id=</span><span class="s">"progress"</span><span class="nt">&gt;&lt;/progress&gt;&lt;br&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="meter">meter</h3>
 
 <p>刻度尺，用于表示一个值所处范围：不可接受（红色），可以接受（黄色），非常优秀（绿色）</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>刻度：<span class="nt">&lt;meter</span> <span class="na">min=</span><span class="s">"0"</span> <span class="na">max=</span><span class="s">"100"</span> <span class="na">low=</span><span class="s">"60"</span> <span class="na">high=</span><span class="s">"85"</span> <span class="na">optimum=</span><span class="s">"100"</span> <span class="na">value=</span><span class="s">"0"</span> <span class="na">id=</span><span class="s">"meter"</span><span class="nt">&gt;&lt;/meter&gt;</span>
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>刻度：<span class="nt">&lt;meter</span> <span class="na">min=</span><span class="s">"0"</span> <span class="na">max=</span><span class="s">"100"</span> <span class="na">low=</span><span class="s">"60"</span> <span class="na">high=</span><span class="s">"85"</span> <span class="na">optimum=</span><span class="s">"100"</span> <span class="na">value=</span><span class="s">"0"</span> <span class="na">id=</span><span class="s">"meter"</span><span class="nt">&gt;&lt;/meter&gt;</span>
+</code></pre></div></div>
 
 <h3 id="output">output</h3>
 
 <p>输出，语义标签，没有任何样式，样式等同于<code class="highlighter-rouge">span</code>。（下面的例子中表示语义，并不自动计算，也没有样式）</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>商品价格：3.5
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>商品价格：3.5
 购买数量：<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>
 小计：<span class="nt">&lt;output&gt;</span>10.5<span class="nt">&lt;/output&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="3-表单标签的新属性">3. 表单标签的新属性</h2>
 
@@ -242,7 +238,7 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
   <li><code class="highlighter-rouge">none</code>: 不预加载任何数据</li>
 </ul>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;video</span> <span class="na">src=</span><span class="s">"static/aaa.mp4"</span> <span class="na">id=</span><span class="s">"v1"</span> <span class="na">controls</span> <span class="na">poster=</span><span class="s">"static/play.png"</span> <span class="na">preload=</span><span class="s">"metadate"</span><span class="nt">&gt;&lt;/video&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;video</span> <span class="na">src=</span><span class="s">"static/aaa.mp4"</span> <span class="na">id=</span><span class="s">"v1"</span> <span class="na">controls</span> <span class="na">poster=</span><span class="s">"static/play.png"</span> <span class="na">preload=</span><span class="s">"metadate"</span><span class="nt">&gt;&lt;/video&gt;</span>
 
 <span class="nt">&lt;video</span> <span class="na">id=</span><span class="s">"v2"</span><span class="nt">&gt;</span> 
     <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">"static/aaa.mp4"</span><span class="nt">&gt;</span>
@@ -250,8 +246,7 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
     <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">"static/aaa.webm"</span><span class="nt">&gt;</span>
     您的浏览器版本太低，无法播放，请升级。
 <span class="nt">&lt;/video&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="js对象属性">js对象属性</h3>
 
@@ -279,9 +274,8 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
 
 <p><code class="highlighter-rouge">H5</code>提供了一个<code class="highlighter-rouge">audio</code>标签用于播放音频，其属性和<code class="highlighter-rouge">video</code>几乎一样。</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;audio</span> <span class="na">src=</span><span class="s">"static/stayAlive.mp3"</span> <span class="na">controls</span> <span class="na">autoplay</span><span class="nt">&gt;&lt;/audio&gt;</span>
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;audio</span> <span class="na">src=</span><span class="s">"static/stayAlive.mp3"</span> <span class="na">controls</span> <span class="na">autoplay</span><span class="nt">&gt;&lt;/audio&gt;</span>
+</code></pre></div></div>
 
 <h1 id="四canvas">四、Canvas</h1>
 
@@ -299,48 +293,44 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
 
 <p><code class="highlighter-rouge">Canvas</code>画布，是<code class="highlighter-rouge">H5</code>提供<code class="highlighter-rouge">2D</code>绘图技术，其默认是<code class="highlighter-rouge">300*150</code>的<code class="highlighter-rouge">inline-block</code>，画布的宽高只能使用<code class="highlighter-rouge">html/js</code>属性来赋值，不能使用<code class="highlighter-rouge">css</code>样式来赋值！</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;canvas</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"600"</span><span class="nt">&gt;</span>您的游览器版本太低，请升级！<span class="nt">&lt;/canvas&gt;</span>
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;canvas</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"600"</span><span class="nt">&gt;</span>您的游览器版本太低，请升级！<span class="nt">&lt;/canvas&gt;</span>
+</code></pre></div></div>
 
 <p>每个画布上有且仅有一个“画笔”对象，使用它进行绘图。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">'2d'</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p>坐标系：左上角为原点，向右为<code class="highlighter-rouge">x</code>轴正方向，向下为<code class="highlighter-rouge">y</code>轴正方向</p>
 
 <h2 id="2-绘制矩形">2. 绘制矩形</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// 绘制一个矩形</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 绘制一个矩形</span>
 <span class="nx">ctx</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 描边宽度（空心）</span>
-<span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="s1">'#f00'</span><span class="p">;</span> <span class="c1">// 描边样式（空心）</span>
-<span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="s1">'#000'</span><span class="p">;</span> <span class="c1">// 填充样式/样色（实心）</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#f00</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 描边样式（空心）</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#000</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 填充样式/样色（实心）</span>
 <span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> <span class="c1">// 描边一个矩形(x,y,w,h)</span>
 <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> <span class="c1">// 填充一个矩形</span>
 <span class="nx">ctx</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">//清除一个矩形范围内的所有绘图</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="3-绘制文本">3. 绘制文本</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// 绘制文本</span>
-<span class="kd">let</span> <span class="nx">ctx4</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'c4'</span><span class="p">).</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">'2d'</span><span class="p">);</span>
-<span class="nx">ctx4</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="s1">'#080'</span><span class="p">;</span>
-<span class="nx">ctx4</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="s1">'#008'</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 绘制文本</span>
+<span class="kd">let</span> <span class="nx">ctx4</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">c4</span><span class="dl">'</span><span class="p">).</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#080</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#008</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">ctx4</span><span class="p">.</span><span class="nx">strokeRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
 
-<span class="nx">ctx4</span><span class="p">.</span><span class="nx">font</span> <span class="o">=</span> <span class="s1">'30px sans-serif'</span><span class="p">;</span> <span class="c1">// 设置字体与大小</span>
-<span class="nx">ctx4</span><span class="p">.</span><span class="nx">textBaseline</span> <span class="o">=</span> <span class="s1">'bottom'</span><span class="p">;</span> <span class="c1">// bottom alphabetic 文本基线（垂直对齐方式）</span>
-<span class="nx">ctx4</span><span class="p">.</span><span class="nx">fillText</span><span class="p">(</span><span class="s1">'hello, tom'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// 在(x,y)坐标位置填充一段文本</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">font</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">30px sans-serif</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 设置字体与大小</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">textBaseline</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">bottom</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// bottom alphabetic 文本基线（垂直对齐方式）</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">fillText</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello, tom</span><span class="dl">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// 在(x,y)坐标位置填充一段文本</span>
 
-<span class="nx">ctx4</span><span class="p">.</span><span class="nx">textBaseline</span> <span class="o">=</span> <span class="s1">'top'</span><span class="p">;</span>
-<span class="nx">ctx4</span><span class="p">.</span><span class="nx">strokeText</span><span class="p">(</span><span class="s1">'China'</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// 在(x,y)位置描边一段文本</span>
-<span class="kd">let</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">ctx4</span><span class="p">.</span><span class="nx">measureText</span><span class="p">(</span><span class="s1">'good morning'</span><span class="p">);</span> <span class="c1">// 测量文本宽度，返回对象｛width: x｝</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">textBaseline</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">top</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">strokeText</span><span class="p">(</span><span class="dl">'</span><span class="s1">China</span><span class="dl">'</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// 在(x,y)位置描边一段文本</span>
+<span class="kd">let</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">ctx4</span><span class="p">.</span><span class="nx">measureText</span><span class="p">(</span><span class="dl">'</span><span class="s1">good morning</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// 测量文本宽度，返回对象｛width: x｝</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">width</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="4-渐变对象">4. 渐变对象</h2>
 
@@ -356,28 +346,27 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
   <li>径向渐变: <code class="highlighter-rouge">radialGradient</code></li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">ctx7</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'c7'</span><span class="p">).</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">'2d'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">ctx7</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">c7</span><span class="dl">'</span><span class="p">).</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="c1">// 创建渐变对象(x1,y1, x2, y2)</span>
 <span class="kd">let</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">ctx7</span><span class="p">.</span><span class="nx">createLinearGradient</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
 
 <span class="c1">// 设置颜色点</span>
-<span class="nx">g</span><span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'#008'</span><span class="p">);</span>
-<span class="nx">g</span><span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">'#f00'</span><span class="p">);</span>
-<span class="nx">g</span><span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'#080'</span><span class="p">);</span>
+<span class="nx">g</span><span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="dl">'</span><span class="s1">#008</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">g</span><span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="dl">'</span><span class="s1">#f00</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">g</span><span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">#080</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="c1">// 将该渐变对象设置为画笔填充样式</span>
 <span class="nx">ctx7</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">g</span><span class="p">;</span>
 
 <span class="nx">ctx7</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="5-绘制路径">5. 绘制路径</h2>
 
 <p><code class="highlighter-rouge">Path</code>: 由多个坐标点组成任意形状，路径本身不可见，可描边、填充、裁剪。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">ctx9</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'c9'</span><span class="p">).</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">'2d'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">ctx9</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">c9</span><span class="dl">'</span><span class="p">).</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">ctx9</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span> <span class="c1">// 开始路径</span>
 <span class="nx">ctx9</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// 移动到指定点(x,y)</span>
 <span class="nx">ctx9</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// 从当前点到指定点绘制一条线段</span>
@@ -388,23 +377,21 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
 <span class="nx">ctx9</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">// 绘制圆拱形路径(x,y,r, startArc, endArc)</span>
 <span class="nx">ctx9</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
 <span class="c1">// ctx9.clip(); // 对当前路径进行裁剪</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="6-绘制图像">6. 绘制图像</h2>
 
 <p><code class="highlighter-rouge">canvas</code>属于客户端技术，图片在服务器上，所有的浏览器必须先下载，等待图片加载成功以后，再绘制图片。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">img</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span> <span class="c1">// 创建图片对象</span>
-<span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'./img/p3.png'</span><span class="p">;</span> <span class="c1">// 加载图片</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">img</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span> <span class="c1">// 创建图片对象</span>
+<span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">./img/p3.png</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 加载图片</span>
 <span class="c1">// 图片加载完成处理事件</span>
 <span class="nx">img</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">img</span><span class="p">.</span><span class="nx">width</span><span class="p">);</span> <span class="c1">// 200</span>
     <span class="nx">ctxa</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">// 原大小绘制</span>
     <span class="nx">ctxa</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> <span class="c1">// 拉伸绘制</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="7-异步加载多张图片">7. 异步加载多张图片</h2>
 
@@ -419,32 +406,30 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
 
 <p>解决方案：使用整型数字，通过计算完成图片加载。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">progress</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">progress</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">img1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
-<span class="nx">img1</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'1.png'</span><span class="p">;</span>
+<span class="nx">img1</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">1.png</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">img1</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
     <span class="nx">progress</span><span class="o">+=</span><span class="mi">50</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">progress</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span> <span class="nx">draw</span><span class="p">();</span>
 <span class="p">};</span>
 <span class="kd">let</span> <span class="nx">img2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
-<span class="nx">img2</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'2.png'</span><span class="p">;</span>
+<span class="nx">img2</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">2.png</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">img2</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
     <span class="nx">progress</span><span class="o">+=</span><span class="mi">50</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">progress</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span> <span class="nx">draw</span><span class="p">();</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="8-图形变换操作">8. 图形变换操作</h2>
 
 <p><code class="highlighter-rouge">canvas</code>可以对一个图像/图形在绘制过程中进行变换，旋转、平移；旋转与平移都具有累加效果。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">ctx</span><span class="p">.</span><span class="nx">rotate</span><span class="p">(</span><span class="nx">angle</span><span class="p">);</span> <span class="c1">//旋转绘图对象，旋转中心是画布原点（0，0）</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">ctx</span><span class="p">.</span><span class="nx">rotate</span><span class="p">(</span><span class="nx">angle</span><span class="p">);</span> <span class="c1">//旋转绘图对象，旋转中心是画布原点（0，0）</span>
 <span class="nx">ctx</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">);</span> <span class="c1">//将整个画布的原点平移到指定位置</span>
 <span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span> <span class="c1">//保存画笔的所有变换状态值</span>
 <span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span> <span class="c1">//恢复画布变换状态值到最近一次保存值</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="五svg绘图">五、SVG绘图</h1>
 
@@ -519,13 +504,12 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
   <li><code class="highlighter-rouge">stroke-opacity</code></li>
 </ul>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">id=</span><span class="s">"s1"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"400"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">id=</span><span class="s">"s1"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"400"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">height=</span><span class="s">"100"</span><span class="nt">&gt;&lt;/rect&gt;</span>
     <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">height=</span><span class="s">"100"</span> <span class="na">x=</span><span class="s">"400"</span> <span class="na">y=</span><span class="s">"0"</span> <span class="na">stroke=</span><span class="s">"#088"</span> <span class="na">stroke-width=</span><span class="s">"3"</span> <span class="na">fill=</span><span class="s">"transparent"</span><span class="nt">&gt;&lt;/rect&gt;</span>
     <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">height=</span><span class="s">"100"</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"300"</span> <span class="na">fill=</span><span class="s">"#f00"</span> <span class="na">fill-opacity=</span><span class="s">"0.5"</span><span class="nt">&gt;&lt;/rect&gt;</span>
 <span class="nt">&lt;/svg&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="2-绘制圆形">2. 绘制圆形</h2>
 
@@ -550,7 +534,7 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
 
 <h2 id="4-绘制直线">4. 绘制直线</h2>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;g</span> <span class="na">stroke=</span><span class="s">"#222"</span> <span class="na">stroke-width=</span><span class="s">"8"</span> <span class="na">stroke-linecap=</span><span class="s">"round"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;g</span> <span class="na">stroke=</span><span class="s">"#222"</span> <span class="na">stroke-width=</span><span class="s">"8"</span> <span class="na">stroke-linecap=</span><span class="s">"round"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"60"</span> <span class="na">y1=</span><span class="s">"200"</span> <span class="na">x2=</span><span class="s">"70"</span> <span class="na">y2=</span><span class="s">"200"</span> <span class="nt">&gt;&lt;/line&gt;</span>
     <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"60"</span> <span class="na">y1=</span><span class="s">"220"</span> <span class="na">x2=</span><span class="s">"70"</span> <span class="na">y2=</span><span class="s">"220"</span> <span class="nt">&gt;&lt;/line&gt;</span>
     <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"60"</span> <span class="na">y1=</span><span class="s">"240"</span> <span class="na">x2=</span><span class="s">"70"</span> <span class="na">y2=</span><span class="s">"240"</span> <span class="nt">&gt;&lt;/line&gt;</span>
@@ -558,44 +542,39 @@ listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span clas
     <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"85"</span> <span class="na">y1=</span><span class="s">"220"</span> <span class="na">x2=</span><span class="s">"140"</span> <span class="na">y2=</span><span class="s">"220"</span> <span class="nt">&gt;&lt;/line&gt;</span>
     <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"85"</span> <span class="na">y1=</span><span class="s">"240"</span> <span class="na">x2=</span><span class="s">"140"</span> <span class="na">y2=</span><span class="s">"240"</span> <span class="nt">&gt;&lt;/line&gt;</span>
 <span class="nt">&lt;/g&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="5-绘制折线">5. 绘制折线</h2>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;polyline</span> <span class="na">points=</span><span class="s">"50,50 100,50 100,100 50,100"</span> 
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;polyline</span> <span class="na">points=</span><span class="s">"50,50 100,50 100,100 50,100"</span> 
 <span class="na">fill=</span><span class="s">"transparent"</span> <span class="na">stroke=</span><span class="s">"#444"</span> <span class="na">stroke-width=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/polyline&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="6-绘制多边形">6. 绘制多边形</h2>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;polyline</span> <span class="na">points=</span><span class="s">"100,100 115,150 77,120 123,120 85,150 100,100"</span> 
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;polyline</span> <span class="na">points=</span><span class="s">"100,100 115,150 77,120 123,120 85,150 100,100"</span> 
 <span class="na">fill=</span><span class="s">"#080"</span> <span class="na">stroke=</span><span class="s">"#008"</span> <span class="na">stroke-width=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/polyline&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="7-绘制文本">7. 绘制文本</h2>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;text</span> <span class="na">font-size=</span><span class="s">"48"</span> <span class="na">fill=</span><span class="s">"#088"</span> <span class="na">stroke=</span><span class="s">"#f00"</span> 
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;text</span> <span class="na">font-size=</span><span class="s">"48"</span> <span class="na">fill=</span><span class="s">"#088"</span> <span class="na">stroke=</span><span class="s">"#f00"</span> 
 <span class="na">x=</span><span class="s">"50"</span> <span class="na">y=</span><span class="s">"50"</span> <span class="na">alignment-baseline=</span><span class="s">"before-edge"</span><span class="nt">&gt;</span>
 hello,汉字
 <span class="nt">&lt;/text&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="8-绘制图像">8. 绘制图像</h2>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;image</span> <span class="na">xlink:href=</span><span class="s">"./img/play.png"</span> 
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;image</span> <span class="na">xlink:href=</span><span class="s">"./img/play.png"</span> 
 <span class="na">width=</span><span class="s">"300"</span> <span class="na">height=</span><span class="s">"200"</span> <span class="na">x=</span><span class="s">"150"</span> <span class="na">y=</span><span class="s">"100"</span><span class="nt">&gt;&lt;/image&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="9-渐变对象">9. 渐变对象</h2>
 
 <p>使用<code class="highlighter-rouge">linearGradient</code>标签，定义<code class="highlighter-rouge">id</code>，并使用；它属于特效，放在<code class="highlighter-rouge">defs</code>标签内。</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">id=</span><span class="s">"se"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"400"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">id=</span><span class="s">"se"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"400"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;defs&gt;</span>
         <span class="nt">&lt;linearGradient</span> <span class="na">id=</span><span class="s">"ge"</span> <span class="na">x1=</span><span class="s">"0%"</span> <span class="na">y1=</span><span class="s">"0%"</span> <span class="na">x2=</span><span class="s">"100%"</span> <span class="na">y2=</span><span class="s">"100%"</span><span class="nt">&gt;</span>
             <span class="nt">&lt;stop</span> <span class="na">offset=</span><span class="s">"0%"</span> <span class="na">style=</span><span class="s">"stop-color:rgb(255,255,0);stop-opacity:1"</span> <span class="nt">/&gt;</span>
@@ -606,12 +585,11 @@ hello,汉字
     <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">"100"</span> <span class="na">cy=</span><span class="s">"100"</span> <span class="na">r=</span><span class="s">"50"</span> <span class="na">fill=</span><span class="s">"url(#ge)"</span><span class="nt">&gt;&lt;/circle&gt;</span>
     <span class="nt">&lt;text</span> <span class="na">font-size=</span><span class="s">"60"</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"300"</span> <span class="na">fill=</span><span class="s">"url(#ge)"</span><span class="nt">&gt;</span>快乐每一天<span class="nt">&lt;/text&gt;</span>
 <span class="nt">&lt;/svg&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="10-滤镜">10. 滤镜</h2>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">id=</span><span class="s">"sg"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"400"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">id=</span><span class="s">"sg"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"400"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;defs&gt;</span>
         <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">"sf1"</span><span class="nt">&gt;</span>
             <span class="nt">&lt;feGaussianBlur</span> <span class="na">stdDeviation=</span><span class="s">"3"</span><span class="nt">&gt;&lt;/feGaussianBlur&gt;</span>
@@ -620,8 +598,7 @@ hello,汉字
     <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">"150"</span> <span class="na">cy=</span><span class="s">"150"</span> <span class="na">r=</span><span class="s">"50"</span> <span class="na">fill=</span><span class="s">"#f40"</span> <span class="na">filter=</span><span class="s">"url(#sf1)"</span><span class="nt">&gt;&lt;/circle&gt;</span>
     <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">"150"</span> <span class="na">cy=</span><span class="s">"300"</span> <span class="na">r=</span><span class="s">"50"</span> <span class="na">fill=</span><span class="s">"#f40"</span><span class="nt">&gt;&lt;/circle&gt;</span>
 <span class="nt">&lt;/svg&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="第三方库">第三方库</h2>
 
@@ -656,13 +633,12 @@ hello,汉字
 
 <p><code class="highlighter-rouge">H5</code>中提供了一个新对象，用于获取当前浏览器定位信息。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">geolocation</span> <span class="o">=</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">geolocation</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">getCurrentPosition</span><span class="p">,</span> <span class="c1">// 获取定位信息</span>
     <span class="nx">watchPosition</span><span class="p">,</span> <span class="c1">// 监听定位数据的改变</span>
     <span class="nx">clearWatch</span> <span class="c1">// 去除监听</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>但是这个功能并不实用，比如在<code class="highlighter-rouge">chrome</code>浏览器中会收到<code class="highlighter-rouge">Network location provider at 'https://www.googleapis.com/' : No response received.</code>错误，无法获得有效的定位信息。</p>
 
@@ -716,12 +692,11 @@ hello,汉字
 
 <p><code class="highlighter-rouge">chrome</code>中线程的模型：请求资源，6个线程；运行代码、渲染内容，1个线程。</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;button&gt;</span>按钮一<span class="nt">&lt;/button&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button&gt;</span>按钮一<span class="nt">&lt;/button&gt;</span>
 <span class="c">&lt;!-- 下面这个js执行很长时间的话，会导致页面阻塞 --&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./js/1.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;button&gt;</span>按钮二<span class="nt">&lt;/button&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="解决方法">解决方法</h2>
 
@@ -730,9 +705,8 @@ hello,汉字
   <li>创建新的线程，由它来执行耗时的<code class="highlighter-rouge">js</code>任务，<code class="highlighter-rouge">UI</code>的主线程继续执行后续的<code class="highlighter-rouge">HTML</code>的渲染</li>
 </ol>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="s1">'./js/1.js'</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="dl">'</span><span class="s1">./js/1.js</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
 
 <h2 id="缺陷">缺陷</h2>
 
@@ -744,25 +718,23 @@ hello,汉字
 
 <p><code class="highlighter-rouge">Worker</code>线程可以给<code class="highlighter-rouge">UI</code>主线程发送数据</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// UI主线程</span>
-<span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="s1">'1.js'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// UI主线程</span>
+<span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">w</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">};</span>
 
 <span class="c1">// Worker线程</span>
 <span class="nx">postMessage</span><span class="p">(</span><span class="nx">StringMsg</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">UI</code>主线程也可以给<code class="highlighter-rouge">Worker</code>线程发送数据</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// UI主线程</span>
-<span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="s1">'1.js'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// UI主线程</span>
+<span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">w</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="nx">stringMsg</span><span class="p">);</span>
 
 <span class="c1">// Worker线程</span>
 <span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="九web-storage">九、Web Storage</h1>
 
@@ -906,14 +878,13 @@ hello,汉字
   <li>断开到<code class="highlighter-rouge">ws</code>服务器的连接（可选）</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s1">'ws://127.0.0.1:9001'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://127.0.0.1:9001</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
 <span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nx">socket</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 				</div>

@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -196,11 +196,10 @@
 <p>另外，具有<code class="highlighter-rouge">Iterable</code>接口的对象都可以使用<code class="highlighter-rouge">forEach</code>
 循环（数组也实现了该接口），java中并没有<code class="highlighter-rouge">forEach</code>关键字，使用格式如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="o">(</span><span class="n">T</span> <span class="n">item</span> <span class="o">:</span> <span class="n">IterableObject</span><span class="o">){</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="o">(</span><span class="no">T</span> <span class="n">item</span> <span class="o">:</span> <span class="nc">IterableObject</span><span class="o">){</span>
 
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="iterator接口">Iterator接口</h2>
 <p>迭代器，为java的集合框架提供一种通用的枚举方式。</p>
@@ -259,16 +258,14 @@
 
 <ul>
   <li>固定下泛型的类型
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;{}</span>
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span> <span class="kd">implements</span> <span class="n">A</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;{}</span>
-</code></pre>
-    </div>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;{}</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span> <span class="kd">implements</span> <span class="no">A</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;{}</span>
+</code></pre></div>    </div>
   </li>
   <li>保留泛型
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;{}</span>
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">A</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;{}</span>
-</code></pre>
-    </div>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;{}</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="no">A</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;{}</span>
+</code></pre></div>    </div>
   </li>
 </ul>
 

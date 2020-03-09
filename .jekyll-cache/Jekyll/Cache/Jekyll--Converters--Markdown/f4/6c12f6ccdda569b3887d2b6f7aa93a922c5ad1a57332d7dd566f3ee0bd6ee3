@@ -1,0 +1,91 @@
+I"W
+<h1 id="怎么学好东西克服懒">怎么学好东西——克服懒</h1>
+
+<ul>
+  <li>动手</li>
+  <li>动脑子</li>
+  <li>动嘴</li>
+  <li>多读——举例：https://gitee.com/oschina/git-osc/wikis/License</li>
+</ul>
+
+<h1 id="环境">环境</h1>
+
+<ol>
+  <li>Atom编辑器（webStorm、sublime也可，其他就算了）</li>
+  <li>集成服务器环境Windows-wamp、Mac-xampp、Linux-Nginx（有其他惯用的也可以，但要求支持PHP、MySQL）</li>
+  <li>VMware虚拟机</li>
+  <li>CentOS 64bit镜像（没有的去mirrors.163.com下载）</li>
+  <li>putty、winSCP（Mac用yummy FTP、Linux直接ssh）</li>
+  <li>Photoshop CS6以上版本</li>
+  <li>git for windows（Mac用git-scm、Linux直接yum/apt）</li>
+  <li>TortoiseSVN（Mac用SnailSVN、Linux直接yum/apt）</li>
+  <li>Node.js v9.*</li>
+  <li>phonegap-cli v6.5.2（不要用最新版）</li>
+  <li>APICloud Studio 2</li>
+  <li>Navicat for MySQL</li>
+  <li>MongoDB</li>
+  <li>Chrome、Firefox</li>
+</ol>
+
+<h1 id="英文">英文</h1>
+
+<ol>
+  <li>原文文档更能体现作者的意图；90%的文档没有中文版</li>
+  <li>阅读代码方便</li>
+  <li>关注作者的Twitter、fackbook</li>
+</ol>
+
+<h1 id="工具">工具</h1>
+
+<h2 id="atom">atom</h2>
+
+<ol>
+  <li>优点：插件丰富</li>
+  <li>缺点：打开大文件很卡</li>
+  <li>ctrl+shift+p</li>
+  <li>插件</li>
+</ol>
+
+<h2 id="版本控制">版本控制</h2>
+
+<p>文件共享、版本管理、冲突</p>
+
+<ul>
+  <li>svn——中心服务器       checkout   commit          upadte</li>
+  <li>git——去中心化的、装   clone      add/commit/push pull</li>
+</ul>
+
+<h2 id="书写">书写</h2>
+
+<p>markdown</p>
+
+<h2 id="编译打包">编译、打包</h2>
+
+<ul>
+  <li>编译：ES6 -&gt; ES5      babel</li>
+  <li>打包：</li>
+  <li>万能：grunt、gulp         老了</li>
+  <li>编译：babel、browserify   单一</li>
+  <li>同步：browser-sync        单一</li>
+  <li>WebPack主力</li>
+</ul>
+
+<h1 id="全栈技能概览">全栈技能概览</h1>
+
+<p>前台、移动端、混合、后台、数据库、工具、部署、linux、版本、文档、…</p>
+
+<h1 id="课程内容">课程内容</h1>
+
+<ol>
+  <li>基础知识：ES6/ES7、HTML5/CSS3、数据交互、…</li>
+  <li>移动端：布局、touch、库</li>
+  <li>图形：canvas、SVG/VML、Raphael、d3、echarts、WebGL…</li>
+  <li>游戏：</li>
+  <li>工具：版本控制、编译、打包、脚手架…</li>
+  <li>后台：Node、express、KOA、爬虫…</li>
+  <li>混合开课</li>
+  <li>微信：公号、小程序</li>
+  <li>三大框架：angular、vue、react</li>
+  <li>数据结构、算法、设计模式</li>
+</ol>
+:ET

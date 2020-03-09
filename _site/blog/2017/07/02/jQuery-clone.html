@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -60,7 +60,7 @@
 				<p class="meta">2017-07-02</p>
 				<div class="post" ref="post">
 					<p>用jQuery clone()方法可以赋值一个节点，但是如果这个节点带有id属性，那么可能导致该id在同一个页面中被重复使用。比如我们在head&gt;script:nth-of-type(3)中代码的最后一行复制了#target5元素。</p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;head&gt;</span>
   <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
@@ -71,11 +71,11 @@
   <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
   <span class="nt">&lt;script&gt;</span>
     <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s2">"#target1"</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s2">"color"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">);</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s2">"#target1"</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s2">"disabled"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s2">"#target4"</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s2">"#target2"</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">"#right-well"</span><span class="p">);</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s2">"#target5"</span><span class="p">).</span><span class="nx">clone</span><span class="p">().</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">"#left-well"</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#target1</span><span class="dl">"</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">red</span><span class="dl">"</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#target1</span><span class="dl">"</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="dl">"</span><span class="s2">disabled</span><span class="dl">"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#target4</span><span class="dl">"</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+      <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#target2</span><span class="dl">"</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="dl">"</span><span class="s2">#right-well</span><span class="dl">"</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#target5</span><span class="dl">"</span><span class="p">).</span><span class="nx">clone</span><span class="p">().</span><span class="nx">appendTo</span><span class="p">(</span><span class="dl">"</span><span class="s2">#left-well</span><span class="dl">"</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="nt">&lt;/script&gt;</span>
 
@@ -106,8 +106,7 @@
   <span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>结果发现出现了两个id为<code class="highlighter-rouge">target5</code>的元素，这一点需要注意。
 <img src="http://upload-images.jianshu.io/upload_images/6321648-20e3ea14087b89b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="使用clone()方法后的部分html" /></p>
 

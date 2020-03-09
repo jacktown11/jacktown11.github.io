@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -338,21 +338,19 @@
 
 <h3 id="直接递归">直接递归</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodA</span><span class="o">(){</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodA</span><span class="o">(){</span>
     <span class="n">methodA</span><span class="o">();</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h3 id="间接递归">间接递归</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">metohdB</span><span class="o">(){</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">metohdB</span><span class="o">(){</span>
     <span class="n">methodC</span><span class="o">();</span>
 <span class="o">}</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodC</span><span class="o">(){</span>
     <span class="n">methodB</span><span class="o">();</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="递归注意实现">递归注意实现</h3>
 
@@ -419,25 +417,24 @@
 
 <h4 id="异常处理参考写法">异常处理参考写法</h4>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"a.txt"</span><span class="o">);</span>
-<span class="n">OutputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"a.txt"</span><span class="o">);</span>
+<span class="nc">OutputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 <span class="k">try</span> <span class="o">{</span>
-    <span class="n">is</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+    <span class="n">is</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
     <span class="n">is</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"fail to write"</span><span class="o">);</span>
 <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
     <span class="k">if</span><span class="o">(</span><span class="n">is</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">is</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">IOException</span> <span class="n">ioEx</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">ioEx</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"fail to close file"</span><span class="o">)</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h2 id="inputstream抽象类">InputStream抽象类</h2>
 
 <h3 id="常用方法-1">常用方法</h3>

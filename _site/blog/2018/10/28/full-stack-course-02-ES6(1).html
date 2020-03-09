@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -127,38 +127,34 @@
   <li><code class="highlighter-rouge">map</code>，映射</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="o">*</span><span class="nx">item</span><span class="p">);</span> <span class="c1">// [2, 4, 8]</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="o">*</span><span class="nx">item</span><span class="p">);</span> <span class="c1">// [2, 4, 8]</span>
+</code></pre></div></div>
 
 <ul>
   <li><code class="highlighter-rouge">filter</code>，过滤</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">filteredArr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">].</span><span class="nx">filter</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="o">%</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// [3]</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">filteredArr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">].</span><span class="nx">filter</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="o">%</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// [3]</span>
+</code></pre></div></div>
 
 <ul>
   <li><code class="highlighter-rouge">forEach</code>，遍历</li>
   <li><code class="highlighter-rouge">reduce</code>，汇总</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
 <span class="kd">let</span> <span class="nx">avg</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span> <span class="p">?</span> <span class="nx">prev</span><span class="o">+</span><span class="nx">cur</span> <span class="p">:</span> <span class="p">(</span><span class="nx">prev</span><span class="o">+</span><span class="nx">cur</span><span class="p">)</span><span class="o">/</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
 <span class="p">});</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">avg</span><span class="p">);</span> <span class="c1">// 3.5</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li><code class="highlighter-rouge">Array.from</code>，新增静态方法</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">divs</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'p'</span><span class="p">));</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">divs</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">p</span><span class="dl">'</span><span class="p">));</span>
+</code></pre></div></div>
 
 <h2 id="json">json</h2>
 
@@ -173,13 +169,12 @@
   <li>字符串模板：植入变量、任意折行</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Tom'</span><span class="p">,</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tom</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">age</span><span class="p">:</span> <span class="mi">28</span>
 <span class="p">};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`一个</span><span class="nx">$</span><span class="p">{</span><span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span><span class="err">岁的名叫</span><span class="nx">$</span><span class="p">{</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="err">的人`</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`一个</span><span class="p">${</span><span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span><span class="s2">岁的名叫</span><span class="p">${</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">的人`</span><span class="p">);</span>
+</code></pre></div></div>
 
 <ul>
   <li><code class="highlighter-rouge">startsWith()</code>和<code class="highlighter-rouge">endsWith()</code>方法</li>

@@ -1,0 +1,350 @@
+I"*(<h1 id="windows8-系统快捷键">windows8 系统快捷键</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>快捷键</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Win+D</td>
+      <td>回到桌面</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Alt+Tab</td>
+      <td>切换目前打开的窗口</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Win+E</td>
+      <td>打开资源管理器</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Alt+D</td>
+      <td>让文件地址栏获取焦点</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Alt+Up</td>
+      <td>返回上一级目录</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Win+R</td>
+      <td>打开运行</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Win+R&gt;cmd</td>
+      <td>打开命令行</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Win+R&gt;control</td>
+      <td>打开控制面板</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Win+Left</td>
+      <td>让当前窗口置于左半屏幕</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Win+Right</td>
+      <td>让当前窗口置于右半屏幕</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Win+Up</td>
+      <td>让当前窗口最大化</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Alt+Space&gt;c</td>
+      <td>关闭当前窗口</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>Alt+Space&gt;x</td>
+      <td>最大化当前窗口</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>Alt+Space&gt;n</td>
+      <td>最大化当前窗口</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>Ctrl+Alt+Delete</td>
+      <td>系统入口（任务管理器）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="chrome浏览器快捷键">chrome浏览器快捷键</h1>
+<ul>
+  <li>此处只是整理了个人比较常用的快捷键，由于我用笔记本电脑，用到Fn的基本都弃用了。更完整版本可参看<a href="https://www.zhihu.com/question/19555789">chrome快捷键-知乎</a></li>
+  <li>另外可以安装vimium插件简化快捷键</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">序号</th>
+      <th style="text-align: left">最常用</th>
+      <th style="text-align: left">作用</th>
+      <th style="text-align: left">相关</th>
+      <th style="text-align: left">作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">Ctrl+N</td>
+      <td style="text-align: left">打开新窗口</td>
+      <td style="text-align: left">Ctrl+Shift+N</td>
+      <td style="text-align: left">在隐身模式下打开新窗口</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2</td>
+      <td style="text-align: left">Ctrl+T</td>
+      <td style="text-align: left">打开新标签页</td>
+      <td style="text-align: left">Ctrl+Shift+T</td>
+      <td style="text-align: left">重新打开最后关闭的标签页，并跳转到该标签页，chome可以记住最近10个标签</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3</td>
+      <td style="text-align: left">Ctrl+PgDn</td>
+      <td style="text-align: left">切换到下一个标签页</td>
+      <td style="text-align: left">Ctrl+Tab</td>
+      <td style="text-align: left">切换到下一个标签页</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">4</td>
+      <td style="text-align: left">Ctrl+PgUp</td>
+      <td style="text-align: left">切换到上一个标签页</td>
+      <td style="text-align: left">Ctrl+Shift+Tab</td>
+      <td style="text-align: left">切换到上一个标签页</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">5</td>
+      <td style="text-align: left">Alt+Home</td>
+      <td style="text-align: left">在当前窗口打开主页</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">6</td>
+      <td style="text-align: left">Ctrl+W</td>
+      <td style="text-align: left">关闭当前标签页或弹出窗口</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">7</td>
+      <td style="text-align: left">Ctrl+H</td>
+      <td style="text-align: left">打开历史记录</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">8</td>
+      <td style="text-align: left">Ctrl+J</td>
+      <td style="text-align: left">打开下载内容页面</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">9</td>
+      <td style="text-align: left">Ctrl+D</td>
+      <td style="text-align: left">将当前网页保存为书签</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">10</td>
+      <td style="text-align: left">Home</td>
+      <td style="text-align: left">跳至网页顶部</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">11</td>
+      <td style="text-align: left">End</td>
+      <td style="text-align: left">跳至网页底部</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">12</td>
+      <td style="text-align: left">Space</td>
+      <td style="text-align: left">向下滚动网页</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">13</td>
+      <td style="text-align: left">up</td>
+      <td style="text-align: left">增加值</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">14</td>
+      <td style="text-align: left">down</td>
+      <td style="text-align: left">减少值</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">15</td>
+      <td style="text-align: left">PgUp</td>
+      <td style="text-align: left">增加10</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">16</td>
+      <td style="text-align: left">PgDn</td>
+      <td style="text-align: left">减少10</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">17</td>
+      <td style="text-align: left">Alt+E/Alt+F</td>
+      <td style="text-align: left">打开工具菜单栏</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">18</td>
+      <td style="text-align: left">Shift+Esc</td>
+      <td style="text-align: left">打开任务管理器</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">19</td>
+      <td style="text-align: left">F11</td>
+      <td style="text-align: left">全屏模式下打开网页</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">20</td>
+      <td style="text-align: left">F12</td>
+      <td style="text-align: left">打开开发者工具</td>
+      <td style="text-align: left">Ctrl+Shift+J</td>
+      <td style="text-align: left">打开开发人员工具</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">21</td>
+      <td style="text-align: left">Ctrl+U</td>
+      <td style="text-align: left">打开当前网页源代码</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="cmd">cmd</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ipconfig</th>
+      <th>查看本机ip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ipconfig /all</td>
+      <td>查看本机详细ip信息</td>
+    </tr>
+    <tr>
+      <td>x:</td>
+      <td>进入x盘</td>
+    </tr>
+    <tr>
+      <td>cd /path</td>
+      <td>进入当前盘的path目录</td>
+    </tr>
+    <tr>
+      <td>cd ..</td>
+      <td>返回父目录</td>
+    </tr>
+    <tr>
+      <td>dir</td>
+      <td>当前目录下文件和子目录</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="github">github</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>git init</td>
+      <td>在当前文件夹位置初始话仓库</td>
+    </tr>
+    <tr>
+      <td>git add <code class="highlighter-rouge">para</code></td>
+      <td>把我们要提交的文件的信息添加到索引库中</td>
+    </tr>
+    <tr>
+      <td>git commit <code class="highlighter-rouge">infoString</code></td>
+      <td>依据索引库内容进行本地文件提交</td>
+    </tr>
+    <tr>
+      <td>git push origin master</td>
+      <td>把本地master分支内容提交到远程origin主机master分支</td>
+    </tr>
+    <tr>
+      <td>git remote -v</td>
+      <td>查看远程仓库信息</td>
+    </tr>
+    <tr>
+      <td>git fetch origin master:temp</td>
+      <td>在本地创建temp分支，并将远程origin仓库的master分支代码下载到该分支</td>
+    </tr>
+    <tr>
+      <td>git diff temp</td>
+      <td>比较本地代码与下载来的代码的区别</td>
+    </tr>
+    <tr>
+      <td>git merge temp</td>
+      <td>合并temp分支</td>
+    </tr>
+    <tr>
+      <td>git branch -d temp</td>
+      <td>删除temp分支</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>ref</strong>:</p>
+<ol>
+  <li> <a href="http://blog.csdn.net/chailyuan/article/details/53292031">Git更新远程仓库代码到本地</a></li>
+  <li><a href="http://www.yiibai.com/git/">git教程</a></li>
+</ol>
+
+<h1 id="jekyll">jekyll</h1>
+<ul>
+  <li>命令行输入 <strong>jekyll -v</strong> 可以查看jekyll版本，确认电脑是否正常安装了jekyll</li>
+  <li>命令行输入 <strong>jekyll</strong> 可以获得jekyll命令的帮助信息</li>
+</ul>
+:ET

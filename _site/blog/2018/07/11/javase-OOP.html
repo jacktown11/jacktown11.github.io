@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -108,11 +108,10 @@
 <h3 id="java中继承的特点">java中继承的特点</h3>
 <ul>
   <li>java中类只能够单继承，不能多继承，可以多层继承
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Yy</span> <span class="kd">extends</span> <span class="n">Object</span> <span class="o">{}</span>
-  <span class="kd">class</span> <span class="nc">Fu</span> <span class="kd">extends</span> <span class="n">Yy</span><span class="o">{}</span>
-  <span class="kd">class</span> <span class="nc">Zi</span> <span class="kd">extends</span> <span class="n">Fu</span> <span class="o">{}</span>
-</code></pre>
-    </div>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Yy</span> <span class="kd">extends</span> <span class="nc">Object</span> <span class="o">{}</span>
+  <span class="kd">class</span> <span class="nc">Fu</span> <span class="kd">extends</span> <span class="nc">Yy</span><span class="o">{}</span>
+  <span class="kd">class</span> <span class="nc">Zi</span> <span class="kd">extends</span> <span class="nc">Fu</span> <span class="o">{}</span>
+</code></pre></div>    </div>
   </li>
   <li>所有的类都直接或者间接的继承了<code class="highlighter-rouge">Object</code>类，Object类称为祖宗类。</li>
 </ul>
@@ -257,32 +256,30 @@
 <h3 id="多态的分类">多态的分类</h3>
 <ul>
   <li>(抽象)类的多态
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Fu</span> <span class="o">{</span>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Fu</span> <span class="o">{</span>
                   <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">();</span>
   <span class="o">}</span>
-  <span class="kd">class</span> <span class="nc">Zi</span> <span class="kd">extends</span> <span class="n">Fu</span> <span class="o">{</span>
+  <span class="kd">class</span> <span class="nc">Zi</span> <span class="kd">extends</span> <span class="nc">Fu</span> <span class="o">{</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(){</span>
-                      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“重写父类抽象方法”</span><span class="o">);</span>
+                      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="n">重写父类抽象方法</span><span class="err">”</span><span class="o">);</span>
   <span class="o">}</span>
   <span class="o">}</span>
   <span class="c1">//类的多态使用</span>
-  <span class="n">Fu</span> <span class="n">fu</span><span class="o">=</span> <span class="k">new</span> <span class="n">Zi</span><span class="o">();</span>
-</code></pre>
-    </div>
+  <span class="nc">Fu</span> <span class="n">fu</span><span class="o">=</span> <span class="k">new</span> <span class="nc">Zi</span><span class="o">();</span>
+</code></pre></div>    </div>
   </li>
   <li>接口的多态
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="kd">interface</span> <span class="nc">Fu</span> <span class="o">{</span>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">interface</span> <span class="nc">Fu</span> <span class="o">{</span>
       <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">();</span>
   <span class="o">}</span>
-  <span class="kd">class</span> <span class="nc">Zi</span> <span class="kd">implements</span> <span class="n">Fu</span> <span class="o">{</span>
+  <span class="kd">class</span> <span class="nc">Zi</span> <span class="kd">implements</span> <span class="nc">Fu</span> <span class="o">{</span>
       <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(){</span>
-          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“重写接口抽象方法”</span><span class="o">);</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="n">重写接口抽象方法</span><span class="err">”</span><span class="o">);</span>
       <span class="o">}</span>
   <span class="o">}</span>
   <span class="c1">//接口的多态使用</span>
-  <span class="n">Fu</span> <span class="n">fu</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Zi</span><span class="o">();</span>
-</code></pre>
-    </div>
+  <span class="nc">Fu</span> <span class="n">fu</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Zi</span><span class="o">();</span>
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -341,11 +338,10 @@
   <li>this是在方法中使用的，哪个对象调用了该方法，那么，this就代表调用该方法的对象引用</li>
   <li>this什么时候存在的？当创建对象的时候，this存在的</li>
   <li>this的作用：用来区别同名的成员变量与局部变量（this.成员变量）
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
           <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
       <span class="o">}</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -387,10 +383,9 @@
     <ul>
       <li>被静态所修饰的成员，会被所有的对象所共享</li>
       <li>被静态所修饰的成员，可以通过类名直接调用，方便
-        <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="n">Person</span><span class="o">.</span><span class="na">country</span> <span class="o">=</span> <span class="s">"中国"</span><span class="o">;</span>
-  <span class="n">Person</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
-</code></pre>
-        </div>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nc">Person</span><span class="o">.</span><span class="na">country</span> <span class="o">=</span> <span class="s">"中国"</span><span class="o">;</span>
+  <span class="nc">Person</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
+</code></pre></div>        </div>
       </li>
     </ul>
   </li>
@@ -528,29 +523,27 @@
 <h2 id="内部类">内部类</h2>
 
 <p>在一个类中，定义了一个新类，这个新的类就是内部类</p>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span><span class="c1">//外部类</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span><span class="c1">//外部类</span>
     <span class="kd">class</span> <span class="nc">B</span><span class="o">{</span><span class="c1">// 内部类</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h3 id="特点">特点</h3>
 
 <p>内部类可以直接访问外部类的成员，包含私有的成员</p>
 
 <h3 id="匿名内部类">匿名内部类</h3>
 <p>举例</p>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="n">OneInterface</span><span class="o">(){</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nc">OneInterface</span><span class="o">(){</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">implementedMethod</span><span class="o">(){</span>
         <span class="c1">// implemention</span>
     <span class="o">}</span>
 <span class="o">}.</span><span class="na">implementedMethod</span><span class="o">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h2 id="包">包</h2>
 
 <h3 id="声明">声明</h3>
-<p><code class="highlighter-rouge">package 包名.包名.包名…;</code></p>
+<p><code class="highlighter-rouge"><span class="k">package</span> <span class="err">包名</span><span class="p">.</span><span class="err">包名</span><span class="p">.</span><span class="err">包名…</span><span class="p">;</span></code></p>
 
 <h3 id="带包名对象的创建">带包名对象的创建</h3>
 <p><code class="highlighter-rouge">包名.类名 变量名 = new包名.类名();</code></p>

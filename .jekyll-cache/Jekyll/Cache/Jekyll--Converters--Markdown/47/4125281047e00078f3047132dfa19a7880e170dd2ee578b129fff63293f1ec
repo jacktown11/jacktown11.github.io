@@ -1,0 +1,146 @@
+I"�-<h1 id="promise">promise</h1>
+
+<ul>
+  <li>目的：解决异步操作复杂性问题</li>
+  <li>同步——串行    简单、方便</li>
+  <li>异步——并发    性能高、体验好</li>
+</ul>
+
+<h2 id="promise基本用法">Promise基本用法</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">p</span><span class="o">=</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">resolve</span><span class="p">();</span>
+    <span class="nx">reject</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="c1">// the two function params in then are just resolve and reject</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{},</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{});</span> 
+</code></pre></div></div>
+
+<h2 id="promiseall与promiserace">Promise.all()与Promise.race()</h2>
+
+<p>这两个静态方法可以实现让多个异步操作放在一起</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="p">,</span> <span class="nx">promise3</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resArr</span> <span class="o">=&gt;</span> <span class="p">{})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">reason</span> <span class="o">=&gt;</span> <span class="p">{});</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="highlighter-rouge">all</code>，需要所有异步操作成功以后才算成功</li>
+  <li><code class="highlighter-rouge">race</code>，只要一个异步操作成功就可以</li>
+</ul>
+
+<h2 id="局限">局限</h2>
+
+<p><code class="highlighter-rouge">Promise</code>对于有依赖的异步操作嵌套仍然不方便</p>
+
+<h2 id="外话">外话</h2>
+
+<p><code class="highlighter-rouge">回调</code>和<code class="highlighter-rouge">轮询</code>是一对概念，前者更简便与节省资源。</p>
+
+<h1 id="generator">generator</h1>
+
+<p>一种可以中途暂停，分段执行的函数。</p>
+
+<h2 id="基本使用">基本使用</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="o">*</span> <span class="nx">show</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">yield</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="nx">show</span><span class="p">();</span>
+<span class="nx">gen</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span> <span class="c1">// a</span>
+<span class="nx">gen</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span> <span class="c1">// b</span>
+</code></pre></div></div>
+
+<h2 id="yield传参与返回值">yield传参与返回值</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="o">*</span> <span class="nx">show</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">yield</span> <span class="mi">23</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="nx">show</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">res1</span> <span class="o">=</span> <span class="nx">gen</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span> <span class="c1">// a</span>
+<span class="kd">let</span> <span class="nx">res2</span> <span class="o">=</span> <span class="nx">gen</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span> <span class="c1">// 12</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res1</span><span class="p">);</span> <span class="c1">// {value: 23, done: false} </span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res2</span><span class="p">);</span> <span class="c1">// {value: undefined, done: true}</span>
+</code></pre></div></div>
+
+<h2 id="generator与promise配合">generator与promise配合</h2>
+
+<ul>
+  <li>需要外来的辅助封装执行——不统一、不标准、性能低</li>
+  <li><code class="highlighter-rouge">generator</code>函数不能写成=&gt;</li>
+</ul>
+
+<p>因此<code class="highlighter-rouge">generator</code>使用时间很短，是<code class="highlighter-rouge">promise</code>和<code class="highlighter-rouge">async/await</code>的过渡，现在并不常用。</p>
+
+<h1 id="asyncawait">async/await</h1>
+
+<h2 id="基本使用-1">基本使用</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">show</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+
+    <span class="k">await</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mi">2000</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="nx">show</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">await</code>后可以放<code class="highlighter-rouge">Promise</code>对象、<code class="highlighter-rouge">generator</code>函数、<code class="highlighter-rouge">async/await</code>函数，即使后面不是同步操作，运行也会是异步的，类似<code class="highlighter-rouge">setTimeout(func, 0)</code>的效果。</p>
+
+<h2 id="用于ajax">用于ajax</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">async</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">data1</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./data/a.json</span><span class="dl">'</span><span class="p">,</span> <span class="na">dataType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">});</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">data1</span><span class="p">.</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">){</span>
+        <span class="kd">let</span> <span class="nx">data2</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./data/b.json</span><span class="dl">'</span><span class="p">,</span> <span class="na">dataType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">});</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">data3</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./data/c.json</span><span class="dl">'</span><span class="p">,</span> <span class="na">dataType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<h2 id="错误处理">错误处理</h2>
+
+<p><code class="highlighter-rouge">try-catch</code></p>
+
+<h1 id="工程化相关">工程化相关</h1>
+
+<ul>
+  <li>兼容低版本浏览器：将ES6编译为ES5（工具babel）</li>
+  <li>问题：这些高级语法最终是要经过编译的，那么如果直接使用基础的语法写，避免编译，对性能有提升吗？
+    <ul>
+      <li>首先，对于前端程序，各评价指标大致优先级是：用户体验、健壮性、可读可维护工程性、性能</li>
+      <li>在性能方面，分为网络性能和执行性能，而前者的影响远大于后者</li>
+      <li>为此使用高级语法整体性能反而更高些。</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">babel</code>，ES6-&gt;ES5编译工具</li>
+  <li><code class="highlighter-rouge">Node</code>
+    <ul>
+      <li>语言、环境、平台，开发中的中间层</li>
+      <li>web后台(小规模)</li>
+      <li>工具(grunt,gulp等都是基于它的)</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">npm</code>，node包管理(node package manager)
+    <ul>
+      <li>自动下载、升级</li>
+      <li>自动下载依赖包</li>
+      <li>npm原版慢，cnpm淘宝源：http://npm.taobao.org/</li>
+    </ul>
+  </li>
+</ul>
+
+:ET

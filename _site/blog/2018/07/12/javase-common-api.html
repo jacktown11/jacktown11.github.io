@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -64,19 +64,18 @@
 
 <h2 id="equals方法">equals()方法</h2>
 <p>java源码中该方法的实现如下：</p>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">obj</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>根据这个实现，两个对象相等意味着他们必定是同一个对象（如果<code class="highlighter-rouge">equals</code>方法未被重写）。然而，java中可用这个方法来比较两个字符串是否相等，这说明<code class="highlighter-rouge">String</code>类一定重写过该方法，通过查看源码确实在<code class="highlighter-rouge">String</code>类找到了该方法的覆盖，如下所示：</p>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">anObject</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">anObject</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">anObject</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">anObject</span> <span class="k">instanceof</span> <span class="n">String</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">anotherString</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">anObject</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">anObject</span> <span class="k">instanceof</span> <span class="nc">String</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">anotherString</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span><span class="n">anObject</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">anotherString</span><span class="o">.</span><span class="na">value</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
             <span class="kt">char</span> <span class="n">v1</span><span class="o">[]</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
@@ -93,8 +92,7 @@
     <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>上述代码首先进行了类型判断与显式转换，在传入参数确实是字符串的情况下，逐个字符进行比较。（上述代码中<code class="highlighter-rouge">value</code>是<code class="highlighter-rouge">String</code>对象内的私有<code class="highlighter-rouge">char</code>数组常量,储存了字符串的所有字符）。</p>
 
@@ -116,9 +114,8 @@
 
 <h1 id="string">String</h1>
 <p><code class="highlighter-rouge">String</code>类实际字符内容都存储在一个字符数组常量<code class="highlighter-rouge">value</code>中，因此字符串创建后其内容是不可变的，如下源码所示：</p>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">value</span><span class="o">[];</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">value</span><span class="o">[];</span>
+</code></pre></div></div>
 
 <h2 id="对象创建">对象创建</h2>
 
@@ -340,27 +337,24 @@
 
 <h2 id="自动装箱与拆箱">自动装箱与拆箱</h2>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>上面的代码是合法的，给引用类型<code class="highlighter-rouge">i</code>赋值时，传入了<code class="highlighter-rouge">int</code>基本类型，这时会自动装箱为引用类型；用<code class="highlighter-rouge">Integer</code>引用类型变量<code class="highlighter-rouge">i</code>进行数学运算，这时会进行自动拆箱；运算结果是基本类型，再赋值给<code class="highlighter-rouge">i</code>时又会自动装箱。</p>
 
 <h3 id="疑难解析">疑难解析</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
-<span class="n">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span> <span class="c1">//true</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
+<span class="nc">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span> <span class="c1">//true</span>
+</code></pre></div></div>
 
 <p>上面的自动装箱过程中由于38在<code class="highlighter-rouge">byte</code>范围内，此时重复出现的数字不会新建包装类，而是重复引用。相当于：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">38</span><span class="o">);</span>
-<span class="n">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">38</span><span class="o">);</span>
+<span class="nc">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+</code></pre></div></div>
 
 <h1 id="system">System</h1>
 <ul>
@@ -525,18 +519,16 @@
 
 <h3 id="静态compile方法">静态compile()方法</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">static</span> <span class="n">Pattern</span> <span class="nf">compile</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">);</span>
-<span class="kd">static</span> <span class="n">Pattern</span> <span class="nf">compile</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">);</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="nc">Pattern</span> <span class="nf">compile</span><span class="o">(</span><span class="nc">String</span> <span class="n">regex</span><span class="o">);</span>
+<span class="kd">static</span> <span class="nc">Pattern</span> <span class="nf">compile</span><span class="o">(</span><span class="nc">String</span> <span class="n">regex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>这是一个静态方法,可根据模式字符串返回正则表达式。</p>
 
 <h3 id="matcher方法">matcher()方法</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Matcher</span> <span class="nf">matcher</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">input</span><span class="o">);</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Matcher</span> <span class="nf">matcher</span><span class="o">(</span><span class="nc">CharSequence</span> <span class="n">input</span><span class="o">);</span>
+</code></pre></div></div>
 <p>用一个<code class="highlighter-rouge">Pattern</code>实例对象调用该方法，可以获得一个<code class="highlighter-rouge">Matcher</code>对象</p>
 
 <h2 id="matcher">Matcher</h2>

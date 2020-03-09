@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -259,17 +259,16 @@
 
 <p>instanceof 操作符在非单一执行环境（如有框架）下可能有问题，Array.isArray() 方法需要较高版本浏览器（IE9+等），兼容低版本浏览器的通用方法：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">isArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">===</span> <span class="s1">'[object Array]'</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">isArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">[object Array]</span><span class="dl">'</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="修改方法">修改方法</h3>
 
 <p>以下的这些’修改方法’都会直接在原数组上操作。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span> <span class="c1">// arr: [1, 2] </span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span> <span class="c1">// arr: [1, 2] </span>
 <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// arr: [0, 2] </span>
 <span class="nx">arr</span><span class="p">[</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// arr: [0, 2, 3] </span>
 <span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// arr: [0, 2, 3, 1, 5](返回新数组长度) </span>
@@ -279,16 +278,15 @@
 <span class="nx">arr</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span> <span class="c1">// arr: [1, 3, 2, 7] </span>
 <span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span> <span class="p">});</span> <span class="c1">// arr: [1, 2, 3, 7] </span>
 <span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// arr: [1, 3, 4, 7]</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="生产方法">生产方法</h3>
 
 <p>以下这些’生产方法’基本不会直接操作原数组，而是使用原数组作为材料，返回一个新数组或者原数组的相关信息。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="p">};</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
-<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">'_'</span><span class="p">));</span> <span class="c1">// 1_2_3_4_3_5</span>
+<span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">_</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// 1_2_3_4_3_5</span>
 <span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]));</span> <span class="c1">// [1, 2, 3, 4, 3, 5, 6, 7]</span>
 <span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// [2, 3, 4, 3, 5]</span>
 <span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// [2, 3, 4, 3]</span>
@@ -305,32 +303,29 @@
 <span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">prev</span> <span class="o">+</span> <span class="nx">cur</span><span class="p">;</span> <span class="p">}));</span> <span class="c1">// 18</span>
 <span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// 4</span>
 <span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// 4</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="date">Date</h2>
 
 <h3 id="日期创建">日期创建</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// 基于当前时间创建的日期</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 基于当前时间创建的日期</span>
 <span class="kd">var</span> <span class="nx">d1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
 <span class="c1">// 指定相对于UTC1970-01-01 00:00:00过去的毫秒数来创建日期</span>
 <span class="kd">var</span> <span class="nx">d2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="c1">// 指定日期参数的方式来创建日期（月份以0开始，基于本地系统时区，年和月是必须的，后面的参数可选）</span>
 <span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="日期转毫秒数值">日期转毫秒数值</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">t1</span> <span class="o">=</span> <span class="nx">d1</span><span class="p">.</span><span class="nx">getTime</span><span class="p">();</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">t1</span> <span class="o">=</span> <span class="nx">d1</span><span class="p">.</span><span class="nx">getTime</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">t2</span> <span class="o">=</span> <span class="o">+</span><span class="nx">d1</span><span class="p">;</span>
 <span class="c1">// 获取当期时间毫秒值，IE9+等</span>
 <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
 <span class="c1">// 日期的 valueOf 方法默认返回的是毫秒值而非字符串，故可以直接比较大小</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d1</span> <span class="o">&lt;</span> <span class="nx">d2</span><span class="p">);</span> <span class="c1">// false</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="获取日期特定部分值">获取日期特定部分值</h3>
 
@@ -956,9 +951,8 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>ECMAScript 中的终极对象，全局的变量、函数都是它的属性和方法，浏览器环境下，它作为 window 对象的一部分来实现。在不同环境下通用地获取 Global 对象可以使用下面的方法：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">global</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">;})();</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nb">global</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">;})();</span>
+</code></pre></div></div>
 
 <h4 id="uri-编码解码方法">URI 编码解码方法</h4>
 
@@ -990,7 +984,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>接受任意多个参数，求取最大或最小值。下面给出了几种求一个数值数组最大值的几种方法：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
 
 <span class="kd">let</span> <span class="nx">max1</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">prev</span> <span class="o">&lt;</span> <span class="nx">cur</span> <span class="p">?</span> <span class="nx">cur</span> <span class="p">:</span> <span class="nx">prev</span><span class="p">;</span>
@@ -999,8 +993,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <span class="kd">let</span> <span class="nx">max3</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">arr</span><span class="p">);</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">max1</span><span class="p">,</span> <span class="nx">max2</span><span class="p">,</span> <span class="nx">max3</span><span class="p">);</span> <span class="c1">// 8 8 8</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="舍入方法">舍入方法</h4>
 
@@ -1072,15 +1065,14 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>使用字面量方法定义的属性都是数据属性，这时上述四个特性默认值分别是 true, true, true, undefined ，也可通过 ES5 的 <code class="highlighter-rouge">Object.defineProperty()</code> 来间接设置数据属性。第三个参数是描述符对象，如果不指定前三个特性中的某些特性，会默认是 false 。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{};</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">,</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">configurable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">writable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">enumerable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">value</span><span class="p">:</span> <span class="s1">'jack'</span>
+  <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="访问器属性">访问器属性</h3>
 
@@ -1113,7 +1105,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <li>各个生产出来的对象上的方法都是独立，没有复用</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createPerson</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createPerson</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
@@ -1123,8 +1115,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="p">};</span>
   <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="构造函数模式">构造函数模式</h3>
 
@@ -1134,7 +1125,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <li>方法没有复用（当然可以通过将方法声明在全局环境中来解决，但是这严重破坏封装性）</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span><span class="p">;</span>
@@ -1142,26 +1133,24 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="原型模式">原型模式</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'jack'</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-  <span class="na">job</span><span class="p">:</span> <span class="s1">'developer'</span><span class="p">,</span>
+  <span class="na">job</span><span class="p">:</span> <span class="dl">'</span><span class="s1">developer</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">sayName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s1">'constructor'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="dl">'</span><span class="s1">constructor</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">value</span><span class="p">:</span> <span class="nx">Person</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>上面是用 <code class="highlighter-rouge">defineProperty()</code> 方法是为了让 <code class="highlighter-rouge">constructor</code> 属性不可枚举(符合标准)；单独的原型模式中，所有的实例对象的属性都是默认相同而共享的，这对非函数属性通常都不是我们需要：</p>
 
@@ -1196,7 +1185,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <h3 id="组合使用构造函数模式和原型模式">组合使用构造函数模式和原型模式</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span><span class="p">;</span>
@@ -1206,22 +1195,21 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s1">'constructor'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="dl">'</span><span class="s1">constructor</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">value</span><span class="p">:</span> <span class="nx">Person</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>定义引用类型的默认模式，实现了方法的复用和属性的参数化设置。</p>
 
 <h3 id="动态原型模式">动态原型模式</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
       <span class="na">sayName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
@@ -1229,14 +1217,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>动态原型模式将在原型对象上添加方法的代码封装到了构造函数内部，这些代码只在第一次创建实例对象的时候真正执行（注意：由于原型对象的动态性，不能使用对象字面量直接赋值的方式修改原型，否则第一个创建出的实例会有问题）。</p>
 
 <h3 id="寄生构造函数模式">寄生构造函数模式</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
@@ -1246,24 +1233,22 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="p">};</span>
   <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'jack'</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">'developer'</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="dl">'</span><span class="s1">developer</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p>这种模式其实和工厂模式差不多，不过借用了构造函数的 <code class="highlighter-rouge">new</code> 语法，创建出来的对象其实和构造函数没有关系，尽量不用。</p>
 
 <h3 id="稳妥构造函数模式">稳妥构造函数模式</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
   <span class="p">};</span>
   <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'jack'</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">'developer'</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="dl">'</span><span class="s1">developer</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p>和借用构造函数模式类似，不过不使用 <code class="highlighter-rouge">new</code> 操作符，方法中不使用 <code class="highlighter-rouge">this</code> 对象，实例对象没法直接访问传入的参数，必须借助方法，主要用于某些安全环境下；创建出的对象一样和构造函数没有关系。</p>
 
@@ -1271,34 +1256,33 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <h3 id="原型链">原型链</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">superName</span> <span class="o">=</span> <span class="nx">superName</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">superName</span><span class="p">;</span>
     <span class="p">};</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperType</span><span class="p">(</span><span class="s1">'super'</span><span class="p">);</span>
+<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperType</span><span class="p">(</span><span class="dl">'</span><span class="s1">super</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">SubType</span><span class="p">(</span><span class="nx">subName</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">subName</span> <span class="o">=</span> <span class="nx">subName</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">subName</span><span class="p">;</span>
     <span class="p">};</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">let</span> <span class="nx">sub1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">(</span><span class="s1">'sub1'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">sub2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">(</span><span class="s1">'sub2'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">sub1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">(</span><span class="dl">'</span><span class="s1">sub1</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">sub2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">(</span><span class="dl">'</span><span class="s1">sub2</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub1</span><span class="p">.</span><span class="nx">getSuperName</span><span class="p">());</span> <span class="c1">// super</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub2</span><span class="p">.</span><span class="nx">getSuperName</span><span class="p">());</span> <span class="c1">// super</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub1</span><span class="p">.</span><span class="nx">getSubName</span><span class="p">());</span> <span class="c1">// sub1</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub2</span><span class="p">.</span><span class="nx">getSubName</span><span class="p">());</span> <span class="c1">// sub2</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>如上所示，我们手动的将 SubType 的原型对象设置为 SuperType 类型的实例对象，从而修改了原型链实现了继承。</p>
 
@@ -1306,15 +1290,14 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <h3 id="借用构造函数">借用构造函数</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kd">function</span> <span class="nx">SubType</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">SuperType</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>通过借用构造函数，可以让超类型的实例属性成为子类型的实例属性，而非子类型的原型属性。不单独用。</p>
 
@@ -1322,9 +1305,9 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>将原型链和借用构造函数的方式结合起来，也叫伪经典继承。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">superName</span> <span class="o">=</span> <span class="nx">superName</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">superName</span><span class="p">;</span>
     <span class="p">};</span>
@@ -1334,7 +1317,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <span class="kd">function</span> <span class="nx">SubType</span><span class="p">(</span><span class="nx">subName</span><span class="p">,</span> <span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">SuperType</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">superName</span><span class="p">);</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">subName</span> <span class="o">=</span> <span class="nx">subName</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">subName</span><span class="p">;</span>
     <span class="p">};</span>
@@ -1342,20 +1325,18 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <span class="p">}</span>
 
 <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperType</span><span class="p">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="原型式继承">原型式继承</h3>
 
 <p>这种方式的目的在于直接通过一个已有的对象，创建一个类似的对象，而不必定义一种新的类型。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">object</span><span class="p">(</span><span class="nx">o</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">object</span><span class="p">(</span><span class="nx">o</span><span class="p">){</span>
   <span class="kd">function</span> <span class="nx">F</span><span class="p">(){}</span>
   <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">o</span><span class="p">;</span>
   <span class="k">return</span> <span class="k">new</span> <span class="nx">F</span><span class="p">();</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>ES5 定义 Object.create() 方法可以实现原型式继承：</p>
 
@@ -1368,22 +1349,21 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>这种方式与寄生构造函数和工厂模式很类似，首先利用基于原始对象创建一个新的对象（比如使用原型式继承），然后对该对象做功能增强，最后返回这个新的对象。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createAnother</span><span class="p">(</span><span class="nx">original</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createAnother</span><span class="p">(</span><span class="nx">original</span><span class="p">){</span>
   <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">object</span><span class="p">(</span><span class="nx">original</span><span class="p">);</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">anotherMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="c1">//...</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h3 id="寄生组合式继承">寄生组合式继承</h3>
 
 <p>组合式继承中，超类型的构造函数被重复调用了（借用构造函数添加实例属性、创建实例作为子类型原型），实际上子类型的原型上不需要那些多余的、只需要在实例上的属性；为此，可以利用寄生式继承的模式，创建一个超类原型的副本（干净的实例），将其作为子类的原型，即 inheritPrototype 函数。这种继承方式被普遍认为是理想的继承范式。</p>
 
 <p>需要注意一下，下面的代码使用了动态原型模式添加原型的方法，此时一定不要采用重写原型的方式，否则第一个实例会有问题，继承也同样有问题（超类型的原型改了，子类型的原型链却没动！）；如果方法实在很多，可以使用 Object.assign() 来添加方法到原型上。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">F</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">F</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
 
 <span class="kd">function</span> <span class="nx">object</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">o</span><span class="p">;</span>
@@ -1391,13 +1371,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <span class="p">}</span>
 <span class="kd">function</span> <span class="nx">inheritPrototype</span><span class="p">(</span><span class="nx">subType</span><span class="p">,</span> <span class="nx">superType</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">prototype</span> <span class="o">=</span> <span class="nx">object</span><span class="p">(</span><span class="nx">superType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
-  <span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">subType</span><span class="p">;</span>
+  <span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">subType</span><span class="p">;</span>
   <span class="nx">subType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">prototype</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">superName</span> <span class="o">=</span> <span class="nx">superName</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">superName</span><span class="p">;</span>
     <span class="p">};</span>
@@ -1407,7 +1387,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <span class="kd">function</span> <span class="nx">SubType</span><span class="p">(</span><span class="nx">subName</span><span class="p">,</span> <span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">SuperType</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">superName</span><span class="p">);</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">subName</span> <span class="o">=</span> <span class="nx">subName</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSubName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">subName</span><span class="p">;</span>
     <span class="p">};</span>
@@ -1416,14 +1396,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <span class="nx">inheritPrototype</span><span class="p">(</span><span class="nx">SubType</span><span class="p">,</span> <span class="nx">SuperType</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">sub</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">(</span><span class="s1">'sub'</span><span class="p">,</span> <span class="s1">'sup'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">sub</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">(</span><span class="dl">'</span><span class="s1">sub</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">sup</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub</span><span class="p">.</span><span class="nx">getSubName</span><span class="p">());</span> <span class="c1">// 'sub'</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub</span><span class="p">.</span><span class="nx">getSuperName</span><span class="p">());</span> <span class="c1">// 'sup'</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub</span> <span class="k">instanceof</span> <span class="nx">SubType</span><span class="p">);</span> <span class="c1">// true</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub</span> <span class="k">instanceof</span> <span class="nx">SuperType</span><span class="p">);</span> <span class="c1">// true</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub</span> <span class="k">instanceof</span> <span class="nx">F</span><span class="p">);</span> <span class="c1">// true</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="第7章-函数表达式">第7章 函数表达式</h1>
 
@@ -1431,15 +1410,14 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>在不使用 arguments.callee 的情况下，可以使用命名函数表达式实现更通用健壮的递归函数：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">rc</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">rc</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">){</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="闭包">闭包</h2>
 
@@ -1453,8 +1431,8 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>在 IE8- 中由于 COM 对象使用使用不同的垃圾搜集例程（引用计数），如果闭包的作用域链包含着对 HTML 对象的引用，那么该对象无法被销毁；为此，可以使用局部变量保存闭包中需要使用的值，并清除对 HTML 对象的引用。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">setHandler</span><span class="p">(){</span>
-  <span class="kd">let</span> <span class="nx">ele</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'btn'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">setHandler</span><span class="p">(){</span>
+  <span class="kd">let</span> <span class="nx">ele</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">btn</span><span class="dl">'</span><span class="p">);</span>
   <span class="kd">let</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">ele</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span> <span class="c1">// 局部变量保存</span>
   <span class="nx">ele</span><span class="p">.</span><span class="nx">onClick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
@@ -1462,8 +1440,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="p">};</span>
   <span class="nx">ele</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// 解引用</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="块级作用域">块级作用域</h2>
 
@@ -1475,7 +1452,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>可以利用构造函数中的局部变量（或者直接使用参数）作为静态变量，它们没法在实例上直接通过属性访问，只有通过特权（公有）方法进行存取。这种方式的静态变量是每个实例单独拥有的，显然构造函数模式的公有方法没有做到复用。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Book</span><span class="p">(</span><span class="nx">year</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Book</span><span class="p">(</span><span class="nx">year</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">_edition</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="p">,</span> <span class="nx">_firstYear</span> <span class="o">=</span> <span class="nx">year</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">year</span> <span class="o">=</span> <span class="nx">year</span><span class="p">;</span>
@@ -1487,14 +1464,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
     <span class="nx">_edition</span> <span class="o">=</span> <span class="nx">year</span> <span class="o">-</span> <span class="nx">_firstYear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
   <span class="p">};</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="静态私有变量">静态私有变量</h3>
 
 <p>所谓静态，即与实例无关，这些静态的变量（/方法）能被所有实例共享，使用立即执行函数来实现。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">Book</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">Book</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">bookCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="kd">let</span> <span class="nx">addBookCount</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">bookCount</span><span class="o">++</span><span class="p">;</span>
@@ -1510,14 +1486,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
   <span class="k">return</span> <span class="nx">_Book</span><span class="p">;</span>
 <span class="p">})();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="模块模式">模块模式</h3>
 
 <p>该模式用于为单例添加静态变量和特权方法：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">singleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">singleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">privateVariable</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
   <span class="kd">function</span> <span class="nx">privateMethod</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
@@ -1531,14 +1506,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">})();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="增强的模块模式">增强的模块模式</h3>
 
 <p>如果需要单例本身是某种自定义类型，可以使用这种模式：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">singleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">singleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">privateVariable</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
   <span class="kd">function</span> <span class="nx">privateMethod</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
@@ -1554,8 +1528,7 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
   <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
 <span class="p">})();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="第8章-bom">第8章 BOM</h1>
 
@@ -1587,10 +1560,9 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>获取窗口的左边和上边的位置，事实上并不能真正做到兼容。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">leftPos</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenLeft</span> <span class="o">===</span> <span class="s1">'number'</span><span class="p">)</span> <span class="p">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenLeft</span> <span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenX</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">topPos</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenTop</span> <span class="o">===</span> <span class="s1">'number'</span><span class="p">)</span> <span class="p">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenTop</span> <span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenY</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">leftPos</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenLeft</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">)</span> <span class="p">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenLeft</span> <span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenX</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">topPos</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenTop</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">)</span> <span class="p">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenTop</span> <span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenY</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p>两个移动浏览器窗口的方法（它们可能是被默认禁用的）：</p>
 
@@ -1603,17 +1575,16 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <p>获取页面视口的通用方法（桌面浏览器）：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">,</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">,</span>
   <span class="nx">h</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">;</span>
-<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">w</span> <span class="o">!==</span> <span class="s1">'number'</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">ele</span> <span class="o">=</span> <span class="nx">ducument</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="s1">'CSS1Compat'</span> <span class="p">?</span> 
+<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">w</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">ele</span> <span class="o">=</span> <span class="nx">ducument</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">CSS1Compat</span><span class="dl">'</span> <span class="p">?</span> 
     <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="p">:</span>
     <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
   <span class="nx">w</span> <span class="o">=</span> <span class="nx">ele</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
   <span class="nx">h</span> <span class="o">=</span> <span class="nx">ele</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>两个调整窗口大小的方法： resizeTo() 和 resizeBy() ，它们也可能是被默认禁用的。</p>
 

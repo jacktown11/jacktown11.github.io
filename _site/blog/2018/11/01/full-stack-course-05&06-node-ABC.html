@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -99,16 +99,15 @@
 
 <p>断言，一个应用是函数的参数检查。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">assert</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
-    <span class="nx">assert</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'必须传入两个参数'</span><span class="p">);</span>
-    <span class="nx">assert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="s1">'number'</span><span class="p">,</span> <span class="s1">'第一个参数必须是数字'</span><span class="p">);</span>
-    <span class="nx">assert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">b</span> <span class="o">===</span> <span class="s1">'number'</span><span class="p">,</span> <span class="s1">'第二个参数必须是数字'</span><span class="p">);</span>
+    <span class="nx">assert</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="dl">'</span><span class="s1">必须传入两个参数</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">assert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">第一个参数必须是数字</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">assert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">b</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">第二个参数必须是数字</span><span class="dl">'</span><span class="p">);</span>
     <span class="k">return</span> <span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">));</span> <span class="c1">// AssertionError [ERR_ASSERTION]: 第二个参数必须是数字</span>
-</code></pre>
-</div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="dl">'</span><span class="s1">3</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// AssertionError [ERR_ASSERTION]: 第二个参数必须是数字</span>
+</code></pre></div></div>
 
 <h2 id="bufferfile-system">Buffer、File System</h2>
 
@@ -117,9 +116,9 @@
   <li><code class="highlighter-rouge">File System</code>: 文件系统操作</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
 <span class="c1">// ./1.txt文件内容：am</span>
-<span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">'./1.txt'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="dl">'</span><span class="s1">./1.txt</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
@@ -128,17 +127,16 @@
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">// am （注意：不要对非文本执行调用该方法）</span>
 
         <span class="c1">// copy to 2.txt</span>
-        <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="s1">'./2.txt'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="dl">'</span><span class="s1">./2.txt</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
             <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
                 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
             <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'succeed'</span><span class="p">);</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">succeed</span><span class="dl">'</span><span class="p">);</span>
             <span class="p">}</span>
         <span class="p">});</span>
     <span class="p">}</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="c-addons">C++ Addons</h2>
 
@@ -174,13 +172,12 @@
 
 <p>用于加密（签名），实现了<code class="highlighter-rouge">md5</code>、<code class="highlighter-rouge">sha</code>常用算法，使用示例：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">'md5'</span><span class="p">);</span>
-<span class="nx">obj</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s1">'12'</span><span class="p">);</span>
-<span class="nx">obj</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s1">'3456'</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">));</span> <span class="c1">// e10adc3949ba59abbe56e057f20f883e</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">crypto</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="dl">'</span><span class="s1">md5</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="dl">'</span><span class="s1">12</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="dl">'</span><span class="s1">3456</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">digest</span><span class="p">(</span><span class="dl">'</span><span class="s1">hex</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// e10adc3949ba59abbe56e057f20f883e</span>
+</code></pre></div></div>
 
 <ul>
   <li>如何加密才安全？
@@ -200,47 +197,44 @@
 
 <p>提供系统信息等，比如：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">os</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'os'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">os</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">os</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">cpus</span><span class="p">());</span> <span class="c1">// 查看系统CPU信息</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="path">Path</h2>
 
 <p>路径处理:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">str1</span> <span class="o">=</span> <span class="s1">'/a/b/c/r.txt'</span><span class="p">,</span>
-    <span class="nx">str2</span> <span class="o">=</span> <span class="s1">'/a/b/c/'</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">path</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">str1</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/a/b/c/r.txt</span><span class="dl">'</span><span class="p">,</span>
+    <span class="nx">str2</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/a/b/c/</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">str1</span><span class="p">));</span> <span class="c1">// r.txt</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">str1</span><span class="p">));</span> <span class="c1">// /a/b/c</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">str1</span><span class="p">));</span> <span class="c1">// .txt</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">str2</span><span class="p">));</span> <span class="c1">// c</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">str2</span><span class="p">));</span> <span class="c1">// /a/b</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">str2</span><span class="p">));</span> <span class="c1">// </span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="events">Events</h2>
 
 <p>事件队列，在<code class="highlighter-rouge">async</code>函数之前主要用来处理异步，现在作用减弱。和函数调用的最大区别在于可以解除耦合。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'events'</span><span class="p">).</span><span class="nx">EventEmitter</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">events</span><span class="dl">'</span><span class="p">).</span><span class="nx">EventEmitter</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">ev</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">event</span><span class="p">();</span>
 <span class="c1">// 监听（接收）</span>
-<span class="nx">ev</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'msg'</span><span class="p">,</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">ev</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">msg</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="o">+</span><span class="nx">c</span><span class="p">);</span>
 <span class="p">});</span>
 <span class="c1">// 派发（发送）</span>
-<span class="nx">ev</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'msg'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// 8</span>
-</code></pre>
-</div>
+<span class="nx">ev</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">msg</span><span class="dl">'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// 8</span>
+</code></pre></div></div>
 
 <h2 id="query-strings">Query Strings</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">querystring</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'querystring'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">querystring</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">querystring</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">'wd=sd&amp;rsv_spt=1&amp;rsv_iqid=0xed7cab150005e7f5&amp;issp=1&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;rsv_sug3=3&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;prefixsug=sd&amp;rsp=0&amp;inputT=2407&amp;rsv_sug4=2896'</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wd=sd&amp;rsv_spt=1&amp;rsv_iqid=0xed7cab150005e7f5&amp;issp=1&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;rsv_sug3=3&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;prefixsug=sd&amp;rsp=0&amp;inputT=2407&amp;rsv_sug4=2896</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">querystring</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
@@ -263,14 +257,13 @@
 <span class="c1">//     inputT: '2407',</span>
 <span class="c1">//     rsv_sug4: '2896'</span>
 <span class="c1">// }</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">querystring</code>很方便，但是<code class="highlighter-rouge">url</code>用得更多。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'url'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="s1">'https://www.baidu.com/s?wd=sd&amp;rsv_spt=1&amp;rsv_iqid=0xed7cab150005e7f5&amp;issp=1&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;rsv_sug3=3&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;prefixsug=sd&amp;rsp=0&amp;inputT=2407&amp;rsv_sug4=2896'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www.baidu.com/s?wd=sd&amp;rsv_spt=1&amp;rsv_iqid=0xed7cab150005e7f5&amp;issp=1&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;rsv_sug3=3&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;prefixsug=sd&amp;rsp=0&amp;inputT=2407&amp;rsv_sug4=2896</span><span class="dl">'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
 <span class="c1">// {</span>
 <span class="c1">//   protocol: 'https:',</span>
@@ -305,8 +298,7 @@
 <span class="c1">//    '/s?wd=sd&amp;rsv_spt=1&amp;rsv_iqid=0xed7cab150005e7f5&amp;issp=1&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;rsv_sug3=3&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;prefixsug=sd&amp;rsp=0&amp;inputT=2407&amp;rsv_sug4=2896',</span>
 <span class="c1">//   href:</span>
 <span class="c1">//    'https://www.baidu.com/s?wd=sd&amp;rsv_spt=1&amp;rsv_iqid=0xed7cab150005e7f5&amp;issp=1&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;rsv_sug3=3&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;prefixsug=sd&amp;rsp=0&amp;inputT=2407&amp;rsv_sug4=2896' } </span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="网络">网络</h2>
 
@@ -319,10 +311,10 @@
 
 <p><code class="highlighter-rouge">DNS</code>，可以通过它向<code class="highlighter-rouge">DNS</code>服务器请求将域名解析为<code class="highlighter-rouge">IP</code>地址。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">dns</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'dns'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">dns</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dns</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="c1">// 请求DNS服务器解析域名，网络操作，异步故需要回调</span>
-<span class="nx">dns</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">'baidu.com'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">dns</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">baidu.com</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
@@ -331,8 +323,7 @@
 <span class="p">});</span>
 
 <span class="c1">// [ '123.125.115.110', '220.181.57.216' ]</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">Domain</code>，域名相关处理。</p>
 
@@ -355,15 +346,14 @@
 
 <h2 id="v01">v0.1</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'some data'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">some data</span><span class="dl">'</span><span class="p">);</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
 <span class="p">});</span>
 <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>用<code class="highlighter-rouge">node</code>运行<code class="highlighter-rouge">js</code>文件：进入目录，运行<code class="highlighter-rouge">node 文件名</code></li>
@@ -380,14 +370,14 @@
 
 <h2 id="v10">v1.0</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">),</span>
-    <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="err">`</span><span class="nx">htdocs$</span><span class="p">{</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">}</span><span class="err">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s2">`htdocs</span><span class="p">${</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-            <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'404'</span><span class="p">);</span> <span class="c1">// 待改进</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">404</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// 待改进</span>
         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
             <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
         <span class="p">}</span>
@@ -396,9 +386,8 @@
 <span class="p">});</span>
 
 <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'server is listening 8080 ...'</span><span class="p">)</span>
-</code></pre>
-</div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">server is listening 8080 ...</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>对于前一个版本，无论前端发来的请求路径如何，返回结果总是不变，而且总是<code class="highlighter-rouge">200</code>状态码。现在，将所有可以被前端访问的资源文件放在<code class="highlighter-rouge">htdocs</code>目录中，当从前端获得请求时，直接以<code class="highlighter-rouge">htdocs</code>为更目录，读取相关文件。如果文件存在，则返回给前端，反之则返回<code class="highlighter-rouge">404</code>（显然当前这种写法不是真的<code class="highlighter-rouge">404</code>）。需要注意<code class="highlighter-rouge">res.end()</code>一定要放在回调中。</p>
 

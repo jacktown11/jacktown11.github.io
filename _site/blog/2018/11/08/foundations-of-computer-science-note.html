@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -159,7 +159,7 @@
 
 <p>根据书中的算法，将其以<code class="highlighter-rouge">javascript</code>实现如下：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">assert</span><span class="dl">'</span><span class="p">);</span>
 <span class="cm">/**
  * 将十进制实数字符串转换为其他进制(2-16)的字符串表示
  * @param {String} numStr 十进制实数字符串
@@ -168,46 +168,46 @@
  */</span>
 <span class="kd">function</span> <span class="nx">radixConvert</span><span class="p">(</span><span class="nx">numStr</span><span class="p">,</span> <span class="nx">radix</span><span class="p">,</span> <span class="nx">precision</span><span class="p">){</span>
     <span class="nx">numStr</span> <span class="o">=</span> <span class="nx">numStr</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
-    <span class="nx">assert</span><span class="p">(</span><span class="sr">/^</span><span class="se">[\+\-]?((\d</span><span class="sr">+</span><span class="se">)</span><span class="sr">|</span><span class="se">([\d</span><span class="sr">A-F</span><span class="se">]</span><span class="sr">+</span><span class="se">\.[\d</span><span class="sr">A-F</span><span class="se">]</span><span class="sr">+</span><span class="se">))</span><span class="sr">$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">numStr</span><span class="p">),</span> <span class="s1">'非法十进制实数'</span><span class="p">);</span>
-    <span class="nx">assert</span><span class="p">(</span><span class="nx">radix</span><span class="o">&gt;=</span><span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="nx">radix</span><span class="o">&lt;=</span><span class="mi">16</span><span class="p">,</span> <span class="s1">'不满足进制取值的合法区间[2,16]'</span><span class="p">);</span>
+    <span class="nx">assert</span><span class="p">(</span><span class="sr">/^</span><span class="se">[\+\-]?((\d</span><span class="sr">+</span><span class="se">)</span><span class="sr">|</span><span class="se">([\d</span><span class="sr">A-F</span><span class="se">]</span><span class="sr">+</span><span class="se">\.[\d</span><span class="sr">A-F</span><span class="se">]</span><span class="sr">+</span><span class="se">))</span><span class="sr">$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">numStr</span><span class="p">),</span> <span class="dl">'</span><span class="s1">非法十进制实数</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">assert</span><span class="p">(</span><span class="nx">radix</span><span class="o">&gt;=</span><span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="nx">radix</span><span class="o">&lt;=</span><span class="mi">16</span><span class="p">,</span> <span class="dl">'</span><span class="s1">不满足进制取值的合法区间[2,16]</span><span class="dl">'</span><span class="p">);</span>
     <span class="nx">precision</span> <span class="o">=</span> <span class="nx">precision</span> <span class="o">||</span> <span class="mi">12</span><span class="p">;</span>
 
-    <span class="kd">let</span> <span class="nx">getCharOf</span> <span class="o">=</span> <span class="nx">num</span><span class="o">=&gt;</span><span class="nx">num</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">?</span><span class="s1">''</span><span class="o">+</span><span class="nx">num</span><span class="p">:</span><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="mi">55</span><span class="o">+</span><span class="nx">num</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">getCharOf</span> <span class="o">=</span> <span class="nx">num</span><span class="o">=&gt;</span><span class="nx">num</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">?</span><span class="dl">''</span><span class="o">+</span><span class="nx">num</span><span class="p">:</span><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="mi">55</span><span class="o">+</span><span class="nx">num</span><span class="p">);</span>
     
     <span class="c1">// 符号</span>
-    <span class="kd">let</span> <span class="nx">symbol</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">symbol</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
     <span class="k">if</span><span class="p">(</span><span class="sr">/^</span><span class="se">[\+\-]</span><span class="sr">/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">numStr</span><span class="p">)){</span>
         <span class="nx">symbol</span> <span class="o">=</span> <span class="nx">numStr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
         <span class="nx">numStr</span> <span class="o">=</span> <span class="nx">numStr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
     
     <span class="c1">// 分解整数和小数部分</span>
-    <span class="kd">let</span> <span class="nx">parts</span> <span class="o">=</span> <span class="nx">numStr</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">parts</span> <span class="o">=</span> <span class="nx">numStr</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">.</span><span class="dl">'</span><span class="p">);</span>
 
     <span class="c1">// 转换整数部分</span>
-    <span class="kd">let</span> <span class="kr">int</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="kd">let</span> <span class="nx">int</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
     <span class="kd">let</span> <span class="nx">intTarget</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">while</span><span class="p">(</span><span class="kr">int</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
-        <span class="nx">intTarget</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="kr">int</span><span class="o">%</span><span class="nx">radix</span><span class="p">);</span>
-        <span class="kr">int</span> <span class="o">=</span> <span class="p">(</span><span class="kr">int</span><span class="o">-</span><span class="nx">intTarget</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="nx">radix</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="nx">int</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="nx">intTarget</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">int</span><span class="o">%</span><span class="nx">radix</span><span class="p">);</span>
+        <span class="nx">int</span> <span class="o">=</span> <span class="p">(</span><span class="nx">int</span><span class="o">-</span><span class="nx">intTarget</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="nx">radix</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="nx">intTarget</span> <span class="o">=</span> <span class="nx">intTarget</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span><span class="o">=&gt;</span><span class="nx">getCharOf</span><span class="p">(</span><span class="nx">item</span><span class="p">));</span>
 
     <span class="c1">// 转换小数部分</span>
     <span class="kd">let</span> <span class="nx">floatTarget</span> <span class="o">=</span> <span class="p">[];</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">parts</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">){</span>
-        <span class="kd">let</span> <span class="kr">float</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="s1">'0.'</span><span class="o">+</span><span class="nx">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-        <span class="k">while</span><span class="p">(</span><span class="kr">float</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">floatTarget</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">precision</span><span class="p">){</span>
-            <span class="kr">float</span> <span class="o">*=</span> <span class="nx">radix</span><span class="p">;</span>
-            <span class="nx">floatTarget</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="kr">float</span><span class="p">));</span>
-            <span class="kr">float</span> <span class="o">-=</span> <span class="nx">floatTarget</span><span class="p">[</span><span class="nx">floatTarget</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+        <span class="kd">let</span> <span class="nx">float</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="dl">'</span><span class="s1">0.</span><span class="dl">'</span><span class="o">+</span><span class="nx">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="k">while</span><span class="p">(</span><span class="nx">float</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">floatTarget</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">precision</span><span class="p">){</span>
+            <span class="nx">float</span> <span class="o">*=</span> <span class="nx">radix</span><span class="p">;</span>
+            <span class="nx">floatTarget</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">float</span><span class="p">));</span>
+            <span class="nx">float</span> <span class="o">-=</span> <span class="nx">floatTarget</span><span class="p">[</span><span class="nx">floatTarget</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
         <span class="p">}</span>
         <span class="nx">floatTarget</span> <span class="o">=</span> <span class="nx">floatTarget</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span><span class="o">=&gt;</span><span class="nx">getCharOf</span><span class="p">(</span><span class="nx">item</span><span class="p">));</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="nx">symbol</span> <span class="o">+</span> 
-        <span class="p">(</span><span class="nx">intTarget</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">?</span> <span class="nx">intTarget</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span> <span class="p">:</span> <span class="s1">'0'</span><span class="p">)</span><span class="o">+</span> 
-        <span class="p">(</span><span class="nx">floatTarget</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;</span><span class="mi">0</span> <span class="p">?</span> <span class="s1">'.'</span><span class="o">+</span><span class="nx">floatTarget</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span> <span class="p">:</span> <span class="s1">''</span><span class="p">);</span>
+        <span class="p">(</span><span class="nx">intTarget</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">?</span> <span class="nx">intTarget</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">)</span><span class="o">+</span> 
+        <span class="p">(</span><span class="nx">floatTarget</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;</span><span class="mi">0</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">.</span><span class="dl">'</span><span class="o">+</span><span class="nx">floatTarget</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span> <span class="p">:</span> <span class="dl">''</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="o">-</span><span class="mf">101.625</span><span class="p">;</span>
@@ -220,8 +220,7 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">));</span><span class="c1">// -65.a</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">8</span><span class="p">));</span><span class="c1">// -145.5</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="c1">// -1100101.101</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>其主要思路是：</p>
 

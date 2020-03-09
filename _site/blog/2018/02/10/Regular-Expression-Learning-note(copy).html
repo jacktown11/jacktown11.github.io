@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -98,13 +98,12 @@
 
 <p><code class="highlighter-rouge">is</code>前后都是单词的边界，下面的实验有助于理解。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg1</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b</span><span class="sr">is</span><span class="se">\b</span><span class="sr">/g</span><span class="p">,</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg1</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b</span><span class="sr">is</span><span class="se">\b</span><span class="sr">/g</span><span class="p">,</span>
 <span class="nx">reg2</span> <span class="o">=</span> <span class="sr">/is/g</span><span class="p">,</span>
-<span class="nx">str</span> <span class="o">=</span>  <span class="s1">'this is a fish'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg1</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">));</span><span class="err">    </span><span class="c1">//this X a fish</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg2</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">));</span><span class="err">    </span><span class="c1">//thX X a fXh</span>
-</code></pre>
-</div>
+<span class="nx">str</span> <span class="o">=</span>  <span class="dl">'</span><span class="s1">this is a fish</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span><span class="err">    </span><span class="c1">//this X a fish</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg2</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span><span class="err">    </span><span class="c1">//thX X a fXh</span>
+</code></pre></div></div>
 
 <h2 id="url分组替换">URL分组替换</h2>
 
@@ -114,11 +113,10 @@
 
 <p>正则表达式中括号用来分组，这个时候我们可以通过用<code class="highlighter-rouge">$1</code>来获取<code class="highlighter-rouge">group#1</code>的内容。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg3</span> <span class="o">=</span> <span class="sr">/http:</span><span class="se">(\/\/</span><span class="sr">.+</span><span class="se">\.</span><span class="sr">jpg</span><span class="se">)</span><span class="sr">/</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'http://img.host.com.abc.jpg'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg3</span><span class="p">,</span> <span class="s1">'$1'</span><span class="p">));</span> 
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg3</span> <span class="o">=</span> <span class="sr">/http:</span><span class="se">(\/\/</span><span class="sr">.+</span><span class="se">\.</span><span class="sr">jpg</span><span class="se">)</span><span class="sr">/</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://img.host.com.abc.jpg</span><span class="dl">'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg3</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$1</span><span class="dl">'</span><span class="p">));</span> 
 <span class="c1">// //img.host.com.abc.jpg</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>说下这个正则的意义，如果网站用了<code class="highlighter-rouge">https</code>，网站引用静态资源也必须是<code class="highlighter-rouge">https</code>，否则报错。如果写成<code class="highlighter-rouge">//</code>会自动识别<code class="highlighter-rouge">http</code>或者<code class="highlighter-rouge">https</code>。</p>
 
@@ -132,18 +130,17 @@
   <li><code class="highlighter-rouge">Start of line</code>是由<code class="highlighter-rouge">^</code>生效，表示以此开头</li>
   <li>对应结尾<code class="highlighter-rouge">End of line</code>由<code class="highlighter-rouge">$</code>生效，表示以此结尾</li>
   <li>接着看<code class="highlighter-rouge">digit</code>有<code class="highlighter-rouge">\d</code>生效，表示数字</li>
-  <li><code class="highlighter-rouge">3 times</code>由<code class="highlighter-rouge"><span class="p">{</span><span class="err">4</span><span class="p">}</span></code>生效表示重复4次，铁路图中实际是3+1</li>
+  <li><code class="highlighter-rouge">3 times</code>由<code class="highlighter-rouge">{4}</code>生效表示重复4次，铁路图中实际是3+1</li>
   <li><code class="highlighter-rouge">one of</code>表示在给出的所有可选项中选择一个</li>
 </ul>
 
 <p>下面的代码使用它来验证日期字符串。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg4</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">\d{4}[/</span><span class="sr">-</span><span class="se">]\d{2}[/</span><span class="sr">-</span><span class="se">]\d{2}</span><span class="sr">$/</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg4</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">'2018-2-7'</span><span class="p">));</span> <span class="c1">// false</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg4</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">'2018-02-07'</span><span class="p">));</span>   <span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg4</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">'2018/02/07'</span><span class="p">));</span>   <span class="c1">// true</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg4</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">\d{4}[/</span><span class="sr">-</span><span class="se">]\d{2}[/</span><span class="sr">-</span><span class="se">]\d{2}</span><span class="sr">$/</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg4</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">2018-2-7</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg4</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">2018-02-07</span><span class="dl">'</span><span class="p">));</span>   <span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg4</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">2018/02/07</span><span class="dl">'</span><span class="p">));</span>   <span class="c1">// true</span>
+</code></pre></div></div>
 
 <p>结合URL分组替换所用到的分组特性，我们可以轻松写出日期格式化的方法，改造后的正则表达式如下。</p>
 
@@ -152,16 +149,15 @@
 
 <p>轻松的拿到各个分组的内容后，就可以替换成我们期望的格式。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg5</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">(\d{4})[/</span><span class="sr">-</span><span class="se">](\d{2})[/</span><span class="sr">-</span><span class="se">](\d{2})</span><span class="sr">$/</span><span class="p">,</span>
-    <span class="nx">dateStr</span> <span class="o">=</span> <span class="s1">'2018/02/07'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg5</span><span class="p">,</span> <span class="s1">'$1年$2月$3日'</span><span class="p">));</span>    
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg5</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">(\d{4})[/</span><span class="sr">-</span><span class="se">](\d{2})[/</span><span class="sr">-</span><span class="se">](\d{2})</span><span class="sr">$/</span><span class="p">,</span>
+    <span class="nx">dateStr</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">2018/02/07</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg5</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$1年$2月$3日</span><span class="dl">'</span><span class="p">));</span>    
 <span class="c1">//"2018年02月07日"</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg5</span><span class="p">,</span> <span class="s1">'$1-$2-$3'</span><span class="p">));</span> 
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg5</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$1-$2-$3</span><span class="dl">'</span><span class="p">));</span> 
 <span class="c1">//"2018-02-07-"</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg5</span><span class="p">,</span> <span class="s1">'$2月'</span><span class="p">));</span>  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg5</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$2月</span><span class="dl">'</span><span class="p">));</span>  
 <span class="c1">//"02月"</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>到现在已经能结合图形化工具看懂正则表达式了，如果有自己写，还需要进一步深入。</p>
 
@@ -171,15 +167,13 @@
 
 <h2 id="字面量方法">字面量方法</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">reg</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b</span><span class="sr">is</span><span class="se">\b</span><span class="sr">/g</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reg</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b</span><span class="sr">is</span><span class="se">\b</span><span class="sr">/g</span>
+</code></pre></div></div>
 
 <h2 id="构造函数">构造函数</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">reg</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s1">'\\bis\\b'</span><span class="p">,</span> <span class="s1">'g'</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reg</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="dl">'</span><span class="se">\\</span><span class="s1">bis</span><span class="se">\\</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">g</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p><strong>注意</strong>：构造函数第一个参数为正则表达式字符串，需要双重转义，第二个参数为修饰符，修饰符<code class="highlighter-rouge">g</code>代表全局搜索。</p>
 
@@ -199,15 +193,14 @@
 
 <h3 id="g修饰符详例">g修饰符详例</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg6</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/</span><span class="p">,</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg6</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/</span><span class="p">,</span>
     <span class="nx">reg7</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/g</span><span class="p">,</span>
-    <span class="nx">str</span> <span class="o">=</span> <span class="s1">'this is a sentence contaning many is.'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg6</span><span class="p">,</span> <span class="s1">'O'</span><span class="p">));</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">this is a sentence contaning many is.</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg6</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//thO is a sentence contaning many is.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg7</span><span class="p">,</span> <span class="s1">'O'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg7</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//thO O a sentence contaning many O.</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-2553d69fb51ce386.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
 
@@ -215,15 +208,14 @@
 
 <h3 id="i修饰符详例">i修饰符详例</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg8</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/g</span><span class="p">,</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg8</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">reg9</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/gi</span><span class="p">,</span>
-    <span class="nx">str</span> <span class="o">=</span> <span class="s1">'Is this a kiss?'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg8</span><span class="p">,</span> <span class="s1">'O'</span><span class="p">));</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Is this a kiss?</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg8</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//Is thO a kiss ?</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg9</span><span class="p">,</span> <span class="s1">'O'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg9</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//O thO a kiss ?</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-407b462bc2410640.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
 
@@ -243,12 +235,11 @@
 
 <p>比如换页符<code class="highlighter-rouge">\f</code>、换行符<code class="highlighter-rouge">\n</code>、制表符<code class="highlighter-rouge">\t</code>等等，以<code class="highlighter-rouge">\n</code>为例。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg10</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\n</span><span class="sr">/</span><span class="p">,</span>
-    <span class="nx">str</span> <span class="o">=</span> <span class="s1">'sentence 1. \n sentence 2.'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg10</span><span class="p">,</span> <span class="s1">'O'</span><span class="p">));</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg10</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\n</span><span class="sr">/</span><span class="p">,</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">sentence 1. </span><span class="se">\n</span><span class="s1"> sentence 2.</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg10</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//sentence 1. O sentence 2.</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>其他非打印字符在前端用得少，通常在后端处理文本文件时才会用到。</p>
 
@@ -256,38 +247,35 @@
 
 <p>前面的手机号的例子（<code class="highlighter-rouge">/^1[34578][0-9]{9}$/</code>）中，我们使用过<code class="highlighter-rouge">[]</code>，其中的<code class="highlighter-rouge">[34578]</code>表示<code class="highlighter-rouge">34578</code>中的任意一个数字即可。在日期匹配与分组替换的例子（<code class="highlighter-rouge">/^\d{4}[\-]\d{2}[\-]\d{2}$/</code>）中，<code class="highlighter-rouge">[\-]</code>表示<code class="highlighter-rouge">\</code>和<code class="highlighter-rouge">-</code>任选一个。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg11</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">abc</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
-    <span class="nx">str</span> <span class="o">=</span> <span class="s1">'a 1 b 2 c 3 d 4'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg11</span><span class="p">,</span> <span class="s1">'O'</span><span class="p">));</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg11</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">abc</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">a 1 b 2 c 3 d 4</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg11</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//O 1 O 2 O 3 d 4</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="字符类取反">字符类取反[^]</h2>
 
 <p>表示给出的所有字符之外的任意字符。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg12</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[^</span><span class="sr">abc</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
-    <span class="nx">str</span> <span class="o">=</span> <span class="s1">'a 1 b 2 c 3 d 4'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg12</span><span class="p">,</span> <span class="s1">'O'</span><span class="p">));</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg12</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[^</span><span class="sr">abc</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">a 1 b 2 c 3 d 4</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg12</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//aOOObOOOcOOOOOO</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="范围类-">范围类[-]</h2>
 
 <p>正则表达式支持一定范围规则，比如<code class="highlighter-rouge">[a-z]</code>、<code class="highlighter-rouge">[A-Z]</code>、<code class="highlighter-rouge">[0-9]</code>，也可以组合起来如<code class="highlighter-rouge">[a-z0-9]</code>，如果字符<code class="highlighter-rouge">-</code>本身也是可选项，加在最后即可。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg13</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">a-zA-C1-3</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg13</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">a-zA-C1-3</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">reg14</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">0-9-</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
-    <span class="nx">str1</span> <span class="o">=</span> <span class="s1">'a A 1 b B 2 x X 9'</span><span class="p">,</span>
-    <span class="nx">str2</span> <span class="o">=</span> <span class="s1">'2016-11-11'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str1</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg13</span><span class="p">,</span> <span class="s1">'O'</span><span class="p">));</span>
+    <span class="nx">str1</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">a A 1 b B 2 x X 9</span><span class="dl">'</span><span class="p">,</span>
+    <span class="nx">str2</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">2016-11-11</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str1</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg13</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//O O O O O O O X 9</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str2</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg14</span><span class="p">,</span> <span class="s1">'O'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str2</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg14</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//OOOOOOOOOO</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="预定义类">预定义类</h2>
 
@@ -354,15 +342,14 @@
 
 <p>边界指定义匹配的边界条件，上面基本都在例子中碰到了，下面演示下<code class="highlighter-rouge">\b</code>与<code class="highlighter-rouge">\B</code>。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg15</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b</span><span class="sr">dog/g</span><span class="p">,</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg15</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b</span><span class="sr">dog/g</span><span class="p">,</span>
     <span class="nx">reg16</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\B</span><span class="sr">dog/g</span><span class="p">,</span>
-    <span class="nx">str</span> <span class="o">=</span> <span class="s1">'@dog@dogdog@'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg15</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">));</span> 
+    <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">@dog@dogdog@</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg15</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span> 
 <span class="c1">//@X@Xdog@</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg16</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg16</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//@dog@dogX@</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="量词">量词</h2>
 
@@ -387,15 +374,15 @@
       <td>出现1，2，3…次（正数次）</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge"><span class="p">{</span><span class="err">n</span><span class="p">}</span></code></td>
+      <td><code class="highlighter-rouge">{n}</code></td>
       <td>正好出现n次</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge"><span class="p">{</span><span class="err">m,n</span><span class="p">}</span></code></td>
+      <td><code class="highlighter-rouge">{m,n}</code></td>
       <td>出现m到n次（含两端）</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge"><span class="p">{</span><span class="err">n,</span><span class="p">}</span></code></td>
+      <td><code class="highlighter-rouge">{n,}</code></td>
       <td>至少出现n次</td>
     </tr>
   </tbody>
@@ -409,21 +396,19 @@
 
 <p>正则表达式默认会匹配贪婪模式，什么是贪婪模式呢？如其名，在符合规则的情况下尽可能多地匹配字符。如下面这个例子。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg17</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\d{3,6}</span><span class="sr">/</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1234567890'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg17</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">));</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg17</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\d{3,6}</span><span class="sr">/</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1234567890</span><span class="dl">'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg17</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//X7890</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>贪婪模式下，匹配了最多的情况。</p>
 
 <p>与贪婪模式对应的就是惰性模式，此时尽可能少地匹配字符。如何开启懒惰模式呢？在量词后面加<code class="highlighter-rouge">?</code>。继续上面的例子：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg18</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\d{3,6}?</span><span class="sr">/</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1234567890'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg18</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">));</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg18</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\d{3,6}?</span><span class="sr">/</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1234567890</span><span class="dl">'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg18</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//X4567890</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>更深入的介绍可参看<a href="https://segmentfault.com/a/1190000000426455">进阶正则表达式</a>。</p>
 
@@ -457,16 +442,15 @@
 
 <p>可以很容易拿到分组<code class="highlighter-rouge">group#1</code>、<code class="highlighter-rouge">group#2</code>、<code class="highlighter-rouge">group#3</code>对应的匹配内容，分别是<code class="highlighter-rouge">$1</code>、<code class="highlighter-rouge">$2</code>、<code class="highlighter-rouge">$3</code>。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg19</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">(\d{4})[/</span><span class="sr">-</span><span class="se">](\d{2})[/</span><span class="sr">-</span><span class="se">](\d{2})</span><span class="sr">$/</span><span class="p">,</span>
-    <span class="nx">str</span> <span class="o">=</span> <span class="s1">'2018/02/10'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg19</span><span class="p">,</span> <span class="s1">'$1年$2月$3日'</span><span class="p">));</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg19</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">(\d{4})[/</span><span class="sr">-</span><span class="se">](\d{2})[/</span><span class="sr">-</span><span class="se">](\d{2})</span><span class="sr">$/</span><span class="p">,</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">2018/02/10</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg19</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$1年$2月$3日</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//2018年02月10日</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg19</span><span class="p">,</span> <span class="s1">'$1-$2-$3'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg19</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$1-$2-$3</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//2018年02月10日</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg19</span><span class="p">,</span> <span class="s1">'$2月'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg19</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$2月</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//02月</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>如果一个分组不想捕获，可以在括号内起始位置加上<code class="highlighter-rouge">?:</code>，如：<code class="highlighter-rouge">/^(?:\d{4})[/-](\d{2})[/-](\d{2})$/</code>。</p>
 
@@ -478,15 +462,14 @@
 
 <p>前瞻分两种，正向前瞻（<code class="highlighter-rouge">?=xxx</code>）和负向前瞻（<code class="highlighter-rouge">?!xxx</code>）。下面是例子。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg20</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">a-z</span><span class="se">]{2}(?=\d{2})</span><span class="sr">/g</span><span class="p">,</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg20</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">a-z</span><span class="se">]{2}(?=\d{2})</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">reg21</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">a-z</span><span class="se">]{2}(?!\d{2})</span><span class="sr">/g</span><span class="p">,</span>
-    <span class="nx">str</span> <span class="o">=</span> <span class="s1">'aa11bb22cc**'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg20</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">));</span>
+    <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">aa11bb22cc**</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg20</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//X11X22cc**</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg21</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg21</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//aa11bb22X**</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="知识汇总应用">知识汇总应用</h1>
 

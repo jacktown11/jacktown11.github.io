@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -72,60 +72,60 @@
 <h1 id="使用全局变量">使用（全局）变量</h1>
 
 <p>先上代码：</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">;(</span><span class="kd">function</span><span class="p">(){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">;(</span><span class="kd">function</span><span class="p">(){</span>
 
 <span class="kd">var</span> <span class="nx">isDev</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"status"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"hello world"</span><span class="p">,</span>
-    <span class="s2">"string"</span><span class="p">:</span> <span class="s2">"★★★"</span><span class="p">,</span>
-    <span class="s2">"number"</span><span class="p">:</span> <span class="mi">69</span><span class="p">,</span>
-    <span class="s2">"boolean"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"object"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"110000"</span><span class="p">:</span> <span class="s2">"北京市"</span><span class="p">,</span>
-        <span class="s2">"120000"</span><span class="p">:</span> <span class="s2">"天津市"</span><span class="p">,</span>
-        <span class="s2">"130000"</span><span class="p">:</span> <span class="s2">"黑龙江省"</span>
+    <span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">hello world</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">string</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">★★★</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">number</span><span class="dl">"</span><span class="p">:</span> <span class="mi">69</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">boolean</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">object</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">110000</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">北京市</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">120000</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">天津市</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">130000</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">黑龙江省</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="s2">"array"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">array</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Hello"</span>
+            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Mock.js"</span>
+            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Mock.js</span><span class="dl">"</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"!"</span>
+            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">!</span><span class="dl">"</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Hello"</span>
+            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Mock.js"</span>
+            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Mock.js</span><span class="dl">"</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"!"</span>
+            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">!</span><span class="dl">"</span>
         <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"regexp"</span><span class="p">:</span> <span class="s2">"6288712123-"</span><span class="p">,</span>
-    <span class="s2">"time"</span><span class="p">:</span> <span class="s2">"2014-01-16 21:21:22"</span><span class="p">,</span>
-    <span class="s2">"color"</span><span class="p">:</span> <span class="s2">"rgba(121, 242, 135, 0.94)"</span><span class="p">,</span>
-    <span class="s2">"word"</span><span class="p">:</span> <span class="s2">"jztuqwmur"</span><span class="p">,</span>
-    <span class="s2">"text"</span><span class="p">:</span> <span class="s2">"而风气究及。"</span><span class="p">,</span>
-    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"崔杰"</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"news://imkpjsnq.ev/dhthtrgqy"</span>
+    <span class="dl">"</span><span class="s2">regexp</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">6288712123-</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">time</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2014-01-16 21:21:22</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">rgba(121, 242, 135, 0.94)</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">word</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jztuqwmur</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">而风气究及。</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">崔杰</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">news://imkpjsnq.ev/dhthtrgqy</span><span class="dl">"</span>
 <span class="p">};</span>
 
 <span class="nx">$</span><span class="p">(</span><span class="nx">init</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">init</span><span class="p">(){</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-get'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#data-get</span><span class="dl">'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">isDev</span><span class="p">){</span>
             <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
             <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-                <span class="na">url</span><span class="p">:</span> <span class="s1">'/list'</span><span class="p">,</span>
-                <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-                <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+                <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/list</span><span class="dl">'</span><span class="p">,</span>
+                <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+                <span class="na">dataType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">,</span>
                 <span class="na">success</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
                     <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
                 <span class="p">}</span>
@@ -134,12 +134,11 @@
     <span class="p">})</span>    
 <span class="p">}</span>
 <span class="kd">function</span> <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-show'</span><span class="p">).</span><span class="nx">JSONView</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="na">collapsed</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#data-show</span><span class="dl">'</span><span class="p">).</span><span class="nx">JSONView</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="na">collapsed</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
 <span class="p">}</span>
 
 <span class="p">})();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>可以看到，这段代码中定义了两个变量，<code class="highlighter-rouge">data</code>和<code class="highlighter-rouge">isDev</code>，在开发阶段，<code class="highlighter-rouge">isDev</code>设置为<code class="highlighter-rouge">true</code>，这时直接把本地变量<code class="highlighter-rouge">data</code>拿过来，传递给<code class="highlighter-rouge">showData</code>函数处理；转换到生产环境下，需要做的事情包括：删除<code class="highlighter-rouge">data</code>和<code class="highlighter-rouge">isDev</code>对象，删除关于代码环境的<code class="highlighter-rouge">if</code>判断，直接使用<code class="highlighter-rouge">ajax</code>。</p>
 
@@ -155,16 +154,16 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/6321648-7e34f5b5ca7125d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据请求ajax" /></p>
 
 <p>下面是请求数据的代码：</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">;(</span><span class="kd">function</span><span class="p">(){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">;(</span><span class="kd">function</span><span class="p">(){</span>
 
 <span class="nx">$</span><span class="p">(</span><span class="nx">init</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">init</span><span class="p">(){</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-get'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#data-get</span><span class="dl">'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-            <span class="na">url</span><span class="p">:</span> <span class="s1">'./data.json'</span><span class="p">,</span>
-            <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-            <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+            <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./data.json</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">dataType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">,</span>
             <span class="na">success</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
                 <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
             <span class="p">}</span>
@@ -172,12 +171,11 @@
     <span class="p">});</span>    
 <span class="p">}</span>
 <span class="kd">function</span> <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-show'</span><span class="p">).</span><span class="nx">JSONView</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="na">collapsed</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#data-show</span><span class="dl">'</span><span class="p">).</span><span class="nx">JSONView</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="na">collapsed</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
 <span class="p">}</span>
 
 <span class="p">})();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>转换为生产环境时，只需要修改 <code class="highlighter-rouge">url</code>以符合实际的接口，用于模拟数据的文件<code class="highlighter-rouge">data.json</code>不进行打包即可。然而这样也有一些缺点：数据不够灵活，是写死的，没有状态判断，返回的数据真实度不够高。</p>
 
@@ -197,16 +195,16 @@
 
 <p>使用了<code class="highlighter-rouge">mockjs</code>，再来看看我们在<code class="highlighter-rouge">javascript</code>文件中是如何请求数据的：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">;(</span><span class="kd">function</span><span class="p">(){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">;(</span><span class="kd">function</span><span class="p">(){</span>
 
 <span class="nx">$</span><span class="p">(</span><span class="nx">init</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">init</span><span class="p">(){</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-get'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#data-get</span><span class="dl">'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-            <span class="na">url</span><span class="p">:</span> <span class="s1">'/list'</span><span class="p">,</span>
-            <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-            <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+            <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/list</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">dataType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">,</span>
             <span class="na">success</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
                 <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
             <span class="p">}</span>
@@ -215,12 +213,11 @@
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">showData</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">'#data-show'</span><span class="p">).</span><span class="nx">JSONView</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="na">collapsed</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#data-show</span><span class="dl">'</span><span class="p">).</span><span class="nx">JSONView</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="na">collapsed</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
 <span class="p">}</span>
 
 <span class="p">})();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>可以看到，和使用本地数据存储文件的方式几乎是一样的，不过这次请求的<code class="highlighter-rouge">url</code>参数是<code class="highlighter-rouge">/list</code>，而不是<code class="highlighter-rouge">data.json</code>，这样在转换到生产环境时，我们甚至都不用修改这些<code class="highlighter-rouge">ajax</code>代码了，直接删除<code class="highlighter-rouge">mockjs</code>和<code class="highlighter-rouge">list.js</code>就好了。而且生成的数据也更真实、可定制。</p>
 
@@ -232,31 +229,30 @@
 
 <p><code class="highlighter-rouge">nodejs</code>作用一种后端语言，用它来模拟数据除了数据的内容真实性，其他方面可以说是最接近真实数据请求的。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">),</span>
-    <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'url'</span><span class="p">),</span>
-    <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">http</span>
 <span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">){</span>
     <span class="kd">let</span> <span class="nx">pathname</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">).</span><span class="nx">pathname</span><span class="p">;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'requesting '</span> <span class="o">+</span> <span class="nx">pathname</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">requesting </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">pathname</span><span class="p">);</span>
     <span class="k">switch</span><span class="p">(</span><span class="nx">pathname</span><span class="p">){</span>
-        <span class="k">case</span> <span class="s1">'/list'</span><span class="err">:</span> 
+        <span class="k">case</span> <span class="dl">'</span><span class="s1">/list</span><span class="dl">'</span><span class="p">:</span> 
             <span class="nx">provideData</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
-        <span class="k">case</span> <span class="s1">'/'</span><span class="err">:</span>
-        <span class="k">case</span> <span class="s1">'/index.html'</span><span class="err">:</span>
+        <span class="k">case</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">:</span>
+        <span class="k">case</span> <span class="dl">'</span><span class="s1">/index.html</span><span class="dl">'</span><span class="p">:</span>
             <span class="nx">provideIndexPage</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
         <span class="nl">default</span><span class="p">:</span> 
-            <span class="nx">provideStatic</span><span class="p">(</span><span class="s1">'.'</span><span class="o">+</span> <span class="nx">pathname</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
+            <span class="nx">provideStatic</span><span class="p">(</span><span class="dl">'</span><span class="s1">.</span><span class="dl">'</span><span class="o">+</span> <span class="nx">pathname</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">4000</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The node server is listening 4000'</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">The node server is listening 4000</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p>上面是<code class="highlighter-rouge">server.js</code>文件的部分代码，通过<code class="highlighter-rouge">createServer</code>方法创建了服务器，通过<code class="highlighter-rouge">switch</code>语句判断请求的路径，在请求<code class="highlighter-rouge">/list</code>时，我们就用<code class="highlighter-rouge">provideData</code>函数返回请求的数据，<code class="highlighter-rouge">provideData</code>中实际是用<code class="highlighter-rouge">nodejs</code>的<code class="highlighter-rouge">fs</code>模块读取了本地的<code class="highlighter-rouge">./static/data.json</code>文件，事实上和前面的在本地提供<code class="highlighter-rouge">data.json</code>文件直接请求的方法是一致的，不过现在我们可以控制服务器的行为，因此可以在<code class="highlighter-rouge">ajax</code>请求的url是<code class="highlighter-rouge">/list</code>的时候也能返回该文件，这样我们的前端代码在转换到生产环境的时候也不用修改了。</p>
 

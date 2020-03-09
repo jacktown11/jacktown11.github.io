@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -554,11 +554,11 @@
 
 <h3 id="存储过程使用案例">存储过程使用案例</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span> <span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span> <span class="p">;</span>
 <span class="k">DELIMITER</span> <span class="o">//</span>
 <span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">ordertotal</span><span class="p">(</span>
-	<span class="k">IN</span> <span class="n">onumber</span> <span class="n">INT</span><span class="p">,</span>
-	<span class="k">OUT</span> <span class="n">ototal</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+	<span class="k">IN</span> <span class="n">onumber</span> <span class="nb">INT</span><span class="p">,</span>
+	<span class="k">OUT</span> <span class="n">ototal</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">BEGIN</span>
 	<span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">item_price</span> <span class="o">*</span> <span class="n">quantity</span><span class="p">)</span> <span class="k">INTO</span> <span class="n">ototal</span> <span class="k">FROM</span> <span class="n">orderitems</span> <span class="k">WHERE</span> <span class="n">order_num</span> <span class="o">=</span> <span class="n">onumber</span><span class="p">;</span>
@@ -567,8 +567,7 @@
 
 <span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="mi">20005</span><span class="p">,</span> <span class="o">@</span><span class="n">total</span><span class="p">);</span>
 <span class="k">SELECT</span> <span class="o">@</span><span class="n">total</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>第一行是删除存储过程，<code class="highlighter-rouge">IF EXISTS</code>使得在本不存在的情况下不会报错</li>
@@ -581,16 +580,16 @@
 
 <h3 id="智能存储过程">智能存储过程</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span><span class="p">;</span>
 <span class="k">DELIMITER</span> <span class="o">//</span>
 <span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">ordertotal</span><span class="p">(</span>
-	<span class="k">IN</span> <span class="n">onumber</span> <span class="n">INT</span><span class="p">,</span>
-	<span class="k">IN</span> <span class="n">taxable</span> <span class="n">BOOLEAN</span><span class="p">,</span>
-	<span class="k">OUT</span> <span class="n">ototal</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+	<span class="k">IN</span> <span class="n">onumber</span> <span class="nb">INT</span><span class="p">,</span>
+	<span class="k">IN</span> <span class="n">taxable</span> <span class="nb">BOOLEAN</span><span class="p">,</span>
+	<span class="k">OUT</span> <span class="n">ototal</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">BEGIN</span>
-	<span class="k">DECLARE</span> <span class="n">total</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-	<span class="k">DECLARE</span> <span class="n">taxrate</span> <span class="n">INT</span> <span class="k">DEFAULT</span> <span class="mi">6</span><span class="p">;</span>
+	<span class="k">DECLARE</span> <span class="n">total</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+	<span class="k">DECLARE</span> <span class="n">taxrate</span> <span class="nb">INT</span> <span class="k">DEFAULT</span> <span class="mi">6</span><span class="p">;</span>
 	<span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">item_price</span> <span class="o">*</span> <span class="n">quantity</span><span class="p">)</span> <span class="k">INTO</span> <span class="n">total</span> <span class="k">FROM</span> <span class="n">orderitems</span> <span class="k">WHERE</span> <span class="n">order_num</span> <span class="o">=</span> <span class="n">onumber</span><span class="p">;</span>
 	<span class="n">IF</span> <span class="n">taxable</span> <span class="k">THEN</span> 
 		<span class="k">SELECT</span> <span class="n">total</span> <span class="o">+</span> <span class="p">(</span><span class="n">total</span> <span class="o">*</span> <span class="n">taxrate</span> <span class="o">/</span><span class="mi">100</span> <span class="p">)</span> <span class="k">INTO</span> <span class="n">total</span><span class="p">;</span>
@@ -603,8 +602,7 @@
 <span class="k">SELECT</span> <span class="o">@</span><span class="n">ototal</span><span class="p">;</span>
 <span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="mi">20005</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">@</span><span class="n">ototal</span><span class="p">);</span>
 <span class="k">SELECT</span> <span class="o">@</span><span class="n">ototal</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>上面这个示例，内部使用了<code class="highlighter-rouge">DECLARE</code>定义局部变量、 <code class="highlighter-rouge">IF</code>进行逻辑判断以实现更复杂的功能。</p>
 
@@ -630,14 +628,14 @@
 
 <h3 id="使用示例">使用示例</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">processorders</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">processorders</span><span class="p">;</span>
 
 <span class="k">DELIMITER</span> <span class="o">//</span>
 <span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">processorders</span><span class="p">()</span>
 <span class="k">BEGIN</span>
-	<span class="k">DECLARE</span> <span class="n">done</span> <span class="n">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="k">DECLARE</span> <span class="n">o</span> <span class="n">INT</span><span class="p">;</span>
-	<span class="k">DECLARE</span> <span class="n">t</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+	<span class="k">DECLARE</span> <span class="n">done</span> <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">DECLARE</span> <span class="n">o</span> <span class="nb">INT</span><span class="p">;</span>
+	<span class="k">DECLARE</span> <span class="n">t</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
 	
 	<span class="k">DECLARE</span> <span class="n">ordernumbers</span> <span class="k">CURSOR</span>
 	<span class="k">FOR</span> 
@@ -646,7 +644,7 @@
 	<span class="k">DECLARE</span> <span class="k">CONTINUE</span> <span class="k">HANDLER</span> <span class="k">FOR</span> <span class="k">SQLSTATE</span> <span class="s1">'02000'</span> <span class="k">SET</span> <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
 	<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">ordertotals</span>
-	<span class="p">(</span><span class="n">order_num</span> <span class="n">INT</span><span class="p">,</span> <span class="n">total</span> <span class="n">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+	<span class="p">(</span><span class="n">order_num</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">total</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
 	
 	<span class="k">OPEN</span> <span class="n">ordernumbers</span><span class="p">;</span>
 	<span class="n">REPEAT</span>
@@ -662,8 +660,7 @@
 <span class="k">CALL</span> <span class="n">processorders</span><span class="p">();</span>
 
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ordertotals</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>从<code class="highlighter-rouge">orders</code>表中获取了所有<code class="highlighter-rouge">order_num</code>列，存储为<code class="highlighter-rouge">ordernumbers</code>游标</li>
@@ -694,19 +691,17 @@
 
 <p>开启事务与事务回退：</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
 <span class="c1">-- SQL语句组</span>
 <span class="k">ROLLBACK</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>在事务中使用<code class="highlighter-rouge">commit</code>显示提交（默认是隐式提交的），使得如果更改出错会不会提交:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
 <span class="c1">-- SQL 语句</span>
 <span class="k">COMMIT</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>设置保留点与回退到保留点：</p>
 

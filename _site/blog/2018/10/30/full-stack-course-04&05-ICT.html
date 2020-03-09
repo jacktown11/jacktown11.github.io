@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -164,43 +164,41 @@
 
 <h4 id="get">get</h4>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'get'</span><span class="p">,</span> <span class="s1">'./index.php?a=3&amp;b=2'</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">./index.php?a=3&amp;b=2</span><span class="dl">'</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span><span class="o">===</span><span class="mi">4</span><span class="p">){</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&gt;=</span><span class="mi">200</span> <span class="o">&amp;&amp;</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&lt;</span><span class="mi">300</span> <span class="o">||</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">===</span><span class="mi">304</span><span class="p">){</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'成功：'</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">成功：</span><span class="dl">'</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'失败：'</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">失败：</span><span class="dl">'</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">};</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="post">post</h4>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span><span class="s1">'./2.php'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">./2.php</span><span class="dl">'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">){</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">200</span> <span class="o">&amp;&amp;</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;</span> <span class="mi">300</span> <span class="o">||</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">304</span><span class="p">){</span>
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'failed to load data'</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">failed to load data</span><span class="dl">'</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">};</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">'Content-Type'</span><span class="p">,</span><span class="s1">'application/x-www-form-urlencoded'</span><span class="p">);</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'a=2&amp;b=3'</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">application/x-www-form-urlencoded</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">a=2&amp;b=3</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
 <h4 id="封装">封装</h4>
 
 <p>以下是一个利用<code class="highlighter-rouge">XMLHttpRequest</code>对<code class="highlighter-rouge">ajax</code>进行手工封装的尝试：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="cm">/**
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
  * @param {ajax请求选项} options 
  * 可能选项包括：url,type,data,datatype,success,error
  * 默认参数：请求方式: get，请求参数：{}，数据类型： text
@@ -211,23 +209,23 @@
     <span class="c1">// 默认GET请求、普通文本、无参数</span>
     <span class="nx">options</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span>
     <span class="nx">options</span><span class="p">.</span><span class="nx">data</span><span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">data</span> <span class="o">||</span> <span class="p">{};</span>
-    <span class="nx">options</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">type</span> <span class="o">||</span> <span class="s1">'GET'</span><span class="p">;</span>
-    <span class="nx">options</span><span class="p">.</span><span class="nx">dataType</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">dataType</span> <span class="o">||</span> <span class="s1">'text'</span><span class="p">;</span>
+    <span class="nx">options</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">type</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">options</span><span class="p">.</span><span class="nx">dataType</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">dataType</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">text</span><span class="dl">'</span><span class="p">;</span>
 
     <span class="c1">// 将查询参数对象转为查询字符串</span>
     <span class="kd">let</span> <span class="nx">dataArr</span> <span class="o">=</span> <span class="p">[];</span>
     <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">name</span> <span class="k">in</span> <span class="nx">options</span><span class="p">.</span><span class="nx">data</span><span class="p">){</span>
-        <span class="nx">dataArr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="err">`</span><span class="nx">$</span><span class="p">{</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">name</span><span class="p">)}</span><span class="o">=</span><span class="nx">$</span><span class="p">{</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">name</span><span class="p">])}</span><span class="err">`</span><span class="p">);</span>
+        <span class="nx">dataArr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">name</span><span class="p">)}</span><span class="s2">=</span><span class="p">${</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">name</span><span class="p">])}</span><span class="s2">`</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="kd">let</span> <span class="nx">dataStr</span> <span class="o">=</span> <span class="nx">dataArr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">'&amp;'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">dataStr</span> <span class="o">=</span> <span class="nx">dataArr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">&amp;</span><span class="dl">'</span><span class="p">);</span>
 
     <span class="c1">// 新建xhr对象并open</span>
     <span class="kd">let</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="s1">'get'</span><span class="p">){</span>
-        <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'get'</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">url</span><span class="o">+</span><span class="s1">'?'</span><span class="o">+</span><span class="nx">dataStr</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="s1">'post'</span><span class="p">){</span>
-        <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-        <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">'Content-Type'</span><span class="p">,</span> <span class="s1">'application/x-www-form-urlencoded'</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">){</span>
+        <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">url</span><span class="o">+</span><span class="dl">'</span><span class="s1">?</span><span class="dl">'</span><span class="o">+</span><span class="nx">dataStr</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">){</span>
+        <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">application/x-www-form-urlencoded</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="c1">// 绑定返回响应时间</span>
@@ -236,14 +234,14 @@
             <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">200</span> <span class="o">&amp;&amp;</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;</span> <span class="mi">300</span> <span class="o">||</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">304</span><span class="p">){</span>
                 <span class="kd">let</span> <span class="nx">data</span><span class="p">;</span>
                 <span class="k">switch</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">dataType</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()){</span>
-                    <span class="k">case</span> <span class="s1">'json'</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">:</span>
                         <span class="k">if</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">JSON</span> <span class="o">&amp;&amp;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">){</span>
                             <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
                         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-                            <span class="nx">data</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">'('</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="o">+</span><span class="s1">')'</span><span class="p">);</span>
+                            <span class="nx">data</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="dl">'</span><span class="s1">(</span><span class="dl">'</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="o">+</span><span class="dl">'</span><span class="s1">)</span><span class="dl">'</span><span class="p">);</span>
                         <span class="p">}</span>
                         <span class="k">break</span><span class="p">;</span>
-                    <span class="k">case</span> <span class="s1">'xml'</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="dl">'</span><span class="s1">xml</span><span class="dl">'</span><span class="p">:</span>
                         <span class="nx">data</span> <span class="o">=</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">responseXML</span><span class="p">;</span>
                         <span class="k">break</span><span class="p">;</span>
                     <span class="nl">default</span><span class="p">:</span>
@@ -258,11 +256,10 @@
     <span class="p">};</span>
 
     <span class="c1">// 发送</span>
-    <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="s1">'post'</span> <span class="p">?</span> <span class="nx">dataStr</span> <span class="p">:</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span> <span class="p">?</span> <span class="nx">dataStr</span> <span class="p">:</span> <span class="kc">null</span><span class="p">);</span>
 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="http状态码">http状态码</h3>
 

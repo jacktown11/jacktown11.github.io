@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -223,13 +223,12 @@
   <li>在 package.json 中添加</li>
 </ul>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="s2">"homepage"</span><span class="err">:</span><span class="w"> </span><span class="s2">"https::/username.github.io/project-name"</span><span class="err">,</span><span class="w">
-</span><span class="s2">"scripts"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"predeploy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"npm run build"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"deploy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gh-pages -d build"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"homepage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https::/username.github.io/project-name"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"predeploy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"npm run build"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"deploy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gh-pages -d build"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <ul>
   <li>安装 gh-pages： <code class="highlighter-rouge">npm install --save-dev gh-pages</code></li>
@@ -265,26 +264,25 @@
 
 <p>安装<code class="highlighter-rouge">vetur</code>插件</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"editor.formatOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"vetur.format.defaultFormatter.html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js-beautify-html"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"vetur.format.defaultFormatterOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"js-beautify-html"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"wrap_attributes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"force-expand-multiline"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"editor.formatOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"vetur.format.defaultFormatter.html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js-beautify-html"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"vetur.format.defaultFormatterOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"js-beautify-html"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"wrap_attributes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"force-expand-multiline"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"prettyhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"printWidth"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"wrapAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sortAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="nl">"prettyhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"printWidth"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"wrapAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sortAttributes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"prettier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="nl">"prettier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"singleQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>参考：</p>
 
@@ -297,13 +295,12 @@
 
 <p>打开 vscode 的配置（<code class="highlighter-rouge">ctrl + ,</code>），添加如下的配置；可以将其作为工作空间配置，从而不影响其他项目。</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"files.associations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"*.js"</span><span class="p">:</span><span class="w"> </span><span class="s2">"javascriptreact"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"files.associations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"*.js"</span><span class="p">:</span><span class="w"> </span><span class="s2">"javascriptreact"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <h2 id="electron">electron</h2>
 
@@ -335,28 +332,27 @@
 
 <ul>
   <li>新建一个项目文件夹，进入该文件夹，执行 <code class="highlighter-rouge">npm init -y</code>，将会在该目录下生成一个默认的 package.json 文件，这个文件中你可以指定该 npm 包的名称和版本，同时使用可以使用语义化的版本号给出你依赖的包及其版本信息；另外还有其他一些信息，你可以手动修改。更多参见<a href="https://docs.npmjs.com/creating-a-package-json-file">官网：package.json 文件创建</a>
-    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"package-name"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">必填，不能有空格</span><span class="w">
-  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">必填，x.x.x格式</span><span class="w">
-  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"index.js"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span><span class="w">
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"package-name"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">必填，不能有空格</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">必填，x.x.x格式</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"index.js"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echo </span><span class="se">\"</span><span class="s2">Error: no test specified</span><span class="se">\"</span><span class="s2"> &amp;&amp; exit 1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"repository"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/ashleygwilliams/my_package.git"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">远程仓库</span><span class="w">
+  </span><span class="nl">"repository"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/ashleygwilliams/my_package.git"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">远程仓库</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Name &lt;email@example.com&gt; (http://example.com)"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">邮箱和个人主页都是可选的</span><span class="w">
-  </span><span class="nt">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISC"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"bugs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/ashleygwilliams/my_package/issues"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">bug提交页</span><span class="w">
+  </span><span class="nl">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Name &lt;email@example.com&gt; (http://example.com)"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">邮箱和个人主页都是可选的</span><span class="w">
+  </span><span class="nl">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISC"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bugs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/ashleygwilliams/my_package/issues"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">bug提交页</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"homepage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/ashleygwilliams/my_package"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">项目主页</span><span class="w">
+  </span><span class="nl">"homepage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/ashleygwilliams/my_package"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">项目主页</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-    </div>
+</span></code></pre></div>    </div>
   </li>
   <li>创建 <code class="highlighter-rouge">index.js</code> 文件，用模块化的方式书写你的代码，如 <code class="highlighter-rouge">module.exports = 123;</code></li>
   <li>命令行运行 <code class="highlighter-rouge">npm login</code>，登录您的 npm 帐号，如果没有请到<a href="https://www.npmjs.com/">官网</a>注册</li>

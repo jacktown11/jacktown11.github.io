@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -90,16 +90,14 @@
 
 <h2 id="font-awesome">font awesome</h2>
 <p>常规用法，在html中使用<code class="highlighter-rouge">i</code>标签，添加相应的类，例如</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;i class="fa fa-align-justify"&gt;&lt;/i&gt;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;i class="fa fa-align-justify"&gt;&lt;/i&gt;
+</code></pre></div></div>
 <p>另外一种方式是在css中用unicode编码生成：</p>
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.icon</span><span class="nd">:before</span><span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.icon</span><span class="nd">:before</span><span class="p">{</span>
     <span class="nl">content</span><span class="p">:</span> <span class="s2">'\f039'</span><span class="p">;</span>
     <span class="nl">font-family</span><span class="p">:</span> <span class="n">FontAwesome</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>各图标对应的unicode编码可以在官网查到。</p>
 <h1 id="3javascript">3.javascript</h1>
 <h2 id="尺寸与位置">尺寸与位置</h2>
@@ -179,36 +177,32 @@
 <ul>
   <li><strong>获取浏览器视口宽高</strong><br />
 视口高度:
-    <div class="highlighter-rouge"><pre class="highlight"><code>window.innerHeight || 
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>window.innerHeight || 
 document.documentElement.clientWidth || 
 document.body.clientWidth
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>视口宽度:</p>
-    <div class="highlighter-rouge"><pre class="highlight"><code>window.innerHeight || 
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>window.innerHeight || 
 document.documentElement.clientHeight || 
 document.body.clientHeight
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>(对于运行在混杂模式下IE，用document.body代替document.documentElement，可参看《js高程》相关代码)</p>
   </li>
   <li><strong>获取基于视口的最小高度的文档总宽高</strong><br />
 文档总高度:
-    <div class="highlighter-rouge"><pre class="highlight"><code>Math.max(document.documentElement.scrollHeight || 
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Math.max(document.documentElement.scrollHeight || 
   document.documentElement.clientHeight)
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>文档总宽度:</p>
-    <div class="highlighter-rouge"><pre class="highlight"><code>Math.max(document.documentElement.scrollWidth || 
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Math.max(document.documentElement.scrollWidth || 
   document.documentElement.clientWidth)
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>(混杂模式下IE，还要用document.body代替document.documentElement，可参看《js高程》相关代码)</p>
   </li>
   <li><strong>获取文档滚动宽高量</strong></li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//from MDN</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//from MDN</span>
 <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">pageXOffset</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span>
   <span class="p">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">pageXOffset</span>
   <span class="p">:</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="o">||</span> 
@@ -220,22 +214,20 @@ document.body.clientHeight
   <span class="p">:</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="o">||</span> 
     <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">parentNode</span> <span class="o">||</span> 
     <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">).</span><span class="nx">scrollTop</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>来自<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollX">MDN</a></p>
 <h2 id="事件相关">事件相关</h2>
 <h3 id="on">.on()</h3>
 <p>jquery的.on()方法在把同个函数绑定到多个不同事件时，可以合并写，如：</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'body'</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'input propertychange'</span><span class="p">,</span><span class="s1">'.form-item'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">body</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">input propertychange</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">.form-item</span><span class="dl">'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
     <span class="c1">//这里采用jquery实现了多事件绑定，</span>
     <span class="c1">//等效于分别绑定到同一个函数</span>
     <span class="c1">//propertychange事件用于低版本ie（8-）兼容</span>
-    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="s1">'form-item-filled'</span><span class="p">,</span><span class="o">!!</span><span class="nx">$</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="dl">'</span><span class="s1">form-item-filled</span><span class="dl">'</span><span class="p">,</span><span class="o">!!</span><span class="nx">$</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
   <span class="p">})</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>另外，利用该方法进行事件委托时，第二个参数是选择符，只有在事件冒泡过程中的元素中，存在<strong>满足选择符</strong>同时是被委托元素的<strong>后代</strong>的元素，就会触发事件（并不一定需要event.target符合选择符）。</p>
 <h3 id="input和propertychange事件">input和propertychange事件</h3>
 <p><code class="highlighter-rouge">input</code>事件在<code class="highlighter-rouge"> input</code> 或 <code class="highlighter-rouge">textarea </code>元素的值发生改变时触发。该事件类似于<a href="https://www.w3cschool.cn/jsref/jsref-event-onchange.html">onchange</a> 事件。不同之处在于 oninput 事件在元素值发生变化是立即触发， onchange 在元素失去焦点时触发。另外一点不同是 onchange 事件也可以作用于 <code class="highlighter-rouge">keygen</code>和 <code class="highlighter-rouge">select</code> 元素.</p>

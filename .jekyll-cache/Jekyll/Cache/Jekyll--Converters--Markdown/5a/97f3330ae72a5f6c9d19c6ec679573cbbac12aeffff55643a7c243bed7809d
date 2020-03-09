@@ -1,0 +1,828 @@
+I"?�<p>按：在<a href="https://jacktown11.github.io/practice/">我的练习</a>中可以找到本文中的<code class="highlighter-rouge">html5</code>新特性相关demo。</p>
+
+<h1 id="零html5-新特性总览10个">零、HTML5 新特性总览（10个）</h1>
+
+<ul>
+  <li>新的语义标签和属性</li>
+  <li>表单新特性（表单2.0）</li>
+  <li>视频和音频</li>
+  <li>Canvas绘图</li>
+  <li>SVG绘图</li>
+  <li>地理定位</li>
+  <li>拖放API</li>
+  <li>WebWorker</li>
+  <li>WebStorage</li>
+  <li>WebSocket</li>
+</ul>
+
+<h1 id="一新的语义标签和属性">一、新的语义标签和属性</h1>
+
+<h1 id="二html5增强型表单">二、HTML5增强型表单</h1>
+
+<ul>
+  <li><code class="highlighter-rouge">input</code>标签的新<code class="highlighter-rouge">type</code>属性</li>
+  <li>新的表单标签</li>
+  <li>表单标签的新属性</li>
+</ul>
+
+<h2 id="1-input标签的新type属性">1. input标签的新type属性</h2>
+
+<h3 id="h4中的type属性">h4中的type属性</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">text</code></li>
+  <li><code class="highlighter-rouge">password</code></li>
+  <li><code class="highlighter-rouge">radio</code></li>
+  <li><code class="highlighter-rouge">checkbox</code></li>
+  <li><code class="highlighter-rouge">file</code></li>
+  <li><code class="highlighter-rouge">submit</code></li>
+  <li><code class="highlighter-rouge">reset</code></li>
+  <li><code class="highlighter-rouge">button</code></li>
+  <li><code class="highlighter-rouge">image</code></li>
+  <li><code class="highlighter-rouge">hidden</code></li>
+</ul>
+
+<h3 id="h5中新type属性">h5中新type属性</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">email</code>：邮件输入域，在表单提交时提供简单的邮箱格式验证，并弹出一个提示窗口(可定制内容不能定制样式)。<code class="highlighter-rouge">&lt;input type="email"&gt;</code></li>
+  <li><code class="highlighter-rouge">url</code>：URL地址输入域，在表单提交时提供简单的URL地址格式验证，并弹出一个提示窗口(可定制内容不能定制样式)。<code class="highlighter-rouge">&lt;input type="url"&gt;</code></li>
+  <li><code class="highlighter-rouge">number</code>：数字输入域，在表单提交时提供简单的数字格式验证，并弹出一个提示窗口(可定制内容不能定制样式)。<code class="highlighter-rouge">&lt;input type="number" min="" max="" step=""&gt;</code></li>
+  <li><code class="highlighter-rouge">tel</code>：电话号码输入域，在手机浏览器中弹出数字输入键盘。<code class="highlighter-rouge">&lt;input type="tel"&gt;</code></li>
+  <li><code class="highlighter-rouge">search</code>：搜索输入域，在手机浏览器中右下角呈现搜索按键。<code class="highlighter-rouge">&lt;input type="search"&gt;</code></li>
+  <li><code class="highlighter-rouge">range</code>：范围选择控件，帮助用户在一定范围内选择一个数字。<code class="highlighter-rouge">&lt;input type="range" min="" max="" step=""&gt;</code></li>
+  <li><code class="highlighter-rouge">color</code>：颜色选择控件，浏览器并未自己实现颜色选择框，而是使用操作系统自带的颜色选择控件。<code class="highlighter-rouge">&lt;input type="color"&gt;</code></li>
+  <li><code class="highlighter-rouge">date</code>：日期选择控件，<code class="highlighter-rouge">FF</code>没有实现，推荐使用第三方插件代替，如<code class="highlighter-rouge">jQueryUI-datepicker</code>、<code class="highlighter-rouge">laydate</code>等。<code class="highlighter-rouge">&lt;input type="date"&gt;</code></li>
+  <li><code class="highlighter-rouge">month</code>：月份选择控件，FF没有实现。<code class="highlighter-rouge">&lt;input type="month"&gt;</code></li>
+  <li><code class="highlighter-rouge">week</code>：星期选择控件，FF没有实现。<code class="highlighter-rouge">&lt;input type="week"&gt;</code></li>
+</ul>
+
+<h2 id="2-新的表单标签">2. 新的表单标签</h2>
+<ul>
+  <li>h4: input, button, select/option, textarea, label</li>
+  <li>h5: datalist, progress, meter, output</li>
+</ul>
+
+<h3 id="datalist">datalist</h3>
+
+<p>本身不可见，它为<code class="highlighter-rouge">input</code>提供输入列表，用户可以从中选取，也可以手动输入。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;datalist</span> <span class="na">id=</span><span class="s">"listA"</span><span class="nt">&gt;</span> 
+    <span class="nt">&lt;option&gt;</span>xx<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option&gt;</span>yy<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option&gt;</span>zz<span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/datalist&gt;</span>
+listA: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">list=</span><span class="s">"listA"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="progress">progress</h3>
+
+<p>进度条，有两种显示形式</p>
+
+<ol>
+  <li>左右晃动的进度条</li>
+  <li>具有一定进度值（0-1）的进度条</li>
+</ol>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 左右摇晃的进度条 --&gt;</span>
+进度条1：<span class="nt">&lt;progress&gt;&lt;/progress&gt;&lt;br&gt;</span>
+<span class="c">&lt;!-- 具有进度值的进度条 --&gt;</span>
+进度条2：<span class="nt">&lt;progress</span> <span class="na">value=</span><span class="s">"0"</span> <span class="na">id=</span><span class="s">"progress"</span><span class="nt">&gt;&lt;/progress&gt;&lt;br&gt;</span>
+</code></pre></div></div>
+
+<h3 id="meter">meter</h3>
+
+<p>刻度尺，用于表示一个值所处范围：不可接受（红色），可以接受（黄色），非常优秀（绿色）</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>刻度：<span class="nt">&lt;meter</span> <span class="na">min=</span><span class="s">"0"</span> <span class="na">max=</span><span class="s">"100"</span> <span class="na">low=</span><span class="s">"60"</span> <span class="na">high=</span><span class="s">"85"</span> <span class="na">optimum=</span><span class="s">"100"</span> <span class="na">value=</span><span class="s">"0"</span> <span class="na">id=</span><span class="s">"meter"</span><span class="nt">&gt;&lt;/meter&gt;</span>
+</code></pre></div></div>
+
+<h3 id="output">output</h3>
+
+<p>输出，语义标签，没有任何样式，样式等同于<code class="highlighter-rouge">span</code>。（下面的例子中表示语义，并不自动计算，也没有样式）</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>商品价格：3.5
+购买数量：<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+小计：<span class="nt">&lt;output&gt;</span>10.5<span class="nt">&lt;/output&gt;</span>
+</code></pre></div></div>
+
+<h2 id="3-表单标签的新属性">3. 表单标签的新属性</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">placeholder</code>: 占位符</li>
+  <li><code class="highlighter-rouge">autofocus</code>: 自动获取输入焦点</li>
+  <li><code class="highlighter-rouge">multiple</code>: 允许输入框中出现多个值</li>
+  <li><code class="highlighter-rouge">form</code>: 用于把输入域放置在<code class="highlighter-rouge">form</code>外部，其值为绑定到的<code class="highlighter-rouge">form</code>元素的<code class="highlighter-rouge">id</code></li>
+</ul>
+
+<p>验证相关</p>
+
+<ul>
+  <li><code class="highlighter-rouge">required</code>: 必填项，内容不能为空</li>
+  <li><code class="highlighter-rouge">maxlength</code>: 字符串最大长度</li>
+  <li><code class="highlighter-rouge">minlength</code>: 字符串最小长度</li>
+  <li><code class="highlighter-rouge">max</code>: 指定数字的最大值</li>
+  <li><code class="highlighter-rouge">min</code>: 指定数字的最小值</li>
+  <li><code class="highlighter-rouge">pattern</code>: 正则表达式</li>
+</ul>
+
+<h1 id="三视频和音频">三、视频和音频</h1>
+
+<h2 id="1-flash被h5取代各方面">1. Flash被H5取代各方面</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Flash技术</th>
+      <th>H5技术</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>绘图（AS/Flex）</td>
+      <td>Canvas/SVG</td>
+    </tr>
+    <tr>
+      <td>动画</td>
+      <td>Canvas+(定时器，替换新技术)</td>
+    </tr>
+    <tr>
+      <td>视频和音频</td>
+      <td>video+audio</td>
+    </tr>
+    <tr>
+      <td>客户端存储</td>
+      <td>WebStorage</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2-h5视频">2. H5视频</h2>
+
+<p>提供新的标签用于播放视频，但是视频格式很多，浏览器不一定都有它们的解码器，为此通常需要提供多种选择。</p>
+
+<p><code class="highlighter-rouge">video</code>本身是一个<code class="highlighter-rouge">300*150</code>的<code class="highlighter-rouge">inline-block</code>元素。</p>
+
+<h3 id="html成员属性">html成员属性</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">autoplay</code>: <code class="highlighter-rouge">false</code>, 自动播放</li>
+  <li><code class="highlighter-rouge">controls</code>: <code class="highlighter-rouge">false</code>, 是否显示播放空间</li>
+  <li><code class="highlighter-rouge">loop</code>: <code class="highlighter-rouge">false</code>, 是否循环播放</li>
+  <li><code class="highlighter-rouge">muted</code>: <code class="highlighter-rouge">false</code>, 是否静音</li>
+  <li><code class="highlighter-rouge">poster</code>: <code class="highlighter-rouge">""</code>, 是否在第一帧之前显示海报（图片）</li>
+  <li><code class="highlighter-rouge">preload</code>:, 视频的预加载策略，比如手机端考虑到流量问题，通常不能- <code class="highlighter-rouge">使用auto</code></li>
+  <li><code class="highlighter-rouge">auto</code>: 预加载视频的元数据（时长、名字等）以及缓冲一定时长的视频</li>
+  <li><code class="highlighter-rouge">metadate</code>: 预加载视频的元数据</li>
+  <li><code class="highlighter-rouge">none</code>: 不预加载任何数据</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;video</span> <span class="na">src=</span><span class="s">"static/aaa.mp4"</span> <span class="na">id=</span><span class="s">"v1"</span> <span class="na">controls</span> <span class="na">poster=</span><span class="s">"static/play.png"</span> <span class="na">preload=</span><span class="s">"metadate"</span><span class="nt">&gt;&lt;/video&gt;</span>
+
+<span class="nt">&lt;video</span> <span class="na">id=</span><span class="s">"v2"</span><span class="nt">&gt;</span> 
+    <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">"static/aaa.mp4"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">"static/aaa.ogg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">"static/aaa.webm"</span><span class="nt">&gt;</span>
+    您的浏览器版本太低，无法播放，请升级。
+<span class="nt">&lt;/video&gt;</span>
+</code></pre></div></div>
+
+<h3 id="js对象属性">js对象属性</h3>
+
+<p><code class="highlighter-rouge">currentTime</code>; 当前播放的时长
+<code class="highlighter-rouge">duration</code>: 总时长
+<code class="highlighter-rouge">paused</code>: <code class="highlighter-rouge">boolean</code>值，当前视频是否处于暂停状态
+<code class="highlighter-rouge">volume</code>: 1, 当前音量
+<code class="highlighter-rouge">playbackRate</code>: 1 播放速率，大于1快放，小于1慢放</p>
+
+<h3 id="js成员方法">js成员方法</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">play()</code> 播放视频</li>
+  <li><code class="highlighter-rouge">pause()</code> 暂停播放</li>
+</ul>
+
+<h3 id="js成员事件">js成员事件</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">onplay</code>, 当前视频开始播放时触发的事件</li>
+  <li><code class="highlighter-rouge">onpause</code>, 当前视频暂停播放时触发的事件</li>
+</ul>
+
+<h2 id="3-h5音频">3. H5音频</h2>
+
+<p><code class="highlighter-rouge">H5</code>提供了一个<code class="highlighter-rouge">audio</code>标签用于播放音频，其属性和<code class="highlighter-rouge">video</code>几乎一样。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;audio</span> <span class="na">src=</span><span class="s">"static/stayAlive.mp3"</span> <span class="na">controls</span> <span class="na">autoplay</span><span class="nt">&gt;&lt;/audio&gt;</span>
+</code></pre></div></div>
+
+<h1 id="四canvas">四、Canvas</h1>
+
+<p>网页中可绘制实时走势图、统计图、在线画图板、网页游戏、地图应用。目前有三种绘图技术。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">SVG</code>绘图，<code class="highlighter-rouge">2D</code>矢量图技术，2000就出现了，现属于<code class="highlighter-rouge">H5</code>标准</li>
+  <li><code class="highlighter-rouge">Canvas</code>绘图，<code class="highlighter-rouge">2D</code>位图技术，<code class="highlighter-rouge">H5</code>提出的绘图技术</li>
+  <li><code class="highlighter-rouge">WebGL</code>绘图，<code class="highlighter-rouge">3D</code>绘图，尚未纳入<code class="highlighter-rouge">H5</code>标准</li>
+</ul>
+
+<p>Canvas的学习难点：坐标系、单词比较多</p>
+
+<h2 id="1-canvas画布">1. Canvas画布</h2>
+
+<p><code class="highlighter-rouge">Canvas</code>画布，是<code class="highlighter-rouge">H5</code>提供<code class="highlighter-rouge">2D</code>绘图技术，其默认是<code class="highlighter-rouge">300*150</code>的<code class="highlighter-rouge">inline-block</code>，画布的宽高只能使用<code class="highlighter-rouge">html/js</code>属性来赋值，不能使用<code class="highlighter-rouge">css</code>样式来赋值！</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;canvas</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"600"</span><span class="nt">&gt;</span>您的游览器版本太低，请升级！<span class="nt">&lt;/canvas&gt;</span>
+</code></pre></div></div>
+
+<p>每个画布上有且仅有一个“画笔”对象，使用它进行绘图。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>坐标系：左上角为原点，向右为<code class="highlighter-rouge">x</code>轴正方向，向下为<code class="highlighter-rouge">y</code>轴正方向</p>
+
+<h2 id="2-绘制矩形">2. 绘制矩形</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 绘制一个矩形</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 描边宽度（空心）</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#f00</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 描边样式（空心）</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#000</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 填充样式/样色（实心）</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> <span class="c1">// 描边一个矩形(x,y,w,h)</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> <span class="c1">// 填充一个矩形</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">//清除一个矩形范围内的所有绘图</span>
+</code></pre></div></div>
+
+<h2 id="3-绘制文本">3. 绘制文本</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 绘制文本</span>
+<span class="kd">let</span> <span class="nx">ctx4</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">c4</span><span class="dl">'</span><span class="p">).</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#080</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#008</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">strokeRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">font</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">30px sans-serif</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 设置字体与大小</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">textBaseline</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">bottom</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// bottom alphabetic 文本基线（垂直对齐方式）</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">fillText</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello, tom</span><span class="dl">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// 在(x,y)坐标位置填充一段文本</span>
+
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">textBaseline</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">top</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">ctx4</span><span class="p">.</span><span class="nx">strokeText</span><span class="p">(</span><span class="dl">'</span><span class="s1">China</span><span class="dl">'</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// 在(x,y)位置描边一段文本</span>
+<span class="kd">let</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">ctx4</span><span class="p">.</span><span class="nx">measureText</span><span class="p">(</span><span class="dl">'</span><span class="s1">good morning</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// 测量文本宽度，返回对象｛width: x｝</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">width</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="4-渐变对象">4. 渐变对象</h2>
+
+<ul>
+  <li>线性渐变: <code class="highlighter-rouge">linearGradient</code>
+    <ul>
+      <li>设置渐变对象</li>
+      <li>设置颜色点</li>
+      <li>将渐变对象应用填充或描边样式</li>
+      <li>画矩形/文本</li>
+    </ul>
+  </li>
+  <li>径向渐变: <code class="highlighter-rouge">radialGradient</code></li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">ctx7</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">c7</span><span class="dl">'</span><span class="p">).</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// 创建渐变对象(x1,y1, x2, y2)</span>
+<span class="kd">let</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">ctx7</span><span class="p">.</span><span class="nx">createLinearGradient</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// 设置颜色点</span>
+<span class="nx">g</span><span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="dl">'</span><span class="s1">#008</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">g</span><span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="dl">'</span><span class="s1">#f00</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">g</span><span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">#080</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// 将该渐变对象设置为画笔填充样式</span>
+<span class="nx">ctx7</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">g</span><span class="p">;</span>
+
+<span class="nx">ctx7</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> 
+</code></pre></div></div>
+
+<h2 id="5-绘制路径">5. 绘制路径</h2>
+
+<p><code class="highlighter-rouge">Path</code>: 由多个坐标点组成任意形状，路径本身不可见，可描边、填充、裁剪。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">ctx9</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">c9</span><span class="dl">'</span><span class="p">).</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">ctx9</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span> <span class="c1">// 开始路径</span>
+<span class="nx">ctx9</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// 移动到指定点(x,y)</span>
+<span class="nx">ctx9</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// 从当前点到指定点绘制一条线段</span>
+<span class="nx">ctx9</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">110</span><span class="p">);</span>
+<span class="nx">ctx9</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">110</span><span class="p">);</span>
+<span class="nx">ctx9</span><span class="p">.</span><span class="nx">closePath</span><span class="p">();</span> <span class="c1">// 闭合路径</span>
+
+<span class="nx">ctx9</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">// 绘制圆拱形路径(x,y,r, startArc, endArc)</span>
+<span class="nx">ctx9</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+<span class="c1">// ctx9.clip(); // 对当前路径进行裁剪</span>
+</code></pre></div></div>
+
+<h2 id="6-绘制图像">6. 绘制图像</h2>
+
+<p><code class="highlighter-rouge">canvas</code>属于客户端技术，图片在服务器上，所有的浏览器必须先下载，等待图片加载成功以后，再绘制图片。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">img</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span> <span class="c1">// 创建图片对象</span>
+<span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">./img/p3.png</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 加载图片</span>
+<span class="c1">// 图片加载完成处理事件</span>
+<span class="nx">img</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">img</span><span class="p">.</span><span class="nx">width</span><span class="p">);</span> <span class="c1">// 200</span>
+    <span class="nx">ctxa</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">// 原大小绘制</span>
+    <span class="nx">ctxa</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> <span class="c1">// 拉伸绘制</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="7-异步加载多张图片">7. 异步加载多张图片</h2>
+
+<p><code class="highlighter-rouge">Canvas</code>问题：<code class="highlighter-rouge">Ajax</code>异步加载，无法预测加载完成顺序。</p>
+
+<p>异步和同步是网络中程序工作方式:</p>
+
+<ul>
+  <li>同步：有序，（前端工作 后端等待） 与（前端等待 后端工作）</li>
+  <li>异步：无序，前后端都在工作，不相互等待</li>
+</ul>
+
+<p>解决方案：使用整型数字，通过计算完成图片加载。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">progress</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">img1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+<span class="nx">img1</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">1.png</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">img1</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">progress</span><span class="o">+=</span><span class="mi">50</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">progress</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span> <span class="nx">draw</span><span class="p">();</span>
+<span class="p">};</span>
+<span class="kd">let</span> <span class="nx">img2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+<span class="nx">img2</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">2.png</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">img2</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">progress</span><span class="o">+=</span><span class="mi">50</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">progress</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span> <span class="nx">draw</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="8-图形变换操作">8. 图形变换操作</h2>
+
+<p><code class="highlighter-rouge">canvas</code>可以对一个图像/图形在绘制过程中进行变换，旋转、平移；旋转与平移都具有累加效果。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">ctx</span><span class="p">.</span><span class="nx">rotate</span><span class="p">(</span><span class="nx">angle</span><span class="p">);</span> <span class="c1">//旋转绘图对象，旋转中心是画布原点（0，0）</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">);</span> <span class="c1">//将整个画布的原点平移到指定位置</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span> <span class="c1">//保存画笔的所有变换状态值</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span> <span class="c1">//恢复画布变换状态值到最近一次保存值</span>
+</code></pre></div></div>
+
+<h1 id="五svg绘图">五、SVG绘图</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>canvas绘图</th>
+      <th>svg绘图</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>类型</td>
+      <td><code class="highlighter-rouge">2D</code>位图</td>
+      <td><code class="highlighter-rouge">2D</code>矢量图</td>
+    </tr>
+    <tr>
+      <td>如何绘图</td>
+      <td>使用<code class="highlighter-rouge">JS</code>代码绘图</td>
+      <td>使用标签绘图</td>
+    </tr>
+    <tr>
+      <td>事件绑定</td>
+      <td>每个图形不是元素，不能直接绑定事件</td>
+      <td>每个图形都是元素，可以直接绑定事件</td>
+    </tr>
+    <tr>
+      <td>应用场合</td>
+      <td>游戏，特效</td>
+      <td>地图，图标</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="highlighter-rouge">SVG</code>诞生于2000年，早期作为<code class="highlighter-rouge">XML</code>的扩展应用，<code class="highlighter-rouge">H5</code>标准将常用的<code class="highlighter-rouge">SVG</code>标签采纳为标准。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">SVG</code>技术在<code class="highlighter-rouge">H5</code>之前使用方法
+    <ul>
+      <li>在一个<code class="highlighter-rouge">XML</code>文档声明绘制图形</li>
+      <li>再编写<code class="highlighter-rouge">HTML</code>文档，使用<code class="highlighter-rouge">IMG/OBJECT</code>应用</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">SVG</code>技术在<code class="highlighter-rouge">H5</code>出现之后使用方法
+    <ul>
+      <li>直接在<code class="highlighter-rouge">H5</code>文档中使用<code class="highlighter-rouge">SVG</code>标准</li>
+    </ul>
+  </li>
+</ul>
+
+<p><code class="highlighter-rouge">&lt;svg&gt;&lt;/svg&gt;</code>本身是一个默认<code class="highlighter-rouge">300*150</code>的<code class="highlighter-rouge">inline-block</code>，可以绘制
+<code class="highlighter-rouge">&lt;rect&gt;</code>矩形，<code class="highlighter-rouge">&lt;circle&gt;</code>圆形，<code class="highlighter-rouge">&lt;ellipse&gt;</code>椭圆，<code class="highlighter-rouge">&lt;line&gt;</code>直线，<code class="highlighter-rouge">&lt;polyline&gt;</code>折线，<code class="highlighter-rouge">&lt;polygon&gt;</code>多边形，<code class="highlighter-rouge">&lt;text&gt;</code>文本，图像</p>
+
+<p><code class="highlighter-rouge">&lt;g&gt;</code>分组标签，内部可以含有多个图形标签，并且可以在它上面指定共有属性值。</p>
+
+<p>绘制复杂图形：贝塞尔曲线，路径（<code class="highlighter-rouge">path</code>）。</p>
+
+<h2 id="1绘制矩形">1.绘制矩形</h2>
+
+<p><code class="highlighter-rouge">&lt;rect&gt;&lt;/rect&gt;</code>，属性包括：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">width</code></li>
+  <li><code class="highlighter-rouge">height</code></li>
+  <li><code class="highlighter-rouge">x</code></li>
+  <li><code class="highlighter-rouge">y</code></li>
+  <li><code class="highlighter-rouge">fill</code></li>
+  <li><code class="highlighter-rouge">fill-opacity</code></li>
+  <li><code class="highlighter-rouge">stroke</code></li>
+  <li><code class="highlighter-rouge">stroke-width</code></li>
+  <li><code class="highlighter-rouge">stroke-opacity</code></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">id=</span><span class="s">"s1"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"400"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">height=</span><span class="s">"100"</span><span class="nt">&gt;&lt;/rect&gt;</span>
+    <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">height=</span><span class="s">"100"</span> <span class="na">x=</span><span class="s">"400"</span> <span class="na">y=</span><span class="s">"0"</span> <span class="na">stroke=</span><span class="s">"#088"</span> <span class="na">stroke-width=</span><span class="s">"3"</span> <span class="na">fill=</span><span class="s">"transparent"</span><span class="nt">&gt;&lt;/rect&gt;</span>
+    <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">height=</span><span class="s">"100"</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"300"</span> <span class="na">fill=</span><span class="s">"#f00"</span> <span class="na">fill-opacity=</span><span class="s">"0.5"</span><span class="nt">&gt;&lt;/rect&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div></div>
+
+<h2 id="2-绘制圆形">2. 绘制圆形</h2>
+
+<p><code class="highlighter-rouge">&lt;circle&gt;&lt;/circle&gt;</code>，属性包括:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">cx</code></li>
+  <li><code class="highlighter-rouge">cy</code></li>
+  <li><code class="highlighter-rouge">r</code></li>
+  <li><code class="highlighter-rouge">fill</code></li>
+  <li><code class="highlighter-rouge">fill-opacity</code></li>
+  <li><code class="highlighter-rouge">stroke</code></li>
+  <li><code class="highlighter-rouge">stroke-opacity</code></li>
+</ul>
+
+<h2 id="3-绘制椭圆">3. 绘制椭圆</h2>
+
+<p><code class="highlighter-rouge">&lt;cllipse cx="" cy="" rx="" ry=""&gt;&lt;/ellipse&gt;</code></p>
+
+<p><code class="highlighter-rouge">rx</code>: 水平半径
+<code class="highlighter-rouge">ry</code>: 垂直半径</p>
+
+<h2 id="4-绘制直线">4. 绘制直线</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;g</span> <span class="na">stroke=</span><span class="s">"#222"</span> <span class="na">stroke-width=</span><span class="s">"8"</span> <span class="na">stroke-linecap=</span><span class="s">"round"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"60"</span> <span class="na">y1=</span><span class="s">"200"</span> <span class="na">x2=</span><span class="s">"70"</span> <span class="na">y2=</span><span class="s">"200"</span> <span class="nt">&gt;&lt;/line&gt;</span>
+    <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"60"</span> <span class="na">y1=</span><span class="s">"220"</span> <span class="na">x2=</span><span class="s">"70"</span> <span class="na">y2=</span><span class="s">"220"</span> <span class="nt">&gt;&lt;/line&gt;</span>
+    <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"60"</span> <span class="na">y1=</span><span class="s">"240"</span> <span class="na">x2=</span><span class="s">"70"</span> <span class="na">y2=</span><span class="s">"240"</span> <span class="nt">&gt;&lt;/line&gt;</span>
+    <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"85"</span> <span class="na">y1=</span><span class="s">"200"</span> <span class="na">x2=</span><span class="s">"140"</span> <span class="na">y2=</span><span class="s">"200"</span> <span class="nt">&gt;&lt;/line&gt;</span>
+    <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"85"</span> <span class="na">y1=</span><span class="s">"220"</span> <span class="na">x2=</span><span class="s">"140"</span> <span class="na">y2=</span><span class="s">"220"</span> <span class="nt">&gt;&lt;/line&gt;</span>
+    <span class="nt">&lt;line</span> <span class="na">x1=</span><span class="s">"85"</span> <span class="na">y1=</span><span class="s">"240"</span> <span class="na">x2=</span><span class="s">"140"</span> <span class="na">y2=</span><span class="s">"240"</span> <span class="nt">&gt;&lt;/line&gt;</span>
+<span class="nt">&lt;/g&gt;</span>
+</code></pre></div></div>
+
+<h2 id="5-绘制折线">5. 绘制折线</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;polyline</span> <span class="na">points=</span><span class="s">"50,50 100,50 100,100 50,100"</span> 
+<span class="na">fill=</span><span class="s">"transparent"</span> <span class="na">stroke=</span><span class="s">"#444"</span> <span class="na">stroke-width=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/polyline&gt;</span>
+</code></pre></div></div>
+
+<h2 id="6-绘制多边形">6. 绘制多边形</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;polyline</span> <span class="na">points=</span><span class="s">"100,100 115,150 77,120 123,120 85,150 100,100"</span> 
+<span class="na">fill=</span><span class="s">"#080"</span> <span class="na">stroke=</span><span class="s">"#008"</span> <span class="na">stroke-width=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/polyline&gt;</span>
+</code></pre></div></div>
+
+<h2 id="7-绘制文本">7. 绘制文本</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;text</span> <span class="na">font-size=</span><span class="s">"48"</span> <span class="na">fill=</span><span class="s">"#088"</span> <span class="na">stroke=</span><span class="s">"#f00"</span> 
+<span class="na">x=</span><span class="s">"50"</span> <span class="na">y=</span><span class="s">"50"</span> <span class="na">alignment-baseline=</span><span class="s">"before-edge"</span><span class="nt">&gt;</span>
+hello,汉字
+<span class="nt">&lt;/text&gt;</span>
+</code></pre></div></div>
+
+<h2 id="8-绘制图像">8. 绘制图像</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;image</span> <span class="na">xlink:href=</span><span class="s">"./img/play.png"</span> 
+<span class="na">width=</span><span class="s">"300"</span> <span class="na">height=</span><span class="s">"200"</span> <span class="na">x=</span><span class="s">"150"</span> <span class="na">y=</span><span class="s">"100"</span><span class="nt">&gt;&lt;/image&gt;</span>
+</code></pre></div></div>
+
+<h2 id="9-渐变对象">9. 渐变对象</h2>
+
+<p>使用<code class="highlighter-rouge">linearGradient</code>标签，定义<code class="highlighter-rouge">id</code>，并使用；它属于特效，放在<code class="highlighter-rouge">defs</code>标签内。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">id=</span><span class="s">"se"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"400"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;defs&gt;</span>
+        <span class="nt">&lt;linearGradient</span> <span class="na">id=</span><span class="s">"ge"</span> <span class="na">x1=</span><span class="s">"0%"</span> <span class="na">y1=</span><span class="s">"0%"</span> <span class="na">x2=</span><span class="s">"100%"</span> <span class="na">y2=</span><span class="s">"100%"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;stop</span> <span class="na">offset=</span><span class="s">"0%"</span> <span class="na">style=</span><span class="s">"stop-color:rgb(255,255,0);stop-opacity:1"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;stop</span> <span class="na">offset=</span><span class="s">"100%"</span> <span class="na">style=</span><span class="s">"stop-color:rgb(255,0,0);stop-opacity:1"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/linearGradient&gt;</span>
+    <span class="nt">&lt;/defs&gt;</span>
+    <span class="nt">&lt;rect</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"0"</span> <span class="na">width=</span><span class="s">"300"</span> <span class="na">height=</span><span class="s">"200"</span> <span class="na">fill=</span><span class="s">"url(#ge)"</span> <span class="nt">&gt;&lt;/rect&gt;</span>
+    <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">"100"</span> <span class="na">cy=</span><span class="s">"100"</span> <span class="na">r=</span><span class="s">"50"</span> <span class="na">fill=</span><span class="s">"url(#ge)"</span><span class="nt">&gt;&lt;/circle&gt;</span>
+    <span class="nt">&lt;text</span> <span class="na">font-size=</span><span class="s">"60"</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"300"</span> <span class="na">fill=</span><span class="s">"url(#ge)"</span><span class="nt">&gt;</span>快乐每一天<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div></div>
+
+<h2 id="10-滤镜">10. 滤镜</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">id=</span><span class="s">"sg"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"400"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;defs&gt;</span>
+        <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">"sf1"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;feGaussianBlur</span> <span class="na">stdDeviation=</span><span class="s">"3"</span><span class="nt">&gt;&lt;/feGaussianBlur&gt;</span>
+        <span class="nt">&lt;/filter&gt;</span>            
+    <span class="nt">&lt;/defs&gt;</span>
+    <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">"150"</span> <span class="na">cy=</span><span class="s">"150"</span> <span class="na">r=</span><span class="s">"50"</span> <span class="na">fill=</span><span class="s">"#f40"</span> <span class="na">filter=</span><span class="s">"url(#sf1)"</span><span class="nt">&gt;&lt;/circle&gt;</span>
+    <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">"150"</span> <span class="na">cy=</span><span class="s">"300"</span> <span class="na">r=</span><span class="s">"50"</span> <span class="na">fill=</span><span class="s">"#f40"</span><span class="nt">&gt;&lt;/circle&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div></div>
+
+<h2 id="第三方库">第三方库</h2>
+
+<p>使用<code class="highlighter-rouge">canvas</code>/<code class="highlighter-rouge">svg</code>/<code class="highlighter-rouge">webGL</code>，一些第三方库可以帮助我们快速完成某些功能，如:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">tow.js</code>，一个2D绘图函数库，提供了一套<code class="highlighter-rouge">API</code>，可以用于绘制各种图形（<code class="highlighter-rouge">canvas</code>/<code class="highlighter-rouge">svg</code>/<code class="highlighter-rouge">webGL</code>）。</li>
+  <li><code class="highlighter-rouge">echarts.js</code>，百度开发，对地图支持比较好</li>
+  <li><code class="highlighter-rouge">animate.css</code></li>
+  <li><code class="highlighter-rouge">three.js</code></li>
+  <li><code class="highlighter-rouge">d3.js</code></li>
+</ul>
+
+<h1 id="六地理定位">六、地理定位</h1>
+
+<p><code class="highlighter-rouge">Geolocation</code>: 地理定位，使用<code class="highlighter-rouge">JS</code>获取当前浏览器所在地理坐标（经度、纬度、海拔、速度）数据用于实现应用，如饿了么、高德导航。</p>
+
+<p>手机浏览器如何获取定位信息（应用较多）</p>
+
+<ul>
+  <li>首选手机中<code class="highlighter-rouge">GPS</code>芯片与卫星通信，定位精度在米</li>
+  <li>次选手机通信基站进行定位获取，定位精度低（公里）</li>
+</ul>
+
+<p><code class="highlighter-rouge">PC</code>浏览器如何获取定位信息</p>
+
+<ul>
+  <li>通过<code class="highlighter-rouge">IP</code>地址进行反向解析，定位精度取决于<code class="highlighter-rouge">IP</code>库，通常误差大</li>
+</ul>
+
+<h2 id="使用navigatorgeolocation">使用navigator.geolocation</h2>
+
+<p><code class="highlighter-rouge">H5</code>中提供了一个新对象，用于获取当前浏览器定位信息。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">geolocation</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">getCurrentPosition</span><span class="p">,</span> <span class="c1">// 获取定位信息</span>
+    <span class="nx">watchPosition</span><span class="p">,</span> <span class="c1">// 监听定位数据的改变</span>
+    <span class="nx">clearWatch</span> <span class="c1">// 去除监听</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>但是这个功能并不实用，比如在<code class="highlighter-rouge">chrome</code>浏览器中会收到<code class="highlighter-rouge">Network location provider at 'https://www.googleapis.com/' : No response received.</code>错误，无法获得有效的定位信息。</p>
+
+<h2 id="使用百度地图">使用百度地图</h2>
+
+<ul>
+  <li>注册百度开发者账户</li>
+  <li>创建一个网站，登录百度地图，为该网站申请<code class="highlighter-rouge">AccessKey</code></li>
+  <li>在自己的网页中嵌入百度地图提供的<code class="highlighter-rouge">API</code></li>
+</ul>
+
+<h1 id="七拖放api">七、拖放API</h1>
+
+<p><code class="highlighter-rouge">Drag and Drop</code>,拖动和释放，<code class="highlighter-rouge">H5</code>提供了7个事件。</p>
+
+<p>拖动源对象（会移动），会触发的事件:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">dragstart</code></li>
+  <li><code class="highlighter-rouge">drag</code></li>
+  <li><code class="highlighter-rouge">dragend</code></li>
+</ul>
+
+<p>拖动的目标对象，会触发的事件:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">dragenter</code></li>
+  <li><code class="highlighter-rouge">dragover</code></li>
+  <li><code class="highlighter-rouge">dragleave</code></li>
+  <li><code class="highlighter-rouge">drop</code></li>
+</ul>
+
+<p>拖动整体过程：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">dragenter*1 + dragover*n + drageleave*1</code></li>
+  <li><code class="highlighter-rouge">dragenter*1 + dragover*n + drop*1</code></li>
+</ul>
+
+<p>必须阻止<code class="highlighter-rouge">dragover</code>的默认行为（一旦悬停立即离开）</p>
+
+<h1 id="八webworker">八、WebWorker</h1>
+
+<ul>
+  <li>进程：操作系统分配内存的单位（工厂）</li>
+  <li>线程：处理进程内部，用于执行代码（生产线）</li>
+  <li>线程并发：操作系统中所有的线程宏观上看“同时执行”，微观上看是“依次交替执行”</li>
+</ul>
+
+<h2 id="单线程的问题">单线程的问题</h2>
+
+<p><code class="highlighter-rouge">chrome</code>中线程的模型：请求资源，6个线程；运行代码、渲染内容，1个线程。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button&gt;</span>按钮一<span class="nt">&lt;/button&gt;</span>
+<span class="c">&lt;!-- 下面这个js执行很长时间的话，会导致页面阻塞 --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./js/1.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;button&gt;</span>按钮二<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<h2 id="解决方法">解决方法</h2>
+
+<ol>
+  <li>将所有的<code class="highlighter-rouge">js</code>程序的执行放在<code class="highlighter-rouge">&lt;/body&gt;</code>前，作为最后一个元素</li>
+  <li>创建新的线程，由它来执行耗时的<code class="highlighter-rouge">js</code>任务，<code class="highlighter-rouge">UI</code>的主线程继续执行后续的<code class="highlighter-rouge">HTML</code>的渲染</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="dl">'</span><span class="s1">./js/1.js</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="缺陷">缺陷</h2>
+
+<p>浏览器不允许<code class="highlighter-rouge">Worker</code>线程操作<code class="highlighter-rouge">DOM</code>/<code class="highlighter-rouge">BOM</code>元素的操作。</p>
+
+<p>原因：浏览器只允许<code class="highlighter-rouge">UI</code>主线程操作<code class="highlighter-rouge">DOM</code>/<code class="highlighter-rouge">BOM</code>，若多个<code class="highlighter-rouge">Worker</code>线程同时操作<code class="highlighter-rouge">DOM</code>结构的话，会造成页面的混乱。</p>
+
+<h2 id="数据传输">数据传输</h2>
+
+<p><code class="highlighter-rouge">Worker</code>线程可以给<code class="highlighter-rouge">UI</code>主线程发送数据</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// UI主线程</span>
+<span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.js</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">w</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">};</span>
+
+<span class="c1">// Worker线程</span>
+<span class="nx">postMessage</span><span class="p">(</span><span class="nx">StringMsg</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">UI</code>主线程也可以给<code class="highlighter-rouge">Worker</code>线程发送数据</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// UI主线程</span>
+<span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.js</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">w</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="nx">stringMsg</span><span class="p">);</span>
+
+<span class="c1">// Worker线程</span>
+<span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">};</span>
+</code></pre></div></div>
+
+<h1 id="九web-storage">九、Web Storage</h1>
+
+<p>在浏览器中存储当前用户专用的数据：访问历史、购物车、内容定制、样式定制…</p>
+
+<h2 id="客户端存储技术">客户端存储技术</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">Cookie</code>技术；浏览器兼容性好，一个<code class="highlighter-rouge">Cookie</code>不能超过4KB，老浏览器对<code class="highlighter-rouge">Cookie</code>个数也有限制（&lt;=30），操作复杂</li>
+  <li><code class="highlighter-rouge">Flash</code>存储：依赖于<code class="highlighter-rouge">Flash</code>播放器，用的比较少了</li>
+  <li><code class="highlighter-rouge">H5 WebStorage</code>：不能超过8MB（标准，实际可能小写），操作简单，比较新</li>
+  <li><code class="highlighter-rouge">IndexDB</code>：可存储大量数据，还不是标准</li>
+</ul>
+
+<h2 id="webstorage">WebStorage</h2>
+
+<p><code class="highlighter-rouge">WebStorage</code>技术中，浏览器为用户提供两个对象：</p>
+
+<h3 id="windowsessionstorage">window.sessionStorage</h3>
+
+<p>类数组对象，会话级别数据存储。浏览器进程所分得内存中存储一次<code class="highlighter-rouge">WEB</code>会话的数据，可供本次会话的页面共同使用，浏览器一旦关闭就消失。</p>
+
+<p><code class="highlighter-rouge">Session</code>：会话，浏览器从打开某个网站的一个页面开始，中间可能打开很多个页面，直到关闭浏览器，整个过程称为浏览器与<code class="highlighter-rouge">WEB</code>服务器的一次会话。</p>
+
+<p>作用：在同一个会话中所有的页面之间共享的数据，例如登录用户名/登录用户编号（通常存编号，否则中文用户名可能导致错误）。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>操作</th>
+      <th>API</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>存数据</td>
+      <td><code class="highlighter-rouge">sessionStorage[key] = val;</code></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">sessionStorage.setItem(key, val);</code></td>
+    </tr>
+    <tr>
+      <td>读取数据</td>
+      <td><code class="highlighter-rouge">let val = sessionStorage[key];</code></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">let val = sessionStorage.getItem(key);</code></td>
+    </tr>
+    <tr>
+      <td>清除指定数据</td>
+      <td><code class="highlighter-rouge">sessionStorage.removeItem(key);</code></td>
+    </tr>
+    <tr>
+      <td>清空所有数据</td>
+      <td><code class="highlighter-rouge">sessionStorage.clear();</code></td>
+    </tr>
+    <tr>
+      <td>数据个数</td>
+      <td><code class="highlighter-rouge">let len = sessionStorage.length;</code></td>
+    </tr>
+    <tr>
+      <td>获取第<code class="highlighter-rouge">i</code>个<code class="highlighter-rouge">key</code></td>
+      <td><code class="highlighter-rouge">let key = sessionStorage.key[i];</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="windowlocalstorage">window.localStorage</h3>
+
+<p>本地存储对象，跨会话级存储。在浏览器能管理外存（磁盘），可在其中存储用户数据，可供此次会话及后续会话的页面共同使用；即使浏览器关闭了，也不会消失，永久存在。</p>
+
+<p>作用：存储用户样式风格（比如<code class="highlighter-rouge">qq</code>空间）</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>操作</th>
+      <th>API</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>存数据</td>
+      <td><code class="highlighter-rouge">localStorage[key] = val;</code></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">localStorage.setItem(key, val);</code></td>
+    </tr>
+    <tr>
+      <td>读取数据</td>
+      <td><code class="highlighter-rouge">let val = localStorage[key];</code></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">let val = localStorage.getItem(key);</code></td>
+    </tr>
+    <tr>
+      <td>清除指定数据</td>
+      <td><code class="highlighter-rouge">localStorage.removeItem(key);</code></td>
+    </tr>
+    <tr>
+      <td>清空所有数据</td>
+      <td><code class="highlighter-rouge">localStorage.clear();</code></td>
+    </tr>
+    <tr>
+      <td>数据个数</td>
+      <td><code class="highlighter-rouge">let len = localStorage.length;</code></td>
+    </tr>
+    <tr>
+      <td>获取第i个key</td>
+      <td><code class="highlighter-rouge">let key = localStorage.key[i];</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="highlighter-rouge">localStorage</code>中若数据发生了修改，会触发事件<code class="highlighter-rouge">window.onstorage</code>，可以监听事件，可以监视<code class="highlighter-rouge">localStorage</code>数据改变（注意<code class="highlighter-rouge">sessionStorage</code>没有此功能；<code class="highlighter-rouge">chrome</code>浏览器中，该事件只能被其他页面触发，不能被当前页面触发）。</p>
+
+<h1 id="十websocket">十、WebSocket</h1>
+
+<h2 id="http协议">http协议</h2>
+
+<p><code class="highlighter-rouge">HTTP</code>协议，属于“请求-响应”模型，只有客户端发起请求消息，服务器才会返回响应消息，没有请求就没有响应，一个请求也只能 得到一个响应；这在有些场景下很不方便（如实时走势应用）。</p>
+
+<p>解决方案：长轮询（<code class="highlighter-rouge">Long-Polling</code>）/心跳请求，定时器+<code class="highlighter-rouge">ajax</code>，请求太频繁，服务器压力大，不够频繁，客户端数据延迟太大。</p>
+
+<h2 id="websocket协议">WebSocket协议</h2>
+
+<p><code class="highlighter-rouge">WebSocket</code>，作为<code class="highlighter-rouge">HTTP</code>的补充，属于“广播-收听”模型，客户端连接到就不再断开，持续连接，双方随时向对方发送消息，且是全双工、不对等发送。</p>
+
+<p><code class="highlighter-rouge">ws</code>协议分为客户端和服务器端程序。客户端应用主动发起连接请求，保持连接，向对方发送消息，并接收消息。客户端可以是<code class="highlighter-rouge">php</code>、<code class="highlighter-rouge">java</code>、<code class="highlighter-rouge">nodejs</code>、<code class="highlighter-rouge">html5</code>。</p>
+
+<h2 id="使用h5创建ws协议客户端应用">使用H5创建ws协议客户端应用</h2>
+
+<ul>
+  <li>连接<code class="highlighter-rouge">ws</code>服务器</li>
+  <li>向服务器发送消息</li>
+  <li>接收服务器发来的消息</li>
+  <li>断开到<code class="highlighter-rouge">ws</code>服务器的连接（可选）</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://127.0.0.1:9001</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</code></pre></div></div>
+
+:ET

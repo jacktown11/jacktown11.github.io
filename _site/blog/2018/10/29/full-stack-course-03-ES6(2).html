@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -69,25 +69,23 @@
 
 <h2 id="promise基本用法">Promise基本用法</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">p</span><span class="o">=</span><span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">let</span> <span class="nx">p</span><span class="o">=</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
     <span class="nx">resolve</span><span class="p">();</span>
     <span class="nx">reject</span><span class="p">();</span>
   <span class="p">});</span>
 
   <span class="c1">// the two function params in then are just resolve and reject</span>
   <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{},</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{});</span> 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="promiseall与promiserace">Promise.all()与Promise.race()</h2>
 
 <p>这两个静态方法可以实现让多个异步操作放在一起</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="p">,</span> <span class="nx">promise3</span><span class="p">])</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="p">,</span> <span class="nx">promise3</span><span class="p">])</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">resArr</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">reason</span> <span class="o">=&gt;</span> <span class="p">{});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li><code class="highlighter-rouge">all</code>，需要所有异步操作成功以后才算成功</li>
@@ -108,22 +106,21 @@
 
 <h2 id="基本使用">基本使用</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="o">*</span> <span class="nx">show</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'a'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="o">*</span> <span class="nx">show</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
     <span class="k">yield</span><span class="p">;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'b'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="nx">show</span><span class="p">();</span>
 <span class="nx">gen</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span> <span class="c1">// a</span>
 <span class="nx">gen</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span> <span class="c1">// b</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="yield传参与返回值">yield传参与返回值</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="o">*</span> <span class="nx">show</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'a'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="o">*</span> <span class="nx">show</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
     <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">yield</span> <span class="mi">23</span><span class="p">;</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
 <span class="p">}</span>
@@ -133,8 +130,7 @@
 <span class="kd">let</span> <span class="nx">res2</span> <span class="o">=</span> <span class="nx">gen</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span> <span class="c1">// 12</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res1</span><span class="p">);</span> <span class="c1">// {value: 23, done: false} </span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res2</span><span class="p">);</span> <span class="c1">// {value: undefined, done: true}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="generator与promise配合">generator与promise配合</h2>
 
@@ -149,34 +145,32 @@
 
 <h2 id="基本使用-1">基本使用</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">async</span> <span class="kd">function</span> <span class="nx">show</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">show</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
 
-    <span class="nx">await</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mi">2000</span><span class="p">);</span>
     <span class="p">});</span>
 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'b'</span><span class="p">,</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
 <span class="p">}</span>
 
 <span class="nx">show</span><span class="p">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">await</code>后可以放<code class="highlighter-rouge">Promise</code>对象、<code class="highlighter-rouge">generator</code>函数、<code class="highlighter-rouge">async/await</code>函数，即使后面不是同步操作，运行也会是异步的，类似<code class="highlighter-rouge">setTimeout(func, 0)</code>的效果。</p>
 
 <h2 id="用于ajax">用于ajax</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nx">async</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">data1</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="s1">'./data/a.json'</span><span class="p">,</span> <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">});</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">async</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">data1</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./data/a.json</span><span class="dl">'</span><span class="p">,</span> <span class="na">dataType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">});</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">data1</span><span class="p">.</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">){</span>
-        <span class="kd">let</span> <span class="nx">data2</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="s1">'./data/b.json'</span><span class="p">,</span> <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">});</span>
+        <span class="kd">let</span> <span class="nx">data2</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./data/b.json</span><span class="dl">'</span><span class="p">,</span> <span class="na">dataType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">});</span>
     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-        <span class="kd">let</span> <span class="nx">data3</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="s1">'./data/c.json'</span><span class="p">,</span> <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">});</span>
+        <span class="kd">let</span> <span class="nx">data3</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./data/c.json</span><span class="dl">'</span><span class="p">,</span> <span class="na">dataType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">});</span>
     <span class="p">}</span>
 <span class="p">})();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="错误处理">错误处理</h2>
 

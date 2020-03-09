@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -69,11 +69,10 @@
 
 <p><code class="highlighter-rouge">jQuery</code>的所有代码都被包含在一个立即执行函数（<code class="highlighter-rouge">Immediately Invoked Function Expression, IIFE</code>）中，如下所示：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">){</span>
     <span class="c1">// all the code included here</span>
 <span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这样做的好处在于避免全局变量污染。</p>
 
@@ -89,7 +88,7 @@
 
 <p>关于<code class="highlighter-rouge">jQuery</code>对象的代码大致如下：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">jQuery</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">jQuery</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">new</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">rootjQuery</span><span class="p">);</span>
     <span class="p">};</span>
 <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
@@ -99,8 +98,7 @@
     <span class="p">}</span>
 <span class="p">};</span>
 <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>我们可以看到<code class="highlighter-rouge">jQuery</code>本身是定义为一个函数的，在函数内部调用以构造函数的方式调用了它的原型对象<code class="highlighter-rouge">jQuery.prototype</code>的方法<code class="highlighter-rouge">init()</code>，<code class="highlighter-rouge">jQuery</code>和<code class="highlighter-rouge">init</code>共享了原型对象，这个原型对象的<code class="highlighter-rouge">constructor</code>设置为<code class="highlighter-rouge">jQuery</code>。看起来<code class="highlighter-rouge">jQuery</code>函数负责面子工程，而<code class="highlighter-rouge">init</code>函数做了实质工作，这样写使得我们在使用<code class="highlighter-rouge">$</code>或者<code class="highlighter-rouge">jQuery</code>时可以不用<code class="highlighter-rouge">new</code>操作符，而像一个纯粹的函数调用一样，而函数返回的结果却是一个<code class="highlighter-rouge">jQuery</code>实例（当然也是<code class="highlighter-rouge">init</code>实例，因为譬如<code class="highlighter-rouge">A instanceof B</code>，实际上只是检查<code class="highlighter-rouge">A</code>的原型链中是否有<code class="highlighter-rouge">B.prototype</code>）。我们可以用下图来表示它们之间的关系：</p>
 
@@ -108,13 +106,12 @@
 
 <p>另外要说明一下<code class="highlighter-rouge">$(xxx)</code>返回的对象除了是<code class="highlighter-rouge">jQuery</code>实例，也是<code class="highlighter-rouge">init</code>实例，如果我们调用<code class="highlighter-rouge">$(null) instanceof jQuery.fn.init</code>，结果会是<code class="highlighter-rouge">true</code>。实际上譬如<code class="highlighter-rouge">A instanceof B</code>，实际上只是检查<code class="highlighter-rouge">A</code>的原型链中是否有<code class="highlighter-rouge">B.prototype</code>）。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">F</span><span class="p">(){}</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">F</span><span class="p">(){}</span>
 <span class="kd">function</span> <span class="nx">test</span><span class="p">(){}</span>
 <span class="nx">test</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">F</span><span class="p">()</span> <span class="k">instanceof</span> <span class="nx">F</span><span class="p">);</span>  <span class="c1">// true</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">F</span><span class="p">()</span> <span class="k">instanceof</span> <span class="nx">test</span><span class="p">);</span>   <span class="c1">//true</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="第96-283行">第96-283行</h1>
 
@@ -122,14 +119,14 @@
 
 <p>这部分定义了<code class="highlighter-rouge">jQuery</code>函数的原型对象，提供了实例共享方法和属性。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">jquery</span>  <span class="c1">// 版本号</span>
-    <span class="nx">constructor</span> <span class="c1">//修正constructor</span>
+    <span class="kd">constructor</span> <span class="c1">//修正constructor</span>
     <span class="nx">init</span><span class="p">()</span>  <span class="c1">// jQury()函数真正执行的方法</span>
     <span class="nx">selector</span>    <span class="c1">// 选择符</span>
     <span class="nx">length</span>  <span class="c1">// 结果长度</span>
     <span class="nx">toArray</span><span class="p">()</span>   <span class="c1">// 转为数组</span>
-    <span class="nx">get</span><span class="p">()</span>   <span class="c1">// 取出jQuery对象结果“数组”中指定DOM节点</span>
+    <span class="kd">get</span><span class="p">()</span>   <span class="c1">// 取出jQuery对象结果“数组”中指定DOM节点</span>
     <span class="nx">pushStack</span><span class="p">()</span> <span class="c1">// jQuery对象入栈</span>
     <span class="nx">each</span><span class="p">()</span>  <span class="c1">// 循环处理jQuery对象的每一个结果项</span>
     <span class="nx">ready</span><span class="p">()</span> <span class="c1">// 文档加载结束所执行的函数</span>
@@ -142,8 +139,7 @@
     <span class="p">(</span><span class="nx">sort</span><span class="p">())</span>    <span class="c1">// 原生数组sort方法引用</span>
     <span class="p">(</span><span class="nx">splice</span><span class="p">())</span>  <span class="c1">// 原生数组splice方法引用</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="关于jqueryfninit函数中的context参数">关于jQuery.fn.init函数中的context参数</h2>
 
@@ -155,11 +151,10 @@
 
 <h2 id="jquery拷贝继承函数">jQuery拷贝继承函数</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="c1">// detail code</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这部分实现了一个功能完善的对象拷贝功能，即<code class="highlighter-rouge">extend</code>函数。可以传参选择深拷贝/浅拷贝、传入单个对象实现插件扩展、传入多个对象时该函数作为一个工具性函数执行函数拷贝继承。</p>
 
@@ -169,7 +164,7 @@
 
 <h2 id="jquery对象工具方法总览">jQuery对象工具方法总览</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">expando</span> <span class="c1">//生成唯一JQ字符串(内部)</span>
     <span class="nx">noConflict</span><span class="p">()</span>    <span class="c1">//防止变量名冲突</span>
     <span class="nx">isReady</span> <span class="c1">//DOM是否加载完(内部)</span>
@@ -204,8 +199,7 @@
     <span class="nx">now</span> <span class="c1">//当前时间</span>
     <span class="nx">swap</span><span class="p">()</span>  <span class="c1">//css交换(内部)</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这部分使用之前定义的拷贝函数<code class="highlighter-rouge">extend</code>为<code class="highlighter-rouge">jQuery</code>对象增加了一系列工具方法和属性。</p>
 
@@ -213,26 +207,24 @@
 
 <p>在<code class="highlighter-rouge">globalEval</code>函数中，其中一个分支（541行）使用了插入<code class="highlighter-rouge">script</code>标签的方式来执行代码，源码如下：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">script</span> <span class="p">).</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span> <span class="nx">script</span> <span class="p">);</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">script</span> <span class="p">).</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span> <span class="nx">script</span> <span class="p">);</span>
+</code></pre></div></div>
 
 <p>这段代码将包含执行代码的<code class="highlighter-rouge">script</code>标签插入文档，然后立即移出，那么为什么在移出以前，<code class="highlighter-rouge">script</code>标签的内部代码一定执行完了呢？为此我在<code class="highlighter-rouge">segmentFault</code>就此提问，下面说说我的理解。</p>
 
 <p>首先我写了下面这样的实验代码。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nx">code</span> <span class="o">=</span> <span class="s1">'a = 2; console.log(\'inner code\')'</span><span class="p">,</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">code</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">a = 2; console.log(</span><span class="se">\'</span><span class="s1">inner code</span><span class="se">\'</span><span class="s1">)</span><span class="dl">'</span><span class="p">,</span>
     <span class="nx">doc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">,</span>
     <span class="nx">body</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span>
-    <span class="nx">script</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'script'</span><span class="p">);</span>
+    <span class="nx">script</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">script</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">script</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">code</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'outside code 1'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">outside code 1</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">).</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'outside code 2'</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'a = '</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">outside code 2</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a = </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p>运行结果如下：</p>
 
@@ -246,20 +238,19 @@
 
 <p>这部分提供一个统一的回调函数管理对象，通过<code class="highlighter-rouge">let callbackManager = $.Callbacks(模式选项);</code>的方式获得这个管理对象；内部实际上将各回调函数存储在一个数组中，它提供了<code class="highlighter-rouge">add</code>、<code class="highlighter-rouge">remove</code>、<code class="highlighter-rouge">fire</code>等方法来实现会回调函数的添加、删除、触发等操作。更多使用说明可查看<a href="https://api.jquery.com/jQuery.Callbacks/">官网API</a>。如下是一段使用示例代码：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">a</span><span class="p">(</span><span class="nx">arg</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'a: '</span> <span class="o">+</span> <span class="nx">arg</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">a</span><span class="p">(</span><span class="nx">arg</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">arg</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kd">function</span> <span class="nx">b</span><span class="p">(</span><span class="nx">arg</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'b: '</span> <span class="o">+</span> <span class="nx">arg</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">b: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">arg</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kd">let</span> <span class="nx">manager</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Callbacks</span><span class="p">();</span>
 <span class="nx">manager</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
 <span class="nx">manager</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
-<span class="nx">manager</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
+<span class="nx">manager</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">);</span>
 <span class="c1">//a: hello</span>
 <span class="c1">//b: hello</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="模式选项">模式选项</h2>
 
@@ -296,20 +287,20 @@
 
 <p>下面的一段代码可以测试各种模式组合下的运行效果：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fn1</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="err">`</span><span class="o">&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">"color: #666;"</span><span class="o">&gt;</span><span class="nx">fn1</span><span class="err">:</span><span class="nx">$</span><span class="p">{</span><span class="nx">arg</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/span&gt;&amp;nbsp;&amp;nbsp;`</span><span class="err">)
-</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fn1</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">`&lt;span style="color: #666;"&gt;fn1:</span><span class="p">${</span><span class="nx">arg</span><span class="p">}</span><span class="s2">&lt;/span&gt;&amp;nbsp;&amp;nbsp;`</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kd">function</span> <span class="nx">fn2</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="err">`</span><span class="o">&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">"color: #666;"</span><span class="o">&gt;</span><span class="nx">fn2</span><span class="err">:</span><span class="nx">$</span><span class="p">{</span><span class="nx">arg</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/span&gt;&amp;nbsp;&amp;nbsp;`</span><span class="err">)
-</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">`&lt;span style="color: #666;"&gt;fn2:</span><span class="p">${</span><span class="nx">arg</span><span class="p">}</span><span class="s2">&lt;/span&gt;&amp;nbsp;&amp;nbsp;`</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">''</span><span class="p">];</span>
-<span class="p">[</span><span class="s1">'once'</span><span class="p">,</span> <span class="s1">'memory'</span><span class="p">,</span> <span class="s1">'stopOnFalse'</span><span class="p">,</span> <span class="s1">'unique'</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">[</span><span class="dl">''</span><span class="p">];</span>
+<span class="p">[</span><span class="dl">'</span><span class="s1">once</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">memory</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">stopOnFalse</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">unique</span><span class="dl">'</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">options</span><span class="p">.</span><span class="nx">push</span><span class="p">((</span><span class="nx">options</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="nx">item</span><span class="p">).</span><span class="nx">trim</span><span class="p">());</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nx">push</span><span class="p">((</span><span class="nx">options</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">item</span><span class="p">).</span><span class="nx">trim</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">});</span>
 <span class="nx">options</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">item1</span><span class="p">,</span> <span class="nx">item2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -317,37 +308,36 @@
 <span class="p">});</span>
 
 <span class="nx">options</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">option</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="err">`</span><span class="o">&lt;</span><span class="nx">h4</span> <span class="nx">style</span><span class="o">=</span><span class="s2">"margin: 8px 0px 0px;"</span><span class="o">&gt;</span><span class="err">模式：</span><span class="nx">$</span><span class="p">{</span><span class="nx">option</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h4&gt;`</span><span class="se">)</span><span class="err">;
-</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">`&lt;h4 style="margin: 8px 0px 0px;"&gt;模式：</span><span class="p">${</span><span class="nx">option</span><span class="p">}</span><span class="s2">&lt;/h4&gt;`</span><span class="p">);</span>
+
     <span class="kd">let</span> <span class="nx">cb</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Callbacks</span><span class="p">(</span><span class="nx">option</span><span class="p">);</span>
 
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'cb.add(fn1); &lt;span style="color: #666;  "&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">cb.add(fn1); &lt;span style="color: #666;  "&gt;&amp;nbsp;// &lt;/span&gt;</span><span class="dl">'</span><span class="p">);</span>
     <span class="nx">cb</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">fn1</span><span class="p">);</span>
 
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.fire(1); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;br&gt;cb.fire(1); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;</span><span class="dl">'</span><span class="p">);</span>
     <span class="nx">cb</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.add(fn2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;br&gt;cb.add(fn2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;</span><span class="dl">'</span><span class="p">);</span>
     <span class="nx">cb</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">fn2</span><span class="p">);</span>
 
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.add(fn2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;br&gt;cb.add(fn2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;</span><span class="dl">'</span><span class="p">);</span>
     <span class="nx">cb</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">fn2</span><span class="p">);</span>
 
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.fire(2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;br&gt;cb.fire(2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;</span><span class="dl">'</span><span class="p">);</span>
     <span class="nx">cb</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.remove(fn2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;br&gt;cb.remove(fn2); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;</span><span class="dl">'</span><span class="p">);</span>
     <span class="nx">cb</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">fn2</span><span class="p">);</span>
 
-    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;br&gt;cb.fire(3); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;'</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;br&gt;cb.fire(3); &lt;span style="color: #666;"&gt;&amp;nbsp;// &lt;/span&gt;</span><span class="dl">'</span><span class="p">);</span>
     <span class="nx">cb</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="源码解读">源码解读</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// 表示字符串格式的模式和对象格式的模式之间对应关系的缓存对象</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 表示字符串格式的模式和对象格式的模式之间对应关系的缓存对象</span>
 <span class="kd">var</span> <span class="nx">optionsCache</span> <span class="o">=</span> <span class="p">{};</span>
 
 <span class="cm">/**
@@ -383,7 +373,7 @@
  */</span>
 <span class="nx">jQuery</span><span class="p">.</span><span class="nx">Callbacks</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// 如果需要的话，讲一个字符串形式的参数列表转换为对象形式（过程中会首先查看缓存中是否已有）</span>
-    <span class="nx">options</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">options</span> <span class="o">===</span> <span class="s2">"string"</span> <span class="p">?</span>
+    <span class="nx">options</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">options</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">string</span><span class="dl">"</span> <span class="p">?</span>
         <span class="p">(</span><span class="nx">optionsCache</span><span class="p">[</span><span class="nx">options</span><span class="p">]</span> <span class="o">||</span> <span class="nx">createOptions</span><span class="p">(</span><span class="nx">options</span><span class="p">))</span> <span class="p">:</span>
         <span class="nx">jQuery</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">options</span><span class="p">);</span>
 
@@ -426,13 +416,13 @@
                 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
                     <span class="c1">// 非记忆、单次触发模式，以后绝不可能以任何方式触发了</span>
                     <span class="c1">// 那么可以直接禁用该回调列表</span>
-                    <span class="nx">self</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
+                    <span class="nb">self</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">},</span>
 
         <span class="c1">// 实际回调对象</span>
-        <span class="nx">self</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nb">self</span> <span class="o">=</span> <span class="p">{</span>
             <span class="c1">// 向list中添加函数（集合）</span>
             <span class="na">add</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
                 <span class="k">if</span> <span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
@@ -441,12 +431,12 @@
                     <span class="p">(</span><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
                         <span class="nx">jQuery</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
                             <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span>
-                            <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span>
-                                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">unique</span> <span class="o">||</span> <span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">arg</span><span class="p">))</span> <span class="p">{</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">function</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">unique</span> <span class="o">||</span> <span class="o">!</span><span class="nb">self</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">arg</span><span class="p">))</span> <span class="p">{</span>
                                     <span class="c1">// 在非单次触发模式或在单次触发模式时的新函数</span>
                                     <span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span>
                                 <span class="p">}</span>
-                            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">arg</span> <span class="o">&amp;&amp;</span> <span class="nx">arg</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">type</span> <span class="o">!==</span> <span class="s2">"string"</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">arg</span> <span class="o">&amp;&amp;</span> <span class="nx">arg</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">type</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">string</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
                                 <span class="c1">// 非空类数组参数，持续解构</span>
                                 <span class="nx">add</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span>
                             <span class="p">}</span>
@@ -512,7 +502,7 @@
             <span class="na">lock</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
                 <span class="nx">stack</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
                 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">memory</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">self</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
+                    <span class="nb">self</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
                 <span class="p">}</span>
                 <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
             <span class="p">},</span>
@@ -537,7 +527,7 @@
             <span class="p">},</span>
             <span class="c1">// 使用给定的参数触发所有回调函数</span>
             <span class="na">fire</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-                <span class="nx">self</span><span class="p">.</span><span class="nx">fireWith</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+                <span class="nb">self</span><span class="p">.</span><span class="nx">fireWith</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
                 <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
             <span class="p">},</span>
             <span class="c1">// 列表是否被触发过</span>
@@ -546,10 +536,9 @@
             <span class="p">}</span>
         <span class="p">};</span>
 
-    <span class="k">return</span> <span class="nx">self</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 				</div>

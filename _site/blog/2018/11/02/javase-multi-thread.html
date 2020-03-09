@@ -17,7 +17,7 @@
 
 		<!-- 侧边栏显隐控制钮 -->
 		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fee" stroke-width="4" stroke-linecap="round">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
 				<line x1="8" y1="8" x2="32" y2="8"></line>
 				<line x1="8" y1="16" x2="32" y2="16"></line>
 				<line x1="8" y1="24" x2="32" y2="24"></line>
@@ -154,27 +154,25 @@
 
 <p>实现接口<code class="highlighter-rouge">Runnable</code>的匿名内部类</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"inner "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"inner "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
     <span class="o">}</span>
   <span class="o">}</span>
 <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>继承<code class="highlighter-rouge">Thread</code>的匿名内部类</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="n">Thread</span><span class="o">()</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nc">Thread</span><span class="o">()</span> <span class="o">{</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"inner: "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"inner: "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
     <span class="o">}</span>
   <span class="o">}</span>
 <span class="o">}.</span><span class="na">start</span><span class="o">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="线程的状态图">线程的状态图</h2>
 
@@ -217,14 +215,14 @@
 
 <h4 id="代码示例">代码示例</h4>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutorService</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutorService</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadPoolUsingRunnable</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		<span class="n">ExecutorService</span> <span class="n">service</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">ExecutorService</span> <span class="n">service</span> <span class="o">=</span> <span class="nc">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
 		
-		<span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Task</span><span class="o">();</span>
+		<span class="nc">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Task</span><span class="o">();</span>
 		<span class="n">service</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
 		<span class="n">service</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
 		<span class="n">service</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
@@ -234,10 +232,10 @@
 	<span class="o">}</span>
 <span class="o">}</span>
 
-<span class="kd">class</span> <span class="nc">Task</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">{</span>
+<span class="kd">class</span> <span class="nc">Task</span> <span class="kd">implements</span> <span class="nc">Runnable</span><span class="o">{</span>
 	<span class="nd">@Override</span>
 	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Running task in Thread "</span> <span class="o">+</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Running task in Thread "</span> <span class="o">+</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
 	<span class="o">}</span>
 <span class="o">}</span>
 
@@ -247,8 +245,7 @@ Running task in Thread pool-1-thread-2
 Running task in Thread pool-1-thread-1
 Running task in Thread pool-1-thread-2
 ===============*/</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="传入callable接口任务">传入Callable接口任务</h3>
 
@@ -265,29 +262,29 @@ Running task in Thread pool-1-thread-2
 
 <h4 id="代码示例-1">代码示例</h4>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.concurrent.Callable</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.concurrent.Callable</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutionException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutorService</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.concurrent.Future</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadPoolUsingCallable</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">ExecutionException</span><span class="o">{</span>
-		<span class="n">ExecutorService</span> <span class="n">service</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
-		<span class="n">Future</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">result</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span><span class="o">,</span> <span class="nc">ExecutionException</span><span class="o">{</span>
+		<span class="nc">ExecutorService</span> <span class="n">service</span> <span class="o">=</span> <span class="nc">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+		<span class="nc">Future</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span><span class="o">;</span>
 		
-		<span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="n">ComputeTask</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">));</span>
-		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
-		<span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="n">ComputeTask</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">));</span>
-		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
-		<span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="n">ComputeTask</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">5</span><span class="o">));</span>
-		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+		<span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="nc">ComputeTask</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">1</span><span class="o">));</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+		<span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="nc">ComputeTask</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">));</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+		<span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="nc">ComputeTask</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">5</span><span class="o">));</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
 		
 		<span class="n">service</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
 	<span class="o">}</span>
 <span class="o">}</span>
 
-<span class="kd">class</span> <span class="nc">ComputeTask</span> <span class="kd">implements</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;{</span>
+<span class="kd">class</span> <span class="nc">ComputeTask</span> <span class="kd">implements</span> <span class="nc">Callable</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;{</span>
 	<span class="kd">private</span> <span class="kt">int</span> <span class="n">x</span><span class="o">;</span>
 	<span class="kd">private</span> <span class="kt">int</span> <span class="n">y</span><span class="o">;</span>	
 	<span class="kd">public</span> <span class="nf">ComputeTask</span><span class="o">()</span> <span class="o">{}</span>
@@ -298,7 +295,7 @@ Running task in Thread pool-1-thread-2
 	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSum</span><span class="o">()</span> <span class="o">{</span>
 		<span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">;</span>
 	<span class="o">}</span>
-	<span class="kd">public</span> <span class="n">Integer</span> <span class="nf">call</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">call</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
 		<span class="k">return</span> <span class="nf">getSum</span><span class="o">();</span>
 	<span class="o">}</span>
 <span class="o">}</span>
@@ -309,8 +306,7 @@ Running task in Thread pool-1-thread-2
  * 5
  * 8
  */</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="线程安全">线程安全</h1>
 
@@ -324,21 +320,19 @@ Running task in Thread pool-1-thread-2
 
 <h3 id="同步代码块">同步代码块</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">synchronized</span> <span class="o">(</span><span class="cm">/*锁对象*/</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">synchronized</span> <span class="o">(</span><span class="cm">/*锁对象*/</span><span class="o">)</span> <span class="o">{</span>
 	<span class="c1">// 可能会产生线程安全问题的代码</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>同步代码块中的锁对象可以是任意的对象；但多个线程时，要使用同一个锁对象才能够保证线程安全。</p>
 
 <h3 id="同步方法">同步方法</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(){</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(){</span>
    	<span class="c1">// 可能会产生线程安全问题的代码</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>同步的非静态方法中实际的锁对象是<code class="highlighter-rouge">本类对象</code>（<code class="highlighter-rouge">this</code>）</li>
@@ -356,15 +350,14 @@ Running task in Thread pool-1-thread-2
 
 <p>使用示例：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">Lock</span> <span class="n">l</span> <span class="o">=</span> <span class="o">...;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nc">Lock</span> <span class="n">l</span> <span class="o">=</span> <span class="o">...;</span>
  <span class="n">l</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
  <span class="k">try</span> <span class="o">{</span>
    <span class="c1">// access the resource protected by this lock</span>
  <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
    <span class="n">l</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
  <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="死锁">死锁</h2>
 
