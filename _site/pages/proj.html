@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>项目</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <link rel="stylesheet" href="../css/main.css">
+    
+    <link rel="stylesheet" href="../css/proj.css">
+    
+    <style>
+        .home {
+            position: fixed;
+            z-index: 55;
+            font-size: 1rem;
+            top: 4px;
+            left: 4px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        a.home-link:link,
+        a.home-link:visited {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 20px;
+            padding: 0 8px;
+            border: 2px solid #ccc;
+            font-weight: 700;
+            color: #ccc;
+        }
+
+        a.home-link:hover,
+        a.home-link:active {
+            color: #f40;
+            border-color: #f40;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home">
+        <a href="/" class="home-link no-print" id="home-link">返回首页</a>
+    </div>
+
+    <h1 class="page-title">Projects</h1>
+
+<div id="proj-list" class="container">
+  <p class="loading" v-show="!isLoaded">
+    <img src="/images/proj/loading.gif" alt="加载中" />
+  </p>
+  <ul class="proj-list" v-show="isLoaded">
+    <li class="proj-item" v-for="proj in projects" :key="proj.name">
+      <div class="img-wrapper">
+        <img
+          :src="'/images/proj/'+proj.cover"
+          alt="项目封面"
+          class="proj-img"
+          :class="{enlarge: proj.isEnlarge}"
+          @click="proj.isEnlarge = !proj.isEnlarge;"
+        />
+      </div>
+      <h2 class="proj-header">
+        <span class="name" v-text="proj.name"></span>
+        <a
+          :href="proj.github"
+          class="link-icon"
+          v-if="proj.github"
+          title="github"
+          ><span class="github-icon"></span
+        ></a>
+        <a
+          :href="proj.show"
+          class="link-icon"
+          v-if="proj.show"
+          title="view online"
+          ><span class="show-icon"></span
+        ></a>
+      </h2>
+      <p class="proj-intro" v-text="proj.intro"></p>
+    </li>
+  </ul>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
+
+
+    
+    <script src="/js/proj.js"></script>
+    
+
+</body>
+
+</html>

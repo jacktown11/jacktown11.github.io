@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+</head>
+
+<body>
+	<div id="app" class="app-wrap">
+
+		<!-- 侧边栏显隐控制钮 -->
+		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
+				<line x1="8" y1="8" x2="32" y2="8"></line>
+				<line x1="8" y1="16" x2="32" y2="16"></line>
+				<line x1="8" y1="24" x2="32" y2="24"></line>
+			</g>
+		</svg>
+
+		<div class="sidebar" style="display: none;" v-show="isShowSidebar">
+			<!-- 目录级别控制条 -->
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+
+			<!-- 文章目录 -->
+			<div id="catalog-container" class="catalog-container">
+				<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
+			</div>
+
+			<!-- 更多文章导航 -->
+			<div class="post-nav">
+				<div class="home">
+					<a class="home-link" href="/">返回首页</a>
+				</div>
+				<div class="prev no-wrap">
+					上一篇：<a href="/blog/2017/06/13/DA&AAinC-chap8">数据结构与算法分析C语言描述 总结笔记 第八章</a>
+				</div>
+				<div class="next no-wrap">
+					下一篇：<a href="/blog/2017/06/23/test-proto">一个关于原型链的探索</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 文章内容区 -->
+		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
+			<article id="article-container">
+				<h1 id="post-title">javascript 代码片段</h1>
+				<p class="meta">2017-06-21</p>
+				<div class="post" ref="post">
+					<h1 id="bom">BOM相关</h1>
+<h2 id="section">获取屏幕宽度</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//edition:20170623</span>
+<span class="c1">//from:js高程(p198)</span>
+<span class="c1">//获取视口宽高</span>
+<span class="kd">var</span> <span class="nx">pageWidth</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">,</span>
+	<span class="nx">pageHeight</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">pageWidth</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">number</span><span class="dl">"</span><span class="p">){</span>
+	<span class="c1">//for lt IE 9</span>
+	<span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">CSS1Compat</span><span class="dl">"</span><span class="p">){</span>
+		<span class="nx">pageWidth</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
+		<span class="nx">pageWidth</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="nx">pageWidth</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
+		<span class="nx">pageHeight</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="url">获取URL的查询字符串参数</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//func: 获取location对象中的查询字符串参数</span>
+<span class="c1">//edition: 20170623</span>
+<span class="c1">//from: js高程(p207)</span>
+<span class="kd">function</span> <span class="nx">getQueryStringArgs</span><span class="p">(){</span>
+	<span class="kd">var</span> <span class="nx">qs</span> <span class="o">=</span> <span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)?</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="dl">""</span><span class="p">,</span>	
+		<span class="c1">//get query string and delete the start "?"</span>
+		<span class="nx">args</span> <span class="o">=</span> <span class="p">{},</span>	<span class="c1">//to store args</span>
+		<span class="nx">items</span> <span class="o">=</span> <span class="p">(</span><span class="nx">qs</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="nx">qs</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">"</span><span class="s2">&amp;</span><span class="dl">"</span><span class="p">)</span> <span class="p">:</span> <span class="p">[],</span>
+		<span class="nx">item</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+		<span class="nx">name</span> <span class="o">=</span> <span class="dl">""</span><span class="p">,</span>
+		<span class="nx">value</span> <span class="o">=</span> <span class="dl">""</span><span class="p">,</span>
+		<span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+		<span class="nx">len</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="c1">//add each item to args</span>
+		<span class="nx">item</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="dl">"</span><span class="s2">=</span><span class="dl">"</span><span class="p">);</span>
+		<span class="nx">name</span> <span class="o">=</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+		<span class="nx">value</span> <span class="o">=</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+		<span class="nx">args</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">args</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="section-1">插件检测</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">//func: 插件检测</span>
+<span class="c1">//edition: 20170623</span>
+<span class="c1">//from: js高程(p212) (modified)</span>
+<span class="kd">function</span> <span class="nx">hasPlugin</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+	<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">name</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">string</span><span class="dl">"</span><span class="p">){</span>
+		<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kd">var</span> <span class="nx">identifier</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+
+	<span class="k">switch</span><span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()){</span>
+		<span class="c1">//get the plugin's identifier in IE arrording to name</span>
+		<span class="k">case</span> <span class="nx">flash</span><span class="p">:</span>
+			<span class="nx">identifier</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">ShockwaveFlash.ShockwaveFlash</span><span class="dl">"</span><span class="p">;</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="nx">quicktime</span><span class="p">:</span>
+			<span class="nx">identifier</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">QuickTime.QuickTime</span><span class="dl">"</span><span class="p">;</span>
+			<span class="k">break</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">hasNotIEPlugin</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">){</span>
+		<span class="nx">result</span> <span class="o">=</span> <span class="nx">hasIEPlugin</span><span class="p">(</span><span class="nx">identifier</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">hasIEPlugin</span><span class="p">(</span><span class="nx">identifier</span><span class="p">){</span>
+	<span class="k">try</span><span class="p">{</span>
+		<span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="nx">identifier</span><span class="p">);</span>
+		<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+	<span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">ex</span><span class="p">){</span>
+		<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">hasNotIEPlugin</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+	<span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">plugins</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+			<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="section-2">对象是否具有某一方法</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//func: 检测object对象是否具有property属性</span>
+<span class="c1">//edition: 20170623</span>
+<span class="c1">//from: js高程(p219) (modified)</span>
+<span class="kd">function</span> <span class="nx">isHostMethod</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span><span class="nx">property</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">object</span><span class="p">[</span><span class="nx">property</span><span class="p">];</span>
+	<span class="nx">t</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+	<span class="k">return</span> <span class="nx">t</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">function</span><span class="dl">"</span> <span class="o">||</span>
+			<span class="p">(</span><span class="o">!!</span><span class="p">(</span><span class="nx">t</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">object</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="nx">boject</span><span class="p">[</span><span class="nx">property</span><span class="p">]))</span> <span class="o">||</span>
+			<span class="nx">t</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">unknown</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="section-3">获取元素相对页面的左偏移和上偏移量</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//func: 获取元素相对视窗的左偏移和上偏移量</span>
+<span class="c1">//edition: 20170628</span>
+<span class="c1">//from: js高程（p321）</span>
+<span class="c1">//question: 应该差一个边框宽度</span>
+
+<span class="kd">function</span> <span class="nx">getElementLeft</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">actualLeft</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">offsetLeft</span><span class="p">,</span>
+		<span class="nx">current</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="nx">current</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+		<span class="nx">actualLeft</span> <span class="o">+=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">offsetLeft</span><span class="p">;</span>
+		<span class="nx">current</span>  <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">actualLeft</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">getElementTop</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">actualTop</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">,</span>
+		<span class="nx">current</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="nx">current</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+		<span class="nx">actualTop</span> <span class="o">+=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">;</span>
+		<span class="nx">current</span>  <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">actualTop</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="section-4">获得视窗大小</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//func: 获取视窗大小</span>
+<span class="c1">//edition: 20170628</span>
+<span class="c1">//from: js高程（p323）</span>
+<span class="kd">function</span> <span class="nx">getViewport</span><span class="p">(){</span>
+	<span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">BackCompat</span><span class="dl">"</span><span class="p">){</span>
+		<span class="k">return</span> <span class="p">{</span>
+			<span class="na">width</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">,</span>
+			<span class="na">height</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span>
+		<span class="p">};</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="k">return</span> <span class="p">{</span>
+			<span class="na">width</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">,</span>
+			<span class="na">height</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span>
+		<span class="p">};</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="section-5">获取元素相对视口的位置</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//func: 获取元素相对视口的位置</span>
+<span class="c1">//edition: 20170628</span>
+<span class="c1">//from: js高程（p325）</span>
+<span class="kd">function</span> <span class="nx">getBoundingClientRect</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">,</span>
+		<span class="nx">scrollLeft</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">;</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">auguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">offset</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">number</span><span class="dl">"</span><span class="p">){</span>
+			<span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span>
+			<span class="nx">temp</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">position: absolute; left: 0; top: 0</span><span class="dl">"</span><span class="p">;</span>
+			<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+			<span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">offset</span> <span class="o">=</span> <span class="o">-</span><span class="nx">temp</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">scrollTop</span><span class="p">;</span>
+			<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+			<span class="nx">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="kd">var</span> <span class="nx">rect</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">(),</span>
+			<span class="nx">offset</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">offset</span><span class="p">;</span>
+		<span class="k">return</span> <span class="p">{</span>
+			<span class="na">left</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">offset</span><span class="p">,</span>
+			<span class="na">right</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">right</span> <span class="o">+</span> <span class="nx">offset</span><span class="p">,</span>
+			<span class="na">top</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">offset</span><span class="p">,</span>
+			<span class="na">bottom</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">+</span> <span class="nx">offset</span>
+		<span class="p">};</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">actualTop</span> <span class="o">=</span> <span class="nx">getElementTop</span><span class="p">(</span><span class="nx">element</span><span class="p">),</span>
+			<span class="nx">actualLeft</span> <span class="o">=</span> <span class="nx">getElementLeft</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+		<span class="k">return</span> <span class="p">{</span>
+			<span class="na">left</span><span class="p">:</span> <span class="nx">actualLeft</span> <span class="o">-</span> <span class="nx">scrollLeft</span><span class="p">,</span>
+			<span class="na">rigth</span><span class="p">:</span> <span class="nx">actualLeft</span> <span class="o">+</span> <span class="nx">offsetWidth</span> <span class="o">-</span> <span class="nx">scrollLeft</span><span class="p">,</span>
+			<span class="na">top</span><span class="p">:</span> <span class="nx">actualTop</span> <span class="o">-</span> <span class="nx">scrollTop</span><span class="p">,</span>
+			<span class="na">bottom</span><span class="p">:</span> <span class="nx">actualTop</span> <span class="o">+</span> <span class="nx">offsetHeight</span> <span class="o">-</span> <span class="nx">scrollTop</span> 
+		<span class="p">};</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h1 id="date">Date日期格式化</h1>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 对Date的扩展，将 Date 转化为指定格式的String</span>
+<span class="c1">// 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，</span>
+<span class="c1">// 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)</span>
+<span class="c1">// 例子：</span>
+<span class="c1">// (new Date()).format("yyyy-MM-dd hh:mm:ss.S") ==&gt; 2019-01-03 21:21:02.760</span>
+<span class="c1">// (new Date()).format("yyyy-M-d h:m:s.S")      ==&gt; 2019-1-3 21:21:10.291</span>
+<span class="nb">Date</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">format</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">fmt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">M+</span><span class="dl">"</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">//月份</span>
+        <span class="dl">"</span><span class="s2">d+</span><span class="dl">"</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">getDate</span><span class="p">(),</span> <span class="c1">//日</span>
+        <span class="dl">"</span><span class="s2">h+</span><span class="dl">"</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">getHours</span><span class="p">(),</span> <span class="c1">//小时</span>
+        <span class="dl">"</span><span class="s2">m+</span><span class="dl">"</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">(),</span> <span class="c1">//分</span>
+        <span class="dl">"</span><span class="s2">s+</span><span class="dl">"</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">(),</span> <span class="c1">//秒</span>
+        <span class="dl">"</span><span class="s2">q+</span><span class="dl">"</span><span class="p">:</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">),</span> <span class="c1">//季度</span>
+        <span class="dl">"</span><span class="s2">S</span><span class="dl">"</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">getMilliseconds</span><span class="p">()</span> <span class="c1">//毫秒</span>
+    <span class="p">};</span>
+    <span class="k">if</span> <span class="p">(</span><span class="sr">/</span><span class="se">(</span><span class="sr">y+</span><span class="se">)</span><span class="sr">/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">fmt</span><span class="p">))</span> <span class="nx">fmt</span> <span class="o">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span><span class="p">,</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">+</span> <span class="dl">""</span><span class="p">).</span><span class="nx">substr</span><span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span><span class="p">.</span><span class="nx">length</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="dl">"</span><span class="s2">(</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">k</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">).</span><span class="nx">test</span><span class="p">(</span><span class="nx">fmt</span><span class="p">))</span> <span class="nx">fmt</span> <span class="o">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span><span class="p">,</span> <span class="p">(</span><span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">?</span> <span class="p">(</span><span class="nx">o</span><span class="p">[</span><span class="nx">k</span><span class="p">])</span> <span class="p">:</span> <span class="p">((</span><span class="dl">"</span><span class="s2">00</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">o</span><span class="p">[</span><span class="nx">k</span><span class="p">]).</span><span class="nx">substr</span><span class="p">((</span><span class="dl">""</span> <span class="o">+</span> <span class="nx">o</span><span class="p">[</span><span class="nx">k</span><span class="p">]).</span><span class="nx">length</span><span class="p">)));</span>
+    <span class="k">return</span> <span class="nx">fmt</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+				</div>
+				<p>（本文完）</p>
+
+				<p class="license">
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a
+					 rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享署名-非商业性使用-相同方式共享
+						4.0 国际许可协议</a>进行许可。
+				</p>
+			</article>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
+	<script src="/js/article.js"></script>
+</body>
+
+</html>

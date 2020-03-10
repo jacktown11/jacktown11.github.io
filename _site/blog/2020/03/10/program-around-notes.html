@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+</head>
+
+<body>
+	<div id="app" class="app-wrap">
+
+		<!-- 侧边栏显隐控制钮 -->
+		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
+				<line x1="8" y1="8" x2="32" y2="8"></line>
+				<line x1="8" y1="16" x2="32" y2="16"></line>
+				<line x1="8" y1="24" x2="32" y2="24"></line>
+			</g>
+		</svg>
+
+		<div class="sidebar" style="display: none;" v-show="isShowSidebar">
+			<!-- 目录级别控制条 -->
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+
+			<!-- 文章目录 -->
+			<div id="catalog-container" class="catalog-container">
+				<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
+			</div>
+
+			<!-- 更多文章导航 -->
+			<div class="post-nav">
+				<div class="home">
+					<a class="home-link" href="/">返回首页</a>
+				</div>
+				<div class="prev no-wrap">
+					上一篇：<a href="/blog/2020/03/10/powerful-fe-notes">大前端杂记</a>
+				</div>
+				<div class="next no-wrap">
+					下一篇：没有更多了
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 文章内容区 -->
+		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
+			<article id="article-container">
+				<h1 id="post-title">编程相关杂记</h1>
+				<p class="meta">2020-03-10</p>
+				<div class="post" ref="post">
+					<h1 id="section">计算机科学</h1>
+<h2 id="section-1">计算机中的位</h2>
+<ul>
+<li><code>CPU</code>位数，是从计算机硬件层面来看，指的是一个时钟周期内处理器同时寄存和处理的二进制位数，也就是字长，通常等于数据总线的宽度。</li>
+<li>操作系统位数，是从计算机软件层面来看， 其概念是基于<code>CPU</code>的位数的，且操作系统的位数是依赖于指令集的位数的。</li>
+<li>注意：按“字”寻址，说明是存储单元大小为字长的位数，按“字节”寻址，说明存储单元是一个字节的大小 。</li>
+</ul>
+<p>通常：</p>
+<ul>
+<li><code>CPU</code>位数 = <code>CPU</code>中寄存器的位数 = <code>CPU</code>一次并行处理的数据宽度 = 数据总线的宽度</li>
+<li>操作系统位数 = 其所依赖的指令集位数 &lt;= <code>CPU</code>位数</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><a href="https://blog.csdn.net/qq_27565063/article/details/53748879">CPU 位数、操作系统位数、计算机字长、C/C++基本数据类型长度</a></li>
+<li><a href="https://blog.csdn.net/u012861978/article/details/51871315">关于 CPU 位数和操作系统位数</a></li>
+</ul>
+
+				</div>
+				<p>（本文完）</p>
+
+				<p class="license">
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a
+					 rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享署名-非商业性使用-相同方式共享
+						4.0 国际许可协议</a>进行许可。
+				</p>
+			</article>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
+	<script src="/js/article.js"></script>
+</body>
+
+</html>

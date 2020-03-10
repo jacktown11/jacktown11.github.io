@@ -1,0 +1,523 @@
+/*=====================
+本样式文件导航：
+part1: 页面总体布局
+part2: 边栏样式
+part3: 文章结构样式
+part4: 文章内部样式
+part5: 对窄屏设备的适配
+=======================*/
+
+/*=====================
+part1: 页面总体布局
+=======================*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.app-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.sidebar {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  background-color: #333;
+}
+.article-wrap {
+  margin-left: 30%;
+  margin-right: auto;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.extended {
+  margin-left: auto;
+}
+.article-wrap::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.article-wrap::-webkit-scrollbar-track {
+  background: #f6f6f6;
+  border-radius: 5px;
+}
+.article-wrap::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 5px;
+}
+.article-wrap::-webkit-scrollbar-thumb:hover {
+  background: #747474;
+}
+.article-wrap::-webkit-scrollbar-corner {
+  background: #f6f6f6;
+}
+
+/*=====================
+part2: 边栏样式
+=======================*/
+
+/* 侧边栏显隐控制钮 */
+.sidebar-control {
+  position: fixed;
+  top: 0;
+  left: 4px;
+  z-index: 100;
+  background-color: #222;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 级别控制条 */
+.level-controller {
+  margin: 0;
+  height: 32px;
+  line-height: 32px;
+  color: #ccc;
+  text-align: right;
+}
+.level-btn {
+  display: inline-block;
+  width: 1.5em;
+  height: 1em;
+  padding: 0;
+  line-height: 1;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  color: #eee;
+}
+
+/* 文章目录 */
+.catalog-container {
+  position: absolute;
+  z-index: 50;
+  left: 0;
+  top: 32px;
+  bottom: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 0 12px;
+  font-size: 16px;
+  background-color: #f8f9f8;
+  color: #222;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.catalog-container::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.catalog-container::-webkit-scrollbar-track {
+  background: #333;
+  /* border-radius:2px; */
+}
+.catalog-container::-webkit-scrollbar-thumb {
+  background: #d1dafb;
+  border-radius: 2px;
+}
+.catalog-container::-webkit-scrollbar-thumb:hover {
+  background: #abbcf7;
+}
+.catalog-container::-webkit-scrollbar-corner {
+  background: #333;
+}
+.catalogs {
+  padding: 0 2px;
+}
+.children {
+  padding-left: 0.8em;
+}
+.title {
+  margin: 4px 0;
+  height: 1.7em;
+  line-height: 1.7em;
+  overflow: hidden;
+  cursor: pointer;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+.title:hover {
+  box-shadow: 0 0 2px #000;
+}
+.title-link,
+.expand-controller {
+  display: inline-block;
+  vertical-align: top;
+  height: 1.7em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.expand-controller {
+  width: 1em;
+  margin-right: 2px;
+  font-weight: bold;
+  text-align: center;
+  color: #488;
+  cursor: pointer;
+}
+
+.title-link:link,
+.title-link:visited {
+  color: #222;
+}
+.title1,
+.title1 .title-link {
+  color: #fff;
+  background-color: #096;
+}
+.title2,
+.title2 .title-link {
+  color: #e67008;
+}
+.title3,
+.title3 .title-link {
+  color: #14877e;
+}
+
+.title-link:hover,
+.title-link:active {
+  text-decoration: underline;
+}
+.title1 .expand-controller {
+  color: #fff;
+}
+.single {
+  background-color: transparent;
+}
+
+/* 更多文章导航 */
+.post-nav {
+  position: absolute;
+  z-index: 50;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  padding: 0 2px;
+  color: #ccc;
+  box-sizing: border-box;
+  /* box-shadow: 0 -1px 2px #000; */
+}
+.post-nav a:link,
+.post-nav a:visited {
+  color: #eee;
+}
+.post-nav a:hover,
+.post-nav a:active {
+  color: #f40;
+}
+.home {
+  height: 40px;
+  line-height: 40px;
+}
+.home-link {
+  display: inline-block;
+  height: 30px;
+  margin-top: 6px;
+  line-height: 30px;
+  border-radius: 20px;
+  padding: 0 8px;
+  border: 2px solid #ccc;
+  font-weight: 700;
+}
+a.home-link:hover,
+a.home-link:active {
+  color: #f40;
+  border-color: #f40;
+}
+.prev,
+.next {
+  height: 30px;
+  line-height: 30px;
+}
+
+/*=================
+part3: 文章结构样式
+===================*/
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+  background-color: #fff;
+  color: #000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica Neue, sans-serif;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+article {
+  box-sizing: border-box;
+  padding: 0.1rem 2rem 2rem;
+  font-size: 0.85rem;
+  width: 96%;
+  max-width: 54rem;
+  margin: 0 auto 16px;
+  border: none;
+  overflow-x: hidden;
+}
+article.right {
+  min-width: 15rem;
+  margin-left: 30%;
+}
+article .post {
+  padding: 0rem;
+}
+article > h1 {
+  color: black;
+  margin-top: 1.8rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+  background: transparent;
+  box-shadow: none;
+}
+article > p {
+  font-size: 1.2em;
+  text-align: right;
+}
+
+/*=================
+part4: 文章内部样式
+===================*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+h1 {
+  padding-left: 2px;
+  background: rgb(0, 153, 102);
+  color: white;
+  font-size: 1.8em;
+  box-shadow: 2px 2px 4px #000;
+}
+h2 {
+  font-size: 1.8em;
+  color: #e67008;
+}
+h3 {
+  font-size: 1.5em;
+  color: #14877e;
+}
+
+h4 {
+  font-size: 1.4em;
+  color: #444;
+}
+h5 {
+  font-size: 1.2em;
+}
+h6 {
+  background-color: inherit;
+  font-size: 1em;
+}
+
+hr {
+  height: 0.2em;
+  border: 0;
+  color: #cccccc;
+  background-color: #cccccc;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+li,
+table,
+pre,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1em 0;
+}
+
+ul {
+  list-style-type: square;
+}
+ul ul {
+  list-style-type: disc;
+}
+ul ul ul {
+  list-style-type: circle;
+}
+ol {
+  list-style-type: decimal;
+}
+ul li,
+ol li {
+  margin: 0.6em 0;
+}
+pre {
+  padding: 10px;
+  overflow: auto;
+  border-radius: 10px;
+}
+div.highlight {
+  background: transparent;
+}
+pre.highlight {
+  background: #282c34;
+}
+
+pre.highlight .err {
+  color: #ff0088;
+  background-color: transparent;
+}
+
+code {
+  font-family: Consolas, Monaco, Andale Mono, monospace;
+  color: #222;
+  background-color: #fffae0;
+}
+
+pre > code {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  border-radius: 10px;
+  background-color: transparent;
+}
+.post a:link {
+  border-bottom: 1px dashed black;
+  border-color: inherit;
+}
+
+a:link {
+  text-decoration: none;
+  color: #009966;
+}
+a:visited {
+  color: #366;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:hover,
+a:active {
+  color: #f40;
+  outline: 0;
+}
+
+::-moz-selection {
+  background: rgba(255, 255, 0, 0.3);
+  color: #000;
+}
+::selection {
+  background: rgba(255, 255, 0, 0.3);
+  color: #000;
+}
+
+a::-moz-selection {
+  background: rgba(255, 255, 0, 0.3);
+  color: #0645ad;
+}
+a::selection {
+  background: rgba(255, 255, 0, 0.3);
+  color: #0645ad;
+}
+
+blockquote {
+  color: #333333;
+  margin: 0;
+  padding-left: 3em;
+  border-left: 0.5em #eee solid;
+}
+
+ul,
+ol {
+  margin: 0.2em 0;
+  padding: 0 0 0 2em;
+}
+li p:last-child {
+  margin: 0;
+}
+ul ul li,
+ul ol li,
+ol ol li,
+ol ul li {
+  margin: 0;
+}
+dd {
+  margin: 0 0 0 2em;
+}
+
+img {
+  border: 0;
+  display: block;
+  -ms-interpolation-mode: bicubic;
+  max-width: 90%;
+  padding: 0em 1em;
+  margin: 1em auto;
+  overflow: scroll;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #444;
+}
+th,
+td {
+  border: 1px solid #d5d7b9;
+  padding: 0.5em 0.5em;
+  font-weight: 400;
+}
+th {
+  text-align: left;
+  background-color: #f7f8f9;
+}
+td {
+  vertical-align: top;
+}
+
+/* 版权声明 */
+
+.license {
+  background-color: #ffe0e0;
+  border-radius: 10px;
+  border: 5px solid #ff4400;
+  text-align: center;
+  padding: 10px;
+}
+.license img {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+/*=================
+part5: 对窄屏设备的适配
+===================*/
+
+@media (max-width: 719px) {
+  .sidebar {
+    width: 70%;
+  }
+  .article-wrap {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  article {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}

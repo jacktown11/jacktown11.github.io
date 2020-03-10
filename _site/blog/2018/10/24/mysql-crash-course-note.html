@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+</head>
+
+<body>
+	<div id="app" class="app-wrap">
+
+		<!-- 侧边栏显隐控制钮 -->
+		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
+				<line x1="8" y1="8" x2="32" y2="8"></line>
+				<line x1="8" y1="16" x2="32" y2="16"></line>
+				<line x1="8" y1="24" x2="32" y2="24"></line>
+			</g>
+		</svg>
+
+		<div class="sidebar" style="display: none;" v-show="isShowSidebar">
+			<!-- 目录级别控制条 -->
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+
+			<!-- 文章目录 -->
+			<div id="catalog-container" class="catalog-container">
+				<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
+			</div>
+
+			<!-- 更多文章导航 -->
+			<div class="post-nav">
+				<div class="home">
+					<a class="home-link" href="/">返回首页</a>
+				</div>
+				<div class="prev no-wrap">
+					上一篇：<a href="/blog/2018/07/17/javase-IO">javase IO</a>
+				</div>
+				<div class="next no-wrap">
+					下一篇：<a href="/blog/2018/10/27/full-stack-course-01-evironment-and-version-control">全栈课程01 开发环境与版本控制简介</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 文章内容区 -->
+		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
+			<article id="article-container">
+				<h1 id="post-title">《mysql必知必会》笔记</h1>
+				<p class="meta">2018-10-24</p>
+				<div class="post" ref="post">
+					<p><strong>按</strong>：为便于查看，将章节分为了多个部分，对原书章节名字也做了修改简化。</p>
+<h1 id="section">小白入门</h1>
+<h2 id="sql">第一章 了解SQL</h2>
+<p>一些基本的数据库术语：</p>
+<ul>
+<li><code>数据库</code>（database）：保存有组织的数据的容器（通常是一个文件或一组文件）</li>
+<li><code>表</code>（table）：某种特定类型数据的结构化清单</li>
+<li><code>模式</code>（schema）:关于数据库和表的布局及特性的信息</li>
+<li><code>列</code>（column）：表中的一个字段；所有表都是由一个或多个列组成</li>
+<li><code>数据类型</code>（datatype）：所容许的数据的类型；每个表列都有相应的数据类型，它限制`（或容许）该列中存储的数据</li>
+<li><code>行</code>（row）：表中的一个记录</li>
+<li><code>主键</code>（primary key）：一列（或一组列），其值能够唯一区分表中每个行</li>
+<li><code>SQL</code>（Structured Query Language）：结构化查询语言，一种专门用来与数据库通信的语言</li>
+</ul>
+<h2 id="mysql">第二章 MySQL简介</h2>
+<h3 id="mysql-1">什么是MySQL</h3>
+<p>MySQL是一种数据库软件（DBMS，Database Management System，数据库管理系统），负责数据的所有存储、检索、管理与实际处理，即通过它与数据库（<code>database</code>）交互。</p>
+<p>DBMS分类：</p>
+<ul>
+<li>基于文件系统的DBMS（如Microsoft Access）</li>
+<li>基于客户机-服务器的DBMS（如MySQL、Oracle、Microsoft SQL Server）</li>
+</ul>
+<h3 id="dbms">基于客户机-服务器的DBMS</h3>
+<ul>
+<li>服务器软件：如MySQL</li>
+<li>客户机
+<ul>
+<li>各种工具：如MySQL Administrator、MySQL Query Browser、SQLyog</li>
+<li>脚本语言：如Perl</li>
+<li>Web应用开发语言：如ASP、JSP、PHP</li>
+<li>程序设计语言：如Java、C、C++</li>
+</ul>
+</li>
+</ul>
+<h3 id="mysql-2">MySQL客户机工具</h3>
+<ul>
+<li>命令行实用程序</li>
+<li>MySQL Administrator</li>
+<li>MySQL Query Browser</li>
+</ul>
+<h4 id="mysql-3">MySQL命令行入门</h4>
+<ul>
+<li>登录；<code>mysql -u username -p</code></li>
+<li>帮助：<code>\h</code>或<code>help</code>或<code>help 关键字</code></li>
+<li>退出：<code>exit</code>或<code>quit</code></li>
+<li>命令以<code>\g</code>或<code>;</code>结束</li>
+</ul>
+<h2 id="mysql-4">第三章 使用MySQL</h2>
+<h3 id="mysql-5">连接到MySQL</h3>
+<ul>
+<li>需要提供主机名、端口、用户名、口令</li>
+<li>MySQL内部有用户列表，各用户有相应的权限；管理登录（root）由于有完全的权限，因此受到密切保护</li>
+</ul>
+<h3 id="section-1">选择数据库与查看内部信息</h3>
+<ul>
+<li><strong><code>SHOW DATABASES;</code></strong>，显示所有可用数据库的列表</li>
+<li><strong><code>USE databasex;</code></strong>，选择指定名称的数据库</li>
+<li><strong><code>SHOW TABLES;</code></strong>，显示所有选定的数据库内的可用表的列表</li>
+<li><strong><code>SHOW COLUMNS FROM tablex;</code></strong>，显示给定名称的表的列信息</li>
+</ul>
+<h1 id="select">SELECT基础</h1>
+<h2 id="select-1">第四章 SELECT</h2>
+<ul>
+<li><strong><code>SELECT</code> columnx <code>FROM</code> tablex</strong>，从某表中检索给定列名的一列</li>
+<li><strong>SELECT column1<code>,</code>column2 FROM tablex</strong>，从某表中检索给定列名的多列</li>
+<li><strong>SELECT <code>*</code> FROM tablex</strong>，从某表中检索给定列名的列</li>
+<li><strong>SELECT <code>DISCTINCT</code> column1,column2 FROM tablex</strong>，从某表中检索给定列名的多列去重后的结果（重复是指被检索的各列都相同）</li>
+<li><strong>SELECT column FROM tablex <code>LIMIT</code> count</strong>，从某表中检索给定列名的一列，结果最多count条</li>
+<li><strong>SELECT column FROM tablex <code>LIMIT</code> pos, count</strong>，从某表中检索给定列名的一列，结果为pos位置之后（不含）的最多count条</li>
+<li><strong>SELECT tablex<code>.</code>columnx FROM databasex<code>.</code>tablex</strong>，列和表都可以选择性地使用完全限定的写法</li>
+</ul>
+<h2 id="order-by">第五章 ORDER BY</h2>
+<p><code>子句</code>（clause），SQL语句由某些必须的和可选的子句组成，一个子句通常由一个关键字和所提供的数据组成，子句的例子：FROM子句。</p>
+<p><code>ORDER BY</code>子句，用于按照一个或多个列对输出进行排序的子句。</p>
+<ul>
+<li><strong>SELECT columnx FROM tablex <code>ORDER BY</code> columny</strong>，检索出指定列并给定列排序（用于排序的列可能是非检索的）</li>
+<li><strong>SELECT columnx FROM tablex <code>ORDER BY</code> column1,column2</strong>，检索出指定列并给定的多个列排序（先按column1排序，column1存在重复项再按column2排序）</li>
+<li><strong>SELECT columnx FROM tablex ORDER BY column1 <code>DESC</code>,column2</strong>，检索出指定列并给定的多个列排序（先按column1降序排序，column1存在重复项再按column2升序（默认）排序）。注意降序<code>DESC</code>和升序<code>ASC</code>需要逐个指定到作为排序根据的各个列后。</li>
+</ul>
+<h2 id="where1">第六章 WHERE(1)</h2>
+<p>使用<code>WHERE</code>子句给定搜索条件（过滤条件）。</p>
+<h3 id="section-2">格式</h3>
+<ul>
+<li><strong>SELECT columnx FROM tablex <code>WHERE 条件</code></strong></li>
+</ul>
+<p>其中的条件可以使用如下的一些操作符：</p>
+<p>|操作符 |含义 |
+|-|-|
+|<code>=</code> |相等（可以用于字符串） |
+|<code>&lt;&gt;</code> |不等于 |
+|<code>!=</code> |不等于 |
+|<code>&lt;</code> |小于 |
+|<code>&lt;=</code> |小于等于 |
+|<code>&gt;</code> |大于 |
+|<code>&gt;=</code> |大于等于 |
+|<code>BETWEEN a AND b</code> |在区间[a,b]中 |</p>
+<h3 id="section-3">空值检查</h3>
+<ul>
+<li><strong>SELECT columnx FROM tablex WHERE columny <code>IS NULL</code></strong></li>
+</ul>
+<p><code>NULL</code>不同于0、空串或空格，它表示无值（no value）。要注意：在过滤选择具有特定值或不具有特定值的行时，都不会返回具有<code>NULL</code>值的行。</p>
+<h2 id="where2">第七章 WHERE(2)</h2>
+<ul>
+<li><strong>SELECT columnx FROM tablex WHERE 条件1 <code>AND</code> 条件2</strong>，多重条件与过滤</li>
+<li><strong>SELECT columnx FROM tablex WHERE 条件1 <code>OR</code> 条件2</strong>，多重条件或过滤</li>
+<li><code>AND</code>优先级高于<code>OR</code>,可以通过圆括号<code>()</code>改变条件计算次序</li>
+<li><strong>SELECT columnx FROM tablex WHERE columny <code>IN</code> (值1, 值2, 值3)</strong>，筛选某列值在备选值中的条目</li>
+<li><strong>SELECT columnx FROM tablex WHERE <code>NOT</code> 条件</strong>，对其后的条件（<code>IN</code>、<code>BETWEEN</code>、<code>EXISTS</code>）取反</li>
+</ul>
+<h2 id="like">第八章 LIKE</h2>
+<p><strong>通配符</strong>（wildcard），用来匹配值的一部分的特殊字符。</p>
+<p><strong>搜素模式</strong>（search pattern），由字面值、通配符或两者组合构成的搜索条件。</p>
+<ul>
+<li><strong>SELECT columnx FROM tablex WHERE columny <code>LIKE</code> 搜索模式</strong>，筛选某列符合给定搜索模式的条目</li>
+</ul>
+<p>两种通配符：</p>
+<ul>
+<li><code>%</code>，匹配0或多个任意字符</li>
+<li><code>_</code>，匹配1个任意字符</li>
+</ul>
+<h2 id="regexp">第九章 REGEXP</h2>
+<ul>
+<li><strong>SELECT columnx FROM tablex WHERE columny <code>REGEXP</code> 正则表达式</strong></li>
+</ul>
+<p>MySQL中正则表示式中特殊字符需要双重转义（js注释：好比js中通过<code>new RegExp(regstr)</code>的方式建立正则表达式一样，另外MySQL中的字符类和词开头结尾定位符和js明显不同）</p>
+<h2 id="section-4">第十章 计算字段</h2>
+<p><strong>字段</strong>（field），基本与列同意，常互换使用，字段更多用在计算字段的连接上。</p>
+<p><strong>拼接</strong>（concatenate），把值联结到一起构成单个值。</p>
+<p><strong>别名</strong>（alias），一个字段或值的替换名。</p>
+<ul>
+<li><strong>SELECT <code>计算字段 AS 别名</code> FROM tablex</strong>，将搜索结果，通过算术运算（加减乘除）和函数（<code>Concat()</code>、<code>Trim()</code>）等得到新字段，同时为计算字段添加别名</li>
+</ul>
+<h2 id="section-5">第十一章 处理函数</h2>
+<p>MySQL提供了一系列数据处理函数：</p>
+<ul>
+<li>文本处理函数，如 <code>Upper()</code>、<code>Trim()</code>、<code>LTrim()</code></li>
+<li>日期与时间处理函数，如<code>Date()</code>返回<code>yyyy-mm-dd</code>格式的日期、<code>Year()</code>返回完整年份</li>
+<li>数值处理函数，如<code>Abs()</code>、<code>Sin()</code>、<code>Sqrt()</code></li>
+</ul>
+<h2 id="section-6">第十二章 聚集函数</h2>
+<p><strong>聚集函数</strong>（aggregate function），运行在行组上，计算和返回单个值的函数。</p>
+<p>|聚集函数|解释|
+|- |- |
+|<code>AVG()</code> |平均值，忽略<code>NULL</code>行 |
+|<code>COUNT()</code> |条目数，列名参数时忽略<code>NULL</code>行，<code>*</code>参数时计算所有行 |
+|<code>MAX()</code> |最大值，忽略<code>NULL</code>行 |
+|<code>MIN()</code> |最小值，忽略<code>NULL</code>行 |
+|<code>SUM()</code> |求和，忽略<code>NULL</code>行 |</p>
+<ul>
+<li>在列名参数前加上<code>DISTINCT</code>(默认为<code>ALL</code>)时，只聚集不同的值</li>
+<li>可以组合使用聚集函数，也可与算术操作符配合</li>
+</ul>
+<h2 id="group-by">第十三章 GROUP BY</h2>
+<ul>
+<li><code>GROUP BY</code>子句可以让聚集函数在根据给定的列分组以后，再分别计算各个分组</li>
+<li><code>HAVING</code>子句可以对分组后的计算结果再次筛选（而不是像<code>WHERE</code>那样过滤原始数据行本身）</li>
+<li><code>GROUP BY</code>分组计算结果本身是不排序的，为此可以再使用<code>ORDER BY</code>对计算结果排序</li>
+</ul>
+<h3 id="group-by-1">GROUP BY使用注意事项</h3>
+<ul>
+<li><code>GROUP BY</code>子句可以包含任意数量的列，从而允许嵌套</li>
+<li>嵌套的分组，数据将在最后规定的分组上汇总</li>
+<li><code>GRUOP BY</code>子句列出的列必须是有效的表达式或建所列（但不能是聚集函数）；<code>SELECT</code>中使用表达式，则必须在<code>GROUP BY</code>中指定相同的表达式，不能使用别名</li>
+<li>除聚集计算语句外，<code>SELECT</code>语句的每个列必须在<code>GROUP BY</code>子句中给出</li>
+<li>如果分组列包含<code>NULL</code>值，那么将各<code>NULL</code>行一起作为一个分组</li>
+<li><code>GROUP BY</code>放在<code>WHERE</code>之后，<code>ORDER BY</code>之前</li>
+</ul>
+<h3 id="select-2">SELECT子句顺序</h3>
+<p>|子句|说明|是否必须使用|
+|- |- |- |
+|<code>SELECT</code>   |要返回的列或表达式 |是 |
+|<code>FROM</code>     |从中检索数据的表 |仅在从表选择数据时使用 |
+|<code>WHERE</code>    |行级过滤     |否 |
+|<code>GROUP BY</code> |分组说明     |仅在按组计算聚集时使用 |
+|<code>HAVING</code>   |组级过滤     |否 |
+|<code>ORDER BY</code> |输出排序顺序 |否 |
+|<code>LIMIT</code>    |要检索的行数 |否 |</p>
+<h1 id="select-3">SELECT高级</h1>
+<h2 id="section-7">第14章 子查询</h2>
+<ul>
+<li><strong>SELECT 列x FROM 表 WHERE 列y IN (<code>SELECT 列y ...</code>)</strong>，使用子查询进行过滤</li>
+<li><strong>SELECT 列x, <code>(SELECT COUNT(*) FROM 表2 WHERE 表2.列y = 表1.列y)</code> AS 列名 FROM 表1</strong>，使用子查询得到计算字段</li>
+</ul>
+<h2 id="join">第15章 联结表（JOIN）</h2>
+<p><strong>外键</strong>（foreign key），某个表中的一列，它包含另一个表的主键值，定义了两个表之间的关系。</p>
+<p><strong>可伸缩性</strong>（scale），能够适应不断增加的工作量而不失败。设计良好的数据库或应用程序称之为可伸缩性好。</p>
+<ul>
+<li><strong>SELECT 列x FROM 表1,表2 WHERE 表1.列x=表2.列x</strong>，联结多个表同时查询</li>
+<li><strong>SELECT 列x FROM 表1 <code>INNER JOIN</code> 表2 ON 表1.列x=表2.列x</strong>，对于等值联结（内部联结），可以使用<code>INNER JOIN</code>和<code>ON</code>关键字</li>
+</ul>
+<h2 id="section-8">第16章 高级联结</h2>
+<p>除了<strong>内部联结</strong>，还有<strong>自联结</strong>、<strong>自然联结</strong>、<strong>外部联结</strong>这些高级联结。</p>
+<ul>
+<li>为了方便查询，可以用<code>AS</code>给表取别名，该别名用于查询并不返回给客户机</li>
+<li><strong>SELECT 列x FROM <code>表1 AS A,表1 AS B</code> WHERE A.列y=B.列y AND B.列z=某值</strong>，自联结</li>
+<li>自然联结</li>
+<li><strong>SELECT 列x FROM <code>表1 LEFT OUTER JOIN 表2</code> ON 表1.列y=表2.列y</strong>，外部联结，可用来保证在表1中的行都被检出（即使该行对应的作为联结条件的列在表2中没有出现），而<code>RIGHT OUTER JOIN</code>则保证表2都被检出</li>
+<li>联结可以和聚集函数一起使用</li>
+</ul>
+<h2 id="union">第17章 组合查询（UNION）</h2>
+<ul>
+<li><strong>SELECT语句1 <code>UNION</code> SELECT语句2</strong>，将多条查询语句的汇总成一个结果集</li>
+<li>注意事项
+<ul>
+<li>各条查询语句的结果列应该是相同的列、表达式或聚集函数，数据类型应该兼容</li>
+<li>使用<code>UNION ALL</code>可以放弃去重的默认行为</li>
+<li><code>ORDER BY</code>语句应该只出现一次，放在最后</li>
+</ul>
+</li>
+</ul>
+<h2 id="match-against">第18章 全文本搜索（Match Against）</h2>
+<ul>
+<li>全文本搜索优势：性能、明确控制、智能化结果</li>
+<li>启用全文本搜索：创建表示使用<code>FULLTEXT</code>子句</li>
+<li><strong>SELECT 列1 FROM 表1 WHERE <code>Match(列名) Against(搜索表达式)</code></strong>，使用全文本搜索</li>
+<li><strong>SELECT 列1 FROM 表1 WHERE Match(列名) Against(搜索表达式 <code>WITH QUERY EXPANSION</code>)</strong>，使用查询扩展以匹配更多的可能相关的行</li>
+<li><strong>SELECT 列1 FROM 表1 WHERE Match(列名) Against(<code>可带全文本布尔操作符的搜索表达式 IN BOOLEAN MODE</code>)</strong>，使用布尔文本搜索，以实现必须匹配、必须不匹配、等级提示、分组等更智能的搜索，全文本布尔操作符包括<code>+ - &lt; &gt; () ~ * &quot;&quot;</code>，布尔方式不对结果排序</li>
+</ul>
+<h1 id="section-9">增、删、改</h1>
+<h2 id="insert-into">第19章 INSERT INTO</h2>
+<ul>
+<li><strong><code>INSERT INTO</code> 表1 (以逗号分隔的各列名) VALUES (以逗号分隔的各列值),(以逗号分隔的各列值)</strong>，向表中插入一至多行，那些有默认值或运行NULL值的列可以省略</li>
+<li><strong><code>INSERT</code> INTO 表1 (以逗号分隔的各列名) <code>SELECT</code> 检索列名 FROM 表2</strong>，将查询结果插入表，检索列名不需要和插入的列名保持一致，重要的只是顺序</li>
+</ul>
+<h2 id="updatedelete">第20章 UPDATE/DELETE</h2>
+<ul>
+<li><strong><code>UPDATE</code> 表1 <code>SET</code> 列1=值1,列2=值2 WHERE子句</strong>，更新过滤出的行的指定列的数据</li>
+<li><strong><code>DELETE FROM</code> 表1 WHERE子句</strong>，删除某些行</li>
+</ul>
+<h1 id="section-10">表操作</h1>
+<h2 id="section-11">第21章 创建和操纵表</h2>
+<h3 id="section-12">创建表</h3>
+<pre><code class="language-mysql">>CREATE TABLE customers
+(
+  cust_id      int       NOT NULL AUTO_INCREMENT,
+  cust_name    char(50)  NOT NULL ,
+  cust_address char(50)  NULL ,
+  cust_city    char(50)  NULL ,
+  cust_state   char(5)   NULL ,
+  cust_zip     char(10)  NULL ,
+  cust_country char(50)  NULL ,
+  cust_contact char(50)  NULL ,
+  cust_email   char(255) NULL ,
+  PRIMARY KEY (cust_id)
+) ENGINE=InnoDB;
+</code></pre>
+<p>以上是一个创建表的示例：</p>
+<ul>
+<li>以<code>CREATE TABLE 表名</code>其实，各列需要给出<code>列名</code>、<code>数据类型</code></li>
+<li><code>NULL</code>和<code>NOT NULL</code>指定该列是否可以是<code>NULL</code>值，不给该关键字时默认情况下是<code>NULL</code></li>
+<li><code>PRIMARY KEY</code>指定主键，必须是唯一的；可以用多个列做主键，此时多个列的组合必须唯一，主键列必须是非<code>NULL</code>的</li>
+<li><code>AUTO INCREMENT</code>使得某列在添加新行时自动递增（缺省时），该列必须被索引（如被作为主键）</li>
+<li><code>DEFAULT 默认值</code>可以指定某列的默认值</li>
+<li><code>ENGINE=引擎</code>指定引擎类型，如下是几种引擎简介：
+<ul>
+<li><code>InnoDB</code>，一个可靠的事务处理引擎，不支持全文本搜索</li>
+<li><code>MEMORY</code>，功能等同于<code>MyISAM</code>，但数据存储在内存而不是磁盘中，速度快（适合临时表）</li>
+<li><code>MyISAM</code>，性能极高，支持全文本搜索，不支持事务处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="section-13">更新表</h3>
+<ul>
+<li><strong><code>ALTER</code> TABLE 表1 <code>ADD</code> 列名 数据类型</strong>，添加新列</li>
+<li><strong><code>ALTER</code> TABLE 表1 <code>DROP COLUMN</code> 列1</strong>，输出列</li>
+<li>定义外键等</li>
+</ul>
+<h3 id="section-14">删除表</h3>
+<ul>
+<li><strong><code>DROP</code> TABLE 表名</strong>，删除</li>
+</ul>
+<h3 id="section-15">重命名表</h3>
+<ul>
+<li><strong><code>RENAME</code> TABLE 新表名 <code>TO</code> 旧表名</strong>，重命名</li>
+</ul>
+<h1 id="section-16">高级技术</h1>
+<h2 id="section-17">第22章 视图</h2>
+<p>视图一种虚拟的表，它本身不包含任何的列或数据，而是根据需要检索数据的查询。其用处：</p>
+<ul>
+<li>重用<code>SQL</code>语句</li>
+<li>简化复杂<code>SQL</code>语句</li>
+<li>使用表的组成部分而不是整个表</li>
+<li>保护数据</li>
+<li>更改数据格式和表示</li>
+</ul>
+<p>主要使用：</p>
+<ul>
+<li><code>CREATE VIEW 视图名 AS</code>，创建视图</li>
+<li><code>SHOW CREATE VIEW 视图名</code>，查看创建视图的语句</li>
+<li><code>DROP VIEW 视图名</code>，删除视图</li>
+<li>更新视图：先<code>DROP</code>再<code>CREATE</code>，或者<code>CREATE OR REPLACE VIEW</code>直接创建（若存在则覆盖）</li>
+</ul>
+<p>创建视图后，可以像查表一样使用<code>SELECT</code>语句；视图是否可更新（<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>）要依情况而定。</p>
+<h2 id="section-18">第23章 存储过程</h2>
+<p>存储过程为以后使用而保存的一条或多条<code>MySQL</code>语句的集合；类似批文件，作用不仅限于批处理；有点：简单、安全、高性能。</p>
+<h3 id="section-19">存储过程使用案例</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span> <span class="p">;</span>
+<span class="k">DELIMITER</span> <span class="o">//</span>
+<span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">ordertotal</span><span class="p">(</span>
+	<span class="k">IN</span> <span class="n">onumber</span> <span class="nb">INT</span><span class="p">,</span>
+	<span class="k">OUT</span> <span class="n">ototal</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">BEGIN</span>
+	<span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">item_price</span> <span class="o">*</span> <span class="n">quantity</span><span class="p">)</span> <span class="k">INTO</span> <span class="n">ototal</span> <span class="k">FROM</span> <span class="n">orderitems</span> <span class="k">WHERE</span> <span class="n">order_num</span> <span class="o">=</span> <span class="n">onumber</span><span class="p">;</span>
+<span class="k">END</span> <span class="o">//</span>
+<span class="k">DELIMITER</span> <span class="p">;</span>
+
+<span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="mi">20005</span><span class="p">,</span> <span class="o">@</span><span class="n">total</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="o">@</span><span class="n">total</span><span class="p">;</span>
+</code></pre></div></div>
+<ul>
+<li>第一行是删除存储过程，<code>IF EXISTS</code>使得在本不存在的情况下不会报错</li>
+<li><code>DELIMITER //</code>，暂时性切换<code>MySQL</code>语句分隔符，以使得存储过程内部的分隔符能够顺利传递给引擎。</li>
+<li>存储过程可以传参，<code>IN</code>为传入存储过程的参数，<code>OUT</code>为从存储过程传出，甚至可以使用<code>INOUT</code>；参数类型和表创建时可用的数据类型相同（不能使用记录集）</li>
+<li>实际的存储过程中使用了<code>INTO</code>将结果传递给<code>OUT</code>参数</li>
+<li><code>CALL</code>语句传参调用调用了存储过程，调用中<code>OUT</code>参数须以<code>@</code>开头</li>
+<li>最后的<code>SELECT</code>语句获取了调用结果</li>
+</ul>
+<h3 id="section-20">智能存储过程</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">ordertotal</span><span class="p">;</span>
+<span class="k">DELIMITER</span> <span class="o">//</span>
+<span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">ordertotal</span><span class="p">(</span>
+	<span class="k">IN</span> <span class="n">onumber</span> <span class="nb">INT</span><span class="p">,</span>
+	<span class="k">IN</span> <span class="n">taxable</span> <span class="nb">BOOLEAN</span><span class="p">,</span>
+	<span class="k">OUT</span> <span class="n">ototal</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">BEGIN</span>
+	<span class="k">DECLARE</span> <span class="n">total</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+	<span class="k">DECLARE</span> <span class="n">taxrate</span> <span class="nb">INT</span> <span class="k">DEFAULT</span> <span class="mi">6</span><span class="p">;</span>
+	<span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">item_price</span> <span class="o">*</span> <span class="n">quantity</span><span class="p">)</span> <span class="k">INTO</span> <span class="n">total</span> <span class="k">FROM</span> <span class="n">orderitems</span> <span class="k">WHERE</span> <span class="n">order_num</span> <span class="o">=</span> <span class="n">onumber</span><span class="p">;</span>
+	<span class="n">IF</span> <span class="n">taxable</span> <span class="k">THEN</span> 
+		<span class="k">SELECT</span> <span class="n">total</span> <span class="o">+</span> <span class="p">(</span><span class="n">total</span> <span class="o">*</span> <span class="n">taxrate</span> <span class="o">/</span><span class="mi">100</span> <span class="p">)</span> <span class="k">INTO</span> <span class="n">total</span><span class="p">;</span>
+	<span class="k">END</span> <span class="n">IF</span><span class="p">;</span>
+	<span class="k">SELECT</span> <span class="n">total</span> <span class="k">INTO</span> <span class="n">ototal</span><span class="p">;</span>
+<span class="k">END</span> <span class="o">//</span>
+<span class="k">DELIMITER</span> <span class="p">;</span>
+
+<span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="mi">20005</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">@</span><span class="n">ototal</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="o">@</span><span class="n">ototal</span><span class="p">;</span>
+<span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="mi">20005</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">@</span><span class="n">ototal</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="o">@</span><span class="n">ototal</span><span class="p">;</span>
+</code></pre></div></div>
+<p>上面这个示例，内部使用了<code>DECLARE</code>定义局部变量、 <code>IF</code>进行逻辑判断以实现更复杂的功能。</p>
+<h3 id="section-21">检查存储过程</h3>
+<ul>
+<li><strong>SHOW CREATE PROCEDURE 存储过程名</strong>，显示存储过程的创建语句</li>
+<li><strong>SHOW PROCEDURE STATUS</strong>，显示存储过程创建时间、创建者等更详细信息</li>
+</ul>
+<h2 id="section-22">第24章 游标</h2>
+<p><strong>游标</strong>是一种在<strong>存储过程</strong>中使用的技术，它是一个存储在<code>MySQL</code>服务器上的数据库查询，它不是一条语句，而是该语句检索出来的结果集。使用它，可以滚动浏览其中的数据。</p>
+<h3 id="section-23">常用操作</h3>
+<ul>
+<li><code>DECLARE 游标名 CURSOR FOR 查询语句</code>，定义游标</li>
+<li><code>OPEN 游标名</code>，打开游标</li>
+<li><code>CLOSE 游标名</code>，关闭游标</li>
+<li><code>FETCH 列名</code>，检索下一行的某列</li>
+</ul>
+<h3 id="section-24">使用示例</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">PROCEDURE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">processorders</span><span class="p">;</span>
+
+<span class="k">DELIMITER</span> <span class="o">//</span>
+<span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="n">processorders</span><span class="p">()</span>
+<span class="k">BEGIN</span>
+	<span class="k">DECLARE</span> <span class="n">done</span> <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">DECLARE</span> <span class="n">o</span> <span class="nb">INT</span><span class="p">;</span>
+	<span class="k">DECLARE</span> <span class="n">t</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+	
+	<span class="k">DECLARE</span> <span class="n">ordernumbers</span> <span class="k">CURSOR</span>
+	<span class="k">FOR</span> 
+	<span class="k">SELECT</span> <span class="n">order_num</span> <span class="k">FROM</span> <span class="n">orders</span><span class="p">;</span>
+	
+	<span class="k">DECLARE</span> <span class="k">CONTINUE</span> <span class="k">HANDLER</span> <span class="k">FOR</span> <span class="k">SQLSTATE</span> <span class="s1">'02000'</span> <span class="k">SET</span> <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+	<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">ordertotals</span>
+	<span class="p">(</span><span class="n">order_num</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">total</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+	
+	<span class="k">OPEN</span> <span class="n">ordernumbers</span><span class="p">;</span>
+	<span class="n">REPEAT</span>
+		<span class="k">FETCH</span> <span class="n">ordernumbers</span> <span class="k">INTO</span> <span class="n">o</span><span class="p">;</span>
+		<span class="k">CALL</span> <span class="n">ordertotal</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
+		<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">ordertotals</span> <span class="p">(</span><span class="n">order_num</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
+	<span class="k">UNTIL</span> <span class="n">done</span> <span class="k">END</span> <span class="n">REPEAT</span><span class="p">;</span>
+	
+	<span class="k">CLOSE</span> <span class="n">ordernumbers</span><span class="p">;</span>
+<span class="k">END</span><span class="o">//</span>
+<span class="k">DELIMITER</span> <span class="p">;</span>
+
+<span class="k">CALL</span> <span class="n">processorders</span><span class="p">();</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ordertotals</span><span class="p">;</span>
+</code></pre></div></div>
+<ul>
+<li>从<code>orders</code>表中获取了所有<code>order_num</code>列，存储为<code>ordernumbers</code>游标</li>
+<li>打开游标，遍历结果集，调用了另一个<strong>存储过程</strong><code>ordertotal</code></li>
+<li>将各<code>order_num</code>与其对应的<code>ordertotal</code>值存储在新表<code>ordertotals</code>中</li>
+<li>上面<code>REPEAT</code>是一个循环，通过定义<code>CONTINU HANDLE</code>，让<code>FETCH</code>不到下一条语句时，将变量<code>done</code>设置为1，以结束循环</li>
+</ul>
+<h2 id="section-25">第25章 触发器</h2>
+<p><strong>触发器</strong>是<code>MySQL</code>在执行<code>INSERT</code>、<code>DELETE</code>、<code>UPDATE</code>时将自动执行的一条/一组语句。</p>
+<ul>
+<li><strong><code>CREATE TRIGGER 触发器名 AFTER INSERT ON 表名 FOR EACH ROW 触发器内容语句</code></strong>，创建触发器的示例，需要指定：触发器名、关联的表、应该响应的活动（增/删/改）、何时触发（<code>AFTER</code>/<code>BEFORE</code>）</li>
+<li><strong><code>DROP TRIGGER 触发器名</code></strong>，删除触发器</li>
+</ul>
+<h2 id="section-26">第26章 事务处理</h2>
+<p><strong>事务处理</strong>，一种机制，用来管理必须成批执行的<code>MySQL</code>操作，以保证数据库不包含不完整的操作结果。</p>
+<ul>
+<li>事务（transaction），一组<code>SQL</code>语句</li>
+<li>回退（rollback），撤销指定<code>SQL</code>语句的过程</li>
+<li>提交（commit），将未存储的<code>SQL</code>语句结果写入数据库表</li>
+<li>保留点（savepoint），事务处理中设置的临时占位符，可以对它发布回退</li>
+</ul>
+<p>开启事务与事务回退：</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<span class="c1">-- SQL语句组</span>
+<span class="k">ROLLBACK</span><span class="p">;</span>
+</code></pre></div></div>
+<p>在事务中使用<code>commit</code>显示提交（默认是隐式提交的），使得如果更改出错会不会提交:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<span class="c1">-- SQL 语句</span>
+<span class="k">COMMIT</span><span class="p">;</span>
+</code></pre></div></div>
+<p>设置保留点与回退到保留点：</p>
+<ul>
+<li><strong><code>SAVEPOINT</code> 保留点名</strong></li>
+<li><strong><code>ROLLBACK TO</code> 保留点名</strong></li>
+</ul>
+<p>让<code>MySQL</code>默认显示提交（针对每个连接而非服务器）：</p>
+<ul>
+<li><strong><code>SET autocommit = 0;</code></strong></li>
+</ul>
+<h2 id="section-27">第27章 字符集和校对</h2>
+<ul>
+<li>字符集，字母和符号的集合</li>
+<li>编码，某个字符集成员的内部表示</li>
+<li>校对，规定字符如何比较的指令</li>
+</ul>
+<p>查看字符集和校对：</p>
+<ul>
+<li><strong><code>SHOW CAHRACTER SET;</code></strong>，查看所有可用的字符集及其描述和默认使用的校对</li>
+<li><strong><code>SHOW COLLATION;</code></strong>，显示所有可用的校对及其适用的字符串</li>
+<li><strong><code>SHOW VARIABLES LIKE 'character%';</code></strong>，查看数据库的默认字符集</li>
+<li><strong><code>SHOW VARIABLES LIKE 'collation%';</code></strong>，查看数据库的默认校对</li>
+</ul>
+<p>指定字符集和校对：可以指定表、表中的列的字符集和校对，或在排序是临时指定校对，校对也可用于<code>GROUP BY</code>、<code>HAVING</code>、聚集函数、别名等。（示例：略）</p>
+<h2 id="section-28">第28章 安全管理</h2>
+<p><code>MySQL</code>服务器安全的基础是：用户应该对他们需要的数据具有适当的访问权。通过创建与管理用户账号可以实现<strong>访问控制</strong>。</p>
+<h3 id="section-29">管理用户</h3>
+<ul>
+<li>用户账号信息存储在<code>mysql</code>数据库的<code>user</code>表中</li>
+<li><strong><code>SELECT user FROM user</code></strong>，查看用户账号列表</li>
+<li><strong><code>CREATE USER 用户名 IDENTIFIED BY 密码</code></strong>，创建新用户</li>
+<li><strong><code>RENAME 用户名 TO 新用户名</code></strong>，更改用户名</li>
+</ul>
+<h3 id="section-30">删除用户账号</h3>
+<ul>
+<li><strong><code>DROP USER 用户名</code></strong>，删除账号</li>
+</ul>
+<h3 id="section-31">设置访问权限</h3>
+<ul>
+<li><strong><code>SHOW GRANTS FOR 用户名</code></strong>，查看某用户的权限</li>
+<li><strong><code>GRANT 权限名 ON 访问对象（数据库、表、列、存储过程等） TO 用户名</code></strong>，给某用户添加特定权限</li>
+<li><strong><code>REVOKE 权限名 ON 访问对象（数据库、表、列、存储过程等） FROM 用户名</code></strong>，撤销某用户特定权限</li>
+</ul>
+<h3 id="section-32">更改口令</h3>
+<ul>
+<li><strong><code>SET PASSWORD FOR 用户名 = 口令</code></strong>，给某用户设置口令</li>
+<li><strong><code>SET PASSWORD = 口令</code></strong>，设置当前登录用户口令</li>
+</ul>
+<h2 id="section-33">第29章 数据库维护</h2>
+<ul>
+<li><strong>备份数据</strong>，使用<code>mysqldump</code>、<code>mysqlhotcopy</code>命令</li>
+<li><strong>数据库维护</strong>，使用<code>analyze</code>、<code>check</code>等命令来查看数据库状态，保证当前的数据正常运行</li>
+<li><strong>诊断启动问题</strong>，排除启动问题时，尽量手动启动，并结合<code>mysqld</code>及相关选项辅助排除</li>
+<li><strong>查看日志文件</strong>，可以看出数据库错误、查询等日志</li>
+</ul>
+<h2 id="section-34">第30章 改善性能</h2>
+<p>总结了一些改善性能的要点。</p>
+
+				</div>
+				<p>（本文完）</p>
+
+				<p class="license">
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a
+					 rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享署名-非商业性使用-相同方式共享
+						4.0 国际许可协议</a>进行许可。
+				</p>
+			</article>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
+	<script src="/js/article.js"></script>
+</body>
+
+</html>

@@ -1,30 +1,26 @@
-I"Z<h1 id="java">java</h1>
-
+I"@<h1 id="java">java</h1>
 <h2 id="tomcat">tomcat</h2>
-
 <ul>
-  <li>tomcat 启动太慢问题
-    <ul>
-      <li>将<code class="highlighter-rouge">$JAVA_PATH/jre/lib/security/java.security</code>这个文件，找到下面的内容：<code class="highlighter-rouge">securerandom.source=file:/dev/urandom</code>，替换成<code class="highlighter-rouge">securerandom.source=file:/dev/./urandom</code></li>
-      <li>参考：<a href="https://blog.csdn.net/u011627980/article/details/54024974">tomcat 启动慢， Creation of SecureRandom instance for session ID generation using SHA1PRNG took xx mil</a></li>
-    </ul>
-  </li>
+<li>tomcat 启动太慢问题
+<ul>
+<li>将<code>$JAVA_PATH/jre/lib/security/java.security</code>这个文件，找到下面的内容：<code>securerandom.source=file:/dev/urandom</code>，替换成<code>securerandom.source=file:/dev/./urandom</code></li>
+<li>参考：<a href="https://blog.csdn.net/u011627980/article/details/54024974">tomcat 启动慢， Creation of SecureRandom instance for session ID generation using SHA1PRNG took xx mil</a></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="linux">linux</h1>
-
 <ul>
-  <li>centos6.9 安装完毕后，输入提示光标闪烁太快
-    <ul>
-      <li>问题描述：如上</li>
-      <li>解决：
-        <ul>
-          <li>修改<code class="highlighter-rouge">/etc/rc.local</code>文件权限：<code class="highlighter-rouge">chmod a+x /etc/rc.local</code></li>
-          <li>修改<code class="highlighter-rouge">/etc/rc.local</code>文件内容：<code class="highlighter-rouge">echo 0 &gt; /sys/class/graphics/fbcon/cursor_blink</code></li>
-        </ul>
-      </li>
-      <li>参考：<a href="https://blog.csdn.net/buxiaoxindasuile/article/details/80793139">设置禁止 centos7 控制台光标闪烁『disable blinking cursors』</a></li>
-    </ul>
-  </li>
+<li>centos6.9 安装完毕后，输入提示光标闪烁太快
+<ul>
+<li>问题描述：如上</li>
+<li>解决：
+<ul>
+<li>修改<code>/etc/rc.local</code>文件权限：<code>chmod a+x /etc/rc.local</code></li>
+<li>修改<code>/etc/rc.local</code>文件内容：<code>echo 0 &gt; /sys/class/graphics/fbcon/cursor_blink</code></li>
+</ul>
+</li>
+<li>参考：<a href="https://blog.csdn.net/buxiaoxindasuile/article/details/80793139">设置禁止 centos7 控制台光标闪烁『disable blinking cursors』</a></li>
+</ul>
+</li>
 </ul>
 :ET

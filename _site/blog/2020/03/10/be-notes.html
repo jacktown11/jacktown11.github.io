@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+</head>
+
+<body>
+	<div id="app" class="app-wrap">
+
+		<!-- 侧边栏显隐控制钮 -->
+		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
+				<line x1="8" y1="8" x2="32" y2="8"></line>
+				<line x1="8" y1="16" x2="32" y2="16"></line>
+				<line x1="8" y1="24" x2="32" y2="24"></line>
+			</g>
+		</svg>
+
+		<div class="sidebar" style="display: none;" v-show="isShowSidebar">
+			<!-- 目录级别控制条 -->
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+
+			<!-- 文章目录 -->
+			<div id="catalog-container" class="catalog-container">
+				<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
+			</div>
+
+			<!-- 更多文章导航 -->
+			<div class="post-nav">
+				<div class="home">
+					<a class="home-link" href="/">返回首页</a>
+				</div>
+				<div class="prev no-wrap">
+					上一篇：<a href="/blog/2019/01/16/css-center-align">css 垂直居中</a>
+				</div>
+				<div class="next no-wrap">
+					下一篇：<a href="/blog/2020/03/10/powerful-fe-notes">大前端杂记</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 文章内容区 -->
+		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
+			<article id="article-container">
+				<h1 id="post-title">后端杂记</h1>
+				<p class="meta">2020-03-10</p>
+				<div class="post" ref="post">
+					<h1 id="java">java</h1>
+<h2 id="tomcat">tomcat</h2>
+<ul>
+<li>tomcat 启动太慢问题
+<ul>
+<li>将<code>$JAVA_PATH/jre/lib/security/java.security</code>这个文件，找到下面的内容：<code>securerandom.source=file:/dev/urandom</code>，替换成<code>securerandom.source=file:/dev/./urandom</code></li>
+<li>参考：<a href="https://blog.csdn.net/u011627980/article/details/54024974">tomcat 启动慢， Creation of SecureRandom instance for session ID generation using SHA1PRNG took xx mil</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="linux">linux</h1>
+<ul>
+<li>centos6.9 安装完毕后，输入提示光标闪烁太快
+<ul>
+<li>问题描述：如上</li>
+<li>解决：
+<ul>
+<li>修改<code>/etc/rc.local</code>文件权限：<code>chmod a+x /etc/rc.local</code></li>
+<li>修改<code>/etc/rc.local</code>文件内容：<code>echo 0 &gt; /sys/class/graphics/fbcon/cursor_blink</code></li>
+</ul>
+</li>
+<li>参考：<a href="https://blog.csdn.net/buxiaoxindasuile/article/details/80793139">设置禁止 centos7 控制台光标闪烁『disable blinking cursors』</a></li>
+</ul>
+</li>
+</ul>
+
+				</div>
+				<p>（本文完）</p>
+
+				<p class="license">
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a
+					 rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享署名-非商业性使用-相同方式共享
+						4.0 国际许可协议</a>进行许可。
+				</p>
+			</article>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
+	<script src="/js/article.js"></script>
+</body>
+
+</html>

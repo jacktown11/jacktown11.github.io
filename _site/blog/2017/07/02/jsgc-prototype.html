@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+</head>
+
+<body>
+	<div id="app" class="app-wrap">
+
+		<!-- 侧边栏显隐控制钮 -->
+		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
+				<line x1="8" y1="8" x2="32" y2="8"></line>
+				<line x1="8" y1="16" x2="32" y2="16"></line>
+				<line x1="8" y1="24" x2="32" y2="24"></line>
+			</g>
+		</svg>
+
+		<div class="sidebar" style="display: none;" v-show="isShowSidebar">
+			<!-- 目录级别控制条 -->
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+
+			<!-- 文章目录 -->
+			<div id="catalog-container" class="catalog-container">
+				<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
+			</div>
+
+			<!-- 更多文章导航 -->
+			<div class="post-nav">
+				<div class="home">
+					<a class="home-link" href="/">返回首页</a>
+				</div>
+				<div class="prev no-wrap">
+					上一篇：<a href="/blog/2017/07/02/jQuery-clone">jQuery clone()方法一个注意点</a>
+				</div>
+				<div class="next no-wrap">
+					下一篇：<a href="/blog/2017/07/24/html-entity">html字符实体</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 文章内容区 -->
+		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
+			<article id="article-container">
+				<h1 id="post-title">《javascript高级程序设计》对象创建与继承 总结笔记</h1>
+				<p class="meta">2017-07-02</p>
+				<div class="post" ref="post">
+					<h1 id="section">1. 创建对象</h1>
+<h1 id="section-1">2. 继承</h1>
+<h2 id="section-2">1)原型链</h2>
+<p><strong>将超类型实例直接作为子类型的原型对象</strong></p>
+<ul>
+<li><strong>优点</strong>
+子类型实例可以在原型链中找到所有超类型的属性和方法。</li>
+<li><strong>缺陷</strong>
+<ul>
+<li>超类型包含引用类型值属性时，会出现问题</li>
+<li>子类型实例无法独立向超类型构造函数传递参数</li>
+</ul>
+</li>
+</ul>
+<h2 id="section-3">2)借用构造函数</h2>
+<p><strong>在子类型构造函数内部，将this（调用子类型构造函数时它指代子类型实例）作为环境对象用call方法调用超类型构造函数。</strong></p>
+<ul>
+<li><strong>优点</strong>
+属性都被定义在实例中，可以向超类型构造函数传递参数</li>
+<li><strong>缺陷</strong>
+<ul>
+<li>不能实现函数复用</li>
+<li>超类型原型中的方法对子类型实例不可见，结果所有引用类型都只能使用构造函数模式来创建</li>
+</ul>
+</li>
+</ul>
+<h2 id="section-4">3)组合继承</h2>
+<p><strong>借用构造函数让超类型属性直接定义在子类型实例中；用原型链继承超类型的方法。</strong></p>
+<ul>
+<li><strong>优点</strong>
+结合了原型链和借用构造函数的优点</li>
+<li><strong>缺陷</strong>
+超类型构造函数被两次调用，子类型实例的原型中同时含有超类型的属性</li>
+</ul>
+<h2 id="section-5">4)原型式继承</h2>
+<p><strong>定义一个对象创建函数，将基础对象传入，函数内部创建一个新对象，该新对象以传入的基础对象为原型对象。</strong></p>
+<ul>
+<li><strong>优点</strong>
+基于对象而不是基于构造函数建立新对象</li>
+</ul>
+<h2 id="section-6">5)寄生式继承</h2>
+<p><strong>借鉴原型式继承的思路，定义一个对象创建函数，函数接收一个基础对象，基于它创建一个新对象（比如利用原型式继承来创建），然后对新对象增强后返回。</strong></p>
+<ul>
+<li><strong>优点</strong>
+基于对象创建功能增强的新对象</li>
+</ul>
+<h2 id="section-7">6)寄生组合式继承</h2>
+<p><strong>对组合式继承加以改进：基于超类型的原型对象，利用寄生式继承创建一个新对象，用这个新对象代替超类型的实例作为子类型的原型对象。</strong></p>
+<ul>
+<li><strong>优点</strong>
+在组合式继承中，我们继承方法时实际上只需要超类型的原型对象，我们可以借用寄生继承；避免对超类型构造函数的二次调用，子类型实例中不再出现超类型属性。</li>
+</ul>
+
+				</div>
+				<p>（本文完）</p>
+
+				<p class="license">
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a
+					 rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享署名-非商业性使用-相同方式共享
+						4.0 国际许可协议</a>进行许可。
+				</p>
+			</article>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
+	<script src="/js/article.js"></script>
+</body>
+
+</html>
