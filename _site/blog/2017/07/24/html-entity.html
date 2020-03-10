@@ -59,19 +59,15 @@
 				<h1 id="post-title">html字符实体</h1>
 				<p class="meta">2017-07-24</p>
 				<div class="post" ref="post">
-					<h2 id="为什么在html文档中使用html实体字符">为什么在html文档中使用html实体字符？</h2>
-<p>假设我们在一个html文档中的一个段落元素<code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code>内部放一段文本，如果这段文本的内容是<code class="highlighter-rouge">&lt;em&gt;&lt;/em&gt;</code>（从而这段html代码是<code class="highlighter-rouge">&lt;p&gt;&lt;em&gt;&lt;/em&gt;&lt;/p&gt;</code>），由于这个文本的内容本身就是一个标签，那么浏览器是不会把p元素中的内容当作文本处理的，它只会将其看作一个没有包含任何内容的<code class="highlighter-rouge">em</code>标签，那么如何才能达到本意呢？我们可以这样写：<code class="highlighter-rouge">&lt;p&gt;&lt;em&gt;&lt;/em&gt;&lt;/p&gt;</code>，其中<code class="highlighter-rouge">&lt;</code>和<code class="highlighter-rouge">&amp;gt</code>分别表示了字符<code class="highlighter-rouge">&lt;</code>和<code class="highlighter-rouge">&gt;</code>，这样就能把带有特殊字符（如<code class="highlighter-rouge">&lt;</code>、<code class="highlighter-rouge">&gt;</code>、<code class="highlighter-rouge">&amp;</code>等）的文本显示出来了。</p>
-
-<h2 id="其他表示实体html字符的方法">其他表示实体html字符的方法</h2>
-<p>我们上述的表示法可以叫做用实体名称表示的方法(常见的如用 <code class="highlighter-rouge">&amp;nbsp;</code> 表示非换行空格)，起始除此以外我们还可以使用实体的编号(实际就是utf-8下的编码)，如非换行空格的编码为160，因此也可写作 <code class="highlighter-rouge">&amp;#160</code> ，160用表示成16进制是A0，因此也可写作<code class="highlighter-rouge">&amp;#xA0</code>，以上所有写法都得到一个非换行空格。</p>
-
-<h2 id="一个小应用">一个小应用</h2>
+					<h2 id="htmlhtml">为什么在html文档中使用html实体字符？</h2>
+<p>假设我们在一个html文档中的一个段落元素<code>&lt;p&gt;&lt;/p&gt;</code>内部放一段文本，如果这段文本的内容是<code>&lt;em&gt;&lt;/em&gt;</code>（从而这段html代码是<code>&lt;p&gt;&lt;em&gt;&lt;/em&gt;&lt;/p&gt;</code>），由于这个文本的内容本身就是一个标签，那么浏览器是不会把p元素中的内容当作文本处理的，它只会将其看作一个没有包含任何内容的<code>em</code>标签，那么如何才能达到本意呢？我们可以这样写：<code>&lt;p&gt;&lt;em&gt;&lt;/em&gt;&lt;/p&gt;</code>，其中<code>&lt;</code>和<code>&amp;gt</code>分别表示了字符<code>&lt;</code>和<code>&gt;</code>，这样就能把带有特殊字符（如<code>&lt;</code>、<code>&gt;</code>、<code>&amp;</code>等）的文本显示出来了。</p>
+<h2 id="html">其他表示实体html字符的方法</h2>
+<p>我们上述的表示法可以叫做用实体名称表示的方法(常见的如用 <code>&amp;nbsp;</code> 表示非换行空格)，起始除此以外我们还可以使用实体的编号(实际就是utf-8下的编码)，如非换行空格的编码为160，因此也可写作 <code>&amp;#160</code> ，160用表示成16进制是A0，因此也可写作<code>&amp;#xA0</code>，以上所有写法都得到一个非换行空格。</p>
+<h2 id="section">一个小应用</h2>
 <p>我在一个小项目中有这样一个细节，在一个段落引用下方要署名，署名前有一个大约两个中文字符宽度的横线，如何处理呢？</p>
-
-<h3 id="方法一">方法一</h3>
+<h3 id="section-1">方法一</h3>
 <p>加两个减号符号，结果两个减号符号中间会有空白，不行；</p>
-
-<h3 id="方法二">方法二</h3>
+<h3 id="section-2">方法二</h3>
 <p>在署名文本前添加一个span.cite_line元素，添加下边框，然后用相对定位将其上移当文本行中间，代码如下：</p>
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">span</span><span class="nc">.cite_line</span><span class="p">{</span>
     <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
@@ -82,22 +78,19 @@
 <span class="p">}</span>
 </code></pre></div></div>
 <p>这是我当时的方案，可以解决问题。</p>
-
-<h3 id="方法三">方法三</h3>
-<p>借助bootstrap框架，这是那个项目示例源码中的方案。将作者签名放在<code class="highlighter-rouge">blockquote&gt;footer</code>元素中，bootstrap框架会自动在作者署名前加上横线。查看源码如下：</p>
+<h3 id="section-3">方法三</h3>
+<p>借助bootstrap框架，这是那个项目示例源码中的方案。将作者签名放在<code>blockquote&gt;footer</code>元素中，bootstrap框架会自动在作者署名前加上横线。查看源码如下：</p>
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">blockquote</span> <span class="nt">footer</span><span class="nd">:before</span><span class="p">{</span>
     <span class="nl">content</span><span class="p">:</span> <span class="s2">'\2014 \00A0'</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>上面代码中<code class="highlighter-rouge">\2014</code>就是指定了横线字符，十六进制数2014是其对应的编码，后面的A0正好是我们上面说过的非换行空格符的编码。书写方式和在html中有所不同。</p>
-
-<h3 id="方法四">方法四</h3>
-<p>根据方法三，我们知道了横线字符的编码，我们似乎可以直接在html中引入横线字符，这样写：<code class="highlighter-rouge">&amp;#x2014</code>，结果证明是OK的。</p>
-
-<h2 id="相关参考">相关参考</h2>
+<p>上面代码中<code>\2014</code>就是指定了横线字符，十六进制数2014是其对应的编码，后面的A0正好是我们上面说过的非换行空格符的编码。书写方式和在html中有所不同。</p>
+<h3 id="section-4">方法四</h3>
+<p>根据方法三，我们知道了横线字符的编码，我们似乎可以直接在html中引入横线字符，这样写：<code>&amp;#x2014</code>，结果证明是OK的。</p>
+<h2 id="section-5">相关参考</h2>
 <ul>
-  <li><a href="https://www.w3cschool.cn/html/html-entities.html">w3c：实体字符</a></li>
-  <li><a href="https://www.zhihu.com/question/23374078">知乎：unicode和utf-8区别</a></li>
+<li><a href="https://www.w3cschool.cn/html/html-entities.html">w3c：实体字符</a></li>
+<li><a href="https://www.zhihu.com/question/23374078">知乎：unicode和utf-8区别</a></li>
 </ul>
 
 				</div>

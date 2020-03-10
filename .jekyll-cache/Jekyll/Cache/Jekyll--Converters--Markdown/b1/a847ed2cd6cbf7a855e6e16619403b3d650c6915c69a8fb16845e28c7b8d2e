@@ -1,11 +1,11 @@
-I"<h2 id="导言">导言</h2>
+I"J<h2 id="section">导言</h2>
 <p>近两天勉强完成了free code camp的<a href="https://codepen.io/jacktown/full/eRrYyJ/">portfolio</a>项目（<a href="https://freecodecamp.cn/challenges/build-a-personal-portfolio-webpage">题目地址</a>），自己原生写的，感觉不用框架确实挺麻烦（虽然我目前只接触过一点点bootstrap，但是感觉用起来应该会节省非常多代码），而且做出来的东西我估计在移动端就不能看了。不过做这个项目过程中还是感觉颇有收获。</p>
-<h2 id="主要技术点">主要技术点</h2>
-<h3 id="1表单label动态隐藏显示">1.表单label动态隐藏/显示</h3>
-<p>通过对表单项<code class="highlighter-rouge">focus</code>和<code class="highlighter-rouge">blur</code>事件监听，修改相应label项的样式（颜色、可见性、相对定位位置），特别是label项的显示并不是以<code class="highlighter-rouge">focus</code>的触发为标准，而是要检测表单项中是否有有效字符输入，这一点通过利用超时调用模仿间歇调用，不断查询表单项的value值，来确定是否显示label。</p>
-<h3 id="2点击导航栏链接时渐变地改变页面滚动位置">2.点击导航栏链接时，渐变地改变页面滚动位置</h3>
+<h2 id="section-1">主要技术点</h2>
+<h3 id="label">1.表单label动态隐藏/显示</h3>
+<p>通过对表单项<code>focus</code>和<code>blur</code>事件监听，修改相应label项的样式（颜色、可见性、相对定位位置），特别是label项的显示并不是以<code>focus</code>的触发为标准，而是要检测表单项中是否有有效字符输入，这一点通过利用超时调用模仿间歇调用，不断查询表单项的value值，来确定是否显示label。</p>
+<h3 id="section-2">2.点击导航栏链接时，渐变地改变页面滚动位置</h3>
 <p>在此过程中需要动态地获取和设置整个页面滚动条的位置，为此定义了两个函数，可以在跨浏览器条件下获取和设置页面相对视口滚动的高度（scrollTop）:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function getDocScrollTop(){
+<pre><code>function getDocScrollTop(){
   return Number(document.documentElement.scrollTop 
   || window.pageYOffset 
   || document.body.scrollTop);
@@ -23,7 +23,7 @@ function setDocScrollTop(height){
     }
   }
 }
-</code></pre></div></div>
+</code></pre>
 <p>另外我们要做的就是获取链接目标元素在页面中的位置，可以利用如下的函数实现：</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">getOffsetTop</span><span class="p">(</span><span class="nx">ele</span><span class="p">){</span>
   <span class="c1">//get element(ele)'s position from the start of the document</span>
@@ -35,21 +35,21 @@ function setDocScrollTop(height){
   <span class="k">return</span> <span class="nx">top</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>定义好这些函数以后，我们只需要监听导航栏中各个链接的<code class="highlighter-rouge">click</code>事件，事件触发时，先取消其默认操作，然后将整个页面的滚动高度（<code class="highlighter-rouge">scrollTop</code>）渐变地修改到等于链接目标在页面中位置高度。</p>
-<h3 id="3根据页面滚动位置动态修改导航栏链接的样式">3.根据页面滚动位置，动态修改导航栏链接的样式</h3>
-<p>这一点和上面一个技术点有点反向操作的意味，我们需要检测页面滚动高度，检测出当前是哪一个区块在视窗内（比较页面的scrollTop和各区块元素位置（调用getOffsetTop()），然后让导航栏中与这个区域对应的那个链接突出显示。页面的滚动我们检测鼠标滚动，普遍支持的是<code class="highlighter-rouge">mousewheel</code>事件（firefox不支持），实际上这个事件不是标准事件，标准是<a href="https://developer.mozilla.org/en-US/docs/Web/Events/wheel">wheel</a>事件（高版本firefox将其实现了），为了兼容老版本firefox，可以检测<code class="highlighter-rouge">DOMMouseWheel</code>事件（我没有在老版本测试验证）。如此，各个浏览器能较好兼容。</p>
+<p>定义好这些函数以后，我们只需要监听导航栏中各个链接的<code>click</code>事件，事件触发时，先取消其默认操作，然后将整个页面的滚动高度（<code>scrollTop</code>）渐变地修改到等于链接目标在页面中位置高度。</p>
+<h3 id="section-3">3.根据页面滚动位置，动态修改导航栏链接的样式</h3>
+<p>这一点和上面一个技术点有点反向操作的意味，我们需要检测页面滚动高度，检测出当前是哪一个区块在视窗内（比较页面的scrollTop和各区块元素位置（调用getOffsetTop()），然后让导航栏中与这个区域对应的那个链接突出显示。页面的滚动我们检测鼠标滚动，普遍支持的是<code>mousewheel</code>事件（firefox不支持），实际上这个事件不是标准事件，标准是<a href="https://developer.mozilla.org/en-US/docs/Web/Events/wheel">wheel</a>事件（高版本firefox将其实现了），为了兼容老版本firefox，可以检测<code>DOMMouseWheel</code>事件（我没有在老版本测试验证）。如此，各个浏览器能较好兼容。</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">document</span><span class="p">.</span><span class="nx">onmousewheel</span> <span class="o">=</span> <span class="nx">handleScroll</span><span class="p">;</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">onDOMMouseWheel</span> <span class="o">=</span> <span class="nx">handleScroll</span><span class="p">;</span><span class="c1">//for lower edition ff</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">onwheel</span> <span class="o">=</span> <span class="nx">handleScroll</span><span class="p">;</span><span class="c1">//for lower edition ff</span>
 </code></pre></div></div>
-<h3 id="4twitterlinkedin等外链图标">4.twitter,linkedin等外链图标</h3>
+<h3 id="twitterlinkedin">4.twitter,linkedin等外链图标</h3>
 <p>通过引入font-awesome字体：</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> 
 <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"</span><span class="nt">&gt;</span>  
 </code></pre></div></div>
 <h2 id="bugs">bugs</h2>
-<h3 id="一直不能完成加载">一直不能完成加载</h3>
+<h3 id="section-4">一直不能完成加载</h3>
 <p>通过移出脚本后测试、注释主函数调用后测试、注释代码行后测试逐步确定问题的位置，最后发现是代码中出现了无限循环。</p>
-<h2 id="项目github地址">项目github地址</h2>
+<h2 id="github">项目github地址</h2>
 <p><a href="https://github.com/jacktown11/fcc/tree/master/Build_a_Personal_Portfolio_Webpage0">https://github.com/jacktown11/fcc/tree/master/Build_a_Personal_Portfolio_Webpage0</a></p>
 :ET

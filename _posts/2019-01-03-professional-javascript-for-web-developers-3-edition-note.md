@@ -46,15 +46,15 @@ JavaScript 的版本通常以 ECMAScript 的版本为准，只有 Mozilla 公司
 
 `typeof <操作数>`，总是返回一个字符串。
 
-|操作数类型|返回字符串|
-|-|-|
-|Undefined |'undefined'  |
-|Boolean  |'boolean'|
-|Number |'number'|
-|String |'string'|
-|Null |'object'|
-|Obejct |'object'|
-|Function |'function'|
+操作数类型|返回字符串
+-|-
+Undefined |'undefined  |
+Boolean  |'boolean'
+Number |'number'
+String |'string'
+Null |'object'
+Obejct |'object'
+Function |'function'
 
 ## undefined 和 null
 

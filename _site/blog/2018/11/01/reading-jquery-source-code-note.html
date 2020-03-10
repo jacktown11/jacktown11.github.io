@@ -59,35 +59,22 @@
 				<h1 id="post-title">jQuery源码解读笔记</h1>
 				<p class="meta">2018-11-01</p>
 				<div class="post" ref="post">
-					<h1 id="前言">前言</h1>
-
-<p>基于妙味课堂的<code class="highlighter-rouge">jQuery</code>源码视频的笔记，其中<code class="highlighter-rouge">jQuery</code>版本为2.0.3。</p>
-
-<h1 id="第1-94行">第1-94行</h1>
-
-<h2 id="最外层的立即执行函数">最外层的立即执行函数</h2>
-
-<p><code class="highlighter-rouge">jQuery</code>的所有代码都被包含在一个立即执行函数（<code class="highlighter-rouge">Immediately Invoked Function Expression, IIFE</code>）中，如下所示：</p>
-
+					<h1 id="section">前言</h1>
+<p>基于妙味课堂的<code>jQuery</code>源码视频的笔记，其中<code>jQuery</code>版本为2.0.3。</p>
+<h1 id="section-1">第1-94行</h1>
+<h2 id="section-2">最外层的立即执行函数</h2>
+<p><code>jQuery</code>的所有代码都被包含在一个立即执行函数（<code>Immediately Invoked Function Expression, IIFE</code>）中，如下所示：</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">){</span>
     <span class="c1">// all the code included here</span>
 <span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
 </code></pre></div></div>
-
 <p>这样做的好处在于避免全局变量污染。</p>
-
-<p>传入<code class="highlighter-rouge">window</code>变量是为了减少在内部使用该变量时进行查找的作用域链长度，从而改善性能。</p>
-
-<p>传入<code class="highlighter-rouge">undefined</code>是原因在于，它是全局对象的一个属性，在现代浏览器中是不可写的，而某些低版本浏览器却有可能在全局作用域下修改它的值；由于它不是一个<code class="highlighter-rouge">js保留字</code>，在非全局作用域下理论上用它作为标识符给它赋值都是可以的（虽然尽量不要这么做）；传入以后，不论外部代码如何，可以确保至少在我们的源代码内部<code class="highlighter-rouge">undefined</code>就是那个ECAMScript标准中的<code class="highlighter-rouge">primitive value</code>。</p>
-
-<h2 id="全局对象与方法的暂存">全局对象与方法的暂存</h2>
-
-<p>在源代码中将一些现有的对象属性和方法暂存在了一些变量中。这样做的原因，一是在使用时避免了属性读取，有性能好处，二是我们的变量在代码压缩时是会替换成短字符串的从而有利于减少文件大小，而<code class="highlighter-rouge">js</code>自带的一些对象、方法、属性却不行。</p>
-
-<h2 id="jquery对象">jQuery对象</h2>
-
-<p>关于<code class="highlighter-rouge">jQuery</code>对象的代码大致如下：</p>
-
+<p>传入<code>window</code>变量是为了减少在内部使用该变量时进行查找的作用域链长度，从而改善性能。</p>
+<p>传入<code>undefined</code>是原因在于，它是全局对象的一个属性，在现代浏览器中是不可写的，而某些低版本浏览器却有可能在全局作用域下修改它的值；由于它不是一个<code>js保留字</code>，在非全局作用域下理论上用它作为标识符给它赋值都是可以的（虽然尽量不要这么做）；传入以后，不论外部代码如何，可以确保至少在我们的源代码内部<code>undefined</code>就是那个ECAMScript标准中的<code>primitive value</code>。</p>
+<h2 id="section-3">全局对象与方法的暂存</h2>
+<p>在源代码中将一些现有的对象属性和方法暂存在了一些变量中。这样做的原因，一是在使用时避免了属性读取，有性能好处，二是我们的变量在代码压缩时是会替换成短字符串的从而有利于减少文件大小，而<code>js</code>自带的一些对象、方法、属性却不行。</p>
+<h2 id="jquery">jQuery对象</h2>
+<p>关于<code>jQuery</code>对象的代码大致如下：</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">jQuery</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">new</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">rootjQuery</span><span class="p">);</span>
     <span class="p">};</span>
@@ -99,26 +86,18 @@
 <span class="p">};</span>
 <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">;</span>
 </code></pre></div></div>
-
-<p>我们可以看到<code class="highlighter-rouge">jQuery</code>本身是定义为一个函数的，在函数内部调用以构造函数的方式调用了它的原型对象<code class="highlighter-rouge">jQuery.prototype</code>的方法<code class="highlighter-rouge">init()</code>，<code class="highlighter-rouge">jQuery</code>和<code class="highlighter-rouge">init</code>共享了原型对象，这个原型对象的<code class="highlighter-rouge">constructor</code>设置为<code class="highlighter-rouge">jQuery</code>。看起来<code class="highlighter-rouge">jQuery</code>函数负责面子工程，而<code class="highlighter-rouge">init</code>函数做了实质工作，这样写使得我们在使用<code class="highlighter-rouge">$</code>或者<code class="highlighter-rouge">jQuery</code>时可以不用<code class="highlighter-rouge">new</code>操作符，而像一个纯粹的函数调用一样，而函数返回的结果却是一个<code class="highlighter-rouge">jQuery</code>实例（当然也是<code class="highlighter-rouge">init</code>实例，因为譬如<code class="highlighter-rouge">A instanceof B</code>，实际上只是检查<code class="highlighter-rouge">A</code>的原型链中是否有<code class="highlighter-rouge">B.prototype</code>）。我们可以用下图来表示它们之间的关系：</p>
-
+<p>我们可以看到<code>jQuery</code>本身是定义为一个函数的，在函数内部调用以构造函数的方式调用了它的原型对象<code>jQuery.prototype</code>的方法<code>init()</code>，<code>jQuery</code>和<code>init</code>共享了原型对象，这个原型对象的<code>constructor</code>设置为<code>jQuery</code>。看起来<code>jQuery</code>函数负责面子工程，而<code>init</code>函数做了实质工作，这样写使得我们在使用<code>$</code>或者<code>jQuery</code>时可以不用<code>new</code>操作符，而像一个纯粹的函数调用一样，而函数返回的结果却是一个<code>jQuery</code>实例（当然也是<code>init</code>实例，因为譬如<code>A instanceof B</code>，实际上只是检查<code>A</code>的原型链中是否有<code>B.prototype</code>）。我们可以用下图来表示它们之间的关系：</p>
 <p><img src="data:image/png;base64,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" alt="jQuery函数及其原型" /></p>
-
-<p>另外要说明一下<code class="highlighter-rouge">$(xxx)</code>返回的对象除了是<code class="highlighter-rouge">jQuery</code>实例，也是<code class="highlighter-rouge">init</code>实例，如果我们调用<code class="highlighter-rouge">$(null) instanceof jQuery.fn.init</code>，结果会是<code class="highlighter-rouge">true</code>。实际上譬如<code class="highlighter-rouge">A instanceof B</code>，实际上只是检查<code class="highlighter-rouge">A</code>的原型链中是否有<code class="highlighter-rouge">B.prototype</code>）。</p>
-
+<p>另外要说明一下<code>$(xxx)</code>返回的对象除了是<code>jQuery</code>实例，也是<code>init</code>实例，如果我们调用<code>$(null) instanceof jQuery.fn.init</code>，结果会是<code>true</code>。实际上譬如<code>A instanceof B</code>，实际上只是检查<code>A</code>的原型链中是否有<code>B.prototype</code>）。</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">F</span><span class="p">(){}</span>
 <span class="kd">function</span> <span class="nx">test</span><span class="p">(){}</span>
 <span class="nx">test</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">F</span><span class="p">()</span> <span class="k">instanceof</span> <span class="nx">F</span><span class="p">);</span>  <span class="c1">// true</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">F</span><span class="p">()</span> <span class="k">instanceof</span> <span class="nx">test</span><span class="p">);</span>   <span class="c1">//true</span>
 </code></pre></div></div>
-
-<h1 id="第96-283行">第96-283行</h1>
-
-<h2 id="jquery原型对象总览">jQuery原型对象总览</h2>
-
-<p>这部分定义了<code class="highlighter-rouge">jQuery</code>函数的原型对象，提供了实例共享方法和属性。</p>
-
+<h1 id="section-4">第96-283行</h1>
+<h2 id="jquery-1">jQuery原型对象总览</h2>
+<p>这部分定义了<code>jQuery</code>函数的原型对象，提供了实例共享方法和属性。</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">jquery</span>  <span class="c1">// 版本号</span>
     <span class="kd">constructor</span> <span class="c1">//修正constructor</span>
@@ -140,30 +119,19 @@
     <span class="p">(</span><span class="nx">splice</span><span class="p">())</span>  <span class="c1">// 原生数组splice方法引用</span>
 <span class="p">};</span>
 </code></pre></div></div>
-
-<h2 id="关于jqueryfninit函数中的context参数">关于jQuery.fn.init函数中的context参数</h2>
-
-<p>这一部分视频在讲解时认为有时这个参数完全是没有必要的，最主要集中在使用<code class="highlighter-rouge">jQuery</code>函数进行标签创建的时候，比如<code class="highlighter-rouge">jQuery(‘&lt;li&gt;’, context)</code>；实际上在该函数内部，调用了<code class="highlighter-rouge">jQuery.parseHTML()</code>函数，而该函数中创建标签最终工作是通过<code class="highlighter-rouge">context.createElement()</code>来实现的（当然这里的<code class="highlighter-rouge">context</code>已经进行了判断和处理）；而<code class="highlighter-rouge">createElement</code>函数创建标签时，实际上也为创建出来的标签绑定了<code class="highlighter-rouge">ownerDocument</code>属性，因此明确指定<code class="highlighter-rouge">context</code>是必要的，一个例子就是<code class="highlighter-rouge">iframe</code>。</p>
-
-<p>因此函数中有<code class="highlighter-rouge"> context &amp;&amp; context.nodeType ? context.ownerDocument || context : document</code>这样的代码，这样不论调用时是否传递了该参数、该参数时候合理，都能让代码正常运行。</p>
-
-<h1 id="第285-347行">第285-347行</h1>
-
-<h2 id="jquery拷贝继承函数">jQuery拷贝继承函数</h2>
-
+<h2 id="jqueryfninitcontext">关于jQuery.fn.init函数中的context参数</h2>
+<p>这一部分视频在讲解时认为有时这个参数完全是没有必要的，最主要集中在使用<code>jQuery</code>函数进行标签创建的时候，比如<code>jQuery(‘&lt;li&gt;’, context)</code>；实际上在该函数内部，调用了<code>jQuery.parseHTML()</code>函数，而该函数中创建标签最终工作是通过<code>context.createElement()</code>来实现的（当然这里的<code>context</code>已经进行了判断和处理）；而<code>createElement</code>函数创建标签时，实际上也为创建出来的标签绑定了<code>ownerDocument</code>属性，因此明确指定<code>context</code>是必要的，一个例子就是<code>iframe</code>。</p>
+<p>因此函数中有<code>context &amp;&amp; context.nodeType ? context.ownerDocument || context : document</code>这样的代码，这样不论调用时是否传递了该参数、该参数时候合理，都能让代码正常运行。</p>
+<h1 id="section-5">第285-347行</h1>
+<h2 id="jquery-2">jQuery拷贝继承函数</h2>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="c1">// detail code</span>
 <span class="p">};</span>
 </code></pre></div></div>
-
-<p>这部分实现了一个功能完善的对象拷贝功能，即<code class="highlighter-rouge">extend</code>函数。可以传参选择深拷贝/浅拷贝、传入单个对象实现插件扩展、传入多个对象时该函数作为一个工具性函数执行函数拷贝继承。</p>
-
-<p>值得一提的是，在传入单个对象实现插件扩展时，函数内部实际上将传入的对象由<code class="highlighter-rouge">this</code>来继承，而<code class="highlighter-rouge">jQuery</code>和<code class="highlighter-rouge">jQuery.fn</code>虽然共享了这个函数，然而分别在它们上面调用该函数时，<code class="highlighter-rouge">this</code>是不一样的。在<code class="highlighter-rouge">jQuery</code>上调用<code class="highlighter-rouge">extend</code>，插件被扩展到<code class="highlighter-rouge">jQuery</code>上，使用插件方法的语法类似<code class="highlighter-rouge">jQuery.&lt;extendedMethod&gt;()</code>；而在<code class="highlighter-rouge">jQuery.fn</code>上调用<code class="highlighter-rouge">extend</code>，插件被扩展在<code class="highlighter-rouge">jQuery</code>实例的原型对象上，使用插件方法的语法类似<code class="highlighter-rouge">jQuery().&lt;extendedMethod&gt;()</code>。</p>
-
-<h1 id="第349-817行">第349-817行</h1>
-
-<h2 id="jquery对象工具方法总览">jQuery对象工具方法总览</h2>
-
+<p>这部分实现了一个功能完善的对象拷贝功能，即<code>extend</code>函数。可以传参选择深拷贝/浅拷贝、传入单个对象实现插件扩展、传入多个对象时该函数作为一个工具性函数执行函数拷贝继承。</p>
+<p>值得一提的是，在传入单个对象实现插件扩展时，函数内部实际上将传入的对象由<code>this</code>来继承，而<code>jQuery</code>和<code>jQuery.fn</code>虽然共享了这个函数，然而分别在它们上面调用该函数时，<code>this</code>是不一样的。在<code>jQuery</code>上调用<code>extend</code>，插件被扩展到<code>jQuery</code>上，使用插件方法的语法类似<code>jQuery.&lt;extendedMethod&gt;()</code>；而在<code>jQuery.fn</code>上调用<code>extend</code>，插件被扩展在<code>jQuery</code>实例的原型对象上，使用插件方法的语法类似<code>jQuery().&lt;extendedMethod&gt;()</code>。</p>
+<h1 id="section-6">第349-817行</h1>
+<h2 id="jquery-3">jQuery对象工具方法总览</h2>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">expando</span> <span class="c1">//生成唯一JQ字符串(内部)</span>
     <span class="nx">noConflict</span><span class="p">()</span>    <span class="c1">//防止变量名冲突</span>
@@ -200,20 +168,13 @@
     <span class="nx">swap</span><span class="p">()</span>  <span class="c1">//css交换(内部)</span>
 <span class="p">});</span>
 </code></pre></div></div>
-
-<p>这部分使用之前定义的拷贝函数<code class="highlighter-rouge">extend</code>为<code class="highlighter-rouge">jQuery</code>对象增加了一系列工具方法和属性。</p>
-
-<h2 id="插入script标签然后立即移除">插入script标签然后立即移除</h2>
-
-<p>在<code class="highlighter-rouge">globalEval</code>函数中，其中一个分支（541行）使用了插入<code class="highlighter-rouge">script</code>标签的方式来执行代码，源码如下：</p>
-
+<p>这部分使用之前定义的拷贝函数<code>extend</code>为<code>jQuery</code>对象增加了一系列工具方法和属性。</p>
+<h2 id="script">插入script标签然后立即移除</h2>
+<p>在<code>globalEval</code>函数中，其中一个分支（541行）使用了插入<code>script</code>标签的方式来执行代码，源码如下：</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">script</span> <span class="p">).</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span> <span class="nx">script</span> <span class="p">);</span>
 </code></pre></div></div>
-
-<p>这段代码将包含执行代码的<code class="highlighter-rouge">script</code>标签插入文档，然后立即移出，那么为什么在移出以前，<code class="highlighter-rouge">script</code>标签的内部代码一定执行完了呢？为此我在<code class="highlighter-rouge">segmentFault</code>就此提问，下面说说我的理解。</p>
-
+<p>这段代码将包含执行代码的<code>script</code>标签插入文档，然后立即移出，那么为什么在移出以前，<code>script</code>标签的内部代码一定执行完了呢？为此我在<code>segmentFault</code>就此提问，下面说说我的理解。</p>
 <p>首先我写了下面这样的实验代码。</p>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="nx">code</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">a = 2; console.log(</span><span class="se">\'</span><span class="s1">inner code</span><span class="se">\'</span><span class="s1">)</span><span class="dl">'</span><span class="p">,</span>
     <span class="nx">doc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">,</span>
@@ -225,19 +186,12 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">outside code 2</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a = </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
 </code></pre></div></div>
-
 <p>运行结果如下：</p>
-
 <p><img src="data:image/png;base64,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" alt="运行结果" /></p>
-
-<p>我们可以看到插入<code class="highlighter-rouge">script</code>标签后代码执行进入了其内部，这就好像一个<code class="highlighter-rouge">中断</code>，上面结果图片我们可以看到<code class="highlighter-rouge">inner code</code>后面显示的<code class="highlighter-rouge">VM315:1</code>，这可能是内部引擎防止这段代码的地方；<code class="highlighter-rouge">中断</code>完成前，外层代码的<code class="highlighter-rouge">parentNode</code>属性读取和<code class="highlighter-rouge">removeChild</code>函数调用应该都不会执行，也就是说在移除<code class="highlighter-rouge">script</code>标签前其内部的代码已经执行完毕了。</p>
-
-<h1 id="第2847-3042行">第2847-3042行</h1>
-
-<h2 id="功能概述">功能概述</h2>
-
-<p>这部分提供一个统一的回调函数管理对象，通过<code class="highlighter-rouge">let callbackManager = $.Callbacks(模式选项);</code>的方式获得这个管理对象；内部实际上将各回调函数存储在一个数组中，它提供了<code class="highlighter-rouge">add</code>、<code class="highlighter-rouge">remove</code>、<code class="highlighter-rouge">fire</code>等方法来实现会回调函数的添加、删除、触发等操作。更多使用说明可查看<a href="https://api.jquery.com/jQuery.Callbacks/">官网API</a>。如下是一段使用示例代码：</p>
-
+<p>我们可以看到插入<code>script</code>标签后代码执行进入了其内部，这就好像一个<code>中断</code>，上面结果图片我们可以看到<code>inner code</code>后面显示的<code>VM315:1</code>，这可能是内部引擎防止这段代码的地方；<code>中断</code>完成前，外层代码的<code>parentNode</code>属性读取和<code>removeChild</code>函数调用应该都不会执行，也就是说在移除<code>script</code>标签前其内部的代码已经执行完毕了。</p>
+<h1 id="section-7">第2847-3042行</h1>
+<h2 id="section-8">功能概述</h2>
+<p>这部分提供一个统一的回调函数管理对象，通过<code>let callbackManager = $.Callbacks(模式选项);</code>的方式获得这个管理对象；内部实际上将各回调函数存储在一个数组中，它提供了<code>add</code>、<code>remove</code>、<code>fire</code>等方法来实现会回调函数的添加、删除、触发等操作。更多使用说明可查看<a href="https://api.jquery.com/jQuery.Callbacks/">官网API</a>。如下是一段使用示例代码：</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">a</span><span class="p">(</span><span class="nx">arg</span><span class="p">){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">arg</span><span class="p">);</span>
 <span class="p">}</span>
@@ -251,42 +205,16 @@
 <span class="c1">//a: hello</span>
 <span class="c1">//b: hello</span>
 </code></pre></div></div>
-
-<h2 id="模式选项">模式选项</h2>
-
+<h2 id="section-9">模式选项</h2>
 <p>上述的示例代码很类似事件绑定与触发的过程，但该回调函数管理对象通过给定<strong>模式选项</strong>参数可以实现更加灵活、强大的功能。其主要模式选项参数及其解释如下：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>模式</th>
-      <th>解释</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">once</code></td>
-      <td>只能被触发（<code class="highlighter-rouge">fire</code>）一次</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">memory</code></td>
-      <td>记忆功能，添加新函数时，如果之前曾触发过，那么这个新添加的函数添加时会被传入之间的参数被触发</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">unique</code></td>
-      <td>保持回调函数列表中函数的唯一性（不重复出现）</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">stopOnFalse</code></td>
-      <td>在某个函数调用返回<code class="highlighter-rouge">false</code>时，取消本次触发过程的后续函数的调用</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="各种模式的组合测试">各种模式的组合测试</h2>
-
+<p>|模式|解释|
+|- |- |
+|<code>once</code> |只能被触发（<code>fire</code>）一次 |
+|<code>memory</code> |记忆功能，添加新函数时，如果之前曾触发过，那么这个新添加的函数添加时会被传入之间的参数被触发 |
+|<code>unique</code> |保持回调函数列表中函数的唯一性（不重复出现） |
+|<code>stopOnFalse</code> |在某个函数调用返回<code>false</code>时，取消本次触发过程的后续函数的调用 |</p>
+<h2 id="section-10">各种模式的组合测试</h2>
 <p>下面的一段代码可以测试各种模式组合下的运行效果：</p>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fn1</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">`&lt;span style="color: #666;"&gt;fn1:</span><span class="p">${</span><span class="nx">arg</span><span class="p">}</span><span class="s2">&lt;/span&gt;&amp;nbsp;&amp;nbsp;`</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
@@ -334,9 +262,7 @@
     <span class="nx">cb</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
-
-<h2 id="源码解读">源码解读</h2>
-
+<h2 id="section-11">源码解读</h2>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 表示字符串格式的模式和对象格式的模式之间对应关系的缓存对象</span>
 <span class="kd">var</span> <span class="nx">optionsCache</span> <span class="o">=</span> <span class="p">{};</span>
 
@@ -539,7 +465,6 @@
     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div></div>
-
 
 				</div>
 				<p>（本文完）</p>

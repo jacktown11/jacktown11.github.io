@@ -1,10 +1,8 @@
-I"N<h1 id="前端">前端</h1>
-
+I"G<h1 id="section">前端</h1>
 <h2 id="gulp">gulp</h2>
-
 <ul>
-  <li><a href="https://github.com/gulpjs/gulp/blob/v3.9.1/docs/API.md">gulp API</a></li>
-  <li><a href="http://www.cnblogs.com/fengyuqing/p/5332112.html">gulp详细入门教程</a></li>
-  <li><a href="https://www.npmjs.com/package/gulp-sequence">gulp-sequence</a></li>
+<li><a href="https://github.com/gulpjs/gulp/blob/v3.9.1/docs/API.md">gulp API</a></li>
+<li><a href="http://www.cnblogs.com/fengyuqing/p/5332112.html">gulp详细入门教程</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-sequence">gulp-sequence</a></li>
 </ul>
 :ET

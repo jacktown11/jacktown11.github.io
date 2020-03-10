@@ -1,31 +1,23 @@
-I"�<h1 id="es6简述">ES6简述</h1>
-
+I"�<h1 id="es6">ES6简述</h1>
 <ul>
-  <li>EMCAScript(ECMA、ES)标准</li>
-  <li>JavaScript是EMCAScript的一种</li>
-  <li>从语言特性本身来说，JS特别特别烂</li>
+<li>EMCAScript(ECMA、ES)标准</li>
+<li>JavaScript是EMCAScript的一种</li>
+<li>从语言特性本身来说，JS特别特别烂</li>
 </ul>
-
-<h1 id="变量赋值">变量/赋值</h1>
-
+<h1 id="section">变量/赋值</h1>
 <ul>
-  <li><code class="highlighter-rouge">var</code>，可以重复定义、不能限制修改、没有块级作用域</li>
-  <li><code class="highlighter-rouge">let</code>，不能重复定义、变量、块级作用域</li>
-  <li><code class="highlighter-rouge">const</code>，不能重复定义、常量、块级作用域</li>
+<li><code>var</code>，可以重复定义、不能限制修改、没有块级作用域</li>
+<li><code>let</code>，不能重复定义、变量、块级作用域</li>
+<li><code>const</code>，不能重复定义、常量、块级作用域</li>
 </ul>
-
-<h1 id="解构赋值">解构赋值</h1>
-
+<h1 id="section-1">解构赋值</h1>
 <ol>
-  <li>左右两边必须一样；右边得是个东西</li>
-  <li>必须定义和赋值同步完成</li>
+<li>左右两边必须一样；右边得是个东西</li>
+<li>必须定义和赋值同步完成</li>
 </ol>
-
-<h1 id="函数">函数</h1>
-
-<h2 id="箭头函数">箭头函数</h2>
-
-<pre><code class="language-txt">    function (参数,参数){
+<h1 id="section-2">函数</h1>
+<h2 id="section-3">箭头函数</h2>
+<pre><code class="language-txt">>    function (参数,参数){
       函数体
     }
 
@@ -33,102 +25,73 @@
       函数体
     }
 </code></pre>
-
 <ul>
-  <li>如果有且仅有1个参数，()可以省</li>
-  <li>如果函数体只有一句话，而且是return，{}可以省</li>
-  <li>关于this</li>
+<li>如果有且仅有1个参数，()可以省</li>
+<li>如果函数体只有一句话，而且是return，{}可以省</li>
+<li>关于this</li>
 </ul>
-
-<h2 id="默认参数">默认参数</h2>
-
-<p><code class="highlighter-rouge">(a=xx, b=xx, c=xx)</code></p>
-
-<h2 id="剩余参数数组展开"><code class="highlighter-rouge">...</code>(剩余参数、数组展开)</h2>
-
+<h2 id="section-4">默认参数</h2>
+<p><code>(a=xx, b=xx, c=xx)</code></p>
+<h2 id="codecode"><code>...</code>(剩余参数、数组展开)</h2>
 <ul>
-  <li>用途1：接收剩余参数</li>
+<li>用途1：接收剩余参数</li>
 </ul>
-
-<p><code class="highlighter-rouge">function show(a, b, ...more)</code>，剩余参数必须在参数列表的最后</p>
-
+<p><code>function show(a, b, ...more)</code>，剩余参数必须在参数列表的最后</p>
 <ul>
-  <li>用途2：展开一个数组</li>
+<li>用途2：展开一个数组</li>
 </ul>
-
-<p><code class="highlighter-rouge">let arr2 = [3, 4, ...arr1];</code></p>
-
-<h1 id="数组json新方法">数组/json新方法</h1>
-
-<h2 id="数组">数组</h2>
-
+<p><code>let arr2 = [3, 4, ...arr1];</code></p>
+<h1 id="json">数组/json新方法</h1>
+<h2 id="section-5">数组</h2>
 <ul>
-  <li><code class="highlighter-rouge">map</code>，映射</li>
+<li><code>map</code>，映射</li>
 </ul>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="o">*</span><span class="nx">item</span><span class="p">);</span> <span class="c1">// [2, 4, 8]</span>
 </code></pre></div></div>
-
 <ul>
-  <li><code class="highlighter-rouge">filter</code>，过滤</li>
+<li><code>filter</code>，过滤</li>
 </ul>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">filteredArr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">].</span><span class="nx">filter</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="o">%</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// [3]</span>
 </code></pre></div></div>
-
 <ul>
-  <li><code class="highlighter-rouge">forEach</code>，遍历</li>
-  <li><code class="highlighter-rouge">reduce</code>，汇总</li>
+<li><code>forEach</code>，遍历</li>
+<li><code>reduce</code>，汇总</li>
 </ul>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
 <span class="kd">let</span> <span class="nx">avg</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span> <span class="p">?</span> <span class="nx">prev</span><span class="o">+</span><span class="nx">cur</span> <span class="p">:</span> <span class="p">(</span><span class="nx">prev</span><span class="o">+</span><span class="nx">cur</span><span class="p">)</span><span class="o">/</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
 <span class="p">});</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">avg</span><span class="p">);</span> <span class="c1">// 3.5</span>
 </code></pre></div></div>
-
 <ul>
-  <li><code class="highlighter-rouge">Array.from</code>，新增静态方法</li>
+<li><code>Array.from</code>，新增静态方法</li>
 </ul>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">divs</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">p</span><span class="dl">'</span><span class="p">));</span>
 </code></pre></div></div>
-
-<h2 id="json">json</h2>
-
+<h2 id="json-1">json</h2>
 <ul>
-  <li>简写：名字和值一样的，可以省</li>
-  <li><code class="highlighter-rouge">function</code>可以不写</li>
+<li>简写：名字和值一样的，可以省</li>
+<li><code>function</code>可以不写</li>
 </ul>
-
-<h2 id="字符串">字符串</h2>
-
+<h2 id="section-6">字符串</h2>
 <ul>
-  <li>字符串模板：植入变量、任意折行</li>
+<li>字符串模板：植入变量、任意折行</li>
 </ul>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tom</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">age</span><span class="p">:</span> <span class="mi">28</span>
 <span class="p">};</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`一个</span><span class="p">${</span><span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span><span class="s2">岁的名叫</span><span class="p">${</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">的人`</span><span class="p">);</span>
 </code></pre></div></div>
-
 <ul>
-  <li><code class="highlighter-rouge">startsWith()</code>和<code class="highlighter-rouge">endsWith()</code>方法</li>
+<li><code>startsWith()</code>和<code>endsWith()</code>方法</li>
 </ul>
-
-<h2 id="面向对象">面向对象</h2>
-
-<p>新的面向对象的语法：<code class="highlighter-rouge">class</code>/<code class="highlighter-rouge">constructor</code>/<code class="highlighter-rouge">extends</code>/<code class="highlighter-rouge">super</code></p>
-
-<h3 id="关于this">关于this</h3>
-
+<h2 id="section-7">面向对象</h2>
+<p>新的面向对象的语法：<code>class</code>/<code>constructor</code>/<code>extends</code>/<code>super</code></p>
+<h3 id="this">关于this</h3>
 <ul>
-  <li>普通函数：根据调用我的人，<code class="highlighter-rouge">this</code>老变</li>
-  <li>箭头函数：根据所在的环境，<code class="highlighter-rouge">this</code>恒定</li>
-  <li><code class="highlighter-rouge">bind()</code>方法——给函数定死一个<code class="highlighter-rouge">this</code></li>
+<li>普通函数：根据调用我的人，<code>this</code>老变</li>
+<li>箭头函数：根据所在的环境，<code>this</code>恒定</li>
+<li><code>bind()</code>方法——给函数定死一个<code>this</code></li>
 </ul>
-
 :ET

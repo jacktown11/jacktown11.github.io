@@ -59,46 +59,41 @@
 				<h1 id="post-title">全栈课程05&06 Node.js入门</h1>
 				<p class="meta">2018-11-01</p>
 				<div class="post" ref="post">
-					<h1 id="概述">概述</h1>
-
+					<h1 id="section">概述</h1>
 <ul>
-  <li>优势
-    <ul>
-      <li>对象、语法和<code class="highlighter-rouge">javascript</code>一样，适于前端使用，但使用习惯不同</li>
-      <li>前后台配合方便</li>
-      <li>性能挺优秀（相对<code class="highlighter-rouge">php</code>、<code class="highlighter-rouge">java</code>、<code class="highlighter-rouge">python</code>）</li>
-    </ul>
-  </li>
-  <li>缺点
-    <ul>
-      <li><code class="highlighter-rouge">Java</code>有及其丰富的库支持，而<code class="highlighter-rouge">Node.js</code>当前的框架、库还不够丰富</li>
-    </ul>
-  </li>
-  <li>用处
-    <ul>
-      <li>服务器：小型后台系统、中间层（使用中间层的目的：两层多一点安全性、性能更高、与前台交互方便）</li>
-      <li>工具：测试、构建（<code class="highlighter-rouge">grunt</code>、<code class="highlighter-rouge">gulp</code>、<code class="highlighter-rouge">webpack</code>）、数据抓取</li>
-    </ul>
-  </li>
-  <li>环境配置
-    <ul>
-      <li>在开发环境通常不需要配置</li>
-      <li>在生产环境可通过配置文件或环境变量的方式配置版本、数据库等</li>
-    </ul>
-  </li>
-  <li>更多…
-    <ul>
-      <li>关于并发：<code class="highlighter-rouge">Node.js</code>和<code class="highlighter-rouge">javascript</code>一样都是单线程、单进程的，优点在于简单；为了提高性能，使用非阻塞的异步交互</li>
-    </ul>
-  </li>
+<li>优势
+<ul>
+<li>对象、语法和<code>javascript</code>一样，适于前端使用，但使用习惯不同</li>
+<li>前后台配合方便</li>
+<li>性能挺优秀（相对<code>php</code>、<code>java</code>、<code>python</code>）</li>
 </ul>
-
-<h1 id="常用模块概览">常用模块概览</h1>
-
+</li>
+<li>缺点
+<ul>
+<li><code>Java</code>有及其丰富的库支持，而<code>Node.js</code>当前的框架、库还不够丰富</li>
+</ul>
+</li>
+<li>用处
+<ul>
+<li>服务器：小型后台系统、中间层（使用中间层的目的：两层多一点安全性、性能更高、与前台交互方便）</li>
+<li>工具：测试、构建（<code>grunt</code>、<code>gulp</code>、<code>webpack</code>）、数据抓取</li>
+</ul>
+</li>
+<li>环境配置
+<ul>
+<li>在开发环境通常不需要配置</li>
+<li>在生产环境可通过配置文件或环境变量的方式配置版本、数据库等</li>
+</ul>
+</li>
+<li>更多...
+<ul>
+<li>关于并发：<code>Node.js</code>和<code>javascript</code>一样都是单线程、单进程的，优点在于简单；为了提高性能，使用非阻塞的异步交互</li>
+</ul>
+</li>
+</ul>
+<h1 id="section-1">常用模块概览</h1>
 <h2 id="assert">assert</h2>
-
 <p>断言，一个应用是函数的参数检查。</p>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">assert</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
     <span class="nx">assert</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="dl">'</span><span class="s1">必须传入两个参数</span><span class="dl">'</span><span class="p">);</span>
@@ -108,14 +103,11 @@
 <span class="p">}</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="dl">'</span><span class="s1">3</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// AssertionError [ERR_ASSERTION]: 第二个参数必须是数字</span>
 </code></pre></div></div>
-
 <h2 id="bufferfile-system">Buffer、File System</h2>
-
 <ul>
-  <li><code class="highlighter-rouge">Buffer</code>: 用于处理二进制数据</li>
-  <li><code class="highlighter-rouge">File System</code>: 文件系统操作</li>
+<li><code>Buffer</code>: 用于处理二进制数据</li>
+<li><code>File System</code>: 文件系统操作</li>
 </ul>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
 <span class="c1">// ./1.txt文件内容：am</span>
 <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="dl">'</span><span class="s1">./1.txt</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -137,74 +129,58 @@
     <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div></div>
-
 <h2 id="c-addons">C++ Addons</h2>
-
 <p>借用该模块可以写些插件，利用C语言极大提高性能。</p>
-
-<h2 id="多进程">多进程</h2>
-
-<p><code class="highlighter-rouge">js</code>本身是单进程、单线程，通过以下的模块来实现多进程：<code class="highlighter-rouge">Child Processes</code>、<code class="highlighter-rouge">Cluster</code>、<code class="highlighter-rouge">Process</code>。</p>
-
-<h3 id="关于进程和线程">关于进程和线程</h3>
-
+<h2 id="section-2">多进程</h2>
+<p><code>js</code>本身是单进程、单线程，通过以下的模块来实现多进程：<code>Child Processes</code>、<code>Cluster</code>、<code>Process</code>。</p>
+<h3 id="section-3">关于进程和线程</h3>
 <ul>
-  <li>进程拥有独立的执行空间、存储；同一个进程内的所有线程共享一套空间、代码</li>
-  <li>多进程，如<code class="highlighter-rouge">PHP</code>、<code class="highlighter-rouge">Node</code>，慢、简单、安全
-    <ul>
-      <li>成本高(慢)</li>
-      <li>安全(进程间隔离)</li>
-      <li>进程间通信麻烦</li>
-      <li>写代码简单</li>
-    </ul>
-  </li>
-  <li>多线程，如<code class="highlighter-rouge">Java</code>、<code class="highlighter-rouge">C</code>，快、复杂、脆弱
-    <ul>
-      <li>成本低(快)</li>
-      <li>不安全(线程要死一块死)</li>
-      <li>线程间通信容易</li>
-      <li>写代码复杂</li>
-    </ul>
-  </li>
+<li>进程拥有独立的执行空间、存储；同一个进程内的所有线程共享一套空间、代码</li>
+<li>多进程，如<code>PHP</code>、<code>Node</code>，慢、简单、安全
+<ul>
+<li>成本高(慢)</li>
+<li>安全(进程间隔离)</li>
+<li>进程间通信麻烦</li>
+<li>写代码简单</li>
 </ul>
-
+</li>
+<li>多线程，如<code>Java</code>、<code>C</code>，快、复杂、脆弱
+<ul>
+<li>成本低(快)</li>
+<li>不安全(线程要死一块死)</li>
+<li>线程间通信容易</li>
+<li>写代码复杂</li>
+</ul>
+</li>
+</ul>
 <h2 id="crypto">Crypto</h2>
-
-<p>用于加密（签名），实现了<code class="highlighter-rouge">md5</code>、<code class="highlighter-rouge">sha</code>常用算法，使用示例：</p>
-
+<p>用于加密（签名），实现了<code>md5</code>、<code>sha</code>常用算法，使用示例：</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">crypto</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="dl">'</span><span class="s1">md5</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="dl">'</span><span class="s1">12</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="dl">'</span><span class="s1">3456</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">digest</span><span class="p">(</span><span class="dl">'</span><span class="s1">hex</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// e10adc3949ba59abbe56e057f20f883e</span>
 </code></pre></div></div>
-
 <ul>
-  <li>如何加密才安全？
-    <ul>
-      <li>理论上可以做到100%安全，要求：一次一密，密钥长度&gt;内容长度</li>
-      <li>目前应用最广泛的加密算法：<code class="highlighter-rouge">RSA</code></li>
-    </ul>
-  </li>
-  <li><code class="highlighter-rouge">md5</code>如何破解：<code class="highlighter-rouge">md5</code>和<code class="highlighter-rouge">sha1</code>都是单向散列算法，所谓的破解只是一种暴力手法：记录了一些常见明文的加密值，反向查找。</li>
-  <li>双层<code class="highlighter-rouge">md5</code>：<code class="highlighter-rouge">md5(md5(明文)+混淆串)</code></li>
+<li>如何加密才安全？
+<ul>
+<li>理论上可以做到100%安全，要求：一次一密，密钥长度&gt;内容长度</li>
+<li>目前应用最广泛的加密算法：<code>RSA</code></li>
 </ul>
-
+</li>
+<li><code>md5</code>如何破解：<code>md5</code>和<code>sha1</code>都是单向散列算法，所谓的破解只是一种暴力手法：记录了一些常见明文的加密值，反向查找。</li>
+<li>双层<code>md5</code>：<code>md5(md5(明文)+混淆串)</code></li>
+</ul>
 <h2 id="http">http</h2>
 <p>HTTP/HTTPS
-  HTTP/2</p>
+HTTP/2</p>
 <h2 id="os">OS</h2>
-
 <p>提供系统信息等，比如：</p>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">os</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">os</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">cpus</span><span class="p">());</span> <span class="c1">// 查看系统CPU信息</span>
 </code></pre></div></div>
-
 <h2 id="path">Path</h2>
-
 <p>路径处理:</p>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">path</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">str1</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/a/b/c/r.txt</span><span class="dl">'</span><span class="p">,</span>
     <span class="nx">str2</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/a/b/c/</span><span class="dl">'</span><span class="p">;</span>
@@ -215,11 +191,8 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">str2</span><span class="p">));</span> <span class="c1">// /a/b</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">str2</span><span class="p">));</span> <span class="c1">// </span>
 </code></pre></div></div>
-
 <h2 id="events">Events</h2>
-
-<p>事件队列，在<code class="highlighter-rouge">async</code>函数之前主要用来处理异步，现在作用减弱。和函数调用的最大区别在于可以解除耦合。</p>
-
+<p>事件队列，在<code>async</code>函数之前主要用来处理异步，现在作用减弱。和函数调用的最大区别在于可以解除耦合。</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">events</span><span class="dl">'</span><span class="p">).</span><span class="nx">EventEmitter</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">ev</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">event</span><span class="p">();</span>
 <span class="c1">// 监听（接收）</span>
@@ -229,9 +202,7 @@
 <span class="c1">// 派发（发送）</span>
 <span class="nx">ev</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">msg</span><span class="dl">'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// 8</span>
 </code></pre></div></div>
-
 <h2 id="query-strings">Query Strings</h2>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">querystring</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">querystring</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wd=sd&amp;rsv_spt=1&amp;rsv_iqid=0xed7cab150005e7f5&amp;issp=1&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;rsv_sug3=3&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;prefixsug=sd&amp;rsp=0&amp;inputT=2407&amp;rsv_sug4=2896</span><span class="dl">'</span><span class="p">;</span>
@@ -258,9 +229,7 @@
 <span class="c1">//     rsv_sug4: '2896'</span>
 <span class="c1">// }</span>
 </code></pre></div></div>
-
-<p><code class="highlighter-rouge">querystring</code>很方便，但是<code class="highlighter-rouge">url</code>用得更多。</p>
-
+<p><code>querystring</code>很方便，但是<code>url</code>用得更多。</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www.baidu.com/s?wd=sd&amp;rsv_spt=1&amp;rsv_iqid=0xed7cab150005e7f5&amp;issp=1&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;rsv_sug3=3&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;prefixsug=sd&amp;rsp=0&amp;inputT=2407&amp;rsv_sug4=2896</span><span class="dl">'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
@@ -299,18 +268,13 @@
 <span class="c1">//   href:</span>
 <span class="c1">//    'https://www.baidu.com/s?wd=sd&amp;rsv_spt=1&amp;rsv_iqid=0xed7cab150005e7f5&amp;issp=1&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;rsv_sug3=3&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;prefixsug=sd&amp;rsp=0&amp;inputT=2407&amp;rsv_sug4=2896' } </span>
 </code></pre></div></div>
-
-<h2 id="网络">网络</h2>
-
+<h2 id="section-4">网络</h2>
 <ul>
-  <li><code class="highlighter-rouge">TCP</code>-稳定(对用<code class="highlighter-rouge">Node</code>中<code class="highlighter-rouge">Net</code>)</li>
-  <li><code class="highlighter-rouge">UDP</code>-快(对应<code class="highlighter-rouge">Node</code>中<code class="highlighter-rouge">UDP/Datagram</code>)</li>
+<li><code>TCP</code>-稳定(对用<code>Node</code>中<code>Net</code>)</li>
+<li><code>UDP</code>-快(对应<code>Node</code>中<code>UDP/Datagram</code>)</li>
 </ul>
-
-<h2 id="域名解析">域名解析</h2>
-
-<p><code class="highlighter-rouge">DNS</code>，可以通过它向<code class="highlighter-rouge">DNS</code>服务器请求将域名解析为<code class="highlighter-rouge">IP</code>地址。</p>
-
+<h2 id="section-5">域名解析</h2>
+<p><code>DNS</code>，可以通过它向<code>DNS</code>服务器请求将域名解析为<code>IP</code>地址。</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">dns</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dns</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="c1">// 请求DNS服务器解析域名，网络操作，异步故需要回调</span>
@@ -324,28 +288,18 @@
 
 <span class="c1">// [ '123.125.115.110', '220.181.57.216' ]</span>
 </code></pre></div></div>
-
-<p><code class="highlighter-rouge">Domain</code>，域名相关处理。</p>
-
+<p><code>Domain</code>，域名相关处理。</p>
 <h2 id="stream">Stream</h2>
-
 <ul>
-  <li>不是某一模块，是指一种操作——流操作。</li>
-  <li>连续数据都是流——视频流、网络流、文件流、语音流</li>
+<li>不是某一模块，是指一种操作——流操作。</li>
+<li>连续数据都是流——视频流、网络流、文件流、语音流</li>
 </ul>
-
 <h2 id="tlsssl">TLS/SSL</h2>
-
-<p>加密、安全，目前人类常用的加密协议都是靠<code class="highlighter-rouge">SSL</code>（安全套接层）实现的。</p>
-
+<p>加密、安全，目前人类常用的加密协议都是靠<code>SSL</code>（安全套接层）实现的。</p>
 <h2 id="zlib">ZLIB</h2>
-
 <p>gz压缩（流）</p>
-
-<h1 id="搭建web服务器">搭建web服务器</h1>
-
+<h1 id="web">搭建web服务器</h1>
 <h2 id="v01">v0.1</h2>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
@@ -354,22 +308,19 @@
 <span class="p">});</span>
 <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
 </code></pre></div></div>
-
 <ul>
-  <li>用<code class="highlighter-rouge">node</code>运行<code class="highlighter-rouge">js</code>文件：进入目录，运行<code class="highlighter-rouge">node 文件名</code></li>
-  <li>创建服务器需要使用<code class="highlighter-rouge">http</code>模块</li>
-  <li>一台服务器上通常会运行多个程序，每个程序会监听不同的<strong>端口号</strong>，外界访问该服务器时需要指定端口号以访问特定的后台程序；一些服务的默认端口号：
-    <ul>
-      <li><code class="highlighter-rouge">http</code>: 80</li>
-      <li><code class="highlighter-rouge">ftp</code>: 21</li>
-      <li><code class="highlighter-rouge">mysql</code>: 3306</li>
-    </ul>
-  </li>
-  <li>在一些高级浏览器发现：访问根目录会提交两次请求，额外的一次请求<code class="highlighter-rouge">favicon.ico</code>是请求网站图标</li>
+<li>用<code>node</code>运行<code>js</code>文件：进入目录，运行<code>node 文件名</code></li>
+<li>创建服务器需要使用<code>http</code>模块</li>
+<li>一台服务器上通常会运行多个程序，每个程序会监听不同的<strong>端口号</strong>，外界访问该服务器时需要指定端口号以访问特定的后台程序；一些服务的默认端口号：
+<ul>
+<li><code>http</code>: 80</li>
+<li><code>ftp</code>: 21</li>
+<li><code>mysql</code>: 3306</li>
 </ul>
-
+</li>
+<li>在一些高级浏览器发现：访问根目录会提交两次请求，额外的一次请求<code>favicon.ico</code>是请求网站图标</li>
+</ul>
 <h2 id="v10">v1.0</h2>
-
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">),</span>
     <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
 
@@ -388,17 +339,13 @@
 <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">server is listening 8080 ...</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div></div>
-
-<p>对于前一个版本，无论前端发来的请求路径如何，返回结果总是不变，而且总是<code class="highlighter-rouge">200</code>状态码。现在，将所有可以被前端访问的资源文件放在<code class="highlighter-rouge">htdocs</code>目录中，当从前端获得请求时，直接以<code class="highlighter-rouge">htdocs</code>为更目录，读取相关文件。如果文件存在，则返回给前端，反之则返回<code class="highlighter-rouge">404</code>（显然当前这种写法不是真的<code class="highlighter-rouge">404</code>）。需要注意<code class="highlighter-rouge">res.end()</code>一定要放在回调中。</p>
-
-<h1 id="外话">外话</h1>
-
+<p>对于前一个版本，无论前端发来的请求路径如何，返回结果总是不变，而且总是<code>200</code>状态码。现在，将所有可以被前端访问的资源文件放在<code>htdocs</code>目录中，当从前端获得请求时，直接以<code>htdocs</code>为更目录，读取相关文件。如果文件存在，则返回给前端，反之则返回<code>404</code>（显然当前这种写法不是真的<code>404</code>）。需要注意<code>res.end()</code>一定要放在回调中。</p>
+<h1 id="section-6">外话</h1>
 <ul>
-  <li><strong>负载均衡</strong>：一个网站可能有多个服务器，尽量让所有用户的请求比较均衡地让各服务器处理。</li>
-  <li><strong>代理跨域</strong>，反向代理</li>
-  <li><code class="highlighter-rouge">ssh</code>是一个基于<code class="highlighter-rouge">ssl</code>的协议</li>
+<li><strong>负载均衡</strong>：一个网站可能有多个服务器，尽量让所有用户的请求比较均衡地让各服务器处理。</li>
+<li><strong>代理跨域</strong>，反向代理</li>
+<li><code>ssh</code>是一个基于<code>ssl</code>的协议</li>
 </ul>
-
 
 				</div>
 				<p>（本文完）</p>
