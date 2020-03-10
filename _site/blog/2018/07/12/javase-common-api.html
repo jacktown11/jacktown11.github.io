@@ -60,14 +60,16 @@
 				<p class="meta">2018-07-12</p>
 				<div class="post" ref="post">
 					<h1 id="object">Object</h1>
-<p>java中所有引用类型的父类，定义了一系列方法，如<code>equals</code>、<code>toString</code>、<code>hashCode</code>等，因此java所用的引用类型都有了这些方法。</p>
-<h2 id="equals">equals()方法</h2>
+<p>java中所有引用类型的父类，定义了一系列方法，如<code class="highlighter-rouge">equals</code>、<code class="highlighter-rouge">toString</code>、<code class="highlighter-rouge">hashCode</code>等，因此java所用的引用类型都有了这些方法。</p>
+
+<h2 id="equals方法">equals()方法</h2>
 <p>java源码中该方法的实现如下：</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">obj</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre></div></div>
-<p>根据这个实现，两个对象相等意味着他们必定是同一个对象（如果<code>equals</code>方法未被重写）。然而，java中可用这个方法来比较两个字符串是否相等，这说明<code>String</code>类一定重写过该方法，通过查看源码确实在<code>String</code>类找到了该方法的覆盖，如下所示：</p>
+
+<p>根据这个实现，两个对象相等意味着他们必定是同一个对象（如果<code class="highlighter-rouge">equals</code>方法未被重写）。然而，java中可用这个方法来比较两个字符串是否相等，这说明<code class="highlighter-rouge">String</code>类一定重写过该方法，通过查看源码确实在<code class="highlighter-rouge">String</code>类找到了该方法的覆盖，如下所示：</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">anObject</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">anObject</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
@@ -91,303 +93,540 @@
 <span class="o">}</span>
 
 </code></pre></div></div>
-<p>上述代码首先进行了类型判断与显式转换，在传入参数确实是字符串的情况下，逐个字符进行比较。（上述代码中<code>value</code>是<code>String</code>对象内的私有<code>char</code>数组常量,储存了字符串的所有字符）。</p>
-<h3 id="equals-1">equals()方法官方约定</h3>
+
+<p>上述代码首先进行了类型判断与显式转换，在传入参数确实是字符串的情况下，逐个字符进行比较。（上述代码中<code class="highlighter-rouge">value</code>是<code class="highlighter-rouge">String</code>对象内的私有<code class="highlighter-rouge">char</code>数组常量,储存了字符串的所有字符）。</p>
+
+<h3 id="equals方法官方约定">equals()方法官方约定</h3>
 <ul>
-<li>自反性</li>
-<li>对称性</li>
-<li>传递性</li>
-<li>一致性</li>
-<li>任何非空对象不和hull相等</li>
+  <li>自反性</li>
+  <li>对称性</li>
+  <li>传递性</li>
+  <li>一致性</li>
+  <li>任何非空对象不和hull相等</li>
 </ul>
-<p>以上约定说明了<code>equals()</code>方法上建立了的二元关系是等价关系。</p>
-<p>重写<code>equals()</code>方法时通常需要重写<code>hashCode()</code>方法，以维护<code>hashCode()</code>方法的<strong>对象相等时哈希值必相等的约定</strong>。</p>
-<h2 id="tostring">toString()方法</h2>
-<p>返回对象的字符串表示，通常是形如<code>类名+内存地址</code>，实际开发使用时通常要重写。</p>
+
+<p>以上约定说明了<code class="highlighter-rouge">equals()</code>方法上建立了的二元关系是等价关系。</p>
+
+<p>重写<code class="highlighter-rouge">equals()</code>方法时通常需要重写<code class="highlighter-rouge">hashCode()</code>方法，以维护<code class="highlighter-rouge">hashCode()</code>方法的<strong>对象相等时哈希值必相等的约定</strong>。</p>
+
+<h2 id="tostring方法">toString()方法</h2>
+<p>返回对象的字符串表示，通常是形如<code class="highlighter-rouge">类名+内存地址</code>，实际开发使用时通常要重写。</p>
+
 <h1 id="string">String</h1>
-<p><code>String</code>类实际字符内容都存储在一个字符数组常量<code>value</code>中，因此字符串创建后其内容是不可变的，如下源码所示：</p>
+<p><code class="highlighter-rouge">String</code>类实际字符内容都存储在一个字符数组常量<code class="highlighter-rouge">value</code>中，因此字符串创建后其内容是不可变的，如下源码所示：</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">value</span><span class="o">[];</span>
 </code></pre></div></div>
-<h2 id="section">对象创建</h2>
-<h3 id="section-1">使用字面量</h3>
-<p><code>String str = &quot;xxx&quot;;</code></p>
-<h3 id="section-2">使用构造函数</h3>
+
+<h2 id="对象创建">对象创建</h2>
+
+<h3 id="使用字面量">使用字面量</h3>
+<p><code class="highlighter-rouge">String str = "xxx";</code></p>
+
+<h3 id="使用构造函数">使用构造函数</h3>
+
 <p>构造函数有重载</p>
+
 <ul>
-<li><code>new String()</code>, 返回空字符串</li>
-<li><code>new String(&quot;xxx&quot;)</code>, 返回参数字符串</li>
-<li><code>new String(byte[] bytes)</code>, 将数组各元素根据平台默认字符编码表解码成字符，并返回合并后的字符串</li>
-<li><code>new String(byte[] bytes, int offset, int len)</code>, 剪切版本</li>
-<li><code>new String(char[] chars)</code>, 返回所有字符合并后的字符串</li>
-<li><code>new String(char[] chars, int offset, int len)</code>, 剪切版本</li>
+  <li><code class="highlighter-rouge">new String()</code>, 返回空字符串</li>
+  <li><code class="highlighter-rouge">new String("xxx")</code>, 返回参数字符串</li>
+  <li><code class="highlighter-rouge">new String(byte[] bytes)</code>, 将数组各元素根据平台默认字符编码表解码成字符，并返回合并后的字符串</li>
+  <li><code class="highlighter-rouge">new String(byte[] bytes, int offset, int len)</code>, 剪切版本</li>
+  <li><code class="highlighter-rouge">new String(char[] chars)</code>, 返回所有字符合并后的字符串</li>
+  <li><code class="highlighter-rouge">new String(char[] chars, int offset, int len)</code>, 剪切版本</li>
 </ul>
-<h2 id="section-3">常用方法</h2>
-<p>|方法|解释|
-|-|-|
-|int <code>length</code>()| 字符串长度|
-|String <code>subString</code>(int beginIndex, int endIndex)|字符串截取[beginIndex, endIndex)|
-|boolean <code>equals</code>(Object obj)| 字符串比较|
-|boolean <code>equalsIgnoreCase</code>(Object o)|字符串比较（忽略大小写）|
-|boolean <code>contains</code>(CharSequence cs)| 是否包含参数|
-|int <code>indexOf</code>(String str)| 参数第一次出现的位置索引|
-|char <code>charAt</code>(int index)| 某位置的字符|
-|boolean <code>startsWith</code>(String str)| 是否以参数为前缀|
-|boolean <code>endsWith</code>(String str)| 是否以参数为后缀|
-|byte[] <code>getBytes</code>()| 转换成byte数组(使用平台默认字符编码表)|
-|char[] <code>toCharArray</code>()| 转换成char数组|</p>
+
+<h2 id="常用方法">常用方法</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>int <code class="highlighter-rouge">length</code>()</td>
+      <td>字符串长度</td>
+    </tr>
+    <tr>
+      <td>String <code class="highlighter-rouge">subString</code>(int beginIndex, int endIndex)</td>
+      <td>字符串截取[beginIndex, endIndex)</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">equals</code>(Object obj)</td>
+      <td>字符串比较</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">equalsIgnoreCase</code>(Object o)</td>
+      <td>字符串比较（忽略大小写）</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">contains</code>(CharSequence cs)</td>
+      <td>是否包含参数</td>
+    </tr>
+    <tr>
+      <td>int <code class="highlighter-rouge">indexOf</code>(String str)</td>
+      <td>参数第一次出现的位置索引</td>
+    </tr>
+    <tr>
+      <td>char <code class="highlighter-rouge">charAt</code>(int index)</td>
+      <td>某位置的字符</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">startsWith</code>(String str)</td>
+      <td>是否以参数为前缀</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">endsWith</code>(String str)</td>
+      <td>是否以参数为后缀</td>
+    </tr>
+    <tr>
+      <td>byte[] <code class="highlighter-rouge">getBytes</code>()</td>
+      <td>转换成byte数组(使用平台默认字符编码表)</td>
+    </tr>
+    <tr>
+      <td>char[] <code class="highlighter-rouge">toCharArray</code>()</td>
+      <td>转换成char数组</td>
+    </tr>
+  </tbody>
+</table>
+
 <h1 id="stringbuffer">StringBuffer</h1>
-<p>一种线程安全的可变字符序列，和<code>String</code>相比，其用于存储内容的字符数组是可变长、可修改的。</p>
-<h2 id="section-4">常用方法</h2>
+<p>一种线程安全的可变字符序列，和<code class="highlighter-rouge">String</code>相比，其用于存储内容的字符数组是可变长、可修改的。</p>
+
+<h2 id="常用方法-1">常用方法</h2>
 <ul>
-<li>StringBuffer <code>append</code>(CharSequence cs)
-<ul>
-<li>添加字符序列</li>
+  <li>StringBuffer <code class="highlighter-rouge">append</code>(CharSequence cs)
+    <ul>
+      <li>添加字符序列</li>
+    </ul>
+  </li>
+  <li>StringBuffer <code class="highlighter-rouge">delete</code>(int start, int end)
+    <ul>
+      <li>删除[start, end)部分字符</li>
+    </ul>
+  </li>
+  <li>StringBuffer <code class="highlighter-rouge">insert</code>(int dstOffset CharSequence cs)
+    <ul>
+      <li>插入字符序列到目标位置</li>
+    </ul>
+  </li>
+  <li>StringBuffer <code class="highlighter-rouge">replace</code>(int start, int end, String)
+    <ul>
+      <li>删除后插入</li>
+    </ul>
+  </li>
+  <li>StringBuffer <code class="highlighter-rouge">reverse</code>()
+    <ul>
+      <li>翻转字符序列</li>
+    </ul>
+  </li>
+  <li>String <code class="highlighter-rouge">toString</code>()
+    <ul>
+      <li>转换为字符串</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>StringBuffer <code>delete</code>(int start, int end)
-<ul>
-<li>删除[start, end)部分字符</li>
-</ul>
-</li>
-<li>StringBuffer <code>insert</code>(int dstOffset CharSequence cs)
-<ul>
-<li>插入字符序列到目标位置</li>
-</ul>
-</li>
-<li>StringBuffer <code>replace</code>(int start, int end, String)
-<ul>
-<li>删除后插入</li>
-</ul>
-</li>
-<li>StringBuffer <code>reverse</code>()
-<ul>
-<li>翻转字符序列</li>
-</ul>
-</li>
-<li>String <code>toString</code>()
-<ul>
-<li>转换为字符串</li>
-</ul>
-</li>
-</ul>
+
 <h2 id="stringbuilder">StringBuilder</h2>
-<p>一个线程不安全的类，但是速度更快，可能的情况下，优先使用<code>StringBuilder</code>。</p>
-<h1 id="section-5">包装类型</h1>
-<p>基本数据类型的包装类储存了一些与本数据类型相关的静态常量，通过构造方法可以将一个基本类型包装起来，包装类实例可以转换为基本类型和字符串；包装类还提供一些静态方法用于基本类型和字符串的相互转换。（下面以<code>int</code>和其包装类<code>Integer</code>为例）</p>
-<p>|类型|基本类型关键字|包装类型|
-|-|-|-|
-| 字节型| byte| Byte|
-| 短整型| short| Short|
-| 整型| int| <strong>Integer</strong>|
-| 长整型| long| Long|
-| 字符型| char| <strong>Character</strong>|
-| 布尔型| boolean| Boolean|
-| 浮点型| float| Float|
-| 双精度浮点型| double| Double|</p>
-<h2 id="section-6">常量</h2>
+<p>一个线程不安全的类，但是速度更快，可能的情况下，优先使用<code class="highlighter-rouge">StringBuilder</code>。</p>
+
+<h1 id="包装类型">包装类型</h1>
+
+<p>基本数据类型的包装类储存了一些与本数据类型相关的静态常量，通过构造方法可以将一个基本类型包装起来，包装类实例可以转换为基本类型和字符串；包装类还提供一些静态方法用于基本类型和字符串的相互转换。（下面以<code class="highlighter-rouge">int</code>和其包装类<code class="highlighter-rouge">Integer</code>为例）</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型</th>
+      <th>基本类型关键字</th>
+      <th>包装类型</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>字节型</td>
+      <td>byte</td>
+      <td>Byte</td>
+    </tr>
+    <tr>
+      <td>短整型</td>
+      <td>short</td>
+      <td>Short</td>
+    </tr>
+    <tr>
+      <td>整型</td>
+      <td>int</td>
+      <td><strong>Integer</strong></td>
+    </tr>
+    <tr>
+      <td>长整型</td>
+      <td>long</td>
+      <td>Long</td>
+    </tr>
+    <tr>
+      <td>字符型</td>
+      <td>char</td>
+      <td><strong>Character</strong></td>
+    </tr>
+    <tr>
+      <td>布尔型</td>
+      <td>boolean</td>
+      <td>Boolean</td>
+    </tr>
+    <tr>
+      <td>浮点型</td>
+      <td>float</td>
+      <td>Float</td>
+    </tr>
+    <tr>
+      <td>双精度浮点型</td>
+      <td>double</td>
+      <td>Double</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="常量">常量</h2>
 <ul>
-<li><code>Integer.MAX_VALUE</code>，最大的<code>int</code>整型</li>
-<li><code>Integer.MIN_VALUE</code>，最小的<code>int</code>整型</li>
+  <li><code class="highlighter-rouge">Integer.MAX_VALUE</code>，最大的<code class="highlighter-rouge">int</code>整型</li>
+  <li><code class="highlighter-rouge">Integer.MIN_VALUE</code>，最小的<code class="highlighter-rouge">int</code>整型</li>
 </ul>
-<h2 id="section-7">基本类型和包装类型的转换(构造器与实例方法)</h2>
-<h3 id="section-8">包装</h3>
+
+<h2 id="基本类型和包装类型的转换构造器与实例方法">基本类型和包装类型的转换(构造器与实例方法)</h2>
+
+<h3 id="包装">包装</h3>
 <ul>
-<li><code>new Integer(int i)</code></li>
-<li><code>new Integer(String s)</code></li>
+  <li><code class="highlighter-rouge">new Integer(int i)</code></li>
+  <li><code class="highlighter-rouge">new Integer(String s)</code></li>
 </ul>
-<h3 id="section-9">解包装</h3>
+
+<h3 id="解包装">解包装</h3>
 <ul>
-<li><code>int intValue()</code></li>
-<li><code>String toString()</code></li>
-<li><code>static String toBinaryString(int i)</code></li>
-<li><code>static String toHexString(int i)</code></li>
-<li><code>static String toOctalString(int i)</code></li>
+  <li><code class="highlighter-rouge">int intValue()</code></li>
+  <li><code class="highlighter-rouge">String toString()</code></li>
+  <li><code class="highlighter-rouge">static String toBinaryString(int i)</code></li>
+  <li><code class="highlighter-rouge">static String toHexString(int i)</code></li>
+  <li><code class="highlighter-rouge">static String toOctalString(int i)</code></li>
 </ul>
-<h2 id="section-10">基本类型和字符串的转换(静态方法)</h2>
-<h3 id="section-11">字符串解析</h3>
+
+<h2 id="基本类型和字符串的转换静态方法">基本类型和字符串的转换(静态方法)</h2>
+
+<h3 id="字符串解析">字符串解析</h3>
 <ul>
-<li><code>static int parseInt(String s)</code></li>
-<li><code>static int parseInt(String s, int radix)</code>，其中radix为进制</li>
+  <li><code class="highlighter-rouge">static int parseInt(String s)</code></li>
+  <li><code class="highlighter-rouge">static int parseInt(String s, int radix)</code>，其中radix为进制</li>
 </ul>
-<h3 id="section-12">转换为字符串</h3>
+
+<h3 id="转换为字符串">转换为字符串</h3>
 <ul>
-<li><code>基本类型+&quot;&quot;</code></li>
-<li>调用包装类的静态方法
-<ul>
-<li><code>static String toString(int i);</code></li>
-<li><code>static String toString(int i, int radix);</code>，其中<code>radix</code>是进制</li>
+  <li><code class="highlighter-rouge">基本类型+""</code></li>
+  <li>调用包装类的静态方法
+    <ul>
+      <li><code class="highlighter-rouge">static String toString(int i);</code></li>
+      <li><code class="highlighter-rouge">static String toString(int i, int radix);</code>，其中<code class="highlighter-rouge">radix</code>是进制</li>
+    </ul>
+  </li>
+  <li>调用<code class="highlighter-rouge">String</code>的静态方法
+    <ul>
+      <li><code class="highlighter-rouge">static String.valueOf(int i)</code></li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>调用<code>String</code>的静态方法
-<ul>
-<li><code>static String.valueOf(int i)</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="section-13">自动装箱与拆箱</h2>
+
+<h2 id="自动装箱与拆箱">自动装箱与拆箱</h2>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
 </code></pre></div></div>
-<p>上面的代码是合法的，给引用类型<code>i</code>赋值时，传入了<code>int</code>基本类型，这时会自动装箱为引用类型；用<code>Integer</code>引用类型变量<code>i</code>进行数学运算，这时会进行自动拆箱；运算结果是基本类型，再赋值给<code>i</code>时又会自动装箱。</p>
-<h3 id="section-14">疑难解析</h3>
+
+<p>上面的代码是合法的，给引用类型<code class="highlighter-rouge">i</code>赋值时，传入了<code class="highlighter-rouge">int</code>基本类型，这时会自动装箱为引用类型；用<code class="highlighter-rouge">Integer</code>引用类型变量<code class="highlighter-rouge">i</code>进行数学运算，这时会进行自动拆箱；运算结果是基本类型，再赋值给<code class="highlighter-rouge">i</code>时又会自动装箱。</p>
+
+<h3 id="疑难解析">疑难解析</h3>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
 <span class="nc">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">38</span><span class="o">;</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span> <span class="c1">//true</span>
 </code></pre></div></div>
-<p>上面的自动装箱过程中由于38在<code>byte</code>范围内，此时重复出现的数字不会新建包装类，而是重复引用。相当于：</p>
+
+<p>上面的自动装箱过程中由于38在<code class="highlighter-rouge">byte</code>范围内，此时重复出现的数字不会新建包装类，而是重复引用。相当于：</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">38</span><span class="o">);</span>
 <span class="nc">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
 </code></pre></div></div>
+
 <h1 id="system">System</h1>
 <ul>
-<li>Long <code>currentTimeMillis</code>()
-<ul>
-<li>获取当前时间（ms）</li>
+  <li>Long <code class="highlighter-rouge">currentTimeMillis</code>()
+    <ul>
+      <li>获取当前时间（ms）</li>
+    </ul>
+  </li>
+  <li>static void <code class="highlighter-rouge">exit</code>(int status)
+    <ul>
+      <li>终止当前正在运行的虚拟机（0为正常中止）</li>
+    </ul>
+  </li>
+  <li>static void <code class="highlighter-rouge">gc</code>()
+    <ul>
+      <li>让java虚拟机运行垃圾收集器</li>
+    </ul>
+  </li>
+  <li>static Properties <code class="highlighter-rouge">getProperties</code>()
+    <ul>
+      <li>获取当前操作系统的属性</li>
+    </ul>
+  </li>
+  <li>static void <code class="highlighter-rouge">arraycopy</code>(Object src,int srcPos,Object dest,int destPos,int length)
+    <ul>
+      <li>复制数组，将src数组从srcPos起的length个元素赋值到dest数组的destPos位置(目标数组的原有元素会被覆盖)</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>static void <code>exit</code>(int status)
-<ul>
-<li>终止当前正在运行的虚拟机（0为正常中止）</li>
-</ul>
-</li>
-<li>static void <code>gc</code>()
-<ul>
-<li>让java虚拟机运行垃圾收集器</li>
-</ul>
-</li>
-<li>static Properties <code>getProperties</code>()
-<ul>
-<li>获取当前操作系统的属性</li>
-</ul>
-</li>
-<li>static void <code>arraycopy</code>(Object src,int srcPos,Object dest,int destPos,int length)
-<ul>
-<li>复制数组，将src数组从srcPos起的length个元素赋值到dest数组的destPos位置(目标数组的原有元素会被覆盖)</li>
-</ul>
-</li>
-</ul>
+
 <h1 id="math">Math</h1>
 <p>提供了大量的静态工具方法，基本都有重载。</p>
-<p>|方法名|作用|
-|-|-|
-|PI |圆周率常量 |
-|abs|绝对值 |
-|round |四舍五入 |
-|floor |向下取整 |
-|ceil |向上取整 |
-|random |[0,1)随机数 |
-|power |乘方|
-|sqrt |开平方 |
-|max |二者最大值 |
-|min |二者最小值 |
-|log |ln函数 |</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法名</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PI</td>
+      <td>圆周率常量</td>
+    </tr>
+    <tr>
+      <td>abs</td>
+      <td>绝对值</td>
+    </tr>
+    <tr>
+      <td>round</td>
+      <td>四舍五入</td>
+    </tr>
+    <tr>
+      <td>floor</td>
+      <td>向下取整</td>
+    </tr>
+    <tr>
+      <td>ceil</td>
+      <td>向上取整</td>
+    </tr>
+    <tr>
+      <td>random</td>
+      <td>[0,1)随机数</td>
+    </tr>
+    <tr>
+      <td>power</td>
+      <td>乘方</td>
+    </tr>
+    <tr>
+      <td>sqrt</td>
+      <td>开平方</td>
+    </tr>
+    <tr>
+      <td>max</td>
+      <td>二者最大值</td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>二者最小值</td>
+    </tr>
+    <tr>
+      <td>log</td>
+      <td>ln函数</td>
+    </tr>
+  </tbody>
+</table>
+
 <h1 id="biginteger">BigInteger</h1>
-<p>来自<code>java.math</code>包，用于不可变的任意精度的整数。</p>
-<h2 id="section-15">常用构造方法</h2>
+<p>来自<code class="highlighter-rouge">java.math</code>包，用于不可变的任意精度的整数。</p>
+
+<h2 id="常用构造方法">常用构造方法</h2>
 <ul>
-<li><code>BigInteger(String val)</code></li>
-<li><code>BigInteger(String val, int radix)</code></li>
+  <li><code class="highlighter-rouge">BigInteger(String val)</code></li>
+  <li><code class="highlighter-rouge">BigInteger(String val, int radix)</code></li>
 </ul>
-<p>另外还可以用静态方法<code>BigInteger.valueOf(long l)</code>将整型转为<code>BigInteger</code>对象。</p>
-<h2 id="section-16">运算</h2>
-<p>|方法|解释|
-|-|-|
-|BigInteger <code>add</code>(BigInteger b)|+|
-|BigInteger <code>subtract</code>(BigInteger b)|-|
-|BigInteger <code>multiply</code>(BigInteger b)|*|
-|BigInteger <code>divide</code>(BigInteger b)|/|
-|int <code>compareTo</code>(BigInteger b)|比较大小,返回-1，0，1|
-|BigInteger <code>abs</code>(BigInteger b)|绝对值|
-|boolean <code>equals</code>(BigInteger b)|相等判断|</p>
+
+<p>另外还可以用静态方法<code class="highlighter-rouge">BigInteger.valueOf(long l)</code>将整型转为<code class="highlighter-rouge">BigInteger</code>对象。</p>
+
+<h2 id="运算">运算</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">add</code>(BigInteger b)</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">subtract</code>(BigInteger b)</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">multiply</code>(BigInteger b)</td>
+      <td>*</td>
+    </tr>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">divide</code>(BigInteger b)</td>
+      <td>/</td>
+    </tr>
+    <tr>
+      <td>int <code class="highlighter-rouge">compareTo</code>(BigInteger b)</td>
+      <td>比较大小,返回-1，0，1</td>
+    </tr>
+    <tr>
+      <td>BigInteger <code class="highlighter-rouge">abs</code>(BigInteger b)</td>
+      <td>绝对值</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">equals</code>(BigInteger b)</td>
+      <td>相等判断</td>
+    </tr>
+  </tbody>
+</table>
+
 <h1 id="bigdecimal">BigDecimal</h1>
-<p>来自<code>java.math</code>包，用于不可变的任意精度的浮点数。使用类似<code>BigInteger</code>。</p>
+<p>来自<code class="highlighter-rouge">java.math</code>包，用于不可变的任意精度的浮点数。使用类似<code class="highlighter-rouge">BigInteger</code>。</p>
+
 <p>需要注意的是小数的除法可能结果是无穷小数，所以通常需要给定精度，如下是除法的其中一个实现：</p>
-<p><code>BigDecimal divide(BigDecimal val, int scale, int roundMode)</code></p>
-<p>其中<code>scale</code>是小数精度位数，<code>roundMode</code>是舍入模式，<code>BigInteger</code>中提供了舍入模式的静态常量，如<code>BigInteger.ROUND_CEILING</code>表示向上截取。</p>
+
+<p><code class="highlighter-rouge">BigDecimal divide(BigDecimal val, int scale, int roundMode)</code></p>
+
+<p>其中<code class="highlighter-rouge">scale</code>是小数精度位数，<code class="highlighter-rouge">roundMode</code>是舍入模式，<code class="highlighter-rouge">BigInteger</code>中提供了舍入模式的静态常量，如<code class="highlighter-rouge">BigInteger.ROUND_CEILING</code>表示向上截取。</p>
+
 <h1 id="arrays">Arrays</h1>
-<p>来自<code>java.util</code>包，提供大量数组操作的静态工具方法，这些方法大多都有重载。</p>
+<p>来自<code class="highlighter-rouge">java.util</code>包，提供大量数组操作的静态工具方法，这些方法大多都有重载。</p>
 <ul>
-<li><code>sort</code>，升序排序</li>
-<li><code>binarySearch</code>，二分查找，无法找到的话，返回<code>-插入点索引-1</code></li>
-<li><code>toString</code>，数组字符串</li>
+  <li><code class="highlighter-rouge">sort</code>，升序排序</li>
+  <li><code class="highlighter-rouge">binarySearch</code>，二分查找，无法找到的话，返回<code class="highlighter-rouge">-插入点索引-1</code></li>
+  <li><code class="highlighter-rouge">toString</code>，数组字符串</li>
 </ul>
-<h1 id="section-17">正则表达式</h1>
-<p><code>java.util.regex</code>包提供了<code>Matcher</code>和<code>Pattern</code>两个类。</p>
+
+<h1 id="正则表达式">正则表达式</h1>
+<p><code class="highlighter-rouge">java.util.regex</code>包提供了<code class="highlighter-rouge">Matcher</code>和<code class="highlighter-rouge">Pattern</code>两个类。</p>
+
 <h2 id="pattern">Pattern</h2>
-<h3 id="compile">静态compile()方法</h3>
+
+<h3 id="静态compile方法">静态compile()方法</h3>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="nc">Pattern</span> <span class="nf">compile</span><span class="o">(</span><span class="nc">String</span> <span class="n">regex</span><span class="o">);</span>
 <span class="kd">static</span> <span class="nc">Pattern</span> <span class="nf">compile</span><span class="o">(</span><span class="nc">String</span> <span class="n">regex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">);</span>
 </code></pre></div></div>
+
 <p>这是一个静态方法,可根据模式字符串返回正则表达式。</p>
-<h3 id="matcher">matcher()方法</h3>
+
+<h3 id="matcher方法">matcher()方法</h3>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Matcher</span> <span class="nf">matcher</span><span class="o">(</span><span class="nc">CharSequence</span> <span class="n">input</span><span class="o">);</span>
 </code></pre></div></div>
-<p>用一个<code>Pattern</code>实例对象调用该方法，可以获得一个<code>Matcher</code>对象</p>
-<h2 id="matcher-1">Matcher</h2>
-<h2 id="string-1">String对象中的正则表达式方法</h2>
-<p>|方法|解释|
-|-|-|
-|boolean <code>matches</code>(String regex)|模式匹配检查|
-|String[] <code>split</code>(String regex)|字符串分割|
-|String <code>replaceAll</code>(String regex, String replacement)|按照规则替换字符串|</p>
-<h1 id="section-18">日期</h1>
+<p>用一个<code class="highlighter-rouge">Pattern</code>实例对象调用该方法，可以获得一个<code class="highlighter-rouge">Matcher</code>对象</p>
+
+<h2 id="matcher">Matcher</h2>
+
+<h2 id="string对象中的正则表达式方法">String对象中的正则表达式方法</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">matches</code>(String regex)</td>
+      <td>模式匹配检查</td>
+    </tr>
+    <tr>
+      <td>String[] <code class="highlighter-rouge">split</code>(String regex)</td>
+      <td>字符串分割</td>
+    </tr>
+    <tr>
+      <td>String <code class="highlighter-rouge">replaceAll</code>(String regex, String replacement)</td>
+      <td>按照规则替换字符串</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="日期">日期</h1>
+
 <h2 id="javautildate">java.util.Date</h2>
-<h3 id="section-19">构造方法</h3>
+
+<h3 id="构造方法">构造方法</h3>
+
 <ul>
-<li>Date(), 以当前时间创建Date对象</li>
-<li>Date(long date), 根据毫秒值参数创建Date对象</li>
+  <li>Date(), 以当前时间创建Date对象</li>
+  <li>Date(long date), 根据毫秒值参数创建Date对象</li>
 </ul>
-<h3 id="section-20">实例方法</h3>
+
+<h3 id="实例方法">实例方法</h3>
+
 <ul>
-<li>long <code>getTime</code>(), 返回毫秒值</li>
-<li>void <code>setTime</code>(), 设置毫秒值</li>
+  <li>long <code class="highlighter-rouge">getTime</code>(), 返回毫秒值</li>
+  <li>void <code class="highlighter-rouge">setTime</code>(), 设置毫秒值</li>
 </ul>
+
 <h2 id="javatextsimpledateformat">java.text.SimpleDateFormat</h2>
-<p>继承自<code>DateFormat</code>抽象类，用于格式化日期</p>
-<h3 id="section-21">构造方法</h3>
+
+<p>继承自<code class="highlighter-rouge">DateFormat</code>抽象类，用于格式化日期</p>
+
+<h3 id="构造方法-1">构造方法</h3>
 <ul>
-<li>SimpleDateFormat(String datePatternStr), 参数是日期格式模式字符串，例如“yyyy-MM-dd”.</li>
-<li>常用日期和时间模式
+  <li>SimpleDateFormat(String datePatternStr), 参数是日期格式模式字符串，例如“yyyy-MM-dd”.</li>
+  <li>常用日期和时间模式
+    <ul>
+      <li>y  年</li>
+      <li>M  年中的月份</li>
+      <li>d  月份中的天数</li>
+      <li>H  一天中的小时数（0-23）</li>
+      <li>m  小时中的分钟数</li>
+      <li>s  分钟中的秒数</li>
+      <li>S  毫秒数</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="实例方法-1">实例方法</h3>
 <ul>
-<li>y  年</li>
-<li>M  年中的月份</li>
-<li>d  月份中的天数</li>
-<li>H  一天中的小时数（0-23）</li>
-<li>m  小时中的分钟数</li>
-<li>s  分钟中的秒数</li>
-<li>S  毫秒数</li>
+  <li>String <code class="highlighter-rouge">format</code>(Date date), 根据格式输出参数日期的格式化字符串</li>
+  <li>Date <code class="highlighter-rouge">parse</code>(String str), 根据格式将日期字符串转换成日期对象</li>
 </ul>
-</li>
-</ul>
-<h3 id="section-22">实例方法</h3>
-<ul>
-<li>String <code>format</code>(Date date), 根据格式输出参数日期的格式化字符串</li>
-<li>Date <code>parse</code>(String str), 根据格式将日期字符串转换成日期对象</li>
-</ul>
+
 <h2 id="javautilcalendar">java.util.Calendar</h2>
-<p>不可通过<code>new</code>的方式产生对象实例，而是通过静态方法<code>getInstance()</code></p>
-<h3 id="section-23">常用方法</h3>
+
+<p>不可通过<code class="highlighter-rouge">new</code>的方式产生对象实例，而是通过静态方法<code class="highlighter-rouge">getInstance()</code></p>
+
+<h3 id="常用方法-2">常用方法</h3>
 <ul>
-<li>int <code>get</code>(int field), 获取日期某各个字段，<code>field</code>传入<code>Calendar</code>类的静态常量。</li>
-<li>void <code>set</code>(int field, int value), 设置日期某字段</li>
-<li>void <code>set</code>(int year, int month, int day), 一次性设置年月日</li>
-<li>void <code>add</code>(int field, int offset), 以字段为单位偏移</li>
-<li>Date <code>getTime()</code>, 转换成对应<code>Date</code>对象</li>
-<li>void <code>setTime</code>(Date date), 用<code>Date</code>对象设置日历</li>
+  <li>int <code class="highlighter-rouge">get</code>(int field), 获取日期某各个字段，<code class="highlighter-rouge">field</code>传入<code class="highlighter-rouge">Calendar</code>类的静态常量。</li>
+  <li>void <code class="highlighter-rouge">set</code>(int field, int value), 设置日期某字段</li>
+  <li>void <code class="highlighter-rouge">set</code>(int year, int month, int day), 一次性设置年月日</li>
+  <li>void <code class="highlighter-rouge">add</code>(int field, int offset), 以字段为单位偏移</li>
+  <li>Date <code class="highlighter-rouge">getTime()</code>, 转换成对应<code class="highlighter-rouge">Date</code>对象</li>
+  <li>void <code class="highlighter-rouge">setTime</code>(Date date), 用<code class="highlighter-rouge">Date</code>对象设置日历</li>
 </ul>
-<h3 id="section-24">注意</h3>
+
+<h3 id="注意">注意</h3>
 <ul>
-<li>西方星期的开始为周日，中国为周一。</li>
-<li>在Calendar类中，月份的表示是以0-11代表1-12月。</li>
-<li>日期是有大小关系的，时间靠后，时间越大。</li>
+  <li>西方星期的开始为周日，中国为周一。</li>
+  <li>在Calendar类中，月份的表示是以0-11代表1-12月。</li>
+  <li>日期是有大小关系的，时间靠后，时间越大。</li>
 </ul>
 
 				</div>
 				<p>（本文完）</p>
 
-				<hr>
-				
-				<p>您可以到本文在<a href="https://github.com/jacktown11/jacktown11.github.io/issues/27">github仓库中的相应issue</a>下评论</p>
+				<!-- <hr> -->
 				
 				<p class="license">
 					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a

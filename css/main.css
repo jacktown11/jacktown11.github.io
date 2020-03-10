@@ -205,6 +205,10 @@ ul{
 /*============
 part2: class for reuse
 ==============*/
+.jacktown-bold{
+	font-weight: bold !important;
+}
+
 .no-wrap{
 	overflow: hidden;
 	white-space: nowrap;

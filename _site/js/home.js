@@ -51,6 +51,7 @@ var catsAndTags = {
   tags: document.getElementById('tags'),
   pipe: document.getElementById('pipe'),
   tree: {}, // categories and tags tree
+  firstClsTags: [], // all of post' first tag which represent a second rank category
   init: function() {
     this.generateTree()
     this.filter.setBySessionStorage()
@@ -65,6 +66,7 @@ var catsAndTags = {
   },
   generateTree: function() {
     var tree = this.tree
+    var firstClsTags = this.firstClsTags
     var infos = posts.infos
     infos.forEach(function(postInfo) {
       var category = postInfo.cats[0]
@@ -74,7 +76,15 @@ var catsAndTags = {
       postInfo.tags.forEach(function(tag) {
         Util.addIntoArr(tag, tree[category])
       })
+      Util.addIntoArr(postInfo.tags[0], firstClsTags)
     })
+    for (category in tree) {
+      if (tree.hasOwnProperty(category)) {
+      	tree[category].sort(function(tag1, tag2) {
+          return firstClsTags.indexOf(tag1) >= 0 ? -1 : 1
+        })
+      }
+    }
   },
   renderByFilter: function() {
     this.renderCategories()
@@ -115,8 +125,10 @@ var catsAndTags = {
       tags = this.tags
     if (catStr && this.tree[catStr]) {
       var innerHTML = ''
+      let firstClsTags = this.firstClsTags
       this.tree[catStr].forEach(function(tag) {
         var cls = filter.isContainTag(tag) ? 'selected' : ''
+        cls += firstClsTags.indexOf(tag) >= 0 ? ' jacktown-bold' : ''
         innerHTML +=
           '<span class="' + cls + '" id="' + tag + '">' + tag + '</span>'
       })

@@ -47,7 +47,7 @@
 					上一篇：<a href="/blog/2017/07/02/jQuery-clone">jQuery clone()方法一个注意点</a>
 				</div>
 				<div class="next no-wrap">
-					下一篇：<a href="/blog/2017/07/24/fcc-portfolio0">fcc项目总结系列1：个人作品展示页面制作项目</a>
+					下一篇：<a href="/blog/2017/07/24/html-entity">html字符实体</a>
 				</div>
 			</div>
 
@@ -59,65 +59,68 @@
 				<h1 id="post-title">《javascript高级程序设计》对象创建与继承 总结笔记</h1>
 				<p class="meta">2017-07-02</p>
 				<div class="post" ref="post">
-					<h1 id="section">1. 创建对象</h1>
-<h1 id="section-1">2. 继承</h1>
-<h2 id="section-2">1)原型链</h2>
+					<h1 id="1-创建对象">1. 创建对象</h1>
+<h1 id="2-继承">2. 继承</h1>
+<h2 id="1原型链">1)原型链</h2>
 <p><strong>将超类型实例直接作为子类型的原型对象</strong></p>
 <ul>
-<li><strong>优点</strong>
+  <li><strong>优点</strong>
 子类型实例可以在原型链中找到所有超类型的属性和方法。</li>
-<li><strong>缺陷</strong>
-<ul>
-<li>超类型包含引用类型值属性时，会出现问题</li>
-<li>子类型实例无法独立向超类型构造函数传递参数</li>
+  <li><strong>缺陷</strong>
+    <ul>
+      <li>超类型包含引用类型值属性时，会出现问题</li>
+      <li>子类型实例无法独立向超类型构造函数传递参数</li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
-<h2 id="section-3">2)借用构造函数</h2>
+
+<h2 id="2借用构造函数">2)借用构造函数</h2>
 <p><strong>在子类型构造函数内部，将this（调用子类型构造函数时它指代子类型实例）作为环境对象用call方法调用超类型构造函数。</strong></p>
 <ul>
-<li><strong>优点</strong>
+  <li><strong>优点</strong>
 属性都被定义在实例中，可以向超类型构造函数传递参数</li>
-<li><strong>缺陷</strong>
-<ul>
-<li>不能实现函数复用</li>
-<li>超类型原型中的方法对子类型实例不可见，结果所有引用类型都只能使用构造函数模式来创建</li>
+  <li><strong>缺陷</strong>
+    <ul>
+      <li>不能实现函数复用</li>
+      <li>超类型原型中的方法对子类型实例不可见，结果所有引用类型都只能使用构造函数模式来创建</li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
-<h2 id="section-4">3)组合继承</h2>
+
+<h2 id="3组合继承">3)组合继承</h2>
 <p><strong>借用构造函数让超类型属性直接定义在子类型实例中；用原型链继承超类型的方法。</strong></p>
 <ul>
-<li><strong>优点</strong>
+  <li><strong>优点</strong>
 结合了原型链和借用构造函数的优点</li>
-<li><strong>缺陷</strong>
+  <li><strong>缺陷</strong>
 超类型构造函数被两次调用，子类型实例的原型中同时含有超类型的属性</li>
 </ul>
-<h2 id="section-5">4)原型式继承</h2>
+
+<h2 id="4原型式继承">4)原型式继承</h2>
 <p><strong>定义一个对象创建函数，将基础对象传入，函数内部创建一个新对象，该新对象以传入的基础对象为原型对象。</strong></p>
 <ul>
-<li><strong>优点</strong>
+  <li><strong>优点</strong>
 基于对象而不是基于构造函数建立新对象</li>
 </ul>
-<h2 id="section-6">5)寄生式继承</h2>
+
+<h2 id="5寄生式继承">5)寄生式继承</h2>
 <p><strong>借鉴原型式继承的思路，定义一个对象创建函数，函数接收一个基础对象，基于它创建一个新对象（比如利用原型式继承来创建），然后对新对象增强后返回。</strong></p>
 <ul>
-<li><strong>优点</strong>
+  <li><strong>优点</strong>
 基于对象创建功能增强的新对象</li>
 </ul>
-<h2 id="section-7">6)寄生组合式继承</h2>
+
+<h2 id="6寄生组合式继承">6)寄生组合式继承</h2>
 <p><strong>对组合式继承加以改进：基于超类型的原型对象，利用寄生式继承创建一个新对象，用这个新对象代替超类型的实例作为子类型的原型对象。</strong></p>
 <ul>
-<li><strong>优点</strong>
+  <li><strong>优点</strong>
 在组合式继承中，我们继承方法时实际上只需要超类型的原型对象，我们可以借用寄生继承；避免对超类型构造函数的二次调用，子类型实例中不再出现超类型属性。</li>
 </ul>
 
 				</div>
 				<p>（本文完）</p>
 
-				<hr>
-				
-				<p>您可以到本文在<a href="https://github.com/jacktown11/jacktown11.github.io/issues/9">github仓库中的相应issue</a>下评论</p>
+				<!-- <hr> -->
 				
 				<p class="license">
 					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a

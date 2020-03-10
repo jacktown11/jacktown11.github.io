@@ -59,74 +59,80 @@
 				<h1 id="post-title">数据结构与算法分析C语言描述 总结笔记 第六章</h1>
 				<p class="meta">2017-06-10</p>
 				<div class="post" ref="post">
-					<h1 id="section">第六章 优先队列(堆)</h1>
-<h2 id="section-1">1. 基本概念</h2>
+					<h1 id="第六章-优先队列堆">第六章 优先队列(堆)</h1>
+<h2 id="1-基本概念">1. 基本概念</h2>
 <p>一种特殊的队列，至少支持两种操作：Insert和DeleteMin；前者插入元素，相当于队列的enqueue,后者查找、删除、返回最小的元素，相当于队列的dequeue。</p>
-<h2 id="section-2">2. 二叉堆</h2>
-<h3 id="section-3">概念</h3>
+<h2 id="2-二叉堆">2. 二叉堆</h2>
+<h3 id="概念">概念</h3>
 <p>具有结构性质和堆序性质的二叉树（或者说具有堆序性质的完全二叉树）</p>
-<h3 id="section-4">性质</h3>
+<h3 id="性质">性质</h3>
 <ul>
-<li>结构性质：完全二叉树</li>
-<li>堆序性质：父节点小于任意子节点</li>
+  <li>结构性质：完全二叉树</li>
+  <li>堆序性质：父节点小于任意子节点</li>
 </ul>
-<h3 id="section-5">实现方法</h3>
+
+<h3 id="实现方法">实现方法</h3>
 <p>数组即可， 鉴于其完全二叉树的性质，乘以2可以到达左子节点，除以2可以到达父节点。</p>
-<h3 id="section-6">操作及其时间复杂度</h3>
+<h3 id="操作及其时间复杂度">操作及其时间复杂度</h3>
 <p>后面四种操作需要节点位置信息为基础</p>
 <ul>
-<li>Insert:  采用上滤，最坏为O(logN)，平均只要比较2.607次，上移1.607层，O（1）</li>
-<li>DeleteMin: 采用下滤，最坏为O(logN)，平均为O(logN)</li>
-<li>DecreaseKey:</li>
-<li>IncreaseKey:</li>
-<li>Delete:</li>
-<li>BuildHeap: 空堆N个Insert操作来完成，总运行时间O（N）</li>
+  <li>Insert:  采用上滤，最坏为O(logN)，平均只要比较2.607次，上移1.607层，O（1）</li>
+  <li>DeleteMin: 采用下滤，最坏为O(logN)，平均为O(logN)</li>
+  <li>DecreaseKey:</li>
+  <li>IncreaseKey:</li>
+  <li>Delete:</li>
+  <li>BuildHeap: 空堆N个Insert操作来完成，总运行时间O（N）</li>
 </ul>
-<h2 id="d">3. d堆</h2>
+
+<h2 id="3-d堆">3. d堆</h2>
 <ul>
-<li>类似二叉堆，只是节点的儿子数都是d个（除了最底层的一些节点）。</li>
-<li>有证据显示，4堆在实践中可以胜过二叉堆。</li>
+  <li>类似二叉堆，只是节点的儿子数都是d个（除了最底层的一些节点）。</li>
+  <li>有证据显示，4堆在实践中可以胜过二叉堆。</li>
 </ul>
-<h2 id="section-7">4.左式堆</h2>
-<h3 id="section-8">概念</h3>
+
+<h2 id="4左式堆">4.左式堆</h2>
+<h3 id="概念-1">概念</h3>
 <p>具有堆序性质和和零路径长相关的结构性质的二叉树。</p>
-<h3 id="section-9">性质</h3>
+<h3 id="性质-1">性质</h3>
+
 <ul>
-<li>堆序性质：父节点小于任意子节点；</li>
-<li>结构性质：左儿子节点的零路径长不小于右儿子节点的零路径长。（=&gt;N个节点的左式堆右路径上节点不超过[log(N+1)]）</li>
+  <li>堆序性质：父节点小于任意子节点；</li>
+  <li>结构性质：左儿子节点的零路径长不小于右儿子节点的零路径长。（=&gt;N个节点的左式堆右路径上节点不超过[log(N+1)]）</li>
 </ul>
-<h3 id="section-10">实现方法</h3>
+
+<h3 id="实现方法-1">实现方法</h3>
 <p>采用二叉树的实现方法，每个节点增加零路径长域。</p>
-<h3 id="section-11">操作及其实践复杂度</h3>
+
+<h3 id="操作及其实践复杂度">操作及其实践复杂度</h3>
 <ul>
-<li>Merge：从由路径节点入手，O（logN)</li>
-<li>Insert：合并一个节点左式堆，O（logN)</li>
-<li>DeleteMin：O（logN)</li>
+  <li>Merge：从由路径节点入手，O（logN)</li>
+  <li>Insert：合并一个节点左式堆，O（logN)</li>
+  <li>DeleteMin：O（logN)</li>
 </ul>
-<h2 id="section-12">5. 斜堆</h2>
-<h3 id="section-13">概念</h3>
+
+<h2 id="5-斜堆">5. 斜堆</h2>
+<h3 id="概念-2">概念</h3>
 <p>具有堆序的二叉树，但不具有结构性质；其基本操作Merge和左氏堆一致，但是右路径上的节点左右儿子的交换是无条件的（除了右路径上最大节点不交换其左右儿子）</p>
-<h3 id="section-14">操作</h3>
+<h3 id="操作">操作</h3>
 <ul>
-<li>Merge：任意单次操作最坏时间O（N），摊还时间O（logN）</li>
-<li>...</li>
+  <li>Merge：任意单次操作最坏时间O（N），摊还时间O（logN）</li>
+  <li>…</li>
 </ul>
-<h2 id="binomial-queue">6. 二项队列（binomial queue）</h2>
-<h3 id="section-15">概念</h3>
+
+<h2 id="6-二项队列binomial-queue">6. 二项队列（binomial queue）</h2>
+<h3 id="概念-3">概念</h3>
 <p>具有堆序的二项树的集合（森林）。</p>
-<h3 id="section-16">操作</h3>
+<h3 id="操作-1">操作</h3>
 <ul>
-<li>Merge： O（logN）</li>
-<li>Insert：O（logN)；从空堆连续N次插入总最坏时间O（N）</li>
-<li>Delete：O（logN）</li>
+  <li>Merge： O（logN）</li>
+  <li>Insert：O（logN)；从空堆连续N次插入总最坏时间O（N）</li>
+  <li>Delete：O（logN）</li>
 </ul>
 
 				</div>
 				<p>（本文完）</p>
 
-				<hr>
-				
-				<p>您可以到本文在<a href="https://github.com/jacktown11/jacktown11.github.io/issues/4">github仓库中的相应issue</a>下评论</p>
+				<!-- <hr> -->
 				
 				<p class="license">
 					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a

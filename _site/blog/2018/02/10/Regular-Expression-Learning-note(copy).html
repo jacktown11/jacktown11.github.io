@@ -59,64 +59,96 @@
 				<h1 id="post-title">正则表达式学习笔记(转)</h1>
 				<p class="meta">2018-02-10</p>
 				<div class="post" ref="post">
-					<h1 id="section">前言</h1>
+					<h1 id="前言">前言</h1>
+
 <p>转载自：<a href="https://juejin.im/post/582dfcfda22b9d006b726d11">https://juejin.im/post/582dfcfda22b9d006b726d11</a>，有修改。</p>
-<h1 id="section-1">学习目标</h1>
+
+<h1 id="学习目标">学习目标</h1>
+
 <ul>
-<li>了解正则表达式语法</li>
-<li>在IDE中使用正则表达式</li>
-<li>在javascript中使用正则表达式处理字符串</li>
+  <li>了解正则表达式语法</li>
+  <li>在IDE中使用正则表达式</li>
+  <li>在javascript中使用正则表达式处理字符串</li>
 </ul>
-<h1 id="section-2">什么是正则表达式</h1>
+
+<h1 id="什么是正则表达式">什么是正则表达式</h1>
 <blockquote>
-<p><code>正则表达式</code>，又称正规表达式、正规表示法、正规表达式、规则表达式、常规表示法（英文：<code>Regular Expression</code>，在代码中常简称<code>regex</code>、<code>regexp</code>或<code>RE</code>），计算机科学的一个概念。<code>正则表达式</code>使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些匹配某个模式的文本。</p>
+  <p><code class="highlighter-rouge">正则表达式</code>，又称正规表达式、正规表示法、正规表达式、规则表达式、常规表示法（英文：<code class="highlighter-rouge">Regular Expression</code>，在代码中常简称<code class="highlighter-rouge">regex</code>、<code class="highlighter-rouge">regexp</code>或<code class="highlighter-rouge">RE</code>），计算机科学的一个概念。<code class="highlighter-rouge">正则表达式</code>使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些匹配某个模式的文本。</p>
 </blockquote>
+
 <p>通俗地讲就是按照某种规则去匹配符合条件的字符串</p>
-<h1 id="section-3">利用图形化工具理解正则表达式</h1>
-<p>有一个辅助理解正则表达式的在线工具（<a href="https://regexper.com/">regexper.com</a>），可以自动将输入的正则表达式转换为<code>铁路图</code>（又叫<code>语法图</code>，<code>syntax diagrams</code>）下面是一些例子。</p>
-<h2 id="section-4">手机号正则</h2>
-<p><code>/^1[34578][0-9]{9}$/</code></p>
+
+<h1 id="利用图形化工具理解正则表达式">利用图形化工具理解正则表达式</h1>
+
+<p>有一个辅助理解正则表达式的在线工具（<a href="https://regexper.com/">regexper.com</a>），可以自动将输入的正则表达式转换为<code class="highlighter-rouge">铁路图</code>（又叫<code class="highlighter-rouge">语法图</code>，<code class="highlighter-rouge">syntax diagrams</code>）下面是一些例子。</p>
+
+<h2 id="手机号正则">手机号正则</h2>
+
+<p><code class="highlighter-rouge">/^1[34578][0-9]{9}$/</code></p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-6b6d4886939a1845.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<p>以1开头，第二位为<code>3 4 5 7 9</code>中某一个，以9为（本省1次加回转8次）0-9数字结尾。</p>
-<h2 id="section-5">单词边界</h2>
-<p><code>/\bis\b/</code></p>
+
+<p>以1开头，第二位为<code class="highlighter-rouge">3 4 5 7 9</code>中某一个，以9为（本省1次加回转8次）0-9数字结尾。</p>
+
+<h2 id="单词边界">单词边界</h2>
+
+<p><code class="highlighter-rouge">/\bis\b/</code></p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-cfacb91ff7fa6a88.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<p><code>is</code>前后都是单词的边界，下面的实验有助于理解。</p>
+
+<p><code class="highlighter-rouge">is</code>前后都是单词的边界，下面的实验有助于理解。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg1</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b</span><span class="sr">is</span><span class="se">\b</span><span class="sr">/g</span><span class="p">,</span>
 <span class="nx">reg2</span> <span class="o">=</span> <span class="sr">/is/g</span><span class="p">,</span>
 <span class="nx">str</span> <span class="o">=</span>  <span class="dl">'</span><span class="s1">this is a fish</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span><span class="err">    </span><span class="c1">//this X a fish</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg2</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span><span class="err">    </span><span class="c1">//thX X a fXh</span>
 </code></pre></div></div>
-<h2 id="url">URL分组替换</h2>
-<p><code>/http:(\/\/.+\.jpg)/</code></p>
+
+<h2 id="url分组替换">URL分组替换</h2>
+
+<p><code class="highlighter-rouge">/http:(\/\/.+\.jpg)/</code></p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-38bcdc5ccbaec6eb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<p>正则表达式中括号用来分组，这个时候我们可以通过用<code>$1</code>来获取<code>group#1</code>的内容。</p>
+
+<p>正则表达式中括号用来分组，这个时候我们可以通过用<code class="highlighter-rouge">$1</code>来获取<code class="highlighter-rouge">group#1</code>的内容。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg3</span> <span class="o">=</span> <span class="sr">/http:</span><span class="se">(\/\/</span><span class="sr">.+</span><span class="se">\.</span><span class="sr">jpg</span><span class="se">)</span><span class="sr">/</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://img.host.com.abc.jpg</span><span class="dl">'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg3</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$1</span><span class="dl">'</span><span class="p">));</span> 
 <span class="c1">// //img.host.com.abc.jpg</span>
 </code></pre></div></div>
-<p>说下这个正则的意义，如果网站用了<code>https</code>，网站引用静态资源也必须是<code>https</code>，否则报错。如果写成<code>//</code>会自动识别<code>http</code>或者<code>https</code>。</p>
-<h2 id="section-6">日期匹配与分组替换</h2>
-<p><code>/^\d{4}[/-]\d{2}[/-]\d{2}$/</code></p>
+
+<p>说下这个正则的意义，如果网站用了<code class="highlighter-rouge">https</code>，网站引用静态资源也必须是<code class="highlighter-rouge">https</code>，否则报错。如果写成<code class="highlighter-rouge">//</code>会自动识别<code class="highlighter-rouge">http</code>或者<code class="highlighter-rouge">https</code>。</p>
+
+<h2 id="日期匹配与分组替换">日期匹配与分组替换</h2>
+
+<p><code class="highlighter-rouge">/^\d{4}[/-]\d{2}[/-]\d{2}$/</code></p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-166c0c54d52024ee.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+
 <ul>
-<li><code>Start of line</code>是由<code>^</code>生效，表示以此开头</li>
-<li>对应结尾<code>End of line</code>由<code>$</code>生效，表示以此结尾</li>
-<li>接着看<code>digit</code>有<code>\d</code>生效，表示数字</li>
-<li><code>3 times</code>由<code>{4}</code>生效表示重复4次，铁路图中实际是3+1</li>
-<li><code>one of</code>表示在给出的所有可选项中选择一个</li>
+  <li><code class="highlighter-rouge">Start of line</code>是由<code class="highlighter-rouge">^</code>生效，表示以此开头</li>
+  <li>对应结尾<code class="highlighter-rouge">End of line</code>由<code class="highlighter-rouge">$</code>生效，表示以此结尾</li>
+  <li>接着看<code class="highlighter-rouge">digit</code>有<code class="highlighter-rouge">\d</code>生效，表示数字</li>
+  <li><code class="highlighter-rouge">3 times</code>由<code class="highlighter-rouge">{4}</code>生效表示重复4次，铁路图中实际是3+1</li>
+  <li><code class="highlighter-rouge">one of</code>表示在给出的所有可选项中选择一个</li>
 </ul>
+
 <p>下面的代码使用它来验证日期字符串。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg4</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">\d{4}[/</span><span class="sr">-</span><span class="se">]\d{2}[/</span><span class="sr">-</span><span class="se">]\d{2}</span><span class="sr">$/</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg4</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">2018-2-7</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// false</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg4</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">2018-02-07</span><span class="dl">'</span><span class="p">));</span>   <span class="c1">// true</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reg4</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">2018/02/07</span><span class="dl">'</span><span class="p">));</span>   <span class="c1">// true</span>
 </code></pre></div></div>
+
 <p>结合URL分组替换所用到的分组特性，我们可以轻松写出日期格式化的方法，改造后的正则表达式如下。</p>
-<p><code>/^(\d{4})[/-](\d{2})[/-](\d{2})$/</code>
+
+<p><code class="highlighter-rouge">/^(\d{4})[/-](\d{2})[/-](\d{2})$/</code>
 <img src="http://upload-images.jianshu.io/upload_images/6321648-eea71407b6f2492f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+
 <p>轻松的拿到各个分组的内容后，就可以替换成我们期望的格式。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg5</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">(\d{4})[/</span><span class="sr">-</span><span class="se">](\d{2})[/</span><span class="sr">-</span><span class="se">](\d{2})</span><span class="sr">$/</span><span class="p">,</span>
     <span class="nx">dateStr</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">2018/02/07</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg5</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$1年$2月$3日</span><span class="dl">'</span><span class="p">));</span>    
@@ -126,26 +158,41 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg5</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$2月</span><span class="dl">'</span><span class="p">));</span>  
 <span class="c1">//"02月"</span>
 </code></pre></div></div>
+
 <p>到现在已经能结合图形化工具看懂正则表达式了，如果有自己写，还需要进一步深入。</p>
-<h1 id="javascriptregexp">JavaScript中的RegExp对象</h1>
+
+<h1 id="javascript中的regexp对象">JavaScript中的RegExp对象</h1>
+
 <p>JavaScript通过内置的RegExp支持正则表达式，有两种方法实例化RegExp对象</p>
-<h2 id="section-7">字面量方法</h2>
+
+<h2 id="字面量方法">字面量方法</h2>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reg</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b</span><span class="sr">is</span><span class="se">\b</span><span class="sr">/g</span>
 </code></pre></div></div>
-<h2 id="section-8">构造函数</h2>
+
+<h2 id="构造函数">构造函数</h2>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reg</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="dl">'</span><span class="se">\\</span><span class="s1">bis</span><span class="se">\\</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">g</span><span class="dl">'</span><span class="p">);</span>
 </code></pre></div></div>
-<p><strong>注意</strong>：构造函数第一个参数为正则表达式字符串，需要双重转义，第二个参数为修饰符，修饰符<code>g</code>代表全局搜索。</p>
-<h1 id="section-9">正则表达式语法</h1>
-<h2 id="codegcode-codeicode-codemcode">修饰符（<code>g</code> <code>i</code> <code>m</code>）</h2>
-<p>修饰符与其他部分语法不同，字面量方法声明的时候放到<code>//</code>后面，构造函数声明的时候，作为第二个参数传入。整个正则表达式可以理解为正则表达式规则字符串+修饰符。</p>
+
+<p><strong>注意</strong>：构造函数第一个参数为正则表达式字符串，需要双重转义，第二个参数为修饰符，修饰符<code class="highlighter-rouge">g</code>代表全局搜索。</p>
+
+<h1 id="正则表达式语法">正则表达式语法</h1>
+
+<h2 id="修饰符g-i-m">修饰符（<code class="highlighter-rouge">g</code> <code class="highlighter-rouge">i</code> <code class="highlighter-rouge">m</code>）</h2>
+
+<p>修饰符与其他部分语法不同，字面量方法声明的时候放到<code class="highlighter-rouge">//</code>后面，构造函数声明的时候，作为第二个参数传入。整个正则表达式可以理解为正则表达式规则字符串+修饰符。</p>
+
 <ul>
-<li><code>g</code>：global，执行一个全局匹配</li>
-<li><code>i</code>：ignore case，执行一个不区分大小写的匹配</li>
-<li><code>m</code>： multiple lines，多行匹配</li>
+  <li><code class="highlighter-rouge">g</code>：global，执行一个全局匹配</li>
+  <li><code class="highlighter-rouge">i</code>：ignore case，执行一个不区分大小写的匹配</li>
+  <li><code class="highlighter-rouge">m</code>： multiple lines，多行匹配</li>
 </ul>
+
 <p>可以同时使用多个修饰符。</p>
-<h3 id="g">g修饰符详例</h3>
+
+<h3 id="g修饰符详例">g修饰符详例</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg6</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/</span><span class="p">,</span>
     <span class="nx">reg7</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">this is a sentence contaning many is.</span><span class="dl">'</span><span class="p">;</span>
@@ -154,9 +201,13 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg7</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//thO O a sentence contaning many O.</span>
 </code></pre></div></div>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-2553d69fb51ce386.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<p>可以看到添加了<code>g</code>修饰符，所有模式匹配的字符串都替换了，而不添加的话，只会替换第一处。</p>
-<h3 id="i">i修饰符详例</h3>
+
+<p>可以看到添加了<code class="highlighter-rouge">g</code>修饰符，所有模式匹配的字符串都替换了，而不添加的话，只会替换第一处。</p>
+
+<h3 id="i修饰符详例">i修饰符详例</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg8</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">reg9</span> <span class="o">=</span> <span class="sr">/is</span><span class="se">\b</span><span class="sr">/gi</span><span class="p">,</span>
     <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Is this a kiss?</span><span class="dl">'</span><span class="p">;</span>
@@ -165,37 +216,57 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg9</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//O thO a kiss ?</span>
 </code></pre></div></div>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-407b462bc2410640.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<p>有<code>i</code>时是忽略大小写的。</p>
-<h2 id="section-10">元字符</h2>
-<p>正则表达式字面量中字符可分为原义字符、非打印字符、元字符，其中元字符在正则表达式中具有一种或多种特殊用途，如果要匹配它们，需要将它们转义，这些元字符包括<code>( { [ * + ? $ ^ . | \ ) } ]</code>。</p>
-<h2 id="section-11">原义字符</h2>
-<p>比如<code>/is\b/</code>中的<code>is</code>。</p>
-<p><code>\</code>将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，<code>n</code>匹配字符<code>n</code>，<code>\n</code>匹配换行符。序列<code>\\</code>匹配<code>\</code>，而<code>\(</code>匹配<code>(</code>。</p>
-<h2 id="section-12">非打印字符</h2>
-<p>比如换页符<code>\f</code>、换行符<code>\n</code>、制表符<code>\t</code>等等，以<code>\n</code>为例。</p>
+
+<p>有<code class="highlighter-rouge">i</code>时是忽略大小写的。</p>
+
+<h2 id="元字符">元字符</h2>
+
+<p>正则表达式字面量中字符可分为原义字符、非打印字符、元字符，其中元字符在正则表达式中具有一种或多种特殊用途，如果要匹配它们，需要将它们转义，这些元字符包括<code class="highlighter-rouge">( { [ * + ? $ ^ . | \ ) } ] </code>。</p>
+
+<h2 id="原义字符">原义字符</h2>
+
+<p>比如<code class="highlighter-rouge">/is\b/</code>中的<code class="highlighter-rouge">is</code>。</p>
+
+<p><code class="highlighter-rouge">\</code>将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，<code class="highlighter-rouge">n</code>匹配字符<code class="highlighter-rouge">n</code>，<code class="highlighter-rouge">\n</code>匹配换行符。序列<code class="highlighter-rouge">\\</code>匹配<code class="highlighter-rouge">\</code>，而<code class="highlighter-rouge">\(</code>匹配<code class="highlighter-rouge">(</code>。</p>
+
+<h2 id="非打印字符">非打印字符</h2>
+
+<p>比如换页符<code class="highlighter-rouge">\f</code>、换行符<code class="highlighter-rouge">\n</code>、制表符<code class="highlighter-rouge">\t</code>等等，以<code class="highlighter-rouge">\n</code>为例。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg10</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\n</span><span class="sr">/</span><span class="p">,</span>
     <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">sentence 1. </span><span class="se">\n</span><span class="s1"> sentence 2.</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg10</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//sentence 1. O sentence 2.</span>
 </code></pre></div></div>
+
 <p>其他非打印字符在前端用得少，通常在后端处理文本文件时才会用到。</p>
-<h2 id="section-13">字符类[]</h2>
-<p>前面的手机号的例子（<code>/^1[34578][0-9]{9}$/</code>）中，我们使用过<code>[]</code>，其中的<code>[34578]</code>表示<code>34578</code>中的任意一个数字即可。在日期匹配与分组替换的例子（<code>/^\d{4}[\-]\d{2}[\-]\d{2}$/</code>）中，<code>[\-]</code>表示<code>\</code>和<code>-</code>任选一个。</p>
+
+<h2 id="字符类">字符类[]</h2>
+
+<p>前面的手机号的例子（<code class="highlighter-rouge">/^1[34578][0-9]{9}$/</code>）中，我们使用过<code class="highlighter-rouge">[]</code>，其中的<code class="highlighter-rouge">[34578]</code>表示<code class="highlighter-rouge">34578</code>中的任意一个数字即可。在日期匹配与分组替换的例子（<code class="highlighter-rouge">/^\d{4}[\-]\d{2}[\-]\d{2}$/</code>）中，<code class="highlighter-rouge">[\-]</code>表示<code class="highlighter-rouge">\</code>和<code class="highlighter-rouge">-</code>任选一个。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg11</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">abc</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">a 1 b 2 c 3 d 4</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg11</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//O 1 O 2 O 3 d 4</span>
 </code></pre></div></div>
-<h2 id="section-14">字符类取反[^]</h2>
+
+<h2 id="字符类取反">字符类取反[^]</h2>
+
 <p>表示给出的所有字符之外的任意字符。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg12</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[^</span><span class="sr">abc</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">a 1 b 2 c 3 d 4</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg12</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//aOOObOOOcOOOOOO</span>
 </code></pre></div></div>
-<h2 id="section-15">范围类[-]</h2>
-<p>正则表达式支持一定范围规则，比如<code>[a-z]</code>、<code>[A-Z]</code>、<code>[0-9]</code>，也可以组合起来如<code>[a-z0-9]</code>，如果字符<code>-</code>本身也是可选项，加在最后即可。</p>
+
+<h2 id="范围类-">范围类[-]</h2>
+
+<p>正则表达式支持一定范围规则，比如<code class="highlighter-rouge">[a-z]</code>、<code class="highlighter-rouge">[A-Z]</code>、<code class="highlighter-rouge">[0-9]</code>，也可以组合起来如<code class="highlighter-rouge">[a-z0-9]</code>，如果字符<code class="highlighter-rouge">-</code>本身也是可选项，加在最后即可。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg13</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">a-zA-C1-3</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">reg14</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">0-9-</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">str1</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">a A 1 b B 2 x X 9</span><span class="dl">'</span><span class="p">,</span>
@@ -205,27 +276,72 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str2</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg14</span><span class="p">,</span> <span class="dl">'</span><span class="s1">O</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//OOOOOOOOOO</span>
 </code></pre></div></div>
-<h2 id="section-16">预定义类</h2>
+
+<h2 id="预定义类">预定义类</h2>
+
 <p>为了编程方便，JavaScript中具有一些预定义类可以直接使用。</p>
-<p>| 字符| 等价类| 含义 |
-|- |- |-|
-| <code>.</code>| <code>[^\n\r]</code>| 除了回车符和换行符之外的所有字符 |
-| <code>\d</code> | <code>[0-9]</code> | 数字字符 |
-| <code>\D</code> | <code>[^0-9]</code> | 非数字字符 |
-| <code>\s</code> | <code>[\t\n\x0B\f\r]</code> | 空白符 |
-| <code>\S</code> | <code>[^\t\n\x0B\f\r]</code> | 非空白符 |
-| <code>\w</code> | <code>[a-zA-Z_0-9]</code> | 单词字符（字母、数字、下划线） |
-| <code>\W</code> | <code>[^a-zA-Z_0-9]</code> | 非单词字符 |</p>
-<p>有了这些预定义类，写一些正则就很方便了，比如我们希望匹配一个<code>ab</code>+数字+任意字符的字符串，可以写作<code>/ab\d./</code>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>字符</th>
+      <th>等价类</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">.</code></td>
+      <td><code class="highlighter-rouge">[^\n\r]</code></td>
+      <td>除了回车符和换行符之外的所有字符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\d</code></td>
+      <td><code class="highlighter-rouge">[0-9]</code></td>
+      <td>数字字符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\D</code></td>
+      <td><code class="highlighter-rouge">[^0-9]</code></td>
+      <td>非数字字符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\s</code></td>
+      <td><code class="highlighter-rouge">[\t\n\x0B\f\r]</code></td>
+      <td>空白符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\S</code></td>
+      <td><code class="highlighter-rouge">[^\t\n\x0B\f\r]</code></td>
+      <td>非空白符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\w</code></td>
+      <td><code class="highlighter-rouge">[a-zA-Z_0-9]</code></td>
+      <td>单词字符（字母、数字、下划线）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\W</code></td>
+      <td><code class="highlighter-rouge">[^a-zA-Z_0-9]</code></td>
+      <td>非单词字符</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>有了这些预定义类，写一些正则就很方便了，比如我们希望匹配一个<code class="highlighter-rouge">ab</code>+数字+任意字符的字符串，可以写作<code class="highlighter-rouge">/ab\d./</code>。</p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-9344c2488b175237.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<h2 id="section-17">边界</h2>
+
+<h2 id="边界">边界</h2>
 <p>| 字符 | 含义 |
 |-|-|
-| <code>^</code> | 字符串开头 |
-| <code>$</code> | 字符串结尾 |
-| <code>\b</code> | 单词边界，指<code>[^a-zA-Z_0-9]</code> |
-| <code>\B</code> | 非单词边界 |</p>
-<p>边界指定义匹配的边界条件，上面基本都在例子中碰到了，下面演示下<code>\b</code>与<code>\B</code>。</p>
+| <code class="highlighter-rouge">^</code> | 字符串开头 |
+| <code class="highlighter-rouge">$</code> | 字符串结尾 |
+| <code class="highlighter-rouge">\b</code> | 单词边界，指<code class="highlighter-rouge">[^a-zA-Z_0-9]</code> |
+| <code class="highlighter-rouge">\B</code> | 非单词边界 |</p>
+
+<p>边界指定义匹配的边界条件，上面基本都在例子中碰到了，下面演示下<code class="highlighter-rouge">\b</code>与<code class="highlighter-rouge">\B</code>。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg15</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b</span><span class="sr">dog/g</span><span class="p">,</span>
     <span class="nx">reg16</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\B</span><span class="sr">dog/g</span><span class="p">,</span>
     <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">@dog@dogdog@</span><span class="dl">'</span><span class="p">;</span>
@@ -234,45 +350,98 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg16</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//@dog@dogX@</span>
 </code></pre></div></div>
-<h2 id="section-18">量词</h2>
-<p>| 字符 | 含义 |
-|-|-|
-| <code>?</code> | 出现0或1次 |
-| <code>*</code> | 出现0，1，2…次（任意次） |
-| <code>+</code> | 出现1，2，3…次（正数次） |
-| <code>{n}</code> | 正好出现n次 |
-| <code>{m,n}</code> | 出现m到n次（含两端） |
-| <code>{n,}</code> | 至少出现n次 |</p>
-<p>这个正则表达式使用了上面的各种形式的量词：<code>/\d?@\d*@\d{10}@\d{10,20}@\d{10,}/</code></p>
+
+<h2 id="量词">量词</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>字符</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">?</code></td>
+      <td>出现0或1次</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">*</code></td>
+      <td>出现0，1，2…次（任意次）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">+</code></td>
+      <td>出现1，2，3…次（正数次）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">{n}</code></td>
+      <td>正好出现n次</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">{m,n}</code></td>
+      <td>出现m到n次（含两端）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">{n,}</code></td>
+      <td>至少出现n次</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这个正则表达式使用了上面的各种形式的量词：<code class="highlighter-rouge">/\d?@\d*@\d{10}@\d{10,20}@\d{10,}/</code></p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-1ba34da12aea223b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<h2 id="section-19">贪婪与（惰性）非贪婪</h2>
+
+<h2 id="贪婪与惰性非贪婪">贪婪与（惰性）非贪婪</h2>
+
 <p>正则表达式默认会匹配贪婪模式，什么是贪婪模式呢？如其名，在符合规则的情况下尽可能多地匹配字符。如下面这个例子。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg17</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\d{3,6}</span><span class="sr">/</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1234567890</span><span class="dl">'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg17</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//X7890</span>
 </code></pre></div></div>
+
 <p>贪婪模式下，匹配了最多的情况。</p>
-<p>与贪婪模式对应的就是惰性模式，此时尽可能少地匹配字符。如何开启懒惰模式呢？在量词后面加<code>?</code>。继续上面的例子：</p>
+
+<p>与贪婪模式对应的就是惰性模式，此时尽可能少地匹配字符。如何开启懒惰模式呢？在量词后面加<code class="highlighter-rouge">?</code>。继续上面的例子：</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg18</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\d{3,6}?</span><span class="sr">/</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1234567890</span><span class="dl">'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg18</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//X4567890</span>
 </code></pre></div></div>
+
 <p>更深入的介绍可参看<a href="https://segmentfault.com/a/1190000000426455">进阶正则表达式</a>。</p>
-<h2 id="section-20">分组与反向引用</h2>
+
+<h2 id="分组与反向引用">分组与反向引用</h2>
+
 <p>分组，又称为子表达式。把正则表达式拆分成小表达式。来看例子：</p>
-<h3 id="section-21">不分组</h3>
-<p><code>/abc{2}/</code></p>
+
+<h3 id="不分组">不分组</h3>
+
+<p><code class="highlighter-rouge">/abc{2}/</code></p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-100a3da3f2ce6ce2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<p>量词仅作用到最后的<code>c</code>。</p>
-<h3 id="section-22">分组</h3>
-<p><code>/(abc){2}/</code></p>
+
+<p>量词仅作用到最后的<code class="highlighter-rouge">c</code>。</p>
+
+<h3 id="分组">分组</h3>
+
+<p><code class="highlighter-rouge">/(abc){2}/</code></p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-fd066b0a8f0e34f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<p>注意这里的<code>group#1</code>。</p>
-<p>分组虽然和运算符<code>()</code>很像，但是分组在正则表达式中，需要着重理解其含义。比如如<code>/^(http|https)/</code>这样滥用分组没有必要，完全可以写作<code>/^https?/</code>。你写的正则特别长的时候，会出现一堆没用的结果。</p>
-<p><code>分组</code>往往和<code>反向引用</code>一起使用。具体来说，当一个正则表达式被分组以后，每个分组自动被赋予一个组号，从左到右是<code>$1 $2 …</code>。</p>
-<p>在把之前的例子拿出来：<code>/^(\d{4})[/-](\d{2})[/-](\d{2})$/</code>。</p>
+
+<p>注意这里的<code class="highlighter-rouge">group#1</code>。</p>
+
+<p>分组虽然和运算符<code class="highlighter-rouge">()</code>很像，但是分组在正则表达式中，需要着重理解其含义。比如如<code class="highlighter-rouge">/^(http|https)/</code>这样滥用分组没有必要，完全可以写作<code class="highlighter-rouge">/^https?/</code>。你写的正则特别长的时候，会出现一堆没用的结果。</p>
+
+<p><code class="highlighter-rouge">分组</code>往往和<code class="highlighter-rouge">反向引用</code>一起使用。具体来说，当一个正则表达式被分组以后，每个分组自动被赋予一个组号，从左到右是<code class="highlighter-rouge">$1 $2 …</code>。</p>
+
+<p>在把之前的例子拿出来：<code class="highlighter-rouge">/^(\d{4})[/-](\d{2})[/-](\d{2})$/</code>。</p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-281a61fbbe90a524.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<p>可以很容易拿到分组<code>group#1</code>、<code>group#2</code>、<code>group#3</code>对应的匹配内容，分别是<code>$1</code>、<code>$2</code>、<code>$3</code>。</p>
+
+<p>可以很容易拿到分组<code class="highlighter-rouge">group#1</code>、<code class="highlighter-rouge">group#2</code>、<code class="highlighter-rouge">group#3</code>对应的匹配内容，分别是<code class="highlighter-rouge">$1</code>、<code class="highlighter-rouge">$2</code>、<code class="highlighter-rouge">$3</code>。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg19</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">(\d{4})[/</span><span class="sr">-</span><span class="se">](\d{2})[/</span><span class="sr">-</span><span class="se">](\d{2})</span><span class="sr">$/</span><span class="p">,</span>
     <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">2018/02/10</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg19</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$1年$2月$3日</span><span class="dl">'</span><span class="p">));</span>
@@ -282,11 +451,17 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg19</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$2月</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//02月</span>
 </code></pre></div></div>
-<p>如果一个分组不想捕获，可以在括号内起始位置加上<code>?:</code>，如：<code>/^(?:\d{4})[/-](\d{2})[/-](\d{2})$/</code>。</p>
+
+<p>如果一个分组不想捕获，可以在括号内起始位置加上<code class="highlighter-rouge">?:</code>，如：<code class="highlighter-rouge">/^(?:\d{4})[/-](\d{2})[/-](\d{2})$/</code>。</p>
+
 <p><img src="http://upload-images.jianshu.io/upload_images/6321648-e49d88fa5e6a38e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-<h2 id="section-23">前瞻（进阶，选看）</h2>
-<p>正则表达式中有前瞻（Lookahead）和后顾（Lookbehind）的概念，这两个术语非常形象地描述了正则引擎的匹配行为。需要注意一点，正则表达式中的前和后和我们通常所理解的前后有所不同。一段文本，我们一般习惯把文本开头的方向称作前面，文本末尾方向称作后面。然而对于正则表达式引擎来说，因为它是从文本头部向尾部开始解析的（可以通过正则选项控制解析方向），因此对于文本尾部方向正则引擎还没走到那块，称作<code>前</code>，而文本起始位置已经走过了，称作<code>后</code>。需要注意的是，后顾性能损耗比较大，js只支持前瞻。按我个人的理解，前瞻的内容并不属于我们的匹配目标，而是我们在匹配目标时，需要向前查看的环境，这种环境要求就是前瞻。</p>
-<p>前瞻分两种，正向前瞻（<code>?=xxx</code>）和负向前瞻（<code>?!xxx</code>）。下面是例子。</p>
+
+<h2 id="前瞻进阶选看">前瞻（进阶，选看）</h2>
+
+<p>正则表达式中有前瞻（Lookahead）和后顾（Lookbehind）的概念，这两个术语非常形象地描述了正则引擎的匹配行为。需要注意一点，正则表达式中的前和后和我们通常所理解的前后有所不同。一段文本，我们一般习惯把文本开头的方向称作前面，文本末尾方向称作后面。然而对于正则表达式引擎来说，因为它是从文本头部向尾部开始解析的（可以通过正则选项控制解析方向），因此对于文本尾部方向正则引擎还没走到那块，称作<code class="highlighter-rouge">前</code>，而文本起始位置已经走过了，称作<code class="highlighter-rouge">后</code>。需要注意的是，后顾性能损耗比较大，js只支持前瞻。按我个人的理解，前瞻的内容并不属于我们的匹配目标，而是我们在匹配目标时，需要向前查看的环境，这种环境要求就是前瞻。</p>
+
+<p>前瞻分两种，正向前瞻（<code class="highlighter-rouge">?=xxx</code>）和负向前瞻（<code class="highlighter-rouge">?!xxx</code>）。下面是例子。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">reg20</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">a-z</span><span class="se">]{2}(?=\d{2})</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">reg21</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">a-z</span><span class="se">]{2}(?!\d{2})</span><span class="sr">/g</span><span class="p">,</span>
     <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">aa11bb22cc**</span><span class="dl">'</span><span class="p">;</span>
@@ -295,18 +470,21 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reg21</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">));</span>
 <span class="c1">//aa11bb22X**</span>
 </code></pre></div></div>
-<h1 id="section-24">知识汇总应用</h1>
-<h2 id="section-25">题目</h2>
-<p>将字符串<code>123456789</code>转换从低位起每三位用逗号区隔一次的货币形式，即<code>123,456,789</code>。</p>
-<h2 id="section-26">参考</h2>
-<p><code>'123456789'.replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')</code></p>
+
+<h1 id="知识汇总应用">知识汇总应用</h1>
+
+<h2 id="题目">题目</h2>
+
+<p>将字符串<code class="highlighter-rouge">123456789</code>转换从低位起每三位用逗号区隔一次的货币形式，即<code class="highlighter-rouge">123,456,789</code>。</p>
+
+<h2 id="参考">参考</h2>
+
+<p><code class="highlighter-rouge">'123456789'.replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')</code></p>
 
 				</div>
 				<p>（本文完）</p>
 
-				<hr>
-				
-				<p>您可以到本文在<a href="https://github.com/jacktown11/jacktown11.github.io/issues/17">github仓库中的相应issue</a>下评论</p>
+				<!-- <hr> -->
 				
 				<p class="license">
 					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a

@@ -59,298 +59,468 @@
 				<h1 id="post-title">javase 集合框架</h1>
 				<p class="meta">2018-07-14</p>
 				<div class="post" ref="post">
-					<h1 id="section">集合框架概述</h1>
-<h2 id="section-1">概念</h2>
-<p>集合是对象存储的容器，在<code>java.util</code>包中有相关的抽象类、接口和实现类。</p>
-<h2 id="section-2">集合体系</h2>
+					<h1 id="集合框架概述">集合框架概述</h1>
+
+<h2 id="概念">概念</h2>
+<p>集合是对象存储的容器，在<code class="highlighter-rouge">java.util</code>包中有相关的抽象类、接口和实现类。</p>
+
+<h2 id="集合体系">集合体系</h2>
 <ul>
-<li>Collection（接口）
+  <li>Collection（接口）
+    <ul>
+      <li>List（接口）
+        <ul>
+          <li>ArrayList（类）</li>
+          <li>LinkedList（类）</li>
+          <li>…</li>
+        </ul>
+      </li>
+      <li>Set（接口）
+        <ul>
+          <li>HashSet（类）</li>
+          <li>LinkedHashSet（类）</li>
+          <li>…</li>
+        </ul>
+      </li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li>Map（接口）
+    <ul>
+      <li>HashMap（类）
+        <ul>
+          <li>LinkedHashMap（类）</li>
+          <li>…</li>
+        </ul>
+      </li>
+      <li>Hashtable（类）
+        <ul>
+          <li>Properties（类）</li>
+          <li>…</li>
+        </ul>
+      </li>
+      <li>…</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="常见数据结构">常见数据结构</h2>
+
+<h3 id="堆栈">堆栈</h3>
 <ul>
-<li>List（接口）
+  <li>先进后出</li>
+  <li>存数据：压栈</li>
+  <li>取数据：弹栈</li>
+</ul>
+
+<h3 id="队列">队列</h3>
 <ul>
-<li>ArrayList（类）</li>
-<li>LinkedList（类）</li>
-<li>...</li>
+  <li>先进先出</li>
 </ul>
-</li>
-<li>Set（接口）
+
+<h3 id="数组">数组</h3>
 <ul>
-<li>HashSet（类）</li>
-<li>LinkedHashSet（类）</li>
-<li>...</li>
+  <li>查找速度快（通过索引）</li>
+  <li>增删元素慢（需要创建新数组）</li>
 </ul>
-</li>
-<li>...</li>
-</ul>
-</li>
-<li>Map（接口）
+
+<h3 id="链表">链表</h3>
 <ul>
-<li>HashMap（类）
-<ul>
-<li>LinkedHashMap（类）</li>
-<li>...</li>
+  <li>后一个元素的位置被前一个元素所存储</li>
+  <li>查找慢</li>
+  <li>增删快</li>
 </ul>
-</li>
-<li>Hashtable（类）
-<ul>
-<li>Properties（类）</li>
-<li>...</li>
-</ul>
-</li>
-<li>...</li>
-</ul>
-</li>
-</ul>
-<h2 id="section-3">常见数据结构</h2>
-<h3 id="section-4">堆栈</h3>
-<ul>
-<li>先进后出</li>
-<li>存数据：压栈</li>
-<li>取数据：弹栈</li>
-</ul>
-<h3 id="section-5">队列</h3>
-<ul>
-<li>先进先出</li>
-</ul>
-<h3 id="section-6">数组</h3>
-<ul>
-<li>查找速度快（通过索引）</li>
-<li>增删元素慢（需要创建新数组）</li>
-</ul>
-<h3 id="section-7">链表</h3>
-<ul>
-<li>后一个元素的位置被前一个元素所存储</li>
-<li>查找慢</li>
-<li>增删快</li>
-</ul>
-<h3 id="hash-table">哈希表（Hash Table）</h3>
+
+<h3 id="哈希表hash-table">哈希表（Hash Table）</h3>
 <p>链表数组结合体，每一个元素都映射到一个确定的哈希值，同一个哈希值的元素放在同一个链表中，各个哈希值放在数组中</p>
-<h4 id="section-8">哈希值的计算</h4>
-<p>java的Object对象声明了<code>int hashCode()</code>方法，这表示每一个java中的对象都可以调用该方法的某种特定实现计算出一个哈希值。</p>
+
+<h4 id="哈希值的计算">哈希值的计算</h4>
+<p>java的Object对象声明了<code class="highlighter-rouge">int hashCode()</code>方法，这表示每一个java中的对象都可以调用该方法的某种特定实现计算出一个哈希值。</p>
+
 <p>java语言官方约定：</p>
+
 <ul>
-<li>同一个对象，多次调用hashCode()，必须返回一个相同的确定值</li>
-<li>两个对象，如果调用equals()方法返回true,那么他们的hashCode()返回值应该相同</li>
-<li>两个对象，如果其hashCode()方法返回了相同值，不要求它们之间调用equals()方法返回true，但是为不同对象提供不同的hash值有利于提高性能</li>
+  <li>同一个对象，多次调用hashCode()，必须返回一个相同的确定值</li>
+  <li>两个对象，如果调用equals()方法返回true,那么他们的hashCode()返回值应该相同</li>
+  <li>两个对象，如果其hashCode()方法返回了相同值，不要求它们之间调用equals()方法返回true，但是为不同对象提供不同的hash值有利于提高性能</li>
 </ul>
-<h1 id="colletion">Colletion接口及其实现类</h1>
-<h2 id="collection">Collection接口</h2>
-<h3 id="section-9">基本方法</h3>
-<p>|方法|解释|
-|-|-|
-|boolean <code>add</code>(E e) |添加(确保存在)某元素 |
-|void <code>clear</code>()|清空元素 |
-|boolean <code>contains</code>(Object o) |判断是否包含某元素 |
-|boolean <code>remove</code>(Object o) |删除一个元素实例 |
-|int <code>size</code>() |已存元素总数量 |
-|Object[] <code>toArray</code>() |返回包含所有元素的数组 |
-|Iterator&lt;E&gt; <code>iterator</code>() |获取集合的迭代器 |</p>
-<h3 id="iterable">Iterable超接口</h3>
-<p><code>JDK1.5</code>之后，<code>Collection</code>接口继承了<code>Iterable</code>接口（该接口在<code>java.lang</code>包中）,上述<code>Collection</code>的基本方法中的<code>iterator</code>方法实际上在<code>Iterable</code>接口中就已经声明了。</p>
-<p>另外，具有<code>Iterable</code>接口的对象都可以使用<code>forEach</code>
-循环（数组也实现了该接口），java中并没有<code>forEach</code>关键字，使用格式如下：</p>
+
+<h1 id="colletion接口及其实现类">Colletion接口及其实现类</h1>
+
+<h2 id="collection接口">Collection接口</h2>
+
+<h3 id="基本方法">基本方法</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">add</code>(E e)</td>
+      <td>添加(确保存在)某元素</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">clear</code>()</td>
+      <td>清空元素</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">contains</code>(Object o)</td>
+      <td>判断是否包含某元素</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">remove</code>(Object o)</td>
+      <td>删除一个元素实例</td>
+    </tr>
+    <tr>
+      <td>int <code class="highlighter-rouge">size</code>()</td>
+      <td>已存元素总数量</td>
+    </tr>
+    <tr>
+      <td>Object[] <code class="highlighter-rouge">toArray</code>()</td>
+      <td>返回包含所有元素的数组</td>
+    </tr>
+    <tr>
+      <td>Iterator&lt;E&gt; <code class="highlighter-rouge">iterator</code>()</td>
+      <td>获取集合的迭代器</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="iterable超接口">Iterable超接口</h3>
+<p><code class="highlighter-rouge">JDK1.5</code>之后，<code class="highlighter-rouge">Collection</code>接口继承了<code class="highlighter-rouge">Iterable</code>接口（该接口在<code class="highlighter-rouge">java.lang</code>包中）,上述<code class="highlighter-rouge">Collection</code>的基本方法中的<code class="highlighter-rouge">iterator</code>方法实际上在<code class="highlighter-rouge">Iterable</code>接口中就已经声明了。</p>
+
+<p>另外，具有<code class="highlighter-rouge">Iterable</code>接口的对象都可以使用<code class="highlighter-rouge">forEach</code>
+循环（数组也实现了该接口），java中并没有<code class="highlighter-rouge">forEach</code>关键字，使用格式如下：</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="o">(</span><span class="no">T</span> <span class="n">item</span> <span class="o">:</span> <span class="nc">IterableObject</span><span class="o">){</span>
 
 <span class="o">}</span>
 </code></pre></div></div>
-<h2 id="iterator">Iterator接口</h2>
+
+<h2 id="iterator接口">Iterator接口</h2>
 <p>迭代器，为java的集合框架提供一种通用的枚举方式。</p>
-<h3 id="section-10">方法</h3>
-<p>|方法|解释|
-|-|-|
-|boolean <code>hasNext</code>() |是否还有下一个迭代元素 |
-|E <code>next</code>() |获取下一个迭代元素 |</p>
-<h3 id="section-11">并发修改异常</h3>
+
+<h3 id="方法">方法</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">hasNext</code>()</td>
+      <td>是否还有下一个迭代元素</td>
+    </tr>
+    <tr>
+      <td>E <code class="highlighter-rouge">next</code>()</td>
+      <td>获取下一个迭代元素</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="并发修改异常">并发修改异常</h3>
 <p>在迭代过程中，不应该修改正在迭代的集合（或数组），特别是不能修改其长度，否则会出现并发修改异常。</p>
-<h2 id="generic">泛型（Generic）</h2>
+
+<h2 id="泛型generic">泛型（Generic）</h2>
 <p>泛型，即“参数化类型”。类似于方法中的变量参数，数据类型（类）也可定义成有参形式，然后在使用时传入具体的类型。泛型提供了编译时类型安全检测机制，该机制允许在编译时检测到非法的类型。</p>
-<p>java的泛型是伪泛型，只是编译的手段；编译后的<code>class</code>文件中是没有泛型的任何信息的。</p>
-<h3 id="section-12">泛型方法</h3>
-<p>格式：<code>修饰符 &lt;T&gt; 返回值类型 方法名(引用T的类型 方法参数)</code></p>
+
+<p>java的泛型是伪泛型，只是编译的手段；编译后的<code class="highlighter-rouge">class</code>文件中是没有泛型的任何信息的。</p>
+
+<h3 id="泛型方法">泛型方法</h3>
+<p>格式：<code class="highlighter-rouge">修饰符 &lt;T&gt; 返回值类型 方法名(引用T的类型 方法参数)</code></p>
+
 <ul>
-<li><code>&lt;&gt;</code>内为类型参数声明部分，放在修饰符之后，返回值类型之前</li>
-<li>每一个类型参数声明部分包含一个或多个类型参数，参数间用逗号隔开。一个泛型参数，也被称为一个类型变量，是用于指定一个泛型类型名称的标识符</li>
-<li>类型参数能被用来声明返回值类型，并且能作为泛型方法得到的实际参数类型的占位符</li>
-<li>泛型方法体的声明和其他方法一样。注意类型参数只能代表引用型类型，不能是原始类型（像int,double,char的等）</li>
+  <li><code class="highlighter-rouge">&lt;&gt;</code>内为类型参数声明部分，放在修饰符之后，返回值类型之前</li>
+  <li>每一个类型参数声明部分包含一个或多个类型参数，参数间用逗号隔开。一个泛型参数，也被称为一个类型变量，是用于指定一个泛型类型名称的标识符</li>
+  <li>类型参数能被用来声明返回值类型，并且能作为泛型方法得到的实际参数类型的占位符</li>
+  <li>泛型方法体的声明和其他方法一样。注意类型参数只能代表引用型类型，不能是原始类型（像int,double,char的等）</li>
 </ul>
-<h3 id="section-13">泛型的限定</h3>
+
+<h3 id="泛型的限定">泛型的限定</h3>
 <p>可以对类型参数声明中的类型参数做范围限定</p>
 <ul>
-<li><code>&lt;? extends A&gt;</code>，上限限定，必须是A或A的子类/实现对象</li>
-<li><code>&lt;? super A&gt;</code>，下限限定，A或A的父类对象</li>
+  <li><code class="highlighter-rouge">&lt;? extends A&gt;</code>，上限限定，必须是A或A的子类/实现对象</li>
+  <li><code class="highlighter-rouge">&lt;? super A&gt;</code>，下限限定，A或A的父类对象</li>
 </ul>
-<h3 id="section-14">泛型类</h3>
+
+<h3 id="泛型类">泛型类</h3>
 <p>类型参数声明部分放在类名后边</p>
-<h3 id="section-15">泛型继承</h3>
+
+<h3 id="泛型继承">泛型继承</h3>
 <p>以泛型接口接口为例</p>
+
 <ul>
-<li>固定下泛型的类型
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;{}</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span> <span class="kd">implements</span> <span class="no">A</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;{}</span>
-</code></pre></div></div>
-</li>
-<li>保留泛型
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;{}</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="no">A</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;{}</span>
-</code></pre></div></div>
-</li>
+  <li>固定下泛型的类型
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;{}</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span> <span class="kd">implements</span> <span class="no">A</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;{}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>保留泛型
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">A</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;{}</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="no">A</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;{}</span>
+</code></pre></div>    </div>
+  </li>
 </ul>
-<h3 id="section-16">泛型通配符</h3>
-<p><code>?</code>可用替代具体的类型参数，可免去类型参数声明部分</p>
-<h3 id="section-17">优点</h3>
+
+<h3 id="泛型通配符">泛型通配符</h3>
+<p><code class="highlighter-rouge">?</code>可用替代具体的类型参数，可免去类型参数声明部分</p>
+
+<h3 id="优点">优点</h3>
 <ul>
-<li>避免类型强转，更加安全</li>
-<li>将错误由运行时提前到编译时</li>
+  <li>避免类型强转，更加安全</li>
+  <li>将错误由运行时提前到编译时</li>
 </ul>
-<h2 id="list">List接口</h2>
+
+<h2 id="list接口">List接口</h2>
 <p>Collection的子接口</p>
-<h3 id="section-18">特点</h3>
+
+<h3 id="特点">特点</h3>
 <ul>
-<li>有序</li>
-<li>具有整数索引</li>
-<li>可以储存重复元素</li>
+  <li>有序</li>
+  <li>具有整数索引</li>
+  <li>可以储存重复元素</li>
 </ul>
-<h3 id="section-19">常用方法</h3>
+
+<h3 id="常用方法">常用方法</h3>
 <ul>
-<li>boolean <code>add</code>(int index, E e)，在指定索引位置插入元素</li>
-<li>E <code>set</code>(int index, E e)，覆盖指定索引位置为给定值，返回原来的值</li>
-<li>E <code>remove</code>(int index)，移出指定索引位置元素，返回移出的元素</li>
-<li>E <code>get</code>(int index)，获取指定索引位置的元素</li>
-<li>boolean <code>isEmpty</code>()，是否为空</li>
+  <li>boolean <code class="highlighter-rouge">add</code>(int index, E e)，在指定索引位置插入元素</li>
+  <li>E <code class="highlighter-rouge">set</code>(int index, E e)，覆盖指定索引位置为给定值，返回原来的值</li>
+  <li>E <code class="highlighter-rouge">remove</code>(int index)，移出指定索引位置元素，返回移出的元素</li>
+  <li>E <code class="highlighter-rouge">get</code>(int index)，获取指定索引位置的元素</li>
+  <li>boolean <code class="highlighter-rouge">isEmpty</code>()，是否为空</li>
 </ul>
-<h2 id="arraylist">ArrayList类</h2>
+
+<h2 id="arraylist类">ArrayList类</h2>
 <ul>
-<li>List的大小可变的数组的实现，此实现是不同步的（线程不安全）。</li>
-<li>增删慢，查找快；由于日常开发中使用较多的是查询数据和遍历数据，因此该类型较常用。</li>
+  <li>List的大小可变的数组的实现，此实现是不同步的（线程不安全）。</li>
+  <li>增删慢，查找快；由于日常开发中使用较多的是查询数据和遍历数据，因此该类型较常用。</li>
 </ul>
-<h2 id="linkedlist">LinkedList类</h2>
+
+<h2 id="linkedlist类">LinkedList类</h2>
 <ul>
-<li>List链表实现（增删速度快，查找慢），线程不同步。</li>
-<li>提供了大量操作首尾元素的方法</li>
+  <li>List链表实现（增删速度快，查找慢），线程不同步。</li>
+  <li>提供了大量操作首尾元素的方法</li>
 </ul>
-<p>|方法 |解释|
-|-|-|
-|void <code>addFirst</code>(E e)|在头部插入元素|
-|void <code>addLast</code>(E e) |在尾部插入元素 |
-|E <code>getFirst</code>() |获取第一个元素 |
-|E <code>getLast</code>() |获取最后一个元素 |
-|E <code>removeFirst</code>() |移出第一个元素 |
-|E <code>removeLast</code>() |移出最后一个元素 |
-|E <code>pop</code>() |弹栈得到一个元素，相当于removeFirst |
-|void <code>push</code>(E e) |将一个元素压栈，相当于addFirst |
-|boolean <code>isEmpty</code>() |是否无元素判断 |</p>
-<h2 id="vector">Vector类</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>void <code class="highlighter-rouge">addFirst</code>(E e)</td>
+      <td>在头部插入元素</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">addLast</code>(E e)</td>
+      <td>在尾部插入元素</td>
+    </tr>
+    <tr>
+      <td>E <code class="highlighter-rouge">getFirst</code>()</td>
+      <td>获取第一个元素</td>
+    </tr>
+    <tr>
+      <td>E <code class="highlighter-rouge">getLast</code>()</td>
+      <td>获取最后一个元素</td>
+    </tr>
+    <tr>
+      <td>E <code class="highlighter-rouge">removeFirst</code>()</td>
+      <td>移出第一个元素</td>
+    </tr>
+    <tr>
+      <td>E <code class="highlighter-rouge">removeLast</code>()</td>
+      <td>移出最后一个元素</td>
+    </tr>
+    <tr>
+      <td>E <code class="highlighter-rouge">pop</code>()</td>
+      <td>弹栈得到一个元素，相当于removeFirst</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">push</code>(E e)</td>
+      <td>将一个元素压栈，相当于addFirst</td>
+    </tr>
+    <tr>
+      <td>boolean <code class="highlighter-rouge">isEmpty</code>()</td>
+      <td>是否无元素判断</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="vector类">Vector类</h2>
 <p>List中的子类，JDK中最早的集合，线程同步，现在的开发中多被ArrayList取代。</p>
-<h3 id="section-20">常见方法</h3>
+
+<h3 id="常见方法">常见方法</h3>
 <ul>
-<li>void addElement(E e)，添加元素</li>
-<li>E elementAt(int index)，返回指定元素处的组件</li>
-<li>Enumeration elements()，返回向量组件的枚举</li>
+  <li>void addElement(E e)，添加元素</li>
+  <li>E elementAt(int index)，返回指定元素处的组件</li>
+  <li>Enumeration elements()，返回向量组件的枚举</li>
 </ul>
+
 <h3 id="enumeration">Enumeration</h3>
 <p>Enumeration是早期的迭代器</p>
 <ul>
-<li>boolean hasMoreElements()，是否还能继续枚举取出</li>
-<li>E nextElement()，枚举获取下一个元素</li>
+  <li>boolean hasMoreElements()，是否还能继续枚举取出</li>
+  <li>E nextElement()，枚举获取下一个元素</li>
 </ul>
-<h2 id="set">Set接口</h2>
+
+<h2 id="set接口">Set接口</h2>
 <ul>
-<li>无序（存储与取出顺序不保证相同）</li>
-<li>不允许重复</li>
-<li>无整数索引，只能通过迭代器和增强for取出</li>
+  <li>无序（存储与取出顺序不保证相同）</li>
+  <li>不允许重复</li>
+  <li>无整数索引，只能通过迭代器和增强for取出</li>
 </ul>
+
 <p>Set的方法基本全是Collection的方法</p>
+
 <h2 id="hashset">HashSet</h2>
 <ul>
-<li>实现了Set接口，由哈希表（实际是个HashMap实例）支持</li>
-<li>不保证set的迭代顺序，允许使用null元素</li>
-<li>存取比较快，线程不安全，允许速度快</li>
+  <li>实现了Set接口，由哈希表（实际是个HashMap实例）支持</li>
+  <li>不保证set的迭代顺序，允许使用null元素</li>
+  <li>存取比较快，线程不安全，允许速度快</li>
 </ul>
-<h3 id="section-21">存储过程</h3>
+
+<h3 id="存储过程">存储过程</h3>
 <ol>
-<li>获取元素的哈希值，查看hash值数组中是否有该哈希值；若没有，走步骤2，若有，走步骤3</li>
-<li>在hash值数组中新加一个hash值，并在其对应链表中存入第一个值</li>
-<li>用该元素调用equals()方法，传入各个同hash值的已有元素与之比较，如果都返回false，那么在该hash值对应链表中加入该元素；否则，放弃存入该元素</li>
+  <li>获取元素的哈希值，查看hash值数组中是否有该哈希值；若没有，走步骤2，若有，走步骤3</li>
+  <li>在hash值数组中新加一个hash值，并在其对应链表中存入第一个值</li>
+  <li>用该元素调用equals()方法，传入各个同hash值的已有元素与之比较，如果都返回false，那么在该hash值对应链表中加入该元素；否则，放弃存入该元素</li>
 </ol>
-<h3 id="linkedhashset">LinkedHashSet类</h3>
-<p>具有可预知迭代顺序的<code>Set</code>接口的哈希表和链表实现，是<code>HashSet</code>的子类；线程不安全，运行速度快</p>
-<h3 id="arraylist-1">重复元素的判断和ArrayList的比较</h3>
-<p>比如<code>ArrayList</code>的<code>contains()</code>、<code>HashSet</code>的<code>contains()</code>和<code>add()</code>方法都需要判断是否有相同元素</p>
+
+<h3 id="linkedhashset类">LinkedHashSet类</h3>
+<p>具有可预知迭代顺序的<code class="highlighter-rouge">Set</code>接口的哈希表和链表实现，是<code class="highlighter-rouge">HashSet</code>的子类；线程不安全，运行速度快</p>
+
+<h3 id="重复元素的判断和arraylist的比较">重复元素的判断和ArrayList的比较</h3>
+<p>比如<code class="highlighter-rouge">ArrayList</code>的<code class="highlighter-rouge">contains()</code>、<code class="highlighter-rouge">HashSet</code>的<code class="highlighter-rouge">contains()</code>和<code class="highlighter-rouge">add()</code>方法都需要判断是否有相同元素</p>
+
 <ul>
-<li>ArrayList，直接依赖于equals()方法</li>
-<li>HashSet，依赖于hashCode()和equals()方法</li>
+  <li>ArrayList，直接依赖于equals()方法</li>
+  <li>HashSet，依赖于hashCode()和equals()方法</li>
 </ul>
-<h1 id="map">Map接口及其实现类</h1>
-<h2 id="map-1">Map接口</h2>
-<p><code>Map</code>（将键映射到值的对象）中的集合称为双列集合，<code>Collection</code>中的集合称为单列集合。</p>
-<p><code>Map</code>集合中键名不能重复，键值没有关系，当键名是对象时，作为键名的对象通常要重写<code>hashCode()</code>和<code>equals()</code>。</p>
-<h3 id="section-22">常用方法</h3>
-<p>|方法 |解释 |
-| - | - |
-|V <code>put</code>(K key, V value) |放入一对键值，注意：返回的是同键名被覆盖之前的值，否则返回null |
-|V <code>get</code>(K key) |通过键获取值，无该键返回null |
-|V <code>remove</code>(K key) |移出给定键名的键值对，返回该键名对应的值，无键名返回null |
-|int <code>size</code>() |返回已存储的键值对数目 |</p>
-<h3 id="section-23">遍历</h3>
-<p><code>Map</code>本身没有实现<code>Iterable</code>接口，不能直接用<code>forEach</code>遍历，但可以借用两个实例方法间接遍历。</p>
+
+<h1 id="map接口及其实现类">Map接口及其实现类</h1>
+
+<h2 id="map接口">Map接口</h2>
+
+<p><code class="highlighter-rouge">Map</code>（将键映射到值的对象）中的集合称为双列集合，<code class="highlighter-rouge">Collection</code>中的集合称为单列集合。</p>
+
+<p><code class="highlighter-rouge">Map</code>集合中键名不能重复，键值没有关系，当键名是对象时，作为键名的对象通常要重写<code class="highlighter-rouge">hashCode()</code>和<code class="highlighter-rouge">equals()</code>。</p>
+
+<h3 id="常用方法-1">常用方法</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>解释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>V <code class="highlighter-rouge">put</code>(K key, V value)</td>
+      <td>放入一对键值，注意：返回的是同键名被覆盖之前的值，否则返回null</td>
+    </tr>
+    <tr>
+      <td>V <code class="highlighter-rouge">get</code>(K key)</td>
+      <td>通过键获取值，无该键返回null</td>
+    </tr>
+    <tr>
+      <td>V <code class="highlighter-rouge">remove</code>(K key)</td>
+      <td>移出给定键名的键值对，返回该键名对应的值，无键名返回null</td>
+    </tr>
+    <tr>
+      <td>int <code class="highlighter-rouge">size</code>()</td>
+      <td>返回已存储的键值对数目</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="遍历">遍历</h3>
+<p><code class="highlighter-rouge">Map</code>本身没有实现<code class="highlighter-rouge">Iterable</code>接口，不能直接用<code class="highlighter-rouge">forEach</code>遍历，但可以借用两个实例方法间接遍历。</p>
+
 <ul>
-<li>
-<p><code>Set&lt;E&gt; keySet()</code></p>
-<p>获取所有的键名，放入<code>Set</code>集合中，然后遍历<code>Set</code>集合，通过键名在<code>Map</code>中取值，从而实现<code>Map</code>的遍历</p>
-</li>
-<li>
-<p><code>Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet()</code></p>
-<p><code>Entry&lt;K,V&gt;</code>是<code>Map</code>中的内部静态接口（因为<code>Map</code>抽象类中不可能实例化），用于代表映射关系对象</p>
-<p>该方法将每一个键值对以<code>Entry&lt;K,V&gt;</code>的形式存储，然后全部放入一个<code>Set</code>集合中，通过遍历<code>Set</code>集合可以获得这些<code>Entry&lt;K,V&gt;</code>，然后调用<code>getKey()</code>和<code>getValue()</code>可以获得键与值。</p>
-</li>
+  <li>
+    <p><code class="highlighter-rouge">Set&lt;E&gt; keySet()</code></p>
+
+    <p>获取所有的键名，放入<code class="highlighter-rouge">Set</code>集合中，然后遍历<code class="highlighter-rouge">Set</code>集合，通过键名在<code class="highlighter-rouge">Map</code>中取值，从而实现<code class="highlighter-rouge">Map</code>的遍历</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet()</code></p>
+
+    <p><code class="highlighter-rouge">Entry&lt;K,V&gt;</code>是<code class="highlighter-rouge">Map</code>中的内部静态接口（因为<code class="highlighter-rouge">Map</code>抽象类中不可能实例化），用于代表映射关系对象</p>
+
+    <p>该方法将每一个键值对以<code class="highlighter-rouge">Entry&lt;K,V&gt;</code>的形式存储，然后全部放入一个<code class="highlighter-rouge">Set</code>集合中，通过遍历<code class="highlighter-rouge">Set</code>集合可以获得这些<code class="highlighter-rouge">Entry&lt;K,V&gt;</code>，然后调用<code class="highlighter-rouge">getKey()</code>和<code class="highlighter-rouge">getValue()</code>可以获得键与值。</p>
+  </li>
 </ul>
-<h2 id="map-2">Map的实现类</h2>
-<h3 id="section-24">体系</h3>
+
+<h2 id="map的实现类">Map的实现类</h2>
+
+<h3 id="体系">体系</h3>
+
 <ul>
-<li>HashMap（类）
+  <li>HashMap（类）
+    <ul>
+      <li>LinkedHashMap（类）</li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li>Hashtable（类）
+    <ul>
+      <li>Properties（类）</li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li>…</li>
+</ul>
+
+<h3 id="注意">注意</h3>
+
 <ul>
-<li>LinkedHashMap（类）</li>
-<li>...</li>
+  <li><code class="highlighter-rouge">HashMap</code>和<code class="highlighter-rouge">LinkedHashMap</code>都是线程不安全的集合，其中<code class="highlighter-rouge">LinkedHashMap</code>是有序的。</li>
+  <li><code class="highlighter-rouge">Hashtable</code>是线程安全的，性能差，使用不多；而其子类<code class="highlighter-rouge">Properties</code>在<code class="highlighter-rouge">IO流</code>中应用较多</li>
+  <li><code class="highlighter-rouge">HashMap</code>运行存储<code class="highlighter-rouge">null</code>键与值，<code class="highlighter-rouge">Hashtable</code>则不行</li>
 </ul>
-</li>
-<li>Hashtable（类）
-<ul>
-<li>Properties（类）</li>
-<li>...</li>
-</ul>
-</li>
-<li>...</li>
-</ul>
-<h3 id="section-25">注意</h3>
-<ul>
-<li><code>HashMap</code>和<code>LinkedHashMap</code>都是线程不安全的集合，其中<code>LinkedHashMap</code>是有序的。</li>
-<li><code>Hashtable</code>是线程安全的，性能差，使用不多；而其子类<code>Properties</code>在<code>IO流</code>中应用较多</li>
-<li><code>HashMap</code>运行存储<code>null</code>键与值，<code>Hashtable</code>则不行</li>
-</ul>
-<h1 id="collections">Collections工具类</h1>
-<p><code>java.util</code>中除了有一个<code>Collection</code>接口，另一个<code>Collections</code>类，提供了大量静态方法，用于操作集合类对象。</p>
+
+<h1 id="collections工具类">Collections工具类</h1>
+<p><code class="highlighter-rouge">java.util</code>中除了有一个<code class="highlighter-rouge">Collection</code>接口，另一个<code class="highlighter-rouge">Collections</code>类，提供了大量静态方法，用于操作集合类对象。</p>
+
 <h2 id="sort">sort</h2>
-<p><code>static &lt;T extends Comparable&lt;? super T&gt;&gt; void sort(List&lt;T&gt; list)</code></p>
-<p>对<code>List</code>集合的升序排序</p>
+<p><code class="highlighter-rouge">static &lt;T extends Comparable&lt;? super T&gt;&gt; void sort(List&lt;T&gt; list)</code></p>
+
+<p>对<code class="highlighter-rouge">List</code>集合的升序排序</p>
+
 <h2 id="binarysearch">binarySearch</h2>
 <ul>
-<li><code>static &lt;T&gt; int binarySearch(List&lt;? extends Comparable&lt;? super T&gt;&gt; list, T key)</code></li>
-<li><code>static &lt;T&gt; int binarySearch(List&lt;? extends T&gt; list, T key, Comparator&lt;? super T&gt; c)</code></li>
+  <li><code class="highlighter-rouge">static &lt;T&gt; int binarySearch(List&lt;? extends Comparable&lt;? super T&gt;&gt; list, T key)</code></li>
+  <li><code class="highlighter-rouge">static &lt;T&gt; int binarySearch(List&lt;? extends T&gt; list, T key, Comparator&lt;? super T&gt; c)</code></li>
 </ul>
-<p><code>List</code>集合的二分查找</p>
+
+<p><code class="highlighter-rouge">List</code>集合的二分查找</p>
+
 <h2 id="shuffle">shuffle</h2>
-<p><code>static void shuffle(List&lt;?&gt; list)</code></p>
+<p><code class="highlighter-rouge">static void shuffle(List&lt;?&gt; list)</code></p>
+
 <p>随机打乱</p>
+
 <h2 id="reverse">reverse</h2>
-<p><code>static void reverse(List&lt;?&gt; list)</code></p>
+<p><code class="highlighter-rouge">static void reverse(List&lt;?&gt; list)</code></p>
+
 <p>翻转</p>
+
 
 				</div>
 				<p>（本文完）</p>
 
-				<hr>
-				
-				<p>您可以到本文在<a href="https://github.com/jacktown11/jacktown11.github.io/issues/28">github仓库中的相应issue</a>下评论</p>
+				<!-- <hr> -->
 				
 				<p class="license">
 					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a
