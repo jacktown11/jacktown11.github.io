@@ -184,7 +184,7 @@ a.page-link:active {
     border-radius: 50%;
   }
   .mobile p {
-		font-size: 80%;
+    font-size: 80%;
     margin-top: 4px;
   }
 
@@ -207,6 +207,7 @@ part3: 文章列表样式
 
 div.input {
   width: 100%;
+  padding-top: 12px;
   margin: auto;
   background-color: rgba(255, 255, 255, 0.1);
   font-size: 0.7rem;
@@ -221,8 +222,7 @@ div.input {
 }
 .container span {
   display: inline-block;
-  color: #fff;
-  font-weight: bold;
+  color: #000;
   padding: 4px 8px;
   margin: 5px;
   position: relative;
@@ -231,48 +231,42 @@ div.input {
 }
 .categories {
   width: 100%;
-  margin: 0 4px;
   padding: 6px 4px;
   box-sizing: border-box;
+  background-color: #fff;
+  background: linear-gradient(#fff 0%,#aaa 100%);
 }
-.pipe {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+.split {
+  width: 100%;
+  background: transparent
 }
-.categories span {
-  padding: 6px 9px;
-  color: #fff;
-  background-color: #3c88cc;
-  background: linear-gradient(#3c88cc, #276195);
-}
-.categories span.selected {
-  color: #222;
+.split-0 {
   background: transparent;
 }
-.tags {
-  background-color: #fff;
-}
-.tags span {
+
+.categories span {
   font-weight: normal;
   color: #000;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: transparent;
+  background-attachment: transparent;
 }
-.tags .selected {
+.categories-0 span,
+.categories-1 span {
+  padding: 6px 9px;
   color: #fff;
-  background-color: #e91e63;
+  background: linear-gradient(#3c88cc, #276195);
+  background-color: #3c88cc;
+  /* box-shadow: 2px 2px 2px #888 inset; */
 }
-.pipe {
-  position: absolute;
-  width: 50px;
-  height: 86px;
-  left: 225px;
-  top: 76px;
-  z-index: 5;
-  background-color: #fff;
-  background: linear-gradient(#3c88cc, #fff);
-  display: none;
+
+.categories span.selected {
+  color: #fff;
+  background: #e91e63;
+}
+.categories-0 span.selected,
+.categories-1 span.selected{
+  box-shadow: none;
 }
 
 /* search */
@@ -280,7 +274,7 @@ div.input {
   text-align: center;
   padding: 0.25rem 0;
 }
-.search input{
+.search input {
   display: inline-block;
   height: 1.5rem;
   line-height: 1.5rem;
@@ -298,12 +292,8 @@ div.input {
   background-color: rgba(153, 204, 153, 0.3);
   box-shadow: 1px 1px 2px 0 #000 inset;
 }
-.search-confirm{
-	position: relative;
-	top: 2px;
-	cursor: pointer;
-}
 
+/* article list */
 .articles {
   list-style-type: none;
   padding-top: 1px;

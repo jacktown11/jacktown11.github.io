@@ -1,65 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="/css/main.css">
-	<link rel="stylesheet" href="/css/article.css">
-	<link rel="stylesheet" href="/css/monokai.css">
-</head>
-
-<body>
-	<div id="app" class="app-wrap">
-
-		<!-- 侧边栏显隐控制钮 -->
-		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
-			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
-				<line x1="8" y1="8" x2="32" y2="8"></line>
-				<line x1="8" y1="16" x2="32" y2="16"></line>
-				<line x1="8" y1="24" x2="32" y2="24"></line>
-			</g>
-		</svg>
-
-		<div class="sidebar" style="display: none;" v-show="isShowSidebar">
-			<!-- 目录级别控制条 -->
-			<p class="level-controller">
-				展开级别：
-				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
-				<span class="level-now" v-html="expandLevel"></span>
-				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
-			</p>
-
-			<!-- 文章目录 -->
-			<div id="catalog-container" class="catalog-container">
-				<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
-			</div>
-
-			<!-- 更多文章导航 -->
-			<div class="post-nav">
-				<div class="home">
-					<a class="home-link" href="/">返回首页</a>
-				</div>
-				<div class="prev no-wrap">
-					上一篇：<a href="/blog/2018/12/30/typescript-learn-note">typescript学习笔记</a>
-				</div>
-				<div class="next no-wrap">
-					下一篇：<a href="/blog/2019/01/16/css-center-align">css 垂直居中</a>
-				</div>
-			</div>
-
-		</div>
-
-		<!-- 文章内容区 -->
-		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
-			<article id="article-container">
-				<h1 id="post-title">《JavaScript 高级程序设计》（第3版）笔记</h1>
-				<p class="meta">2019-01-03</p>
-				<div class="post" ref="post">
-					<h1 id="javascript-">第 1 章 JavaScript 简介</h1>
+I"0r<h1 id="javascript-">第 1 章 JavaScript 简介</h1>
 <p>JavaScript 于 1995 年由当时就职于 Netscape 公司的 Brendan Eich 开发，最初是为了通过提供前端表单校验，在当时普遍低网速的情况下极大提升用户体验。</p>
 <p>JavaScript 包括三部分：</p>
 <ul>
@@ -1030,22 +969,4 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <li>调用 close() 方法可以关闭弹出窗口</li>
 </ul>
 <p>通过检测返回的新窗口对象是否是 null，以及使用 try-catch 包裹打开新窗口的代码，可以检测新窗口是否被浏览器或用户插件阻止弹出。</p>
-
-				</div>
-				<p>（本文完）</p>
-
-				<p class="license">
-					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a
-					 rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享署名-非商业性使用-相同方式共享
-						4.0 国际许可协议</a>进行许可。
-				</p>
-			</article>
-		</div>
-
-	</div>
-
-	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
-	<script src="/js/article.js"></script>
-</body>
-
-</html>
+:ET

@@ -1,7 +1,7 @@
 ---
 layout: home
 css: [main, home]
-js: [home]
+js: [home1]
 cssClass: posts
 ---
 
@@ -89,59 +89,20 @@ cssClass: posts
   </div>
 </div>
 
-<!-- 文章列表 -->
-<div class="post-list">
-  <!-- 检索区 -->
-  <div class="input">
-    <div class="container">
-      <div class="categories" id="categories"></div>
-      <div class="tags" id="tags"></div>
-      <div class="pipe" id="pipe"></div>
-    </div>
-    <div class="search" id="search">
-      <input
-        type="text"
-        id="searchInput"
-        name="search-input"
-        autocomplete="off"
-      />
-      <!-- 
-      <svg
-        class="search-confirm"
-        width="32"
-        height="32"
-        @click="isShowSidebar = !isShowSidebar"
-      >
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="white"
-          stroke-width="2"
-          fill="transparent"
-        />
-        <g stroke="#fff" stroke-width="4" stroke-linecap="round">
-          <line x1="20" y1="20" x2="25" y2="25"></line>
-        </g>
-      </svg> -->
-    </div>
-  </div>
+<!-- 所有文章信息，不显示，只为vue提供数据 -->
+<div id="post-data" class="hidden">
+  {%for post in site.posts %}
+  <span
+    data-date="{{ post.date }}"
+    data-title="{{ post.title }}"
+    data-url="{{ post.url }}"
+    data-categories="{{post.categories | join: ','}}"
+    data-tags="{{post.tags | join: ','}}"
+  ></span>
+  {% endfor %}
+</div>
 
-  <!-- 检索结果列表 -->
-  <ul class="articles" id="aticleList">
-    {%for post in site.posts%}
-    <li
-      data-date="{{ post.date }}"
-      data-title="{{ post.title }}"
-      data-url="{{ post.url }}"
-      data-tags="{{ post.tags | join: ',' }}"
-      data-categories="{{ post.categories | join: ',' }}"
-    >
-      <a href="{{ post.url }}">
-        <span class="date">{{ post.date | date_to_string }}</span>
-        <span class="title">{{ post.title }}</span>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
+<!-- vue渲染文章列表位置 -->
+<div id="post-list">
+
 </div>
