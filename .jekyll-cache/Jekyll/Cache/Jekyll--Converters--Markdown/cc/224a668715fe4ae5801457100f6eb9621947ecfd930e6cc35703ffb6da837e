@@ -1,0 +1,138 @@
+I"_+<h1 id="section">缺少模块化主要问题</h1>
+<ul>
+<li>命名冲突</li>
+<li>文件依赖</li>
+</ul>
+<h1 id="section-1">浏览器端模块化规范</h1>
+<ul>
+<li>AMD require.js</li>
+<li>CMD sea.js</li>
+</ul>
+<h1 id="section-2">服务器端模块化规范</h1>
+<p>CommonJS</p>
+<ul>
+<li>模块分为单文件模块与包</li>
+<li>模块成员导出：module.exports 和 exports</li>
+<li>模块成员导入： <code>require(‘模块标识符’)</code></li>
+</ul>
+<h1 id="es6-">ES6 模块化规范</h1>
+<p>统一浏览器端和服务器端，是通用的模块化标准</p>
+<h2 id="section-3">主要规范定义</h2>
+<ul>
+<li>每个js文件都是一个独立的模块</li>
+<li>导入模块成员：import</li>
+<li>暴露模块成员：export</li>
+<li>和 CommonJS 规范不同，模块的引入的模块不是对象，模块编译时加载或叫静态加载的，效率更高，也使得静态分析成为可能</li>
+</ul>
+<h2 id="babel-es6-">通过babel使用 ES6 模块化</h2>
+<ul>
+<li>安装依赖</li>
+</ul>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i <span class="nt">-D</span> @babel/core @bable-cli @babel/preset-env @babel/node
+npm i <span class="nt">-S</span> @babel/polyfill
+</code></pre></div></div>
+<ul>
+<li>创建 babel.config.json 文件，并添加如下代码</li>
+</ul>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"presets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"@babel/env"</span><span class="p">,</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"targets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"edge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"firefox"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"chrome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"safari"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<ul>
+<li>通过 npx babel-node <script-name> 执行代码</li>
+</ul>
+<h2 id="es6--1">ES6 模块化基本语法</h2>
+<h3 id="section-4">按需导入导出</h3>
+<p>a.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 导出变量</span>
+<span class="k">export</span> <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span> 
+<span class="c1">// 导出函数</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// 导出类</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">A</span> <span class="p">{}</span>
+
+<span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">}</span>
+<span class="c1">// 导出一系列接口</span>
+<span class="c1">// 其中变量 b 被导出了两次，其中一次使用了别名</span>
+<span class="k">export</span> <span class="p">{</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">b</span> <span class="k">as</span> <span class="nx">theB</span><span class="p">,</span> <span class="nx">sum</span> <span class="p">}</span>
+
+</code></pre></div></div>
+<p>index.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 模块导入，其中使用别名 theName 来访问 a.js 中导出的 name</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">name</span> <span class="k">as</span> <span class="nx">theName</span><span class="p">,</span> <span class="nx">sayHi</span><span class="p">,</span> <span class="nx">A</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">theB</span><span class="p">,</span> <span class="nx">sum</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./a</span><span class="dl">'</span>
+
+<span class="c1">// 加载整个模块，命名为 modA</span>
+<span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">modA</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./a</span><span class="dl">'</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">theName</span><span class="p">,</span> <span class="nx">sayHi</span><span class="p">,</span> <span class="nx">A</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">theB</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span> 
+<span class="c1">// jack [Function: sayHi] [Function: A] 1 2 2 [Function: sum]</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">modA</span><span class="p">)</span>
+<span class="c1">// {</span>
+<span class="c1">//   sayHi: [Function: sayHi],</span>
+<span class="c1">//   sum: [Function: sum],</span>
+<span class="c1">//   name: 'jack',</span>
+<span class="c1">//   A: [Function: A],</span>
+<span class="c1">//   a: 1,</span>
+<span class="c1">//   b: 2,</span>
+<span class="c1">//   theB: 2</span>
+<span class="c1">// }</span>
+
+</code></pre></div></div>
+<h3 id="section-5">默认导入导出</h3>
+<p>b.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 导出函数，是否具名没关系</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>index.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 将 b.js 中默认导出的函数命名为 func</span>
+<span class="k">import</span> <span class="nx">func</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./b</span><span class="dl">'</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="c1">// [Function: _default]</span>
+</code></pre></div></div>
+<p>和按需导入导出配合使用：</p>
+<p>b.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// </span>
+<span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">a</span>
+
+<span class="k">export</span> <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div></div>
+<p>index.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 将 b.js 中默认导出值命名为y，因为默认导出实际上时导出了default变量</span>
+<span class="k">import</span> <span class="p">{</span> <span class="k">default</span> <span class="k">as</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">b</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./b</span><span class="dl">'</span>
+<span class="c1">// 整体加载</span>
+<span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">modB</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./b</span><span class="dl">'</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">modB</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="c1">// { default: 1, b: 2 } 1 2</span>
+</code></pre></div></div>
+<h3 id="section-6">导入执行模块</h3>
+<p>b.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>index.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">'</span><span class="s1">./b</span><span class="dl">'</span>
+<span class="c1">// 0 1 2</span>
+</code></pre></div></div>
+:ET

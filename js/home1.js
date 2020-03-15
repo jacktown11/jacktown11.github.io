@@ -114,7 +114,7 @@ new Vue({
         categories: n
           .getAttribute('data-categories')
           .split(',')
-          .concat(n.getAttribute('data-tags').split(','))
+          .concat(n.getAttribute('data-tags').split(',').filter(function(item){return item.length > 0}))
       })
     }
 

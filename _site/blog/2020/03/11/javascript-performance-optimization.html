@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+</head>
+
+<body>
+	<div id="app" class="app-wrap">
+
+		<!-- 侧边栏显隐控制钮 -->
+		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
+				<line x1="8" y1="8" x2="32" y2="8"></line>
+				<line x1="8" y1="16" x2="32" y2="16"></line>
+				<line x1="8" y1="24" x2="32" y2="24"></line>
+			</g>
+		</svg>
+
+		<div class="sidebar" style="display: none;" v-show="isShowSidebar">
+			<!-- 目录级别控制条 -->
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+
+			<!-- 文章目录 -->
+			<div id="catalog-container" class="catalog-container">
+				<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
+			</div>
+
+			<!-- 更多文章导航 -->
+			<div class="post-nav">
+				<div class="home">
+					<a class="home-link" href="/">返回首页</a>
+				</div>
+				<div class="prev no-wrap">
+					上一篇：<a href="/blog/2020/03/10/program-around-notes">编程相关杂记</a>
+				</div>
+				<div class="next no-wrap">
+					下一篇：<a href="/blog/2020/03/15/javascript-module">javascript 模块化</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 文章内容区 -->
+		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
+			<article id="article-container">
+				<h1 id="post-title">javascript 性能优化</h1>
+				<p class="meta">2020-03-11</p>
+				<div class="post" ref="post">
+					<h1 id="section">加载</h1>
+<h1 id="section-1">执行</h1>
+<h2 id="section-2">防抖与节流</h2>
+<p>在监听用户输入、拖拽、滚动等这类触发极为频繁的事件时，如果监听函数中有比较复杂的逻辑或大幅修改 DOM ，那么很可能造成页面卡顿，影响用户体验，因此需要控制事件监听函数的实际执行频率，这就是防抖与节流技术。</p>
+<h3 id="section-3">防抖</h3>
+<ul>
+<li>事件触发时，通过 setTimeout 函数延迟执行</li>
+<li>如果在延迟事件内再次触发了事件，那么取消之前的延迟函数，以当前事件为准再次设置延迟函数</li>
+<li>直到延迟时间内没有再次触发事件，监听函数才会真正执行</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="debounce" /></p>
+<h3 id="section-4">节流</h3>
+<ul>
+<li>事件触发时，通过 setTimeout 函数延迟执行</li>
+<li>如果在延迟时间内再次触发了事件，那么忽略新触发的事件</li>
+<li>直到延迟时间，监听函数才会真正执行，执行完毕后，新的事件才能被接收</li>
+</ul>
+<p><img src="data:image/png;base64,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" alt="throttle" /></p>
+<h3 id="section-5">代码实现</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * 节流/防抖包装函数
+ * @param {Function} handler event handler
+ * @param {String} type debouce or throttle
+ * @param {Number} delay time to delaly
+ */</span>
+<span class="kd">function</span> <span class="nx">optimize</span><span class="p">(</span><span class="nx">handler</span><span class="p">,</span> <span class="nx">type</span><span class="o">=</span><span class="dl">'</span><span class="s1">debounce</span><span class="dl">'</span><span class="p">,</span> <span class="nx">delay</span><span class="o">=</span><span class="mi">300</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">debounce</span><span class="dl">'</span><span class="p">){</span>
+        <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">timer</span><span class="p">){</span>
+                <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">handler</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">_this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
+                <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span>
+            <span class="p">},</span> <span class="nx">delay</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">throttle</span><span class="dl">'</span><span class="p">){</span>
+        <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">timer</span><span class="p">)</span> <span class="k">return</span> 
+            <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+                <span class="nx">handler</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">_this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
+                <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span>
+            <span class="p">},</span> <span class="nx">delay</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+				</div>
+				<p>（本文完）</p>
+
+				<p class="license">
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a
+					 rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享署名-非商业性使用-相同方式共享
+						4.0 国际许可协议</a>进行许可。
+				</p>
+			</article>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.5.21/vue.min.js"></script>
+	<script src="/js/article.js"></script>
+</body>
+
+</html>

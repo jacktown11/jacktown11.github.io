@@ -1,8 +1,8 @@
 ---
 layout: article
 title: 《高性能javascript》笔记
-categories: [大前端]
-tags: [javascript]
+categories: [大前端, javascript, 性能优化]
+# tags: [javascript]
 ---
 
 # 第一章 加载和执行
