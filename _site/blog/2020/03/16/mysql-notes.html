@@ -45,10 +45,10 @@
 					<a class="home-link" href="/">返回首页</a>
 				</div>
 				<div class="prev no-wrap">
-					上一篇：<a href="/blog/2017/06/01/read-and-life-notes">读书与生活杂记</a>
+					上一篇：<a href="/blog/2020/03/15/javascript-module">javascript 模块化</a>
 				</div>
 				<div class="next no-wrap">
-					下一篇：<a href="/blog/2017/06/10/DA&AAinC-chap6">数据结构与算法分析C语言描述 总结笔记 第六章</a>
+					下一篇：<a href="/blog/2020/03/16/vue-element-ui-project">vue 电商后台管理系统</a>
 				</div>
 			</div>
 
@@ -57,84 +57,27 @@
 		<!-- 文章内容区 -->
 		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
 			<article id="article-container">
-				<h1 id="post-title">快捷键汇总</h1>
-				<p class="meta">2017-06-08</p>
+				<h1 id="post-title">mysql 杂记</h1>
+				<p class="meta">2020-03-16</p>
 				<div class="post" ref="post">
-					<h1 id="windows8-">windows8 系统快捷键</h1>
-<p>|序号|快捷键|作用|
-|--|--|--|
-|1|Win+D|回到桌面|
-|2|Alt+Tab|切换目前打开的窗口|
-|3|Win+E|打开资源管理器|
-|4|Alt+D|让文件地址栏获取焦点|
-|5|Alt+Up|返回上一级目录|
-|6|Win+R|打开运行|
-|7|Win+R&gt;cmd|打开命令行|
-|8|Win+R&gt;control|打开控制面板|
-|9|Win+Left|让当前窗口置于左半屏幕|
-|10|Win+Right|让当前窗口置于右半屏幕|
-|11|Win+Up|让当前窗口最大化|
-|12|Alt+Space&gt;c|关闭当前窗口|
-|13|Alt+Space&gt;x|最大化当前窗口|
-|14|Alt+Space&gt;n|最大化当前窗口|
-|15|Ctrl+Alt+Delete|系统入口（任务管理器）|</p>
-<h1 id="chrome">chrome浏览器快捷键</h1>
+					<h1 id="windows--mysql">windows 安装 mysql</h1>
 <ul>
-<li>此处只是整理了个人比较常用的快捷键，由于我用笔记本电脑，用到Fn的基本都弃用了。更完整版本可参看<a href="https://www.zhihu.com/question/19555789">chrome快捷键-知乎</a></li>
-<li>另外可以安装vimium插件简化快捷键</li>
+<li><a href="https://www.runoob.com/mysql/mysql-install.html">菜鸟教程</a></li>
+<li><a href="https://www.cnblogs.com/winton-nfs/p/11524007.html">MySQL的安装与配置——详细教程</a></li>
 </ul>
-<p>|序号|最常用|作用|相关|作用|
-|:-|:-|:-|:-|:-|
-|1|Ctrl+N|打开新窗口|Ctrl+Shift+N|在隐身模式下打开新窗口|
-|2|Ctrl+T|打开新标签页|Ctrl+Shift+T|重新打开最后关闭的标签页，并跳转到该标签页，chome可以记住最近10个标签|
-|3|Ctrl+PgDn|切换到下一个标签页|Ctrl+Tab|切换到下一个标签页|
-|4|Ctrl+PgUp |切换到上一个标签页 |Ctrl+Shift+Tab |切换到上一个标签页 |
-|5  |Alt+Home |在当前窗口打开主页 | | |
-|6  |Ctrl+W |关闭当前标签页或弹出窗口 | | |
-|7  |Ctrl+H |打开历史记录 | | |
-|8  |Ctrl+J |打开下载内容页面 | | |
-|9  |Ctrl+D |将当前网页保存为书签 | | |
-|10 |Home |跳至网页顶部 | | |
-|11 |End |跳至网页底部 | | |
-|12 |Space |向下滚动网页 | | |
-|13 |up |增加值 | | |<br />
-|14 |down |减少值 | | |
-|15 |PgUp |增加10 | | |
-|16 |PgDn |减少10 | | |
-|17 |Alt+E/Alt+F |打开工具菜单栏 | | |
-|18 |Shift+Esc |打开任务管理器 | | |
-|19 | F11|全屏模式下打开网页| | |
-|20 |F12 |打开开发者工具 |Ctrl+Shift+J |打开开发人员工具 |
-|21 |Ctrl+U |打开当前网页源代码| | |</p>
-<h1 id="cmd">cmd</h1>
-<p>|ipconfig|查看本机ip|
-|-|-|
-|ipconfig /all|查看本机详细ip信息|
-|x:|进入x盘|
-|cd /path|进入当前盘的path目录|
-|cd ..|返回父目录|
-|dir|当前目录下文件和子目录|</p>
-<h1 id="github">github</h1>
-<p>|命令|作用|
-|-|-|
-|git init|在当前文件夹位置初始话仓库|
-|git add <code>para</code>|把我们要提交的文件的信息添加到索引库中|
-|git commit <code>infoString</code>|依据索引库内容进行本地文件提交|
-|git push origin master|把本地master分支内容提交到远程origin主机master分支|
-|git remote -v|查看远程仓库信息|
-|git fetch origin master:temp|在本地创建temp分支，并将远程origin仓库的master分支代码下载到该分支|
-|git diff temp|比较本地代码与下载来的代码的区别|
-|git merge temp|合并temp分支|
-|git branch -d temp|删除temp分支|</p>
-<p><strong>ref</strong>:</p>
-<ol>
-<li> <a href="http://blog.csdn.net/chailyuan/article/details/53292031">Git更新远程仓库代码到本地</a></li>
-<li><a href="http://www.yiibai.com/git/">git教程</a></li>
-</ol>
-<h1 id="jekyll">jekyll</h1>
+<h1 id="mysql">命令行执行 mysql</h1>
+<p><code>source &lt;文件路径&gt;</code> 如 <code>source D:\mydb.sql</code></p>
+<h1 id="client-does-not-support-authentication-protocol-requested-by-server-consider-upgrading-mysql-client">Client does not support authentication protocol requested by server; consider upgrading MySQL client</h1>
+<p>新版本的 mysql 的认证加密规则由改变引起的，可命令行登录 mysql 依次执行如下命令解决：</p>
 <ul>
-<li>命令行输入 <strong>jekyll -v</strong> 可以查看jekyll版本，确认电脑是否正常安装了jekyll</li>
-<li>命令行输入 <strong>jekyll</strong> 可以获得jekyll命令的帮助信息</li>
+<li><code>use mysql;</code></li>
+<li><code>alter user 'root'@'localhost' identified with mysql_native_password by '********';</code></li>
+<li><code>flush privileges;</code></li>
+</ul>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/zichuan/p/9203129.html">简化版</a></li>
+<li><a href="https://blog.csdn.net/qq_38455201/article/details/83024357">详细版</a></li>
 </ul>
 
 				</div>

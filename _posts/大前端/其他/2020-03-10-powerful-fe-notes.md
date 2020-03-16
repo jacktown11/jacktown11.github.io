@@ -163,6 +163,24 @@ github: [https://github.com/zalmoxisus/redux-devtools-extension](https://github.
 }
 ```
 
+### eslint 和 prettier 插件冲突问题
+
+例如 prettier 默认在函数定义括号前不插入空格，但是标准的 eslint 要求插入，这时就会报错`Missing space before function parenthese`一种方案是修改该 prettier 的配置文件 `.prettierrc` 来符合 eslint 的要求；另一种方案是为将 eslint 扩展是的 prettier 的默认格式合法化，后一种方案可以参考文章：[Missing space before function parentheses 报错终极解决方案](https://blog.csdn.net/wxl1555/article/details/83032038)
+
+=== 更新 ===
+
+事实上，应该让 prettier 专门用于格式化，而让 eslint 用于代码检验。至于 prettier 格式化后的代码不符合 eslint 标准的问题，可以让 eslint 来进行修复（我个人没有启用自动格式化, 偶尔用 alt + shift + d 格式化文件，这时候在 ctrl + s 保存进行 eslint 修复），为此可以在配置文件（setting.json)中添加如下配置:
+
+````json
+"editor.codeActionsOnSave": {
+  "source.fixAll.eslint": true // 每次保存的时候将代码按eslint格式进行修复
+}
+```
+
+参考：
+- [github prettier: Linter Integration](https://github.com/prettier/prettier-vscode#linter-integration)
+
+
 ## electron
 
 - [打造你的第一个 Electron 应用](https://electronjs.org/docs/tutorial/first-app)
@@ -206,7 +224,8 @@ github: [https://github.com/zalmoxisus/redux-devtools-extension](https://github.
     },
     "homepage": "https://github.com/ashleygwilliams/my_package" // 项目主页
   }
-  ```
+````
+
 - 创建 `index.js` 文件，用模块化的方式书写你的代码，如 `module.exports = 123;`
 - 命令行运行 `npm login`，登录您的 npm 帐号，如果没有请到[官网](https://www.npmjs.com/)注册
 - 登录以后，运行 `npm publish --access=public`，发布你的 npm 包；以后包需要更新的时候，你需要修改 `package.json` 中的版本号为新版本，否则会报错
@@ -236,8 +255,12 @@ github: [https://github.com/zalmoxisus/redux-devtools-extension](https://github.
   - Local Path: 本地文件路径，可以写一个 json 文件，选择其路径
 - 点击 ok 确认，就可以访问本地的模拟数据了（可以先直接在浏览器输入 url 测试一下）
 
-## jekyll
+## jekyll 博客
 
 ### jekyll 本地运行无法通过 ip 访问
 
 使用带参命令运行： `jekyll serve -w --host=0.0.0.0:4000`
+
+### 为博客添加流程图支持
+
+使用 [mermaid](https://github.com/mermaid-js/mermaid/), 可参考文章 [Embed Mermaid Charts in Jekyll without Plugin](http://kkpattern.github.io/2015/05/15/Embed-Chart-in-Jekyll.html), 除了按照文章说的引入 mermaid.min.js 外，还需要引入 mermaid.css 文件，否则显示不正常。

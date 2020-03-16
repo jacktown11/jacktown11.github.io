@@ -5,6 +5,7 @@ part2: 边栏样式
 part3: 文章结构样式
 part4: 文章内部样式
 part5: 对窄屏设备的适配
+part6: 插件样式bug修复
 =======================*/
 
 /*=====================
@@ -520,4 +521,12 @@ part5: 对窄屏设备的适配
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
+}
+
+/*================
+part6: 插件样式bug修复
+==================*/
+/* mermaid 引起的样式bug修复 */
+.mermaidTooltip{
+  display: none;
 }
