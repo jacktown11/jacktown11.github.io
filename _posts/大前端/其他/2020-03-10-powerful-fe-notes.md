@@ -171,15 +171,120 @@ github: [https://github.com/zalmoxisus/redux-devtools-extension](https://github.
 
 事实上，应该让 prettier 专门用于格式化，而让 eslint 用于代码检验。至于 prettier 格式化后的代码不符合 eslint 标准的问题，可以让 eslint 来进行修复（我个人没有启用自动格式化, 偶尔用 alt + shift + d 格式化文件，这时候在 ctrl + s 保存进行 eslint 修复），为此可以在配置文件（setting.json)中添加如下配置:
 
-````json
+```json
 "editor.codeActionsOnSave": {
   "source.fixAll.eslint": true // 每次保存的时候将代码按eslint格式进行修复
 }
 ```
 
 参考：
+
 - [github prettier: Linter Integration](https://github.com/prettier/prettier-vscode#linter-integration)
 
+### vue 项目代码高亮、格式化和校验方案
+
+安装插件 Vetur, Eslint, Prettier-Code Formatter，然后 vscode 用户全局配置如下
+
+setting.json
+
+```json
+{
+    "workbench.statusBar.visible": true,
+    "workbench.colorTheme": "Monokai",
+    "editor.tabSize": 2,
+    "files.autoSave": "onFocusChange",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "octref.vetur"
+    },
+    "vetur.format.defaultFormatter.html": "js-beautify-html"
+}
+```
+
+安装好插件后，如果不继续加以配置，prettier 自动格式化后的代码通不过 eslint 的语法格式检验，接下来有两种后续选择：
+
+#### 文件保存自动格式化
+
+可以通过如下的配置实现：
+
+.vscode > setting.json
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true // 每次保存的时候将代码按eslint格式进行修复
+  }
+}
+```
+
+上面的配置使得文件在保存的时候自动格式化，eslint自动修复，但是eslint的自动修复优先级好像不够高，所以最后仍然不符合eslint格式要求，为此还需要在项目中使用如下两个配置文件进一步配置 eslint 和 prettier ：
+
+.prettierrc
+
+```json
+{
+  "semi": false,
+  "singleQuote": true
+}
+```
+
+.eslintrc.js
+
+```js
+module.exports = {
+  root: true,
+  env: {
+    node: true
+  },
+  extends: ['plugin:vue/essential', '@vue/standard'],
+  parserOptions: {
+    parser: 'babel-eslint'
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'space-before-function-paren': 0 // 忽略函数括号空格检查
+  }
+}
+```
+
+上面配置使得 prettier 格式化时去除分号、使用单引号以符合 eslint 的校验规则，另外还修改了 eslint 的配置，忽略对函数括号前的空格校验。
+
+这样的优点是每次保存后自动格式化，同时不会出现语法报错，但是另外如果之后 prettier 和 eslint 还有更多规则冲突，还需要进一步添加配置。
+
+如果想要一次性解决规则冲突，可以使用另外的 npm 包来解决，比如`eslint-config-prettier`，使用它可以使得 eslint 忽略那些和 prettier 格式化以后冲突的规则，详情可以参考：[Disable formatting rules](https://prettier.io/docs/en/integrating-with-linters.html#disable-formatting-rules)
+
+但是不管怎样，这种方式在使用格式化插件以后，被迫修改了 eslint 的校验规则，这一点不太令人满意。
+
+#### 文件保存不自动格式化
+
+这是我个人选择的方案，这时只需要如下的配置：
+
+.vscode > setting.json （注意如果 .vscode 文件夹写在了 .gitignore 文件中时不会给添加到版本管理仓库的，需要把它去掉）
+
+```json
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true // 每次保存的时候将代码按eslint格式进行修复
+  }
+}
+```
+
+然后每次保存时，eslint 就会自动修复以满足格式要求，由于不自动格式化，所以规避了 prettier 自动代码格式化时的冲突问题。
+
+因为平时自己些代码，格式化就挺OK的，只是偶尔需要格式化一下，这时只要手动 ctrl + alt + F ，然后再保存修复即可。这样一来，就不需要修改 eslint 校验规则，也不需要修改 prettier 的配置。
 
 ## electron
 
@@ -224,7 +329,9 @@ github: [https://github.com/zalmoxisus/redux-devtools-extension](https://github.
     },
     "homepage": "https://github.com/ashleygwilliams/my_package" // 项目主页
   }
-````
+  ```
+
+```
 
 - 创建 `index.js` 文件，用模块化的方式书写你的代码，如 `module.exports = 123;`
 - 命令行运行 `npm login`，登录您的 npm 帐号，如果没有请到[官网](https://www.npmjs.com/)注册
@@ -264,3 +371,4 @@ github: [https://github.com/zalmoxisus/redux-devtools-extension](https://github.
 ### 为博客添加流程图支持
 
 使用 [mermaid](https://github.com/mermaid-js/mermaid/), 可参考文章 [Embed Mermaid Charts in Jekyll without Plugin](http://kkpattern.github.io/2015/05/15/Embed-Chart-in-Jekyll.html), 除了按照文章说的引入 mermaid.min.js 外，还需要引入 mermaid.css 文件，否则显示不正常。
+```
