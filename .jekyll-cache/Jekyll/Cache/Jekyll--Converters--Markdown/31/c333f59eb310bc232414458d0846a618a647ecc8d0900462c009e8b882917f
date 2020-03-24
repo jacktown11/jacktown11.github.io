@@ -1,4 +1,4 @@
-I"ʄ<h1 id="编程相关">编程相关</h1>
+I"C�<h1 id="编程相关">编程相关</h1>
 
 <h2 id="计算机基础">计算机基础</h2>
 
@@ -161,6 +161,43 @@
 
 <h2 id="vscode">vscode</h2>
 
+<h3 id="常用快捷键备忘">常用快捷键备忘</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>快捷键</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ctrl + L</td>
+      <td>选中当前行</td>
+    </tr>
+    <tr>
+      <td>Ctrl + C</td>
+      <td>复制当前行</td>
+    </tr>
+    <tr>
+      <td>Ctrl + Shift + Down</td>
+      <td>下移当前行</td>
+    </tr>
+    <tr>
+      <td>Ctrl + Shift + D</td>
+      <td>复制下移当前行</td>
+    </tr>
+    <tr>
+      <td>Ctrl + Enter</td>
+      <td>下方插入空行</td>
+    </tr>
+    <tr>
+      <td>Ctrl + Shift + Enter</td>
+      <td>上方插入空行</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="vue-的格式化">.vue 的格式化</h3>
 
 <p>安装<code class="highlighter-rouge">vetur</code>插件</p>
@@ -229,26 +266,26 @@
 <p>setting.json</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"workbench.statusBar.visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"workbench.colorTheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monokai"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"editor.tabSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"files.autoSave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"onFocusChange"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"[json]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"esbenp.prettier-vscode"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"[jsonc]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"esbenp.prettier-vscode"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"[html]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"esbenp.prettier-vscode"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"[markdown]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"esbenp.prettier-vscode"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"[vue]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"octref.vetur"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"vetur.format.defaultFormatter.html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js-beautify-html"</span><span class="w">
+  </span><span class="nl">"workbench.statusBar.visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workbench.colorTheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monokai"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"editor.tabSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"files.autoSave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"onFocusChange"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"[json]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"esbenp.prettier-vscode"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"[jsonc]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"esbenp.prettier-vscode"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"[html]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"esbenp.prettier-vscode"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"[markdown]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"esbenp.prettier-vscode"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"[vue]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"octref.vetur"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"vetur.format.defaultFormatter.html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js-beautify-html"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -268,7 +305,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>上面的配置使得文件在保存的时候自动格式化，eslint自动修复，但是eslint的自动修复优先级好像不够高，所以最后仍然不符合eslint格式要求，为此还需要在项目中使用如下两个配置文件进一步配置 eslint 和 prettier ：</p>
+<p>上面的配置使得文件在保存的时候自动格式化，eslint 自动修复，但是 eslint 的自动修复优先级好像不够高，所以最后仍然不符合 eslint 格式要求，为此还需要在项目中使用如下两个配置文件进一步配置 eslint 和 prettier ：</p>
 
 <p>.prettierrc</p>
 
@@ -320,7 +357,7 @@
 
 <p>然后每次保存时，eslint 就会自动修复以满足格式要求，由于不自动格式化，所以规避了 prettier 自动代码格式化时的冲突问题。</p>
 
-<p>因为平时自己些代码，格式化就挺OK的，只是偶尔需要格式化一下，这时只要手动 ctrl + alt + F ，然后再保存修复即可。这样一来，就不需要修改 eslint 校验规则，也不需要修改 prettier 的配置。</p>
+<p>因为平时自己些代码，格式化就挺 OK 的，只是偶尔需要格式化一下，这时只要手动 ctrl + alt + F ，然后再保存修复即可。这样一来，就不需要修改 eslint 校验规则，也不需要修改 prettier 的配置。</p>
 
 <h2 id="electron">electron</h2>
 

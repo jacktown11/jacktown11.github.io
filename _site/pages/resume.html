@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人简历</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <style>
+        .home {
+            position: fixed;
+            z-index: 55;
+            font-size: 1rem;
+            top: 4px;
+            left: 4px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        a.home-link:link,
+        a.home-link:visited {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 20px;
+            padding: 0 8px;
+            border: 2px solid #ccc;
+            font-weight: 700;
+            color: #ccc;
+        }
+
+        a.home-link:hover,
+        a.home-link:active {
+            color: #f40;
+            border-color: #f40;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home">
+        <a href="/" class="home-link no-print" id="home-link">返回首页</a>
+    </div>
+
+    <!-- 样式 -->
+<style>
+
+html,body,p,h1,h2,h3,h4,h5,h6{
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+h1,h2,h3{
+  font-weight: normal;
+}
+a:link{ 
+	text-decoration: none;
+	color: #096;
+}
+a:visited{
+	color: #336;
+}
+a:hover,
+a:active{
+	color: #f90;
+	text-decoration: underline;
+}
+button{
+	padding: 0;
+	border: none;
+	outline: none;
+	background-color: transparent;
+}
+html{
+  font-size: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body{
+  font-size: 1.4rem;
+  line-height: 1.6;
+  max-width: 796px;
+  margin: 3em auto 6em auto;
+  position: relative;
+}
+p{
+  margin: 0.5em 0;
+}
+ul{
+  padding-left: 2rem;
+}
+li{
+  position: relative;
+}
+h3{
+  font-weight: bold;
+}
+button{
+  cursor: pointer;
+  font-size: 1em;
+}
+input,button{
+  font-size: 1em;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  line-height: inherit;
+}
+.hidden{
+  display: none;
+}
+.lock-icon{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4ElEQVQ4T92SPUpDURCFv4MLEOIOhOAKAmnTxbSSKpWFb94GrH2W4gZyY2GVKn20s7LKCkLA2iYBFyAT3gPj+w3+gIW3uswcPmbOGdHw/I4B7/Sz9gGPumBeJ1Vd0cfcIk5wnhGvwBnOUjGXZX0F4IEhcC5jkBd7yCa4lzHL1+sALqN+skCl958AHljjPCBGQNKQboIzRZzKOEo1Ow98zJtiDpvuopTIzsxPQOBFxvFvAAsZnZ8DJjwpovdXgI2MVtHE70wwYaWIdgWwJ77iZs6NjG4RELj6yv4fGhnX6X8Lp/tgEUgxVhUAAAAASUVORK5CYII=);
+  background-size: 1em 1em;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  position: relative;
+  top: 0.25em;
+  cursor: pointer;
+}
+.name .lock-icon{
+  top: 0.5em;
+}
+/* 返回主页按钮 */
+.home{
+  font-size: 2rem;
+  z-index: 2;
+}
+.unlock{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #fff;
+}
+
+/* 私密信息解锁栏 */
+.interact{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  text-align: center;
+  background-color: #f60;
+  margin: 0 -1000em;
+  padding: 1em 1000em;
+  font-size: 1.2em;
+  color: #fff;
+}
+.password{
+  color: #f60;
+  text-align: center;
+  padding: 0.3rem;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px #888 inset;
+  background-color: #fff;
+}
+.confirm{
+  color: #fff;
+  padding: 0.2rem 1rem;
+  margin-left: 1rem;
+  border: 0.1rem solid #fff;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px #888;
+}
+.ignore{
+  position: absolute;
+  right: 1002em;
+  top: 1em;
+  color: #fff;
+  transform: scale(1.5);
+  /* color: #444; */
+}
+.warning{
+  position: relative;
+  left: 0px;
+  font-weight: bold;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+/* 导航栏 */
+.resume{
+  padding: 2rem;
+  box-shadow: 1px 1px 4px #bbb;
+}
+
+/* 简历头部 */
+.header{
+  position: relative;
+}
+.name{
+  font-size: 2.1rem;
+  line-height: 2;
+  height: 4.2rem;
+  text-align: center;
+}
+.picture{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12rem;
+}
+.infos{
+  display: flex;
+  flex-wrap: wrap;
+}
+.infos-left{
+  flex: 1;
+  text-align: right;
+  padding-right: 0.5em;
+  border-right: 1px solid #000;
+}
+.infos-right{
+  flex: 1;
+  text-align: left;
+  padding-left: 0.5em;
+}
+
+/* 简历主体 */
+.main h2{
+  font-size: 1.47rem;
+  border: 1px solid #000;
+  border-right: none;
+  width: 5em;
+  font-weight: bold;
+}
+
+/* 个人经历 */
+.tag{
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #444;
+}
+.experience li li{
+  margin-bottom: 0.5em;
+}
+
+
+
+/* 小屏幕适配 */
+@media screen and (max-width: 600px){
+  .picture{
+    width: 8rem;
+  }
+}
+@media screen and (max-width: 540px){
+  .infos{
+    display: block;
+    margin-right: 0;
+  }
+  .infos-left{
+    text-align: left;
+    border-right: none;
+    padding-left: 0.5em;
+  }
+  .picture{
+    left: auto;
+    right: 0;
+  }
+  .tag{
+    display: block;
+    position: relative;
+  }
+}
+
+/* 打印适配 */
+@media print {
+  .home{
+    display: none;
+  }
+  body{
+    width: 796px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .print-none{
+    display: none;
+  }
+  .resume{
+    box-shadow: none;
+    padding: 0;
+  }
+  a{
+    text-decoration: none;
+  }
+  a:link,
+  a:visited,
+  a:hover,
+  a:active{
+    color: #444;
+  }
+  .header a:link,
+  .header a:visited,
+  .header a:hover,
+  .header a:active{
+    color: #000;
+  }
+
+  .picture{
+    left: 4em;
+  }
+}
+</style>
+<div class="interact hidden print-none" id="interact">
+  <p class="ask">请输入我的中文名字解锁私密信息</p>
+  <div>
+    <input class="password" type="text" name="password" id="password" placeholder="" value=""><button id="confirm" class="confirm">确认</button>
+  </div>
+  <p class="warning hidden" id="warning" >密码不正确</p>
+  <button class="ignore" id="ignore">X</button>
+</div>
+<div class="resume" id="resume">
+  <header class="header">
+      <img class="picture hidden" id="picture" src="../images/intro/me.jpg"" alt="本人照片">
+      <h1 class="name"><span id="name"><span class="lock-icon">&nbsp;</span></span></h1>
+      <div class="infos">
+        <div class="infos-left">
+          <p class="gender">男</p>
+          <p class="birthday">1993/4/4</p>
+          <p class="email" id="email"><span class="lock-icon">&nbsp;</span></p>
+          <p class="phone"><span id="phone"><span class="lock-icon">&nbsp;</span></span>(微信同号)</p>
+        </div>
+        <div class="infos-right">
+          <p class="job">前端开发</p>
+          <p class="wanted-salary">期望薪资：5k</p>
+          <p class="blog">博客：<a href="https://jacktown11.github.io">https://jacktown11.github.io</a></p>
+          <p class="github">Github:<a href="https://github.com/jacktown11"> https://github.com/jacktown11</a></p>
+        </div>
+      </div>
+    </header>
+  <div class="main">
+    <h2>专业技能</h2>
+    <ul>
+      <li>熟练：html, css, javascript</li>
+      <li>熟悉：Vue.js, Element UI, jQuery, git, webpack</li>
+      <li>了解：React, Angular, ES6, Node.js, bootstrap</li>
+    </ul>
+    <div>
+      <h2>教育背景</h2>
+      <p>
+        <span class="education" id="education"><span class="lock-icon">&nbsp;</span></span> 本科 车辆工程  2011年8月 ~ 2016年7月
+      </p>
+      <p>
+        专业前1/3 | 保研资格
+      </p>
+      <p>
+        荣誉：2011-2012年度国家奖学金 | 2012-2013年度学业优秀奖学金 | 2013-2014年度学业优秀奖学金 等
+      </p>
+    </div>
+    <h2>
+      个人作品
+    </h2>
+    <ul class="projects">
+      <li>
+        <h3>个人博客</h3><a href="https://jacktown11.github.io" class="link tag">https://jacktown11.github.io</a>
+        <p>
+          基于gitHub pages搭建的个人技术博客，自主设计开发，响应式布局，主页借助vue实现文章列表的展示和标签筛选，搜索框采用了事件节流，文章页面原生实现了目录树。
+        </p>
+      </li>
+      <li>
+        <h3>浏览器书签搜索插件</h3><a href="https://github.com/jacktown11/chrome-bookmark-extension" class="link tag">https://github.com/jacktown11/chrome-bookmark-extension</a>
+        <p>
+          关键字搜索浏览器书签，利用localStorage 存储历史的次数，从而在以后搜索时前置经常访问的书签。
+        </p>
+      </li>
+      <li>
+        <h3>饿了么点餐WebApp</h3><a href="https://jacktown11.github.io/order-app" class="link tag">https://jacktown11.github.io/order-app</a>
+        <p>
+          基于vue-cli3仿制的饿了么外卖WebApp，一个SPA。主要技术包括Vue.js、vue-router、Axios，使用better-scroll插件优化页面滚动，css使用stylus编写，采用flex布局、sticky footer等技术。
+        </p>
+      </li>
+    </ul>
+    <h2>
+      个人经历	
+    </h2>
+    <ul class="experience">
+      <li>
+        <h3>电子厂普工</h3><span class="time tag">2018年3月 ~ 2020年2月</span>
+        <ul>
+          <li>2018年3月尝试做前端工作，没能坚持下去，后在家自学java基础。</li>
+          <li>2019年2月初到广州捷普电子厂做普工，为找程序员工作预备生活费，半个月后没有忍受住工作的苦累，暂时放弃。</li>
+          <li>2019年10月初再次到广州，在OPPO电子厂做普工，到2020年2月离职，复习准备找前端开发工作。</li>
+        </ul>
+      </li>
+      <li>
+        <h3>自学前端</h3><span class="time tag">2017年5月 ~ 2018年3月</span>
+        <p>脱产自学前端开发技术，初期以阅读经典书籍为主，中期以free code camp上的编程题目加以练习，获得了前端开发证书，后期结合慕课网视频和官网文档进行项目实战练习。</p>
+      </li>
+      <li>
+        <h3>高中培训老师/纸厂工人</h3><span class="time tag">2016年7月 ~ 2017年5月</span>
+        <p>先后在江苏教育辅导机构做数学辅导老师、广东纸厂做包装工人。意识到生活之艰辛，同时不愿废弃多年苦学，考虑到IT行业的机遇和自己颇强的自学能力与探索精神，决定转行做程序员。</p>
+      </li>
+      <li>
+        <h3><span class="education"><span class="lock-icon">&nbsp;</span></span>学生</h3><span class="time tag">2011年8月 ~ 2016年7月</span>
+        <p>2011年考入<span class="education"><span class="lock-icon">&nbsp;</span></span>汽车工程系，在校期间成绩优良，具有保研资格（前1/3）；但由于不愿进入中国兵器工业集团工作而违约，毕业证原件被扣。</p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script src="../js/aes_2.js"></script>
+<script>
+(function() {
+  window.onload = function() {
+    new App();
+  };
+
+  var Utils = {
+    // 加密和解密函数
+    uniqueStr: 'jacktown-',
+    encode: function(plainText, password) {
+      return CryptoJS.AES.encrypt(plainText, password).toString();
+    },
+    decode: function(encodedStr, password) {
+      return CryptoJS.AES.decrypt(encodedStr, password).toString(
+        CryptoJS.enc.Utf8
+      );
+    },
+    setStore: function(key, value) {
+      localStorage.setItem(this.uniqueStr + key, value);
+    },
+    getStore: function(key) {
+      return localStorage.getItem(this.uniqueStr + key);
+    },
+    addClass: function(ele, cls) {
+      var clsArr = ele.className
+        .trim()
+        .replace(/\s+/, ' ')
+        .split(' ');
+      if (clsArr.indexOf(cls) < 0) {
+        ele.className += ' ' + cls;
+      }
+    },
+    removeClass: function(ele, cls) {
+      var clsArr = ele.className
+        .trim()
+        .replace(/\s+/, ' ')
+        .split(' ');
+      clsArr = clsArr.filter(function(item) {
+        if (item === cls) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      ele.className = clsArr.join(' ');
+    }
+  };
+
+  function App() {
+    var doc = document;
+    this.nodes = {
+      info: {
+        // 所有被加密的个人信息对应的节点
+        phone: doc.getElementById('phone'),
+        email: doc.getElementById('email'),
+        // weixin: doc.getElementById('weixin'),
+        // qq: doc.getElementById('qq'),
+        name: doc.getElementById('name'),
+        educationList: doc.getElementsByClassName('education'),
+        picture: document.getElementById('picture')
+      },
+      interact: {
+        // 与用户交互的元素
+        interact: doc.getElementById('interact'),
+        input: doc.getElementById('password'),
+        confirm: doc.getElementById('confirm'),
+        ignore: doc.getElementById('ignore'),
+        warning: doc.getElementById('warning')
+      },
+      resume: doc.getElementById('resume')
+    };
+    // 对应152手机号的加密字符串
+    this.encodedStr =
+      'U2FsdGVkX19/MDErDGUICKXGwgNMOabWiVRn0KhTeag68nY/JGMFxw8CNo+W6nQyIBssWB50E8A3jxT1BQQ7zBfdGADH0uD9Kw9KFWu1EkW97lHNNzbLMvYWJss453MYpfwy9Cd45jF6bjhWupURp0YZvULnT1GdWQ6ERjuaX/i8Eebapw1FoXT94Rzda468MWB3ebGcRKloATK2aL7DXh4S432osmBz9IhSeBP735aSsL+mN+09fAicr0PedgzVE2nCnKBPQucbTp5UGBNnButdmhwmJk4QLEmizfhbShGIa1gA0B7LXa7w+H7iT2MA';
+
+    // 对应173手机号的加密字符串
+    // this.encodedStr = 'U2FsdGVkX1+V+v5RDbKKDq81irrUDW/1ZRageJbEFkhYPWwwxFnp8oJlz1xypAtYInGa6qcSiOcS3Fle9Ke9Pk1p42vux5bmFNnnAQm9rPYZsy1xMxro0AwWT0j2PmwuzCf+IQPZ9gv8caBBWust5tcmSb+RBfKr7TkDbWH0CYOa82Aa7Va0z04SUCoZMu+In2mq9ecKMct4gdIbELXpVvCR3QPM9Evx0zxA/EmYyPW25PNtYzBLkroig4q2hj7n5gWXJLVI6p6jXQJBVc0r1/N0BXhxQ7pdy/6HIeBwLHM=';
+
+    this.init();
+  }
+
+  App.prototype = {
+    constructor: App,
+    init: function() {
+      this.setHandlers();
+      this.checkStore();
+    },
+    setHandlers: function() {
+      var self = this,
+        interact = this.nodes.interact;
+      interact.confirm.onclick = function(event) {
+        self.tryShow(event);
+        event.stopPropagation()
+      };
+      interact.input.onkeyup = function(event) {
+        if (event.keyCode === 13) {
+          self.tryShow(event);
+        }
+        event.stopPropagation()
+      };
+      interact.ignore.onclick = function(event) {
+        self.hideDialog()
+        event.stopPropagation()
+      };
+      this.nodes.resume.onclick = function(event){
+        if(event.target.className.indexOf('lock-icon') >= 0){
+          self.showDialog()
+        }
+      }
+    },
+    checkStore: function() {
+      var password = Utils.getStore('password');
+      if (!password || !this.showPersonalInfo(password)) {
+        Utils.removeClass(this.nodes.interact.interact, 'hidden');
+        this.nodes.interact.input.focus();
+      }
+    },
+    tryShow: function(event) {
+      var password = this.nodes.interact.input.value.trim();
+      var isOk = this.showPersonalInfo(password);
+      if (isOk) {
+        Utils.addClass(this.nodes.interact.interact, 'hidden');
+      } else {
+        this.showWrong();
+      }
+    },
+    showPersonalInfo: function(password) {
+      var info = this.getInfoByPassword(password);
+      if (!info) {
+        // 密码有误，没能获得私密信息
+        return false;
+      }
+      var infoNodes = this.nodes.info;
+      for (var key in infoNodes) {
+        switch(key){
+          case 'name': 
+            infoNodes[key].innerHTML = info[key].split('/')[0]
+            break;
+          case 'picture':
+            Utils.removeClass(infoNodes[key], 'hidden');
+            infoNodes[key].src = info[key];
+            break;
+          case 'educationList':
+            var len = infoNodes[key].length;
+            var school = info.education.split('/')[1];
+            for(var i = 0; i < len; i++){
+              infoNodes[key][i].innerHTML = school;
+            }
+            break;
+          case 'phone':
+            var phoneChars = info[key].split('');
+            phoneChars.splice(3, 0, '-');
+            phoneChars.splice(8, 0, '-');
+            infoNodes[key].innerHTML = phoneChars.join('');
+            break;
+          default:
+            infoNodes[key].innerHTML = info[key];
+            break;
+        }
+      }
+      Utils.setStore('password', password);
+      return true;
+    },
+    getInfoByPassword: function(password) {
+      var info = null;
+      try {
+        info = JSON.parse(Utils.decode(this.encodedStr, password));
+      } catch (error) {
+        info = null;
+      }
+      return info;
+    },
+    showDialog: function(){
+      Utils.removeClass(this.nodes.interact.interact, 'hidden')
+    },
+    hideDialog: function(){
+      var interact = this.nodes.interact;
+      Utils.addClass(interact.interact, 'hidden');
+      Utils.addClass(interact.warning, 'hidden');
+      interact.input.value = ''
+    },
+    showWrong: function() {
+      var warning = this.nodes.interact.warning;
+      Utils.removeClass(warning, 'hidden');
+      warning.style.left = '-10px';
+      setTimeout(function() {
+        warning.style.left = '10px';
+        setTimeout(function() {
+          warning.style.left = '0px';
+        }, 200);
+      }, 200);
+    }
+  };
+})();
+
+</script>
+
+    
+
+</body>
+
+</html>
