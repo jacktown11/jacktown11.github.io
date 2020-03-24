@@ -1,75 +1,297 @@
-I"�<p>本文是对<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰官方网站 git教程</a>中命令的总结</p>
-<p>|命令|作用|
-|-|-|
-|<strong>安装和简单使用git</strong>||
-|git config --global user.name xxx|设置用户名字，如果不加名字，则查询|
-|git config --global user.email xxx|设置用户邮箱，如果不加邮箱，则查询|
-|mkdir learngit|创建目录learngit|
-|cd learngit|切换到learngit目录下|
-|pwd|显示当前目录|
-|git init|在当前目录下初始化一个仓库|
-|git add readme.txt|将文件添加到仓库|
-|git commit -m &quot;wrote a readme file&quot;|把文件提交到仓库|
-|<strong>时光穿梭机</strong>||
-|git status|查看当前仓库状态|
-|git diff readme.txt|查看readme.txt修改详情|
-|<strong>版本回退</strong>||
-|git log|版本历史记录|
-|git log --pretty=oneline|简化显示的版本历史记录|
-|git reset --hard HEAD^|HEAD表示当前版本，^的个数表示版本后退次数，后退n个版本也可写为HEAD~n|
-|cat readme.txt|查看当前版本下的readme.txt文件|
-|git reset --hard 11ce59bceec5|最后一个参数是版本号，恢复到对应版本，版本号可以只写开始几位数字|
-|git reflog|版本跳转日志|
-|git diff HEAD -- readme.txt|查看工作区readme.txt文件和版本库内最新版本的该文件的区别|
-|<strong>撤销修改</strong>||
-|git checkout -- readme.txt|将readme.txt文件撤销到最近以此commit或add后的状态|
-|git reset HEAD readme.txt|撤销暂存区readme.txt文件，工作区修改仍然在，这是后再使用上一个命令checkout可以撤销掉工作去该文件的修改|
-|<strong>删除文件</strong>||
-|git rm test.txt|在工作区删除版本库中存在的文件后，使用该操作确认要删除，然后commit可以从版本库中删除该文件，和git add相对应|
-|<strong>添加远程仓库</strong>||
-|git remote add origin githubUrl|关联远程仓库origin|
-|git push -u origin master|把本地仓库推送到远程仓库origin的master分支，-u在第一推送时起到关联本地master分支和远程master分支的作用|
-|git push origin master|向远程仓库推送本地最新修改|
-|<strong>从远程仓库克隆</strong>||
-|git clone git@github.com:jacktown11/getskill.git|复制远程仓库，从而创建本地仓库|
-|<strong>创建与合并分支</strong>||
-|git branch dev|创建dev分支|
-|git checkout dev|切换到dev分支|
-|git checkout -b dev|创建dev分支并切换到这个分支|
-|git branch|查看所有分支|
-|git merge dev|把dev分支合并到当前分支|
-|git branch -d dev|删除dev分支|
-|<strong>分支管理策略</strong>||
-|git merge --no-ff -m &quot;some message&quot; dev|将dev分支采用非fast forward模式合并到当前分支，该模式会保留合并历史，该次合并会进行一次新的commit，所以采用-m参数提供提交信息|
-|<strong>bug分支</strong>||
-|git stash|储存当前分支工作现场|
-|git stash list|显示存储的工作现场列表|
-|git apply stash@{n}|恢复指定的工作现场|
-|git stash drop|删除stash内容（最上一条，栈方式）|
-|git stash pop|恢复工作现场并删除stash内容|
-|<strong>feature分支</strong>||
-|git branch -D branchName|强制删除分支|
-|<strong>多人协作</strong>||
-|git remote|查看远程仓库信息|
-|git remote -v|查看远程仓库详细信息|
-|git pull origin master|将远程master分支合并到当前版本库分支|
-|git push origin dev|将本地分支推送到远程dev分支，如果远程没有该分支会创建该分支|
-|git branch --set-upstream dev origin/dev|指定本地dev分支与远程dev分支的链接|
-|git pull|抓取远程提交的新更新|
-|<strong>标签创建与管理</strong>||
-|git tag|查看所有标签|
-|git tag <name>|给当前分支添加标签名name|
-|git tag <name> <commit id>|给<commit id>版本添加标签名<name>|
-|git tag -a <name> -m <message>|带有信息地指定标签名|
-|git tag -s <name> -m <message>|使用PGP签名标签|
-|git show <tagname>|查看指定标签名的版本|
-|git tag -d <tagname>|删除标签|
-|git push origin <tagname>|将某标签推送到远程|
-|git push origin --tags|将所有标签推送到远程|
-|git push origin :refs/tags/<tagname>|在本地删除标签后，删除远程标签|
-|<strong>自定义git</strong>||
-|git config --global color.ui true|让bash界面显示颜色|
-|git add -f <filename>|强制添加某个文件（它可能被.ignore文件忽略添加了）|
-|git check-ignore -v <filename>|检查某个文件被忽略是出于.ignore文件中哪条规则|
-|git config --global alias.<short> <longCmd> |全局性地为命令（组合）<longCmd>配置别名<short>|</p>
+I"� <p>本文是对<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰官方网站 git教程</a>中命令的总结</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>安装和简单使用git</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git config –global user.name xxx</td>
+      <td>设置用户名字，如果不加名字，则查询</td>
+    </tr>
+    <tr>
+      <td>git config –global user.email xxx</td>
+      <td>设置用户邮箱，如果不加邮箱，则查询</td>
+    </tr>
+    <tr>
+      <td>mkdir learngit</td>
+      <td>创建目录learngit</td>
+    </tr>
+    <tr>
+      <td>cd learngit</td>
+      <td>切换到learngit目录下</td>
+    </tr>
+    <tr>
+      <td>pwd</td>
+      <td>显示当前目录</td>
+    </tr>
+    <tr>
+      <td>git init</td>
+      <td>在当前目录下初始化一个仓库</td>
+    </tr>
+    <tr>
+      <td>git add readme.txt</td>
+      <td>将文件添加到仓库</td>
+    </tr>
+    <tr>
+      <td>git commit -m “wrote a readme file”</td>
+      <td>把文件提交到仓库</td>
+    </tr>
+    <tr>
+      <td><strong>时光穿梭机</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git status</td>
+      <td>查看当前仓库状态</td>
+    </tr>
+    <tr>
+      <td>git diff readme.txt</td>
+      <td>查看readme.txt修改详情</td>
+    </tr>
+    <tr>
+      <td><strong>版本回退</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git log</td>
+      <td>版本历史记录</td>
+    </tr>
+    <tr>
+      <td>git log –pretty=oneline</td>
+      <td>简化显示的版本历史记录</td>
+    </tr>
+    <tr>
+      <td>git reset –hard HEAD^</td>
+      <td>HEAD表示当前版本，^的个数表示版本后退次数，后退n个版本也可写为HEAD~n</td>
+    </tr>
+    <tr>
+      <td>cat readme.txt</td>
+      <td>查看当前版本下的readme.txt文件</td>
+    </tr>
+    <tr>
+      <td>git reset –hard 11ce59bceec5</td>
+      <td>最后一个参数是版本号，恢复到对应版本，版本号可以只写开始几位数字</td>
+    </tr>
+    <tr>
+      <td>git reflog</td>
+      <td>版本跳转日志</td>
+    </tr>
+    <tr>
+      <td>git diff HEAD – readme.txt</td>
+      <td>查看工作区readme.txt文件和版本库内最新版本的该文件的区别</td>
+    </tr>
+    <tr>
+      <td><strong>撤销修改</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git checkout – readme.txt</td>
+      <td>将readme.txt文件撤销到最近以此commit或add后的状态</td>
+    </tr>
+    <tr>
+      <td>git reset HEAD readme.txt</td>
+      <td>撤销暂存区readme.txt文件，工作区修改仍然在，这是后再使用上一个命令checkout可以撤销掉工作去该文件的修改</td>
+    </tr>
+    <tr>
+      <td><strong>删除文件</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git rm test.txt</td>
+      <td>在工作区删除版本库中存在的文件后，使用该操作确认要删除，然后commit可以从版本库中删除该文件，和git add相对应</td>
+    </tr>
+    <tr>
+      <td><strong>添加远程仓库</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git remote add origin githubUrl</td>
+      <td>关联远程仓库origin</td>
+    </tr>
+    <tr>
+      <td>git push -u origin master</td>
+      <td>把本地仓库推送到远程仓库origin的master分支，-u在第一推送时起到关联本地master分支和远程master分支的作用</td>
+    </tr>
+    <tr>
+      <td>git push origin master</td>
+      <td>向远程仓库推送本地最新修改</td>
+    </tr>
+    <tr>
+      <td><strong>从远程仓库克隆</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git clone git@github.com:jacktown11/getskill.git</td>
+      <td>复制远程仓库，从而创建本地仓库</td>
+    </tr>
+    <tr>
+      <td><strong>创建与合并分支</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git branch dev</td>
+      <td>创建dev分支</td>
+    </tr>
+    <tr>
+      <td>git checkout dev</td>
+      <td>切换到dev分支</td>
+    </tr>
+    <tr>
+      <td>git checkout -b dev</td>
+      <td>创建dev分支并切换到这个分支</td>
+    </tr>
+    <tr>
+      <td>git branch</td>
+      <td>查看所有分支</td>
+    </tr>
+    <tr>
+      <td>git merge dev</td>
+      <td>把dev分支合并到当前分支</td>
+    </tr>
+    <tr>
+      <td>git branch -d dev</td>
+      <td>删除dev分支</td>
+    </tr>
+    <tr>
+      <td><strong>分支管理策略</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git merge –no-ff -m “some message” dev</td>
+      <td>将dev分支采用非fast forward模式合并到当前分支，该模式会保留合并历史，该次合并会进行一次新的commit，所以采用-m参数提供提交信息</td>
+    </tr>
+    <tr>
+      <td><strong>bug分支</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git stash</td>
+      <td>储存当前分支工作现场</td>
+    </tr>
+    <tr>
+      <td>git stash list</td>
+      <td>显示存储的工作现场列表</td>
+    </tr>
+    <tr>
+      <td>git apply stash@{n}</td>
+      <td>恢复指定的工作现场</td>
+    </tr>
+    <tr>
+      <td>git stash drop</td>
+      <td>删除stash内容（最上一条，栈方式）</td>
+    </tr>
+    <tr>
+      <td>git stash pop</td>
+      <td>恢复工作现场并删除stash内容</td>
+    </tr>
+    <tr>
+      <td><strong>feature分支</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git branch -D branchName</td>
+      <td>强制删除分支</td>
+    </tr>
+    <tr>
+      <td><strong>多人协作</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git remote</td>
+      <td>查看远程仓库信息</td>
+    </tr>
+    <tr>
+      <td>git remote -v</td>
+      <td>查看远程仓库详细信息</td>
+    </tr>
+    <tr>
+      <td>git pull origin master</td>
+      <td>将远程master分支合并到当前版本库分支</td>
+    </tr>
+    <tr>
+      <td>git push origin dev</td>
+      <td>将本地分支推送到远程dev分支，如果远程没有该分支会创建该分支</td>
+    </tr>
+    <tr>
+      <td>git branch –set-upstream dev origin/dev</td>
+      <td>指定本地dev分支与远程dev分支的链接</td>
+    </tr>
+    <tr>
+      <td>git pull</td>
+      <td>抓取远程提交的新更新</td>
+    </tr>
+    <tr>
+      <td><strong>标签创建与管理</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git tag</td>
+      <td>查看所有标签</td>
+    </tr>
+    <tr>
+      <td>git tag <name></name></td>
+      <td>给当前分支添加标签名name</td>
+    </tr>
+    <tr>
+      <td>git tag <name> <commit></commit></name></td>
+      <td>给<commit>版本添加标签名<name></name></commit></td>
+    </tr>
+    <tr>
+      <td>git tag -a <name> -m <message></message></name></td>
+      <td>带有信息地指定标签名</td>
+    </tr>
+    <tr>
+      <td>git tag -s <name> -m <message></message></name></td>
+      <td>使用PGP签名标签</td>
+    </tr>
+    <tr>
+      <td>git show <tagname></tagname></td>
+      <td>查看指定标签名的版本</td>
+    </tr>
+    <tr>
+      <td>git tag -d <tagname></tagname></td>
+      <td>删除标签</td>
+    </tr>
+    <tr>
+      <td>git push origin <tagname></tagname></td>
+      <td>将某标签推送到远程</td>
+    </tr>
+    <tr>
+      <td>git push origin –tags</td>
+      <td>将所有标签推送到远程</td>
+    </tr>
+    <tr>
+      <td>git push origin :refs/tags/<tagname></tagname></td>
+      <td>在本地删除标签后，删除远程标签</td>
+    </tr>
+    <tr>
+      <td><strong>自定义git</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>git config –global color.ui true</td>
+      <td>让bash界面显示颜色</td>
+    </tr>
+    <tr>
+      <td>git add -f <filename></filename></td>
+      <td>强制添加某个文件（它可能被.ignore文件忽略添加了）</td>
+    </tr>
+    <tr>
+      <td>git check-ignore -v <filename></filename></td>
+      <td>检查某个文件被忽略是出于.ignore文件中哪条规则</td>
+    </tr>
+    <tr>
+      <td>git config –global alias.<short> <longCmd></longCmd></short></td>
+      <td>全局性地为命令（组合）<longCmd>配置别名<short></short></longCmd></td>
+    </tr>
+  </tbody>
+</table>
 :ET

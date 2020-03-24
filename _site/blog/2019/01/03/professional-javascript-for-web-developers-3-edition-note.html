@@ -60,149 +60,215 @@
 				<h1 id="post-title">《JavaScript 高级程序设计》（第3版）笔记</h1>
 				<p class="meta">2019-01-03</p>
 				<div class="post" ref="post">
-					<h1 id="javascript-">第 1 章 JavaScript 简介</h1>
+					<h1 id="第-1-章-javascript-简介">第 1 章 JavaScript 简介</h1>
+
 <p>JavaScript 于 1995 年由当时就职于 Netscape 公司的 Brendan Eich 开发，最初是为了通过提供前端表单校验，在当时普遍低网速的情况下极大提升用户体验。</p>
+
 <p>JavaScript 包括三部分：</p>
+
 <ul>
-<li>核心( ECMAScript )
-<ul>
-<li>其标准是<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"> ECMA-262 </a>，由 ECMA (欧洲计算机制造商协会)下的 TC39 技术委员会制定</li>
-<li>2009 年发布了第 5 版，2015 年发布第 6 版（ ES2015 ），之后每年都会有版本更新，直接有年份表示版本（如 ES2018 ）</li>
+  <li>核心( ECMAScript )
+    <ul>
+      <li>其标准是<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"> ECMA-262 </a>，由 ECMA (欧洲计算机制造商协会)下的 TC39 技术委员会制定</li>
+      <li>2009 年发布了第 5 版，2015 年发布第 6 版（ ES2015 ），之后每年都会有版本更新，直接有年份表示版本（如 ES2018 ）</li>
+    </ul>
+  </li>
+  <li>文档对象模型( DOM )
+    <ul>
+      <li>定义访问与操作网页内容的方法与接口</li>
+      <li>DOM1 ，1998 年 10 月成为 W3C 推荐标准，包括 DOM Core 和 DOM HTML ，主要映射文档结构</li>
+      <li>DOM2 ，给出很多新模块：DOM 视图、DOM 事件、DOM 样式、DOM 遍历和范围</li>
+      <li>DOM3 ，引入了 DOM 加载与保持模块、DOM 验证模块、开始支持 XML1.0 规范</li>
+      <li>其他 DOM 标准： SVG 、 MathMl 、 SMIL</li>
+      <li>IE6~8 支持 DOM1 （几乎全部），IE9+ 支持 DOM1~3</li>
+    </ul>
+  </li>
+  <li>浏览器对象模型( BOM )
+    <ul>
+      <li>提供与浏览器交互的方法和接口</li>
+      <li>HTML5 之前没有正式规范，但有如 window 对象、 navigator 对象等事实标准</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>文档对象模型( DOM )
-<ul>
-<li>定义访问与操作网页内容的方法与接口</li>
-<li>DOM1 ，1998 年 10 月成为 W3C 推荐标准，包括 DOM Core 和 DOM HTML ，主要映射文档结构</li>
-<li>DOM2 ，给出很多新模块：DOM 视图、DOM 事件、DOM 样式、DOM 遍历和范围</li>
-<li>DOM3 ，引入了 DOM 加载与保持模块、DOM 验证模块、开始支持 XML1.0 规范</li>
-<li>其他 DOM 标准： SVG 、 MathMl 、 SMIL</li>
-<li>IE6~8 支持 DOM1 （几乎全部），IE9+ 支持 DOM1~3</li>
-</ul>
-</li>
-<li>浏览器对象模型( BOM )
-<ul>
-<li>提供与浏览器交互的方法和接口</li>
-<li>HTML5 之前没有正式规范，但有如 window 对象、 navigator 对象等事实标准</li>
-</ul>
-</li>
-</ul>
+
 <p>JavaScript 的版本通常以 ECMAScript 的版本为准，只有 Mozilla 公司还在沿用原来的 JavaScript 的版本序号。</p>
-<h1 id="html--javascript">第 2 章 在 HTML 中使用 JavaScript</h1>
+
+<h1 id="第-2-章-在-html-中使用-javascript">第 2 章 在 HTML 中使用 JavaScript</h1>
+
 <ul>
-<li>使用 script 标签在 html 页面中插入脚本，通常认为使用 <code>src</code> 属性指定外部脚本要优于嵌入代码，因为具有可维护性和可缓存的优点</li>
-<li>利用 <code>src</code> 属性加载外部文件不受浏览器同源策略的限制，这也是 jsonp 跨域的基础。</li>
-<li>默认情况下，页面都是从上往下加载和执行，因此通常将 <code>js</code> 脚本放在页面最后以避免其阻塞页面加载；但是 <code>defer</code> 和 <code>async</code> 属性（仅外部文件可用）也可以改变其默认行为：
-<ul>
-<li><code>defer</code> 让浏览器立即加载，延迟执行（遇到<code>&lt;/html&gt;</code>后）</li>
-<li><code>async</code> 让浏览器异步地加载和执行</li>
-<li>使用这两个属性时，代码的执行顺序通常是不确定的，因此一定要确认文件间的依赖不会因此破坏</li>
+  <li>使用 script 标签在 html 页面中插入脚本，通常认为使用 <code class="highlighter-rouge">src</code> 属性指定外部脚本要优于嵌入代码，因为具有可维护性和可缓存的优点</li>
+  <li>利用 <code class="highlighter-rouge">src</code> 属性加载外部文件不受浏览器同源策略的限制，这也是 jsonp 跨域的基础。</li>
+  <li>默认情况下，页面都是从上往下加载和执行，因此通常将 <code class="highlighter-rouge">js</code> 脚本放在页面最后以避免其阻塞页面加载；但是 <code class="highlighter-rouge">defer</code> 和 <code class="highlighter-rouge">async</code> 属性（仅外部文件可用）也可以改变其默认行为：
+    <ul>
+      <li><code class="highlighter-rouge">defer</code> 让浏览器立即加载，延迟执行（遇到<code class="highlighter-rouge">&lt;/html&gt;</code>后）</li>
+      <li><code class="highlighter-rouge">async</code> 让浏览器异步地加载和执行</li>
+      <li>使用这两个属性时，代码的执行顺序通常是不确定的，因此一定要确认文件间的依赖不会因此破坏</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">type</code> 属性默认是 <code class="highlighter-rouge">text/javascript</code> ，通常省略</li>
 </ul>
-</li>
-<li><code>type</code> 属性默认是 <code>text/javascript</code> ，通常省略</li>
-</ul>
-<h1 id="section">第 3 章 基本概念</h1>
+
+<h1 id="第-3-章-基本概念">第 3 章 基本概念</h1>
+
 <p>本章介绍了 javascript 中的语法、关键字和保留字、变量、数据类型、操作符、语句、函数等，下面是部分要点总结。</p>
-<h2 id="typeof-">typeof 操作符</h2>
-<p><code>typeof &lt;操作数&gt;</code>，总是返回一个字符串。</p>
-<p>| 操作数类型 | 返回字符串 |
-| ---------- | ---------- |
-| Undefined  | 'undefined |
-| Boolean    | 'boolean'  |
-| Number     | 'number'   |
-| String     | 'string'   |
-| Null       | 'object'   |
-| Obejct     | 'object'   |
-| Function   | 'function' |</p>
-<h2 id="undefined--null">undefined 和 null</h2>
+
+<h2 id="typeof-操作符">typeof 操作符</h2>
+
+<p><code class="highlighter-rouge">typeof &lt;操作数&gt;</code>，总是返回一个字符串。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>操作数类型</th>
+      <th>返回字符串</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Undefined</td>
+      <td>‘undefined</td>
+    </tr>
+    <tr>
+      <td>Boolean</td>
+      <td>‘boolean’</td>
+    </tr>
+    <tr>
+      <td>Number</td>
+      <td>‘number’</td>
+    </tr>
+    <tr>
+      <td>String</td>
+      <td>‘string’</td>
+    </tr>
+    <tr>
+      <td>Null</td>
+      <td>‘object’</td>
+    </tr>
+    <tr>
+      <td>Obejct</td>
+      <td>‘object’</td>
+    </tr>
+    <tr>
+      <td>Function</td>
+      <td>‘function’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="undefined-和-null">undefined 和 null</h2>
+
 <ul>
-<li>如果一个变量声明时未初始化，其值为 undefined</li>
-<li>对包含 undefined 值的变量和未定义的变量，使用 typeof 操作符，结果都是 undefined</li>
-<li><code>null == undefined</code> 的结果是 true</li>
-<li>undefined 表示缺少值（应该有值，但未定义，如未初始化的变量、未传入值的函数参数、无返回语句的函数返回值等），没必要显式的将一个变量赋值为 undefined</li>
-<li>null 表示空对象（比如 Object 对象的原型就是 null），可以显式地用来表示空对象指针</li>
-<li><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html">undefined 与 null 的区别</a></li>
+  <li>如果一个变量声明时未初始化，其值为 undefined</li>
+  <li>对包含 undefined 值的变量和未定义的变量，使用 typeof 操作符，结果都是 undefined</li>
+  <li><code class="highlighter-rouge">null == undefined</code> 的结果是 true</li>
+  <li>undefined 表示缺少值（应该有值，但未定义，如未初始化的变量、未传入值的函数参数、无返回语句的函数返回值等），没必要显式的将一个变量赋值为 undefined</li>
+  <li>null 表示空对象（比如 Object 对象的原型就是 null），可以显式地用来表示空对象指针</li>
+  <li><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html">undefined 与 null 的区别</a></li>
 </ul>
-<h2 id="falsy-">六个 falsy 值</h2>
-<p>有六个值强制转换为 Boolean 类型时结果是 false: <code>false</code> 、 <code>0</code> 、 <code>NaN</code> 、 <code>''</code> 、 <code>undefined</code> 、 <code>null</code>。</p>
-<h2 id="section-1">类型转换</h2>
-<h3 id="section-2">转为布尔值</h3>
+
+<h2 id="六个-falsy-值">六个 falsy 值</h2>
+
+<p>有六个值强制转换为 Boolean 类型时结果是 false: <code class="highlighter-rouge">false</code> 、 <code class="highlighter-rouge">0</code> 、 <code class="highlighter-rouge">NaN</code> 、 <code class="highlighter-rouge">''</code> 、 <code class="highlighter-rouge">undefined</code> 、 <code class="highlighter-rouge">null</code>。</p>
+
+<h2 id="类型转换">类型转换</h2>
+
+<h3 id="转为布尔值">转为布尔值</h3>
+
 <ul>
-<li><code>Boolean()</code></li>
-<li><code>!</code> 或 <code>!!</code></li>
+  <li><code class="highlighter-rouge">Boolean()</code></li>
+  <li><code class="highlighter-rouge">!</code> 或 <code class="highlighter-rouge">!!</code></li>
 </ul>
-<h3 id="section-3">转为数值</h3>
+
+<h3 id="转为数值">转为数值</h3>
+
 <ul>
-<li>通用转换方式： Number() 或一元加操作符 <code>+</code>，可以将任何类型转为数值
+  <li>通用转换方式： Number() 或一元加操作符 <code class="highlighter-rouge">+</code>，可以将任何类型转为数值
+    <ul>
+      <li>用于字符串时格式要求严格，如果确定字符串是严格的数字格式（可以有正负号和小数点，但是没有空格及其他非数字字符），这种方式比较简单</li>
+    </ul>
+  </li>
+  <li>字符串转为数值： parseInt() 和 parseFloat()，相对通用方式更智能
+    <ul>
+      <li>parseInt()，字符串中可以有前导的空格，后面也可以有非数字字符；支持第二个可选参数转换的进制基数，如 2、8、10、16 等，建议始终使用，否则默认判断的进制可能不是想要的</li>
+      <li>parseFloat()，只支持十进制</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="转为字符串">转为字符串</h3>
+
 <ul>
-<li>用于字符串时格式要求严格，如果确定字符串是严格的数字格式（可以有正负号和小数点，但是没有空格及其他非数字字符），这种方式比较简单</li>
+  <li><code class="highlighter-rouge">toString()</code> 方法，非通用（非 null 和 undefined 值都可用）</li>
+  <li><code class="highlighter-rouge">String()</code> 函数，通用，非 null 和 undefined 值实际会调用相应的 toString() 方法</li>
+  <li><code class="highlighter-rouge">'' + 被转换者</code>，通用，将一个值和空字符串相加，会自动调用 toString() 方法或 String()函数</li>
+  <li>数字转字符串
+    <ul>
+      <li><code class="highlighter-rouge">toString([radix])</code>，可以指定目标进制，参数默认值 10</li>
+      <li><code class="highlighter-rouge">toFixed([digits])</code>，指定小数位数（以 0 填充或舍入），参数默认值是 0</li>
+      <li><code class="highlighter-rouge">toExponential([fractionDigits])</code>，转为以科学表示法表示的字符串，可指定小数位数</li>
+      <li><code class="highlighter-rouge">toPresion([precision])</code>，指定有效数字格式，自动推断是否使用科学表示法</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>字符串转为数值： parseInt() 和 parseFloat()，相对通用方式更智能
+
+<h2 id="逻辑与逻辑或">逻辑与、逻辑或</h2>
+
 <ul>
-<li>parseInt()，字符串中可以有前导的空格，后面也可以有非数字字符；支持第二个可选参数转换的进制基数，如 2、8、10、16 等，建议始终使用，否则默认判断的进制可能不是想要的</li>
-<li>parseFloat()，只支持十进制</li>
+  <li>逻辑与操作符<code class="highlighter-rouge">&amp;&amp;</code>规则：
+    <ul>
+      <li>第一个操作数如果是 falsy 的值，就返回第一个操作数</li>
+      <li>否则返回第二个操作数</li>
+    </ul>
+  </li>
+  <li>逻辑或操作符<code class="highlighter-rouge">||</code>规则：
+    <ul>
+      <li>第一个操作数如果是 falsy 的值，就返回第二个操作数</li>
+      <li>否则返回第一个操作数</li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
-<h3 id="section-4">转为字符串</h3>
-<ul>
-<li><code>toString()</code> 方法，非通用（非 null 和 undefined 值都可用）</li>
-<li><code>String()</code> 函数，通用，非 null 和 undefined 值实际会调用相应的 toString() 方法</li>
-<li><code>'' + 被转换者</code>，通用，将一个值和空字符串相加，会自动调用 toString() 方法或 String()函数</li>
-<li>数字转字符串
-<ul>
-<li><code>toString([radix])</code>，可以指定目标进制，参数默认值 10</li>
-<li><code>toFixed([digits])</code>，指定小数位数（以 0 填充或舍入），参数默认值是 0</li>
-<li><code>toExponential([fractionDigits])</code>，转为以科学表示法表示的字符串，可指定小数位数</li>
-<li><code>toPresion([precision])</code>，指定有效数字格式，自动推断是否使用科学表示法</li>
-</ul>
-</li>
-</ul>
-<h2 id="section-5">逻辑与、逻辑或</h2>
-<ul>
-<li>逻辑与操作符<code>&amp;&amp;</code>规则：
-<ul>
-<li>第一个操作数如果是 falsy 的值，就返回第一个操作数</li>
-<li>否则返回第二个操作数</li>
-</ul>
-</li>
-<li>逻辑或操作符<code>||</code>规则：
-<ul>
-<li>第一个操作数如果是 falsy 的值，就返回第二个操作数</li>
-<li>否则返回第一个操作数</li>
-</ul>
-</li>
-</ul>
+
 <p>以上规则表明，这两个操作符的返回结果不一定是布尔类型。</p>
-<h2 id="section-6">==、===</h2>
+
+<h2>==、===</h2>
+
 <ul>
-<li>相等操作符 <code>==</code> 会遵循一套比较复杂的规则进行类型转换以后再比较，比如 <code>undefined == null</code> 结果是 true</li>
-<li>全等操作符 <code>===</code> 不会进行类型转换，也就是说只要类型不同就一定不会相等，推荐始终使用全等操作符</li>
+  <li>相等操作符 <code class="highlighter-rouge">==</code> 会遵循一套比较复杂的规则进行类型转换以后再比较，比如 <code class="highlighter-rouge">undefined == null</code> 结果是 true</li>
+  <li>全等操作符 <code class="highlighter-rouge">===</code> 不会进行类型转换，也就是说只要类型不同就一定不会相等，推荐始终使用全等操作符</li>
 </ul>
-<h1 id="section-7">第 4 章 变量、作用域和内存问题</h1>
+
+<h1 id="第-4-章-变量作用域和内存问题">第 4 章 变量、作用域和内存问题</h1>
+
 <ul>
-<li>javascript 中五种基本类型是 Null, Undefined, Boolean, Number, String，它们占用固定大小的空间，被保存在栈内存中</li>
-<li>引用类型都继承 Object，它们保存在堆内存中</li>
-<li>javascript 中函数传参始终是按值传递</li>
-<li><strong>执行环境</strong>定义了变量和函数能够访问的其他数据及其自身的行为</li>
-<li>每个执行环境中有一个<strong>变量对象</strong>包含当前环境可访问的变量与函数；函数的执行环境的变量对象就是它的活动对象</li>
-<li>各执行环境的变量对象的嵌套构成了<strong>作用域链</strong>，其最前端是当前执行环境的变量对象，全局执行环境的变量对象则是最后一个对象</li>
-<li>标识符按照作用域链进行查找，通常执行环境只有两种：全局和局部（函数），有两种情况会延长作用域链： with 语句和 try-catch 语句中的 catch 块</li>
-<li>javascript 中有自动垃圾收集机制：标记清除与引用计数</li>
-<li>标记清除是主流算法，引用计数在循环引用情况下会导致内存泄漏，如 IE9 之前的非原生 javascript 对象都是是采用引用计数算法来清除的</li>
-<li>不使用的全局变量及时解引用，有助于消除循环引用、进行有效的垃圾回收</li>
+  <li>javascript 中五种基本类型是 Null, Undefined, Boolean, Number, String，它们占用固定大小的空间，被保存在栈内存中</li>
+  <li>引用类型都继承 Object，它们保存在堆内存中</li>
+  <li>javascript 中函数传参始终是按值传递</li>
+  <li><strong>执行环境</strong>定义了变量和函数能够访问的其他数据及其自身的行为</li>
+  <li>每个执行环境中有一个<strong>变量对象</strong>包含当前环境可访问的变量与函数；函数的执行环境的变量对象就是它的活动对象</li>
+  <li>各执行环境的变量对象的嵌套构成了<strong>作用域链</strong>，其最前端是当前执行环境的变量对象，全局执行环境的变量对象则是最后一个对象</li>
+  <li>标识符按照作用域链进行查找，通常执行环境只有两种：全局和局部（函数），有两种情况会延长作用域链： with 语句和 try-catch 语句中的 catch 块</li>
+  <li>javascript 中有自动垃圾收集机制：标记清除与引用计数</li>
+  <li>标记清除是主流算法，引用计数在循环引用情况下会导致内存泄漏，如 IE9 之前的非原生 javascript 对象都是是采用引用计数算法来清除的</li>
+  <li>不使用的全局变量及时解引用，有助于消除循环引用、进行有效的垃圾回收</li>
 </ul>
-<h1 id="section-8">第 5 章 引用类型</h1>
-<h2 id="section-9">数组</h2>
-<h3 id="section-10">类型检测</h3>
+
+<h1 id="第-5-章-引用类型">第 5 章 引用类型</h1>
+
+<h2 id="数组">数组</h2>
+
+<h3 id="类型检测">类型检测</h3>
+
 <p>instanceof 操作符在非单一执行环境（如有框架）下可能有问题，Array.isArray() 方法需要较高版本浏览器（IE9+等），兼容低版本浏览器的通用方法：</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">isArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">[object Array]</span><span class="dl">'</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<h3 id="section-11">修改方法</h3>
-<p>以下的这些'修改方法'都会直接在原数组上操作。</p>
+
+<h3 id="修改方法">修改方法</h3>
+
+<p>以下的这些’修改方法’都会直接在原数组上操作。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1">// arr: [1, 2]</span>
 <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">// arr: [0, 2]</span>
 <span class="nx">arr</span><span class="p">[</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1">// arr: [0, 2, 3]</span>
@@ -216,8 +282,11 @@
 <span class="p">})</span> <span class="c1">// arr: [1, 2, 3, 7]</span>
 <span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1">// arr: [1, 3, 4, 7]</span>
 </code></pre></div></div>
-<h3 id="section-12">生产方法</h3>
-<p>以下这些'生产方法'基本不会直接操作原数组，而是使用原数组作为材料，返回一个新数组或者原数组的相关信息。</p>
+
+<h3 id="生产方法">生产方法</h3>
+
+<p>以下这些’生产方法’基本不会直接操作原数组，而是使用原数组作为材料，返回一个新数组或者原数组的相关信息。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
 <span class="p">}</span>
@@ -266,8 +335,11 @@
 <span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1">// 4</span>
 <span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1">// 4</span>
 </code></pre></div></div>
+
 <h2 id="date">Date</h2>
-<h3 id="section-13">日期创建</h3>
+
+<h3 id="日期创建">日期创建</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 基于当前时间创建的日期</span>
 <span class="kd">var</span> <span class="nx">d1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
 <span class="c1">// 指定相对于UTC1970-01-01 00:00:00过去的毫秒数来创建日期</span>
@@ -275,7 +347,9 @@
 <span class="c1">// 指定日期参数的方式来创建日期（月份以0开始，基于本地系统时区，年和月是必须的，后面的参数可选）</span>
 <span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
 </code></pre></div></div>
-<h3 id="section-14">日期转毫秒数值</h3>
+
+<h3 id="日期转毫秒数值">日期转毫秒数值</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">t1</span> <span class="o">=</span> <span class="nx">d1</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span>
 <span class="kd">var</span> <span class="nx">t2</span> <span class="o">=</span> <span class="o">+</span><span class="nx">d1</span>
 <span class="c1">// 获取当期时间毫秒值，IE9+等</span>
@@ -283,279 +357,667 @@
 <span class="c1">// 日期的 valueOf 方法默认返回的是毫秒值而非字符串，故可以直接比较大小</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d1</span> <span class="o">&lt;</span> <span class="nx">d2</span><span class="p">)</span> <span class="c1">// false</span>
 </code></pre></div></div>
-<h3 id="section-15">获取日期特定部分值</h3>
+
+<h3 id="获取日期特定部分值">获取日期特定部分值</h3>
+
 <p>以下方法可以获取年、月（0 起始）、日、时、分、秒、毫秒值，还可调用相应的 set 方法设置日期特定部分。</p>
+
 <ul>
-<li>getFullYear()</li>
-<li>getMonth()</li>
-<li>getDate()</li>
-<li>getHours()</li>
-<li>getMinutes()</li>
-<li>getSeconds()</li>
-<li>getMilliSeconds()</li>
+  <li>getFullYear()</li>
+  <li>getMonth()</li>
+  <li>getDate()</li>
+  <li>getHours()</li>
+  <li>getMinutes()</li>
+  <li>getSeconds()</li>
+  <li>getMilliSeconds()</li>
 </ul>
-<h3 id="section-16">日期字符串的解析与生成</h3>
+
+<h3 id="日期字符串的解析与生成">日期字符串的解析与生成</h3>
+
 <p>Date 类型自带的 toString() 在不同浏览器中显示不一致，而且也不容易灵活的满足实际开发需求，为此笔者写了个 npm 包<a href="https://www.npmjs.com/package/@jacktown/simple-date-format">@jacktown/simple-date-format</a>可以实现日期字符串和日期对象的简单转换。</p>
-<h2 id="section-17">正则表达式</h2>
-<h3 id="section-18">创建</h3>
+
+<h2 id="正则表达式">正则表达式</h2>
+
+<h3 id="创建">创建</h3>
+
 <p>创建正则表达式有两种方式：字面量方式和构造函数方式。</p>
-<h4 id="section-19">正则表达式字面量</h4>
-<p>如 <code>/[bc]at/i</code></p>
-<h4 id="regexp-">使用 RegExp 构造函数</h4>
+
+<h4 id="正则表达式字面量">正则表达式字面量</h4>
+
+<p>如 <code class="highlighter-rouge">/[bc]at/i</code></p>
+
+<h4 id="使用-regexp-构造函数">使用 RegExp 构造函数</h4>
+
 <ul>
-<li>RegExp 构造函数
-<ul>
-<li>参数：两个字符串，分别为匹配模式和可选的标志字符串</li>
-<li>返回值：一个 RegExp 实例对象</li>
+  <li>RegExp 构造函数
+    <ul>
+      <li>参数：两个字符串，分别为匹配模式和可选的标志字符串</li>
+      <li>返回值：一个 RegExp 实例对象</li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
-<h4 id="section-20">注意事项</h4>
-<p>由于匹配模式是以字符串的形式传入的，因此在某些情况下需要双重转义 。比如：所有元字符（如<code>[</code>字符）、已经转义过的字符（如 <code>\n</code> 字符）。特别地，字符 <code>\</code> 在普通字符串中需要转义为 <code>\\</code>，那么在匹配模式参数字符串中就要写作 <code>\\\\</code> 。下表是一些例子。</p>
-<p>| 字面量模式         | 等价的匹配模式参数字符串 |
-| ------------------ | ------------------------ |
-| <code>/\[bc\]/</code>         | <code>'\\[bc\\]at'</code>           |
-| <code>/\.at/</code>           | <code>'\\.at'</code>                |
-| <code>/name\/age/</code>      | <code>'name\\/age'</code>           |
-| <code>/\d.\d{1,2}/</code>     | <code>'\\d.\\d\d{1,2}'</code>       |
-| <code>/\w\\hello\\123/</code> | <code>'\\w\\\\hello\\\\123'</code>  |</p>
-<h3 id="section-21">正则表达式模式</h3>
-<h4 id="section-22">元字符</h4>
-<p><code>( [ { \ ^ $ | ) ? * + . ] }</code>，如果要匹配这些字符需要转义。</p>
-<h4 id="section-23">预定义的特殊字符（常见）</h4>
-<p>|字符 |含义|
-|<code>\t</code> |制表符|
-|<code>\n</code> |换行符|
-|<code>\r</code> |回车符|
-|<code>\b</code> |回退字符|
-|<code>\v</code> |垂直制表符|
-|<code>\0</code> |空字符|</p>
-<h4 id="section-24">字符类</h4>
-<p>| 类型     | 示例                    | 含义                               |
-| -------- | ----------------------- | ---------------------------------- |
-| 简单类   | <code>[abc]</code>                 | 匹配中括号中的任意字符             |
-| 负向类   | <code>[^abc]</code>                | 匹配中括号中所含之外的所有字符     |
-| 范围类   | <code>[a-z]</code> <code>[A-Z]</code> <code>[0-4]</code> | 首末两个字符间（含两端）的所有字符 |
-| 组合类   | <code>[3-5a-g\n]</code>            | 各字符类的并                       |
-| 预定义类 | 见下一个表              |                                    |</p>
-<p>|字符类 |等价写法 |含义|
-|. |<code>[^\n\r]</code> |换行回车以外字符|
-|\d |<code>[0-9]</code> |数字字符|
-|\D |<code>[^0-9]</code> |非数字字符|
-|\s |<code>[\t\n\x0B\f\r]</code> |空白字符|
-|\S |<code>[^\t\n\x0B\f\r]</code> |非空白字符|
-|\w |<code>[a-zA-Z_0-9]</code> |单词字符（字母数字连字符）|
-|\W |<code>[^a-zA-Z_0-9]</code> |非单词字符|</p>
-<h4 id="section-25">量词</h4>
-<p>| 代码  | 类型     | 描述          |
-| ----- | -------- | ------------- |
-| ？    | 软性量词 | 0，1          |
-| *    | 软性量词 | 0，1，2，3，… |
-| +     | 软性量词 | 1，2，3，…    |
-| {n}   | 硬性量词 | n             |
-| {n,m} | 软性量词 | n,n+1,…,m     |
-| {n,}  | 软性量词 | n,n+1,…       |</p>
-<h4 id="section-26">分组</h4>
-<p>用 <code>()</code> 将一些字符串模式放在一起作为一组。</p>
-<h4 id="section-27">反向引用</h4>
-<p><code>\1 \2 …</code> 分别表示第 1 个、第 2 个…分组。</p>
-<h4 id="section-28">候选</h4>
-<p>在分组中插入管道符号 <code>|</code> ，表示多个候选项。</p>
-<h4 id="section-29">非捕获性分组</h4>
-<p><code>(?: )</code>，由于匹配非捕获性分组，其不能创建反向引用</p>
-<p>| 正则     | 名称                              | 描述                                |
-| -------- | --------------------------------- | ----------------------------------- |
-| (?=exp)  | 先行断言(lookahead)               | 匹配 exp 前面的位置                 |
-| (?!exp)  | 先行否定断言(negative lookahead)  | 匹配不在 exp 前面的位置             |
-| (?&lt;=exp) | 后行断言(lookbehind)              | 匹配 exp 前面的位置(es6 提案)       |
-| (?&lt;!exp) | 后行否定断言(negative lookbehind) | 匹配不在 exp 前面的位置（es6 提案） |</p>
-<h4 id="section-30">边界</h4>
-<p>| 正则 | 名称 | 描述                     |
-| ---- | ---- | ------------------------ |
-| ^    | 开头 | 紧跟在左中括号后含义不同 |
-| $   | 结尾 |                          |</p>
-<h3 id="flags">正则表达式标志（flags）</h3>
-<p>| 标识 | 含义                                                                      |
-| ---- | ------------------------------------------------------------------------- |
-| g    | global，全局模式，模式应用于所有字符串，并不会在发现第一个匹配项时停止    |
-| i    | case-insensitive，不区分大小写模式                                        |
-| m    | multiline，多行模式，到达一行文本末尾时还会继续查找下一行                 |
-| u    | es6 新增，Unicode 模式，用于支持识别 Unicode 码点超过 U+FFFF 的四字节字符 |
-| y    | es6 新增，粘连模式                                                        |</p>
-<h3 id="regexp--1">RegExp 实例属性</h3>
-<p>| 属性       | 说明                                                                   |
-| ---------- | ---------------------------------------------------------------------- |
-| global     | 布尔值，是否设置了 g 标志                                              |
-| ignoreCase | 布尔值，是否设置了 i 标志                                              |
-| multiline  | 布尔值，是否设置了 m 标志                                              |
-| source     | 正则表达式的字符串表示，按照字面量形式而非传入构造函数的字符串模式返回 |
-| lastIndex  | 整数，下一次匹配是起始位置，从 0 算起                                  |
-| flags      | 正则表达式的标志符，es6                                                |
-| sticky     | 布尔值，是否设置了 y 标志，es6                                         |</p>
-<h3 id="regexp--2">RegExp 实例方法</h3>
+
+<h4 id="注意事项">注意事项</h4>
+
+<p>由于匹配模式是以字符串的形式传入的，因此在某些情况下需要双重转义 。比如：所有元字符（如<code class="highlighter-rouge">[</code>字符）、已经转义过的字符（如 <code class="highlighter-rouge">\n</code> 字符）。特别地，字符 <code class="highlighter-rouge">\</code> 在普通字符串中需要转义为 <code class="highlighter-rouge">\\</code>，那么在匹配模式参数字符串中就要写作 <code class="highlighter-rouge">\\\\</code> 。下表是一些例子。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>字面量模式</th>
+      <th>等价的匹配模式参数字符串</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">/\[bc\]/</code></td>
+      <td><code class="highlighter-rouge">'\\[bc\\]at'</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/\.at/</code></td>
+      <td><code class="highlighter-rouge">'\\.at'</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/name\/age/</code></td>
+      <td><code class="highlighter-rouge">'name\\/age'</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/\d.\d{1,2}/</code></td>
+      <td><code class="highlighter-rouge">'\\d.\\d\d{1,2}'</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/\w\\hello\\123/</code></td>
+      <td><code class="highlighter-rouge">'\\w\\\\hello\\\\123'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="正则表达式模式">正则表达式模式</h3>
+
+<h4 id="元字符">元字符</h4>
+
+<p><code class="highlighter-rouge">( [ { \ ^ $ | ) ? * + . ] }</code>，如果要匹配这些字符需要转义。</p>
+
+<h4 id="预定义的特殊字符常见">预定义的特殊字符（常见）</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td>字符</td>
+      <td>含义</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\t</code></td>
+      <td>制表符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\n</code></td>
+      <td>换行符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\r</code></td>
+      <td>回车符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\b</code></td>
+      <td>回退字符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\v</code></td>
+      <td>垂直制表符</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">\0</code></td>
+      <td>空字符</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="字符类">字符类</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型</th>
+      <th>示例</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>简单类</td>
+      <td><code class="highlighter-rouge">[abc]</code></td>
+      <td>匹配中括号中的任意字符</td>
+    </tr>
+    <tr>
+      <td>负向类</td>
+      <td><code class="highlighter-rouge">[^abc]</code></td>
+      <td>匹配中括号中所含之外的所有字符</td>
+    </tr>
+    <tr>
+      <td>范围类</td>
+      <td><code class="highlighter-rouge">[a-z]</code> <code class="highlighter-rouge">[A-Z]</code> <code class="highlighter-rouge">[0-4]</code></td>
+      <td>首末两个字符间（含两端）的所有字符</td>
+    </tr>
+    <tr>
+      <td>组合类</td>
+      <td><code class="highlighter-rouge">[3-5a-g\n]</code></td>
+      <td>各字符类的并</td>
+    </tr>
+    <tr>
+      <td>预定义类</td>
+      <td>见下一个表</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>字符类</td>
+      <td>等价写法</td>
+      <td>含义</td>
+    </tr>
+    <tr>
+      <td>.</td>
+      <td><code class="highlighter-rouge">[^\n\r]</code></td>
+      <td>换行回车以外字符</td>
+    </tr>
+    <tr>
+      <td>\d</td>
+      <td><code class="highlighter-rouge">[0-9]</code></td>
+      <td>数字字符</td>
+    </tr>
+    <tr>
+      <td>\D</td>
+      <td><code class="highlighter-rouge">[^0-9]</code></td>
+      <td>非数字字符</td>
+    </tr>
+    <tr>
+      <td>\s</td>
+      <td><code class="highlighter-rouge">[\t\n\x0B\f\r]</code></td>
+      <td>空白字符</td>
+    </tr>
+    <tr>
+      <td>\S</td>
+      <td><code class="highlighter-rouge">[^\t\n\x0B\f\r]</code></td>
+      <td>非空白字符</td>
+    </tr>
+    <tr>
+      <td>\w</td>
+      <td><code class="highlighter-rouge">[a-zA-Z_0-9]</code></td>
+      <td>单词字符（字母数字连字符）</td>
+    </tr>
+    <tr>
+      <td>\W</td>
+      <td><code class="highlighter-rouge">[^a-zA-Z_0-9]</code></td>
+      <td>非单词字符</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="量词">量词</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>代码</th>
+      <th>类型</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>？</td>
+      <td>软性量词</td>
+      <td>0，1</td>
+    </tr>
+    <tr>
+      <td>*</td>
+      <td>软性量词</td>
+      <td>0，1，2，3，…</td>
+    </tr>
+    <tr>
+      <td>+</td>
+      <td>软性量词</td>
+      <td>1，2，3，…</td>
+    </tr>
+    <tr>
+      <td>{n}</td>
+      <td>硬性量词</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>{n,m}</td>
+      <td>软性量词</td>
+      <td>n,n+1,…,m</td>
+    </tr>
+    <tr>
+      <td>{n,}</td>
+      <td>软性量词</td>
+      <td>n,n+1,…</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="分组">分组</h4>
+
+<p>用 <code class="highlighter-rouge">()</code> 将一些字符串模式放在一起作为一组。</p>
+
+<h4 id="反向引用">反向引用</h4>
+
+<p><code class="highlighter-rouge">\1 \2 …</code> 分别表示第 1 个、第 2 个…分组。</p>
+
+<h4 id="候选">候选</h4>
+
+<p>在分组中插入管道符号 <code class="highlighter-rouge">|</code> ，表示多个候选项。</p>
+
+<h4 id="非捕获性分组">非捕获性分组</h4>
+
+<p><code class="highlighter-rouge">(?: )</code>，由于匹配非捕获性分组，其不能创建反向引用</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>正则</th>
+      <th>名称</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>(?=exp)</td>
+      <td>先行断言(lookahead)</td>
+      <td>匹配 exp 前面的位置</td>
+    </tr>
+    <tr>
+      <td>(?!exp)</td>
+      <td>先行否定断言(negative lookahead)</td>
+      <td>匹配不在 exp 前面的位置</td>
+    </tr>
+    <tr>
+      <td>(?&lt;=exp)</td>
+      <td>后行断言(lookbehind)</td>
+      <td>匹配 exp 前面的位置(es6 提案)</td>
+    </tr>
+    <tr>
+      <td>(?&lt;!exp)</td>
+      <td>后行否定断言(negative lookbehind)</td>
+      <td>匹配不在 exp 前面的位置（es6 提案）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="边界">边界</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>正则</th>
+      <th>名称</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>^</td>
+      <td>开头</td>
+      <td>紧跟在左中括号后含义不同</td>
+    </tr>
+    <tr>
+      <td>$</td>
+      <td>结尾</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="正则表达式标志flags">正则表达式标志（flags）</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>标识</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>g</td>
+      <td>global，全局模式，模式应用于所有字符串，并不会在发现第一个匹配项时停止</td>
+    </tr>
+    <tr>
+      <td>i</td>
+      <td>case-insensitive，不区分大小写模式</td>
+    </tr>
+    <tr>
+      <td>m</td>
+      <td>multiline，多行模式，到达一行文本末尾时还会继续查找下一行</td>
+    </tr>
+    <tr>
+      <td>u</td>
+      <td>es6 新增，Unicode 模式，用于支持识别 Unicode 码点超过 U+FFFF 的四字节字符</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>es6 新增，粘连模式</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="regexp-实例属性">RegExp 实例属性</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>global</td>
+      <td>布尔值，是否设置了 g 标志</td>
+    </tr>
+    <tr>
+      <td>ignoreCase</td>
+      <td>布尔值，是否设置了 i 标志</td>
+    </tr>
+    <tr>
+      <td>multiline</td>
+      <td>布尔值，是否设置了 m 标志</td>
+    </tr>
+    <tr>
+      <td>source</td>
+      <td>正则表达式的字符串表示，按照字面量形式而非传入构造函数的字符串模式返回</td>
+    </tr>
+    <tr>
+      <td>lastIndex</td>
+      <td>整数，下一次匹配是起始位置，从 0 算起</td>
+    </tr>
+    <tr>
+      <td>flags</td>
+      <td>正则表达式的标志符，es6</td>
+    </tr>
+    <tr>
+      <td>sticky</td>
+      <td>布尔值，是否设置了 y 标志，es6</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="regexp-实例方法">RegExp 实例方法</h3>
+
 <h4 id="exec">exec()</h4>
-<p>|- |- |
-|参数| 应用模式的字符串|
-|返回值| 无匹配项：返回 null;<br>有匹配性：返回一个 Array 实例，该实例额外含有 index（匹配项位置）和 input（参数字符串）属性|
-|功能详述| 1. 其返回值数组第一项为与整个模式匹配的字符串，其他项依次是各个捕获组匹配的字符串；<br>2. 如果正则表达式含有 g 标志，该表达式每次调用一次该方法，其 lastIndex 会自动变化，从而可以对字符串依次向后应用模式，否则每次返回结果都一样即第一个匹配项信息|</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>参数</td>
+      <td>应用模式的字符串</td>
+    </tr>
+    <tr>
+      <td>返回值</td>
+      <td>无匹配项：返回 null;<br />有匹配性：返回一个 Array 实例，该实例额外含有 index（匹配项位置）和 input（参数字符串）属性</td>
+    </tr>
+    <tr>
+      <td>功能详述</td>
+      <td>1. 其返回值数组第一项为与整个模式匹配的字符串，其他项依次是各个捕获组匹配的字符串；<br />2. 如果正则表达式含有 g 标志，该表达式每次调用一次该方法，其 lastIndex 会自动变化，从而可以对字符串依次向后应用模式，否则每次返回结果都一样即第一个匹配项信息</td>
+    </tr>
+  </tbody>
+</table>
+
 <h4 id="test">test()</h4>
-<p>|- -|- -|
-|参数 |应用模式的字符串|
-|返回值 |如果参数能与模式匹配，则返回 true,否则返回 false|</p>
-<h3 id="regexp--3">RegExp 构造函数</h3>
-<p>RegExp 构造函数除了可以用于生成正则表达式，函数本身还有一些属性（可以通过两种属性名来访问），其值基于作用域内的所有正则表达式，并只和最近一次正则表达式操作相关。其兼容性不够好，特别是<code>Opera</code>和<code>IE</code>。</p>
-<p>| 长属性名       | 短属性名                                   | 说明                                   |
-| -------------- | ------------------------------------------ | -------------------------------------- |
-| <code>input</code>        | <code>$_</code>                                       | 最近一次要匹配的字符串                 |
-| <code>lastMatch</code>    | <code>$&amp;</code>                                       | 最近一次的匹配组                       |
-| <code>lastParen</code>    | <code>$+</code>                                       | 最近一次匹配的捕获组                   |
-| <code>multiline</code>    | <code>$*</code>                                       | 布尔值，是否所有的表达式都采用多行模式 |
-| <code>leftContext</code>  | <code>$\</code> |<code>input</code>字符串中<code>lastMatch</code>之前的文本 |
-| <code>rightContext</code> | <code>$’</code>                                       | <code>input</code>字符串中<code>lastMatch</code>之后的文本   |</p>
-<h3 id="section-31">正则表达式的性能</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>参数</td>
+      <td>应用模式的字符串</td>
+    </tr>
+    <tr>
+      <td>返回值</td>
+      <td>如果参数能与模式匹配，则返回 true,否则返回 false</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="regexp-构造函数">RegExp 构造函数</h3>
+
+<p>RegExp 构造函数除了可以用于生成正则表达式，函数本身还有一些属性（可以通过两种属性名来访问），其值基于作用域内的所有正则表达式，并只和最近一次正则表达式操作相关。其兼容性不够好，特别是<code class="highlighter-rouge">Opera</code>和<code class="highlighter-rouge">IE</code>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>长属性名</th>
+      <th>短属性名</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">input</code></td>
+      <td><code class="highlighter-rouge">$_</code></td>
+      <td>最近一次要匹配的字符串</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">lastMatch</code></td>
+      <td><code class="highlighter-rouge">$&amp;</code></td>
+      <td>最近一次的匹配组</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">lastParen</code></td>
+      <td><code class="highlighter-rouge">$+</code></td>
+      <td>最近一次匹配的捕获组</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">multiline</code></td>
+      <td><code class="highlighter-rouge">$*</code></td>
+      <td>布尔值，是否所有的表达式都采用多行模式</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">leftContext</code></td>
+      <td><code class="highlighter-rouge">$\</code></td>
+      <td><code class="highlighter-rouge">input</code>字符串中<code class="highlighter-rouge">lastMatch</code>之前的文本</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rightContext</code></td>
+      <td><code class="highlighter-rouge">$’</code></td>
+      <td><code class="highlighter-rouge">input</code>字符串中<code class="highlighter-rouge">lastMatch</code>之后的文本</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="正则表达式的性能">正则表达式的性能</h3>
+
 <ul>
-<li>回溯是其基本工作原理，也是性能问题主要源头；</li>
-<li>避免回溯失控方法：让相邻字元互斥、避免嵌套量词对同一字符串的相同部分多次匹配、重复利用预查原子组去除不必要回溯；</li>
-<li>更多优化方法：
+  <li>回溯是其基本工作原理，也是性能问题主要源头；</li>
+  <li>避免回溯失控方法：让相邻字元互斥、避免嵌套量词对同一字符串的相同部分多次匹配、重复利用预查原子组去除不必要回溯；</li>
+  <li>更多优化方法：
+    <ul>
+      <li>提高匹配失败速度；</li>
+      <li>以简单、必要的字元开头；</li>
+      <li>使用量词模式，使其与后面的字元互斥；</li>
+      <li>减小分支数量、缩小分支范围；</li>
+      <li>使用捕获组；</li>
+      <li>让捕获组只捕获需要的文本，较少后处理；</li>
+      <li>暴露必须的字元；</li>
+      <li>使用合适的量词；</li>
+      <li>把正则表达式赋给变量，避免重复编译；</li>
+      <li>将复杂正则表达式拆分为多个简单的正则表达式；</li>
+    </ul>
+  </li>
+  <li>充分利用字符串自有的一些方法，其速度都较快。</li>
+</ul>
+
+<h2 id="function-类型">Function 类型</h2>
+
+<h3 id="创建函数三种方式">创建函数三种方式</h3>
+
 <ul>
-<li>提高匹配失败速度；</li>
-<li>以简单、必要的字元开头；</li>
-<li>使用量词模式，使其与后面的字元互斥；</li>
-<li>减小分支数量、缩小分支范围；</li>
-<li>使用捕获组；</li>
-<li>让捕获组只捕获需要的文本，较少后处理；</li>
-<li>暴露必须的字元；</li>
-<li>使用合适的量词；</li>
-<li>把正则表达式赋给变量，避免重复编译；</li>
-<li>将复杂正则表达式拆分为多个简单的正则表达式；</li>
+  <li>函数声明：<code class="highlighter-rouge">function sum(a, b){ return a + b; }</code></li>
+  <li>函数表达式：<code class="highlighter-rouge">var sum = function (a, b){ return a + b; }</code></li>
+  <li>使用 Function 构造函数：<code class="highlighter-rouge">var sum = new Function('a', 'b', 'return a + b;');</code></li>
 </ul>
-</li>
-<li>充分利用字符串自有的一些方法，其速度都较快。</li>
-</ul>
-<h2 id="function-">Function 类型</h2>
-<h3 id="section-32">创建函数三种方式</h3>
-<ul>
-<li>函数声明：<code>function sum(a, b){ return a + b; }</code></li>
-<li>函数表达式：<code>var sum = function (a, b){ return a + b; }</code></li>
-<li>使用 Function 构造函数：<code>var sum = new Function('a', 'b', 'return a + b;');</code></li>
-</ul>
+
 <p>其中只有函数声明的方式会被提升（function declaration hoisting），即解析器会率先读取函数声明，将其放到源码树的顶部，这样在真正执行任何代码之前就可以访问函数了。</p>
+
 <p>使用构造函数的方式不推荐，因为会有二次解析，性能差。</p>
-<h3 id="section-33">函数内部属性</h3>
+
+<h3 id="函数内部属性">函数内部属性</h3>
+
 <ul>
-<li>arguments，一个类数组对象，保存着实际传入的所有参数
+  <li>arguments，一个类数组对象，保存着实际传入的所有参数
+    <ul>
+      <li>arguments.callee，对拥有这个 arguments 对象的函数的引用</li>
+    </ul>
+  </li>
+  <li>this，函数执行时的环境对象，web 中全局环境下默认是 window</li>
+</ul>
+
+<h3 id="实例属性和方法">实例属性和方法</h3>
+
 <ul>
-<li>arguments.callee，对拥有这个 arguments 对象的函数的引用</li>
+  <li>length，希望接受到的命名参数的个数</li>
+  <li>caller，调用本函数的外层函数</li>
+  <li>prototype，函数的原型对象，借由它可访问 toString() 、 valueOf() 等方法</li>
+  <li>call()，指定函数内的 this，并以逐个列出的方式传入参数，调用函数，非继承方法</li>
+  <li>apply()，指定函数内的 this，并以（类）数组的方式传入参数，调用函数，非继承方法</li>
+  <li>bind()，es5 方法（IE9+等支持），传入一个对象，返回将 this 值绑定为该对象后的函数</li>
 </ul>
-</li>
-<li>this，函数执行时的环境对象，web 中全局环境下默认是 window</li>
-</ul>
-<h3 id="section-34">实例属性和方法</h3>
-<ul>
-<li>length，希望接受到的命名参数的个数</li>
-<li>caller，调用本函数的外层函数</li>
-<li>prototype，函数的原型对象，借由它可访问 toString() 、 valueOf() 等方法</li>
-<li>call()，指定函数内的 this，并以逐个列出的方式传入参数，调用函数，非继承方法</li>
-<li>apply()，指定函数内的 this，并以（类）数组的方式传入参数，调用函数，非继承方法</li>
-<li>bind()，es5 方法（IE9+等支持），传入一个对象，返回将 this 值绑定为该对象后的函数</li>
-</ul>
-<h2 id="section-35">基本包装类型</h2>
+
+<h2 id="基本包装类型">基本包装类型</h2>
+
 <p>布尔、数字、字符串有三个对应的引用类型（基本包装类型）：Boolean, Number, String ，这些包装类型上提供了一些方法；在基本类型上可以直接调用这些方法，这时后台会自动完成如下的处理：</p>
+
 <ul>
-<li>创建相应的基本包装类型的实例</li>
-<li>在这个实例上调用指定的方法</li>
-<li>销毁这个实例</li>
+  <li>创建相应的基本包装类型的实例</li>
+  <li>在这个实例上调用指定的方法</li>
+  <li>销毁这个实例</li>
 </ul>
-<p>基本包装类型实例都是引用类型，使用 typeof 操作符会返回 <code>'object'</code> ，转为布尔类型值都是 true。</p>
-<h3 id="booelean-">Booelean 类型</h3>
-<h3 id="number-">Number 类型</h3>
+
+<p>基本包装类型实例都是引用类型，使用 typeof 操作符会返回 <code class="highlighter-rouge">'object'</code> ，转为布尔类型值都是 true。</p>
+
+<h3 id="booelean-类型">Booelean 类型</h3>
+
+<h3 id="number-类型">Number 类型</h3>
+
 <p>提供了一些转换为字符串的方法，如 valueOf(), toString(), toFixed() 等，更多参见本笔记第 3 章类型转换。</p>
-<h3 id="string-">String 类型</h3>
-<h4 id="section-36">字符方法</h4>
+
+<h3 id="string-类型">String 类型</h3>
+
+<h4 id="字符方法">字符方法</h4>
+
 <ul>
-<li><code>charAt(i)</code>，获取位置 i 的字符</li>
-<li><code>[i]</code>，获取位置 i 的字符（ ES5 方法），IE8+ 支持</li>
-<li><code>charCodeAt(i)</code>，获取位置 i 的字符码值</li>
+  <li><code class="highlighter-rouge">charAt(i)</code>，获取位置 i 的字符</li>
+  <li><code class="highlighter-rouge">[i]</code>，获取位置 i 的字符（ ES5 方法），IE8+ 支持</li>
+  <li><code class="highlighter-rouge">charCodeAt(i)</code>，获取位置 i 的字符码值</li>
 </ul>
-<h4 id="section-37">连接与裁剪</h4>
+
+<h4 id="连接与裁剪">连接与裁剪</h4>
+
 <ul>
-<li><code>concat(moreStr)</code>，连接更多字符串</li>
-<li><code>+</code>，连接多个字符串</li>
-<li><code>trim()</code>，删除字符串前后的空格，ES5 方法，IE9+等支持</li>
-<li><code>slice(start [,end])</code>，获取位置在<code>[start, end)</code>区间中的子字符串，负值会被加上字符串长度</li>
-<li><code>substring(start [,end])</code>，获取位置在<code>[start, end)</code>区间中的子字符串，负值被转换成 0</li>
-<li><code>substr(start [,count])</code>，获取位置在<code>[start, start+count)</code>区间中的子字符串，第一个负值会被加上字符串长度，第二个负值被转换成 0</li>
+  <li><code class="highlighter-rouge">concat(moreStr)</code>，连接更多字符串</li>
+  <li><code class="highlighter-rouge">+</code>，连接多个字符串</li>
+  <li><code class="highlighter-rouge">trim()</code>，删除字符串前后的空格，ES5 方法，IE9+等支持</li>
+  <li><code class="highlighter-rouge">slice(start [,end])</code>，获取位置在<code class="highlighter-rouge">[start, end)</code>区间中的子字符串，负值会被加上字符串长度</li>
+  <li><code class="highlighter-rouge">substring(start [,end])</code>，获取位置在<code class="highlighter-rouge">[start, end)</code>区间中的子字符串，负值被转换成 0</li>
+  <li><code class="highlighter-rouge">substr(start [,count])</code>，获取位置在<code class="highlighter-rouge">[start, start+count)</code>区间中的子字符串，第一个负值会被加上字符串长度，第二个负值被转换成 0</li>
 </ul>
-<h4 id="section-38">位置查找</h4>
+
+<h4 id="位置查找">位置查找</h4>
+
 <ul>
-<li><code>indexOf(targetStr [, startPos])</code>，查找目标字符串从指定位置（包含，默认是 0）往后，第一次出现的位置，没找到返回-1</li>
-<li><code>lastIndexOf(targetStr [, startPos])</code>，查找目标字符串从指定位置（包含，默认是 length-1）往前，最后一次出现的位置，没找到返回-1</li>
-<li><code>search(pattern)</code>，查找通过字符串或正则表达式给定的模式第一次出现的位置，没找到返回-1</li>
+  <li><code class="highlighter-rouge">indexOf(targetStr [, startPos])</code>，查找目标字符串从指定位置（包含，默认是 0）往后，第一次出现的位置，没找到返回-1</li>
+  <li><code class="highlighter-rouge">lastIndexOf(targetStr [, startPos])</code>，查找目标字符串从指定位置（包含，默认是 length-1）往前，最后一次出现的位置，没找到返回-1</li>
+  <li><code class="highlighter-rouge">search(pattern)</code>，查找通过字符串或正则表达式给定的模式第一次出现的位置，没找到返回-1</li>
 </ul>
-<h4 id="section-39">模式匹配</h4>
+
+<h4 id="模式匹配">模式匹配</h4>
+
 <ul>
-<li><code>match(reg)</code>
+  <li><code class="highlighter-rouge">match(reg)</code>
+    <ul>
+      <li>参数：正则表达式</li>
+      <li>返回结果和正则表达式的 <a href="#exec"><code class="highlighter-rouge">exec()</code></a> 方法是一致</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">replace(pattern, replacement)</code>，替换操作
+    <ul>
+      <li>参数 1：字符串或正则表达式
+        <ul>
+          <li><strong>默认只替换第一个</strong>，需要全部替换的话，参数 1 需要使用带有 <code class="highlighter-rouge">g</code> 修饰符的正则表达式</li>
+        </ul>
+      </li>
+      <li>参数 2：用于替换的字符串或返回字符串的函数
+        <ul>
+          <li>参数 2 是字符串的话，可以引用正则表达式的匹配结果，如 <code class="highlighter-rouge">$n</code> 引用第 n 个捕获组</li>
+          <li>参数 2 是函数的话，可以接收匹配字符串、位置、原字符串、捕获组等以实现更细致的控制</li>
+        </ul>
+      </li>
+      <li>返回替换后的结果字符串</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">split(pattern [, maxLength])</code>
+    <ul>
+      <li>接收一个字符串或正则表达式表示的模式</li>
+      <li>返回一个数组，数组的元素是原字符串根据传入模式分割后的各个子字符串，可控制结果数组最大长度</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="其他方法">其他方法</h4>
+
 <ul>
-<li>参数：正则表达式</li>
-<li>返回结果和正则表达式的 <a href="#exec"><code>exec()</code></a> 方法是一致</li>
+  <li><code class="highlighter-rouge">localCompare()</code>，比较两个字符串顺序，如果排在参数字符串之前返回负数，之后返回整数，相等返回 0，实现和语言相关</li>
+  <li><code class="highlighter-rouge">fromCharCode(code [, code]...)</code>，<strong>静态方法</strong>，根据码值序列返回字符串</li>
 </ul>
-</li>
-<li><code>replace(pattern, replacement)</code>，替换操作
-<ul>
-<li>参数 1：字符串或正则表达式
-<ul>
-<li><strong>默认只替换第一个</strong>，需要全部替换的话，参数 1 需要使用带有 <code>g</code> 修饰符的正则表达式</li>
-</ul>
-</li>
-<li>参数 2：用于替换的字符串或返回字符串的函数
-<ul>
-<li>参数 2 是字符串的话，可以引用正则表达式的匹配结果，如 <code>$n</code> 引用第 n 个捕获组</li>
-<li>参数 2 是函数的话，可以接收匹配字符串、位置、原字符串、捕获组等以实现更细致的控制</li>
-</ul>
-</li>
-<li>返回替换后的结果字符串</li>
-</ul>
-</li>
-<li><code>split(pattern [, maxLength])</code>
-<ul>
-<li>接收一个字符串或正则表达式表示的模式</li>
-<li>返回一个数组，数组的元素是原字符串根据传入模式分割后的各个子字符串，可控制结果数组最大长度</li>
-</ul>
-</li>
-</ul>
-<h4 id="section-40">其他方法</h4>
-<ul>
-<li><code>localCompare()</code>，比较两个字符串顺序，如果排在参数字符串之前返回负数，之后返回整数，相等返回 0，实现和语言相关</li>
-<li><code>fromCharCode(code [, code]...)</code>，<strong>静态方法</strong>，根据码值序列返回字符串</li>
-</ul>
-<h2 id="section-41">单体内置对象</h2>
+
+<h2 id="单体内置对象">单体内置对象</h2>
+
 <p>内置对象是指由 ECMAScript 提供的，不依赖于宿主环境的对象，不必显式的实例化，如 Object, Array 等；
 ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
-<h3 id="global-">Global 对象</h3>
+
+<h3 id="global-对象">Global 对象</h3>
+
 <p>ECMAScript 中的终极对象，全局的变量、函数都是它的属性和方法，浏览器环境下，它作为 window 对象的一部分来实现。在不同环境下通用地获取 Global 对象可以使用下面的方法：</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nb">global</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="k">this</span>
 <span class="p">})()</span>
 </code></pre></div></div>
-<h4 id="uri-">URI 编码解码方法</h4>
+
+<h4 id="uri-编码解码方法">URI 编码解码方法</h4>
+
 <ul>
-<li><code>encodeURI()</code>，编码整个 RUI（Uniform Resource Identifiers，统一资源标识符 ），不会对冒号、斜杠这些本身属于 URI 的特殊字符进行编码</li>
-<li><code>encodeURIComponent()</code>，编码一切非标准字符（如空格），实际开发中常用，多用于对查询字符串进行编码</li>
-<li><code>decodeURI()</code>，解码用 encodeURI 编码的字符串</li>
-<li><code>decodeURIComponent()</code>，解码用 encodeURIComponent 编码的字符串</li>
+  <li><code class="highlighter-rouge">encodeURI()</code>，编码整个 RUI（Uniform Resource Identifiers，统一资源标识符 ），不会对冒号、斜杠这些本身属于 URI 的特殊字符进行编码</li>
+  <li><code class="highlighter-rouge">encodeURIComponent()</code>，编码一切非标准字符（如空格），实际开发中常用，多用于对查询字符串进行编码</li>
+  <li><code class="highlighter-rouge">decodeURI()</code>，解码用 encodeURI 编码的字符串</li>
+  <li><code class="highlighter-rouge">decodeURIComponent()</code>，解码用 encodeURIComponent 编码的字符串</li>
 </ul>
-<h4 id="eval-">eval() 方法</h4>
+
+<h4 id="eval-方法">eval() 方法</h4>
+
 <p>将字符串解析成 ECMAScript 代码并执行，被执行的代码具有其所在环境相同的作用域链，因此在 eval 之内和之外可以交叉定义和使用变量与函数。（严格模式下则访问不到 eval 中创建的变量与函数）。</p>
-<h4 id="global--1">Global 对象的属性</h4>
+
+<h4 id="global-对象的属性">Global 对象的属性</h4>
+
 <p>undefined、NaN、Infinity、各个原生的构造函数等都是 Global 对象的属性</p>
-<h3 id="math-">Math 对象</h3>
+
+<h3 id="math-对象">Math 对象</h3>
+
 <p>该对象提供了一些方便数学计算的属性和方法，对 ECMAScript 的不同的实现可能采用不同的算法从而有不同的精度。</p>
+
 <ul>
-<li>利用属性提供了一些数学常数如： <code>Math.PI</code> 、 <code>Math.E</code> 。</li>
-<li>利用方法提供了一些数学函数如： <code>Math.abs()</code> 、 <code>Math.sin()</code></li>
+  <li>利用属性提供了一些数学常数如： <code class="highlighter-rouge">Math.PI</code> 、 <code class="highlighter-rouge">Math.E</code> 。</li>
+  <li>利用方法提供了一些数学函数如： <code class="highlighter-rouge">Math.abs()</code> 、 <code class="highlighter-rouge">Math.sin()</code></li>
 </ul>
-<h4 id="max--min-">max() 和 min() 方法</h4>
+
+<h4 id="max-和-min-方法">max() 和 min() 方法</h4>
+
 <p>接受任意多个参数，求取最大或最小值。下面给出了几种求一个数值数组最大值的几种方法：</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 
 <span class="kd">let</span> <span class="nx">max1</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">)</span> <span class="p">{</span>
@@ -566,27 +1028,77 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">max1</span><span class="p">,</span> <span class="nx">max2</span><span class="p">,</span> <span class="nx">max3</span><span class="p">)</span> <span class="c1">// 8 8 8</span>
 </code></pre></div></div>
-<h4 id="section-42">舍入方法</h4>
+
+<h4 id="舍入方法">舍入方法</h4>
+
 <p>Math.ceil(), Math.round(), Math.floor() ，规则参见下表：</p>
-<p>| 方法  | -0.8 | -0.5 | -0.2 | 0.2 | 0.5 | 0.8 |
-| ----- | ---- | ---- | ---- | --- | --- | --- |
-| ceil  | 0    | 0    | 0    | 1   | 1   | 1   |
-| round | -1   | 0    | 0    | 0   | 1   | 1   |
-| floor | -1   | -1   | -1   | 0   | 0   | 0   |</p>
-<h4 id="random-">random() 方法</h4>
-<p>获取一个 <code>(0,1)</code> 区间内的随机数。</p>
-<h1 id="section-43">第 6 章 面向对象的程序设计</h1>
-<h2 id="section-44">理解对象</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>-0.8</th>
+      <th>-0.5</th>
+      <th>-0.2</th>
+      <th>0.2</th>
+      <th>0.5</th>
+      <th>0.8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ceil</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>round</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>floor</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="random-方法">random() 方法</h4>
+
+<p>获取一个 <code class="highlighter-rouge">(0,1)</code> 区间内的随机数。</p>
+
+<h1 id="第-6-章-面向对象的程序设计">第 6 章 面向对象的程序设计</h1>
+
+<h2 id="理解对象">理解对象</h2>
+
 <p>对象的属性包括两种类型：数据属性和访问器属性。属性( property )具有描述其特征的特性( attribute )，这些特性都是内部值，不能直接访问它们，规范中使用双中括号来表示。</p>
-<h3 id="section-45">数据属性</h3>
+
+<h3 id="数据属性">数据属性</h3>
+
 <p>数据属性有如下四个特性：</p>
+
 <ul>
-<li>[[Configurable]]，是否可删除属性、修改特性或修改属性类型</li>
-<li>[[Enumerable]]，是否可 for-in 枚举</li>
-<li>[[Writable]]，是否可写入</li>
-<li>[[Value]]，实际读写的数据值</li>
+  <li>[[Configurable]]，是否可删除属性、修改特性或修改属性类型</li>
+  <li>[[Enumerable]]，是否可 for-in 枚举</li>
+  <li>[[Writable]]，是否可写入</li>
+  <li>[[Value]]，实际读写的数据值</li>
 </ul>
-<p>使用字面量方法定义的属性都是数据属性，这时上述四个特性默认值分别是 true, true, true, undefined ，也可通过 ES5 的 <code>Object.defineProperty()</code> 来间接设置数据属性。第三个参数是描述符对象，如果不指定前三个特性中的某些特性，会默认是 false 。</p>
+
+<p>使用字面量方法定义的属性都是数据属性，这时上述四个特性默认值分别是 true, true, true, undefined ，也可通过 ES5 的 <code class="highlighter-rouge">Object.defineProperty()</code> 来间接设置数据属性。第三个参数是描述符对象，如果不指定前三个特性中的某些特性，会默认是 false 。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">configurable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -595,27 +1107,38 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span>
 <span class="p">})</span>
 </code></pre></div></div>
-<h3 id="section-46">访问器属性</h3>
+
+<h3 id="访问器属性">访问器属性</h3>
+
 <p>访问器属性有如下四个特性：</p>
+
 <ul>
-<li>[[Configurable]]，是否可删除属性、修改特性或修改属性类型</li>
-<li>[[Enumerable]]，是否可 for-in 枚举</li>
-<li>[[Get]]，getter 函数，默认 undefined</li>
-<li>[[Set]]，setter 函数，默认 undefined</li>
+  <li>[[Configurable]]，是否可删除属性、修改特性或修改属性类型</li>
+  <li>[[Enumerable]]，是否可 for-in 枚举</li>
+  <li>[[Get]]，getter 函数，默认 undefined</li>
+  <li>[[Set]]，setter 函数，默认 undefined</li>
 </ul>
-<p>访问器属性必须通过 <code>Object.defineProperty()</code> 方法来定义</p>
-<h3 id="section-47">定义多个属性和获取属性描述符对象</h3>
+
+<p>访问器属性必须通过 <code class="highlighter-rouge">Object.defineProperty()</code> 方法来定义</p>
+
+<h3 id="定义多个属性和获取属性描述符对象">定义多个属性和获取属性描述符对象</h3>
+
 <ul>
-<li>Object.defineProperties(obj, propterties)</li>
-<li>Object.getOwnPropertyDescriptor(obj, key)</li>
+  <li>Object.defineProperties(obj, propterties)</li>
+  <li>Object.getOwnPropertyDescriptor(obj, key)</li>
 </ul>
-<h2 id="section-48">创建对象</h2>
-<h3 id="section-49">工厂模式</h3>
+
+<h2 id="创建对象">创建对象</h2>
+
+<h3 id="工厂模式">工厂模式</h3>
+
 <p>使用一个对象创建函数作为工厂，每次传入需要的参数来调用这个函数，返回出新的对象，如下所示；问题：</p>
+
 <ul>
-<li>生产的对象只是 Object 的实例，没有特定的类型（从而用 instanceof 来检测）</li>
-<li>各个生产出来的对象上的方法都是独立，没有复用</li>
+  <li>生产的对象只是 Object 的实例，没有特定的类型（从而用 instanceof 来检测）</li>
+  <li>各个生产出来的对象上的方法都是独立，没有复用</li>
 </ul>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createPerson</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">()</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
@@ -627,11 +1150,15 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="k">return</span> <span class="nx">o</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<h3 id="section-50">构造函数模式</h3>
-<p>将一个构造函数（本质也就是个函数）通过 <code>new</code> 的方式来创建对象，这样创建出来的函数有了确定的类型（可以用 instanceof 判断），问题：</p>
+
+<h3 id="构造函数模式">构造函数模式</h3>
+
+<p>将一个构造函数（本质也就是个函数）通过 <code class="highlighter-rouge">new</code> 的方式来创建对象，这样创建出来的函数有了确定的类型（可以用 instanceof 判断），问题：</p>
+
 <ul>
-<li>方法没有复用（当然可以通过将方法声明在全局环境中来解决，但是这严重破坏封装性）</li>
+  <li>方法没有复用（当然可以通过将方法声明在全局环境中来解决，但是这严重破坏封装性）</li>
 </ul>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
@@ -641,7 +1168,9 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<h3 id="section-51">原型模式</h3>
+
+<h3 id="原型模式">原型模式</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{}</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">,</span>
@@ -656,32 +1185,40 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="na">value</span><span class="p">:</span> <span class="nx">Person</span>
 <span class="p">})</span>
 </code></pre></div></div>
-<p>上面是用 <code>defineProperty()</code> 方法是为了让 <code>constructor</code> 属性不可枚举(符合标准)；单独的原型模式中，所有的实例对象的属性都是默认相同而共享的，这对非函数属性通常都不是我们需要：</p>
+
+<p>上面是用 <code class="highlighter-rouge">defineProperty()</code> 方法是为了让 <code class="highlighter-rouge">constructor</code> 属性不可枚举(符合标准)；单独的原型模式中，所有的实例对象的属性都是默认相同而共享的，这对非函数属性通常都不是我们需要：</p>
+
 <ul>
-<li>对于基本类型的共享属性，如果在实例中修改属性值时，会覆盖原型上的属性，而不会影响其他实例</li>
-<li>但是对于引用类型的共享属性，如果在实例中对这个引用类型值的内容进行了修改，所有的实例都会受到影响</li>
+  <li>对于基本类型的共享属性，如果在实例中修改属性值时，会覆盖原型上的属性，而不会影响其他实例</li>
+  <li>但是对于引用类型的共享属性，如果在实例中对这个引用类型值的内容进行了修改，所有的实例都会受到影响</li>
 </ul>
-<h4 id="section-52">(构造)函数、原型对象、实例对象</h4>
+
+<h4 id="构造函数原型对象实例对象">(构造)函数、原型对象、实例对象</h4>
+
 <ul>
-<li>每个函数都有一个 prototype 属性，指向原型对象；原型对象中 constructor 属性反过来指向这个函数</li>
-<li>由构造函数创建的实例对象有一个内部属性 [[Prototype]] 指向原型对象，原型对象的获取与检测：
+  <li>每个函数都有一个 prototype 属性，指向原型对象；原型对象中 constructor 属性反过来指向这个函数</li>
+  <li>由构造函数创建的实例对象有一个内部属性 [[Prototype]] 指向原型对象，原型对象的获取与检测：
+    <ul>
+      <li>使用实例对象的 <code class="highlighter-rouge">__proto__</code> 属性（非标准）可以获取原型对象</li>
+      <li>使用 <code class="highlighter-rouge">Object.getPrototypeOf()</code> 传入实例对象，返回原型对象（ ES5 方法，IE9+ 等支持）</li>
+      <li>在原型对象 A 上调用 <code class="highlighter-rouge">isPrototypeOf()</code> 方法，传入实例对象 B ，可检测 A 是否是 B 的原型对象</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="实例对象与原型对象上的属性">实例对象与原型对象上的属性</h4>
+
 <ul>
-<li>使用实例对象的 <code>__proto__</code> 属性（非标准）可以获取原型对象</li>
-<li>使用 <code>Object.getPrototypeOf()</code> 传入实例对象，返回原型对象（ ES5 方法，IE9+ 等支持）</li>
-<li>在原型对象 A 上调用 <code>isPrototypeOf()</code> 方法，传入实例对象 B ，可检测 A 是否是 B 的原型对象</li>
+  <li>在实例对象上访问属性，会沿着原型链逐步回溯；在实例对象上重写与原型对象同名的属性，会使得利用该实例访问该属性时，原型对象上的同名属性被覆盖掉；但这并不会重写原型对象上的属性，从而不会影响其他实例对象</li>
+  <li>单独使用 <code class="highlighter-rouge">in</code> 操作符，会对对象上可访问的<strong>所有属性</strong>（原型链上也可以）返回 true ，反之返回 false</li>
+  <li>在实例对象上使用 <code class="highlighter-rouge">for in</code> 可以遍历<strong>可枚举的、所有属性</strong></li>
+  <li>在实例对象上调用 <code class="highlighter-rouge">hasOwnProperty()</code> 方法会对<strong>实例属性</strong>返回 true ，反之返回 false</li>
+  <li>使用 <code class="highlighter-rouge">Object.getOwnPropertyNames()</code> 方法会返回<strong>实例属性</strong>的字符串数组</li>
+  <li>使用 <code class="highlighter-rouge">Object.keys()</code> 方法获得<strong>可枚举的、实例属性</strong>的字符串数组</li>
 </ul>
-</li>
-</ul>
-<h4 id="section-53">实例对象与原型对象上的属性</h4>
-<ul>
-<li>在实例对象上访问属性，会沿着原型链逐步回溯；在实例对象上重写与原型对象同名的属性，会使得利用该实例访问该属性时，原型对象上的同名属性被覆盖掉；但这并不会重写原型对象上的属性，从而不会影响其他实例对象</li>
-<li>单独使用 <code>in</code> 操作符，会对对象上可访问的<strong>所有属性</strong>（原型链上也可以）返回 true ，反之返回 false</li>
-<li>在实例对象上使用 <code>for in</code> 可以遍历<strong>可枚举的、所有属性</strong></li>
-<li>在实例对象上调用 <code>hasOwnProperty()</code> 方法会对<strong>实例属性</strong>返回 true ，反之返回 false</li>
-<li>使用 <code>Object.getOwnPropertyNames()</code> 方法会返回<strong>实例属性</strong>的字符串数组</li>
-<li>使用 <code>Object.keys()</code> 方法获得<strong>可枚举的、实例属性</strong>的字符串数组</li>
-</ul>
-<h3 id="section-54">组合使用构造函数模式和原型模式</h3>
+
+<h3 id="组合使用构造函数模式和原型模式">组合使用构造函数模式和原型模式</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
@@ -697,8 +1234,11 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="na">value</span><span class="p">:</span> <span class="nx">Person</span>
 <span class="p">})</span>
 </code></pre></div></div>
+
 <p>定义引用类型的默认模式，实现了方法的复用和属性的参数化设置。</p>
-<h3 id="section-55">动态原型模式</h3>
+
+<h3 id="动态原型模式">动态原型模式</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
@@ -712,8 +1252,11 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
+
 <p>动态原型模式将在原型对象上添加方法的代码封装到了构造函数内部，这些代码只在第一次创建实例对象的时候真正执行（注意：由于原型对象的动态性，不能使用对象字面量直接赋值的方式修改原型，否则第一个创建出的实例会有问题）。</p>
-<h3 id="section-56">寄生构造函数模式</h3>
+
+<h3 id="寄生构造函数模式">寄生构造函数模式</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">()</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
@@ -726,8 +1269,11 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <span class="p">}</span>
 <span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="dl">'</span><span class="s1">developer</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div></div>
-<p>这种模式其实和工厂模式差不多，不过借用了构造函数的 <code>new</code> 语法，创建出来的对象其实和构造函数没有关系，尽量不用。</p>
-<h3 id="section-57">稳妥构造函数模式</h3>
+
+<p>这种模式其实和工厂模式差不多，不过借用了构造函数的 <code class="highlighter-rouge">new</code> 语法，创建出来的对象其实和构造函数没有关系，尽量不用。</p>
+
+<h3 id="稳妥构造函数模式">稳妥构造函数模式</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">()</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -737,9 +1283,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <span class="p">}</span>
 <span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="dl">'</span><span class="s1">developer</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div></div>
-<p>和借用构造函数模式类似，不过不使用 <code>new</code> 操作符，方法中不使用 <code>this</code> 对象，实例对象没法直接访问传入的参数，必须借助方法，主要用于某些安全环境下；创建出的对象一样和构造函数没有关系。</p>
-<h2 id="section-58">继承</h2>
-<h3 id="section-59">原型链</h3>
+
+<p>和借用构造函数模式类似，不过不使用 <code class="highlighter-rouge">new</code> 操作符，方法中不使用 <code class="highlighter-rouge">this</code> 对象，实例对象没法直接访问传入的参数，必须借助方法，主要用于某些安全环境下；创建出的对象一样和构造函数没有关系。</p>
+
+<h2 id="继承">继承</h2>
+
+<h3 id="原型链">原型链</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">superName</span> <span class="o">=</span> <span class="nx">superName</span>
   <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
@@ -767,9 +1317,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub1</span><span class="p">.</span><span class="nx">getSubName</span><span class="p">())</span> <span class="c1">// sub1</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub2</span><span class="p">.</span><span class="nx">getSubName</span><span class="p">())</span> <span class="c1">// sub2</span>
 </code></pre></div></div>
+
 <p>如上所示，我们手动的将 SubType 的原型对象设置为 SuperType 类型的实例对象，从而修改了原型链实现了继承。</p>
+
 <p>其中的问题：没法在不影响其他实例对象的情况下向父类型传参，因为原型对象是同一父类的实例对象，而父类的属性就在这上面从而被共享，也因为如此，如果被共享的属性是引用类型值，在一个实例中对值进行内部修改（如数组的 push 方法）会影响所有实例。</p>
-<h3 id="section-60">借用构造函数</h3>
+
+<h3 id="借用构造函数">借用构造函数</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
 <span class="p">}</span>
@@ -778,9 +1332,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">job</span>
 <span class="p">}</span>
 </code></pre></div></div>
+
 <p>通过借用构造函数，可以让超类型的实例属性成为子类型的实例属性，而非子类型的原型属性。不单独用。</p>
-<h3 id="section-61">组合继承</h3>
+
+<h3 id="组合继承">组合继承</h3>
+
 <p>将原型链和借用构造函数的方式结合起来，也叫伪经典继承。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">superName</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">superName</span> <span class="o">=</span> <span class="nx">superName</span>
   <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getSuperName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
@@ -802,21 +1360,29 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 
 <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperType</span><span class="p">()</span>
 </code></pre></div></div>
-<h3 id="section-62">原型式继承</h3>
+
+<h3 id="原型式继承">原型式继承</h3>
+
 <p>这种方式的目的在于直接通过一个已有的对象，创建一个类似的对象，而不必定义一种新的类型。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">object</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">function</span> <span class="nx">F</span><span class="p">()</span> <span class="p">{}</span>
   <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">o</span>
   <span class="k">return</span> <span class="k">new</span> <span class="nx">F</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
+
 <p>ES5 定义 Object.create() 方法可以实现原型式继承：</p>
+
 <ul>
-<li>参数 1：用作新对象原型的对象</li>
-<li>参数 2（可选）：新对象上的更多的属性，以对象的形式传入，所有属性作为键，对应的描述符对象作为值</li>
+  <li>参数 1：用作新对象原型的对象</li>
+  <li>参数 2（可选）：新对象上的更多的属性，以对象的形式传入，所有属性作为键，对应的描述符对象作为值</li>
 </ul>
-<h3 id="section-63">寄生式继承</h3>
+
+<h3 id="寄生式继承">寄生式继承</h3>
+
 <p>这种方式与寄生构造函数和工厂模式很类似，首先利用基于原始对象创建一个新的对象（比如使用原型式继承），然后对该对象做功能增强，最后返回这个新的对象。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createAnother</span><span class="p">(</span><span class="nx">original</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">object</span><span class="p">(</span><span class="nx">original</span><span class="p">)</span>
   <span class="nx">o</span><span class="p">.</span><span class="nx">anotherMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -825,9 +1391,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="k">return</span> <span class="nx">o</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<h3 id="section-64">寄生组合式继承</h3>
+
+<h3 id="寄生组合式继承">寄生组合式继承</h3>
+
 <p>组合式继承中，超类型的构造函数被重复调用了（借用构造函数添加实例属性、创建实例作为子类型原型），实际上子类型的原型上不需要那些多余的、只需要在实例上的属性；为此，可以利用寄生式继承的模式，创建一个超类原型的副本（干净的实例），将其作为子类的原型，即 inheritPrototype 函数。这种继承方式被普遍认为是理想的继承范式。</p>
+
 <p>需要注意一下，下面的代码使用了动态原型模式添加原型的方法，此时一定不要采用重写原型的方式，否则第一个实例会有问题，继承也同样有问题（超类型的原型改了，子类型的原型链却没动！）；如果方法实在很多，可以使用 Object.assign() 来添加方法到原型上。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">F</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
 
 <span class="kd">function</span> <span class="nx">object</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
@@ -868,9 +1438,13 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub</span> <span class="k">instanceof</span> <span class="nx">SuperType</span><span class="p">)</span> <span class="c1">// true</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sub</span> <span class="k">instanceof</span> <span class="nx">F</span><span class="p">)</span> <span class="c1">// true</span>
 </code></pre></div></div>
-<h1 id="section-65">第 7 章 函数表达式</h1>
-<h2 id="section-66">递归函数</h2>
+
+<h1 id="第-7-章-函数表达式">第 7 章 函数表达式</h1>
+
+<h2 id="递归函数">递归函数</h2>
+
 <p>在不使用 arguments.callee 的情况下，可以使用命名函数表达式实现更通用健壮的递归函数：</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">rc</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="mi">1</span>
@@ -879,12 +1453,19 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<h2 id="section-67">闭包</h2>
-<h3 id="section-68">定义</h3>
+
+<h2 id="闭包">闭包</h2>
+
+<h3 id="定义">定义</h3>
+
 <p>书中的定义：闭包是指有权访问另一个函数作用域中的变量的函数。</p>
+
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">MDN</a> 上的定义：A closure is the combination of a function and the lexical environment within which that function was declared.</p>
-<h3 id="section-69">内存泄漏</h3>
+
+<h3 id="内存泄漏">内存泄漏</h3>
+
 <p>在 IE8- 中由于 COM 对象使用使用不同的垃圾搜集例程（引用计数），如果闭包的作用域链包含着对 HTML 对象的引用，那么该对象无法被销毁；为此，可以使用局部变量保存闭包中需要使用的值，并清除对 HTML 对象的引用。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">setHandler</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">ele</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">btn</span><span class="dl">'</span><span class="p">)</span>
   <span class="kd">let</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">ele</span><span class="p">.</span><span class="nx">id</span> <span class="c1">// 局部变量保存</span>
@@ -895,11 +1476,17 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="nx">ele</span> <span class="o">=</span> <span class="kc">null</span> <span class="c1">// 解引用</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<h2 id="section-70">块级作用域</h2>
+
+<h2 id="块级作用域">块级作用域</h2>
+
 <p>ES5 中没有块级作用域，但是可以通过立即执行函数来模仿；利用它可以避免过多的全局变量。</p>
-<h2 id="section-71">私有变量</h2>
-<h3 id="section-72">构造函数模式</h3>
+
+<h2 id="私有变量">私有变量</h2>
+
+<h3 id="构造函数模式-1">构造函数模式</h3>
+
 <p>可以利用构造函数中的局部变量（或者直接使用参数）作为静态变量，它们没法在实例上直接通过属性访问，只有通过特权（公有）方法进行存取。这种方式的静态变量是每个实例单独拥有的，显然构造函数模式的公有方法没有做到复用。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Book</span><span class="p">(</span><span class="nx">year</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">_edition</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="nx">_firstYear</span> <span class="o">=</span> <span class="nx">year</span>
@@ -913,8 +1500,11 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<h3 id="section-73">静态私有变量</h3>
+
+<h3 id="静态私有变量">静态私有变量</h3>
+
 <p>所谓静态，即与实例无关，这些静态的变量（/方法）能被所有实例共享，使用立即执行函数来实现。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">Book</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">bookCount</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="kd">let</span> <span class="nx">addBookCount</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -932,8 +1522,11 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="k">return</span> <span class="nx">_Book</span>
 <span class="p">})()</span>
 </code></pre></div></div>
-<h3 id="section-74">模块模式</h3>
+
+<h3 id="模块模式">模块模式</h3>
+
 <p>该模式用于为单例添加静态变量和特权方法：</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">singleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">privateVariable</span> <span class="o">=</span> <span class="mi">10</span>
   <span class="kd">function</span> <span class="nx">privateMethod</span><span class="p">()</span> <span class="p">{</span>
@@ -949,8 +1542,11 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="p">}</span>
 <span class="p">})()</span>
 </code></pre></div></div>
-<h3 id="section-75">增强的模块模式</h3>
+
+<h3 id="增强的模块模式">增强的模块模式</h3>
+
 <p>如果需要单例本身是某种自定义类型，可以使用这种模式：</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">singleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">privateVariable</span> <span class="o">=</span> <span class="mi">10</span>
   <span class="kd">function</span> <span class="nx">privateMethod</span><span class="p">()</span> <span class="p">{</span>
@@ -968,40 +1564,54 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="k">return</span> <span class="nx">o</span>
 <span class="p">})()</span>
 </code></pre></div></div>
-<h1 id="bom">第 8 章 BOM</h1>
-<h2 id="window-">window 对象</h2>
-<h3 id="section-76">全局作用域</h3>
+
+<h1 id="第-8-章-bom">第 8 章 BOM</h1>
+
+<h2 id="window-对象">window 对象</h2>
+
+<h3 id="全局作用域">全局作用域</h3>
+
 <ul>
-<li>在 javascript 中 window 对象既表示浏览器窗口对象，也是 ECMAScript 中的 global 对象</li>
-<li>window 作为 global 对象，全局作用域中声明的变量和函数都会成为它的属性</li>
-<li>全局声明的变量与函数和直接在 window 上挂载的属性的两点区别：
+  <li>在 javascript 中 window 对象既表示浏览器窗口对象，也是 ECMAScript 中的 global 对象</li>
+  <li>window 作为 global 对象，全局作用域中声明的变量和函数都会成为它的属性</li>
+  <li>全局声明的变量与函数和直接在 window 上挂载的属性的两点区别：
+    <ul>
+      <li>直接挂载的属性可以通过 delete 操作符来删除</li>
+      <li>直接挂载的属性如果不存在，访问也不会报错（属性查询），而未声明的全局变量直接访问则会报错</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="窗口关系及框架">窗口关系及框架</h3>
+
 <ul>
-<li>直接挂载的属性可以通过 delete 操作符来删除</li>
-<li>直接挂载的属性如果不存在，访问也不会报错（属性查询），而未声明的全局变量直接访问则会报错</li>
+  <li>每个框架有相应的 window 对象，top 始终指向最外层框架（浏览器窗口）</li>
+  <li>通过 <code class="highlighter-rouge">top.frames[序号]</code> 或 <code class="highlighter-rouge">top.frames[窗口名]</code> 可以访问到各窗口的 window 对象</li>
+  <li>parent 指向父层框架（在没有框架的页面中，它和 top 是相等的，都指向 window）</li>
+  <li>self 始终指向 window</li>
 </ul>
-</li>
-</ul>
-<h3 id="section-77">窗口关系及框架</h3>
-<ul>
-<li>每个框架有相应的 window 对象，top 始终指向最外层框架（浏览器窗口）</li>
-<li>通过 <code>top.frames[序号]</code> 或 <code>top.frames[窗口名]</code> 可以访问到各窗口的 window 对象</li>
-<li>parent 指向父层框架（在没有框架的页面中，它和 top 是相等的，都指向 window）</li>
-<li>self 始终指向 window</li>
-</ul>
-<h3 id="section-78">窗口的位置</h3>
+
+<h3 id="窗口的位置">窗口的位置</h3>
+
 <p>获取窗口的左边和上边的位置，事实上并不能真正做到兼容。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">leftPos</span> <span class="o">=</span>
   <span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenLeft</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span> <span class="p">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenLeft</span> <span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenX</span>
 <span class="kd">var</span> <span class="nx">topPos</span> <span class="o">=</span>
   <span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenTop</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span> <span class="p">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenTop</span> <span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screenY</span>
 </code></pre></div></div>
+
 <p>两个移动浏览器窗口的方法（它们可能是被默认禁用的）：</p>
+
 <ul>
-<li>moveTo(x, y)</li>
-<li>moveBy(deltaX, deltaY)</li>
+  <li>moveTo(x, y)</li>
+  <li>moveBy(deltaX, deltaY)</li>
 </ul>
-<h3 id="section-79">窗口的大小</h3>
+
+<h3 id="窗口的大小">窗口的大小</h3>
+
 <p>获取页面视口的通用方法（桌面浏览器）：</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">,</span>
   <span class="nx">h</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span>
 <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">w</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
@@ -1013,23 +1623,32 @@ ECMAScript 中有两个单体内置对象： Global 和 Math 。</p>
   <span class="nx">h</span> <span class="o">=</span> <span class="nx">ele</span><span class="p">.</span><span class="nx">clientHeight</span>
 <span class="p">}</span>
 </code></pre></div></div>
+
 <p>两个调整窗口大小的方法： resizeTo() 和 resizeBy() ，它们也可能是被默认禁用的。</p>
-<h3 id="section-80">导航和打开窗口</h3>
+
+<h3 id="导航和打开窗口">导航和打开窗口</h3>
+
 <p>使用 window.open() 可以导航到一个新的网址。</p>
-<h4 id="section-81">参数</h4>
+
+<h4 id="参数">参数</h4>
+
 <p>它接收 4 个参数，只有第一个是必须的。</p>
+
 <ul>
-<li>URL</li>
-<li>目标窗口，已有窗口或框架的名称，如果不存在则创建窗口并以其作为窗口名称</li>
-<li>特性字符串，如果打开了新窗口，根据该参数设置新窗口的特性</li>
-<li>新页面是否取代浏览器历史记录中的当前页面，只在不打开新页面的情况下使用</li>
+  <li>URL</li>
+  <li>目标窗口，已有窗口或框架的名称，如果不存在则创建窗口并以其作为窗口名称</li>
+  <li>特性字符串，如果打开了新窗口，根据该参数设置新窗口的特性</li>
+  <li>新页面是否取代浏览器历史记录中的当前页面，只在不打开新页面的情况下使用</li>
 </ul>
-<h4 id="section-82">返回值</h4>
+
+<h4 id="返回值">返回值</h4>
+
 <ul>
-<li>该方法会返回打开的窗口的 window 对象的引用，该对象的 opener 属性反过来指向打开它的窗口对象</li>
-<li>在新创建的窗口对象上调用 resizeTo() 、 moveTo() 等方法可以调整位置大小</li>
-<li>调用 close() 方法可以关闭弹出窗口</li>
+  <li>该方法会返回打开的窗口的 window 对象的引用，该对象的 opener 属性反过来指向打开它的窗口对象</li>
+  <li>在新创建的窗口对象上调用 resizeTo() 、 moveTo() 等方法可以调整位置大小</li>
+  <li>调用 close() 方法可以关闭弹出窗口</li>
 </ul>
+
 <p>通过检测返回的新窗口对象是否是 null，以及使用 try-catch 包裹打开新窗口的代码，可以检测新窗口是否被浏览器或用户插件阻止弹出。</p>
 
 				</div>

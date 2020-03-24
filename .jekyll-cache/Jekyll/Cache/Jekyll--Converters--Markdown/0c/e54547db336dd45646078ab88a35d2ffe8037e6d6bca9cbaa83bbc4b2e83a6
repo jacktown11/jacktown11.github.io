@@ -1,5 +1,7 @@
-I"0�<h1 id="web">搭建Web服务器</h1>
-<h2 id="v20-404">v2.0 请求结果404的正确写法</h2>
+I"��<h1 id="搭建web服务器">搭建Web服务器</h1>
+
+<h2 id="v20-请求结果404的正确写法">v2.0 请求结果404的正确写法</h2>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
 
@@ -16,27 +18,34 @@
 <span class="p">});</span>
 <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
 </code></pre></div></div>
-<p>在<code>v1.0</code>中，没找到资源的情况下直接通过<code>res.write('404')</code>写返回前端的内容，但是这是写在返回结果的<code>体</code>中的，此时如果在浏览器端查看状态码依然是<code>200</code>，为此需要使用<code>writeHead()</code>方法，这使得状态码真的变成<code>404</code>。</p>
-<h2 id="v21-getpost">v2.1 处理GET和POST请求</h2>
+<p>在<code class="highlighter-rouge">v1.0</code>中，没找到资源的情况下直接通过<code class="highlighter-rouge">res.write('404')</code>写返回前端的内容，但是这是写在返回结果的<code class="highlighter-rouge">体</code>中的，此时如果在浏览器端查看状态码依然是<code class="highlighter-rouge">200</code>，为此需要使用<code class="highlighter-rouge">writeHead()</code>方法，这使得状态码真的变成<code class="highlighter-rouge">404</code>。</p>
+
+<h2 id="v21-处理get和post请求">v2.1 处理GET和POST请求</h2>
+
 <p>作为一个web服务器，其工作包括：</p>
+
 <ul>
-<li>返回文件</li>
-<li>与前端数据交互(<code>GET</code>、<code>POST</code>)
-<ul>
-<li><code>GET</code>数据：<code>url</code>里面，小，最多32K</li>
-<li><code>POST</code>数据：作为<code>body</code>，大，最多1G</li>
+  <li>返回文件</li>
+  <li>与前端数据交互(<code class="highlighter-rouge">GET</code>、<code class="highlighter-rouge">POST</code>)
+    <ul>
+      <li><code class="highlighter-rouge">GET</code>数据：<code class="highlighter-rouge">url</code>里面，小，最多32K</li>
+      <li><code class="highlighter-rouge">POST</code>数据：作为<code class="highlighter-rouge">body</code>，大，最多1G</li>
+    </ul>
+  </li>
+  <li>与数据库交互</li>
 </ul>
-</li>
-<li>与数据库交互</li>
-</ul>
-<p>之前的版本，可以让前端访问<code>htdocs</code>文件夹中存在的文件，但是没有实现后面两个功能，下面实现处理<code>GET</code>和<code>POST</code>请求。</p>
-<h3 id="get">处理GET</h3>
+
+<p>之前的版本，可以让前端访问<code class="highlighter-rouge">htdocs</code>文件夹中存在的文件，但是没有实现后面两个功能，下面实现处理<code class="highlighter-rouge">GET</code>和<code class="highlighter-rouge">POST</code>请求。</p>
+
+<h3 id="处理get">处理GET</h3>
+
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"http://localhost:8080/api"</span> <span class="na">method=</span><span class="s">"get"</span><span class="nt">&gt;</span>
     用户名：<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"username"</span><span class="nt">&gt;&lt;br&gt;</span>
     密码：<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">name=</span><span class="s">"password"</span><span class="nt">&gt;&lt;br&gt;</span>
     <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"提交"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 </code></pre></div></div>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">);</span>
 
@@ -48,8 +57,11 @@
 <span class="p">});</span>
 <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
 </code></pre></div></div>
-<p><code>GET</code>请求的参数放在<code>url</code>中，使用<code>node</code>中的<code>url</code>模块来解析就可以了。</p>
-<h3 id="post">处理POST</h3>
+
+<p><code class="highlighter-rouge">GET</code>请求的参数放在<code class="highlighter-rouge">url</code>中，使用<code class="highlighter-rouge">node</code>中的<code class="highlighter-rouge">url</code>模块来解析就可以了。</p>
+
+<h3 id="处理post">处理POST</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">querystring</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">querystring</span><span class="dl">'</span><span class="p">);</span>
 
@@ -67,43 +79,53 @@
 <span class="p">});</span>
 <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
 </code></pre></div></div>
+
 <ul>
-<li><code>POST</code>请求中，表单的数据在请求体中，需要从中解析数请求参数</li>
-<li>请求体的数据可能是很大，需要切成很多个小数据包传输，原因：
-<ul>
-<li>方便所有人（否则如果允许很大数据包一次性传输，这可能需要很长时间，那么该网络通路上其他用户网络就相当于断掉了）</li>
-<li>容错强得多（如果某数据包有错，只需要重传错误的包就可以了）</li>
+  <li><code class="highlighter-rouge">POST</code>请求中，表单的数据在请求体中，需要从中解析数请求参数</li>
+  <li>请求体的数据可能是很大，需要切成很多个小数据包传输，原因：
+    <ul>
+      <li>方便所有人（否则如果允许很大数据包一次性传输，这可能需要很长时间，那么该网络通路上其他用户网络就相当于断掉了）</li>
+      <li>容错强得多（如果某数据包有错，只需要重传错误的包就可以了）</li>
+    </ul>
+  </li>
+  <li>每次数据数据到达触发<code class="highlighter-rouge">request</code>的<code class="highlighter-rouge">data</code>事件，传输完成触发<code class="highlighter-rouge">end</code>事件</li>
 </ul>
-</li>
-<li>每次数据数据到达触发<code>request</code>的<code>data</code>事件，传输完成触发<code>end</code>事件</li>
-</ul>
-<h2 id="v22-">v2.2 简单实现登录注册</h2>
+
+<h2 id="v22-简单实现登录注册">v2.2 简单实现登录注册</h2>
+
 <p>实际开发中该功能会需要在数据库获取数据和写入数据；前端不能直接操作数据库，都是由服务端做中间人，前后端需要指定一套接口（确定、并且写成接口文档）。</p>
+
 <p>对于后台来说，安全性很重要，而99.9%的漏洞都是懒。</p>
+
 <ul>
-<li>一切来自前台的数据都不可信</li>
-<li>前后台都得进行数据校验，但是目的不同
+  <li>一切来自前台的数据都不可信</li>
+  <li>前后台都得进行数据校验，但是目的不同
+    <ul>
+      <li>前台校验：用户体验</li>
+      <li>后台校验：安全性</li>
+    </ul>
+  </li>
+</ul>
+
+<p>下面的例子中，在不使用数据库的情况下，后台程序简单地用一个<code class="highlighter-rouge">users</code>对象来完成注册与登录用户数据的存储。基本思路如下：</p>
+
 <ul>
-<li>前台校验：用户体验</li>
-<li>后台校验：安全性</li>
+  <li>用户注册：
+    <ul>
+      <li>/reg?user=xxx&amp;pass=xxx =&gt; {err: 0, msg: ‘说明’}</li>
+    </ul>
+  </li>
+  <li>用户登陆：
+    <ul>
+      <li>/login?user=xxx&amp;pass=xxx =&gt; {err: 0, msg: ‘说明’}</li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
-<p>下面的例子中，在不使用数据库的情况下，后台程序简单地用一个<code>users</code>对象来完成注册与登录用户数据的存储。基本思路如下：</p>
-<ul>
-<li>用户注册：
-<ul>
-<li>/reg?user=xxx&amp;pass=xxx =&gt; {err: 0, msg: '说明'}</li>
-</ul>
-</li>
-<li>用户登陆：
-<ul>
-<li>/login?user=xxx&amp;pass=xxx =&gt; {err: 0, msg: '说明'}</li>
-</ul>
-</li>
-</ul>
-<p>前端通过<code>/reg</code>和<code>/login</code>两个接口访问后台，后台代码通过判断请求的访问路径<code>pathname</code>，来将请求分为登录、注册、静态资源，对于找不到/不存在的静态资源，返回<code>Not Found</code>。</p>
-<h3 id="section">前端代码</h3>
+
+<p>前端通过<code class="highlighter-rouge">/reg</code>和<code class="highlighter-rouge">/login</code>两个接口访问后台，后台代码通过判断请求的访问路径<code class="highlighter-rouge">pathname</code>，来将请求分为登录、注册、静态资源，对于找不到/不存在的静态资源，返回<code class="highlighter-rouge">Not Found</code>。</p>
+
+<h3 id="前端代码">前端代码</h3>
+
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"regOrLogin"</span><span class="nt">&gt;</span>
         用户名: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"username"</span><span class="nt">&gt;&lt;br&gt;</span>
         密码：<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">id=</span><span class="s">"password"</span><span class="nt">&gt;&lt;br&gt;</span>
@@ -165,7 +187,9 @@
     <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 </code></pre></div></div>
-<h3 id="section-1">后端代码</h3>
+
+<h3 id="后端代码">后端代码</h3>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
@@ -233,155 +257,154 @@
 <span class="p">});</span>
 <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
 </code></pre></div></div>
-<h3 id="section-2">数据库基础知识</h3>
-<h4 id="sql">数据库（SQL）</h4>
+
+<h3 id="数据库基础知识">数据库基础知识</h3>
+
+<h4 id="数据库sql">数据库（SQL）</h4>
+
 <ul>
-<li>关系型数据库：如<code>MySQL</code>、<code>Oracle</code>
-<ul>
-<li>最常见、最常用，数据之间是有关系的</li>
-<li>大型系统的主数据库通常是关系型数据库</li>
-<li><code>MySQL</code>
-<ul>
-<li>商业免费，绝大多数普通应用</li>
-<li>性能很高、安全性很高</li>
-<li>容灾略差</li>
+  <li>关系型数据库：如<code class="highlighter-rouge">MySQL</code>、<code class="highlighter-rouge">Oracle</code>
+    <ul>
+      <li>最常见、最常用，数据之间是有关系的</li>
+      <li>大型系统的主数据库通常是关系型数据库</li>
+      <li><code class="highlighter-rouge">MySQL</code>
+        <ul>
+          <li>商业免费，绝大多数普通应用</li>
+          <li>性能很高、安全性很高</li>
+          <li>容灾略差</li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">Oracle</code>
+        <ul>
+          <li>商业收费且昂贵，如金融、医疗常用</li>
+          <li>容灾特别强</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>文件型数据库：如<code class="highlighter-rouge">sqlite</code>，简单、小，比如保存手机通信录、通话记录</li>
+  <li>文档型数据库：如<code class="highlighter-rouge">MongoDB</code>，直接存储异构数据——方便</li>
+  <li>其他</li>
 </ul>
-</li>
-<li><code>Oracle</code>
-<ul>
-<li>商业收费且昂贵，如金融、医疗常用</li>
-<li>容灾特别强</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>文件型数据库：如<code>sqlite</code>，简单、小，比如保存手机通信录、通话记录</li>
-<li>文档型数据库：如<code>MongoDB</code>，直接存储异构数据——方便</li>
-<li>其他</li>
-</ul>
+
 <h4 id="nosql">NoSQL</h4>
+
 <ul>
-<li>没有复杂的关系</li>
-<li>对<strong>性能</strong>有极高的要求</li>
-<li><code>redis</code>、<code>memcached</code>、<code>hypertable</code>、<code>bigtable</code></li>
+  <li>没有复杂的关系</li>
+  <li>对<strong>性能</strong>有极高的要求</li>
+  <li><code class="highlighter-rouge">redis</code>、<code class="highlighter-rouge">memcached</code>、<code class="highlighter-rouge">hypertable</code>、<code class="highlighter-rouge">bigtable</code></li>
 </ul>
-<h4 id="section-3">数据仓库</h4>
+
+<h4 id="数据仓库">数据仓库</h4>
+
 <p>海量数据</p>
-<h1 id="section-4">外话</h1>
+
+<h1 id="外话">外话</h1>
+
 <ul>
-<li>
-<p>程序员内功</p>
-<ul>
-<li>算法</li>
-<li>设计模式</li>
-<li>架构</li>
-</ul>
-</li>
-<li>
-<p>如何应对页面被运营商劫持</p>
-<ul>
-<li><code>HTTPS</code></li>
-</ul>
-</li>
-<li>
-<p>进程之间怎么通信</p>
-<ul>
-<li>管道</li>
-<li>共享内存</li>
-<li><code>socket</code></li>
-</ul>
-</li>
-<li>
-<p>单线程和非阻塞<code>IO</code></p>
-<ul>
-<li>阻塞<code>IO</code>：导致整个程序卡住不动</li>
-</ul>
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="o">=</span><span class="n">fopen</span><span class="p">(</span><span class="s">"a.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
-<span class="n">size</span><span class="o">=</span><span class="n">fread</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">),</span> <span class="n">fp</span><span class="p">);</span>
-<span class="c1">// &lt;-等待20s</span>
-<span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
-</code></pre></div></div>
-<ul>
-<li>非阻塞<code>IO</code>：继续往下执行，不卡</li>
-</ul>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="dl">'</span><span class="s1">a.txt</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>       <span class="c1">// &lt;-等待0s</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
-</code></pre></div></div>
-</li>
-<li>
-<p>前端把加密数据传到后台，后台怎么进行校验的</p>
-<ul>
-<li>校验签名</li>
-</ul>
-</li>
-<li>
-<p>怎么加密的 怎么解密</p>
-<ul>
-<li>极其成熟的算法——<code>RSA</code>（一类算法的总称）</li>
-</ul>
-</li>
-<li>
-<p><code>request.on('data', data=&gt;{})</code>的<code>on</code>是一直轮寻吗？</p>
-<ul>
-<li>不是，是监听、通知、回调、异步</li>
-</ul>
-</li>
-<li>
-<p>ctrl+c退出是不是会被监测到，上次在生产环境用了，被批评了</p>
-<ul>
-<li>确实不好，它是强制退出</li>
-</ul>
-</li>
-<li>
-<p>前端容灾：磁盘增量镜像</p>
-</li>
-<li>
-<p>node有缓存的概念吗？</p>
-<ul>
-<li>有</li>
-</ul>
-</li>
-<li>
-<p><code>node</code>的垃圾回收</p>
-<ul>
-<li>也就是<code>JavaScript</code>的<code>gc</code>，和<code>Java</code>的<code>gc</code>很类似</li>
-<li>只要某个东西不再使用了，释放掉所占据的内存</li>
-<li>没有自动垃圾回收的语言（如<code>C</code>语言）
-<ul>
-<li>程序员自己动手释放</li>
-<li>忘了释放，会造成内存泄漏
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">);</span>
-<span class="c1">//...</span>
-<span class="n">free</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>     
-</code></pre></div></div>
-</li>
-</ul>
-</li>
-<li>自动垃圾回收，通常会采用引用计数的方式
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Person</span> <span class="n">p</span><span class="o">=</span><span class="k">new</span> <span class="nc">Person</span><span class="o">();</span>
-<span class="nc">Person</span> <span class="n">p2</span><span class="o">=</span><span class="n">p</span><span class="o">;</span>
-<span class="n">p</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>   <span class="c1">//还剩1个</span>
-<span class="c1">// ...</span>
-<span class="n">p2</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>  <span class="c1">//还剩0个，可以回收了</span>
-</code></pre></div></div>
-</li>
-</ul>
-</li>
-<li>
-<p>重新发布程序后，浏览器每次需要ctrl+r来强制刷新，如何做到F5刷新就可以获取最新资源呢？</p>
-<ul>
-<li>后台配置</li>
-<li><code>&lt;script src=&quot;a.js?v=2018012323&quot;&gt;&lt;/script&gt;</code></li>
-</ul>
-</li>
-<li>
-<p>服务器的缓冲池怎么理解</p>
-<ul>
-<li>最近使用的、最常使用的资源(文件、数据)，直接留在内存里</li>
-<li>策略-&gt;提高缓冲命中率(和具体场景关系很大)</li>
-</ul>
-</li>
+  <li>程序员内功
+    <ul>
+      <li>算法</li>
+      <li>设计模式</li>
+      <li>架构</li>
+    </ul>
+  </li>
+  <li>如何应对页面被运营商劫持
+    <ul>
+      <li><code class="highlighter-rouge">HTTPS</code></li>
+    </ul>
+  </li>
+  <li>进程之间怎么通信
+    <ul>
+      <li>管道</li>
+      <li>共享内存</li>
+      <li><code class="highlighter-rouge">socket</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>单线程和非阻塞<code class="highlighter-rouge">IO</code></p>
+
+    <ul>
+      <li>阻塞<code class="highlighter-rouge">IO</code>：导致整个程序卡住不动
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="o">=</span><span class="n">fopen</span><span class="p">(</span><span class="s">"a.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+  <span class="n">size</span><span class="o">=</span><span class="n">fread</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">),</span> <span class="n">fp</span><span class="p">);</span>
+  <span class="c1">// &lt;-等待20s</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+</code></pre></div>        </div>
+      </li>
+      <li>非阻塞<code class="highlighter-rouge">IO</code>：继续往下执行，不卡
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="dl">'</span><span class="s1">a.txt</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>       <span class="c1">// &lt;-等待0s</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>前端把加密数据传到后台，后台怎么进行校验的
+    <ul>
+      <li>校验签名</li>
+    </ul>
+  </li>
+  <li>怎么加密的 怎么解密
+    <ul>
+      <li>极其成熟的算法——<code class="highlighter-rouge">RSA</code>（一类算法的总称）</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">request.on('data', data=&gt;{})</code>的<code class="highlighter-rouge">on</code>是一直轮寻吗？
+    <ul>
+      <li>不是，是监听、通知、回调、异步</li>
+    </ul>
+  </li>
+  <li>ctrl+c退出是不是会被监测到，上次在生产环境用了，被批评了
+    <ul>
+      <li>确实不好，它是强制退出</li>
+    </ul>
+  </li>
+  <li>
+    <p>前端容灾：磁盘增量镜像</p>
+  </li>
+  <li>node有缓存的概念吗？
+    <ul>
+      <li>有</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">node</code>的垃圾回收
+    <ul>
+      <li>也就是<code class="highlighter-rouge">JavaScript</code>的<code class="highlighter-rouge">gc</code>，和<code class="highlighter-rouge">Java</code>的<code class="highlighter-rouge">gc</code>很类似</li>
+      <li>只要某个东西不再使用了，释放掉所占据的内存</li>
+      <li>没有自动垃圾回收的语言（如<code class="highlighter-rouge">C</code>语言）
+        <ul>
+          <li>程序员自己动手释放</li>
+          <li>忘了释放，会造成内存泄漏
+            <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">);</span>
+  <span class="c1">//...</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>     
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>自动垃圾回收，通常会采用引用计数的方式
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nc">Person</span> <span class="n">p</span><span class="o">=</span><span class="k">new</span> <span class="nc">Person</span><span class="o">();</span>
+  <span class="nc">Person</span> <span class="n">p2</span><span class="o">=</span><span class="n">p</span><span class="o">;</span>
+  <span class="n">p</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>   <span class="c1">//还剩1个</span>
+  <span class="c1">// ...</span>
+  <span class="n">p2</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>  <span class="c1">//还剩0个，可以回收了</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>重新发布程序后，浏览器每次需要ctrl+r来强制刷新，如何做到F5刷新就可以获取最新资源呢？
+    <ul>
+      <li>后台配置</li>
+      <li><code class="highlighter-rouge">&lt;script src="a.js?v=2018012323"&gt;&lt;/script&gt;</code></li>
+    </ul>
+  </li>
+  <li>服务器的缓冲池怎么理解
+    <ul>
+      <li>最近使用的、最常使用的资源(文件、数据)，直接留在内存里</li>
+      <li>策略-&gt;提高缓冲命中率(和具体场景关系很大)</li>
+    </ul>
+  </li>
 </ul>
 :ET

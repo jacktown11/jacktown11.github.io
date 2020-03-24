@@ -23,7 +23,7 @@ graph LR;
 A[用户] --> B[前端项目: 基于Vue技术栈的SPA项目];
 B --> C[后端项目];
 C --> D[数据库];
-</div> 
+</div>
 
 ## 技术选型
 
@@ -36,6 +36,7 @@ C --> D[数据库];
 - Echarts
 
 ### 后端
+
 - Node.js
 - Express
 - Jwt
@@ -91,4 +92,12 @@ sequenceDiagram;
 
 ## 登录功能实现
 
+# 主页布局
 
+## 整体布局
+
+| 功能区 |  布局元素 |
+| ------ | -------- |
+| 头部   | el-header |
+| 侧边栏 |  el-aside |
+| 主体区 |   el-main |

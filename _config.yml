@@ -1,6 +1,6 @@
 name: jacktown's blog
 permalink: /blog/:year/:month/:day/:title
-markdown: CommonMarkGhPages
-# markdown: kramdown
+# markdown: CommonMarkGhPages
+markdown: kramdown
 highlighter: rouge
 exclude: [/private, /garbage]

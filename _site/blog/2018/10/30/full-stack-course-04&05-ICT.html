@@ -60,91 +60,111 @@
 				<h1 id="post-title">全栈课程04&05 通信与数据交互</h1>
 				<p class="meta">2018-10-30</p>
 				<div class="post" ref="post">
-					<h1 id="section">数据交互</h1>
-<h2 id="section-1">目前主流方式</h2>
+					<h1 id="数据交互">数据交互</h1>
+
+<h2 id="目前主流方式">目前主流方式</h2>
+
 <ol>
-<li>表单: 最基本、最简单（<code>http</code>所有的数据交互其实都是表单）</li>
-<li><code>ajax</code>: 不用刷新，最常用，在服务器配合下也可以跨域</li>
-<li><code>jsonp</code>: 较老的跨域方法，安全性太差，逐渐淡出</li>
-<li><code>websocket</code>: 相对<code>ajax</code>性能比较高</li>
+  <li>表单: 最基本、最简单（<code class="highlighter-rouge">http</code>所有的数据交互其实都是表单）</li>
+  <li><code class="highlighter-rouge">ajax</code>: 不用刷新，最常用，在服务器配合下也可以跨域</li>
+  <li><code class="highlighter-rouge">jsonp</code>: 较老的跨域方法，安全性太差，逐渐淡出</li>
+  <li><code class="highlighter-rouge">websocket</code>: 相对<code class="highlighter-rouge">ajax</code>性能比较高</li>
 </ol>
-<p>对于服务器来说，是区分不了表单、<code>ajax</code>、<code>jsonp</code>，除非是人为标记。</p>
-<h2 id="section-2">表单</h2>
-<h3 id="section-3">属性</h3>
+
+<p>对于服务器来说，是区分不了表单、<code class="highlighter-rouge">ajax</code>、<code class="highlighter-rouge">jsonp</code>，除非是人为标记。</p>
+
+<h2 id="表单">表单</h2>
+
+<h3 id="属性">属性</h3>
+
 <ul>
-<li><code>action</code>，提交地址</li>
-<li><code>method</code>，提交方法
+  <li><code class="highlighter-rouge">action</code>，提交地址</li>
+  <li><code class="highlighter-rouge">method</code>，提交方法
+    <ul>
+      <li><code class="highlighter-rouge">GET</code>,</li>
+      <li><code class="highlighter-rouge">POST</code>,</li>
+      <li><code class="highlighter-rouge">PUT</code>,</li>
+      <li><code class="highlighter-rouge">HEADER</code>,</li>
+      <li><code class="highlighter-rouge">DELETE</code></li>
+      <li>甚至自定义</li>
+    </ul>
+  </li>
+  <li>表单项的<code class="highlighter-rouge">name</code>必须使用，后端获取数据的<code class="highlighter-rouge">key</code>；可以重复，此时服务器获得的是数组</li>
+  <li><code class="highlighter-rouge">submit</code>提交按钮</li>
+</ul>
+
+<h3 id="提交方法">提交方法</h3>
+
 <ul>
-<li><code>GET</code>,</li>
-<li><code>POST</code>,</li>
-<li><code>PUT</code>,</li>
-<li><code>HEADER</code>,</li>
-<li><code>DELETE</code></li>
-<li>甚至自定义</li>
+  <li><code class="highlighter-rouge">GET</code>,数据放在<code class="highlighter-rouge">url</code>中
+    <ul>
+      <li>容量有限</li>
+      <li>能被用户看见（仅限于表单中的<code class="highlighter-rouge">GET</code>）</li>
+      <li>有缓存</li>
+      <li>利于分享和收藏（可以放在书签中）</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">POST</code>，数据在请求体中
+    <ul>
+      <li>容量大，但是过大（比如几个G的视频）也要使用其他方式</li>
+      <li>用户不可见</li>
+      <li>不缓存</li>
+      <li>没法分享和收藏</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>表单项的<code>name</code>必须使用，后端获取数据的<code>key</code>；可以重复，此时服务器获得的是数组</li>
-<li><code>submit</code>提交按钮</li>
-</ul>
-<h3 id="section-4">提交方法</h3>
+
+<p>注意：<code class="highlighter-rouge">GET</code>和<code class="highlighter-rouge">POST</code>安全性完全一样，真正的安全方式<code class="highlighter-rouge">https</code>。</p>
+
+<p><code class="highlighter-rouge">POST</code>请求时两种<code class="highlighter-rouge">Content-Type</code>: <code class="highlighter-rouge">multipart/form-data</code>(文件上传时，在<code class="highlighter-rouge">form</code>标签中设定)、<code class="highlighter-rouge">application/x-www-form-urlencoded</code></p>
+
+<h3 id="表单校验">表单校验</h3>
+
+<p>绑定表单的<code class="highlighter-rouge">submit</code>事件</p>
+
+<h3 id="表单重复提交">表单重复提交</h3>
+
 <ul>
-<li><code>GET</code>,数据放在<code>url</code>中
-<ul>
-<li>容量有限</li>
-<li>能被用户看见（仅限于表单中的<code>GET</code>）</li>
-<li>有缓存</li>
-<li>利于分享和收藏（可以放在书签中）</li>
+  <li>开始提交时，禁用提交按钮</li>
+  <li>提交完成（成功/失败），重新启用提交按钮</li>
 </ul>
-</li>
-<li><code>POST</code>，数据在请求体中
-<ul>
-<li>容量大，但是过大（比如几个G的视频）也要使用其他方式</li>
-<li>用户不可见</li>
-<li>不缓存</li>
-<li>没法分享和收藏</li>
-</ul>
-</li>
-</ul>
-<p>注意：<code>GET</code>和<code>POST</code>安全性完全一样，真正的安全方式<code>https</code>。</p>
-<p><code>POST</code>请求时两种<code>Content-Type</code>: <code>multipart/form-data</code>(文件上传时，在<code>form</code>标签中设定)、<code>application/x-www-form-urlencoded</code></p>
-<h3 id="section-5">表单校验</h3>
-<p>绑定表单的<code>submit</code>事件</p>
-<h3 id="section-6">表单重复提交</h3>
-<ul>
-<li>开始提交时，禁用提交按钮</li>
-<li>提交完成（成功/失败），重新启用提交按钮</li>
-</ul>
+
 <h2 id="ajax">ajax</h2>
+
 <ul>
-<li>依赖于<code>XMLHttpRequest</code>对象，它本身是不兼容<code>IE6</code>的</li>
-<li><code>IE6</code>的<code>ajax</code>：<code>ActiveObject</code></li>
+  <li>依赖于<code class="highlighter-rouge">XMLHttpRequest</code>对象，它本身是不兼容<code class="highlighter-rouge">IE6</code>的</li>
+  <li><code class="highlighter-rouge">IE6</code>的<code class="highlighter-rouge">ajax</code>：<code class="highlighter-rouge">ActiveObject</code></li>
 </ul>
+
 <h3 id="xmlhttprequest">XMLHttpRequest</h3>
+
 <ul>
-<li>连接，<code>xhr.open(method, url, isAsync)</code>，<code>isAsync</code>是否异步
-<ul>
-<li>同步：串行（在很多浏览器中<code>ajax</code>的同步已被废弃）</li>
-<li>异步：并行</li>
+  <li>连接，<code class="highlighter-rouge">xhr.open(method, url, isAsync)</code>，<code class="highlighter-rouge">isAsync</code>是否异步
+    <ul>
+      <li>同步：串行（在很多浏览器中<code class="highlighter-rouge">ajax</code>的同步已被废弃）</li>
+      <li>异步：并行</li>
+    </ul>
+  </li>
+  <li>发送，<code class="highlighter-rouge">xhr.send()</code></li>
+  <li>接收，<code class="highlighter-rouge">xhr.onreadystatechange</code>，<code class="highlighter-rouge">xhr.readystate</code>
+    <ul>
+      <li>0 初始化，刚刚创建</li>
+      <li>1 已连接</li>
+      <li>2 已发送</li>
+      <li>3 已接收（头部）</li>
+      <li>4 已接收（body），此时需要查看<code class="highlighter-rouge">xhr.status</code>（<code class="highlighter-rouge">http</code>状态码）</li>
+    </ul>
+  </li>
+  <li>结果数据
+    <ul>
+      <li><code class="highlighter-rouge">xhr.responseText</code>，文本数据</li>
+      <li><code class="highlighter-rouge">xhr.responseXML</code>，以<code class="highlighter-rouge">XML</code>返回的数据</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>发送，<code>xhr.send()</code></li>
-<li>接收，<code>xhr.onreadystatechange</code>，<code>xhr.readystate</code>
-<ul>
-<li>0 初始化，刚刚创建</li>
-<li>1 已连接</li>
-<li>2 已发送</li>
-<li>3 已接收（头部）</li>
-<li>4 已接收（body），此时需要查看<code>xhr.status</code>（<code>http</code>状态码）</li>
-</ul>
-</li>
-<li>结果数据
-<ul>
-<li><code>xhr.responseText</code>，文本数据</li>
-<li><code>xhr.responseXML</code>，以<code>XML</code>返回的数据</li>
-</ul>
-</li>
-</ul>
+
 <h4 id="get">get</h4>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">./index.php?a=3&amp;b=2</span><span class="dl">'</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -158,7 +178,9 @@
 <span class="p">};</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
 </code></pre></div></div>
+
 <h4 id="post">post</h4>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">./2.php</span><span class="dl">'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
@@ -173,8 +195,10 @@
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">application/x-www-form-urlencoded</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">a=2&amp;b=3</span><span class="dl">'</span><span class="p">);</span>
 </code></pre></div></div>
-<h4 id="section-7">封装</h4>
-<p>以下是一个利用<code>XMLHttpRequest</code>对<code>ajax</code>进行手工封装的尝试：</p>
+<h4 id="封装">封装</h4>
+
+<p>以下是一个利用<code class="highlighter-rouge">XMLHttpRequest</code>对<code class="highlighter-rouge">ajax</code>进行手工封装的尝试：</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
  * @param {ajax请求选项} options 
  * 可能选项包括：url,type,data,datatype,success,error
@@ -237,149 +261,193 @@
 
 <span class="p">}</span>
 </code></pre></div></div>
-<h3 id="http">http状态码</h3>
+
+<h3 id="http状态码">http状态码</h3>
+
 <ul>
-<li>1xx，消息</li>
-<li>2xx，成功</li>
-<li>3xx，重定向
+  <li>1xx，消息</li>
+  <li>2xx，成功</li>
+  <li>3xx，重定向
+    <ul>
+      <li>301，永久重定向——浏览器永远不会再次请求老地址，不轻易用</li>
+      <li>302，临时重定向——一次性，浏览器下次还会请求老地址</li>
+      <li>304，<code class="highlighter-rouge">not modified</code>，缓存，告诉客户端本地的缓存未被修改可直接用</li>
+    </ul>
+  </li>
+  <li>4xx，请求错误（客户端）</li>
+  <li>5xx，服务端错误</li>
+  <li>6xx往后，扩展</li>
+</ul>
+
+<h4 id="重定向与转发">重定向与转发</h4>
+
 <ul>
-<li>301，永久重定向——浏览器永远不会再次请求老地址，不轻易用</li>
-<li>302，临时重定向——一次性，浏览器下次还会请求老地址</li>
-<li>304，<code>not modified</code>，缓存，告诉客户端本地的缓存未被修改可直接用</li>
+  <li>重定向：给浏览器的命令，让其向另一个地址发送请求，地址会改变</li>
+  <li>转发：在服务器内部，把请求交给另一个模块处理，对客户端是不可见的，地址不变</li>
 </ul>
-</li>
-<li>4xx，请求错误（客户端）</li>
-<li>5xx，服务端错误</li>
-<li>6xx往后，扩展</li>
-</ul>
-<h4 id="section-8">重定向与转发</h4>
-<ul>
-<li>重定向：给浏览器的命令，让其向另一个地址发送请求，地址会改变</li>
-<li>转发：在服务器内部，把请求交给另一个模块处理，对客户端是不可见的，地址不变</li>
-</ul>
+
 <h3 id="xml">XML</h3>
-<p><code>XML</code>早于<code>HTML</code>，也是由标签构成，但是没有固定的标签名，比<code>json</code>浪费空间。</p>
+
+<p><code class="highlighter-rouge">XML</code>早于<code class="highlighter-rouge">HTML</code>，也是由标签构成，但是没有固定的标签名，比<code class="highlighter-rouge">json</code>浪费空间。</p>
+
 <h2 id="jsonp">jsonp</h2>
+
 <ul>
-<li>逐渐淡出，用于跨域</li>
-<li>有安全性问题（过于开放，接口很容易能被他方调用）</li>
+  <li>逐渐淡出，用于跨域</li>
+  <li>有安全性问题（过于开放，接口很容易能被他方调用）</li>
 </ul>
-<h2 id="ajax-cors">ajax CORS跨域</h2>
+
+<h2 id="ajax-cors跨域">ajax CORS跨域</h2>
+
 <h2 id="websocket">websocket</h2>
+
 <h2 id="formdata">formData</h2>
-<h2 id="section-9">比较</h2>
-<h3 id="ajax-1">ajax和表单比较</h3>
+
+<h2 id="比较">比较</h2>
+
+<h3 id="ajax和表单比较">ajax和表单比较</h3>
+
 <ul>
-<li>表单更稳定些（特别是在用户网络差的时候）</li>
-<li><code>ajax</code>，用户体验好些</li>
-<li>和场景也相关</li>
+  <li>表单更稳定些（特别是在用户网络差的时候）</li>
+  <li><code class="highlighter-rouge">ajax</code>，用户体验好些</li>
+  <li>和场景也相关</li>
 </ul>
-<h3 id="ajaxwebsocket">ajax与websocket比较</h3>
+
+<h3 id="ajax与websocket比较">ajax与websocket比较</h3>
+
 <ul>
-<li><code>ajax</code>: 性能低，单向通信，跨域麻烦</li>
-<li><code>websocket</code>: 性能高，双向通信（双工），默认可以跨域</li>
+  <li><code class="highlighter-rouge">ajax</code>: 性能低，单向通信，跨域麻烦</li>
+  <li><code class="highlighter-rouge">websocket</code>: 性能高，双向通信（双工），默认可以跨域</li>
 </ul>
-<h1 id="section-10">跨域</h1>
+
+<h1 id="跨域">跨域</h1>
+
 <ul>
-<li>浏览器同源策略初衷：安全，避免<code>XSS</code>(Cross Origin Scripts)，跨站脚本攻击</li>
-<li>为什么需要跨域
-<ul>
-<li>一个公司的多个（比如新旧）网站</li>
-<li>使用第三方数据交互</li>
+  <li>浏览器同源策略初衷：安全，避免<code class="highlighter-rouge">XSS</code>(Cross Origin Scripts)，跨站脚本攻击</li>
+  <li>为什么需要跨域
+    <ul>
+      <li>一个公司的多个（比如新旧）网站</li>
+      <li>使用第三方数据交互</li>
+    </ul>
+  </li>
+  <li>目前跨域方法
+    <ul>
+      <li>表单，比如表单方式的网银支付</li>
+      <li><code class="highlighter-rouge">ajax</code>，麻烦</li>
+      <li><code class="highlighter-rouge">jsonp</code>，简单但不安全</li>
+      <li><code class="highlighter-rouge">websocket</code>，新兴，并还没有广泛支持；但是如果真的需要，也可以让其在低版本浏览器上运行</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>目前跨域方法
-<ul>
-<li>表单，比如表单方式的网银支付</li>
-<li><code>ajax</code>，麻烦</li>
-<li><code>jsonp</code>，简单但不安全</li>
-<li><code>websocket</code>，新兴，并还没有广泛支持；但是如果真的需要，也可以让其在低版本浏览器上运行</li>
-</ul>
-</li>
-</ul>
-<h1 id="section-11">网络</h1>
+
+<h1 id="网络">网络</h1>
+
 <h2 id="osi">OSI</h2>
-<p><code>OSI</code>模型，即开放式通信系统互联参考模型(Open System Interconnection,OSI/RM,Open Systems Interconnection Reference Model)，是国际标准化组织(<code>ISO</code>)提出的一个试图使各种计算机在世界范围内互连为网络的标准框架，简称<code>OSI</code>。该模型有七层（参考模型），实际用的是五层。</p>
-<h3 id="section-12">七层参考模型</h3>
+
+<p><code class="highlighter-rouge">OSI</code>模型，即开放式通信系统互联参考模型(Open System Interconnection,OSI/RM,Open Systems Interconnection Reference Model)，是国际标准化组织(<code class="highlighter-rouge">ISO</code>)提出的一个试图使各种计算机在世界范围内互连为网络的标准框架，简称<code class="highlighter-rouge">OSI</code>。该模型有七层（参考模型），实际用的是五层。</p>
+
+<h3 id="七层参考模型">七层参考模型</h3>
+
 <ol>
-<li>物理层，物理学家、材料工程关注：材料、电压</li>
-<li>链路层，内网寻址，<code>ARP</code>、<code>ICMP</code></li>
-<li>网络层，外网寻址，<code>IP</code></li>
-<li>传输层，通信稳定性，<code>TCP</code></li>
-<li>表现层，（统一各种网络的结构）</li>
-<li>会话层，（让服务器记录以往访问状态）但是实际中都是无状态通信</li>
-<li>应用层，应用细节，<code>HTTP</code>（基于<code>TCP</code>）、<code>FTP</code>、<code>SMTP</code>、<code>POP3</code></li>
+  <li>物理层，物理学家、材料工程关注：材料、电压</li>
+  <li>链路层，内网寻址，<code class="highlighter-rouge">ARP</code>、<code class="highlighter-rouge">ICMP</code></li>
+  <li>网络层，外网寻址，<code class="highlighter-rouge">IP</code></li>
+  <li>传输层，通信稳定性，<code class="highlighter-rouge">TCP</code></li>
+  <li>表现层，（统一各种网络的结构）</li>
+  <li>会话层，（让服务器记录以往访问状态）但是实际中都是无状态通信</li>
+  <li>应用层，应用细节，<code class="highlighter-rouge">HTTP</code>（基于<code class="highlighter-rouge">TCP</code>）、<code class="highlighter-rouge">FTP</code>、<code class="highlighter-rouge">SMTP</code>、<code class="highlighter-rouge">POP3</code></li>
 </ol>
-<h3 id="section-13">实际计算机网络的五层</h3>
+
+<h3 id="实际计算机网络的五层">实际计算机网络的五层</h3>
+
 <ol>
-<li>物理层</li>
-<li>链路层</li>
-<li>网络层</li>
-<li>传输层</li>
-<li>应用层</li>
+  <li>物理层</li>
+  <li>链路层</li>
+  <li>网络层</li>
+  <li>传输层</li>
+  <li>应用层</li>
 </ol>
-<h3 id="section-14">两个协议</h3>
+
+<h3 id="两个协议">两个协议</h3>
+
 <ul>
-<li><code>TCP</code>，传输控制协议，（应用：文件下载、聊天、游戏），<code>socket</code>就是该协议
+  <li><code class="highlighter-rouge">TCP</code>，传输控制协议，（应用：文件下载、聊天、游戏），<code class="highlighter-rouge">socket</code>就是该协议
+    <ul>
+      <li>保证到达</li>
+      <li>保证质量</li>
+      <li>保证顺序</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">UDP</code>，用户数据报协议，（应用：对延迟要求高，对错误不敏感，如直播、视频电话）
+    <ul>
+      <li>不保证到达</li>
+      <li>不保证质量</li>
+      <li>不保证顺序</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="http协议">http协议</h2>
+
+<h3 id="连接过程">连接过程</h3>
+
 <ul>
-<li>保证到达</li>
-<li>保证质量</li>
-<li>保证顺序</li>
+  <li>客户端与服务器连接：三次握手，客户端连接请求、服务器接受、客户端发送请求</li>
+  <li>请求与返回消息，<code class="highlighter-rouge">request</code>和<code class="highlighter-rouge">response</code>
+    <ul>
+      <li>消息头部（首部），&lt;=32k</li>
+      <li>消息体（内容），&lt;=1G</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">GET</code>请求的数据是放在头部，所以容量很受限，而<code class="highlighter-rouge">POST</code>则可以发送大量数据</li>
 </ul>
-</li>
-<li><code>UDP</code>，用户数据报协议，（应用：对延迟要求高，对错误不敏感，如直播、视频电话）
+
+<h3 id="http与https">http与https</h3>
+
 <ul>
-<li>不保证到达</li>
-<li>不保证质量</li>
-<li>不保证顺序</li>
+  <li><code class="highlighter-rouge">http</code>，容易被窃听</li>
+  <li><code class="highlighter-rouge">https</code>，安全</li>
 </ul>
-</li>
-</ul>
-<h2 id="http-1">http协议</h2>
-<h3 id="section-15">连接过程</h3>
+
+<h3 id="版本">版本</h3>
+
 <ul>
-<li>客户端与服务器连接：三次握手，客户端连接请求、服务器接受、客户端发送请求</li>
-<li>请求与返回消息，<code>request</code>和<code>response</code>
+  <li><code class="highlighter-rouge">http1.0</code>，一次性链接</li>
+  <li><code class="highlighter-rouge">http1.1</code>，保持链接，从而导致性能很大的提示</li>
+  <li><code class="highlighter-rouge">http2.0</code>，目前是草案，还没有彻底定稿
+    <ul>
+      <li>强制<code class="highlighter-rouge">https</code></li>
+      <li>自带双向通信</li>
+      <li>多路复用</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="外话">外话</h1>
+
+<h2 id="安全性">安全性</h2>
+
 <ul>
-<li>消息头部（首部），&lt;=32k</li>
-<li>消息体（内容），&lt;=1G</li>
+  <li>系统级安全性，个人难以解决</li>
+  <li>代码安全性，程序员需要关注的，重要来源——蠢，懒，不重视</li>
 </ul>
-</li>
-<li><code>GET</code>请求的数据是放在头部，所以容量很受限，而<code>POST</code>则可以发送大量数据</li>
-</ul>
-<h3 id="httphttps">http与https</h3>
-<ul>
-<li><code>http</code>，容易被窃听</li>
-<li><code>https</code>，安全</li>
-</ul>
-<h3 id="section-16">版本</h3>
-<ul>
-<li><code>http1.0</code>，一次性链接</li>
-<li><code>http1.1</code>，保持链接，从而导致性能很大的提示</li>
-<li><code>http2.0</code>，目前是草案，还没有彻底定稿
-<ul>
-<li>强制<code>https</code></li>
-<li>自带双向通信</li>
-<li>多路复用</li>
-</ul>
-</li>
-</ul>
-<h1 id="section-17">外话</h1>
-<h2 id="section-18">安全性</h2>
-<ul>
-<li>系统级安全性，个人难以解决</li>
-<li>代码安全性，程序员需要关注的，重要来源——蠢，懒，不重视</li>
-</ul>
-<h2 id="section-19">单点登录</h2>
+
+<h2 id="单点登录">单点登录</h2>
+
 <p>OAuth，指多个客户端（比如淘宝、阿里云等）采用同一个验证服务器来进行登录验证。</p>
+
 <h2 id="restful">RESTful</h2>
-<p>不是接口、不是标准，是一种风格、习惯；根据请求<code>method</code>和<code>url</code>共同决定接口访问的实际效果。</p>
-<h2 id="content-type">数据提交常用Content-Type</h2>
+
+<p>不是接口、不是标准，是一种风格、习惯；根据请求<code class="highlighter-rouge">method</code>和<code class="highlighter-rouge">url</code>共同决定接口访问的实际效果。</p>
+
+<h2 id="数据提交常用content-type">数据提交常用Content-Type</h2>
+
 <ul>
-<li><code>text/plain</code>，纯文本</li>
-<li><code>application/x-www-form-urlencoded</code>，<code>urlencoded</code>是指<code>key=value&amp;key=value</code>形式（简单数据）</li>
-<li><code>multipart/form-data</code>，用定界符分割各个数据（文件上传）</li>
+  <li><code class="highlighter-rouge">text/plain</code>，纯文本</li>
+  <li><code class="highlighter-rouge">application/x-www-form-urlencoded</code>，<code class="highlighter-rouge">urlencoded</code>是指<code class="highlighter-rouge">key=value&amp;key=value</code>形式（简单数据）</li>
+  <li><code class="highlighter-rouge">multipart/form-data</code>，用定界符分割各个数据（文件上传）</li>
 </ul>
+
 
 				</div>
 				<p>（本文完）</p>

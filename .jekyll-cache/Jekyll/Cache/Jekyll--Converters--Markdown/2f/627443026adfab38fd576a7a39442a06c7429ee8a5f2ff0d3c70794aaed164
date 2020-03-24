@@ -1,20 +1,28 @@
-I"d<h1 id="windows--mysql">windows 安装 mysql</h1>
+I"<h1 id="windows-安装-mysql">windows 安装 mysql</h1>
+
 <ul>
-<li><a href="https://www.runoob.com/mysql/mysql-install.html">菜鸟教程</a></li>
-<li><a href="https://www.cnblogs.com/winton-nfs/p/11524007.html">MySQL的安装与配置——详细教程</a></li>
+  <li><a href="https://www.runoob.com/mysql/mysql-install.html">菜鸟教程</a></li>
+  <li><a href="https://www.cnblogs.com/winton-nfs/p/11524007.html">MySQL的安装与配置——详细教程</a></li>
 </ul>
-<h1 id="mysql">命令行执行 mysql</h1>
-<p><code>source &lt;文件路径&gt;</code> 如 <code>source D:\mydb.sql</code></p>
+
+<h1 id="命令行执行-mysql">命令行执行 mysql</h1>
+
+<p><code class="highlighter-rouge">source &lt;文件路径&gt;</code> 如 <code class="highlighter-rouge">source D:\mydb.sql</code></p>
+
 <h1 id="client-does-not-support-authentication-protocol-requested-by-server-consider-upgrading-mysql-client">Client does not support authentication protocol requested by server; consider upgrading MySQL client</h1>
+
 <p>新版本的 mysql 的认证加密规则由改变引起的，可命令行登录 mysql 依次执行如下命令解决：</p>
+
 <ul>
-<li><code>use mysql;</code></li>
-<li><code>alter user 'root'@'localhost' identified with mysql_native_password by '********';</code></li>
-<li><code>flush privileges;</code></li>
+  <li><code class="highlighter-rouge">use mysql;</code></li>
+  <li><code class="highlighter-rouge">alter user 'root'@'localhost' identified with mysql_native_password by '********';</code></li>
+  <li><code class="highlighter-rouge">flush privileges;</code></li>
 </ul>
+
 <p>参考文章：</p>
 <ul>
-<li><a href="https://www.cnblogs.com/zichuan/p/9203129.html">简化版</a></li>
-<li><a href="https://blog.csdn.net/qq_38455201/article/details/83024357">详细版</a></li>
+  <li><a href="https://www.cnblogs.com/zichuan/p/9203129.html">简化版</a></li>
+  <li><a href="https://blog.csdn.net/qq_38455201/article/details/83024357">详细版</a></li>
 </ul>
+
 :ET

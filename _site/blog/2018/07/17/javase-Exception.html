@@ -60,56 +60,69 @@
 				<h1 id="post-title">javase Exception</h1>
 				<p class="meta">2018-07-17</p>
 				<div class="post" ref="post">
-					<h1 id="section">异常</h1>
+					<h1 id="异常">异常</h1>
+
 <p>java代码在运行时期发生的问题就是异常。在java中，把异常信息封装成了一个类。当出现了问题时，就会创建异常类对象并抛出异常相关的信息（如异常出现的位置、原因等）</p>
-<h2 id="section-1">异常的继承体系</h2>
-<p><code>java.lang</code>包中提供了<code>Throwable</code>类，是java中所有的错误和异常的超类，其子类<code>Excepiton</code>用以表示异常，而<code>Error</code>表示错误。</p>
+
+<h2 id="异常的继承体系">异常的继承体系</h2>
+
+<p><code class="highlighter-rouge">java.lang</code>包中提供了<code class="highlighter-rouge">Throwable</code>类，是java中所有的错误和异常的超类，其子类<code class="highlighter-rouge">Excepiton</code>用以表示异常，而<code class="highlighter-rouge">Error</code>表示错误。</p>
+
 <ul>
-<li>Throwable
+  <li>Throwable
+    <ul>
+      <li>Error</li>
+      <li>Exception
+        <ul>
+          <li>RuntimeException
+            <ul>
+              <li>NullPointerException</li>
+              <li>IndexOutOfBoundsException
+                <ul>
+                  <li>ArrayIndexOutOfBoundsException</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>…</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="错误与异常区别">错误与异常区别</h3>
+
 <ul>
-<li>Error</li>
-<li>Exception
+  <li><code class="highlighter-rouge">Exception</code>发生在编译、运行期间，我们可以对在运行中对异常进行具体的处理；若不处理异常，程序将会结束运行。</li>
+  <li><code class="highlighter-rouge">Error</code>更严重，出现在运行期间，错误通常没有具体的处理方式，程序将会结束运行；<code class="highlighter-rouge">Error</code>错误的发生往往都是系统级别的问题，都是<code class="highlighter-rouge">jvm</code>所在系统发生的，并反馈给<code class="highlighter-rouge">jvm</code>的。我们无法针对处理，只能修正代码。错误必须要修改程序让错误不发生。</li>
+</ul>
+
+<h2 id="异常的创建过程">异常的创建过程</h2>
+
 <ul>
-<li>RuntimeException
+  <li>运行发生异常时，<code class="highlighter-rouge">JVM</code>创建异常对象抛出</li>
+  <li><code class="highlighter-rouge">JVM</code>查看该异常是否在当前方法内部是否被处理</li>
+  <li>如果未被处理，该异常会被抛出给方法的调用者，让调用者处理，如果调用者也不处理，则一直向上抛出到<code class="highlighter-rouge">main</code></li>
+  <li>如果直到<code class="highlighter-rouge">main</code>方法该异常仍旧不能被处理，那么<code class="highlighter-rouge">JVM</code>会输出异常信息，并停止执行程序</li>
+  <li>抛出的异常未被处理前，后续代码都不会被执行（即使被处理，有的代码也可能不会被执行了）</li>
+</ul>
+
+<h2 id="抛出异常">抛出异常</h2>
+
 <ul>
-<li>NullPointerException</li>
-<li>IndexOutOfBoundsException
-<ul>
-<li>ArrayIndexOutOfBoundsException</li>
+  <li><code class="highlighter-rouge">throw</code>关键字用于抛出异常对象，异常对象中含有异常的相关信息。</li>
+  <li><code class="highlighter-rouge">throws</code>关键字在方法声明上标记该方法可能抛出异常</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>...</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="section-2">错误与异常区别</h3>
-<ul>
-<li><code>Exception</code>发生在编译、运行期间，我们可以对在运行中对异常进行具体的处理；若不处理异常，程序将会结束运行。</li>
-<li><code>Error</code>更严重，出现在运行期间，错误通常没有具体的处理方式，程序将会结束运行；<code>Error</code>错误的发生往往都是系统级别的问题，都是<code>jvm</code>所在系统发生的，并反馈给<code>jvm</code>的。我们无法针对处理，只能修正代码。错误必须要修改程序让错误不发生。</li>
-</ul>
-<h2 id="section-3">异常的创建过程</h2>
-<ul>
-<li>运行发生异常时，<code>JVM</code>创建异常对象抛出</li>
-<li><code>JVM</code>查看该异常是否在当前方法内部是否被处理</li>
-<li>如果未被处理，该异常会被抛出给方法的调用者，让调用者处理，如果调用者也不处理，则一直向上抛出到<code>main</code></li>
-<li>如果直到<code>main</code>方法该异常仍旧不能被处理，那么<code>JVM</code>会输出异常信息，并停止执行程序</li>
-<li>抛出的异常未被处理前，后续代码都不会被执行（即使被处理，有的代码也可能不会被执行了）</li>
-</ul>
-<h2 id="section-4">抛出异常</h2>
-<ul>
-<li><code>throw</code>关键字用于抛出异常对象，异常对象中含有异常的相关信息。</li>
-<li><code>throws</code>关键字在方法声明上标记该方法可能抛出异常</li>
-</ul>
+
 <p>例如</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">go</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span><span class="o">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="o">(</span><span class="s">"一个异常"</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre></div></div>
-<h2 id="section-5">异常处理</h2>
+
+<h2 id="异常处理">异常处理</h2>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="o">{</span>
 
 <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">ExceptionType1</span> <span class="n">e1</span><span class="o">){</span>
@@ -120,29 +133,57 @@
 
 <span class="o">}</span>
 </code></pre></div></div>
-<p><code>finally</code>即使有异常也会被执行，在<code>io</code>读取中释放资源很常用</p>
-<h3 id="catch">多catch细节</h3>
-<p>多个<code>catch</code>匹配是，一旦匹配成功，后边的<code>catch</code>一律忽略，匹配成功的<code>catch</code>执行完毕直接执行<code>finally</code>（如果有）。因此如果两种有继承关系的异常分别放在某两个<code>catch</code>中，那么子类型应该放在前面，否则子类型永远不会执行。</p>
-<h2 id="section-6">运行时期异常的特点</h2>
-<p><code>RuntimeException</code>，相对的编译时期异常。</p>
-<p>方法的声明上不需要<code>throws</code>语句，调用者也不是必须要处理的。</p>
+<p><code class="highlighter-rouge">finally</code>即使有异常也会被执行，在<code class="highlighter-rouge">io</code>读取中释放资源很常用</p>
+
+<h3 id="多catch细节">多catch细节</h3>
+<p>多个<code class="highlighter-rouge">catch</code>匹配是，一旦匹配成功，后边的<code class="highlighter-rouge">catch</code>一律忽略，匹配成功的<code class="highlighter-rouge">catch</code>执行完毕直接执行<code class="highlighter-rouge">finally</code>（如果有）。因此如果两种有继承关系的异常分别放在某两个<code class="highlighter-rouge">catch</code>中，那么子类型应该放在前面，否则子类型永远不会执行。</p>
+
+<h2 id="运行时期异常的特点">运行时期异常的特点</h2>
+
+<p><code class="highlighter-rouge">RuntimeException</code>，相对的编译时期异常。</p>
+
+<p>方法的声明上不需要<code class="highlighter-rouge">throws</code>语句，调用者也不是必须要处理的。</p>
+
 <p>设计原因： 运行异常是不该发生的，如果真的发生了，后面的代码不再具有意义，程序人员应该修改源代码。</p>
-<h2 id="section-7">子类重写父类方法时异常的处理</h2>
+
+<h2 id="子类重写父类方法时异常的处理">子类重写父类方法时异常的处理</h2>
+
 <ul>
-<li>父类如果有抛出异常，子类只能声明父类异常或者该异常的子类，或者不声明。</li>
-<li>当父类方法声明多个异常时，子类覆盖时只能声明多个异常的子集</li>
-<li>当被覆盖的方法没有异常声明时，子类覆盖时无法声明异常</li>
-<li>父类没抛出异常，但子类内部有可能出现异常时，可以通过<code>try-catch</code>处理，如果处理不了，也只能抛出运行时异常（该异常可以不声明）</li>
+  <li>父类如果有抛出异常，子类只能声明父类异常或者该异常的子类，或者不声明。</li>
+  <li>当父类方法声明多个异常时，子类覆盖时只能声明多个异常的子集</li>
+  <li>当被覆盖的方法没有异常声明时，子类覆盖时无法声明异常</li>
+  <li>父类没抛出异常，但子类内部有可能出现异常时，可以通过<code class="highlighter-rouge">try-catch</code>处理，如果处理不了，也只能抛出运行时异常（该异常可以不声明）</li>
 </ul>
-<h2 id="throwable">Throwable类的方法</h2>
-<p>|方法 |说明 |
-|- |- |
-|String <code>getMessage()</code> |返回异常信息详细描述 |
-|String <code>toString</code>() |返回异常信息的简短描述 |
-|void <code>printStackTrace</code>() |将异常信息追踪栈输出到到标准错误流 |</p>
-<h2 id="section-8">自定义异常</h2>
+
+<h2 id="throwable类的方法">Throwable类的方法</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>String <code class="highlighter-rouge">getMessage()</code></td>
+      <td>返回异常信息详细描述</td>
+    </tr>
+    <tr>
+      <td>String <code class="highlighter-rouge">toString</code>()</td>
+      <td>返回异常信息的简短描述</td>
+    </tr>
+    <tr>
+      <td>void <code class="highlighter-rouge">printStackTrace</code>()</td>
+      <td>将异常信息追踪栈输出到到标准错误流</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="自定义异常">自定义异常</h2>
 <p>如果Java没有提供你需要的异常，则可以自定义异常类。</p>
-<p>编译时异常继承<code>Exception</code>，运行时异常继承<code>RuntimeException</code>。</p>
+
+<p>编译时异常继承<code class="highlighter-rouge">Exception</code>，运行时异常继承<code class="highlighter-rouge">RuntimeException</code>。</p>
 
 				</div>
 				<p>（本文完）</p>

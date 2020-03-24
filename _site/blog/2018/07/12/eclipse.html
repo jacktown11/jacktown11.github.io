@@ -60,275 +60,314 @@
 				<h1 id="post-title">eclipse的使用</h1>
 				<p class="meta">2018-07-12</p>
 				<div class="post" ref="post">
-					<h1 id="eclipse">Eclipse的下载安装</h1>
-<h2 id="eclipse-1">Eclipse的下载安装</h2>
+					<h1 id="eclipse的下载安装">Eclipse的下载安装</h1>
+
+<h2 id="eclipse的下载安装-1">Eclipse的下载安装</h2>
+
 <ul>
-<li>下载: http://www.eclipse.org</li>
-<li>安装: 只需要解压后就能使用</li>
-<li>卸载: 只需要将文件夹删除就可以了</li>
-<li>注意: 开发软件的安装目录中，尽量不要出现空格与中文</li>
+  <li>下载: http://www.eclipse.org</li>
+  <li>安装: 只需要解压后就能使用</li>
+  <li>卸载: 只需要将文件夹删除就可以了</li>
+  <li>注意: 开发软件的安装目录中，尽量不要出现空格与中文</li>
 </ul>
-<h2 id="eclipse-2">Eclipse的特点</h2>
+
+<h2 id="eclipse的特点">Eclipse的特点</h2>
+
 <ul>
-<li>免费</li>
-<li>纯Java语言编写</li>
-<li>免安装</li>
-<li>扩展性强</li>
+  <li>免费</li>
+  <li>纯Java语言编写</li>
+  <li>免安装</li>
+  <li>扩展性强</li>
 </ul>
-<h1 id="eclipse-3">Eclipse的工作空间和新建工程</h1>
-<h2 id="eclipse-4">Eclipse的工作空间和新建工程</h2>
+
+<h1 id="eclipse的工作空间和新建工程">Eclipse的工作空间和新建工程</h1>
+
+<h2 id="eclipse的工作空间和新建工程-1">Eclipse的工作空间和新建工程</h2>
+
 <ul>
-<li>工作空间
+  <li>工作空间
+    <ul>
+      <li>其实就是我们写的源代码所在的目录</li>
+    </ul>
+  </li>
+  <li>创建工程(项目)
+    <ul>
+      <li>右键/Package Explore 空白区/new /Java Project/输入项目名称如day08/</li>
+    </ul>
+  </li>
+  <li>创建包(后面讲包的概念)
+  -　打开上面建立的day08项目/右键/new/package/在弹出的对话框的name中输入报名如”com.itheima.tests”/finish</li>
+  <li>创建类
+    <ul>
+      <li>创建一个java类:右击包名/new/class/在对话框的name中输入类名/finish</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="编译与执行">编译与执行</h2>
+
 <ul>
-<li>其实就是我们写的源代码所在的目录</li>
+  <li>编译
+    <ul>
+      <li>自动编译，当java代码保存的时候，自动 编译class文件</li>
+    </ul>
+  </li>
+  <li>运行
+    <ul>
+      <li>方式1：点击菜单工具栏中的 绿色带有三角形的 run按钮 运行</li>
+      <li>方式2：点击菜单栏中Run， 点击Run 运行  快捷键是 ctrl+F11</li>
+      <li>方式3：选中要运行的java文件，或者在编写代码的空白区域，右键选择 Run As –&gt; 运行java程序</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>创建工程(项目)
+
+<h1 id="eclipse的字体设置">Eclipse的字体设置</h1>
+
+<h2 id="修改编译环境和运行环境">修改编译环境和运行环境</h2>
+
 <ul>
-<li>右键/Package Explore 空白区/new /Java Project/输入项目名称如day08/</li>
+  <li>编译环境：Window – Preferences – Java - Compiler</li>
+  <li>运行环境：Window – Preferences – Java - Installed JREs</li>
 </ul>
-</li>
-<li>创建包(后面讲包的概念)
--　打开上面建立的day08项目/右键/new/package/在弹出的对话框的name中输入报名如&quot;com.itheima.tests&quot;/finish</li>
-<li>创建类
+
+<h2 id="显示行号与隐藏行号">显示行号与隐藏行号</h2>
+
 <ul>
-<li>创建一个java类:右击包名/new/class/在对话框的name中输入类名/finish</li>
+  <li>显示：在代码区域的左边空白区域，右键 – Show Line Numbers</li>
+  <li>隐藏：将上面的操作再做一遍</li>
 </ul>
-</li>
-</ul>
-<h2 id="section">编译与执行</h2>
+
+<h2 id="更改字体大小与颜色">更改字体大小与颜色</h2>
+
 <ul>
-<li>编译
+  <li>Java代码区域的字体大小和颜色： window – Preferences – General – Appearance – Colors And Fonts –Java修改 – Java Edit Text Font–edit进行修改</li>
+  <li>控制台: window – Preferences – General – Appearance – Colors And Fonts – Debug – Console font</li>
+  <li>其他文件: window – Preferences – General – Appearance – Colors And Fonts – Basic – Text Font</li>
+</ul>
+
+<h1 id="eclipse的窗口设置">Eclipse的窗口设置</h1>
+
 <ul>
-<li>自动编译，当java代码保存的时候，自动 编译class文件</li>
+  <li>显示的窗口乱了，还原默认显示模式
+    <ul>
+      <li>Window – Perspective – Reset Prespective</li>
+    </ul>
+  </li>
+  <li>显示控制台
+    <ul>
+      <li>Window–Show View—Console</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>运行
+
+<h1 id="eclipse的去掉多余的注释">Eclipse的去掉多余的注释</h1>
+
+<h2 id="如何去掉默认注释">如何去掉默认注释</h2>
+
 <ul>
-<li>方式1：点击菜单工具栏中的 绿色带有三角形的 run按钮 运行</li>
-<li>方式2：点击菜单栏中Run， 点击Run 运行  快捷键是 ctrl+F11</li>
-<li>方式3：选中要运行的java文件，或者在编写代码的空白区域，右键选择 Run As --&gt; 运行java程序</li>
+  <li>Window – Preferences – Java – Code Style – Code Templates – Comments – Methods，点击Edit ，将注释部分删除 (不建议删除)</li>
+  <li>Window – Preferences – Java – Code Style – Code Templates – Code – Method body，点击Edit ，将注释部分删除</li>
 </ul>
-</li>
-</ul>
-<h1 id="eclipse-5">Eclipse的字体设置</h1>
-<h2 id="section-1">修改编译环境和运行环境</h2>
+
+<h2 id="切换工作空间">切换工作空间</h2>
+
 <ul>
-<li>编译环境：Window -- Preferences – Java - Compiler</li>
-<li>运行环境：Window -- Preferences – Java - Installed JREs</li>
+  <li>File – Switch Workspace – 指定工作空间 – ok</li>
 </ul>
-<h2 id="section-2">显示行号与隐藏行号</h2>
+
+<h1 id="eclipse的快捷键">Eclipse的快捷键</h1>
+
 <ul>
-<li>显示：在代码区域的左边空白区域，右键 -- Show Line Numbers</li>
-<li>隐藏：将上面的操作再做一遍</li>
+  <li>内容辅助键 <code class="highlighter-rouge">Alt+/</code>
+    <ul>
+      <li>自动补齐main方法  main 然后 Alt+/
+        <ul>
+          <li>自动补齐输出语句  syso 然后 Alt+/</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>格式化代码
+    <ul>
+      <li><code class="highlighter-rouge">Ctrl+Shift+f</code></li>
+      <li>代码区域右键 – Source – Format</li>
+    </ul>
+  </li>
+  <li>自动导包
+    <ul>
+      <li><code class="highlighter-rouge">Ctrl+Shift+o</code></li>
+      <li>如果当前类在多个包中都存在，这时候，使用Ctrl+shift+o,进行选择一个包导入即可。</li>
+    </ul>
+  </li>
+  <li>注释
+    <ul>
+      <li>单行注释： <code class="highlighter-rouge">Ctrl+/</code></li>
+      <li>多行注释： <code class="highlighter-rouge">Ctrl+Shift+/</code></li>
+    </ul>
+  </li>
+  <li>补充
+    <ul>
+      <li>代码上下移动
+        <ul>
+          <li>选中代码<code class="highlighter-rouge">alt+down/up</code></li>
+        </ul>
+      </li>
+      <li>查看源码
+        <ul>
+          <li>选中类名(F3或者Ctrl+鼠标点击)</li>
+        </ul>
+      </li>
+      <li>查找具体的类
+        <ul>
+          <li><code class="highlighter-rouge">ctrl + shift + t</code>，输入要查找的类的名称–&gt;确定</li>
+        </ul>
+      </li>
+      <li>查找具体类的具体方法
+        <ul>
+          <li><code class="highlighter-rouge">ctrl + o</code></li>
+        </ul>
+      </li>
+      <li>给建议
+        <ul>
+          <li><code class="highlighter-rouge">ctrl+1</code>,根据右边生成左边的数据类型,生成方法</li>
+        </ul>
+      </li>
+      <li>删除代码
+        <ul>
+          <li><code class="highlighter-rouge">ctrl + D</code></li>
+        </ul>
+      </li>
+      <li>抽取方法
+        <ul>
+          <li><code class="highlighter-rouge">alt + shift + m</code></li>
+        </ul>
+      </li>
+      <li>改名
+        <ul>
+          <li><code class="highlighter-rouge">Ctrl+2 R</code></li>
+          <li><code class="highlighter-rouge">alt + shift + r</code>（类名，方法名，变量名）</li>
+        </ul>
+      </li>
+      <li>自动代码生成
+        <ul>
+          <li><code class="highlighter-rouge">Alt+Shift+S</code></li>
+        </ul>
+      </li>
+      <li>查看继承树
+        <ul>
+          <li><code class="highlighter-rouge">Ctrl+T</code></li>
+        </ul>
+      </li>
+      <li>查看源码
+        <ul>
+          <li><code class="highlighter-rouge">Ctrl</code>+滑动鼠标点击类/方法名，或者选中类名后，按<code class="highlighter-rouge">F3</code>键查看所选中类/方法的源代码</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
-<h2 id="section-3">更改字体大小与颜色</h2>
+
+<h1 id="eclipse的断点调试">Eclipse的断点调试</h1>
+
 <ul>
-<li>Java代码区域的字体大小和颜色： window -- Preferences -- General -- Appearance -- Colors And Fonts --Java修改 -- Java Edit Text Font--edit进行修改</li>
-<li>控制台: window -- Preferences -- General -- Appearance -- Colors And Fonts -- Debug -- Console font</li>
-<li>其他文件: window -- Preferences -- General -- Appearance -- Colors And Fonts -- Basic -- Text Font</li>
+  <li>断点调试(又称为Debug调试)的作用
+    <ul>
+      <li>调试程序</li>
+      <li>查看程序执行流程</li>
+    </ul>
+  </li>
+  <li>如何查看程序执行流程
+    <ul>
+      <li>断点：就是一个标记，从哪里开始。</li>
+      <li>设置断点: 你想看哪里的程序，你就在那个有效程序的左边双击即可。</li>
+      <li>在哪里设置断点：
+        <ul>
+          <li>程序关键位置</li>
+        </ul>
+      </li>
+      <li>如何运行设置断点后的程序：
+        <ul>
+          <li>右键 – Debug as – Java Application</li>
+        </ul>
+      </li>
+      <li>看哪些地方：
+        <ul>
+          <li>Debug：断点测试的地方
+            <ul>
+              <li>在这个地方，记住F6，或者点击也可以。一次看一行的执行过程。</li>
+            </ul>
+          </li>
+          <li>Variables：查看程序的变量变化</li>
+          <li>ForDemo：被查看的源文件</li>
+          <li>Console：控制台</li>
+        </ul>
+      </li>
+      <li>如何去断点：
+        <ul>
+          <li>再次双击即可</li>
+          <li>找到Debug视图，Variables界面，找到Breakpoints，并点击，然后看到所有的断点，最后点击那个双叉</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
-<h1 id="eclipse-6">Eclipse的窗口设置</h1>
+
+<h1 id="eclipse的工程删除和导入">Eclipse的工程删除和导入</h1>
+
+<h2 id="删除项目">删除项目</h2>
+
 <ul>
-<li>显示的窗口乱了，还原默认显示模式
+  <li>选中项目 – 右键 – 删除
+    <ul>
+      <li>从项目区域中删除</li>
+      <li>从硬盘上删除</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="导入项目">导入项目</h2>
+
 <ul>
-<li>Window – Perspective -- Reset Prespective</li>
+  <li>在项目区域右键找到import</li>
+  <li>找到General，展开，并找到</li>
+  <li>Existing Projects into Workspace</li>
+  <li>点击next,然后选择你要导入的项目</li>
+  <li>注意：这里选择的是项目名称</li>
 </ul>
-</li>
-<li>显示控制台
-<ul>
-<li>Window--Show View—Console</li>
-</ul>
-</li>
-</ul>
-<h1 id="eclipse-7">Eclipse的去掉多余的注释</h1>
-<h2 id="section-4">如何去掉默认注释</h2>
-<ul>
-<li>Window -- Preferences -- Java -- Code Style -- Code Templates -- Comments – Methods，点击Edit ，将注释部分删除 (不建议删除)</li>
-<li>Window -- Preferences -- Java -- Code Style -- Code Templates -- Code -- Method body，点击Edit ，将注释部分删除</li>
-</ul>
-<h2 id="section-5">切换工作空间</h2>
-<ul>
-<li>File – Switch Workspace – 指定工作空间 – ok</li>
-</ul>
-<h1 id="eclipse-8">Eclipse的快捷键</h1>
-<ul>
-<li>内容辅助键 <code>Alt+/</code>
-<ul>
-<li>自动补齐main方法  main 然后 Alt+/
-<ul>
-<li>自动补齐输出语句  syso 然后 Alt+/</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>格式化代码
-<ul>
-<li><code>Ctrl+Shift+f</code></li>
-<li>代码区域右键 -- Source – Format</li>
-</ul>
-</li>
-<li>自动导包
-<ul>
-<li><code>Ctrl+Shift+o</code></li>
-<li>如果当前类在多个包中都存在，这时候，使用Ctrl+shift+o,进行选择一个包导入即可。</li>
-</ul>
-</li>
-<li>注释
-<ul>
-<li>单行注释： <code>Ctrl+/</code></li>
-<li>多行注释： <code>Ctrl+Shift+/</code></li>
-</ul>
-</li>
-<li>补充
-<ul>
-<li>代码上下移动
-<ul>
-<li>选中代码<code>alt+down/up</code></li>
-</ul>
-</li>
-<li>查看源码
-<ul>
-<li>选中类名(F3或者Ctrl+鼠标点击)</li>
-</ul>
-</li>
-<li>查找具体的类
-<ul>
-<li><code>ctrl + shift + t</code>，输入要查找的类的名称--&gt;确定</li>
-</ul>
-</li>
-<li>查找具体类的具体方法
-<ul>
-<li><code>ctrl + o</code></li>
-</ul>
-</li>
-<li>给建议
-<ul>
-<li><code>ctrl+1</code>,根据右边生成左边的数据类型,生成方法</li>
-</ul>
-</li>
-<li>删除代码
-<ul>
-<li><code>ctrl + D</code></li>
-</ul>
-</li>
-<li>抽取方法
-<ul>
-<li><code>alt + shift + m</code></li>
-</ul>
-</li>
-<li>改名
-<ul>
-<li><code>Ctrl+2 R</code></li>
-<li><code>alt + shift + r</code>（类名，方法名，变量名）</li>
-</ul>
-</li>
-<li>自动代码生成
-<ul>
-<li><code>Alt+Shift+S</code></li>
-</ul>
-</li>
-<li>查看继承树
-<ul>
-<li><code>Ctrl+T</code></li>
-</ul>
-</li>
-<li>查看源码
-<ul>
-<li><code>Ctrl</code>+滑动鼠标点击类/方法名，或者选中类名后，按<code>F3</code>键查看所选中类/方法的源代码</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="eclipse-9">Eclipse的断点调试</h1>
-<ul>
-<li>断点调试(又称为Debug调试)的作用
-<ul>
-<li>调试程序</li>
-<li>查看程序执行流程</li>
-</ul>
-</li>
-<li>如何查看程序执行流程
-<ul>
-<li>断点：就是一个标记，从哪里开始。</li>
-<li>设置断点: 你想看哪里的程序，你就在那个有效程序的左边双击即可。</li>
-<li>在哪里设置断点：
-<ul>
-<li>程序关键位置</li>
-</ul>
-</li>
-<li>如何运行设置断点后的程序：
-<ul>
-<li>右键 -- Debug as -- Java Application</li>
-</ul>
-</li>
-<li>看哪些地方：
-<ul>
-<li>Debug：断点测试的地方
-<ul>
-<li>在这个地方，记住F6，或者点击也可以。一次看一行的执行过程。</li>
-</ul>
-</li>
-<li>Variables：查看程序的变量变化</li>
-<li>ForDemo：被查看的源文件</li>
-<li>Console：控制台</li>
-</ul>
-</li>
-<li>如何去断点：
-<ul>
-<li>再次双击即可</li>
-<li>找到Debug视图，Variables界面，找到Breakpoints，并点击，然后看到所有的断点，最后点击那个双叉</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="eclipse-10">Eclipse的工程删除和导入</h1>
-<h2 id="section-6">删除项目</h2>
-<ul>
-<li>选中项目 – 右键 – 删除
-<ul>
-<li>从项目区域中删除</li>
-<li>从硬盘上删除</li>
-</ul>
-</li>
-</ul>
-<h2 id="section-7">导入项目</h2>
-<ul>
-<li>在项目区域右键找到import</li>
-<li>找到General，展开，并找到</li>
-<li>Existing Projects into Workspace</li>
-<li>点击next,然后选择你要导入的项目</li>
-<li>注意：这里选择的是项目名称</li>
-</ul>
-<h1 id="section-8">帮助文档自动生成</h1>
+
+<h1 id="帮助文档自动生成">帮助文档自动生成</h1>
+
 <p>eclipse可以根据源代码中的文档注释自动生成帮助文档。</p>
+
 <ul>
-<li>在项目上<code>右键</code>，选择<code>export</code></li>
-<li>选择<code>Java</code>&gt;<code>Javadoc</code>&gt;<code>Next</code></li>
-<li>给定文档生成所需配置
-<ul>
-<li><code>Javadoc command</code>选择<code>JDK</code>安装目录下的<code>bin/javadoc.exe</code></li>
-<li>选择需要导出帮助文档的包/类</li>
-<li>选择帮助文档输出路径</li>
-<li>点击<code>Next</code></li>
+  <li>在项目上<code class="highlighter-rouge">右键</code>，选择<code class="highlighter-rouge">export</code></li>
+  <li>选择<code class="highlighter-rouge">Java</code>&gt;<code class="highlighter-rouge">Javadoc</code>&gt;<code class="highlighter-rouge">Next</code></li>
+  <li>给定文档生成所需配置
+    <ul>
+      <li><code class="highlighter-rouge">Javadoc command</code>选择<code class="highlighter-rouge">JDK</code>安装目录下的<code class="highlighter-rouge">bin/javadoc.exe</code></li>
+      <li>选择需要导出帮助文档的包/类</li>
+      <li>选择帮助文档输出路径</li>
+      <li>点击<code class="highlighter-rouge">Next</code></li>
+    </ul>
+  </li>
+  <li>点击<code class="highlighter-rouge">Finish</code>，自动创建完成后，就可以在之前设置的帮助文档输出路径下找到生成的帮助文档，使用浏览器打开<code class="highlighter-rouge">index.html</code>文件即可查看。</li>
 </ul>
-</li>
-<li>点击<code>Finish</code>，自动创建完成后，就可以在之前设置的帮助文档输出路径下找到生成的帮助文档，使用浏览器打开<code>index.html</code>文件即可查看。</li>
-</ul>
-<h1 id="jar">jar包的导出</h1>
+
+<h1 id="jar包的导出">jar包的导出</h1>
+
 <ul>
-<li>在项目上<code>右键</code>，选择<code>export</code></li>
-<li>选择<code>Java</code>&gt;<code>JAR file</code>&gt;<code>Next</code></li>
-<li>选定需要导出的包/类，设置导出路径</li>
-<li><code>Finish</code></li>
+  <li>在项目上<code class="highlighter-rouge">右键</code>，选择<code class="highlighter-rouge">export</code></li>
+  <li>选择<code class="highlighter-rouge">Java</code>&gt;<code class="highlighter-rouge">JAR file</code>&gt;<code class="highlighter-rouge">Next</code></li>
+  <li>选定需要导出的包/类，设置导出路径</li>
+  <li><code class="highlighter-rouge">Finish</code></li>
 </ul>
-<h1 id="jar-1">jar包的导入</h1>
+
+<h1 id="jar包的导入">jar包的导入</h1>
+
 <ul>
-<li>在项目的根目录下创建文件夹<code>lib</code>，所有需要使用的外部包放到该文件夹下</li>
-<li>在项目中刷新后，在<code>lib</code>文件夹下的相应jar包上<code>右键</code>&gt;<code>Build Path</code>&gt;<code>Add to Build Path</code></li>
-<li>完成后可以在根目录下的<code>.classpath</code>文件中查看到外部包的路径</li>
+  <li>在项目的根目录下创建文件夹<code class="highlighter-rouge">lib</code>，所有需要使用的外部包放到该文件夹下</li>
+  <li>在项目中刷新后，在<code class="highlighter-rouge">lib</code>文件夹下的相应jar包上<code class="highlighter-rouge">右键</code>&gt;<code class="highlighter-rouge">Build Path</code>&gt;<code class="highlighter-rouge">Add to Build Path</code></li>
+  <li>完成后可以在根目录下的<code class="highlighter-rouge">.classpath</code>文件中查看到外部包的路径</li>
 </ul>
 
 				</div>

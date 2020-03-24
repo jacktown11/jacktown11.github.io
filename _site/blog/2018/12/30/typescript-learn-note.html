@@ -61,27 +61,39 @@
 				<p class="meta">2018-12-30</p>
 				<div class="post" ref="post">
 					<p>按：本笔记基于慕课网课程<a href="https://www.imooc.com/learn/763">TypeScript入门</a>。</p>
-<h1 id="section">简介</h1>
-<p><code>TypeScript</code>由微软公司开发，是<code>JavaScript</code>的超集，可以编译成纯<code>JavaScript</code>。它可以在任何浏览器、计算机和操作系统上运行，并且是开源的。</p>
-<h2 id="section-1">优势</h2>
+
+<h1 id="简介">简介</h1>
+
+<p><code class="highlighter-rouge">TypeScript</code>由微软公司开发，是<code class="highlighter-rouge">JavaScript</code>的超集，可以编译成纯<code class="highlighter-rouge">JavaScript</code>。它可以在任何浏览器、计算机和操作系统上运行，并且是开源的。</p>
+
+<h2 id="优势">优势</h2>
+
 <ul>
-<li>支持<code>ES6</code>规范</li>
-<li>强大的<code>IDE</code>支持</li>
-<li><code>Angular</code>框架的开发语言</li>
+  <li>支持<code class="highlighter-rouge">ES6</code>规范</li>
+  <li>强大的<code class="highlighter-rouge">IDE</code>支持</li>
+  <li><code class="highlighter-rouge">Angular</code>框架的开发语言</li>
 </ul>
-<h2 id="js">编译（转为js）</h2>
-<p>官网提供了一个<a href="https://www.tslang.cn/play/index.html">在线练习场所</a>，可以实时查看编译后的代码。实际开发中都是本地编译，全局安装<code>typescript</code>工具方法如下：</p>
-<pre><code class="language-cmd">>npm install -g typescript
+
+<h2 id="编译转为js">编译（转为js）</h2>
+
+<p>官网提供了一个<a href="https://www.tslang.cn/play/index.html">在线练习场所</a>，可以实时查看编译后的代码。实际开发中都是本地编译，全局安装<code class="highlighter-rouge">typescript</code>工具方法如下：</p>
+
+<pre><code class="language-cmd">npm install -g typescript
 tsc --version
 </code></pre>
-<p>利用<code>tsc</code>手动编译可以使用命令<code>tsc ts文件名</code>；在项目中也可以配置<code>tsconfig.json</code>进行自动的编译。</p>
-<h1 id="section-2">字符串新特性</h1>
+
+<p>利用<code class="highlighter-rouge">tsc</code>手动编译可以使用命令<code class="highlighter-rouge">tsc ts文件名</code>；在项目中也可以配置<code class="highlighter-rouge">tsconfig.json</code>进行自动的编译。</p>
+
+<h1 id="字符串新特性">字符串新特性</h1>
+
 <ul>
-<li>多行字符串，可以换行</li>
-<li>模板字符串，可以用<code>${}</code>的形式插入表达式</li>
-<li>自动拆分字符串，在函数后紧接着写一个模板字符串，那么这个模板会被拆分，得到一个参数列表；其中第1个参数是一个数组，数组中有被内部的表达式分隔开的各个字符串常量，第2到n个参数则是那些表达式的值，这个参数列表会被作为函数的参数传入并调用函数。</li>
+  <li>多行字符串，可以换行</li>
+  <li>模板字符串，可以用<code class="highlighter-rouge">${}</code>的形式插入表达式</li>
+  <li>自动拆分字符串，在函数后紧接着写一个模板字符串，那么这个模板会被拆分，得到一个参数列表；其中第1个参数是一个数组，数组中有被内部的表达式分隔开的各个字符串常量，第2到n个参数则是那些表达式的值，这个参数列表会被作为函数的参数传入并调用函数。</li>
 </ul>
+
 <p>示例：</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
 
@@ -97,9 +109,13 @@ tsc --version
 <span class="c1">// jack</span>
 <span class="c1">// 13</span>
 </code></pre></div></div>
-<h1 id="section-3">变量新特性</h1>
-<h2 id="section-4">参数类型</h2>
-<p>变量、函数参数、函数返回值都可以指定类型，默认情况下变量也会存在类型推断，类型还可以是自定义的<code>class</code>。使用示例如下：</p>
+
+<h1 id="变量新特性">变量新特性</h1>
+
+<h2 id="参数类型">参数类型</h2>
+
+<p>变量、函数参数、函数返回值都可以指定类型，默认情况下变量也会存在类型推断，类型还可以是自定义的<code class="highlighter-rouge">class</code>。使用示例如下：</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myname</span><span class="p">:</span> <span class="nx">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span>
 <span class="kd">let</span> <span class="nx">hisName</span><span class="p">:</span> <span class="nx">any</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">x</span><span class="dl">'</span>
 <span class="kd">let</span> <span class="nx">age</span><span class="p">:</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">3</span>
@@ -110,8 +126,11 @@ tsc --version
 
 <span class="nx">test</span><span class="p">(</span><span class="nx">myname</span><span class="p">);</span>
 </code></pre></div></div>
-<h2 id="section-5">参数默认值</h2>
-<p>在函数参数中可以使用<code>=</code>指定默认值，必须放在必选参数的后边。</p>
+
+<h2 id="参数默认值">参数默认值</h2>
+
+<p>在函数参数中可以使用<code class="highlighter-rouge">=</code>指定默认值，必须放在必选参数的后边。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">add</span> <span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">b</span><span class="p">:</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:</span> <span class="k">void</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>
 <span class="p">}</span>
@@ -119,8 +138,11 @@ tsc --version
 <span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// 4</span>
 <span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// 7</span>
 </code></pre></div></div>
-<h2 id="section-6">可选参数</h2>
-<p>函数参数列表中可以使用<code>?</code>表示该参数是可选的，必须放在必选参数的后边。</p>
+
+<h2 id="可选参数">可选参数</h2>
+
+<p>函数参数列表中可以使用<code class="highlighter-rouge">?</code>表示该参数是可选的，必须放在必选参数的后边。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">add</span> <span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">b</span><span class="p">?:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">c</span><span class="p">:</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:</span> <span class="nx">number</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">!</span><span class="nx">b</span> <span class="p">?</span>
         <span class="nx">a</span> <span class="o">+</span> <span class="nx">c</span> <span class="p">:</span>
@@ -131,10 +153,15 @@ tsc --version
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span> <span class="c1">// 8</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// 10 </span>
 </code></pre></div></div>
-<h1 id="section-7">函数新特性</h1>
-<h2 id="restspread">rest和spread操作符</h2>
-<p>这两个操作符写法是一样的：<code>...</code>。</p>
-<p><code>rest</code>操作符可以用于传入不定个数的参数，实际在内部是作为数组来处理。</p>
+
+<h1 id="函数新特性">函数新特性</h1>
+
+<h2 id="rest和spread操作符">rest和spread操作符</h2>
+
+<p>这两个操作符写法是一样的：<code class="highlighter-rouge">...</code>。</p>
+
+<p><code class="highlighter-rouge">rest</code>操作符可以用于传入不定个数的参数，实际在内部是作为数组来处理。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">show</span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">args</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
@@ -144,7 +171,9 @@ tsc --version
 <span class="nx">show</span><span class="p">();</span> <span class="c1">// &lt;nothing&gt;</span>
 <span class="nx">show</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 1   2</span>
 </code></pre></div></div>
-<p>反之<code>spread</code>操作符可用来用将数组展开。</p>
+
+<p>反之<code class="highlighter-rouge">spread</code>操作符可用来用将数组展开。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">show</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
@@ -161,8 +190,11 @@ tsc --version
 <span class="c1">// 2</span>
 <span class="c1">// 3</span>
 </code></pre></div></div>
-<h2 id="generator">generator函数</h2>
-<p>可以控制函数的执行过程，手工暂停和恢复代码。比如下面的例子，<code>getStockPrice</code>是个<code>generator</code>函数，调用它获得一个股票价格的获取器<code>priceGetter</code>（这实际上是个遍历器对象），对它每一次调用<code>next</code>方法，都会执行到下一个<code>yield</code>为止，其返回值的<code>value</code>属性是<code>yield</code>后方表达式的值。</p>
+
+<h2 id="generator函数">generator函数</h2>
+
+<p>可以控制函数的执行过程，手工暂停和恢复代码。比如下面的例子，<code class="highlighter-rouge">getStockPrice</code>是个<code class="highlighter-rouge">generator</code>函数，调用它获得一个股票价格的获取器<code class="highlighter-rouge">priceGetter</code>（这实际上是个遍历器对象），对它每一次调用<code class="highlighter-rouge">next</code>方法，都会执行到下一个<code class="highlighter-rouge">yield</code>为止，其返回值的<code class="highlighter-rouge">value</code>属性是<code class="highlighter-rouge">yield</code>后方表达式的值。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="o">*</span><span class="nx">getStockPrice</span><span class="p">(){</span>
   <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
 	<span class="k">yield</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="p">;</span>
@@ -183,8 +215,11 @@ tsc --version
   <span class="p">}</span>
 <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
 </code></pre></div></div>
-<h2 id="section-8">解构赋值</h2>
+
+<h2 id="解构赋值">解构赋值</h2>
+
 <p>对象结构赋值示例：</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">getStock</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">IBM</span><span class="dl">'</span><span class="p">,</span>
@@ -197,7 +232,9 @@ tsc --version
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sname</span><span class="p">);</span> <span class="c1">// IBM</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">price</span><span class="p">);</span> <span class="c1">// 30</span>
 </code></pre></div></div>
+
 <p>数组解构赋值示例：</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
 
 <span class="kd">let</span> <span class="p">[,</span><span class="nx">num1</span><span class="p">,</span> <span class="p">...</span><span class="nx">rest</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr1</span><span class="p">;</span>
@@ -205,15 +242,22 @@ tsc --version
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num1</span><span class="p">);</span> <span class="c1">// 2</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rest</span><span class="p">);</span> <span class="c1">// [3, 4]</span>
 </code></pre></div></div>
-<h1 id="section-9">表达式与循环</h1>
-<h2 id="section-10">箭头函数</h2>
-<p>可以较好的解决<code>javascript</code>中的<code>this</code>指向问题，其中的<code>this</code>指向其定义所在的对象；对于简单的函数也可以很好地简化函数的书写。</p>
+
+<h1 id="表达式与循环">表达式与循环</h1>
+
+<h2 id="箭头函数">箭头函数</h2>
+
+<p>可以较好的解决<code class="highlighter-rouge">javascript</code>中的<code class="highlighter-rouge">this</code>指向问题，其中的<code class="highlighter-rouge">this</code>指向其定义所在的对象；对于简单的函数也可以很好地简化函数的书写。</p>
+
 <p>示例1：</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// [2, 4]</span>
 </code></pre></div></div>
+
 <p>示例2：</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Stock</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
     <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`name: </span><span class="p">${</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="p">}</span><span class="s2">`</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
@@ -225,8 +269,11 @@ tsc --version
 <span class="c1">// name: hello</span>
 <span class="c1">// ...</span>
 </code></pre></div></div>
-<h2 id="section-11">新循环语法</h2>
-<p><code>forEach</code>，用于数组元素的遍历，不支持<code>break</code>结束遍历，忽略非元素属性值。</p>
+
+<h2 id="新循环语法">新循环语法</h2>
+
+<p><code class="highlighter-rouge">forEach</code>，用于数组元素的遍历，不支持<code class="highlighter-rouge">break</code>结束遍历，忽略非元素属性值。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="nx">arr</span><span class="p">.</span><span class="nx">desc</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">three items array</span><span class="dl">'</span><span class="p">;</span>
 
@@ -235,7 +282,9 @@ tsc --version
 <span class="c1">// 2</span>
 <span class="c1">// 3</span>
 </code></pre></div></div>
-<p><code>for in</code>主要用于对象的属性遍历，取出的是<code>key</code>，在数组中也就是数组的索引和绑定的属性名。</p>
+
+<p><code class="highlighter-rouge">for in</code>主要用于对象的属性遍历，取出的是<code class="highlighter-rouge">key</code>，在数组中也就是数组的索引和绑定的属性名。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="nx">arr</span><span class="p">.</span><span class="nx">desc</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">three items array</span><span class="dl">'</span><span class="p">;</span>
 
@@ -247,7 +296,9 @@ tsc --version
 <span class="c1">// 2</span>
 <span class="c1">// desc</span>
 </code></pre></div></div>
-<p><code>for of</code>可以遍历对象（包括<code>Map</code>、<code>Set</code>、字符串）、数组的属性值，可以使用<code>break</code>；数组上绑定的属性不会被遍历。</p>
+
+<p><code class="highlighter-rouge">for of</code>可以遍历对象（包括<code class="highlighter-rouge">Map</code>、<code class="highlighter-rouge">Set</code>、字符串）、数组的属性值，可以使用<code class="highlighter-rouge">break</code>；数组上绑定的属性不会被遍历。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="nx">arr</span><span class="p">.</span><span class="nx">desc</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">three items array</span><span class="dl">'</span><span class="p">;</span>
 
@@ -258,10 +309,15 @@ tsc --version
 <span class="c1">// 1</span>
 <span class="c1">// 2</span>
 </code></pre></div></div>
-<h1 id="section-12">面向对象特性</h1>
-<h2 id="section-13">类</h2>
-<h3 id="section-14">定义</h3>
-<p><code>typescript</code>中可以使用类，在其中可以定义属性、构造函数、方法等，并可以指定权限，控制是否静态。下面是类的定义示例，其中构造函数中的参数会自动作为对象属性，并且自动赋值；需要注意其中显式的权限声明<code>public</code>不能省略。</p>
+
+<h1 id="面向对象特性">面向对象特性</h1>
+
+<h2 id="类">类</h2>
+
+<h3 id="定义">定义</h3>
+
+<p><code class="highlighter-rouge">typescript</code>中可以使用类，在其中可以定义属性、构造函数、方法等，并可以指定权限，控制是否静态。下面是类的定义示例，其中构造函数中的参数会自动作为对象属性，并且自动赋值；需要注意其中显式的权限声明<code class="highlighter-rouge">public</code>不能省略。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Person</span> <span class="p">{</span>
     <span class="kd">constructor</span><span class="p">(</span><span class="kr">public</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="p">}</span>
@@ -277,9 +333,13 @@ tsc --version
 <span class="kd">let</span> <span class="nx">p2</span><span class="p">:</span> <span class="nx">Person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">superMan</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">p2</span><span class="p">.</span><span class="nx">eat</span><span class="p">();</span> <span class="c1">// superMan is eating.</span>
 </code></pre></div></div>
-<p><code>typescript</code>对类的权限提供了三个修饰符<code>private</code>,<code>protected</code>,<code>public</code>，默认是<code>public</code>权限。</p>
-<h3 id="section-15">继承</h3>
-<p>使用<code>extends</code>关键字实现类的继承；继承时可以使用<code>super</code>关键字调用父类的构造函数和方法。</p>
+
+<p><code class="highlighter-rouge">typescript</code>对类的权限提供了三个修饰符<code class="highlighter-rouge">private</code>,<code class="highlighter-rouge">protected</code>,<code class="highlighter-rouge">public</code>，默认是<code class="highlighter-rouge">public</code>权限。</p>
+
+<h3 id="继承">继承</h3>
+
+<p>使用<code class="highlighter-rouge">extends</code>关键字实现类的继承；继承时可以使用<code class="highlighter-rouge">super</code>关键字调用父类的构造函数和方法。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Person</span> <span class="p">{</span>
     <span class="kd">constructor</span><span class="p">(</span><span class="kr">public</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">creating person...</span><span class="dl">'</span><span class="p">);</span>
@@ -313,16 +373,23 @@ tsc --version
 <span class="c1">// tom is eating.</span>
 <span class="c1">// tom (A-1) is working</span>
 </code></pre></div></div>
-<h2 id="section-16">泛型</h2>
+
+<h2 id="泛型">泛型</h2>
+
 <p>参数化类型，用于限制集合的类型。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">workers</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="nx">Person</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[];</span>
 
 <span class="nx">workers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">张三</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">workers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Employee</span><span class="p">(</span><span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">A001</span><span class="dl">'</span><span class="p">);</span>
 </code></pre></div></div>
-<h2 id="section-17">接口</h2>
+
+<h2 id="接口">接口</h2>
+
 <p>interface，用来建立某种代码约定，使得其他开发者在调用某个方法或创建新的类时必须遵循接口所定义的代码约定。</p>
-<p>示例1：下面的代码定义了<code>IPerson</code>，该接口要求具有<code>name</code>和<code>age</code>两个属性，由于<code>Person</code>类的构造函数中使用了该接口类型的参数，因此保证了在创建<code>Person</code>实例时传递的参数也必须具有这两个属性。</p>
+
+<p>示例1：下面的代码定义了<code class="highlighter-rouge">IPerson</code>，该接口要求具有<code class="highlighter-rouge">name</code>和<code class="highlighter-rouge">age</code>两个属性，由于<code class="highlighter-rouge">Person</code>类的构造函数中使用了该接口类型的参数，因此保证了在创建<code class="highlighter-rouge">Person</code>实例时传递的参数也必须具有这两个属性。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">IPerson</span> <span class="p">{</span>
     <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
     <span class="nl">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
@@ -339,7 +406,9 @@ tsc --version
     <span class="na">age</span><span class="p">:</span> <span class="mi">18</span>
 <span class="p">});</span>
 </code></pre></div></div>
-<p>实例2：下面的代码定义了<code>Animal</code>接口，所有实现该接口的类都必须实现接口中声明的方法。</p>
+
+<p>实例2：下面的代码定义了<code class="highlighter-rouge">Animal</code>接口，所有实现该接口的类都必须实现接口中声明的方法。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">Animal</span> <span class="p">{</span>
     <span class="nx">eat</span><span class="p">();</span>
 <span class="p">}</span>
@@ -356,9 +425,13 @@ tsc --version
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<h2 id="section-18">模块</h2>
+
+<h2 id="模块">模块</h2>
+
 <p>module，模块可以帮助开发者将代码分割为可重用的单元。开发者可以自己决定将模块中的哪些资源（类、方法、变量）暴露出去供外部使用。</p>
-<p>下面的示例中<code>b.ts</code>暴露的变量、函数、类可以在<code>a.ts</code>中使用，后者也可以暴露自己的变量、函数、类等。</p>
+
+<p>下面的示例中<code class="highlighter-rouge">b.ts</code>暴露的变量、函数、类可以在<code class="highlighter-rouge">a.ts</code>中使用，后者也可以暴露自己的变量、函数、类等。</p>
+
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// b.ts</span>
 <span class="k">export</span> <span class="kd">let</span> <span class="nx">prop1</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">prop2</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
@@ -380,10 +453,14 @@ tsc --version
 
 <span class="k">export</span> <span class="kd">function</span> <span class="nx">func3</span><span class="p">(){}</span>
 </code></pre></div></div>
-<h2 id="section-19">注解</h2>
-<p><code>annotation</code>，为程序的元素（类、方法、变量）加上更直观明了的说明，这些说明信息与程序的业务逻辑无关，而是供指定的工具或框架使用。</p>
-<h2 id="section-20">类型定义文件</h2>
-<p><code>.d.ts</code>，用于帮助开发者在<code>TypeScript</code>中使用已有的<code>JavaScript</code>的工具包，如<code>jQuery</code>。github上的<a href="https://github.com/DefinitelyTyped/DefinitelyTyped">DefinitelyTyped</a>仓库定义了各种库的类型定义文件，<a href="https://github.com/typings/typings">types</a>仓库可以帮助我们下载类型定义文件</p>
+
+<h2 id="注解">注解</h2>
+
+<p><code class="highlighter-rouge">annotation</code>，为程序的元素（类、方法、变量）加上更直观明了的说明，这些说明信息与程序的业务逻辑无关，而是供指定的工具或框架使用。</p>
+
+<h2 id="类型定义文件">类型定义文件</h2>
+
+<p><code class="highlighter-rouge">.d.ts</code>，用于帮助开发者在<code class="highlighter-rouge">TypeScript</code>中使用已有的<code class="highlighter-rouge">JavaScript</code>的工具包，如<code class="highlighter-rouge">jQuery</code>。github上的<a href="https://github.com/DefinitelyTyped/DefinitelyTyped">DefinitelyTyped</a>仓库定义了各种库的类型定义文件，<a href="https://github.com/typings/typings">types</a>仓库可以帮助我们下载类型定义文件</p>
 
 				</div>
 				<p>（本文完）</p>

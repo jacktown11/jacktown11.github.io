@@ -121,6 +121,17 @@ github: [https://github.com/zalmoxisus/redux-devtools-extension](https://github.
 
 ## vscode
 
+### 常用快捷键备忘
+
+| 快捷键               | 作用           |
+| -------------------- | -------------- |
+| ctrl + L             | 选中当前行     |
+| Ctrl + C             | 复制当前行     |
+| Ctrl + Shift + Down  | 下移当前行     |
+| Ctrl + Shift + D     | 复制下移当前行 |
+| Ctrl + Enter         | 下方插入空行   |
+| Ctrl + Shift + Enter | 上方插入空行   |
+
 ### .vue 的格式化
 
 安装`vetur`插件
@@ -189,26 +200,26 @@ setting.json
 
 ```json
 {
-    "workbench.statusBar.visible": true,
-    "workbench.colorTheme": "Monokai",
-    "editor.tabSize": 2,
-    "files.autoSave": "onFocusChange",
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[vue]": {
-        "editor.defaultFormatter": "octref.vetur"
-    },
-    "vetur.format.defaultFormatter.html": "js-beautify-html"
+  "workbench.statusBar.visible": true,
+  "workbench.colorTheme": "Monokai",
+  "editor.tabSize": 2,
+  "files.autoSave": "onFocusChange",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "vetur.format.defaultFormatter.html": "js-beautify-html"
 }
 ```
 
@@ -229,7 +240,7 @@ setting.json
 }
 ```
 
-上面的配置使得文件在保存的时候自动格式化，eslint自动修复，但是eslint的自动修复优先级好像不够高，所以最后仍然不符合eslint格式要求，为此还需要在项目中使用如下两个配置文件进一步配置 eslint 和 prettier ：
+上面的配置使得文件在保存的时候自动格式化，eslint 自动修复，但是 eslint 的自动修复优先级好像不够高，所以最后仍然不符合 eslint 格式要求，为此还需要在项目中使用如下两个配置文件进一步配置 eslint 和 prettier ：
 
 .prettierrc
 
@@ -284,7 +295,7 @@ module.exports = {
 
 然后每次保存时，eslint 就会自动修复以满足格式要求，由于不自动格式化，所以规避了 prettier 自动代码格式化时的冲突问题。
 
-因为平时自己些代码，格式化就挺OK的，只是偶尔需要格式化一下，这时只要手动 ctrl + alt + F ，然后再保存修复即可。这样一来，就不需要修改 eslint 校验规则，也不需要修改 prettier 的配置。
+因为平时自己些代码，格式化就挺 OK 的，只是偶尔需要格式化一下，这时只要手动 ctrl + alt + F ，然后再保存修复即可。这样一来，就不需要修改 eslint 校验规则，也不需要修改 prettier 的配置。
 
 ## electron
 
@@ -331,14 +342,12 @@ module.exports = {
   }
   ```
 
-```
-
-- 创建 `index.js` 文件，用模块化的方式书写你的代码，如 `module.exports = 123;`
-- 命令行运行 `npm login`，登录您的 npm 帐号，如果没有请到[官网](https://www.npmjs.com/)注册
-- 登录以后，运行 `npm publish --access=public`，发布你的 npm 包；以后包需要更新的时候，你需要修改 `package.json` 中的版本号为新版本，否则会报错
-- 到 `https://www.npmjs.com/package/包名` 查看您的 npm 包，您还可以另外创建项目 `npm i 包名` 来安装您的包，并测试
-- 您可以在 24 小时内强制删除，`npm --force unpublish 包名`
-- 参考： [创建发布自己的 npm 包](https://www.cnblogs.com/marymei0107/p/6339710.html)
+* 创建 `index.js` 文件，用模块化的方式书写你的代码，如 `module.exports = 123;`
+* 命令行运行 `npm login`，登录您的 npm 帐号，如果没有请到[官网](https://www.npmjs.com/)注册
+* 登录以后，运行 `npm publish --access=public`，发布你的 npm 包；以后包需要更新的时候，你需要修改 `package.json` 中的版本号为新版本，否则会报错
+* 到 `https://www.npmjs.com/package/包名` 查看您的 npm 包，您还可以另外创建项目 `npm i 包名` 来安装您的包，并测试
+* 您可以在 24 小时内强制删除，`npm --force unpublish 包名`
+* 参考： [创建发布自己的 npm 包](https://www.cnblogs.com/marymei0107/p/6339710.html)
 
 ## 工具
 
@@ -371,4 +380,3 @@ module.exports = {
 ### 为博客添加流程图支持
 
 使用 [mermaid](https://github.com/mermaid-js/mermaid/), 可参考文章 [Embed Mermaid Charts in Jekyll without Plugin](http://kkpattern.github.io/2015/05/15/Embed-Chart-in-Jekyll.html), 除了按照文章说的引入 mermaid.min.js 外，还需要引入 mermaid.css 文件，否则显示不正常。
-```
