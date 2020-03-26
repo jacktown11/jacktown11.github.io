@@ -1,0 +1,178 @@
+I" B<h1 id="浏览器同源策略">浏览器同源策略</h1>
+
+<h2 id="含义">含义</h2>
+
+<p>出于安全考虑，浏览器对不同页面之间、页面与服务器之间的通信实行同源策略限制。同源的含义：</p>
+
+<ul>
+  <li><strong>相同协议</strong></li>
+  <li><strong>相同域名</strong>
+    <ul>
+      <li>相同主域，不同子域也属于不同源</li>
+      <li>域名和其对应的ip也属于不同源</li>
+    </ul>
+  </li>
+  <li><strong>相同端口</strong></li>
+</ul>
+
+<h2 id="限制">限制</h2>
+
+<p>非同源时的行为限制包括：</p>
+
+<ul>
+  <li>不能获取 Cookie, LocalStorage, IndexDB</li>
+  <li>不能获取 DOM</li>
+  <li>不能发送 AJAX 请求</li>
+</ul>
+
+<p>注意到图片、CSS、JS文件的获取都不受同源策略限制。</p>
+
+<h2 id="跨域方案总览">跨域方案总览</h2>
+
+<p>同源策略的规避方法：</p>
+
+<ul>
+  <li>ajax 跨域方案
+    <ul>
+      <li>图像 Ping</li>
+      <li>JSONP</li>
+      <li>CORS</li>
+      <li>WebSocket</li>
+      <li>后端代理
+        <ul>
+          <li>Nginx 反向代理(<a href="https://www.jianshu.com/p/e233dcf003c6">反向代理与正向代理的通俗解释</a> )</li>
+          <li>node 中间件</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>页面间通信跨域方案
+    <ul>
+      <li>window.postMessage</li>
+      <li>window.name</li>
+      <li>document.domain</li>
+      <li>location.hash</li>
+    </ul>
+  </li>
+</ul>
+
+<p>下面详述各种跨域方案。</p>
+
+<h1 id="图像-ping">图像 Ping</h1>
+
+<p>由于请求图片不受同源策略限制，因此可以通过在 <code class="highlighter-rouge">js</code> 中创建图片，并以在其 <code class="highlighter-rouge">src</code> 中添加查询参数的方式向服务器发送数据。浏览器端并不能得到具体的有效数据，但是可以监听图像的 <code class="highlighter-rouge">onload</code> 和 <code class="highlighter-rouge">onerror</code> 事件，从而知道响应什么时候返回。实践代码：</p>
+
+<p>先在3000端口启动一个服务器：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">path</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kd">static</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">'</span><span class="s1">../src</span><span class="dl">'</span><span class="p">)))</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">listening at 3000...</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>3000端口托管的 <code class="highlighter-rouge">../src/index.js</code> 静态文件（在 <code class="highlighter-rouge">../src/index.html</code> 文件中引入)：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * 使用图像 Ping 实现跨域发送数据
+ * @param {Object} queryObj 查询字符串对象
+ */</span>
+<span class="kd">function</span> <span class="nx">send</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">queryObj</span><span class="p">){</span>
+  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">url</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span> <span class="o">||</span> <span class="k">typeof</span> <span class="nx">queryObj</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span> <span class="o">||</span> <span class="nx">queryObj</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span>
+  <span class="kd">let</span> <span class="nx">img</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">()</span>
+  <span class="nx">img</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">img</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">done</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="kd">let</span> <span class="nx">queryArr</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">queryObj</span><span class="p">){</span>
+    <span class="nx">queryArr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">key</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">=</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">queryObj</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span>
+  <span class="p">}</span>
+  <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">url</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">?</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">queryArr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">&amp;</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// test </span>
+<span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://127.0.0.1:3001/test.png</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">27</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>3001端口接收图像 Ping 的服务器</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">*</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="dl">'</span><span class="s1">got</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3001</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">listening at 3001...</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>限制：</p>
+
+<ul>
+  <li>只能发送 <code class="highlighter-rouge">GET</code> 请求，数据长度也就因 <code class="highlighter-rouge">url</code> 长度限制（通常在几个KB级别）而不能太大</li>
+  <li>只能向服务器单向发送数据</li>
+</ul>
+
+<h1 id="jsonp">JSONP</h1>
+
+<p>图像 <code class="highlighter-rouge">Ping</code> 利用了图像资源的获取不受同源策略限制，类似地， <code class="highlighter-rouge">JSONP</code> 则利用了 <code class="highlighter-rouge">js</code> 文件不受同源策略限制。</p>
+
+<p>其原理是：前端事先定义好数据处理函数，然后以 <code class="highlighter-rouge">script</code> 标签向后端动态地请求一个 <code class="highlighter-rouge">js</code> 文件，并把函数的名字以查询字符串的方式放在请求路径中。后端准备好数据后，将数据和函数名字以 <code class="highlighter-rouge">函数名字(数据)</code> 方式进行字符拼接，将结果作为 <code class="highlighter-rouge">js</code> 文件的内容。返回前端的 <code class="highlighter-rouge">js</code> 文件会直接执行，也就是执行数据处理函数的调用，因为函数的名字是前端事先定义好传给后端的，所以自然能够在作用域链中找到这个函数。</p>
+
+<p>实践代码：</p>
+
+<p>仍旧在3000端口启动一个服务器，托管 <code class="highlighter-rouge">../src</code> 下的文件，内容参照上节。在<code class="highlighter-rouge">../src/index.html</code>中引入的<code class="highlighter-rouge">../src/index.js</code>内容如下：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">jsonp</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">callbackName</span><span class="p">){</span>
+  <span class="kd">let</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">script</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">script</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">text/javascript</span><span class="dl">'</span>
+  <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">url</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">?callback=</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">callbackName</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">script</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">sayHello</span><span class="p">(</span><span class="nx">person</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Hello, I'm </span><span class="p">${</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> and I'm </span><span class="p">${</span><span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span><span class="s2"> years old.`</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">jsonp</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://127.0.0.1:3001/some/path</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">sayHello</span><span class="dl">'</span><span class="p">)</span>
+<span class="c1">// Hello, I'm jack and I'm 27 years old.</span>
+</code></pre></div></div>
+
+<p>后端3001端口服务器代码:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">querystring</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">querystring</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+
+<span class="c1">// data from database or other sources</span>
+<span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">jack</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">27</span>
+<span class="p">}</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">*</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">querystring</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">).</span><span class="nx">query</span><span class="p">)</span>
+  <span class="kd">let</span> <span class="nx">jsStr</span> <span class="o">=</span> <span class="nx">params</span><span class="p">.</span><span class="nx">callback</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">(</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">+</span>  <span class="dl">'</span><span class="s1">)</span><span class="dl">'</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">jsStr</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3001</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">listening to 3001...</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+:ET

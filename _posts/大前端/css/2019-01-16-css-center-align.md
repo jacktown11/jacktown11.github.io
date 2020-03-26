@@ -1,8 +1,8 @@
 ---
 layout: article
 title: css 垂直居中
-categories: [大前端]
-tags: [css]
+categories: [大前端, css]
+tags: [经典布局]
 ---
 
 # 前言
