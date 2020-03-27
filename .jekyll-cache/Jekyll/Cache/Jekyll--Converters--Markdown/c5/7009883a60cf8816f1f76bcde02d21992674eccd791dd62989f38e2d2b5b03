@@ -1,4 +1,4 @@
-I"r:<h1 id="vue-项目大小写的推荐写法">Vue 项目大小写的推荐写法</h1>
+I"�<<h1 id="vue-项目大小写的推荐写法">Vue 项目大小写的推荐写法</h1>
 
 <h2 id="单文件组件的文件名">单文件组件的文件名</h2>
 
@@ -72,5 +72,19 @@
   <li>action 通过 commit 触发 mutation, mutation 的操作必须是同步的，mutation 内部可以更新数据</li>
   <li>在组件上除了通过 this.$store 进行属性获取和方法调用外，还可以通过导入 vuex 中的相关 map 函数，直接将属性和方法映射到组件上</li>
 </ul>
+
+<h1 id="ant-design-vue">ant-design-vue</h1>
+
+<p>在<a href="https://www.antdv.com/docs/vue/use-with-vue-cli-cn/#%E4%BD%BF%E7%94%A8-vue-cli-3-%E7%9A%84%E5%B0%8F%E4%BC%99%E4%BC%B4">通过 babel-plugin-import 插件进行按需加载</a>时，遇到了错误，首先缺少 less-loader 、 less ，安装即可。之后又报错：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> error  in ./node_modules/ant-design-vue/es/style/index.less
+
+Module build failed (from ./node_modules/less-loader/dist/cjs.js):
+
+
+// https://github.com/ant-design/ant-motion/issues/44
+.bezierEasingMixin();
+
+</code></pre></div></div>
 
 :ET
