@@ -27,39 +27,6 @@ tags: [其他, 杂记]
 
 # 前端
 
-## vue
-
-### 大小写的推荐写法
-
-#### 单文件组件的文件名
-
-建议始终使用`PascalCase`或`kebab-case`，前者利于编辑器自动提示并于在`js`文件中对它的引用更一致，不过在某些大写不敏感的文件系统中可能出现问题。
-
-#### 组件名称
-
-- 在字符串模板/单文件组件模板中建议：`PascalCase`或`kebab-case`
-- 在`DOM`模板中使用：`kebab-case`（鉴于`html`大小写不敏感，这是必须的）
-- 在`js`中建议：`PascalCase`
-  - 但是使用`Vue.component()`注册全局组件的话，建议`kebab-case`.(因为它们会在`js`中用得少，而`kebab-case`和`html`一致)
-
-#### 属性名称
-
-- `html`中建议`kebab-case`
-- `js`中建议`camelCase`
-
-#### 事件名称
-
-始终使用`kebab-case`（注意：`vue`不会将`js`中其他形式事件名自动转换为`kebab-case`，因为它几乎不被作为标识符使用）
-
-#### 个人小结（一种参考）
-
-- `html`(`DOM template`、`string template`、`single file component template`): `kebab-case`
-- `js`
-  - 组件名：`PascalCase`
-  - 属性名：`camelCase`
-  - 事件名：`kebab-case`
-- 单文件组件文件名：`kebab-case`
-
 ## react
 
 ### react developer tools chrome 插件安装

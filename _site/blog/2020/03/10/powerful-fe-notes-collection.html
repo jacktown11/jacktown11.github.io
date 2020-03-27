@@ -88,51 +88,6 @@
 
 <h1 id="前端">前端</h1>
 
-<h2 id="vue">vue</h2>
-
-<h3 id="大小写的推荐写法">大小写的推荐写法</h3>
-
-<h4 id="单文件组件的文件名">单文件组件的文件名</h4>
-
-<p>建议始终使用<code class="highlighter-rouge">PascalCase</code>或<code class="highlighter-rouge">kebab-case</code>，前者利于编辑器自动提示并于在<code class="highlighter-rouge">js</code>文件中对它的引用更一致，不过在某些大写不敏感的文件系统中可能出现问题。</p>
-
-<h4 id="组件名称">组件名称</h4>
-
-<ul>
-  <li>在字符串模板/单文件组件模板中建议：<code class="highlighter-rouge">PascalCase</code>或<code class="highlighter-rouge">kebab-case</code></li>
-  <li>在<code class="highlighter-rouge">DOM</code>模板中使用：<code class="highlighter-rouge">kebab-case</code>（鉴于<code class="highlighter-rouge">html</code>大小写不敏感，这是必须的）</li>
-  <li>在<code class="highlighter-rouge">js</code>中建议：<code class="highlighter-rouge">PascalCase</code>
-    <ul>
-      <li>但是使用<code class="highlighter-rouge">Vue.component()</code>注册全局组件的话，建议<code class="highlighter-rouge">kebab-case</code>.(因为它们会在<code class="highlighter-rouge">js</code>中用得少，而<code class="highlighter-rouge">kebab-case</code>和<code class="highlighter-rouge">html</code>一致)</li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="属性名称">属性名称</h4>
-
-<ul>
-  <li><code class="highlighter-rouge">html</code>中建议<code class="highlighter-rouge">kebab-case</code></li>
-  <li><code class="highlighter-rouge">js</code>中建议<code class="highlighter-rouge">camelCase</code></li>
-</ul>
-
-<h4 id="事件名称">事件名称</h4>
-
-<p>始终使用<code class="highlighter-rouge">kebab-case</code>（注意：<code class="highlighter-rouge">vue</code>不会将<code class="highlighter-rouge">js</code>中其他形式事件名自动转换为<code class="highlighter-rouge">kebab-case</code>，因为它几乎不被作为标识符使用）</p>
-
-<h4 id="个人小结一种参考">个人小结（一种参考）</h4>
-
-<ul>
-  <li><code class="highlighter-rouge">html</code>(<code class="highlighter-rouge">DOM template</code>、<code class="highlighter-rouge">string template</code>、<code class="highlighter-rouge">single file component template</code>): <code class="highlighter-rouge">kebab-case</code></li>
-  <li><code class="highlighter-rouge">js</code>
-    <ul>
-      <li>组件名：<code class="highlighter-rouge">PascalCase</code></li>
-      <li>属性名：<code class="highlighter-rouge">camelCase</code></li>
-      <li>事件名：<code class="highlighter-rouge">kebab-case</code></li>
-    </ul>
-  </li>
-  <li>单文件组件文件名：<code class="highlighter-rouge">kebab-case</code></li>
-</ul>
-
 <h2 id="react">react</h2>
 
 <h3 id="react-developer-tools-chrome-插件安装">react developer tools chrome 插件安装</h3>
