@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/article.css">
+	<link rel="stylesheet" href="/css/monokai.css">
+	<link rel="stylesheet" href="/css/mermaid.css">
+</head>
+
+<body>
+	<div id="app" class="app-wrap">
+
+		<!-- 侧边栏显隐控制钮 -->
+		<svg id="sidebar-control" class="sidebar-control" width="40" height="32" @click="isShowSidebar = !isShowSidebar">
+			<g stroke="#fff" stroke-width="4" stroke-linecap="round">
+				<line x1="8" y1="8" x2="32" y2="8"></line>
+				<line x1="8" y1="16" x2="32" y2="16"></line>
+				<line x1="8" y1="24" x2="32" y2="24"></line>
+			</g>
+		</svg>
+
+		<div class="sidebar" style="display: none;" v-show="isShowSidebar">
+			<!-- 目录级别控制条 -->
+			<p class="level-controller">
+				展开级别：
+				<button @click="modifyLevel(-1)" class="level-btn level-minus">-</button>
+				<span class="level-now" v-html="expandLevel"></span>
+				<button @click="modifyLevel(1)" class="level-btn level-add">+</button>
+			</p>
+
+			<!-- 文章目录 -->
+			<div id="catalog-container" class="catalog-container">
+				<blog-catalog class="catalogs" :tree-node="tree" :expand-level="expandLevel"></blog-catalog>
+			</div>
+
+			<!-- 更多文章导航 -->
+			<div class="post-nav">
+				<div class="home">
+					<a class="home-link" href="/">返回首页</a>
+				</div>
+				<div class="prev no-wrap">
+					上一篇：<a href="/blog/2020/03/27/vue-notes-collection">Vue 笔记</a>
+				</div>
+				<div class="next no-wrap">
+					下一篇：没有更多了
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 文章内容区 -->
+		<div class="article-wrap" :class="{extended: !isShowSidebar}" @click="if(isNarrowScreen){hideSidebar();}">
+			<article id="article-container">
+				<h1 id="post-title">ps 笔记</h1>
+				<p class="meta">2020-03-28</p>
+				<div class="post" ref="post">
+					<h1 id="基本操作">基本操作</h1>
+
+<h2 id="新建文件">新建文件</h2>
+
+<ul>
+  <li>菜单栏 &gt; 新建</li>
+  <li>文档类型选择 <code class="highlighter-rouge">web</code> 或者自定义，画板单位使用像素，分辨率采用默认的 72px</li>
+  <li>可以存储预设供以后使用</li>
+</ul>
+
+<h2 id="窗口设置">窗口设置</h2>
+
+<ul>
+  <li>可以在<code class="highlighter-rouge">菜单栏 &gt; 窗口</code>中打开或关闭窗口</li>
+  <li>切图预设窗口建议：
+    <ul>
+      <li><code class="highlighter-rouge">图层</code></li>
+      <li><code class="highlighter-rouge">历史记录</code></li>
+      <li><code class="highlighter-rouge">信息</code>
+        <ul>
+          <li>可以查看选框大小、鼠标坐标等</li>
+          <li>面包选项设置：颜色<code class="highlighter-rouge">模式</code>设置为<code class="highlighter-rouge">RGB模式</code></li>
+          <li>面板选项设置：<code class="highlighter-rouge">标尺单位</code>为<code class="highlighter-rouge">像素</code></li>
+          <li>面板选项设置：勾选<code class="highlighter-rouge">文档大小</code>与<code class="highlighter-rouge">文档尺寸</code></li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">字符</code>，方便查看字体、字号、行高等</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="其他常用设置">其他常用设置</h2>
+
+<ul>
+  <li>选中<code class="highlighter-rouge">选择</code>工具时，上工具栏<code class="highlighter-rouge">自动选择</code>：如果勾选，配合后方选择<code class="highlighter-rouge">图层</code>，鼠标点击即可自动选中图层
+    <ul>
+      <li>可以不打开，但是将后方默认的<code class="highlighter-rouge">组</code>切换为<code class="highlighter-rouge">图层</code>，那么<code class="highlighter-rouge">ctrl+鼠标左键</code>也可自动选中图层</li>
+    </ul>
+  </li>
+  <li>菜单栏勾选 <code class="highlighter-rouge">视图 &gt; 显示 &gt; 智能参考线</code></li>
+  <li>菜单栏勾选 <code class="highlighter-rouge">视图 &gt; 标尺</code></li>
+  <li>菜单栏打开<code class="highlighter-rouge">编辑 &gt; 首选项 &gt; 单位与标尺</code>，将<code class="highlighter-rouge">标尺</code>和<code class="highlighter-rouge">文字</code>的单位均设置为<code class="highlighter-rouge">像素</code></li>
+</ul>
+
+<h2 id="保存工作区">保存工作区</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">菜单栏 &gt; 窗口 &gt; 工作区 &gt; 新建工作区</code>，并选择捕捉 <code class="highlighter-rouge">快捷键</code>和<code class="highlighter-rouge">菜单</code>就可以将之前的设置保存下来</li>
+</ul>
+
+<h1 id="工具栏">工具栏</h1>
+
+<h2 id="规则选区工具">规则选区工具</h2>
+
+<ul>
+  <li>快捷键<code class="highlighter-rouge">M</code>，<code class="highlighter-rouge">shift + M</code>在子选项中切换</li>
+  <li><code class="highlighter-rouge">鼠标左键</code>按住可以拖动选区</li>
+  <li>鼠标结合修改键使用</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>修改键</th>
+      <th>建立单个选区</th>
+      <th>增加多个选区</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">shift</code></td>
+      <td>横纵相等</td>
+      <td>并集</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">alt</code></td>
+      <td>以起始点为中心</td>
+      <td>差集</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">shift alt</code></td>
+      <td>以起始点为中心、横纵坐标相等</td>
+      <td>交集</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><code class="highlighter-rouge">Ctrl + D</code>，删除选区</li>
+  <li>从图层选择选区：在右侧图层栏，选中图层，按照<code class="highlighter-rouge">ctrl</code>点击左边图层缩略图就可以以图层建立选区</li>
+</ul>
+
+<h2 id="套索工具">套索工具</h2>
+
+<p>选区工具创建的选区都是规则，而不规则选区可以使用套索工具。</p>
+
+<h2 id="快速选择工具">快速选择工具</h2>
+
+<p>可以根据色块快速建立选区。</p>
+
+<h2 id="裁剪工具">裁剪工具</h2>
+
+<ul>
+  <li>在有选区的情况下，切换到裁剪工具，可以以选区边缘自动给出裁剪区域</li>
+</ul>
+
+<h2 id="吸管工具">吸管工具</h2>
+
+<ul>
+  <li>吸管工具可以用来从图中点击获取前景色</li>
+</ul>
+
+<h1 id="图层">图层</h1>
+
+<ul>
+  <li>点击图层右侧眼睛可以显隐图层，按住alt键点击则可以显隐其他所有图层</li>
+</ul>
+
+<h1 id="参考线">参考线</h1>
+
+<ul>
+  <li><code class="highlighter-rouge">ctrl + R</code>显示标尺栏</li>
+  <li>从标尺栏可以拖动出参考线，拖动过程中按<code class="highlighter-rouge">alt</code>键可以实现参考线水平和垂直切换，参考线可以拉回标尺删除</li>
+  <li>从<code class="highlighter-rouge">菜单&gt;视图&gt;新建参考线</code>可以指定位置参数新建参考线，快捷键：<code class="highlighter-rouge">alt+V+E</code></li>
+  <li><code class="highlighter-rouge">ctrl + ;</code>切换参考线显隐</li>
+  <li><code class="highlighter-rouge">菜单 &gt; 视图 &gt; 清除参考线</code> 可以清除所有参考线</li>
+</ul>
+
+<h1 id="切片">切片</h1>
+
+<ul>
+  <li>传统切图：直接使用切片工具进行切图
+    <ul>
+      <li>对于相同大小的图片，可以选中上一个切片，按住<code class="highlighter-rouge">alt</code>键，拖动复制</li>
+    </ul>
+  </li>
+  <li>参考线切图</li>
+  <li>ps自动切图</li>
+</ul>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+  <li><a href="https://www.imooc.com/learn/506">前端工程师必备的PS技能——切图篇</a></li>
+  <li><a href="https://www.imooc.com/learn/1228">切图基础教程-前端工程师版</a></li>
+</ul>
+
+
+				</div>
+				<p>（本文完）</p>
+
+				<p class="license">
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+						<!-- <img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /> -->
+						<img alt="知识共享许可协议" src="data:image/png;base64,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" />
+					</a><br />本作品采用<a
+					 rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享署名-非商业性使用-相同方式共享
+						4.0 国际许可协议</a>进行许可。
+				</p>
+			</article>
+		</div>
+
+	</div>
+
+	<script src="/lib/vue.min.js"></script>
+	<script src="/js/article.js"></script>
+	<script src="/lib/mermaid.min.js"></script>
+</body>
+
+</html>

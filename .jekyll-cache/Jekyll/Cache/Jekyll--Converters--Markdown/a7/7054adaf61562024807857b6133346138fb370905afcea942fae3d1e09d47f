@@ -1,0 +1,47 @@
+I"E<h1 id="基本操作">基本操作</h1>
+
+<h2 id="新建文件">新建文件</h2>
+
+<ul>
+  <li>菜单栏 &gt; 新建</li>
+  <li>文档类型选择 <code class="highlighter-rouge">web</code> 或者自定义，画板单位使用像素，分辨率采用默认的72px</li>
+  <li>可以存储预设供以后使用</li>
+</ul>
+
+<h2 id="窗口设置">窗口设置</h2>
+
+<ul>
+  <li>可以在<code class="highlighter-rouge">菜单栏 &gt; 窗口</code>中打开或关闭窗口</li>
+  <li>切图预设窗口建议：
+    <ul>
+      <li><code class="highlighter-rouge">图层</code></li>
+      <li><code class="highlighter-rouge">历史记录</code></li>
+      <li><code class="highlighter-rouge">信息</code>
+        <ul>
+          <li>可以查看选框大小、鼠标坐标等</li>
+          <li>可以在面板选项中设置标尺单位为像素、打开文档大小与文档尺寸信息</li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">字符</code>，方便查看字体、字号、行高等</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="其他常用设置">其他常用设置</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">自动选择</code>：如果勾选，配合后方选择<code class="highlighter-rouge">图层</code>，鼠标点击即可自动选中图层
+    <ul>
+      <li>可以不打开，但是将后方默认的<code class="highlighter-rouge">组</code>切换为<code class="highlighter-rouge">图层</code>，那么<code class="highlighter-rouge">ctrl+鼠标左键</code>也可自动选中图层</li>
+    </ul>
+  </li>
+  <li>勾选 <code class="highlighter-rouge">视图 &gt; 显示 &gt; 智能参考线</code></li>
+  <li>勾选 <code class="highlighter-rouge">视图 &gt; 标尺</code></li>
+</ul>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+  <li><a href="https://www.imooc.com/learn/1228">切图基础教程-前端工程师版</a></li>
+</ul>
+:ET

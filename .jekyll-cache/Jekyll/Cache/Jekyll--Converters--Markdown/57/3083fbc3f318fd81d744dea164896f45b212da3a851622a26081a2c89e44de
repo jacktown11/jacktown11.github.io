@@ -1,0 +1,110 @@
+I"^<h1 id="基本操作">基本操作</h1>
+
+<h2 id="新建文件">新建文件</h2>
+
+<ul>
+  <li>菜单栏 &gt; 新建</li>
+  <li>文档类型选择 <code class="highlighter-rouge">web</code> 或者自定义，画板单位使用像素，分辨率采用默认的 72px</li>
+  <li>可以存储预设供以后使用</li>
+</ul>
+
+<h2 id="窗口设置">窗口设置</h2>
+
+<ul>
+  <li>可以在<code class="highlighter-rouge">菜单栏 &gt; 窗口</code>中打开或关闭窗口</li>
+  <li>切图预设窗口建议：
+    <ul>
+      <li><code class="highlighter-rouge">图层</code></li>
+      <li><code class="highlighter-rouge">历史记录</code></li>
+      <li><code class="highlighter-rouge">信息</code>
+        <ul>
+          <li>可以查看选框大小、鼠标坐标等</li>
+          <li>面包选项设置：颜色<code class="highlighter-rouge">模式</code>设置为<code class="highlighter-rouge">RGB模式</code></li>
+          <li>面板选项设置：<code class="highlighter-rouge">标尺单位</code>为<code class="highlighter-rouge">像素</code></li>
+          <li>面板选项设置：勾选<code class="highlighter-rouge">文档大小</code>与<code class="highlighter-rouge">文档尺寸</code></li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">字符</code>，方便查看字体、字号、行高等</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="其他常用设置">其他常用设置</h2>
+
+<ul>
+  <li>选中<code class="highlighter-rouge">选择</code>工具时，上工具栏<code class="highlighter-rouge">自动选择</code>：如果勾选，配合后方选择<code class="highlighter-rouge">图层</code>，鼠标点击即可自动选中图层
+    <ul>
+      <li>可以不打开，但是将后方默认的<code class="highlighter-rouge">组</code>切换为<code class="highlighter-rouge">图层</code>，那么<code class="highlighter-rouge">ctrl+鼠标左键</code>也可自动选中图层</li>
+    </ul>
+  </li>
+  <li>菜单栏勾选 <code class="highlighter-rouge">视图 &gt; 显示 &gt; 智能参考线</code></li>
+  <li>菜单栏勾选 <code class="highlighter-rouge">视图 &gt; 标尺</code></li>
+  <li>菜单栏打开<code class="highlighter-rouge">编辑 &gt; 首选项 &gt; 单位与标尺</code>，将<code class="highlighter-rouge">标尺</code>和<code class="highlighter-rouge">文字</code>的单位均设置为<code class="highlighter-rouge">像素</code></li>
+</ul>
+
+<h2 id="保存工作区">保存工作区</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">菜单栏 &gt; 窗口 &gt; 工作区 &gt; 新建工作区</code>，并选择捕捉 <code class="highlighter-rouge">快捷键</code>和<code class="highlighter-rouge">菜单</code>就可以将之前的设置保存下来</li>
+</ul>
+
+<h1 id="选区工具">选区工具</h1>
+
+<ul>
+  <li>快捷键<code class="highlighter-rouge">M</code>，<code class="highlighter-rouge">shift + M</code>在子选项中切换</li>
+  <li><code class="highlighter-rouge">鼠标左键</code>按住可以拖动选区</li>
+  <li>鼠标结合修改键使用</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>修改键</th>
+      <th>建立单个选区</th>
+      <th>增加多个选区</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">shift</code></td>
+      <td>横纵相等</td>
+      <td>并集</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">alt</code></td>
+      <td>以起始点为中心</td>
+      <td>差集</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">shift alt</code></td>
+      <td>以起始点为中心、横纵坐标相等</td>
+      <td>交集</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><code class="highlighter-rouge">Ctrl + D</code>，删除选区</li>
+  <li>从图层选择选区：在右侧图层栏，选中图层，按照<code class="highlighter-rouge">ctrl</code>点击左边图层缩略图就可以以图层建立选区</li>
+</ul>
+
+<h2 id="套索工具">套索工具</h2>
+
+<p>选区工具创建的选区都是规则，而不规则选区可以使用套索工具。</p>
+
+<h2 id="快速选择工具">快速选择工具</h2>
+
+<p>可以根据色块快速选择。</p>
+
+<h1 id="裁剪工具">裁剪工具</h1>
+
+<ul>
+  <li>在有选区的情况下，切换到裁剪工具，可以以选区边缘自动给出裁剪区域</li>
+</ul>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+  <li><a href="https://www.imooc.com/learn/1228">切图基础教程-前端工程师版</a></li>
+</ul>
+:ET
